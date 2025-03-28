@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /test.txt
+Allow: /readme.md
