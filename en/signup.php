@@ -110,14 +110,14 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-   <div id="top-page-image" class="signup-team top-page-image"></div>
+   <div id="top-page-image" class="logo-image-00002 top-page-image"></div>
 
 <div id="form-submission-box" class="landing-page-form" >
     <div class="form-container">
 
         <div style="text-align:center;width:100%;margin:auto;">
-            <div id="status-message" data-lang-id="001-signup-heading">Create Your Account</div>
-            <div id="sub-status-message" data-lang-id="002-signup-subtext" style="margin-bottom:15px;">Join us on GoBrik with a Buwana account— an open source, for-Earth alternative to corporate logins.</div>
+            <div id="status-message" data-lang-id="001-signup-heading">Create Your Buwana Account</div>
+            <div id="sub-status-message" data-lang-id="002-signup-subtext-x" style="margin-bottom:15px;">EarthCal uses Buwana accounts for user authentication.  Buwana is a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
         </div>
 
        <!--SIGNUP FORM-->
@@ -177,7 +177,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 <!--FOOTER STARTS HERE-->
 
-<?php require_once ("../footer-2025.php");?>
+<?php require_once ("../footer-2024.php");?>
 
 </div><!--close page content-->
 
