@@ -4,7 +4,7 @@ require_once '../buwanaconn_env.php'; // Sets up buwana_conn database connection
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.39';
+$version = '0.41';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 

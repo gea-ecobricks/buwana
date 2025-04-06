@@ -638,10 +638,10 @@ display: none;
         <button type="button" class="side-menu-button"  onclick="openSideMenu()" aria-label="Open Menu">
         </button>
 
-    <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="gobrik.com | v<?php echo $version; ?>" onclick="redirectToWelcome()">
+    <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="Buwana | v<?php echo $version; ?>" onclick="redirectToWelcome()">
 
 
-<img src="../icons/b-logo.svg" style="width:200px; height: 60px;">
+<img src="../icons/b-logo.svg?v=2" style="width:200px; height: 50px;" style="margin: auto;">
 
 </div>
 
