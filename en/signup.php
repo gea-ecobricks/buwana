@@ -110,7 +110,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-   <div id="top-page-image" class="logo-image-00002 top-page-image"></div>
+   <div id="top-page-image" class="app-signup-banner top-page-image"></div>
 
 <div id="form-submission-box" class="landing-page-form" >
     <div class="form-container">
