@@ -116,8 +116,8 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     <div class="form-container">
 
         <div style="text-align:center;width:100%;margin:auto;">
-            <div id="status-message" data-lang-id="001-signup-heading">Create Your Buwana Account</div>
-            <div id="sub-status-message" data-lang-id="002-signup-subtext-x" style="margin-bottom:15px;">EarthCal uses Buwana accounts for user authentication.  Buwana is a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
+            <div id="status-message" data-lang-id="001-signup-heading">Create Your Account</div>
+            <div id="sub-status-message" data-lang-id="002-signup-subtext-x" style="margin-bottom:15px;">Register for your Earthcal Buwana account. EarthCal uses the Buwana Authentication protocol-- a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
         </div>
 
        <!--SIGNUP FORM-->
