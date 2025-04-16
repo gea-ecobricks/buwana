@@ -635,7 +635,7 @@ display: none;
     <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="Buwana | v<?php echo $version; ?>" onclick="redirectToWelcome()">
 
 
-<img src="../app-svgs/earthcal-top-logo.svg?v=1" style="width:200px; height: 50px; margin: auto;">
+<img src="../app-svgs/earthcal-top-logo.svg?v=1" style="width:200px; height: 50px; margin: auto; fill="fill="var(--logo-color)";>
 
 </div>
 
