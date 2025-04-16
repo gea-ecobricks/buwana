@@ -377,6 +377,130 @@ display: none;
 
 
 
+<!-- MAIN MENU -->
+<div id="main-menu-overlay" class="overlay-settings" style="display:none;">
+  <button type="button" onclick="closeSettings()" aria-label="Click to close settings page" class="x-button"></button>
+  <div class="overlay-content-settings">
+    <!-- Check if the user is logged in before displaying the logged-in status box : earthen values set by earthenAuth_helper-->
+    <?php if ($is_logged_in): ?>
+      <div class="menu-page-item" style="display: flex; flex-direction: column; align-items: flex-start; cursor:unset;">
+        <div style="width:100%; display: flex; align-items: center;">
+          <div style="color: var(--text-color); margin-left: 0px;">
+              <span data-lang-id="1000-logged-user"></span>
+              <span><?php echo htmlspecialchars($earthling_emoji); ?> <?php echo htmlspecialchars($first_name); ?></span>
+              <span style="color: var(--subdued);">
+                <?php
+                if ($gea_status !== null) {
+                    echo "  |  " . htmlspecialchars($gea_status);
+                } else {
+                    $response['error'] = 'gea_status_error';
+                    echo "GEA Status: Not available"; // Optional: display an alternative message
+                }
+                ?>
+                </span>
+            </div>
+        </div>
+
+        <div class="logged-in-links" style="width:100%; font-size: 0.8em; margin-top: 5px; text-align: left;">
+           <p style="font-size:0.9em; margin-bottom: 3px;
+  margin-top: 5px;"><span id="continent-icon"><?php echo htmlspecialchars($user_continent_icon); ?> </span> <span style="color:green;"><?php echo htmlspecialchars($user_location_watershed); ?></span> <span style="color:grey">| <?php echo htmlspecialchars($user_community_name); ?></span></p>
+
+           <p style="font-size:0.9em;">
+  ⚙️ <span onclick="openProfile()" class="underline-link" data-lang-id="1000-profile-settings" style="cursor: pointer;" class="underline-link" title="Update your user settings">Profile settings</span> |
+  🐳 <span onclick="logoutUser()" class="underline-link" data-lang-id="1000-log-out" style="cursor: pointer;" class="underline-link" title="Log out completely">Log out</span>
+</p>
+
+        </div>
+      </div>
+      <div class="menu-page-item">
+        <a href="dashboard.php" aria-label="Log" data-lang-id="1000-dashboard">Dashboard</a>
+        <span class="status-circle" style="background-color: green;" title="Working. Under development"></span>
+      </div>
+    <?php else: ?>
+      <!-- If the user is not logged in, show the login/signup options -->
+      <div class="menu-page-item">
+        <a href="login.php" data-lang-id="1000-login" style="margin-right:10px; min-width: 65px;width:75px;">Log in</a> |
+        <a href="signup.php" data-lang-id="1000-sign-up" style="margin-left:10px">Sign up</a>
+        <span class="status-circle" style="background-color: limegreen;" title="Deployed. Under beta testing."></span>
+      </div>
+    <?php endif; ?>
+
+
+
+<!-- Other menu items -->
+<div class="menu-page-item">
+  <a href="log.php" data-lang-id="1000-log-ecobricks">
+    Log Ecobricks
+
+  </a>
+  <span class="status-circle" style="background-color: green;" title="Working.  Being tested."></span>
+</div>
+
+<div class="menu-page-item">
+  <a href="newest-briks.php" data-lang-id="1000-latest-ecobricks">
+    Latest Ecobricks
+
+  </a>
+  <span class="status-circle" style="background-color: green;" title="Working well."></span>
+</div>
+
+<!-- Uncommented for demonstration purposes
+<div class="menu-page-item">
+  <a href="brikchain.php" data-lang-id="1000-brikchain">
+    The Brikchain
+    <span class="status-circle" style="background-color: red;" title="Under development, but active!"></span>
+  </a>
+</div>
+
+<div class="menu-page-item">
+  <a href="newest-projects.php" data-lang-id="1000-featured-projects">
+    Featured Projects
+    <span class="status-circle" style="background-color: red;" title="Not yet deployed"></span>
+  </a>
+</div>
+
+<div class="menu-page-item">
+  <a href="newest-trainings.php" data-lang-id="1000-latest-trainings">
+    Latest Trainings
+    <span class="status-circle" style="background-color: red;" title="Not yet deployed"></span>
+  </a>
+</div>
+-->
+
+<div class="menu-page-item">
+  <a href="bug-report.php" data-lang-id="1000-bug-report">
+    Report a Bug
+
+  </a>
+  <span class="status-circle" style="background-color: green;" title="Working."></span>
+</div>
+
+<!--
+    <div class="menu-page-item">
+  <a href="messenger.php" data-lang-id="1000-bug-report">
+    Messenger
+
+  </a>
+  <span class="status-circle" style="background-color: yellow;" title="Under development. Only working on desktop"></span>
+</div>-->
+
+<div class="menu-page-item">
+  <a href="index.php" data-lang-id="1000-landing-page">
+    Home page
+
+  </a>
+  <span class="status-circle" style="background-color: green;" title="Deployed. Working well!"></span>
+</div>
+
+
+    <!-- GoBrik Tour at the bottom -->
+    <div class="menu-page-item">
+      <a data-lang-id="1001-gobrik-tour" onclick="closeSettings(); setTimeout(guidedTour, 500);">GoBrik Tour</a>
+      <span class="status-circle" style="background-color: yellow;" title="Working. Not translated."></span>
+    </div>
+  </div> <!-- close overlay-content-settings -->
+</div> <!-- close main menu -->
+
 
 
 <div id="page-content"> <!--modal blur added here-->
@@ -399,7 +523,7 @@ display: none;
 
         <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="Buwana | v<?php echo $version; ?>" onclick="redirectToWelcome()">
             <!--<img src="../app-svgs/earthcal-top-logo.svg?v=1" style="width:200px; height: 50px; margin: auto; fill=var(--logo-color)";>-->
-            <svg width="101.85mm" height="20.191mm" version="1.1" viewBox="0 0 101.85 20.191" xmlns="http://www.w3.org/2000/svg" style="margin:auto;width:222px;height:50px;padding-top:30px;">
+            <svg width="101.85mm" height="20.191mm" version="1.1" viewBox="0 0 101.85 20.191" xmlns="http://www.w3.org/2000/svg" style="margin:auto;width:222px;height:50px;padding-top:3px;">
              <g transform="matrix(1.7863 0 0 1.7863 430.54 -1056.9)" fill="var(--logo-color)" style="white-space:pre" aria-label="earthcal">
               <path d="m-229.7 600.99q-0.396 0.372-1.02 0.588-0.612 0.216-1.26 0.216-0.936 0-1.62-0.372-0.672-0.372-1.044-1.068-0.36-0.708-0.36-1.68 0-0.936 0.36-1.644t0.996-1.104q0.648-0.396 1.488-0.396 0.804 0 1.38 0.36 0.576 0.348 0.876 1.008 0.312 0.66 0.312 1.584v0.18h-4.56v-0.636h4.008l-0.312 0.444q0.024-1.056-0.42-1.62-0.432-0.564-1.272-0.564-0.876 0-1.38 0.624-0.492 0.612-0.492 1.704 0 1.176 0.516 1.776 0.528 0.6 1.536 0.6 0.528 0 1.008-0.168 0.492-0.18 0.936-0.54zm3.9 0.804q-0.804 0-1.416-0.372-0.6-0.384-0.936-1.08-0.324-0.708-0.324-1.656t0.336-1.656 0.936-1.104q0.612-0.396 1.404-0.396 0.828 0 1.404 0.408t0.78 1.164l-0.144 0.096v-1.524h0.96v6.036h-0.96v-1.56l0.144 0.072q-0.204 0.756-0.78 1.164t-1.404 0.408zm0.192-0.804q0.888 0 1.368-0.6 0.48-0.612 0.48-1.728t-0.492-1.716q-0.48-0.6-1.356-0.6-0.888 0-1.392 0.624-0.492 0.612-0.492 1.716t0.492 1.704q0.504 0.6 1.392 0.6zm4.692 0.72v-4.344q0-0.42-0.024-0.84-0.012-0.432-0.072-0.852h0.924l0.132 1.488-0.132-0.036q0.168-0.792 0.72-1.188 0.564-0.408 1.26-0.408 0.156 0 0.288 0.024 0.144 0.012 0.264 0.048l-0.024 0.888q-0.276-0.096-0.636-0.096-0.624 0-1.008 0.276-0.372 0.276-0.552 0.708-0.168 0.42-0.168 0.888v3.444zm3.972-5.268v-0.768h3.876v0.768zm3.852 4.404v0.828q-0.204 0.06-0.408 0.084-0.192 0.036-0.432 0.036-0.84 0-1.344-0.48-0.492-0.48-0.492-1.44v-5.748l0.972-0.348v5.964q0 0.48 0.132 0.744 0.144 0.264 0.384 0.372 0.24 0.096 0.54 0.096 0.18 0 0.324-0.024t0.324-0.084zm1.2 0.864v-8.832h0.972v4.02l-0.156 0.12q0.252-0.732 0.84-1.104 0.588-0.384 1.356-0.384 2.172 0 2.172 2.388v3.792h-0.972v-3.744q0-0.84-0.336-1.224-0.336-0.396-1.056-0.396-0.84 0-1.344 0.516t-0.504 1.392v3.456z"/>
               <path d="m-202.25 601.79q-0.948 0-1.644-0.372-0.684-0.384-1.056-1.08-0.36-0.708-0.36-1.656 0-0.96 0.384-1.68t1.092-1.116 1.656-0.396q0.636 0 1.236 0.204 0.612 0.204 0.996 0.564l-0.432 1.056q-0.384-0.312-0.816-0.468-0.432-0.168-0.864-0.168-0.792 0-1.26 0.504-0.456 0.504-0.456 1.476 0 0.96 0.456 1.464t1.272 0.504q0.42 0 0.852-0.156 0.432-0.168 0.816-0.492l0.432 1.056q-0.396 0.36-1.02 0.564-0.612 0.192-1.284 0.192zm5.664 0q-0.792 0-1.404-0.372-0.612-0.384-0.948-1.08-0.324-0.708-0.324-1.656 0-0.96 0.336-1.668 0.336-0.72 0.936-1.116 0.612-0.408 1.404-0.408 0.768 0 1.332 0.384 0.576 0.372 0.78 1.044l-0.144 0.084v-1.356h1.476v6.06h-1.476v-1.368l0.144 0.048q-0.204 0.672-0.78 1.044-0.564 0.36-1.332 0.36zm0.408-1.152q0.744 0 1.152-0.516t0.408-1.464q0-0.972-0.408-1.476-0.408-0.516-1.152-0.516-0.756 0-1.176 0.528t-0.42 1.488q0 0.936 0.42 1.452 0.42 0.504 1.176 0.504zm4.656 1.068v-8.832h1.5v8.832z"/>
