@@ -48,11 +48,7 @@
 <meta name="msapplication-TileImage" content="../icons/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
-
-
-
 <!--MAIN STYLE SHEETS -->
-
 
 <link rel="stylesheet" type="text/css" href="../styles/mode-slider.css?v=4">
 <link rel="stylesheet" type="text/css" href="../styles/content-2025.css?v=3<?php echo ($version); ;?>">
@@ -64,8 +60,6 @@
  <!--Stylesheets for light and dark mode.  They need to be called here-->
 <link rel="stylesheet" href="../styles/mode-light.css?v=1<?php echo ($version); ;?>" media="(prefers-color-scheme: no-preference), (prefers-color-scheme: light)">
 <link rel="stylesheet" href="../styles/mode-dark.css?v=1<?php echo ($version); ;?>" media="(prefers-color-scheme: dark)">
-
-
 
 <link rel="stylesheet" type="text/css" href="../styles/footer.css?v=<?php echo ($version); ;?>">
 
