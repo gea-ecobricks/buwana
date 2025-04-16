@@ -394,25 +394,16 @@ display: none;
     <div id="header" class="top-menu" style="display: flex;
     flex-flow: row;">
 
-        <button type="button" class="side-menu-button"  onclick="openSideMenu()" aria-label="Open Menu">
-        </button>
+        <!--<button type="button" class="side-menu-button"  onclick="openSideMenu()" aria-label="Open Menu">
+                    </button>-->
 
-    <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="Buwana | v<?php echo $version; ?>" onclick="redirectToWelcome()">
-
-
-<img src="../app-svgs/earthcal-top-logo.svg?v=1" style="width:200px; height: 50px; margin: auto; fill=var(--logo-color)";>
-
-</div>
-
-
-
+        <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="Buwana | v<?php echo $version; ?>" onclick="redirectToWelcome()">
+            <img src="../app-svgs/earthcal-top-logo.svg?v=1" style="width:200px; height: 50px; margin: auto; fill=var(--logo-color)";>
         </div>
+
 
         <div id="function-icons" style="display: flex;flex-flow:row;margin:auto 10px auto auto;">
 
-
-        <!--<button type="button" class="top-search-button"  onclick="openSearch()"  aria-label="Search site">
-                </button>-->
 
             <div id="settings-buttons">
 
