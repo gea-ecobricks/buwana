@@ -16,7 +16,7 @@
   <sodipodi:namedview
      id="namedview5635"
      pagecolor="#ffffff"
-     bordercolor="#666666"
+     bordercolor="var(--logo-color)"
      borderopacity="1.0"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
