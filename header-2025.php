@@ -10,17 +10,17 @@
 	;?>
 
 
-	<link rel="canonical" href="https://gobrik.com/<?php echo ($lang); ;?>/<?php echo ($name); ;?>">
+	<link rel="canonical" href="https://buwana.ecobricks.org/<?php echo ($lang); ;?>/<?php echo ($name); ;?>">
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 
-	<link rel="alternate" href="https://gobrik.com/en/<?php echo ($name); ;?>" hreflang="en">
-	<link rel="alternate" href="https://gobrik.com/id/<?php echo ($name); ;?>" hreflang="id">
-	<link rel="alternate" href="https://gobrik.com/es/<?php echo ($name); ;?>" hreflang="es">
-	<link rel="alternate" href="https://gobrik.com/fr/<?php echo ($name); ;?>" hreflang="fr">
-	<link rel="alternate" href="http://gobrik.com/en/<?php echo ($name); ;?>" hreflang="x-default">
+	<link rel="alternate" href="https://buwana.ecobricks.org/en/<?php echo ($name); ;?>" hreflang="en">
+	<link rel="alternate" href="https://buwana.ecobricks.org/id/<?php echo ($name); ;?>" hreflang="id">
+	<link rel="alternate" href="https://buwana.ecobricks.org/es/<?php echo ($name); ;?>" hreflang="es">
+	<link rel="alternate" href="https://buwana.ecobricks.org/fr/<?php echo ($name); ;?>" hreflang="fr">
+	<link rel="alternate" href="http://buwana.ecobricks.org/en/<?php echo ($name); ;?>" hreflang="x-default">
 
 
-<meta property="og:site_name" content="gobrik.com">
+<meta property="og:site_name" content="Buwana EarthenAuth">
 <meta property="article:publisher" content="https://web.facebook.com/gobrik.com">
 
 
@@ -28,7 +28,7 @@
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="apple-mobile-web-app-title" content="gobrik.com">
+<meta name="apple-mobile-web-app-title" content="Buwana EarthenAuth">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 
@@ -228,7 +228,7 @@
 
 
 
-<script src="../scripts/core-2024.js?v=3<?php echo ($version); ;?>"></script>
+<script src="../scripts/core-2025.js?v=3<?php echo ($version); ;?>"></script>
 
 
 <!--This enables the Light and Dark mode switching-->
