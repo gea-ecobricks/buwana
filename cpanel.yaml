@@ -1,0 +1,28 @@
+---
+deployment:
+  tasks:
+    # Set the deployment path, defaulting to the current directory if not provided
+    - export DEPLOYPATH=${DEPLOYPATH:-$PWD}
+
+    # Check if the source directory exists before proceeding
+    - if [ ! -d "$DEPLOYPATH/en" ]; then echo "Source directory $DEPLOYPATH/en does not exist"; exit 1; fi
+
+    # Ensure target directories exist; create them if they do not
+    - mkdir -p $DEPLOYPATH/fr/
+    - mkdir -p $DEPLOYPATH/es/
+    - mkdir -p $DEPLOYPATH/id/
+
+    # Copy files from the English directory to the French directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/fr/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/fr/"
+
+    # Copy files from the English directory to the Spanish directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/es/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/es/"
+
+    # Copy files from the English directory to the Indonesian directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/id/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/id/"
+
+    # Log completion of deployment
+    - echo "Deployment tasks completed successfully."
