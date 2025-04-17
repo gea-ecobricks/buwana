@@ -15,6 +15,54 @@
 <STYLE>
 
 
+    /* Wrapper for button centering */
+    .submit-button-wrapper {
+      text-align: center;
+      margin: 20px auto;
+    }
+
+    /* Unified, badass submit button */
+    .kick-ass-submit {
+      display: inline-block;
+      width: 100%;
+      max-width: 400px;
+      padding: 14px 24px;
+      font-size: 1.3em;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      background-color: var(--button-2-1);
+      color: white;
+      cursor: pointer;
+      transition:
+        background-color 0.3s ease,
+        box-shadow 0.2s ease,
+        transform 0.1s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hover/active states */
+    .kick-ass-submit:hover {
+      background-color: var(--button-2-1-hover, #0055aa);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .kick-ass-submit:active {
+      transform: scale(0.98);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive width */
+    @media (min-width: 769px) {
+      .kick-ass-submit {
+        width: 77%;
+      }
+    }
+
+
+
+
+
 /* Floating Label for FIRST NAME Container */
 .float-label-group {
   position: relative;
