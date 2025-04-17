@@ -150,11 +150,10 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
     <div class="form-item">
-        <select id="credential" name="credential" aria-label="Preferred Credential" required >
+        <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 22px !important;" >
             <option value="" disabled selected data-lang-id="000-select">Select how you register...</option>
             <option value="email">E-mail</option>
-            <option value="mail" disabled>Phone</option>
-            <option value="sms" disabled>SMS</option>
+            <option value="mail">Phone number</option>
             <option value="peer" disabled>Peer</option>
         </select>
         <p class="form-caption" data-lang-id="007-way-to-contact">You'll use this credential to login and receive GoBrik messages.</p>
