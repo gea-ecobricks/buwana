@@ -372,6 +372,13 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
  margin-top: 5px;
  }
 
+ .buwana-word-mark {
+ background: url('../svgs/b-logo.svg') center no-repeat;
+   background-size: contain;
+  height: 50px;
+  margin-top: 5px;
+  }
+
     @media (prefers-color-scheme: dark) {
         .the-app-logo {
 
@@ -420,7 +427,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
    <div class="the-app-logo" alt="App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"></div>
 
-<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
+
     <div class="menu-page-item">
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
         Back to <?= htmlspecialchars($app_info['app_display_name']) ?>
@@ -457,6 +464,10 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
   </a>
   <span class="status-circle" style="background-color: orange;" title="Under development"></span>
 </div>
+
+<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
+
+<div class="Buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana"></div>
 
 
 
