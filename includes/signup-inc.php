@@ -13,49 +13,58 @@
 <?php require_once ("../meta/$page-$lang.php");?>
 
 <STYLE>
-/* Floating Label Container */
-.float-label-group {
-  position: relative;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
+
+
+/* Form Group Wrapper (your existing .form-item) */
+.form-item {
+    position: relative;
+    border-radius: 5px;
+    padding: 16px 12px 14px 12px; /* extra top padding for floating label space */
+    background-color: #00000015; /* or use var(--input-bg-secondary) if defined */
+    margin-top: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: background-color 0.2s ease;
 }
 
-/* Input Styling (inherits your existing styles + minor tweaks) */
-.float-label-group input[type="text"] {
-  width: 100%;
-  padding: 8px 10px;
-  margin: 4px 0;
-  font-size: 18px !important;
-  box-sizing: border-box;
-  border: 2px solid var(--button-2-1) !important;
-  border-radius: 5px;
-  background-color: var(--top-header) !important;
-  color: var(--h1);
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+/* Input Styling (now larger & more comfortable) */
+.float-label-group input[type="text"],
+.float-label-group input[type="name"] {
+    width: 100%;
+    padding: 12px 10px 10px 10px;
+    font-size: 1.6em;
+    font-family: inherit;
+    box-sizing: border-box;
+    border: 2px solid var(--button-2-1);
+    border-radius: 5px;
+    background-color: var(--top-header);
+    color: var(--h1);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Floating Label Default Position */
+/* Floating Label */
 .float-label-group label {
-  position: absolute;
-  left: 12px;
-  top: 10px;
-  color: var(--h1);
-  background-color: var(--top-header);
-  font-size: 18px;
-  padding: 0 4px;
-  transition: 0.2s ease all;
-  pointer-events: none;
+    position: absolute;
+    left: 16px;
+    top: 18px;
+    font-size: 1.6em;
+    color: var(--h1);
+    background-color: transparent;
+    padding: 0 4px;
+    transition: 0.2s ease all;
+    pointer-events: none;
 }
 
-/* Floating Behavior */
+/* Label floats when input is focused or filled */
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -10px;
-  left: 10px;
-  font-size: 14px;
-  color: var(--button-2-1);
-  background-color: var(--top-header);
+    top: 2px;
+    left: 12px;
+    font-size: 0.95em;
+    color: var(--button-2-1);
+    background-color: var(--top-header); /* Matches input bg for cleaner floating */
 }
+
 
 
 

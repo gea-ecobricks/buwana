@@ -2030,24 +2030,24 @@ label {
 
 /*upload*/
 
-.form-item {
-    border-radius: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 10px;
-    background-color: #00000015;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+/*.form-item {*/
+/*    border-radius: 5px;*/
+/*    padding-left: 10px;*/
+/*    padding-right: 10px;*/
+/*    padding-top: 5px;*/
+/*    padding-bottom: 10px;*/
+/*    background-color: #00000015;*/
+/*    margin-top: 10px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
 
 
 
-.form-item label,
-.form-item input,
-.form-item .form-caption {
-    padding: 7px;
-}
+/*.form-item label,*/
+/*.form-item input,*/
+/*.form-item .form-caption {*/
+/*    padding: 7px;*/
+/*}*/
 
 
 
