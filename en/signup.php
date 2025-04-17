@@ -193,7 +193,6 @@ https://github.com/gea-ecobricks/buwana/-->
 
 </div><!--close page content-->
 
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   // === DOM Elements ===
@@ -201,6 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const firstNameInput = document.getElementById('first_name');
   const credentialSelect = document.getElementById('credential');
   const submitButton = document.getElementById('submit-button');
+  const btn = submitButton;
+  const btnText = document.getElementById('submit-button-text');
+  const spinner = document.getElementById('submit-spinner');
   const errorRequired = document.getElementById('maker-error-required');
   const errorLong = document.getElementById('maker-error-long');
   const errorInvalid = document.getElementById('maker-error-invalid');
@@ -228,78 +230,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function validateOnSubmit() {
+    let isValid = true;
+    const firstName = firstNameInput.value.trim();
+    const credential = credentialSelect.value;
 
-form.addEventListener('submit', function (event) {
-  event.preventDefault();
+    // Validate First Name
+    displayError(errorRequired, firstName === '');
+    displayError(errorLong, firstName.length > 255);
+    displayError(errorInvalid, hasInvalidChars(firstName));
 
-  if (validateOnSubmit()) {
-    // Trigger click animation
-    btn.classList.add('click-animating');
-    btn.classList.remove('pulse-started');
-
-    // Swap text for spinner
-    btnText.style.display = 'none';
-    spinner.style.display = 'inline-block';
-
-    // Optional: remove hover effect immediately
-    btn.removeAttribute('data-hovered');
-    btn.classList.remove('pulse-started');
-
-    // Submit after 1.2s to allow animation to complete
-    setTimeout(() => {
-      form.submit(); // Native submit (POSTs to PHP)
-    }, 1200);
-  }
-});
-
-
-
-  function scrollLessThan30() {
-    const topPageImage = document.querySelector('.top-page-image');
-    if (window.pageYOffset <= 30 && topPageImage) {
-      topPageImage.style.zIndex = "35";
+    if (firstName === '' || firstName.length > 255 || hasInvalidChars(firstName)) {
+      isValid = false;
     }
-  }
 
-  function scrollMoreThan30() {
-    const topPageImage = document.querySelector('.top-page-image');
-    if (window.pageYOffset > 30 && topPageImage) {
-      topPageImage.style.zIndex = "25";
+    // Validate Credential
+    displayError(credentialError, credential === '');
+    if (credential === '') {
+      isValid = false;
     }
-  }
 
-  function showHideHeader() {
-    // Placeholder — this function was called but not defined
-    // Add header visibility logic here if needed
+    return isValid;
   }
 
   // === Event Listeners ===
 
-  // Live validation on input/change
+  // Live validation
   firstNameInput.addEventListener('input', validateFieldsLive);
   credentialSelect.addEventListener('change', validateFieldsLive);
-  validateFieldsLive(); // Initial check on load
+  validateFieldsLive();
 
-  // Handle form submission
+  // Submit handler with delay + animation
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     if (validateOnSubmit()) {
-      form.submit(); // All checks passed
-    } else {
-      // Scroll to first visible error
-      const firstError = document.querySelector('.form-field-error[style="display: block;"]');
-      if (firstError) {
-        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
-        const relatedInput = firstError.closest('.form-item')?.querySelector('input, select, textarea');
-        if (relatedInput) {
-          relatedInput.focus();
-        }
-      }
+      // Trigger click animation
+      btn.classList.add('click-animating');
+      btn.classList.remove('pulse-started');
+
+      // Show spinner, hide text
+      btnText.style.display = 'none';
+      spinner.style.display = 'inline-block';
+
+      // Disable hover animation during submission
+      btn.removeAttribute('data-hovered');
+      btn.classList.remove('pulse-started');
+
+      // Delay submit for 1.2s
+      setTimeout(() => {
+        form.submit();
+      }, 1200);
     }
   });
 
-  // Allow Enter to submit, but not from buttons or selects
+  // Allow Enter to submit unless focus is on button or select
   form.addEventListener('keypress', function (event) {
     if (event.key === "Enter") {
       if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
@@ -309,15 +294,9 @@ form.addEventListener('submit', function (event) {
       }
     }
   });
-
-  // Scroll logic for adjusting image z-index
-  window.onscroll = () => {
-    scrollLessThan30();
-    scrollMoreThan30();
-    showHideHeader();
-  };
 });
 </script>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
