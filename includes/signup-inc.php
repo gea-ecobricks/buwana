@@ -65,7 +65,7 @@
 /* Floating Behavior */
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -6px;
+  top: -7px;
   left: 25px;
   font-size: 15px;
   color: var(--subdued-text);
