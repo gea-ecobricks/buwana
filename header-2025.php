@@ -454,30 +454,27 @@ function navigateTo(url) {
 }
 
 
-// In mode-toggle.mjs.js (when toggling themes manually)
-function updateLogo() {
-    const topLogo = document.getElementById('top-app-logo');
-    const appLogo = document.querySelector('.the-app-logo');
+document.addEventListener('colorschemechange', (event) => {
+  const newMode = event.detail.colorScheme;
+  const isDark = newMode === 'dark';
 
-    const isDark = document.documentElement.classList.contains('dark-mode'); // Or however your toggle sets it
+  const topLogo = document.getElementById('top-app-logo');
+  const appLogo = document.querySelector('.the-app-logo');
 
-    const lightWordmark = '<?= $app_info["app_wordmark_url"] ?>';
-    const darkWordmark = '<?= $app_info["app_wordmark_dark_url"] ?>';
-    const lightLogo = '<?= $app_info["app_logo_url"] ?>';
-    const darkLogo = '<?= $app_info["app_logo_dark_url"] ?>';
+  const lightWordmark = '<?= $app_info["app_wordmark_url"] ?>';
+  const darkWordmark = '<?= $app_info["app_wordmark_dark_url"] ?>';
+  const lightLogo = '<?= $app_info["app_logo_url"] ?>';
+  const darkLogo = '<?= $app_info["app_logo_dark_url"] ?>';
 
-    if (topLogo) {
-        topLogo.style.backgroundImage = `url('${isDark ? darkWordmark : lightWordmark}')`;
-    }
+  if (topLogo) {
+    topLogo.style.backgroundImage = `url('${isDark ? darkWordmark : lightWordmark}')`;
+  }
 
-    if (appLogo) {
-        appLogo.style.backgroundImage = `url('${isDark ? darkLogo : lightLogo}')`;
-    }
-}
-
-document.querySelector('#dark-mode-toggle-5').addEventListener('click', () => {
-    setTimeout(updateLogo, 10); // Slight delay to wait for theme toggle
+  if (appLogo) {
+    appLogo.style.backgroundImage = `url('${isDark ? darkLogo : lightLogo}')`;
+  }
 });
+
 
 
 </script>
