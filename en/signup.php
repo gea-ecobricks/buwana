@@ -161,7 +161,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 <div class="submit-button-wrapper">
-  <button type="submit" id="submit-button" class="kick-ass-submit disabled">
+  <button type="submit" id="submit-button" class="kick-ass-submit">
     <span id="submit-button-text" data-lang-id="016-submit-to-password">Next ➡️</span>
     <span id="submit-spinner" class="spinner" style="display: none;"></span>
   </button>
@@ -317,37 +317,35 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
-const form = document.getElementById('user-signup-form');
-const btn = document.getElementById('submit-button');
-const btnText = document.getElementById('submit-button-text');
-const spinner = document.getElementById('submit-spinner');
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.kick-ass-submit');
 
-form.addEventListener('submit', function (event) {
-  event.preventDefault();
+  btn.addEventListener('mouseenter', () => {
+    // Add hover state to trigger entrance animation
+    btn.setAttribute('data-hovered', 'true');
+    btn.classList.remove('pulse-started', 'returning');
 
-  // Validate before animating
-  if (validateOnSubmit()) {
-    // Stripe click animation
-    btn.classList.add('click-animating');
+    // Start pulsing after entrance animation ends
+    setTimeout(() => {
+      btn.classList.add('pulse-started');
+    }, 400); // Match duration of powerStripeEntrance
+  });
+
+  btn.addEventListener('mouseleave', () => {
+    // Remove hover attributes
+    btn.removeAttribute('data-hovered');
     btn.classList.remove('pulse-started');
 
-    // Swap text for spinner
-    btnText.style.display = 'none';
-    spinner.style.display = 'inline-block';
+    // Trigger the return animation
+    btn.classList.add('returning');
 
-    // Trigger the stripe animation (will auto-reset)
+    // Clear the return class after it completes
     setTimeout(() => {
-      btn.classList.remove('click-animating');
-    }, 600); // total animation duration
-
-    // Let the form actually submit after animation starts
-    setTimeout(() => {
-      form.submit(); // native post to PHP
-    }, 100); // Small delay lets the spinner be visible
-  } else {
-    // Show errors, don’t animate
-  }
+      btn.classList.remove('returning');
+    }, 400); // Match duration of powerStripeReturn
+  });
 });
+
 
 </script>
 
