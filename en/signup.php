@@ -7,7 +7,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.47';
+$version = '0.48';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -311,6 +311,29 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollMoreThan30();
     showHideHeader();
   };
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.kick-ass-submit');
+
+  btn.addEventListener('mouseenter', () => {
+    btn.setAttribute('data-hovered', 'true');
+
+    // Remove any idle animation to prep for entrance
+    btn.classList.remove('pulse-started');
+
+    // Delay, then start pulse after entrance animation
+    setTimeout(() => {
+      btn.classList.add('pulse-started');
+    }, 400); // matches the entrance duration
+  });
+
+  btn.addEventListener('mouseleave', () => {
+    btn.removeAttribute('data-hovered');
+    btn.classList.remove('pulse-started');
+  });
 });
 </script>
 

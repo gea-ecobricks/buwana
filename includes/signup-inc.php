@@ -21,29 +21,42 @@
 }
 
 /* Animations */
+
+@keyframes powerStripeEntrance {
+  from {
+    left: 15%;
+  }
+  to {
+    left: 80%;
+  }
+}
+
+
+
 @keyframes powerStripeIdle {
   0% {
-    left: 10%;
+    left: 12%;
   }
   50% {
-    left: 22%;
+    left: 16%;
   }
   100% {
-    left: 10%;
+    left: 12%;
   }
 }
 
 @keyframes powerStripePulse {
   0% {
-    left: 60%;
-  }
-  50% {
     left: 80%;
   }
-  100% {
+  50% {
     left: 60%;
   }
+  100% {
+    left: 80%;
+  }
 }
+
 
 /* Kick-ass button core */
 .kick-ass-submit {
@@ -86,10 +99,16 @@
   animation: powerStripeIdle 3s ease-in-out infinite;
 }
 
-/* On hover: run the pulse animation */
-.kick-ass-submit:hover::before {
-  animation: powerStripePulse 1.2s ease-in-out infinite;
+/* When hovering: run entrance */
+.kick-ass-submit[data-hovered="true"]::before {
+  animation: powerStripeEntrance 0.4s ease forwards;
 }
+
+/* When entrance completes, pulse begins */
+.kick-ass-submit.pulse-started::before {
+  animation: powerStripePulse 1.1s ease-in-out infinite;
+}
+
 
 /* Button content stays above the stripe */
 .kick-ass-submit span,
