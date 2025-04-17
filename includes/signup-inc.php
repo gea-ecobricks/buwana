@@ -27,7 +27,7 @@
   width: 100%;
   padding: 8px 10px;
   margin: 4px 0;
-  font-size: 18px !important;
+  font-size: 22px !important;
   box-sizing: border-box;
   border: 2px solid var(--button-2-1) !important;
   border-radius: 5px;
@@ -39,9 +39,9 @@
 /* Floating Label Default Position */
 .float-label-group label {
   position: absolute;
-  left: 12px;
-  top: 10px;
-  color: var(--h1);
+  left: 20px;
+  top: 22px;
+  color: var(--subdued-text);
   background-color: var(--top-header);
   font-size: 20px;
   padding: 0 4px;
@@ -53,10 +53,11 @@
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
   top: -10px;
-  left: 10px;
+  left: 15px;
   font-size: 14px;
   color: var(--button-2-1);
   background-color: var(--top-header);
+  border-radius: 5px 5px 0px 0px;
 }
 
 

@@ -2031,10 +2031,10 @@ label {
 /*upload*/
 
 .form-item {
-    border-radius: 5px;
+    border-radius: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 15px;
+    padding-top: 18px;
     padding-bottom: 15px;
     background-color: #00000015;
     margin-top: 10px;
