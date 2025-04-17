@@ -67,7 +67,9 @@
 
 .disabled:hover {
     background-color: #868e9c;
-    cursor: not-allowed !important;
+      cursor: not-allowed;
+      box-shadow: none;
+      pointer-events: none;
 }
 
 

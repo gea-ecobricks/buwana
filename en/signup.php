@@ -190,6 +190,34 @@ https://github.com/gea-ecobricks/buwana/-->
 <?php require_once ("../footer-2025.php");?>
 
 </div><!--close page content-->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const firstNameInput = document.getElementById('first_name');
+  const credentialSelect = document.getElementById('credential');
+  const submitButton = document.getElementById('submit-button');
+
+  // Simple validation function
+  function validateFields() {
+    const firstNameValid = firstNameInput.value.trim().length > 0 && firstNameInput.value.trim().length <= 255;
+    const credentialValid = credentialSelect.value !== "";
+
+    // Add more logic if you want to check for specific error classes
+    if (firstNameValid && credentialValid) {
+      submitButton.classList.remove('disabled');
+    } else {
+      submitButton.classList.add('disabled');
+    }
+  }
+
+  // Listen for input changes
+  firstNameInput.addEventListener('input', validateFields);
+  credentialSelect.addEventListener('change', validateFields);
+
+  // Optional: run validation once on page load
+  validateFields();
+});
+</script>
+
 
 <script>
 document.getElementById('user-signup-form').addEventListener('submit', function(event) {
@@ -259,7 +287,7 @@ document.getElementById('user-signup-form').addEventListener('keypress', functio
     window.onscroll = function() {
         scrollLessThan30();
         scrollMoreThan30();
-        // showHideHeader();
+        showHideHeader();
     };
 
     function scrollLessThan30() {
