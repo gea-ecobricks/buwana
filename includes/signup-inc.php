@@ -21,23 +21,45 @@
       margin: 20px auto;
     }
 
+@keyframes powerStripeIdle {
+  0%, 100% {
+    opacity: 0.15;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+  }
+}
+
 @keyframes powerStripePulse {
   0% {
-    left: 20%;
-  }
-  20% {
-    left: 80%;
-  }
-  60% {
     left: 60%;
+    opacity: 0.15;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
-  80% {
+  25% {
     left: 80%;
+    opacity: 0.3;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    left: 60%;
+    opacity: 0.15;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  75% {
+    left: 80%;
+    opacity: 0.3;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
   }
   100% {
     left: 60%;
+    opacity: 0.15;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
 }
+
 
 
 
@@ -78,12 +100,20 @@
    transform: skewX(-45deg);
    pointer-events: none;
    z-index: 1;
+   opacity: 0.15;
+
+   /* Idle pulse animation */
+   animation: powerStripeIdle 2.2s ease-in-out infinite;
  }
 
- /* Trigger the pulsing animation on hover */
- .kick-ass-submit:hover::before {
-   animation: powerStripePulse 1.2s ease-in-out infinite;
- }
+.kick-ass-submit:hover::before {
+  animation: powerStripePulse 1.2s ease-in-out infinite;
+}
+
+.kick-ass-submit::before {
+  transition: left 0.5s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+}
+
 
 
    /* Button content stays above the stripe */
