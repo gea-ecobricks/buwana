@@ -395,7 +395,8 @@ display: none;
   <button type="button" onclick="closeSettings()" aria-label="Click to close settings page" class="x-button"></button>
   <div class="overlay-content-settings">
 
-   <div class="the-app-logo" alt="App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?>"> | <?= htmlspecialchars($app_info['app_slogan']) ?></div>
+   <div class="the-app-logo" alt="App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"></div>
+
 <p><?= htmlspecialchars($app_info['app_slogan']) ?></p>
     <div class="menu-page-item">
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
@@ -470,9 +471,6 @@ display: none;
 
         <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>" onclick="redirectToWelcome()">
            <img src="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>?v=1" style="width:200px; height: 50px; margin: auto; fill=var(--logo-color)";>
-
-             </g>
-            </svg>
         </div>
 
 
