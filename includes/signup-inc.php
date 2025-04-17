@@ -35,27 +35,27 @@
 @keyframes powerStripePulse {
   0% {
     left: 60%;
-    opacity: 0.15;
+    opacity: 0.25;
     box-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
   25% {
     left: 80%;
-    opacity: 0.3;
+    opacity: 0.4;
     box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
   }
   50% {
     left: 60%;
-    opacity: 0.15;
+    opacity: 0.25;
     box-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
   75% {
     left: 80%;
-    opacity: 0.3;
+    opacity: 0.4;
     box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
   }
   100% {
     left: 60%;
-    opacity: 0.15;
+    opacity: 0.25;
     box-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
 }
@@ -73,7 +73,7 @@
      font-weight: 600;
      border: none;
      border-radius: 8px;
-     background-color: var(--button-1-2);
+     background-color: var(--button-2-2);
      color: white;
      cursor: pointer;
      transition:
@@ -95,12 +95,12 @@
    background: linear-gradient(
      to right,
      rgba(255, 255, 255, 0),
-     rgba(255, 255, 255, 0.2)
+     rgba(255, 255, 255, 0.3)
    );
    transform: skewX(-45deg);
    pointer-events: none;
    z-index: 1;
-   opacity: 0.15;
+   opacity: 0.3;
 
    /* Idle pulse animation */
    animation: powerStripeIdle 2.2s ease-in-out infinite;
@@ -128,7 +128,7 @@
 
     /* Hover/active states */
     .kick-ass-submit:hover {
-      background-color: var(--button-1-2-over);
+      background-color: var(--button-2-2-over);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
     }
 
