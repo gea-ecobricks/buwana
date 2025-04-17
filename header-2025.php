@@ -352,14 +352,16 @@ display: none;
 
 .the-app-logo {
 
-  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') no-repeat;
+  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') center no-repeat;
   background-size: contain;
+  width: 80%;
+  max-height: 250px;
 }
 
     @media (prefers-color-scheme: dark) {
         .the-app-logo {
 
-          background: url('<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>') no-repeat;
+          background: url('<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>') center no-repeat;
           background-size: contain;
         }
 
