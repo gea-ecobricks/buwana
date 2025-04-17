@@ -20,7 +20,6 @@ if ($stmt) {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Check if app exists
     if ($result && $result->num_rows > 0) {
         $app_info = $result->fetch_assoc();
     } else {
@@ -44,11 +43,15 @@ if ($stmt) {
 // Merge with default fallbacks for safety
 $app_info = array_merge([
     'app_name' => 'gobrik',
-    'app_display_name' => 'goBrik',
-    'app_logo_url' => 'https://gobrik.com/svgs/gobrik-logo.svg',
+    'app_display_name' => 'GoBrik',
+    'app_logo_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-logo.svg',
+    'app_logo_dark_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-logo-dark.svg',
+    'app_wordmark_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-wordmark.svg',
+    'app_wordmark_dark_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-wordmark-dark.svg',
     'app_slogan' => 'Track your plastic and build with purpose.',
     'app_description' => 'Ecological platform to log your plastic and build with ecobricks.',
     'app_url' => 'https://gobrik.com',
+    'app_version' => '3.1',
     'redirect_uris' => 'https://gobrik.com/en/index.html',
     'privacy_policy_url' => 'https://gobrik.com/en/privacy.html',
     'terms_url' => 'https://gobrik.com/en/terms.html'

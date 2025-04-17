@@ -14,6 +14,13 @@
 
 <STYLE>
 
+.earthcycles-logo {
+  margin:15px auto 0 auto;
+  padding:5px 5px 5px 5px;
+  width: 200px;
+  height: 200px;
+  border: none;
+}
 
 
     .app-signup-banner {
@@ -21,11 +28,18 @@
         background-size: contain;
     }
 
+.the-app-logo {
+
+  background: url(<?= htmlspecialchars($app_info['app_logo_url']) ?>) no-repeat;
+  background-size: contain;
+}
+
     @media (prefers-color-scheme: dark) {
         .app-signup-banner {
             background: url('../app-svgs/<?= htmlspecialchars($app_info['app_name']) ?>-signup-banner-night.svg') no-repeat center;
             background-size: contain;
         }
+
     }
 
 
