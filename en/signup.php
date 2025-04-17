@@ -156,7 +156,7 @@ https://github.com/gea-ecobricks/buwana/-->
             <option value="mail">Phone number</option>
             <option value="peer" disabled>Peer</option>
         </select>
-        <p class="form-caption" data-lang-id="007-way-to-contact">You'll use this credential to login and receive GoBrik messages.</p>
+        <p class="form-caption" data-lang-id="007-way-to-contact">We'll send your account confirmation messages this way.  Later you'll login this way.</p>
         <!--ERRORS-->
         <div id="credential-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
     </div>
@@ -164,7 +164,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <div class="submit-button-wrapper">
   <button type="submit" id="submit-button" aria-label="Submit Form" class="kick-ass-submit">
-    <span data-lang-id="016-submit-to-password" id="submit-button-text">Next ➡️</span>
+    <span data-lang-id="016-submit-to-password" id="submit-button-text">Next ➡</span>
   </button>
 </div>
 
