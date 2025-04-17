@@ -228,28 +228,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function validateOnSubmit() {
-    let isValid = true;
-    const firstName = firstNameInput.value.trim();
-    const credential = credentialSelect.value;
 
-    // Validate First Name
-    displayError(errorRequired, firstName === '');
-    displayError(errorLong, firstName.length > 255);
-    displayError(errorInvalid, hasInvalidChars(firstName));
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
 
-    if (firstName === '' || firstName.length > 255 || hasInvalidChars(firstName)) {
-      isValid = false;
-    }
+  if (validateOnSubmit()) {
+    // Trigger click animation
+    btn.classList.add('click-animating');
+    btn.classList.remove('pulse-started');
 
-    // Validate Credential
-    displayError(credentialError, credential === '');
-    if (credential === '') {
-      isValid = false;
-    }
+    // Swap text for spinner
+    btnText.style.display = 'none';
+    spinner.style.display = 'inline-block';
 
-    return isValid;
+    // Optional: remove hover effect immediately
+    btn.removeAttribute('data-hovered');
+    btn.classList.remove('pulse-started');
+
+    // Submit after 1.2s to allow animation to complete
+    setTimeout(() => {
+      form.submit(); // Native submit (POSTs to PHP)
+    }, 1200);
   }
+});
+
+
 
   function scrollLessThan30() {
     const topPageImage = document.querySelector('.top-page-image');
