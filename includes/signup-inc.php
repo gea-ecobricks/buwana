@@ -40,7 +40,7 @@
 .float-label-group label {
   position: absolute;
   left: 20px;
-  top: 18px;
+  top: 26px;
   color: var(--subdued-text);
   background-color: var(--top-header);
   font-size: 20px;
