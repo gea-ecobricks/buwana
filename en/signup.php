@@ -1,25 +1,29 @@
 <?php
-require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
-require_once '../buwanaconn_env.php'; // Sets up buwana_conn database connection
+session_start(); // Needed for app context persistence
+
+require_once '../earthenAuth_helper.php';     // Include auth helper functions
+require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
+require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.41';
+$version = '0.4';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
-
 $is_logged_in = false; // Ensure not logged in for this page
 
-// Check if the user is logged in
+// Check if the user is already logged in and redirect to app dashboard if they are
 if (isLoggedIn()) {
+    $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? 'https://gobrik.com';
     echo "<script>
         alert('Looks like you already have an account and are logged in! Let\'s take you to your dashboard.');
-        window.location.href = 'dashboard.php';
+        window.location.href = '$redirect_url';
     </script>";
     exit();
 }
 
 $success = false;
+
 
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -92,10 +96,12 @@ echo '<!DOCTYPE html>
 
 
 <!--
-GoBrik.com site version 3.0
+Buwana EarthenAuth
 Developed and made open source by the Global Ecobrick Alliance
 See our git hub repository for the full code and to help out:
-https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
+https://github.com/gea-ecobricks/buwana/-->
+
+
 
 <?php require_once ("../includes/signup-inc.php");?>
 
@@ -116,7 +122,10 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     <div class="form-container">
 
         <div style="text-align:center;width:100%;margin:auto;">
-            <div id="status-message" data-lang-id="001-signup-heading">Create Your Account</div>
+            <div id="status-message" data-lang-id="001-signup-heading">
+                Create Your <span class="app-name"><?= htmlspecialchars($app_info['app_display_name']) ?></span> Account
+            </div>
+
             <div id="sub-status-message" data-lang-id="002-signup-subtext-x" style="margin-bottom:15px;">Register for your Earthcal Buwana account. EarthCal uses the Buwana Authentication protocol-- a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
         </div>
 
