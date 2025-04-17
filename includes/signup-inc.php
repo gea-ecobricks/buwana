@@ -57,6 +57,16 @@
   }
 }
 
+@keyframes powerStripeReturn {
+  from {
+    left: 70%;
+  }
+  to {
+    left: 12%;
+  }
+}
+
+
 
 /* Kick-ass button core */
 .kick-ass-submit {

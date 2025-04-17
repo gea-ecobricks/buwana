@@ -7,7 +7,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.48';
+$version = '0.49';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -320,22 +320,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btn.addEventListener('mouseenter', () => {
     btn.setAttribute('data-hovered', 'true');
+    btn.classList.remove('pulse-started', 'returning');
 
-    // Remove any idle animation to prep for entrance
-    btn.classList.remove('pulse-started');
-
-    // Delay, then start pulse after entrance animation
     setTimeout(() => {
       btn.classList.add('pulse-started');
-    }, 400); // matches the entrance duration
+    }, 400); // wait for entrance to finish
   });
 
   btn.addEventListener('mouseleave', () => {
     btn.removeAttribute('data-hovered');
     btn.classList.remove('pulse-started');
+
+    // Trigger return animation
+    btn.classList.add('returning');
+
+    // After return completes, reset to idle
+    setTimeout(() => {
+      btn.classList.remove('returning');
+    }, 400); // match return duration
   });
 });
 </script>
+
 
 
 
