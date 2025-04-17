@@ -14,128 +14,103 @@
 
 <STYLE>
 
+/* Wrapper for button centering */
+.submit-button-wrapper {
+  text-align: center;
+  margin: 20px auto;
+}
 
-    /* Wrapper for button centering */
-    .submit-button-wrapper {
-      text-align: center;
-      margin: 20px auto;
-    }
-
+/* Animations */
 @keyframes powerStripeIdle {
-  0%, 100% {
-    opacity: 0.15;
-    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  0% {
+    left: 10%;
   }
   50% {
-    opacity: 0.3;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+    left: 22%;
+  }
+  100% {
+    left: 10%;
   }
 }
 
 @keyframes powerStripePulse {
   0% {
     left: 60%;
-    opacity: 0.25;
-    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
-  }
-  25% {
-    left: 80%;
-    opacity: 0.4;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
   }
   50% {
-    left: 60%;
-    opacity: 0.25;
-    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
-  }
-  75% {
     left: 80%;
-    opacity: 0.4;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
   }
   100% {
     left: 60%;
-    opacity: 0.25;
-    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
 }
 
+/* Kick-ass button core */
+.kick-ass-submit {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+  padding: 14px 24px;
+  font-size: 1.3em;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--button-2-2);
+  color: white;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
 
+/* Power Stripe */
+.kick-ass-submit::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.2)
+  );
+  transform: skewX(-45deg);
+  pointer-events: none;
+  z-index: 1;
+  animation: powerStripeIdle 3s ease-in-out infinite;
+}
 
-
-   .kick-ass-submit {
-     position: relative;
-     display: inline-block;
-     width: 100%;
-     max-width: 400px;
-     padding: 14px 24px;
-     font-size: 1.3em;
-     font-weight: 600;
-     border: none;
-     border-radius: 8px;
-     background-color: var(--button-2-2);
-     color: white;
-     cursor: pointer;
-     transition:
-       background-color 0.3s ease,
-       box-shadow 0.2s ease,
-       transform 0.1s ease;
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-     overflow: hidden;
-   }
-
-   /* Power Stripe */
- .kick-ass-submit::before {
-   content: "";
-   position: absolute;
-   top: 0;
-   left: 20%;
-   width: 40px;
-   height: 100%;
-   background: linear-gradient(
-     to right,
-     rgba(255, 255, 255, 0),
-     rgba(255, 255, 255, 0.3)
-   );
-   transform: skewX(-45deg);
-   pointer-events: none;
-   z-index: 1;
-   opacity: 0.3;
-
-   /* Idle pulse animation */
-   animation: powerStripeIdle 2.2s ease-in-out infinite;
- }
-
+/* On hover: run the pulse animation */
 .kick-ass-submit:hover::before {
   animation: powerStripePulse 1.2s ease-in-out infinite;
 }
 
-.kick-ass-submit::before {
-  transition: left 0.5s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+/* Button content stays above the stripe */
+.kick-ass-submit span,
+.kick-ass-submit > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover/active states */
+.kick-ass-submit:hover {
+  background-color: var(--button-2-2-over, #005fa3); /* Fallback color if var missing */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.kick-ass-submit:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 
 
-   /* Button content stays above the stripe */
-   .kick-ass-submit span,
-   .kick-ass-submit > * {
-     position: relative;
-     z-index: 2;
-   }
-
-
-
-
-    /* Hover/active states */
-    .kick-ass-submit:hover {
-      background-color: var(--button-2-2-over);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-    }
-
-    .kick-ass-submit:active {
-      transform: scale(0.98);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-    }
 
     /* Responsive width */
     @media (min-width: 769px) {
