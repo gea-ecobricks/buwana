@@ -43,7 +43,7 @@
   top: 10px;
   color: var(--h1);
   background-color: var(--top-header);
-  font-size: 18px;
+  font-size: 20px;
   padding: 0 4px;
   transition: 0.2s ease all;
   pointer-events: none;
