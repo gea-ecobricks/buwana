@@ -1877,20 +1877,10 @@ color: red;
 }
 
 
-/*
-#form-submission-box {
-  display: block;
-}*/
 
-/* h2 {
-  font-family: "Arvo", serif;
-  color: var(--h1);
-} */
 
-.form-item {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+
+
 .form-caption {
   font-family: "Mulish", sans-serif;
   font-weight: 300;
@@ -1909,39 +1899,10 @@ label {
 }
 
 
-/* .form-item input { */
-/*   background: var(--input-background); */
-/*   font-size: 1.3em; */
-/* } */
-
 .form-item textarea {
   background: var(--input-background);
   font-size: 1.3em;
 }
-/*
-.form-item select {
-  background: var(--input-background);
-  font-size: 1.2em;
-  padding: 5px;
-  border-radius: 5px;
-  margin-top: 9px;
-  margin-bottom: 10px;
-}
-
-input[type="text"],
-input[type="number"],
-textarea,
-input[type="date"] {
-  font-family: "Mulish", sans-serif;
-  font-weight: 300;
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid var(--divider-line);
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin-top: 8px;
-}*/
 
 
 .spinner-photo-loading {
@@ -2075,8 +2036,12 @@ input[type="date"] {
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 10px;
-    background-color: #00000015;
+    background-color: red;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
+
 
 .form-item label,
 .form-item input,
