@@ -121,29 +121,6 @@
        }
 
 
-       #booknotes-curtain {
-           background: url(../svgs/tractatus-mandala-full-light-grey.svg) center no-repeat;
-           background-size: contain;
-           background-color: var(--slider);
-       }
-
-       #book-box a {
-
-           background: url(../svgs/content-arrow.svg) left center no-repeat var(--background-color);
-           background-size: 30px;
-           background-position-x: 18px;
-       }
-
-       #book-box a:hover {
-
-           background: url(../svgs/content-arrow-45.svg) left center no-repeat var(--deeper-accent-color);
-           background-size: 30px;
-           background-position-x: 18px;
-       ;
-       }
-
-
-
 
 
 
@@ -238,24 +215,9 @@
 }
 
 
-.featured-content-2 {
-  background: url(../svgs/blue-circles-banner-light.svg) no-repeat bottom;
-  background-size: cover;
-}
-
 .dolphin-pic {
   background: url(../svgs/dolphin-top-optimized-light.svg) no-repeat center;
   background-size: contain;
-}
-
-.featured-content-3 {
-  background: url(../svgs/ecobrick-village-vision-2024-day.svg) no-repeat bottom;
-  background-size: cover;
-}
-
-.ecovillage-pic {
-  background: url(../webp/spiral-building.webp) no-repeat center;
-  background-size: cover;
 }
 
 .earthservice-pic {
@@ -278,10 +240,6 @@
 
 }
 
-  .open-books-top {
-      background: url(../pngs/openbooks.png) no-repeat center;
-      background-size: contain;
-      }
 
 @media screen and (min-width: 700px) {
 .side {
@@ -332,12 +290,6 @@
 
 }
 
-#clouds {
-	background: url(../svgs/top-clouds-animated-desktop.svg) center top;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 
 
 .x-button {
@@ -375,7 +327,7 @@
   background: url(../svgs/down-arrow.svg) no-repeat;
   background-size: contain;
 }
-*/
+
 
 .main-menu-button {
     background: url(../svgs/login-icon.svg) no-repeat;
@@ -387,7 +339,7 @@
     background-size: contain;
 }
 
-/*@media screen and (min-width: 0px) and (max-width: 700px) {
+@media screen and (min-width: 0px) and (max-width: 700px) {
     .clouds-new2  {
       background-image: linear-gradient(#30ffff, var(--general-background),var(--general-background),var(--general-background));
       }
@@ -547,11 +499,7 @@ light.css
       background-size: contain;
       }
 
-       .signup-team {
 
-      background: url(../svgs/signup-team-day.svg) no-repeat center;
-      background-size: contain;
-      }
 
         .credentials-banner {
   background: url(../svgs/credentials-banner-day.svg?v=2) no-repeat center;
@@ -607,9 +555,5 @@ background: url(../webps/brikchain-450px.webp) no-repeat center;
   }
 
 
-.app-signup-banner {
-    background: url(../app-svgs/earthcal-signup-banner-day.svg) no-repeat center;
-    background-size: contain;
-}
 
 /* Light mode pastel colors */
