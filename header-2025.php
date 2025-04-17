@@ -21,10 +21,9 @@
 
 
 <meta property="og:site_name" content="Buwana EarthenAuth">
-<meta property="article:publisher" content="https://web.facebook.com/gobrik.com">
 
 
-<!-- This allows gobrik.com to be used a PWA on iPhones-->
+<!-- This allows the site to be used a PWA on iPhones-->
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -262,17 +261,17 @@
  }
 
 
-.rotate-plus {
-    display: inline-block;
-    transform: rotate(45deg);
-    transition: transform 0.5s ease;
-}
+/* .rotate-plus { */
+/*     display: inline-block; */
+/*     transform: rotate(45deg); */
+/*     transition: transform 0.5s ease; */
+/* } */
 
-.rotate-minus {
-    display: inline-block;
-    transform: rotate(90deg); /* This effectively rotates it back by 45 degrees from the .rotate-plus state */
-    transition: transform 0.5s ease;
-}
+/* .rotate-minus { */
+/*     display: inline-block; */
+/*     transform: rotate(90deg);  *//* This effectively rotates it back by 45 degrees from the .rotate-plus state */
+/*     transition: transform 0.5s ease; */
+/* } */
 
 
 
@@ -381,123 +380,49 @@ display: none;
 <div id="main-menu-overlay" class="overlay-settings" style="display:none;">
   <button type="button" onclick="closeSettings()" aria-label="Click to close settings page" class="x-button"></button>
   <div class="overlay-content-settings">
-    <!-- Check if the user is logged in before displaying the logged-in status box : earthen values set by earthenAuth_helper-->
-    <?php if ($is_logged_in): ?>
-      <div class="menu-page-item" style="display: flex; flex-direction: column; align-items: flex-start; cursor:unset;">
-        <div style="width:100%; display: flex; align-items: center;">
-          <div style="color: var(--text-color); margin-left: 0px;">
-              <span data-lang-id="1000-logged-user"></span>
-              <span><?php echo htmlspecialchars($earthling_emoji); ?> <?php echo htmlspecialchars($first_name); ?></span>
-              <span style="color: var(--subdued);">
-                <?php
-                if ($gea_status !== null) {
-                    echo "  |  " . htmlspecialchars($gea_status);
-                } else {
-                    $response['error'] = 'gea_status_error';
-                    echo "GEA Status: Not available"; // Optional: display an alternative message
-                }
-                ?>
-                </span>
-            </div>
-        </div>
 
-        <div class="logged-in-links" style="width:100%; font-size: 0.8em; margin-top: 5px; text-align: left;">
-           <p style="font-size:0.9em; margin-bottom: 3px;
-  margin-top: 5px;"><span id="continent-icon"><?php echo htmlspecialchars($user_continent_icon); ?> </span> <span style="color:green;"><?php echo htmlspecialchars($user_location_watershed); ?></span> <span style="color:grey">| <?php echo htmlspecialchars($user_community_name); ?></span></p>
-
-           <p style="font-size:0.9em;">
-  ⚙️ <span onclick="openProfile()" class="underline-link" data-lang-id="1000-profile-settings" style="cursor: pointer;" class="underline-link" title="Update your user settings">Profile settings</span> |
-  🐳 <span onclick="logoutUser()" class="underline-link" data-lang-id="1000-log-out" style="cursor: pointer;" class="underline-link" title="Log out completely">Log out</span>
-</p>
-
-        </div>
-      </div>
       <div class="menu-page-item">
         <a href="dashboard.php" aria-label="Log" data-lang-id="1000-dashboard">Dashboard</a>
         <span class="status-circle" style="background-color: green;" title="Working. Under development"></span>
       </div>
-    <?php else: ?>
-      <!-- If the user is not logged in, show the login/signup options -->
-      <div class="menu-page-item">
-        <a href="login.php" data-lang-id="1000-login" style="margin-right:10px; min-width: 65px;width:75px;">Log in</a> |
-        <a href="signup.php" data-lang-id="1000-sign-up" style="margin-left:10px">Sign up</a>
-        <span class="status-circle" style="background-color: limegreen;" title="Deployed. Under beta testing."></span>
-      </div>
-    <?php endif; ?>
 
 
+
+    <div class="menu-page-item">
+      <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
+        Back to <?= htmlspecialchars($app_info['app_display_name']) ?>
+      </a>
+      <span class="status-circle" style="background-color: green;" title="Deployed. Working well!"></span>
+    </div>
 
 <!-- Other menu items -->
 <div class="menu-page-item">
-  <a href="log.php" data-lang-id="1000-log-ecobricks">
-    Log Ecobricks
-
+  <a href="" data-lang-id="1000-about-buwana">
+    About Buwana Accounts
   </a>
-  <span class="status-circle" style="background-color: green;" title="Working.  Being tested."></span>
+  <span class="status-circle" style="background-color: red;" title="Under development"></span>
 </div>
 
-<div class="menu-page-item">
-  <a href="newest-briks.php" data-lang-id="1000-latest-ecobricks">
-    Latest Ecobricks
-
-  </a>
-  <span class="status-circle" style="background-color: green;" title="Working well."></span>
-</div>
-
-<!-- Uncommented for demonstration purposes
-<div class="menu-page-item">
-  <a href="brikchain.php" data-lang-id="1000-brikchain">
-    The Brikchain
-    <span class="status-circle" style="background-color: red;" title="Under development, but active!"></span>
-  </a>
-</div>
-
-<div class="menu-page-item">
-  <a href="newest-projects.php" data-lang-id="1000-featured-projects">
-    Featured Projects
-    <span class="status-circle" style="background-color: red;" title="Not yet deployed"></span>
-  </a>
-</div>
-
-<div class="menu-page-item">
-  <a href="newest-trainings.php" data-lang-id="1000-latest-trainings">
-    Latest Trainings
-    <span class="status-circle" style="background-color: red;" title="Not yet deployed"></span>
-  </a>
-</div>
--->
 
 <div class="menu-page-item">
   <a href="bug-report.php" data-lang-id="1000-bug-report">
     Report a Bug
 
   </a>
-  <span class="status-circle" style="background-color: green;" title="Working."></span>
+  <span class="status-circle" style="background-color: orange;" title="Under development"></span>
 </div>
 
-<!--
-    <div class="menu-page-item">
-  <a href="messenger.php" data-lang-id="1000-bug-report">
-    Messenger
 
-  </a>
-  <span class="status-circle" style="background-color: yellow;" title="Under development. Only working on desktop"></span>
-</div>-->
 
-<div class="menu-page-item">
-  <a href="index.php" data-lang-id="1000-landing-page">
-    Home page
-
-  </a>
-  <span class="status-circle" style="background-color: green;" title="Deployed. Working well!"></span>
-</div>
 
 
     <!-- GoBrik Tour at the bottom -->
     <div class="menu-page-item">
-      <a data-lang-id="1001-gobrik-tour" onclick="closeSettings(); setTimeout(guidedTour, 500);">GoBrik Tour</a>
+      <a data-lang-id="1001-gobrik-tour" onclick="closeSettings(); setTimeout(guidedTour, 500);">Buwana Tour</a>
       <span class="status-circle" style="background-color: yellow;" title="Working. Not translated."></span>
     </div>
+
+
   </div> <!-- close overlay-content-settings -->
 </div> <!-- close main menu -->
 
