@@ -420,7 +420,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
    <div class="the-app-logo" alt="App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"></div>
 
-<h4><?= htmlspecialchars($app_info['app_slogan']) ?></h4>
+<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
     <div class="menu-page-item">
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
         Back to <?= htmlspecialchars($app_info['app_display_name']) ?>
