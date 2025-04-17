@@ -13,14 +13,13 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 
 const en_Page_Translations = {
     "001-signup-heading": "Create Your Account",
-    "002-signup-subtext": "Join us on GoBrik with a Buwana account— an open source, for-Earth alternative to corporate logins.",
-    "003-firstname": "What is your first name?",
-    "004-name-placeholder": '<input type="text" id="first_name" name="first_name" aria-label="Your first name" title="Required. Max 255 characters." required placeholder="Your name...">',
+    "002-signup-subtext": " uses the Buwana Authentication protocol— a powerful and private, opensource and for-Earth protocol that powers regenerative apps.",
+    "003-firstname": "What's your first name?",
     "000-name-field-too-long-error": "The name is too long. Max 255 characters.",
     "005b-name-error": "The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.",
-    "006-credential-choice": " Your preferred login:",
-    "007-way-to-contact": "You'll use this credential to login and receive GoBrik messages.",
-    "016-submit-to-password": "Next ➡️",
+    "006-credential-choice": "Select how you register...",
+    "007-way-to-contact": "We'll send your account confirmation messages this way.  Later you'll login this way.",
+    "016-submit-to-password": "Next ➡",
 
 /* Next page: Signup-2 - Set your name and email  */
 

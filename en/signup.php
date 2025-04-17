@@ -7,7 +7,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.46';
+$version = '0.47';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -122,11 +122,11 @@ https://github.com/gea-ecobricks/buwana/-->
     <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
 
         <div style="text-align:center;width:100%;margin:auto;">
-            <div id="status-message" data-lang-id="001-signup-heading-xxx">
-                Create Your <span class="app-name"><?= htmlspecialchars($app_info['app_display_name']) ?></span> Account
+            <div id="status-message" data-lang-id="001-signup-heading" style="font-family: 'Arvo';">
+                Create Your Account
             </div>
 
-            <div id="sub-status-message" data-lang-id="002-signup-subtext-x" style="margin-bottom:15px;"><span class="app-name"><?= htmlspecialchars($app_info['app_display_name']) ?></span> uses the Buwana Authentication protocol— a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
+            <div id="sub-status-message" style="margin-bottom:15px;"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="002-signup-subtext"> uses the Buwana Authentication protocol— a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
         </div>
 
        <!--SIGNUP FORM-->
@@ -138,9 +138,7 @@ https://github.com/gea-ecobricks/buwana/-->
             maxlength="255"
             required
             placeholder=" " />
-
-     <label for="first_name" data-lang-id="003-firstname">What is your first name?</label>
-
+     <label for="first_name" data-lang-id="003-firstname">What's your first name?</label>
      <!-- ERRORS -->
      <div id="maker-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
      <div id="maker-error-long" class="form-field-error" data-lang-id="000-name-field-too-long-error">The name is too long. Max 255 characters.</div>
@@ -151,7 +149,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
     <div class="form-item">
         <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 20px !important;color:var(--subdued-text);margin-left:5px;" >
-            <option value="" disabled selected data-lang-id="000-select-x">Select how you register...</option>
+            <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
             <option value="email">E-mail</option>
             <option value="mail">Phone number</option>
             <option value="peer" disabled>Peer</option>
