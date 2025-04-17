@@ -23,7 +23,7 @@
 }
 
 /* Input Styling (inherits your existing styles + minor tweaks) */
-.float-label-group input[type="text"] {
+.float-label-group input[type="text"],input[type="credential"],  {
   width: 100%;
   padding: 8px 10px;
   margin: 4px 0;
@@ -52,7 +52,7 @@
 /* Floating Behavior */
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -10px;
+  top: -7px;
   left: 25px;
   font-size: 14px;
   color: var(--button-2-1);
