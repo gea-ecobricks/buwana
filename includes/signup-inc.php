@@ -28,9 +28,9 @@
       max-width: 400px;
       padding: 14px 24px;
       font-size: 1.3em;
-      font-weight: bold;
+      font-weight: semi-bold;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       background-color: var(--button-2-1);
       color: white;
       cursor: pointer;
@@ -43,7 +43,7 @@
 
     /* Hover/active states */
     .kick-ass-submit:hover {
-      background-color: var(--button-2-1-hover, #0055aa);
+      background-color: var(--button-2-1-over);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
     }
 
