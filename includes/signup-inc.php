@@ -61,7 +61,12 @@
 
 /* Styles for the disabled state */
 .disabled {
-    background-color: #666;
+    background-color: #868e9c;
+    cursor: not-allowed !important;
+}
+
+.disabled:hover {
+    background-color: #868e9c;
     cursor: not-allowed !important;
 }
 
