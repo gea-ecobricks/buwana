@@ -48,6 +48,8 @@ $app_info = array_merge([
     'app_logo_dark_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-logo-dark.svg',
     'app_wordmark_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-wordmark.svg',
     'app_wordmark_dark_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-wordmark-dark.svg',
+    'signup_top_img_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-signup-top-light.svg',
+    'signup_top_img_dark_url' => 'https://buwana.ecobricks.org/app-svgs/gobrik-signup-top-dark.svg',
     'app_slogan' => 'Track your plastic and build with purpose.',
     'app_description' => 'Ecological platform to log your plastic and build with ecobricks.',
     'app_url' => 'https://gobrik.com',
@@ -56,6 +58,7 @@ $app_info = array_merge([
     'privacy_policy_url' => 'https://gobrik.com/en/privacy.html',
     'terms_url' => 'https://gobrik.com/en/terms.html'
 ], $app_info);
+
 
 // Save redirect URI for later redirect after signup/login
 $redirect_uris = explode(',', $app_info['redirect_uris'] ?? '');

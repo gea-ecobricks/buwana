@@ -24,18 +24,19 @@
 
 
     .app-signup-banner {
-        background: url('../app-svgs/<?= htmlspecialchars($app_info['app_name']) ?>-signup-banner-day.svg') no-repeat center;
+        background: url('<?= htmlspecialchars($app_info['signup_top_img_url']) ?>') no-repeat center;
         background-size: contain;
     }
 
 
     @media (prefers-color-scheme: dark) {
         .app-signup-banner {
-            background: url('../app-svgs/<?= htmlspecialchars($app_info['app_name']) ?>-signup-banner-night.svg') no-repeat center;
+            background: url('<?= htmlspecialchars($app_info['signup_top_img_dark_url']) ?>') no-repeat center;
             background-size: contain;
         }
 
     }
+
 
 
 
