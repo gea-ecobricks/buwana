@@ -36,7 +36,7 @@
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.float-label-group input[type="credential"] {
+.float-label-group select[type="credential"] {
   width: 100%;
   padding: 8px 10px;
   margin: 4px 0;
