@@ -1,7 +1,5 @@
 <?php
-// fetch_app_info.php
 
-<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); // Only start session if one doesn't exist yet
 }
