@@ -48,9 +48,10 @@ function switchLanguage(langCode) {
 
 
 
-function redirectToWelcome() {
-    window.location.href = "index.php";
+function redirectToAppHome(apphome) {
+    window.location.href = apphome;
 }
+
 
 document.addEventListener("scroll", function() {
     var scrollPosition = window.scrollY || document.documentElement.scrollTop;

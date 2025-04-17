@@ -272,9 +272,10 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
  .buwana-word-mark {
  background: url('../svgs/b-logo.svg') center no-repeat;
    background-size: contain;
-  height: 50px;
-  margin-top: 5px;
+  height: 30px;
+  width: 300px;
   margin: auto;
+  margin-top: 5px;
   }
 
     @media (prefers-color-scheme: dark) {
@@ -365,6 +366,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
 <!--<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
 -->
+<p style="margin:auto;margin-bottom: 5px;font-size: smaller">Authentication by</p>
 <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana"></div>
 
 
@@ -401,9 +403,11 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
         <button type="button" class="side-menu-button"  onclick="openSideMenu()" aria-label="Open Menu">
                     </button>
 
-        <div id="top-app-logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>" onclick="redirectToWelcome()">
-
+        <div id="top-app-logo"
+             title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
+             onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')">
         </div>
+
 
 
         <div id="function-icons" style="display: flex;flex-flow:row;margin:auto 10px auto auto;">
