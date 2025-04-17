@@ -66,24 +66,25 @@
 
 /*FLOATING CREDENTIAL SELECT */
 
-/* Select field styling */
+/* SELECT styling to match inputs */
 .float-label-group select {
   width: 100%;
-  padding: 10px 10px;
+  padding: 8px 10px;
+  margin: 4px 0;
   font-size: 22px;
   box-sizing: border-box;
   border: 2px solid var(--button-2-1);
   border-radius: 5px;
   background-color: var(--top-header);
   color: var(--h1);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Floating label for select */
-.float-label-group label {
+/* Match the label styling */
+.float-label-group select + label {
   position: absolute;
   left: 20px;
   top: 22px;
@@ -95,9 +96,9 @@
   pointer-events: none;
 }
 
-/* Floating behavior when select is focused or has a value */
+/* Floating behavior triggered by focus or valid selection */
 .float-label-group select:focus + label,
-.float-label-group select:not(:is(:focus):invalid) + label {
+.float-label-group select:not([value=""]) + label {
   top: -10px;
   left: 25px;
   font-size: 14px;
