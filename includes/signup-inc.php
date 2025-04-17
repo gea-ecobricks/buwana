@@ -32,7 +32,7 @@
      font-weight: 600;
      border: none;
      border-radius: 8px;
-     background-color: var(--button-2-1);
+     background-color: var(--button-1-2);
      color: white;
      cursor: pointer;
      transition:
@@ -49,7 +49,7 @@
      position: absolute;
      top: 0;
      left: 20%;
-     width: 20px;
+     width: 40px;
      height: 100%;
      background: linear-gradient(
        to right,
@@ -79,7 +79,7 @@
 
     /* Hover/active states */
     .kick-ass-submit:hover {
-      background-color: var(--button-2-1-over);
+      background-color: var(--button-1-2-over);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
     }
 
