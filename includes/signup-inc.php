@@ -14,6 +14,45 @@
 
 <STYLE>
 
+    .float-label-group {
+        position: relative;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .float-label-group input {
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: var(--input-bg, white);
+    }
+
+    .float-label-group label {
+        position: absolute;
+        left: 10px;
+        top: 12px;
+        background: var(--input-bg, white);
+        color: #888;
+        font-size: 1rem;
+        padding: 0 4px;
+        transition: 0.2s ease all;
+        pointer-events: none;
+    }
+
+    .float-label-group input:focus + label,
+    .float-label-group input:not(:placeholder-shown) + label {
+        top: -10px;
+        left: 6px;
+        font-size: 0.85rem;
+        color: var(--accent-color, #0066cc);
+        background: var(--input-bg, white);
+    }
+
+
+
+
 .earthcycles-logo {
   margin:15px auto 0 auto;
   padding:5px 5px 5px 5px;

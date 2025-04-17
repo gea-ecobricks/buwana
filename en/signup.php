@@ -132,18 +132,18 @@ https://github.com/gea-ecobricks/buwana/-->
        <!--SIGNUP FORM-->
 <form id="user-signup-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
-    <div class="form-item">
-        <label for="first_name" data-lang-id="003-firstname">What is your first name?</label><br>
-        <span data-lang-id="004-name-placeholder">
-            <input type="text" id="first_name" name="first_name" aria-label="Your first name" title="Required. Max 255 characters." required placeholder="Your name...">
-        </span>
+    <div class="form-item float-label-group">
+        <input type="text" id="first_name" name="first_name" aria-label="Your first name" maxlength="255"
+               required placeholder=" " />
 
+        <label for="first_name" data-lang-id="003-firstname">What is your first name?</label>
 
-        <!--ERRORS-->
+        <!-- ERRORS -->
         <div id="maker-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
         <div id="maker-error-long" class="form-field-error" data-lang-id="000-name-field-too-long-error">The name is too long. Max 255 characters.</div>
         <div id="maker-error-invalid" class="form-field-error" data-lang-id="005b-name-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
     </div>
+
 
     <div class="form-item">
         <label for="credential" data-lang-id="006-credential-choice">Your preferred login:</label><br>
