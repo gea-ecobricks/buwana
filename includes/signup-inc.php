@@ -15,7 +15,7 @@
 <STYLE>
 
 
-/* Floating Label Container */
+/* Floating Label for FIRST NAME Container */
 .float-label-group {
   position: relative;
   margin-top: 1.5rem;
@@ -52,6 +52,45 @@
 /* Floating Behavior */
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 25px;
+  font-size: 14px;
+  color: var(--button-2-1);
+  background-color: var(--top-header);
+  border-radius: 5px 5px 0px 0px;
+  border: solid 2px var(--button-2-1);
+  border-bottom: none;
+}
+
+
+
+/*FLOATING CREDENTIAL SELECT */
+
+
+.float-label-group select {
+  width: 100%;
+  padding: 10px 10px;
+  font-size: 22px;
+  box-sizing: border-box;
+  border: 2px solid var(--button-2-1);
+  border-radius: 5px;
+  background-color: var(--top-header);
+  color: var(--h1);
+  appearance: none; /* Removes native styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Add arrow back with a pseudo element if you like later */
+
+.float-label-group select:invalid {
+  color: var(--subdued-text); /* Make the placeholder look dimmed */
+}
+
+/* Floating label for select */
+.float-label-group select:focus + label,
+.float-label-group select:not([value=""]) + label {
   top: -10px;
   left: 25px;
   font-size: 14px;

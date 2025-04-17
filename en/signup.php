@@ -149,19 +149,22 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 
-    <div class="form-item">
-        <label for="credential" data-lang-id="006-credential-choice">Your preferred login:</label><br>
-        <select id="credential" name="credential" aria-label="Preferred Credential" required placeholder="Select...">
-            <option value="" disabled selected data-lang-id="000-select">Select...</option>
-            <option value="email">E-mail</option>
-            <option value="mail" disabled>Phone</option>
-            <option value="sms" disabled>SMS</option>
-            <option value="peer" disabled>Peer</option>
-        </select>
-        <p class="form-caption" data-lang-id="007-way-to-contact">You'll use this credential to login and receive GoBrik messages.</p>
-        <!--ERRORS-->
-        <div id="credential-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
-    </div>
+   <div class="form-item float-label-group">
+     <select id="credential" name="credential" aria-label="Preferred Credential" required>
+       <option value="" disabled selected hidden data-lang-id="000-select">Select...</option>
+       <option value="email">E-mail</option>
+       <option value="mail" disabled>Phone</option>
+       <option value="sms" disabled>SMS</option>
+       <option value="peer" disabled>Peer</option>
+     </select>
+
+     <label for="credential" data-lang-id="006-credential-choice">How would you like to register?</label>
+
+     <p class="form-caption" data-lang-id="007-way-to-contact">You'll use this credential to login and receive GoBrik messages.</p>
+
+     <div id="credential-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
+   </div>
+
 
 
 <div style="margin:auto;text-align: center;">
