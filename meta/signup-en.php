@@ -1,4 +1,4 @@
-<title>Register | Buwana Accounts</title>
+<title><?= htmlspecialchars($app_info['app_display_name']) ?> Register | Buwana Accounts</title>
 
 <meta name="keywords" content="buwana, register, signup, sign up, sign, up">
 <meta name="description" content="Register for a Buwana account to use on your favorite Buwana app">

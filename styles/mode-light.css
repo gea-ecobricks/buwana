@@ -65,7 +65,7 @@
   --table-background-heading: #2A91DA;
 
 
-  /*Colors for messenger convo icons*/
+  /*Colors for messenger conversation icons*/
 
 
     --color-0: #d1628a;  /* Darker pink */
@@ -236,7 +236,6 @@
 .vision-landscape {
   background: url(../svgs/ocean-footer-day.svg?v=4) no-repeat bottom;
   background-size: cover;
-  /* background-color: #10ffff; */
 
 }
 
