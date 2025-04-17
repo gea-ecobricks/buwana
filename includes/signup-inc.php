@@ -23,7 +23,20 @@
 }
 
 /* Input Styling (inherits your existing styles + minor tweaks) */
-.float-label-group input[type="text"],input[type="credential"],  {
+.float-label-group input[type="text"] {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 4px 0;
+  font-size: 22px !important;
+  box-sizing: border-box;
+  border: 2px solid var(--button-2-1) !important;
+  border-radius: 5px;
+  background-color: var(--top-header) !important;
+  color: var(--h1);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.float-label-group input[type="credential"] {
   width: 100%;
   padding: 8px 10px;
   margin: 4px 0;

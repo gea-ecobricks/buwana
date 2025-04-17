@@ -126,7 +126,7 @@ https://github.com/gea-ecobricks/buwana/-->
                 Create Your <span class="app-name"><?= htmlspecialchars($app_info['app_display_name']) ?></span> Account
             </div>
 
-            <div id="sub-status-message" data-lang-id="002-signup-subtext-x" style="margin-bottom:15px;">Register for your <span class="app-name"><?= htmlspecialchars($app_info['app_display_name']) ?></span> Buwana account. EarthCal uses the Buwana Authentication protocol-- a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
+            <div id="sub-status-message" data-lang-id="002-signup-subtext-x" style="margin-bottom:15px;">Register for your <span class="app-name"><?= htmlspecialchars($app_info['app_display_name']) ?></span>account. EarthCal uses the Buwana Authentication protocol-- a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
         </div>
 
        <!--SIGNUP FORM-->
