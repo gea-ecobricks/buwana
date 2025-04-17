@@ -14,6 +14,22 @@
 
 <STYLE>
 
+
+
+    .app-signup-banner {
+        background: url('../app-svgs/<?= htmlspecialchars($app_info['app_name']) ?>-signup-banner-day.svg') no-repeat center;
+        background-size: contain;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .app-signup-banner {
+            background: url('../app-svgs/<?= htmlspecialchars($app_info['app_name']) ?>-signup-banner-night.svg') no-repeat center;
+            background-size: contain;
+        }
+    }
+
+
+
 #main {
     height: fit-content;
 }
