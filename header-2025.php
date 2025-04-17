@@ -452,7 +452,38 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 function navigateTo(url) {
   window.location.href = url;
 }
+
+
+// In mode-toggle.mjs.js (when toggling themes manually)
+function updateLogo() {
+    const topLogo = document.getElementById('top-app-logo');
+    const appLogo = document.querySelector('.the-app-logo');
+
+    const isDark = document.documentElement.classList.contains('dark-mode'); // Or however your toggle sets it
+
+    const lightWordmark = '<?= $app_info["app_wordmark_url"] ?>';
+    const darkWordmark = '<?= $app_info["app_wordmark_dark_url"] ?>';
+    const lightLogo = '<?= $app_info["app_logo_url"] ?>';
+    const darkLogo = '<?= $app_info["app_logo_dark_url"] ?>';
+
+    if (topLogo) {
+        topLogo.style.backgroundImage = `url('${isDark ? darkWordmark : lightWordmark}')`;
+    }
+
+    if (appLogo) {
+        appLogo.style.backgroundImage = `url('${isDark ? darkLogo : lightLogo}')`;
+    }
+}
+
+document.querySelector('#dark-mode-toggle-5').addEventListener('click', () => {
+    setTimeout(updateLogo, 10); // Slight delay to wait for theme toggle
+});
+
+
 </script>
+
+
+
 
 
 <!--
