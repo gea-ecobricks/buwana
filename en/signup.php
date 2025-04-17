@@ -220,14 +220,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function validateFieldsLive() {
+    // This function now simply checks — it doesn't modify the button anymore
     const firstNameValid = firstNameInput.value.trim().length > 0 && firstNameInput.value.trim().length <= 255;
     const credentialValid = credentialSelect.value !== "";
 
-    if (firstNameValid && credentialValid) {
-      submitButton.classList.remove('disabled');
-    } else {
-      submitButton.classList.add('disabled');
-    }
+    // You can still hook up visual cues here later if desired
+    return firstNameValid && credentialValid;
   }
 
   function validateOnSubmit() {
@@ -258,9 +256,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Live validation
   firstNameInput.addEventListener('input', validateFieldsLive);
   credentialSelect.addEventListener('change', validateFieldsLive);
-  validateFieldsLive();
+  validateFieldsLive(); // Initial check
 
-  // Submit handler with delay + animation
+  // Submit handler with click animation + spinner + delay
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -273,13 +271,13 @@ document.addEventListener('DOMContentLoaded', () => {
       btnText.style.display = 'none';
       spinner.style.display = 'inline-block';
 
-      // Disable hover animation during submission
+      // Remove hover animation
       btn.removeAttribute('data-hovered');
       btn.classList.remove('pulse-started');
 
-      // Delay submit for 1.2s
+      // Delay actual form submission
       setTimeout(() => {
-        form.submit();
+        form.submit(); // Native PHP POST
       }, 1200);
     }
   });
@@ -296,6 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
 
 
 <script>
