@@ -151,6 +151,9 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
+.kick-ass-submit.returning::before {
+  animation: powerStripeReturn 0.5s ease forwards;
+}
 
 
 

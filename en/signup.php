@@ -296,39 +296,35 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.querySelector('.kick-ass-submit');
 
   btn.addEventListener('mouseenter', () => {
-    // Add hover state to trigger entrance animation
     btn.setAttribute('data-hovered', 'true');
     btn.classList.remove('pulse-started', 'returning');
 
-    // Start pulsing after entrance animation ends
+    // Delay before starting pulse (after entrance finishes)
     setTimeout(() => {
       btn.classList.add('pulse-started');
-    }, 400); // Match duration of powerStripeEntrance
+    }, 400); // Matches duration of powerStripeEntrance
   });
 
   btn.addEventListener('mouseleave', () => {
-    // Remove hover attributes
     btn.removeAttribute('data-hovered');
     btn.classList.remove('pulse-started');
 
-    // Trigger the return animation
+    // Trigger return animation
     btn.classList.add('returning');
 
-    // Clear the return class after it completes
+    // Remove return class after animation completes
     setTimeout(() => {
       btn.classList.remove('returning');
-    }, 400); // Match duration of powerStripeReturn
+    }, 500); // Match the actual duration of powerStripeReturn
   });
 });
-
-
 </script>
+
 
 
 
