@@ -361,9 +361,9 @@ display: none;
   margin-left: auto;
 }
 
-#the-top-app-logo {
-ackground: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') no-repeat;
-  background-size: center contain;
+#top-app-logo {
+ackground: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center no-repeat;
+  background-size: contain;
  height: 100%;
  display: flex;
  cursor: pointer;
@@ -378,9 +378,9 @@ ackground: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') no-repe
           background-size: contain;
         }
 
-    #the-top-app-logo {
-    ackground: url('<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>') no-repeat;
-      background-size: center contain;
+    #top-app-logo {
+    ackground: url('<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>') center no-repeat;
+      background-size: contain;
       }
 
     }
