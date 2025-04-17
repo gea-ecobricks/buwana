@@ -62,9 +62,22 @@
     left: 70%;
   }
   to {
-    left: 12%;
+    left: 15%;
   }
 }
+
+@keyframes powerStripeClick {
+  0% {
+    left: 70%;
+  }
+  66% {
+    left: 15%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
 
 
 
@@ -158,7 +171,7 @@
     background-color: #868e9c;
       cursor: not-allowed;
       box-shadow: none;
-      pointer-events: none;
+      pointer-events: none !important;
 }
 
 
@@ -220,6 +233,30 @@
   border-radius: 5px 5px 0px 0px;
   border: solid 2px var(--button-2-1);
   border-bottom: none;
+}
+
+
+
+.spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.kick-ass-submit.click-animating::before {
+  animation: powerStripeClick 0.6s ease forwards;
 }
 
 

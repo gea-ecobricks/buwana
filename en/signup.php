@@ -161,9 +161,11 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 <div class="submit-button-wrapper">
-  <button type="submit" id="submit-button" aria-label="Submit Form" class="kick-ass-submit disabled">
-    <span data-lang-id="016-submit-to-password" id="submit-button-text">Next ➡</span>
+  <button type="submit" id="submit-button" class="kick-ass-submit disabled">
+    <span id="submit-button-text" data-lang-id="016-submit-to-password">Next ➡️</span>
+    <span id="submit-spinner" class="spinner" style="display: none;"></span>
   </button>
+
 </div>
 
 </form>
@@ -315,31 +317,38 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.kick-ass-submit');
+const form = document.getElementById('user-signup-form');
+const btn = document.getElementById('submit-button');
+const btnText = document.getElementById('submit-button-text');
+const spinner = document.getElementById('submit-spinner');
 
-  btn.addEventListener('mouseenter', () => {
-    btn.setAttribute('data-hovered', 'true');
-    btn.classList.remove('pulse-started', 'returning');
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
 
-    setTimeout(() => {
-      btn.classList.add('pulse-started');
-    }, 400); // wait for entrance to finish
-  });
-
-  btn.addEventListener('mouseleave', () => {
-    btn.removeAttribute('data-hovered');
+  // Validate before animating
+  if (validateOnSubmit()) {
+    // Stripe click animation
+    btn.classList.add('click-animating');
     btn.classList.remove('pulse-started');
 
-    // Trigger return animation
-    btn.classList.add('returning');
+    // Swap text for spinner
+    btnText.style.display = 'none';
+    spinner.style.display = 'inline-block';
 
-    // After return completes, reset to idle
+    // Trigger the stripe animation (will auto-reset)
     setTimeout(() => {
-      btn.classList.remove('returning');
-    }, 400); // match return duration
-  });
+      btn.classList.remove('click-animating');
+    }, 600); // total animation duration
+
+    // Let the form actually submit after animation starts
+    setTimeout(() => {
+      form.submit(); // native post to PHP
+    }, 100); // Small delay lets the spinner be visible
+  } else {
+    // Show errors, don’t animate
+  }
 });
+
 </script>
 
 
