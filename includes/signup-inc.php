@@ -65,10 +65,10 @@
 /* Floating Behavior */
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -7px;
+  top: -6px;
   left: 25px;
-  font-size: 14px;
-  color: var(--button-2-1);
+  font-size: 15px;
+  color: var(--subdued-text);
   background-color: var(--top-header);
   border-radius: 5px 5px 0px 0px;
   border: solid 2px var(--button-2-1);
