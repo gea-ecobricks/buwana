@@ -59,6 +59,12 @@
       }
     }
 
+/* Styles for the disabled state */
+.disabled {
+    background-color: #666;
+    cursor: not-allowed !important;
+}
+
 
 
 
