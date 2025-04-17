@@ -2114,11 +2114,11 @@ select {
    font-size: 1.3em;
 }
 
-/* Styles for the disabled state */
-.disabled {
-    background-color: #444;
-    cursor: not-allowed !important;
-}
+/*!* Styles for the disabled state *!*/
+/*.disabled {*/
+/*    background-color: #444;*/
+/*    cursor: not-allowed !important;*/
+/*}*/
 
 .cancel {
     background-color: #555;

@@ -21,25 +21,56 @@
       margin: 20px auto;
     }
 
-    /* Unified, badass submit button */
-    .kick-ass-submit {
-      display: inline-block;
-      width: 100%;
-      max-width: 400px;
-      padding: 14px 24px;
-      font-size: 1.3em;
-      font-weight: semi-bold;
-      border: none;
-      border-radius: 8px;
-      background-color: var(--button-2-1);
-      color: white;
-      cursor: pointer;
-      transition:
-        background-color 0.3s ease,
-        box-shadow 0.2s ease,
-        transform 0.1s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
+   .kick-ass-submit {
+     position: relative; /* Needed for pseudo positioning */
+     display: inline-block;
+     width: 100%;
+     max-width: 400px;
+     padding: 14px 24px;
+     font-size: 1.3em;
+     font-weight: 600;
+     border: none;
+     border-radius: 8px;
+     background-color: var(--button-2-1);
+     color: white;
+     cursor: pointer;
+     transition:
+       background-color 0.3s ease,
+       box-shadow 0.2s ease,
+       transform 0.1s ease;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+     overflow: hidden; /* Hide stripe overflow */
+   }
+
+   /* Power Stripe */
+   .kick-ass-submit::before {
+     content: "";
+     position: absolute;
+     width: 10px;
+     height: 140%; /* Extend beyond top/bottom for angle */
+     background-color: rgba(255, 255, 255, 0.3); /* White at 30% opacity */
+     top: -20%;
+     left: 33%; /* About 1/3 into the button */
+     transform: rotate(45deg);
+     pointer-events: none; /* Let clicks pass through */
+     z-index: 1;
+   }
+
+   /* Make sure button text stays above the stripe */
+   .kick-ass-submit span,
+   .kick-ass-submit > * {
+     position: relative;
+     z-index: 2;
+   }
+
+.kick-ass-submit::before {
+  transition: left 0.4s ease;
+}
+
+.kick-ass-submit:hover::before {
+  left: 40%;
+}
+
 
     /* Hover/active states */
     .kick-ass-submit:hover {
@@ -123,9 +154,9 @@
 /* Floating Behavior */
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -4px;
+  top: -10px;
   left: 25px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--subdued-text);
   background-color: var(--top-header);
   border-radius: 5px 5px 0px 0px;
