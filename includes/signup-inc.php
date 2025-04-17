@@ -87,7 +87,7 @@
 .float-label-group select + label {
   position: absolute;
   left: 20px;
-  top: 22px;
+  top: 24px;
   color: var(--subdued-text);
   background-color: var(--top-header);
   font-size: 20px;
@@ -99,7 +99,7 @@
 /* Floating behavior triggered by focus or valid selection */
 .float-label-group select:focus + label,
 .float-label-group select:not([value=""]) + label {
-  top: -10px;
+  top: -8px;
   left: 25px;
   font-size: 14px;
   color: var(--button-2-1);

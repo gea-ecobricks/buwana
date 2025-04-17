@@ -2215,6 +2215,7 @@ text-decoration: underline;
   font-family: 'Mulish', Arial, sans-serif;
   color: var(--subdued-text);
   font-weight: 300;
+    font-size: 14em;
   }
 
 .splash-title-block {
