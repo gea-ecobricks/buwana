@@ -324,7 +324,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
   <button type="button" onclick="closeSettings()" aria-label="Click to close settings page" class="x-button"></button>
   <div class="overlay-content-settings">
 
-   <div class="the-app-logo" alt="App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"></div>
+   <div class="the-app-logo" alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"></div>
 
 
     <div class="menu-page-item">
