@@ -62,110 +62,6 @@
 
 <link rel="stylesheet" type="text/css" href="../styles/footer.css?v=<?php echo ($version); ;?>">
 
-<?php if ($page === "messenger"): ?>
-    <style>
-
-
-
-    @media screen and (max-width: 800px) {
-
-
-
-
-         .start-convo-button {
-       width: 100%;
-       border-radius: 15px;
-        }
-
-
-    #mobileBackToConvos {
-      position: absolute;
-      z-index: 100;
-      top: 20px;
-      left: -10px;
-      width: 40px;
-      padding: 10px 5px 10px 12px;
-      border: 1px grey solid;
-      font-size: 2em;
-      background: #747474;
-
-      }
-
-    #messenger-welcome {
-    display: none;
-    }
-
-    #toggleConvoDrawer  {
-    display: none;
-    }
-
-        .form-container {
-            width: calc(100% - 4px) !important;
-            margin-right: 2px !important;
-            margin-left: 0px !important;
-            /* max-width: 600px; */
-            padding: 2px;
-            position: relative;
-
-        }
-
-/*         #form-submission-box { */
-
-/*             margin-top: 100px !important; */
-/*         } */
-
-
-        #messageInput {
-            padding: 10px;
-            padding-left: 14px;
-            background: var(--main-background);
-            color: var(--text-color);
-            font-size: 1em;
-            border-radius: 20px;
-            width: -moz-available;
-            margin-left: 55px;
-            resize: none; /* Prevents manual resizing */
-            overflow: hidden; /* Hides the scrollbar */
-            max-height: calc(1.5em * 5 + 30px); /* Adjusts to a max of 5 rows plus padding */
-            line-height: 1.5em;
-            border: none; /* Removes all borders */
-            outline: none; /* Removes the border when selected */
-            font-family: 'Mulish', sans-serif;
-            width: 100%;
-        }
-
-        .conversation-list-container {
-            width:100%;
-            }
-
-        .message-thread {
-            display:none;
-        }
-
-        #startConvoDrawer {
-            display:none;
-            }
-
-        #header {
-            padding-top:10px !important;
-            height: 60px;
-            }
-
-
-
-        #main {
-        background: var(--top-header-main)};
-                }
-
-
-        .messenger-container {
-            height: calc(100vh - 120px) !important;
-            }
-}
-    </style>
-<?php endif; ?>
-
-
 
 
 <script src="../scripts/language-switcher.js?v=<?php echo ($version); ;?>"></script>
@@ -359,6 +255,7 @@ display: none;
   height: 250px;
   margin-right: auto;
   margin-left: auto;
+  margin:auto;
 }
 
 #top-app-logo {
@@ -377,6 +274,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
    background-size: contain;
   height: 50px;
   margin-top: 5px;
+  margin: auto;
   }
 
     @media (prefers-color-scheme: dark) {
@@ -387,7 +285,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
         }
 
     #top-app-logo {
-    ackground: url('<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>') center no-repeat;
+    background: url('<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>') center no-repeat;
       background-size: contain;
       }
 
@@ -465,9 +363,9 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
   <span class="status-circle" style="background-color: orange;" title="Under development"></span>
 </div>
 
-<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
-
-<div class="Buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana"></div>
+<!--<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
+-->
+<div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana"></div>
 
 
 
@@ -521,8 +419,8 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
                 </button>
 
                 <button type="button" class="top-login-button" onclick="showLoginSelector()" aria-label="Login options"></button>
--->
-                <button type="button" class="top-lang-button" onclick="showLangSelector()" aria-label="Switch languages"></button>
+
+                <button type="button" class="top-lang-button" onclick="showLangSelector()" aria-label="Switch languages"></button>-->
 
                 <dark-mode-toggle
                 id="dark-mode-toggle-5" style="min-width:82px;margin-top:-5px;margin-bottom:-15px;"
