@@ -19,7 +19,7 @@ const en_Page_Translations = {
     "005b-name-error": "The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.",
     "006-credential-choice": "Select how you register...",
     "007-way-to-contact": "We'll send your account confirmation messages this way.  Later you'll login this way.",
-    "016-submit-to-password": "Next ➡",
+    "016-submit-to-password": "Next ⟶",
 
 /* Next page: Signup-2 - Set your name and email  */
 

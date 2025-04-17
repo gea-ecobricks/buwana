@@ -73,9 +73,6 @@
 }
 
 
-
-
-
 /* Floating Label for FIRST NAME Container */
 .float-label-group {
   position: relative;
@@ -101,7 +98,7 @@
   width: 100%;
   padding: 8px 10px;
   margin: 4px 0;
-  font-size: 22px !important;
+  font-size: 20px !important;
   box-sizing: border-box;
   border: 2px solid var(--button-2-1) !important;
   border-radius: 5px;
@@ -126,9 +123,9 @@
 /* Floating Behavior */
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -7px;
+  top: -4px;
   left: 25px;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--subdued-text);
   background-color: var(--top-header);
   border-radius: 5px 5px 0px 0px;
