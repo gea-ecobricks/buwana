@@ -352,8 +352,8 @@ display: none;
 
 .the-app-logo {
 
-  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') no-repeat;
-  background-size: center contain;
+  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') center no-repeat;
+  background-size: contain;
   width: 80%;
   max-height: 250px;
   height: 250px;
@@ -362,13 +362,14 @@ display: none;
 }
 
 #top-app-logo {
-ackground: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center no-repeat;
+background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center no-repeat;
   background-size: contain;
- height: 100%;
+ height: 80%;
  display: flex;
  cursor: pointer;
  width:100%;
  margin-right:70px;
+ margin-top: 5px;
  }
 
     @media (prefers-color-scheme: dark) {
