@@ -281,15 +281,14 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
     @media (prefers-color-scheme: dark) {
         .the-app-logo {
 
-          background: url('<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>') center no-repeat;
+          background: url('<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>') center no-repeat !important;
           background-size: contain;
         }
 
     #top-app-logo {
-    background: url('<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>') center no-repeat;
+    background: url('<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>') center no-repeat !important;
       background-size: contain;
       }
-
     }
 
 
