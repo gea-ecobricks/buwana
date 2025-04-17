@@ -190,18 +190,35 @@ https://github.com/gea-ecobricks/buwana/-->
 <?php require_once ("../footer-2025.php");?>
 
 </div><!--close page content-->
+
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  // === DOM Elements ===
+  const form = document.getElementById('user-signup-form');
   const firstNameInput = document.getElementById('first_name');
   const credentialSelect = document.getElementById('credential');
   const submitButton = document.getElementById('submit-button');
+  const errorRequired = document.getElementById('maker-error-required');
+  const errorLong = document.getElementById('maker-error-long');
+  const errorInvalid = document.getElementById('maker-error-invalid');
+  const credentialError = document.getElementById('credential-error-required');
 
-  // Simple validation function
-  function validateFields() {
+  // === Helper Functions ===
+
+  function hasInvalidChars(value) {
+    const invalidChars = /[\'\"><]/;
+    return invalidChars.test(value);
+  }
+
+  function displayError(element, show) {
+    element.style.display = show ? 'block' : 'none';
+  }
+
+  function validateFieldsLive() {
     const firstNameValid = firstNameInput.value.trim().length > 0 && firstNameInput.value.trim().length <= 255;
     const credentialValid = credentialSelect.value !== "";
 
-    // Add more logic if you want to check for specific error classes
     if (firstNameValid && credentialValid) {
       submitButton.classList.remove('disabled');
     } else {
@@ -209,105 +226,94 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Listen for input changes
-  firstNameInput.addEventListener('input', validateFields);
-  credentialSelect.addEventListener('change', validateFields);
+  function validateOnSubmit() {
+    let isValid = true;
+    const firstName = firstNameInput.value.trim();
+    const credential = credentialSelect.value;
 
-  // Optional: run validation once on page load
-  validateFields();
-});
-</script>
+    // Validate First Name
+    displayError(errorRequired, firstName === '');
+    displayError(errorLong, firstName.length > 255);
+    displayError(errorInvalid, hasInvalidChars(firstName));
 
-
-<script>
-document.getElementById('user-signup-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting until validation is complete
-    var isValid = true; // Flag to determine if the form should be submitted
-
-    // Helper function to display error messages
-    function displayError(elementId, showError) {
-        var errorDiv = document.getElementById(elementId);
-        if (showError) {
-            errorDiv.style.display = 'block'; // Show the error message
-            isValid = false; // Set form validity flag
-        } else {
-            errorDiv.style.display = 'none'; // Hide the error message
-        }
+    if (firstName === '' || firstName.length > 255 || hasInvalidChars(firstName)) {
+      isValid = false;
     }
 
-    // Helper function to check for invalid characters
-    function hasInvalidChars(value) {
-        const invalidChars = /[\'\"><]/; // Regex for invalid characters
-        return invalidChars.test(value);
+    // Validate Credential
+    displayError(credentialError, credential === '');
+    if (credential === '') {
+      isValid = false;
     }
 
-    // 1. First Name Validation
-    var firstName = document.getElementById('first_name').value.trim();
-    displayError('maker-error-required', firstName === '');
-    displayError('maker-error-long', firstName.length > 255);
-    displayError('maker-error-invalid', hasInvalidChars(firstName));
+    return isValid;
+  }
 
-    // 2. Credential Validation
-    var credential = document.getElementById('credential').value;
-    displayError('credential-error-required', credential === '');
+  function scrollLessThan30() {
+    const topPageImage = document.querySelector('.top-page-image');
+    if (window.pageYOffset <= 30 && topPageImage) {
+      topPageImage.style.zIndex = "35";
+    }
+  }
 
-    // If all validations pass, submit the form
-    if (isValid) {
-        this.submit();
+  function scrollMoreThan30() {
+    const topPageImage = document.querySelector('.top-page-image');
+    if (window.pageYOffset > 30 && topPageImage) {
+      topPageImage.style.zIndex = "25";
+    }
+  }
+
+  function showHideHeader() {
+    // Placeholder — this function was called but not defined
+    // Add header visibility logic here if needed
+  }
+
+  // === Event Listeners ===
+
+  // Live validation on input/change
+  firstNameInput.addEventListener('input', validateFieldsLive);
+  credentialSelect.addEventListener('change', validateFieldsLive);
+  validateFieldsLive(); // Initial check on load
+
+  // Handle form submission
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    if (validateOnSubmit()) {
+      form.submit(); // All checks passed
     } else {
-        // Scroll to the first error message and center it in the viewport
-        var firstError = document.querySelector('.form-field-error[style="display: block;"]');
-        if (firstError) {
-            firstError.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
-            // Optionally, find the related input and focus it
-            var relatedInput = firstError.closest('.form-item').querySelector('input, select, textarea');
-            if (relatedInput) {
-                relatedInput.focus();
-            }
+      // Scroll to first visible error
+      const firstError = document.querySelector('.form-field-error[style="display: block;"]');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+        const relatedInput = firstError.closest('.form-item')?.querySelector('input, select, textarea');
+        if (relatedInput) {
+          relatedInput.focus();
         }
+      }
     }
-});
+  });
 
-// Add a keypress listener to submit the form on Enter
-document.getElementById('user-signup-form').addEventListener('keypress', function(event) {
+  // Allow Enter to submit, but not from buttons or selects
+  form.addEventListener('keypress', function (event) {
     if (event.key === "Enter") {
-        // Prevent default behavior for select or button elements
-        if (event.target.tagName === "BUTTON" || event.target.tagName === "SELECT") {
-            event.preventDefault();
-        } else {
-            // Trigger form submission
-            this.dispatchEvent(new Event('submit', { cancelable: true }));
-        }
+      if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
+        event.preventDefault();
+      } else {
+        this.dispatchEvent(new Event('submit', { cancelable: true }));
+      }
     }
+  });
+
+  // Scroll logic for adjusting image z-index
+  window.onscroll = () => {
+    scrollLessThan30();
+    scrollMoreThan30();
+    showHideHeader();
+  };
 });
-
-
-
-
-    window.onscroll = function() {
-        scrollLessThan30();
-        scrollMoreThan30();
-        showHideHeader();
-    };
-
-    function scrollLessThan30() {
-        if (window.pageYOffset <= 30) {
-    var topPageImage = document.querySelector('.top-page-image');
-                if (topPageImage) {
-                topPageImage.style.zIndex = "35";
-            }
-        }
-    }
-
-    function scrollMoreThan30() {
-        if (window.pageYOffset >= 30) {
-    var topPageImage = document.querySelector('.top-page-image');
-                if (topPageImage) {
-                topPageImage.style.zIndex = "25";
-            }
-        }
-    }
 </script>
+
 
 
 </body>
