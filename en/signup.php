@@ -151,7 +151,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
     <div class="form-item">
         <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 20px !important;color:var(--subdued-text);margin-left:5px;" >
-            <option value="" disabled selected data-lang-id="000-select">Select how you register...</option>
+            <option value="" disabled selected data-lang-id="000-select-x">Select how you register...</option>
             <option value="email">E-mail</option>
             <option value="mail">Phone number</option>
             <option value="peer" disabled>Peer</option>
@@ -163,7 +163,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 <div class="submit-button-wrapper">
-  <button type="submit" id="submit-button" aria-label="Submit Form" class="kick-ass-submit">
+  <button type="submit" id="submit-button" aria-label="Submit Form" class="kick-ass-submit disabled">
     <span data-lang-id="016-submit-to-password" id="submit-button-text">Next ➡</span>
   </button>
 </div>
