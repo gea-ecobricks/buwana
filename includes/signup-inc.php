@@ -28,11 +28,6 @@
         background-size: contain;
     }
 
-.the-app-logo {
-
-  background: url(<?= htmlspecialchars($app_info['app_logo_url']) ?>) no-repeat;
-  background-size: contain;
-}
 
     @media (prefers-color-scheme: dark) {
         .app-signup-banner {

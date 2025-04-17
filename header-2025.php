@@ -350,6 +350,20 @@ display: none;
 }
 
 
+.the-app-logo {
+
+  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') no-repeat;
+  background-size: contain;
+}
+
+    @media (prefers-color-scheme: dark) {
+        .the-app-logo {
+
+          background: url('<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>') no-repeat;
+          background-size: contain;
+        }
+
+    }
 
 </style>
 
@@ -381,7 +395,7 @@ display: none;
   <button type="button" onclick="closeSettings()" aria-label="Click to close settings page" class="x-button"></button>
   <div class="overlay-content-settings">
 
-   <div class="the-app-logo" alt="EarthCal Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?>"> | <?= htmlspecialchars($app_info['app_slogan']) ?></div>
+   <div class="the-app-logo" alt="App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?>"> | <?= htmlspecialchars($app_info['app_slogan']) ?></div>
 <p><?= htmlspecialchars($app_info['app_slogan']) ?></p>
     <div class="menu-page-item">
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
@@ -403,6 +417,19 @@ display: none;
   <a href="bug-report.php" data-lang-id="1000-bug-report">
     Report a Bug
 
+  </a>
+  <span class="status-circle" style="background-color: orange;" title="Under development"></span>
+</div>
+
+<div class="menu-page-item">
+  <a href="bug-report.php" data-lang-id="1000-terms">
+    Terms of Use
+  </a>
+  <span class="status-circle" style="background-color: orange;" title="Under development"></span>
+</div>
+<div class="menu-page-item">
+  <a href="privacy.php" data-lang-id="1000-privacy">
+    Privacy policy
   </a>
   <span class="status-circle" style="background-color: orange;" title="Under development"></span>
 </div>
@@ -442,7 +469,7 @@ display: none;
                     </button>
 
         <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>" onclick="redirectToWelcome()">
-           <img src="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>v=1" style="width:200px; height: 50px; margin: auto; fill=var(--logo-color)";>
+           <img src="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>?v=1" style="width:200px; height: 50px; margin: auto; fill=var(--logo-color)";>
 
              </g>
             </svg>
