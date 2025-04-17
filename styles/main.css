@@ -357,7 +357,7 @@
 @media screen and (min-width: 700px) {
 
     #settings-buttons {
-    right: -250px;
+    right: -210px;
 }
 }
 
@@ -2346,7 +2346,7 @@ position:relative;
 }
 
 
-//ADVANCED BOX
+/*ADVANCED BOX*/
 /* Initially hide content using max-height */
 .advanced-box[aria-expanded="false"] .advanced-box-content {
     max-height: 0;  /* Set max height to 0 to hide the content */
@@ -2370,7 +2370,7 @@ position:relative;
 
 
 
-//DataTables
+/*DataTables*/
 
     #ecobrick-search-return_info, #latest-ecobricks_info {
    color: grey !important;
@@ -2465,13 +2465,3 @@ position:relative;
 }
 
 
-// Function to close the modal
-function closeInfoModal() {
-    var modal = document.getElementById("form-modal-message");
-    modal.style.display = "none";
-    document.body.style.overflow = 'auto'; // Re-enable body scrolling
-    // Remove blur effect and restore overflow on page-content and footer-full
-    document.getElementById('page-content').classList.remove('blurred');
-    document.getElementById('footer-full').classList.remove('blurred');
-    document.body.classList.remove('modal-open');
-}
