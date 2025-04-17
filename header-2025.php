@@ -248,8 +248,7 @@ display: none;
 
 .the-app-logo {
 
-  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') center no-repeat;
-  background-size: contain;
+
   width: 80%;
   max-height: 250px;
   height: 250px;
@@ -259,8 +258,7 @@ display: none;
 }
 
 #top-app-logo {
-background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center no-repeat;
-  background-size: contain;
+
  height: 80%;
  display: flex;
  cursor: pointer;
@@ -277,6 +275,20 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
   margin: auto;
   margin-top: 5px;
   }
+
+      @media (prefers-color-scheme: light) {
+          .the-app-logo {
+
+            background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') center no-repeat !important;
+            background-size: contain;
+          }
+
+      #top-app-logo {
+      background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center no-repeat !important;
+        background-size: contain;
+        }
+      }
+
 
     @media (prefers-color-scheme: dark) {
         .the-app-logo {
