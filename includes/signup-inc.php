@@ -21,55 +21,50 @@
       margin: 20px auto;
     }
 
-   .kick-ass-submit {
-     position: relative; /* Needed for pseudo positioning */
-     display: inline-block;
-     width: 100%;
-     max-width: 400px;
-     padding: 14px 24px;
-     font-size: 1.3em;
-     font-weight: 600;
-     border: none;
-     border-radius: 8px;
-     background-color: var(--button-2-1);
-     color: white;
-     cursor: pointer;
-     transition:
-       background-color 0.3s ease,
-       box-shadow 0.2s ease,
-       transform 0.1s ease;
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-     overflow: hidden; /* Hide stripe overflow */
-   }
 
    /* Power Stripe */
-   .kick-ass-submit::before {
-     content: "";
-     position: absolute;
-     width: 10px;
-     height: 140%; /* Extend beyond top/bottom for angle */
-     background-color: rgba(255, 255, 255, 0.3); /* White at 30% opacity */
-     top: -20%;
-     left: 33%; /* About 1/3 into the button */
-     transform: rotate(45deg);
-     pointer-events: none; /* Let clicks pass through */
-     z-index: 1;
-   }
+  .kick-ass-submit {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    padding: 14px 24px;
+    font-size: 1.3em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--button-2-1);
+    color: white;
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.2s ease,
+      transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
 
-   /* Make sure button text stays above the stripe */
-   .kick-ass-submit span,
-   .kick-ass-submit > * {
-     position: relative;
-     z-index: 2;
-   }
+  /* Power Stripe */
+  .kick-ass-submit::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.15));
+    transform: skewX(-45deg); /* Tilt the stripe without angling top/bottom */
+    pointer-events: none;
+    z-index: 1;
+  }
 
-.kick-ass-submit::before {
-  transition: left 0.4s ease;
-}
+  /* Make sure button content stays above stripe */
+  .kick-ass-submit span,
+  .kick-ass-submit > * {
+    position: relative;
+    z-index: 2;
+  }
 
-.kick-ass-submit:hover::before {
-  left: 40%;
-}
 
 
     /* Hover/active states */
