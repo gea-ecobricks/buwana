@@ -21,6 +21,25 @@
       margin: 20px auto;
     }
 
+@keyframes powerStripePulse {
+  0% {
+    left: 20%;
+  }
+  20% {
+    left: 80%;
+  }
+  60% {
+    left: 60%;
+  }
+  80% {
+    left: 80%;
+  }
+  100% {
+    left: 60%;
+  }
+}
+
+
 
    .kick-ass-submit {
      position: relative;
@@ -44,28 +63,28 @@
    }
 
    /* Power Stripe */
-   .kick-ass-submit::before {
-     content: "";
-     position: absolute;
-     top: 0;
-     left: 20%;
-     width: 40px;
-     height: 100%;
-     background: linear-gradient(
-       to right,
-       rgba(255, 255, 255, 0),
-       rgba(255, 255, 255, 0.2)
-     );
-     transform: skewX(-45deg);
-     pointer-events: none;
-     z-index: 1;
-     transition: left 0.5s ease;
-   }
+ .kick-ass-submit::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 20%;
+   width: 40px;
+   height: 100%;
+   background: linear-gradient(
+     to right,
+     rgba(255, 255, 255, 0),
+     rgba(255, 255, 255, 0.2)
+   );
+   transform: skewX(-45deg);
+   pointer-events: none;
+   z-index: 1;
+ }
 
-   /* Hover animation: stripe slides right */
-   .kick-ass-submit:hover::before {
-     left: 80%;
-   }
+ /* Trigger the pulsing animation on hover */
+ .kick-ass-submit:hover::before {
+   animation: powerStripePulse 1.2s ease-in-out infinite;
+ }
+
 
    /* Button content stays above the stripe */
    .kick-ass-submit span,
