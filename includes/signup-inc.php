@@ -58,7 +58,8 @@
   color: var(--button-2-1);
   background-color: var(--top-header);
   border-radius: 5px 5px 0px 0px;
-  border: solid 1px var(--button-2-1);
+  border: solid 2px var(--button-2-1);
+  border-bottom: none;
 }
 
 
