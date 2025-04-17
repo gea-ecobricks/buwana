@@ -352,11 +352,24 @@ display: none;
 
 .the-app-logo {
 
-  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') center no-repeat;
-  background-size: contain;
+  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') no-repeat;
+  background-size: center contain;
   width: 80%;
   max-height: 250px;
+  height: 250px;
+  margin-right: auto;
+  margin-left: auto;
 }
+
+#the-top-app-logo {
+ackground: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') no-repeat;
+  background-size: center contain;
+ height: 100%;
+ display: flex;
+ cursor: pointer;
+ width:100%;
+ margin-right:70px;
+ }
 
     @media (prefers-color-scheme: dark) {
         .the-app-logo {
@@ -365,7 +378,14 @@ display: none;
           background-size: contain;
         }
 
+    #the-top-app-logo {
+    ackground: url('<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>') no-repeat;
+      background-size: center contain;
+      }
+
     }
+
+
 
 </style>
 
@@ -399,7 +419,7 @@ display: none;
 
    <div class="the-app-logo" alt="App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"></div>
 
-<p><?= htmlspecialchars($app_info['app_slogan']) ?></p>
+<h4><?= htmlspecialchars($app_info['app_slogan']) ?></h4>
     <div class="menu-page-item">
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
         Back to <?= htmlspecialchars($app_info['app_display_name']) ?>
@@ -441,11 +461,11 @@ display: none;
 
 
 
-    <!-- GoBrik Tour at the bottom -->
+    <!-- GoBrik Tour at the bottom
     <div class="menu-page-item">
       <a data-lang-id="1001-gobrik-tour" onclick="closeSettings(); setTimeout(guidedTour, 500);">Buwana Tour</a>
       <span class="status-circle" style="background-color: yellow;" title="Working. Not translated."></span>
-    </div>
+    </div> -->
 
 
   </div> <!-- close overlay-content-settings -->
@@ -471,8 +491,8 @@ display: none;
         <button type="button" class="side-menu-button"  onclick="openSideMenu()" aria-label="Open Menu">
                     </button>
 
-        <div id="logo-title" style="height: 100%; display: flex; cursor: pointer;width:100%;margin-right:70px;" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>" onclick="redirectToWelcome()">
-           <img src="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>?v=1" style="width:200px; height: 50px; margin: auto; fill=var(--logo-color)";>
+        <div id="top-app-logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>" onclick="redirectToWelcome()">
+
         </div>
 
 
