@@ -66,7 +66,7 @@
 
 /*FLOATING CREDENTIAL SELECT */
 
-
+/* Select field styling */
 .float-label-group select {
   width: 100%;
   padding: 10px 10px;
@@ -76,21 +76,28 @@
   border-radius: 5px;
   background-color: var(--top-header);
   color: var(--h1);
-  appearance: none; /* Removes native styling */
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Add arrow back with a pseudo element if you like later */
-
-.float-label-group select:invalid {
-  color: var(--subdued-text); /* Make the placeholder look dimmed */
+/* Floating label for select */
+.float-label-group label {
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  color: var(--subdued-text);
+  background-color: var(--top-header);
+  font-size: 20px;
+  padding: 0 4px;
+  transition: 0.2s ease all;
+  pointer-events: none;
 }
 
-/* Floating label for select */
+/* Floating behavior when select is focused or has a value */
 .float-label-group select:focus + label,
-.float-label-group select:not([value=""]) + label {
+.float-label-group select:not(:is(:focus):invalid) + label {
   top: -10px;
   left: 25px;
   font-size: 14px;
