@@ -1,7 +1,10 @@
 <?php
 // fetch_app_info.php
 
-session_start(); // Enable session to store client_id and app context
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); // Only start session if one doesn't exist yet
+}
 require_once 'buwanaconn_env.php'; // DB connection ($buwana_conn)
 
 $default_client_id = 'gbrk_f2c61a85a4cd4b8b89a7';
