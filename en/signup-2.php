@@ -87,21 +87,16 @@ See our git hub repository for the full code and to help out:
 https://github.com/gea-ecobricks/buwana/-->
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <?php require_once ("../includes/signup-inc.php");?>
-
-<?php if ($success): ?>
-    <script type="text/javascript">
-        showSuccessMessage();
-    </script>
-<?php endif; ?>
 
 
 <div class="splash-title-block"></div>
 <div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-   <div id="top-page-image" class="app-signup-banner top-page-image"></div>
+   <div id="top-page-image" class="credentials-banner top-page-image"></div>
 
 <div id="form-submission-box" class="landing-page-form" >
     <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">

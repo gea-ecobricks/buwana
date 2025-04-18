@@ -307,10 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
      setTimeout(() => {
        emojiContainer.style.opacity = 0;
-     }, 200); // fade out after 0.3s
+     }, 1000); // fade out after 0.3s
 
      index++;
-   }, 400); // 0.5s per emoji
+   }, 1000); // 0.5s per emoji
  }
 
 

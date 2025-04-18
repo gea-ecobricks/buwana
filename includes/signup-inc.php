@@ -150,6 +150,7 @@
   transition: opacity 0.1s ease-in-out;
   z-index: 3;
   pointer-events: none; /* Don't let it affect interactions */
+  height: 20px;
 }
 
 
