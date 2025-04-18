@@ -25,13 +25,11 @@ if (!empty($_SESSION['buwana_id'])) {
 }
 
 $success = false;
-// Process form submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data and sanitize inputs
     $first_name = trim($_POST['first_name']);
     $credential = trim($_POST['credential']);
 
-    // Set other required fields
     $full_name = $first_name;
     $created_at = date("Y-m-d H:i:s");
     $last_login = date("Y-m-d H:i:s");
@@ -39,18 +37,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = 'ecobricker';
     $notes = "Buwana beta testing";
 
-    // Prepare the SQL statement for inserting user data into the Buwana user_tb
     $sql_user = "INSERT INTO users_tb (first_name, full_name, created_at, last_login, account_status, role, notes) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt_user = $buwana_conn->prepare($sql_user);
 
-    // Bind the data to the user_tb (s = string)
     if ($stmt_user) {
         $stmt_user->bind_param("sssssss", $first_name, $full_name, $created_at, $last_login, $account_status, $role, $notes);
 
         if ($stmt_user->execute()) {
             $buwana_id = $buwana_conn->insert_id;
 
-            // Prepare the SQL statement for inserting credential data into credentials_tb
+            // ✅ STEP: Register app connection
+            $client_id = $_SESSION['client_id'] ?? $default_client_id; // From fetch_app_info.php
+            $sql_connect = "INSERT INTO user_app_connections_tb (buwana_id, client_id) VALUES (?, ?)";
+            $stmt_connect = $buwana_conn->prepare($sql_connect);
+            if ($stmt_connect) {
+                $stmt_connect->bind_param("is", $buwana_id, $client_id);
+                $stmt_connect->execute();
+                $stmt_connect->close();
+            } else {
+                error_log("Error preparing app connection insert: " . $buwana_conn->error);
+            }
+
+            // Insert credential
             $sql_credential = "INSERT INTO credentials_tb (buwana_id, credential_type, times_used, failed_password_count, last_login) VALUES (?, ?, 0, 0, ?)";
             $stmt_credential = $buwana_conn->prepare($sql_credential);
 
@@ -59,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($stmt_credential->execute()) {
                     $success = true;
-                    // Redirect to signup-2.php with the buwana_id in the URL
                     header("Location: signup-2.php?id=$buwana_id");
                     exit();
                 } else {
@@ -83,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $buwana_conn->close();
 }
+
 
 // Echo the HTML structure
 echo '<!DOCTYPE html>
