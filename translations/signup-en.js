@@ -12,7 +12,7 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 
 
 const en_Page_Translations = {
-    "001-signup-heading": "Create Your Account",
+    "001-signup-heading": "Create Account",
     "002-signup-subtext": " uses Buwana— a powerful and private, opensource and for-Earth protocol that powers regenerative apps.",
     "003-firstname": "What's your first name?",
     "000-name-field-too-long-error": "The name is too long. Max 255 characters.",
