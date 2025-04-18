@@ -7,7 +7,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.51';
+$version = '0.52';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -260,6 +260,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
+
+    const btn = document.getElementById('submit-button');
 
     if (validateOnSubmit()) {
       // Trigger click animation
