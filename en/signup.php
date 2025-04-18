@@ -130,13 +130,13 @@ https://github.com/gea-ecobricks/buwana/-->
         </div>
 
        <!--SIGNUP FORM-->
-<form id="user-signup-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form id="user-signup-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" novalidate>
 
    <div class="form-item float-label-group">
      <input type="text" id="first_name" name="first_name"
             aria-label="Your first name"
             maxlength="255"
-
+            required
             placeholder=" " />
      <label for="first_name" data-lang-id="003-firstname">What's your first name?</label>
      <!-- ERRORS -->
