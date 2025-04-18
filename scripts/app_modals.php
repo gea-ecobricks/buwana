@@ -37,14 +37,12 @@
   }
 
 
-
-   const appEarthlingEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
-
+    const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
 
 
    function startEarthlingEmojiSpinner() {
      const emojiContainer = document.getElementById('submit-emoji');
-     const earthlings = JSON.parse(appEarthlingEmojis || '["🐵","🦉","🦋"]'); // Fallback
+     const earthlings = JSON.parse(appEmojis || '["🐵","🦉","🦋"]'); // Fallback
 
      let index = 0;
      emojiContainer.style.display = 'block';
