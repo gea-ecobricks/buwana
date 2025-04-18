@@ -185,7 +185,7 @@ https://github.com/gea-ecobricks/buwana/-->
 </div>
 
     <!--FOOTER STARTS HERE-->
-    <?php require_once ("../footer-2024.php"); ?>
+    <?php require_once ("../footer-2025.php"); ?>
 
 
 <script>
