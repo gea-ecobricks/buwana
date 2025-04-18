@@ -404,3 +404,46 @@ function handleLogout(event) {
 }
 
 
+
+
+
+
+
+    function openTermsModal() {
+    const modal = document.getElementById('form-modal-message');
+    const contentBox = document.querySelector('.modal-message');
+    const photoBox = document.getElementById('modal-photo-box');
+
+    // Insert Terms of Use
+    contentBox.innerHTML = `<?= nl2br(addslashes($app_info['app_terms_txt'])) ?>`;
+
+    // Prepare modal appearance
+    modal.classList.remove('modal-hidden');
+    document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+    photoBox.style.display = 'none';
+}
+
+    function openPrivacyModal() {
+    const modal = document.getElementById('form-modal-message');
+    const contentBox = document.querySelector('.modal-message');
+    const photoBox = document.getElementById('modal-photo-box');
+
+    // Insert Privacy Policy
+    contentBox.innerHTML = `<?= nl2br(addslashes($app_info['app_privacy_txt'])) ?>`;
+
+    // Prepare modal appearance
+    modal.classList.remove('modal-hidden');
+    document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+    photoBox.style.display = 'none';
+}
+
+    // Close function (you may already have this)
+    function closeInfoModal() {
+    const modal = document.getElementById('form-modal-message');
+    modal.classList.add('modal-hidden');
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = 'auto';
+}
+
