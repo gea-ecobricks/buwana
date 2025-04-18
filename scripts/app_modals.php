@@ -35,4 +35,4 @@
 
     modalBox.innerHTML = <?= json_encode($app_info['app_privacy_txt']) ?>;
   }
-</script>
+    </script>

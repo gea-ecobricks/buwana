@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<?php require_once ("../scripts/app-modals.php");?>
+<?php require_once ("../scripts/app_modals.php");?>
 
 
 
