@@ -1,19 +1,25 @@
 <?php
-require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start(); // Needed for app context persistence
+
+require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
+require_once '../fetch_app_info.php';         // Retrieves designated app's core data
+
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.42';
+$version = '0.59';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
-
 $is_logged_in = false; // Ensure not logged in for this page
 
-// Check if the user is logged in
-if (isLoggedIn()) {
+// ✅ Direct session check instead of calling a function
+if (!empty($_SESSION['buwana_id'])) {
+    $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? 'https://gobrik.com';
     echo "<script>
         alert('Looks like you already have an account and are logged in! Let\'s take you to your dashboard.');
-        window.location.href = 'dashboard.php';
+        window.location.href = '$redirect_url';
     </script>";
     exit();
 }
@@ -28,8 +34,6 @@ $first_name = '';
 $account_status = '';
 $country_icon = '';
 
-// Include database connection
-include '../buwanaconn_env.php';
 
 // Look up user information if buwana_id is provided
 if ($buwana_id) {
@@ -64,33 +68,43 @@ if ($buwana_id) {
         $response['error'] = 'account_status';
     }
 }
+
+// Echo the HTML structure
+echo '<!DOCTYPE html>
+<html lang="' . htmlspecialchars($lang, ENT_QUOTES, 'UTF-8') . '">
+<head>
+<meta charset="UTF-8">
+';
+
+
 ?>
 
 
-<!DOCTYPE html>
-<html lang="<?php echo $lang; ?>">
-<head>
-<meta charset="UTF-8">
-<title>Step 2 - Sign up | GoBrik</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <!--
-GoBrik.com site version 3.0
+Buwana EarthenAuth
 Developed and made open source by the Global Ecobrick Alliance
 See our git hub repository for the full code and to help out:
-https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
+https://github.com/gea-ecobricks/buwana/-->
+
+
 
 <?php require_once ("../includes/signup-inc.php");?>
+
+<?php if ($success): ?>
+    <script type="text/javascript">
+        showSuccessMessage();
+    </script>
+<?php endif; ?>
 
 
 <div class="splash-title-block"></div>
 <div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-   <div id="top-page-image" class="credentials-banner top-page-image"></div>
+   <div id="top-page-image" class="app-signup-banner top-page-image"></div>
 
-<div id="form-submission-box" class="landing-page-form">
-    <div class="form-container">
+<div id="form-submission-box" class="landing-page-form" >
+    <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
 
             <div style="text-align:center;width:100%;margin:auto;">
                 <h2 data-lang-id="001-setup-access-heading">Setup Your Access</h2>
