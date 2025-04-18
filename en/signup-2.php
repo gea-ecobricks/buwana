@@ -106,71 +106,77 @@ https://github.com/gea-ecobricks/buwana/-->
                 <p>Ok <?php echo $first_name; ?>, <span data-lang-id="002-setup-access-heading-a">let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-setup-access-heading-b-x">as your means of <?= $app_info['app_display_name']; ?> registration and the way we contact you.</span></p>
             </div>
 
-
-            <!--SIGNUP FORM-->
-            <form id="password-confirm-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
-                <div class="form-item" id="credential-section">
-
-                    <!-- <div class="form-item" id="last-name" class="user_lastname" style="display:none!important;">
+<!-- <div class="form-item" id="last-name" class="user_lastname" style="display:none!important;">
                     <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
                     <input type="text" id="human_check" class="required" placeholder="Your last name...">
                     <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
                 </div>-->
 
-                    <label for="credential_value"><span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please"> please:</span></label><br>
-                    <div id="duplicate-email-error" class="form-field-error" style="margin-top:10px;margin-bottom:-13px;" data-lang-id="010-duplicate-email">🚧 Whoops! Looks like that e-mail address is already being used by a Buwana Account. Please choose another.</div>
-                    <div id="duplicate-gobrik-email" class="form-warning" style="margin-top:10px;margin-bottom:-13px;" ><span data-lang-id="010-gobrik-duplicate">🌏 It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></div>
 
-                    <div class="input-container">
-                        <input type="text" id="credential_value" name="credential_value" required style="padding-left:45px;" aria-label="your email">
-                        <div id="loading-spinner" class="spinner" style="display: none;"></div>
-<!--                        <div id="credential-pin" class="pin-icon">⚪</div>
--->                    </div>
-                <p class="form-caption" data-lang-id="006-email-sub-caption">💌 This is the way we will contact you to confirm your account</p>
-                </div>
+           <form id="password-confirm-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
-                <div class="form-item" id="set-password" style="display: none;">
-                    <label for="password_hash" data-lang-id="007-set-your-pass">Set your password:</label><br>
-                    <div class="password-wrapper">
-                        <input type="password" id="password_hash" name="password_hash" required minlength="6">
-                        <span toggle="#password_hash" class="toggle-password" style="cursor: pointer;">🔒</span>
-                    </div>
-                    <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
-                </div>
+             <!-- Email / Credential Field -->
+             <div class="form-item float-label-group" id="credential-section">
+               <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" placeholder=" " />
+               <label for="credential_value">
+                 <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please"> please:</span>
+               </label>
 
-                <div class="form-item" id="confirm-password-section" style="display: none;">
-                    <label for="confirm_password" data-lang-id="009-confirm-pass">Confirm Your Password:</label><br>
-                    <div class="password-wrapper">
-                        <input type="password" id="confirm_password" name="confirm_password" required>
-                        <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;">🔒</span>
-                    </div>
-                    <div id="maker-error-invalid" class="form-field-error" style="margin-top:10px;" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
-                </div>
+               <div id="duplicate-email-error" class="form-field-error" data-lang-id="010-duplicate-email">
+                 🚧 Whoops! Looks like that e-mail address is already being used by a Buwana Account. Please choose another.
+               </div>
+               <div id="duplicate-gobrik-email" class="form-warning">
+                 🌏 <span data-lang-id="010-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
+               </div>
 
+               <div id="loading-spinner" class="spinner" style="display: none;"></div>
 
-                <div class="form-item" id="human-check-section" style="display: none;">
-                    <label for="human_check" data-lang-id="011-prove-human">Please prove you are human by typing the word "ecobrick" below:</label><br>
-                    <input type="text" id="human_check" name="human_check" required>
-                    <p class="form-caption"><span data-lang-id="012-fun-fact">🤓 Fun fact: </span> <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick">ecobrick</a><span data-lang-id="012b-is-spelled"> is spelled without a space, capital or hyphen!</span></p>
-                    <div style="margin-top:-16px">
-                        <input type="checkbox" id="terms" name="terms" required checked>
-                        <label for="terms" class="form-caption" data-lang-id="013-by-registering">By registering today, I agree to the <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link">GoBrik Terms of Service</a></label>
-                    </div>
-                <!--
-                    <div>
-                        <input type="checkbox" id="newsletter" name="newsletter" checked>
-                        <label for="newsletter" style="font-size:1.0;" class="form-caption" data-lang-id="014-i-agree-newsletter">I agree to receive the <a href="#" onclick="showModalInfo('earthen', '<?php echo $lang; ?>')" class="underline-link">Earthen newsletter</a> for app, ecobrick, and earthen updates</label>
-                    </div>
-                -->
+               <p class="form-caption" data-lang-id="006-email-sub-caption">💌 This is the way we will contact you to confirm your account</p>
+             </div>
 
+             <!-- Set Password -->
+             <div class="form-item float-label-group" id="set-password" style="display: none;">
+               <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " />
+               <label for="password_hash" data-lang-id="007-set-your-pass">Set your password:</label>
+               <span toggle="#password_hash" class="toggle-password" style="cursor: pointer;">🔒</span>
+               <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
+             </div>
 
+             <!-- Confirm Password -->
+             <div class="form-item float-label-group" id="confirm-password-section" style="display: none;">
+               <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " />
+               <label for="confirm_password" data-lang-id="009-confirm-pass">Confirm Your Password:</label>
+               <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;">🔒</span>
+               <div id="maker-error-invalid" class="form-field-error" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
+             </div>
 
-                </div>
+             <!-- Human Check -->
+             <div class="form-item float-label-group" id="human-check-section" style="display: none;">
+               <input type="text" id="human_check" name="human_check" required placeholder=" " />
+               <label for="human_check" data-lang-id="011-prove-human">Please prove you are human by typing the word "ecobrick" below:</label>
+               <p class="form-caption">
+                 <span data-lang-id="012-fun-fact">🤓 Fun fact: </span>
+                 <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick">ecobrick</a>
+                 <span data-lang-id="012b-is-spelled"> is spelled without a space, capital or hyphen!</span>
+               </p>
+               <div style="margin-top:-16px">
+                 <input type="checkbox" id="terms" name="terms" required checked>
+                 <label for="terms" class="form-caption" data-lang-id="013-by-registering">
+                   By registering today, I agree to the <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link">Terms of Service</a>
+                 </label>
+               </div>
+             </div>
 
-                <div id="submit-section" style="display:none;text-align:center;margin-top:15px;" title="Be sure you wrote ecobrick correctly!" data-lang-id="015-register-button">
-                    <input type="submit" id="submit-button" value="Register" class="submit-button disabled">
-                </div>
-            </form>
+             <!-- Kick-Ass Submit Button -->
+             <div id="submit-section" style="display:none;" class="submit-button-wrapper">
+               <button type="submit" id="submit-button" class="kick-ass-submit disabled" title="Be sure you wrote ecobrick correctly!">
+                 <span id="submit-button-text" data-lang-id="015-register-button">Register ✅</span>
+                 <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
+               </button>
+             </div>
+
+           </form>
+
 
 
         </div>

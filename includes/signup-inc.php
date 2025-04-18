@@ -151,6 +151,7 @@
   z-index: 3;
   pointer-events: none; /* Don't let it affect interactions */
   height: 20px;
+  opacity: 1 !important;
 }
 
 
