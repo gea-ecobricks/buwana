@@ -113,6 +113,7 @@
     transform 0.1s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  line-height: normal;
 }
 
 /* Power Stripe */
@@ -142,15 +143,15 @@
 
 .submit-emoji {
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   font-size: 28px;
-  line-height: 1;
   transition: opacity 0.1s ease-in-out;
   z-index: 3;
-  display: none;
+  pointer-events: none; /* Don't let it affect interactions */
 }
+
 
 
 /* When hovering: run entrance */
