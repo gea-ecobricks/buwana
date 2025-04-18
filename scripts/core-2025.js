@@ -53,17 +53,17 @@ function redirectToAppHome(apphome) {
 }
 
 
-document.addEventListener("scroll", function() {
-    var scrollPosition = window.scrollY || document.documentElement.scrollTop;
-
-    // Check if the user has scrolled more than 1000px
-    if (scrollPosition > 1000) {
-        var footer = document.getElementById('footer-full');
-        if (footer) {
-            footer.style.display = 'block'; // Show the footer
-        }
-    }
-});
+// document.addEventListener("scroll", function() {
+//     var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+//
+//     // Check if the user has scrolled more than 1000px
+//     if (scrollPosition > 1000) {
+//         var footer = document.getElementById('footer-full');
+//         if (footer) {
+//             footer.style.display = 'block'; // Show the footer
+//         }
+//     }
+// });
 
 
 
@@ -99,6 +99,8 @@ function closeSettings() {
   document.body.style.overflowY = "unset";
 document.body.style.maxHeight = "unset";
   //document.body.style.height = "unset";
+    hideLoginSelector();
+    hideLangSelector()
 } 
 
 function modalCloseCurtains ( e ) {
@@ -112,15 +114,6 @@ function modalCloseCurtains ( e ) {
 }
 
 
-    //Blur out background
-//    document.getElementById('page-content')?.classList.add('blurred');
-//    document.getElementById('footer-full')?.classList.add('blurred');
-//    document.body.classList.add('modal-open');
-//
-//
-//
-//document.addEventListener('keydown', modalCloseCurtains);
-//
 
 
 
@@ -291,69 +284,69 @@ function ecobrickPreview(imageUrl, brik_serial, weight, owner, location) {
 SCROLL CONTROL
 
 -------------------------------------------*/
-let lastScrollTop = 0;
-
-window.onscroll = function() {
-    scrollLessThan30();
-    scrollMoreThan30();
-    scrollMoreThan800();
-    scrollLessThan800();
-};
-
-function scrollLessThan30() {
-    if (window.pageYOffset <= 30) {
-//        document.getElementById("header").style.height = "85px";
-        document.getElementById("header").style.borderBottom = "none";
-        document.getElementById("header").style.boxShadow = "none";
-//        document.getElementById("gea-logo").style.width = "190px";
-//        document.getElementById("gea-logo").style.height = "40px";
-        document.getElementById("logo-gobrik").style.opacity = "1";
-//        document.getElementById("header").style.top = "0";
-//        document.getElementById("settings-buttons").style.padding = "16px 43px 16px 12px";
-//        document.getElementById("language-menu-slider").style.top = "-15px";
-//        document.getElementById("login-menu-slider").style.top = "-15px";
-
-        // Set zIndex for the top banner image
-        var topPageImage = document.querySelector('.top-page-image');
-        if (topPageImage) {
-            topPageImage.style.zIndex = "35";
-        }
-    }
-}
-
-function scrollMoreThan30() {
-    if (window.pageYOffset > 30 && window.pageYOffset < 800) {
-//        document.getElementById("header").style.height = "60px";
-        document.getElementById("header").style.borderBottom = "var(--header-accent) 0.5px solid";
-        document.getElementById("header").style.boxShadow = "0px 0px 15px rgba(0, 0, 10, 0.805)";
-        document.getElementById("gea-logo").style.width = "170px";
-        document.getElementById("gea-logo").style.height = "35px";
-        document.getElementById("logo-gobrik").style.opacity = "0.9";
-//        document.getElementById("settings-buttons").style.padding = "12px 43px 10px 12px";
-//        document.getElementById("language-menu-slider").style.top = "-35px";
-//        document.getElementById("login-menu-slider").style.top = "-35px";
-
-        // Tuck the top banner image under the header
-        var topPageImage = document.querySelector('.top-page-image');
-        if (topPageImage) {
-            topPageImage.style.zIndex = "25";
-        }
-    }
-}
-
-function scrollMoreThan800() {
-    if (window.pageYOffset >= 800) {
-        // Hide the header completely
-        document.getElementById("header").style.top = "-140px";
-    }
-}
-
-function scrollLessThan800() {
-    if (window.pageYOffset < 800) {
-        // Show the header again
-        document.getElementById("header").style.top = "0";
-    }
-}
+// let lastScrollTop = 0;
+//
+// window.onscroll = function() {
+//     scrollLessThan30();
+//     scrollMoreThan30();
+//     scrollMoreThan800();
+//     scrollLessThan800();
+// };
+//
+// function scrollLessThan30() {
+//     if (window.pageYOffset <= 30) {
+// //        document.getElementById("header").style.height = "85px";
+//         document.getElementById("header").style.borderBottom = "none";
+//         document.getElementById("header").style.boxShadow = "none";
+// //        document.getElementById("gea-logo").style.width = "190px";
+// //        document.getElementById("gea-logo").style.height = "40px";
+//         document.getElementById("logo-gobrik").style.opacity = "1";
+// //        document.getElementById("header").style.top = "0";
+// //        document.getElementById("settings-buttons").style.padding = "16px 43px 16px 12px";
+// //        document.getElementById("language-menu-slider").style.top = "-15px";
+// //        document.getElementById("login-menu-slider").style.top = "-15px";
+//
+//         // Set zIndex for the top banner image
+//         var topPageImage = document.querySelector('.top-page-image');
+//         if (topPageImage) {
+//             topPageImage.style.zIndex = "35";
+//         }
+//     }
+// }
+//
+// function scrollMoreThan30() {
+//     if (window.pageYOffset > 30 && window.pageYOffset < 800) {
+// //        document.getElementById("header").style.height = "60px";
+//         document.getElementById("header").style.borderBottom = "var(--header-accent) 0.5px solid";
+//         document.getElementById("header").style.boxShadow = "0px 0px 15px rgba(0, 0, 10, 0.805)";
+//         document.getElementById("gea-logo").style.width = "170px";
+//         document.getElementById("gea-logo").style.height = "35px";
+//         document.getElementById("logo-gobrik").style.opacity = "0.9";
+// //        document.getElementById("settings-buttons").style.padding = "12px 43px 10px 12px";
+// //        document.getElementById("language-menu-slider").style.top = "-35px";
+// //        document.getElementById("login-menu-slider").style.top = "-35px";
+//
+//         // Tuck the top banner image under the header
+//         var topPageImage = document.querySelector('.top-page-image');
+//         if (topPageImage) {
+//             topPageImage.style.zIndex = "25";
+//         }
+//     }
+// }
+//
+// function scrollMoreThan800() {
+//     if (window.pageYOffset >= 800) {
+//         // Hide the header completely
+//         document.getElementById("header").style.top = "-140px";
+//     }
+// }
+//
+// function scrollLessThan800() {
+//     if (window.pageYOffset < 800) {
+//         // Show the header again
+//         document.getElementById("header").style.top = "0";
+//     }
+// }
 
 
 /* ---------- ------------------------------

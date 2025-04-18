@@ -7,7 +7,7 @@ const en_Translations = {
     "000-ecobrick-low": "ecobrick",
     "000-ecobricking": "ecobricking",
     "000-your": "Your",
-    "000-already-have-account": "Already have an account? <a href=\"login.php\">Login</a>",
+    "000-already-have-account": "Already have a Buwana account?",
     "000-select": "Select...",
     "000-your-password": "Your password:",
     "000-forgot-your-password": "Forgot your password? <a href=\"#\" onclick=\"showModalInfo('reset')\" class=\"underline-link\">Reset it.</a>",
