@@ -162,10 +162,11 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 <div class="submit-button-wrapper">
-  <button type="submit" id="submit-button" class="kick-ass-submit">
-    <span id="submit-button-text" data-lang-id="016-submit-to-password">Next ➡️</span>
-    <span id="submit-spinner" class="spinner" style="display: none;"></span>
-  </button>
+
+<button type="submit" id="submit-button" class="kick-ass-submit">
+  <span id="submit-button-text">Next ➡</span>
+  <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
+</button>
 
 </div>
 
@@ -257,33 +258,61 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
 
     if (validateOnSubmit()) {
-      // Trigger click animation
+      // Begin animations
       submitButton.classList.add('click-animating');
       submitButton.classList.remove('pulse-started');
-
-      // Show spinner, hide text
-      btnText.style.display = 'none';
-      spinner.style.display = 'inline-block';
-
-      // Remove hover animation
       submitButton.removeAttribute('data-hovered');
-      submitButton.classList.remove('pulse-started');
 
-      // Delay actual form submission
+      // Hide text & spinner
+      btnText.style.display = 'none';
+      spinner.style.display = 'none';
+
+      // Start Earthling Emoji Spinner after 0.4s (power stripe clears)
       setTimeout(() => {
-        form.submit(); // let PHP take it from here
-      }, 1500);
+        startEarthlingEmojiSpinner();
+      }, 400);
     } else {
-      // 🚨 Trigger shake animation
       shakeElement(submitButton);
     }
   });
+
 
   // ✅ Shake animation
   function shakeElement(element) {
     element.classList.add('shake');
     setTimeout(() => element.classList.remove('shake'), 400);
   }
+
+  function startEarthlingEmojiSpinner() {
+    const emojiContainer = document.getElementById('submit-emoji');
+    const earthlings = [
+      "🐵", "🦉", "🦋", "🐢", "🐸", "🦊", "🐝", "🦜", "🐞", "🐙",
+      "🦧", "🦩", "🐺", "🐠", "🦎", "🐘", "🪲", "🦒", "🦭", "🦓",
+      "🦚", "🪱", "🐍", "🦌", "🦔"
+    ];
+
+    let index = 0;
+    emojiContainer.style.display = 'inline-block';
+    emojiContainer.style.opacity = 1;
+
+    const emojiInterval = setInterval(() => {
+      if (index >= earthlings.length) {
+        clearInterval(emojiInterval);
+        form.submit(); // 🎉 After all earthlings danced through
+        return;
+      }
+
+      emojiContainer.textContent = earthlings[index];
+      emojiContainer.style.opacity = 1;
+
+      setTimeout(() => {
+        emojiContainer.style.opacity = 0;
+      }, 200); // fade after 0.2s
+
+      index++;
+    }, 300); // Total duration per emoji: 0.3s
+  }
+
 
   // ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
   form.addEventListener('keypress', function (event) {

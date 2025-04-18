@@ -74,7 +74,7 @@
     left: 15%;
   }
   100% {
-    left: 100%;
+    left: 104%;
   }
 }
 
@@ -178,6 +178,15 @@
 
 
 
+.submit-emoji {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  transition: opacity 0.1s ease-in-out;
+  z-index: 3;
+}
 
 
 
