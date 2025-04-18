@@ -1,7 +1,7 @@
 <?php
 session_start(); // Needed for app context persistence
 
-require_once '../earthenAuth_helper.php';     // Include auth helper functions
+//require_once '../earthenAuth_helper.php';     // Include auth helper functions
 require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last_login = date("Y-m-d H:i:s");
     $account_status = 'name set only';
     $role = 'ecobricker';
-    $notes = "beta testing the first signup form";
+    $notes = "Buwana beta testing";
 
     // Prepare the SQL statement for inserting user data into the Buwana user_tb
     $sql_user = "INSERT INTO users_tb (first_name, full_name, created_at, last_login, account_status, role, notes) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let index = 0;
-    emojiContainer.style.display = 'inline-block';
+    emojiContainer.style.display = 'block';
     emojiContainer.style.opacity = 1;
 
     const emojiInterval = setInterval(() => {
