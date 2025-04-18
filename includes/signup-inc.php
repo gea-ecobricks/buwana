@@ -194,6 +194,7 @@
     @media (min-width: 769px) {
       .kick-ass-submit {
         width: 77%;
+        height:53px;
 
       }
     }

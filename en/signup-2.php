@@ -103,7 +103,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
             <div style="text-align:center;width:100%;margin:auto;">
                 <h2 data-lang-id="001-setup-access-heading">Setup Your Access</h2>
-                <p>Ok <?php echo $first_name; ?>, <span data-lang-id="002-setup-access-heading-a">let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-setup-access-heading-b-x">as your means of <?= $app_info['app_name']; ?>registration and the way we contact you.</span></p>
+                <p>Ok <?php echo $first_name; ?>, <span data-lang-id="002-setup-access-heading-a">let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-setup-access-heading-b-x">as your means of <?= $app_info['app_display_name']; ?> registration and the way we contact you.</span></p>
             </div>
 
 
