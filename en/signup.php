@@ -154,9 +154,10 @@ https://github.com/gea-ecobricks/buwana/-->
             <option value="mail">Phone number</option>
             <option value="peer" disabled>Peer</option>
         </select>
-        <p class="form-caption" data-lang-id="007-way-to-contact">We'll send your account confirmation messages this way.  Later you'll login this way.</p>
         <!--ERRORS-->
         <div id="credential-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
+        <!--        <p class="form-caption" data-lang-id="007-way-to-contact">We'll send your account confirmation messages this way.  Later you'll login this way.</p>
+-->
     </div>
 
 
@@ -274,7 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1500);
     } else {
       // 🚨 Trigger shake animation
-      alert('shake it!!');
       shakeElement(submitButton);
     }
   });
