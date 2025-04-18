@@ -283,35 +283,36 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => element.classList.remove('shake'), 400);
   }
 
-  function startEarthlingEmojiSpinner() {
-    const emojiContainer = document.getElementById('submit-emoji');
-    const earthlings = [
-      "🐵", "🦉", "🦋", "🐢", "🐸", "🦊", "🐝", "🦜", "🐞", "🐙",
-      "🦧", "🦩", "🐺", "🐠", "🦎", "🐘", "🪲", "🦒", "🦭", "🦓",
-      "🦚", "🪱", "🐍", "🦌", "🦔"
-    ];
+ function startEarthlingEmojiSpinner() {
+   const emojiContainer = document.getElementById('submit-emoji');
+   const earthlings = [
+     "🐵", "🦉", "🦋", "🐢", "🐸", "🦊", "🐝", "🦜", "🐞", "🐙",
+     "🦧", "🦩", "🐺", "🐠", "🦎", "🐘", "🪲", "🦒", "🦭", "🦓",
+     "🦚", "🪱", "🐍", "🦌", "🦔"
+   ];
 
-    let index = 0;
-    emojiContainer.style.display = 'block';
-    emojiContainer.style.opacity = 1;
+   let index = 0;
+   emojiContainer.style.display = 'block'; // ✅ Just show it (let CSS position it)
+   emojiContainer.style.opacity = 1;
 
-    const emojiInterval = setInterval(() => {
-      if (index >= earthlings.length) {
-        clearInterval(emojiInterval);
-        form.submit(); // 🎉 After all earthlings danced through
-        return;
-      }
+   const emojiInterval = setInterval(() => {
+     if (index >= earthlings.length) {
+       clearInterval(emojiInterval);
+       form.submit(); // 🎉 All done
+       return;
+     }
 
-      emojiContainer.textContent = earthlings[index];
-      emojiContainer.style.opacity = 1;
+     emojiContainer.textContent = earthlings[index];
+     emojiContainer.style.opacity = 1;
 
-      setTimeout(() => {
-        emojiContainer.style.opacity = 0;
-      }, 1000); // fade after 0.2s
+     setTimeout(() => {
+       emojiContainer.style.opacity = 0;
+     }, 300); // fade out after 0.3s
 
-      index++;
-    }, 1500); // Total duration per emoji: 0.3s
-  }
+     index++;
+   }, 500); // 0.5s per emoji
+ }
+
 
 
   // ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
