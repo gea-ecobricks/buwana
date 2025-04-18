@@ -317,6 +317,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   });
 });
+
+
+
+
+    function openTermsModal() {
+    closeSettings();
+
+    const modal = document.getElementById('form-modal-message');
+    const modalBox = document.getElementById('modal-content-box');
+
+    modal.style.display = 'flex';
+    modalBox.style.flexFlow = 'column';
+    document.getElementById('page-content')?.classList.add('blurred');
+    document.getElementById('footer-full')?.classList.add('blurred');
+    document.body.classList.add('modal-open');
+
+    modalBox.style.maxHeight = '80vh';
+    modalBox.style.overflowY = 'auto';
+
+    modalBox.innerHTML = `
+    <h2 style="text-align:center;">📜 Terms of Use</h2>
+    <div style="white-space:pre-wrap; line-height:1.6; font-size:1em;">
+      <?= nl2br(addslashes($app_info['app_terms_txt'])) ?>
+    </div>
+  `;
+}
+
+    function openPrivacyModal() {
+    closeSettings();
+
+    const modal = document.getElementById('form-modal-message');
+    const modalBox = document.getElementById('modal-content-box');
+
+    modal.style.display = 'flex';
+    modalBox.style.flexFlow = 'column';
+    document.getElementById('page-content')?.classList.add('blurred');
+    document.getElementById('footer-full')?.classList.add('blurred');
+    document.body.classList.add('modal-open');
+
+    modalBox.style.maxHeight = '80vh';
+    modalBox.style.overflowY = 'auto';
+
+    modalBox.innerHTML = `
+    <h2 style="text-align:center;">🔐 Privacy Policy</h2>
+    <div style="white-space:pre-wrap; line-height:1.6; font-size:1em;">
+      <?= nl2br(addslashes($app_info['app_privacy_txt'])) ?>
+    </div>
+  `;
+}
+
 </script>
 
 
