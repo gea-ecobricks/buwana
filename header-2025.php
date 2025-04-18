@@ -336,15 +336,6 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
       <span class="status-circle" style="background-color: green;" title="Deployed. Working well!"></span>
     </div>
 
-<!-- Other menu items -->
-<div class="menu-page-item">
-  <a href="" data-lang-id="1000-about-buwana">
-    About Buwana
-  </a>
-  <span class="status-circle" style="background-color: red;" title="Under development"></span>
-</div>
-
-
 <div class="menu-page-item">
   <a href="bug-report.php" data-lang-id="1000-bug-report">
     Report a Bug
@@ -363,6 +354,14 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
   <span class="status-circle" style="background-color: orange;" title="Privacy Policy"></span>
 </div>
+
+<div class="menu-page-item">
+  <a href="javascript:void(0);" onclick="openAboutBuwanaModal()" data-lang-id="1000-about-buwana">
+    About Buwana
+  </a>
+  <span class="status-circle" style="background-color: red;" title="Under development"></span>
+</div>
+
 
 <!--<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
 -->

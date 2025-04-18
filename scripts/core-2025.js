@@ -405,6 +405,38 @@ function handleLogout(event) {
 
 
 
+function openAboutBuwanaModal() {
+    closeSettings();
+
+    const modal = document.getElementById('form-modal-message');
+    const modalBox = document.getElementById('modal-content-box');
+
+    modal.style.display = 'flex';
+    modalBox.style.flexFlow = 'column';
+    document.getElementById('page-content')?.classList.add('blurred');
+    document.getElementById('footer-full')?.classList.add('blurred');
+    document.body.classList.add('modal-open');
+
+    modalBox.style.maxHeight = '80vh';
+    modalBox.style.overflowY = 'auto';
+
+    modalBox.innerHTML = `
+        <div style="text-align: center;">
+            <h1 style="font-size: 3em; margin-bottom: 0;">🌏</h1>
+            <div class="buwana-word-mark" title="Authentication by Buwana" style="margin: 0 auto 10px auto; width: 220px; height: 50px; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+        </div>
+
+        <p><strong>Buwana</strong> is a regenerative alternative to corporate login systems, created to serve our global community with privacy, security, and principle. Rather than rely on closed-source platforms like Google or Facebook, Buwana provides an open, not-for-profit account system that enables secure access to our apps — including GoBrik, Ecobricks.org, Open Books, and the Brikcoin Wallet — while respecting user data and ecological values. Designed to hold community, geographical, and impact data, Buwana accounts are transferable across platforms and built for organizations committed to Earth service.</p>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="https://github.com/gea-ecobricks/buwana" target="_blank" rel="noopener noreferrer" class="confirm-button enabled" style="text-decoration: none;">
+                🌐 View Buwana Project on GitHub
+            </a>
+        </div>
+    `;
+}
+
+
 
 
 
