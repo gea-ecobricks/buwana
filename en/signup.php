@@ -258,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
   credentialSelect.addEventListener('change', validateFieldsLive);
   validateFieldsLive(); // Initial check
 
-  // Submit handler with click animation + spinner + delay
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -277,10 +276,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Delay actual form submission
       setTimeout(() => {
-        form.submit(); // Native PHP POST
-      }, 1200);
+        form.submit();
+      }, 1500);
+    } else {
+      // 🚨 Trigger shake if form is invalid
+      shakeElement(btn);
     }
   });
+
 
   // Allow Enter to submit unless focus is on button or select
   form.addEventListener('keypress', function (event) {

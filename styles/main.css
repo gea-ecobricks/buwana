@@ -217,24 +217,12 @@
         }
 
 
-   /*     #header {
-            width: 100%;
-            height: 85px;
-            position: fixed;
-            top: 0;
-            transition: top 0.3s, height 0.3s, transform 0.3s;
-            transition: 0.4s;
-            z-index: 30;
-            background: var(--top-header-main);
-            width: 100%;
-            backdrop-filter: blur(10px);
-        }*/
 
              #header {
             width: 100%;
             height: 60px;
             padding-top: 10px;
-            position: fixed;
+            position: absolute;
             top: 0;
             transition: top 0.3s, height 0.3s, transform 0.3s;
             transition: 0.4s;
