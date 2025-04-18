@@ -7,7 +7,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.52';
+$version = '0.53';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -277,11 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Shake animation function
-  function shakeElement(element) {
-    element.classList.add('shake');
-    setTimeout(() => element.classList.remove('shake'), 400);
-  }
 
   // Allow Enter to submit unless focus is on button or select
   form.addEventListener('keypress', function (event) {
