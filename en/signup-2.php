@@ -113,11 +113,11 @@ https://github.com/gea-ecobricks/buwana/-->
                 </div>-->
 
 
-           <form id="password-confirm-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+           <form id="password-confirm-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>" novalidate>
 
              <!-- Email / Credential Field -->
              <div class="form-item float-label-group" id="credential-section">
-               <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" placeholder=" " />
+               <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" placeholder=" " style="margin-left:35px"/>
                <label for="credential_value">
                  <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please"> please:</span>
                </label>
@@ -129,9 +129,9 @@ https://github.com/gea-ecobricks/buwana/-->
                  🌏 <span data-lang-id="010-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
                </div>
 
-               <div id="loading-spinner" class="spinner" style="display: none;"></div>
+               <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;"></div>
 
-               <p class="form-caption" data-lang-id="006-email-sub-caption">💌 This is the way we will contact you to confirm your account</p>
+               <p class="form-caption" data-lang-id="006-email-sub-caption" style="margin-bottom: -10px;">💌 This is the way we will contact you to confirm your account</p>
              </div>
 
              <!-- Set Password -->

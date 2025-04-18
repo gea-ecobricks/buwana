@@ -150,8 +150,8 @@
   transition: opacity 0.1s ease-in-out;
   z-index: 3;
   pointer-events: none; /* Don't let it affect interactions */
-  height: 55px;
-  maring-top: -34px;
+  height: 35px;
+  margin-top: -15px;
   opacity: 1 !important;
 }
 
