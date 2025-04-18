@@ -406,46 +406,51 @@ function handleLogout(event) {
 
 
 
-
-
-
     function openTermsModal() {
     closeSettings();
+
     const modal = document.getElementById('form-modal-message');
-    const contentBox = document.querySelector('.modal-message');
-    const photoBox = document.getElementById('modal-photo-box');
+    const modalBox = document.getElementById('modal-content-box');
 
-    // Insert Terms of Use
-    contentBox.innerHTML = `<?= nl2br(addslashes($app_info['app_terms_txt'])) ?>`;
-
-    // Prepare modal appearance
-    modal.classList.remove('modal-hidden');
+    modal.style.display = 'flex';
+    modalBox.style.flexFlow = 'column';
+    document.getElementById('page-content')?.classList.add('blurred');
+    document.getElementById('footer-full')?.classList.add('blurred');
     document.body.classList.add('modal-open');
-    document.body.style.overflow = 'hidden';
-    photoBox.style.display = 'none';
+
+    modalBox.style.maxHeight = '80vh';
+    modalBox.style.overflowY = 'auto';
+
+    modalBox.innerHTML = `
+    <h2 style="text-align:center;">📜 Terms of Use</h2>
+    <div style="white-space:pre-wrap; line-height:1.6; font-size:1em;">
+      <?= nl2br(addslashes($app_info['app_terms_txt'])) ?>
+    </div>
+  `;
 }
 
     function openPrivacyModal() {
-        closeSettings();
+    closeSettings();
+
     const modal = document.getElementById('form-modal-message');
-    const contentBox = document.querySelector('.modal-message');
-    const photoBox = document.getElementById('modal-photo-box');
+    const modalBox = document.getElementById('modal-content-box');
 
-    // Insert Privacy Policy
-    contentBox.innerHTML = `<?= nl2br(addslashes($app_info['app_privacy_txt'])) ?>`;
-
-    // Prepare modal appearance
-    modal.classList.remove('modal-hidden');
+    modal.style.display = 'flex';
+    modalBox.style.flexFlow = 'column';
+    document.getElementById('page-content')?.classList.add('blurred');
+    document.getElementById('footer-full')?.classList.add('blurred');
     document.body.classList.add('modal-open');
-    document.body.style.overflow = 'hidden';
-    photoBox.style.display = 'none';
+
+    modalBox.style.maxHeight = '80vh';
+    modalBox.style.overflowY = 'auto';
+
+    modalBox.innerHTML = `
+    <h2 style="text-align:center;">🔐 Privacy Policy</h2>
+    <div style="white-space:pre-wrap; line-height:1.6; font-size:1em;">
+      <?= nl2br(addslashes($app_info['app_privacy_txt'])) ?>
+    </div>
+  `;
 }
 
-    // Close function (you may already have this)
-    function closeInfoModal() {
-    const modal = document.getElementById('form-modal-message');
-    modal.classList.add('modal-hidden');
-    document.body.classList.remove('modal-open');
-    document.body.style.overflow = 'auto';
-}
+
 

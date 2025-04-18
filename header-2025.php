@@ -339,7 +339,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 <!-- Other menu items -->
 <div class="menu-page-item">
   <a href="" data-lang-id="1000-about-buwana">
-    About Buwana Accounts
+    About Buwana
   </a>
   <span class="status-circle" style="background-color: red;" title="Under development"></span>
 </div>
