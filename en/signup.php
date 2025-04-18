@@ -136,7 +136,7 @@ https://github.com/gea-ecobricks/buwana/-->
      <input type="text" id="first_name" name="first_name"
             aria-label="Your first name"
             maxlength="255"
-            required
+
             placeholder=" " />
      <label for="first_name" data-lang-id="003-firstname">What's your first name?</label>
      <!-- ERRORS -->
@@ -274,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1500);
     } else {
       // 🚨 Trigger shake animation
+      alert('shake it!!');
       shakeElement(submitButton);
     }
   });
