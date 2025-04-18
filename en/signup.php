@@ -8,14 +8,6 @@ require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
 
-
-
-
-// Function to check user login status
-function isLoggedIn() {
-    return isset($_SESSION['buwana_id']) ? true : false;
-}
-
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $version = '0.59';
@@ -23,8 +15,8 @@ $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
 
-// Check if the user is already logged in and redirect to app dashboard if they are
-if (isLoggedIn()) {
+// ✅ Direct session check instead of calling a function
+if (!empty($_SESSION['buwana_id'])) {
     $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? 'https://gobrik.com';
     echo "<script>
         alert('Looks like you already have an account and are logged in! Let\'s take you to your dashboard.');
@@ -34,8 +26,6 @@ if (isLoggedIn()) {
 }
 
 $success = false;
-
-
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data and sanitize inputs
