@@ -287,6 +287,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+  // Function to handle the shaking animation
+      function shakeElement(element) {
+          element.classList.add('shake');
+          setTimeout(() => element.classList.remove('shake'), 400);
+      }
+
+
   // Allow Enter to submit unless focus is on button or select
   form.addEventListener('keypress', function (event) {
     if (event.key === "Enter") {
@@ -329,11 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Function to handle the shaking animation
-    function shakeElement(element) {
-        element.classList.add('shake');
-        setTimeout(() => element.classList.remove('shake'), 400);
-    }
+
 </script>
 
 
