@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('user-signup-form');
   const firstNameInput = document.getElementById('first_name');
   const credentialSelect = document.getElementById('credential');
-  const submitButton = document.getElementById('submit-button');
+  const submitButton = document.getElementById('submit-button'); // <== Used consistently
   const btnText = document.getElementById('submit-button-text');
   const spinner = document.getElementById('submit-spinner');
   const errorRequired = document.getElementById('maker-error-required');
@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
   credentialSelect.addEventListener('change', validateFieldsLive);
   validateFieldsLive(); // Initial check
 
+  // ✅ Submit logic with animation, spinner, validation, and shake
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -269,23 +270,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Delay actual form submission
       setTimeout(() => {
-        form.submit();
+        form.submit(); // let PHP take it from here
       }, 1500);
     } else {
-      // 🚨 Trigger shake if form is invalid
+      // 🚨 Trigger shake animation
       shakeElement(submitButton);
     }
   });
 
-// Function to handle the shaking animation
-    function shakeElement(element) {
-        element.classList.add('shake');
-        setTimeout(() => element.classList.remove('shake'), 400);
-        alert('shake it!');
-    }
+  // ✅ Shake animation
+  function shakeElement(element) {
+    element.classList.add('shake');
+    setTimeout(() => element.classList.remove('shake'), 400);
+  }
 
-
-  // Allow Enter to submit unless focus is on button or select
+  // ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
   form.addEventListener('keypress', function (event) {
     if (event.key === "Enter") {
       if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
@@ -295,40 +294,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // ✅ Hover animation handlers
+  submitButton.addEventListener('mouseenter', () => {
+    submitButton.setAttribute('data-hovered', 'true');
+    submitButton.classList.remove('pulse-started', 'returning');
+
+    setTimeout(() => {
+      submitButton.classList.add('pulse-started');
+    }, 400);
+  });
+
+  submitButton.addEventListener('mouseleave', () => {
+    submitButton.removeAttribute('data-hovered');
+    submitButton.classList.remove('pulse-started');
+
+    submitButton.classList.add('returning');
+
+    setTimeout(() => {
+      submitButton.classList.remove('returning');
+    }, 500);
+  });
 });
 </script>
 
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.kick-ass-submit');
-
-  btn.addEventListener('mouseenter', () => {
-    btn.setAttribute('data-hovered', 'true');
-    btn.classList.remove('pulse-started', 'returning');
-
-    // Delay before starting pulse (after entrance finishes)
-    setTimeout(() => {
-      btn.classList.add('pulse-started');
-    }, 400); // Matches duration of powerStripeEntrance
-  });
-
-  btn.addEventListener('mouseleave', () => {
-    btn.removeAttribute('data-hovered');
-    btn.classList.remove('pulse-started');
-
-    // Trigger return animation
-    btn.classList.add('returning');
-
-    // Remove return class after animation completes
-    setTimeout(() => {
-      btn.classList.remove('returning');
-    }, 500); // Match the actual duration of powerStripeReturn
-  });
-});
-
-
-</script>
 
 
 
