@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let index = 0;
-    emojiContainer.style.display = 'relative';
+    emojiContainer.style.display = 'inline-block';
     emojiContainer.style.opacity = 1;
 
     const emojiInterval = setInterval(() => {
@@ -307,10 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         emojiContainer.style.opacity = 0;
-      }, 200); // fade after 0.2s
+      }, 1000); // fade after 0.2s
 
       index++;
-    }, 1000); // Total duration per emoji: 0.3s
+    }, 1500); // Total duration per emoji: 0.3s
   }
 
 
