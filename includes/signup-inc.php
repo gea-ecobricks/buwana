@@ -97,7 +97,7 @@
 .kick-ass-submit {
   position: relative;
   display: inline-block;
-  width: 100%;
+  width: 77%;
   max-width: 400px;
   padding: 14px 24px;
   font-size: 1.3em;
@@ -193,6 +193,7 @@
     @media (min-width: 769px) {
       .kick-ass-submit {
         width: 77%;
+
       }
     }
 
