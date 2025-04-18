@@ -134,6 +134,24 @@
   animation: powerStripeIdle 3s ease-in-out infinite;
 }
 
+.kick-ass-submit .hidden-text {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+.submit-emoji {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  transition: opacity 0.1s ease-in-out;
+  z-index: 3;
+  line-height: 1; /* 🔥 This helps vertical centering of emojis */
+}
+
+
 /* When hovering: run entrance */
 .kick-ass-submit[data-hovered="true"]::before {
   animation: powerStripeEntrance 0.4s ease forwards;
@@ -176,17 +194,6 @@
       }
     }
 
-
-
-.submit-emoji {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 28px;
-  transition: opacity 0.1s ease-in-out;
-  z-index: 3;
-}
 
 
 

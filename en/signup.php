@@ -263,7 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
       submitButton.removeAttribute('data-hovered');
 
       // Hide text & spinner
-      btnText.style.display = 'none';
+      btnText.classList.add('hidden-text');
+
 
       // Start Earthling Emoji Spinner after 0.4s (power stripe clears)
       setTimeout(() => {
