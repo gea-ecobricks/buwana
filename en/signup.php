@@ -292,35 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => element.classList.remove('shake'), 400);
   }
 
- function startEarthlingEmojiSpinner() {
-   const emojiContainer = document.getElementById('submit-emoji');
-   const earthlings = [
-     "🐵", "🦉", "🦋", "🐢", "🐸", "🦊", "🐝", "🦜", "🐞", "🐙",
-     "🦧", "🦩", "🐺", "🐠", "🦎", "🐘", "🪲", "🦒", "🦭", "🦓",
-     "🦚", "🪱", "🐍", "🦌", "🦔"
-   ];
-
-   let index = 0;
-   emojiContainer.style.display = 'block'; // ✅ Just show it (let CSS position it)
-   emojiContainer.style.opacity = 1;
-
-   const emojiInterval = setInterval(() => {
-     if (index >= earthlings.length) {
-       clearInterval(emojiInterval);
-       form.submit(); // 🎉 All done
-       return;
-     }
-
-     emojiContainer.textContent = earthlings[index];
-     emojiContainer.style.opacity = 1;
-
-     setTimeout(() => {
-       emojiContainer.style.opacity = 0;
-     }, 3000); // fade out after 0.3s
-
-     index++;
-   }, 3000); // 0.5s per emoji
- }
 
 
 
