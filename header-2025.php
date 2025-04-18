@@ -355,13 +355,12 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
 <div class="menu-page-item">
 <a href="#" onclick="openTermsModal(); return false;">Terms of Use</a>
-    Terms of Use
-  </a>
+
   <span class="status-circle" style="background-color: orange;" title="Terms of Use"></span>
 </div>
 <div class="menu-page-item">
-<a href="#" onclick="openPrivacyModal(); return false;">Privacy Policy</a>    Privacy policy
-  </a>
+<a href="#" onclick="openPrivacyModal(); return false;">Privacy Policy</a>
+
   <span class="status-circle" style="background-color: orange;" title="Privacy Policy"></span>
 </div>
 
