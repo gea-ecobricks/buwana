@@ -203,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const credentialSelect = document.getElementById('credential');
   const submitButton = document.getElementById('submit-button'); // <== Used consistently
   const btnText = document.getElementById('submit-button-text');
-  const spinner = document.getElementById('submit-spinner');
   const errorRequired = document.getElementById('maker-error-required');
   const errorLong = document.getElementById('maker-error-long');
   const errorInvalid = document.getElementById('maker-error-invalid');
@@ -265,7 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Hide text & spinner
       btnText.style.display = 'none';
-      spinner.style.display = 'none';
 
       // Start Earthling Emoji Spinner after 0.4s (power stripe clears)
       setTimeout(() => {
