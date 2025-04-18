@@ -200,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const firstNameInput = document.getElementById('first_name');
   const credentialSelect = document.getElementById('credential');
   const submitButton = document.getElementById('submit-button');
-  const btn = submitButton;
   const btnText = document.getElementById('submit-button-text');
   const spinner = document.getElementById('submit-spinner');
   const errorRequired = document.getElementById('maker-error-required');
@@ -220,11 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function validateFieldsLive() {
-    // This function now simply checks — it doesn't modify the button anymore
     const firstNameValid = firstNameInput.value.trim().length > 0 && firstNameInput.value.trim().length <= 255;
     const credentialValid = credentialSelect.value !== "";
-
-    // You can still hook up visual cues here later if desired
     return firstNameValid && credentialValid;
   }
 
@@ -233,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const firstName = firstNameInput.value.trim();
     const credential = credentialSelect.value;
 
-    // Validate First Name
     displayError(errorRequired, firstName === '');
     displayError(errorLong, firstName.length > 255);
     displayError(errorInvalid, hasInvalidChars(firstName));
@@ -242,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
       isValid = false;
     }
 
-    // Validate Credential
     displayError(credentialError, credential === '');
     if (credential === '') {
       isValid = false;
@@ -253,7 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // === Event Listeners ===
 
-  // Live validation
   firstNameInput.addEventListener('input', validateFieldsLive);
   credentialSelect.addEventListener('change', validateFieldsLive);
   validateFieldsLive(); // Initial check
@@ -261,20 +254,18 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const btn = document.getElementById('submit-button');
-
     if (validateOnSubmit()) {
       // Trigger click animation
-      btn.classList.add('click-animating');
-      btn.classList.remove('pulse-started');
+      submitButton.classList.add('click-animating');
+      submitButton.classList.remove('pulse-started');
 
       // Show spinner, hide text
       btnText.style.display = 'none';
       spinner.style.display = 'inline-block';
 
       // Remove hover animation
-      btn.removeAttribute('data-hovered');
-      btn.classList.remove('pulse-started');
+      submitButton.removeAttribute('data-hovered');
+      submitButton.classList.remove('pulse-started');
 
       // Delay actual form submission
       setTimeout(() => {
@@ -282,17 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1500);
     } else {
       // 🚨 Trigger shake if form is invalid
-      shakeElement(btn);
+      shakeElement(submitButton);
     }
   });
 
-
-  // Function to handle the shaking animation
-      function shakeElement(element) {
-          element.classList.add('shake');
-          setTimeout(() => element.classList.remove('shake'), 400);
-      }
-
+  // Shake animation function
+  function shakeElement(element) {
+    element.classList.add('shake');
+    setTimeout(() => element.classList.remove('shake'), 400);
+  }
 
   // Allow Enter to submit unless focus is on button or select
   form.addEventListener('keypress', function (event) {
