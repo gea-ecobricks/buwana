@@ -168,6 +168,7 @@ https://github.com/gea-ecobricks/buwana/-->
   <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
 </button>
 
+
 </div>
 
 </form>
@@ -309,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 200); // fade after 0.2s
 
       index++;
-    }, 300); // Total duration per emoji: 0.3s
+    }, 2000); // Total duration per emoji: 0.3s
   }
 
 
