@@ -92,6 +92,7 @@
 }
 
 
+
 /* Kick-ass button core */
 .kick-ass-submit {
   position: relative;
@@ -376,6 +377,25 @@
   background-color: var(--top-header);
   filter: none !important;
   margin-bottom: -200px !important;
+}
+
+
+.modal-content-box h1,
+.modal-content-box h2,
+.modal-content-box h3 {
+  margin-top: 1.4em;
+  color: var(--h1);
+}
+
+.modal-content-box p,
+.modal-content-box ul {
+  font-size: 1.05em;
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+.modal-content-box ul {
+  padding-left: 1.2em;
 }
 
 
