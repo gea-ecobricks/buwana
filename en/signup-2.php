@@ -361,6 +361,8 @@ function updateSubmitButtonState() {
 </script>
 
 
+<?php require_once ("../scripts/app-modals.php");?>
+
 
 
 

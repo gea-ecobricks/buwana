@@ -1,43 +1,38 @@
-<?
+<!-- app-modals.php -->
+<script>
+  function openTermsModal() {
+    closeSettings();
 
+    const modal = document.getElementById('form-modal-message');
+    const modalBox = document.getElementById('modal-content-box');
 
+    modal.style.display = 'flex';
+    modalBox.style.flexFlow = 'column';
+    document.getElementById('page-content')?.classList.add('blurred');
+    document.getElementById('footer-full')?.classList.add('blurred');
+    document.body.classList.add('modal-open');
 
-    function openTermsModal() {
-      closeSettings();
+    modalBox.style.maxHeight = '80vh';
+    modalBox.style.overflowY = 'auto';
 
-      const modal = document.getElementById('form-modal-message');
-      const modalBox = document.getElementById('modal-content-box');
+    modalBox.innerHTML = <?= json_encode($app_info['app_terms_txt']) ?>;
+  }
 
-      modal.style.display = 'flex';
-      modalBox.style.flexFlow = 'column';
-      document.getElementById('page-content')?.classList.add('blurred');
-      document.getElementById('footer-full')?.classList.add('blurred');
-      document.body.classList.add('modal-open');
+  function openPrivacyModal() {
+    closeSettings();
 
-      modalBox.style.maxHeight = '80vh';
-      modalBox.style.overflowY = 'auto';
+    const modal = document.getElementById('form-modal-message');
+    const modalBox = document.getElementById('modal-content-box');
 
-      // 🚨 No escaping or nl2br, just insert raw HTML
-      modalBox.innerHTML = `<?= $app_info['app_terms_txt']; ?>`;
-    }
+    modal.style.display = 'flex';
+    modalBox.style.flexFlow = 'column';
+    document.getElementById('page-content')?.classList.add('blurred');
+    document.getElementById('footer-full')?.classList.add('blurred');
+    document.body.classList.add('modal-open');
 
+    modalBox.style.maxHeight = '80vh';
+    modalBox.style.overflowY = 'auto';
 
-    function openPrivacyModal() {
-      closeSettings();
-
-      const modal = document.getElementById('form-modal-message');
-      const modalBox = document.getElementById('modal-content-box');
-
-      modal.style.display = 'flex';
-      modalBox.style.flexFlow = 'column';
-      document.getElementById('page-content')?.classList.add('blurred');
-      document.getElementById('footer-full')?.classList.add('blurred');
-      document.body.classList.add('modal-open');
-
-      modalBox.style.maxHeight = '80vh';
-      modalBox.style.overflowY = 'auto';
-
-      modalBox.innerHTML = `<?= $app_info['app_privacy_txt']; ?>`;
-    }
-
-?>
+    modalBox.innerHTML = <?= json_encode($app_info['app_privacy_txt']) ?>;
+  }
+</script>
