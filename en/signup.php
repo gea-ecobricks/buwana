@@ -1,9 +1,20 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start(); // Needed for app context persistence
 
-require_once '../earthenAuth_helper.php';     // Include auth helper functions
+//require_once '../earthenAuth_helper.php';     // Include auth helper functions
 require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
+
+
+
+
+
+// Function to check user login status
+function isLoggedIn() {
+    return isset($_SESSION['buwana_id']) ? true : false;
+}
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
