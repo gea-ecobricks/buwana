@@ -410,6 +410,7 @@ function handleLogout(event) {
 
 
     function openTermsModal() {
+    closeSettings();
     const modal = document.getElementById('form-modal-message');
     const contentBox = document.querySelector('.modal-message');
     const photoBox = document.getElementById('modal-photo-box');
@@ -425,6 +426,7 @@ function handleLogout(event) {
 }
 
     function openPrivacyModal() {
+        closeSettings();
     const modal = document.getElementById('form-modal-message');
     const contentBox = document.querySelector('.modal-message');
     const photoBox = document.getElementById('modal-photo-box');
