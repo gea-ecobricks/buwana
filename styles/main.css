@@ -1953,10 +1953,8 @@ label {
 /* Media Query for screens under 700px */
 @media screen and (max-width: 700px) {
   .form-container {
-    /*width: calc(100% - 33px);
-    margin-right: 3px;
-    margin-left: 3px;*/
-    width: calc(100% - 22px) !important;
+    /*width: calc(100% - 22px) !important;*/
+      width: 100%;
     margin-right: 0px !important;
     margin-left: 0px ;
 
@@ -2032,7 +2030,6 @@ label {
     padding-top: 18px;
     padding-bottom: 15px;
     background-color: #00000015;
-    margin-top: 16px;
     margin-bottom: 10px;
 }
 
