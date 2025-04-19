@@ -129,14 +129,14 @@ https://github.com/gea-ecobricks/buwana/-->
                  🌏 <span data-lang-id="010-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
                </div>
 
-               <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;"></div>
+               <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 6px;"></div>
 
                <p class="form-caption" data-lang-id="006-email-sub-caption" style="margin-bottom: -10px;">💌 This is the way we will contact you to confirm your account</p>
              </div>
 
              <!-- Set Password -->
              <div class="form-item float-label-group" id="set-password" style="display: none;">
-               <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " />
+               <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px;"/>
                <label for="password_hash" data-lang-id="007-set-your-pass">Set your password:</label>
                <span toggle="#password_hash" class="toggle-password" style="cursor: pointer;">🔒</span>
                <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
