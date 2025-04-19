@@ -22,6 +22,16 @@
 
 /* Animations */
 
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-16px); }
+  40% { transform: translateX(16px); }
+  60% { transform: translateX(-14px); }
+  80% { transform: translateX(14px); }
+  100% { transform: translateX(0); }
+}
+
+
 @keyframes powerStripeEntrance {
   from {
     left: 15%;
@@ -78,14 +88,7 @@
   }
 }
 
-@keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
-  100% { transform: translateX(0); }
-}
+
 
 @keyframes powerStripeStride {
   0% {
@@ -96,6 +99,26 @@
   }
 }
 
+
+/* When hovering: run entrance */
+.kick-ass-submit[data-hovered="true"]::before {
+  animation: powerStripeEntrance 0.4s ease forwards;
+}
+
+/* When entrance completes, pulse begins */
+.kick-ass-submit.pulse-started::before {
+  animation: powerStripePulse 1.1s ease-in-out infinite;
+}
+
+/* The pull back animation on click */
+.kick-ass-submit.click-animating::before {
+  animation: powerStripeClick 0.6s ease forwards;
+}
+
+/* The striding animation while processing and emoji animating */
+.kick-ass-submit.striding::before {
+  animation: powerStripeStride 0.5s linear infinite;
+}
 
 .shake {
   animation: shake 0.4s ease;
@@ -168,19 +191,6 @@
 
 
 
-/* When hovering: run entrance */
-.kick-ass-submit[data-hovered="true"]::before {
-  animation: powerStripeEntrance 0.4s ease forwards;
-}
-
-/* When entrance completes, pulse begins */
-.kick-ass-submit.pulse-started::before {
-  animation: powerStripePulse 1.1s ease-in-out infinite;
-}
-
-.kick-ass-submit.striding::before {
-  animation: powerStripeStride 0.5s linear infinite;
-}
 
 
 /* Button content stays above the stripe */
@@ -308,16 +318,14 @@
   vertical-align: middle;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* @keyframes spin { */
+/*   to { */
+/*     transform: rotate(360deg); */
+/*   } */
+/* } */
 
 
-.kick-ass-submit.click-animating::before {
-  animation: powerStripeClick 0.6s ease forwards;
-}
+
 
 
 
