@@ -271,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
       submitButton.classList.add('click-animating');
       submitButton.classList.remove('pulse-started');
       submitButton.removeAttribute('data-hovered');
+  submitButton.classList.add('click-animating', 'striding'); // Add striding class
 
       // Hide text & spinner
       btnText.classList.add('hidden-text');
@@ -279,7 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Start Earthling Emoji Spinner after 0.4s (power stripe clears)
       setTimeout(() => {
         startEarthlingEmojiSpinner();
-      }, 400);
+        form.submit();
+      }, 4000);
     } else {
       shakeElement(submitButton);
     }

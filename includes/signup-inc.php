@@ -87,6 +87,16 @@
   100% { transform: translateX(0); }
 }
 
+@keyframes powerStripeStride {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+
 .shake {
   animation: shake 0.4s ease;
 }
@@ -99,6 +109,7 @@
   display: inline-block;
   width: 77%;
   max-width: 400px;
+     height:53px;
   padding: 14px 24px;
   font-size: 1.3em;
   font-weight: 600;
@@ -167,6 +178,10 @@
   animation: powerStripePulse 1.1s ease-in-out infinite;
 }
 
+.kick-ass-submit.striding::before {
+  animation: powerStripeStride 0.5s linear infinite;
+}
+
 
 /* Button content stays above the stripe */
 .kick-ass-submit span,
@@ -196,7 +211,7 @@
     @media (min-width: 769px) {
       .kick-ass-submit {
         width: 77%;
-        height:53px;
+
 
       }
     }
