@@ -136,9 +136,9 @@ https://github.com/gea-ecobricks/buwana/-->
 
              <!-- Set Password -->
              <div class="form-item float-label-group" id="set-password" style="display: none;">
-               <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px;"/>
+               <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
                <label for="password_hash" data-lang-id="007-set-your-pass">Set your password:</label>
-               <span toggle="#password_hash" class="toggle-password" style="cursor: pointer;">🔒</span>
+               <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; margin-bottom:13px;margin-right:15px">🙈</span>
                <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
              </div>
 
@@ -146,9 +146,10 @@ https://github.com/gea-ecobricks/buwana/-->
              <div class="form-item float-label-group" id="confirm-password-section" style="display: none;">
                <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " />
                <label for="confirm_password" data-lang-id="009-confirm-pass">Confirm Your Password:</label>
-               <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;">🔒</span>
+               <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;margin-bottom:13px;margin-right:15px">🙈</span>
                <div id="maker-error-invalid" class="form-field-error" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
              </div>
+
 
              <!-- Human Check -->
              <div class="form-item float-label-group" id="human-check-section" style="display: none;">
