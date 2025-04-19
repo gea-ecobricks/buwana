@@ -72,14 +72,15 @@ function redirectToAppHome(apphome) {
 
 function openSideMenu() {
     const modal = document.getElementById("main-menu-overlay");
+    modal.style.width = "100vw"; // Viewport-safe width
     modal.style.display = "block";
-    modal.style.width = "100vw"; // ensure viewport width only
     document.body.style.overflowY = "hidden";
     document.body.style.maxHeight = "100vh";
 
     modal.setAttribute('tabindex', '0');
     modal.focus();
 }
+
 
 function focusRestrict ( event ) {
   document.addEventListener('focus', function( event ) {

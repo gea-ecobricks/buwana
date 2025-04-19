@@ -1,4 +1,8 @@
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /*
 /* -------------------------------------------------------------------------- */
 
@@ -513,47 +517,6 @@ display:none;
 /* 6. Main Menu Overlay Curtain - Comes in from the right after clicking +- button. */
 /* -------------------------------------------------------------------------- */
 
-
-/* Logged-in Status Box */
-.logged-in-status {
-  padding: 10px;
-  font-family: 'Mulish';
-  color: var(--text-color);
-  border-bottom: 1px solid var(--divider-line);
-  margin-bottom: 10px;
-  text-align: left;
-}
-
-/* Styling for Profile Settings and Log Out links */
-.logged-in-links {
-  font-size: 0.8em;
-/*
-  margin-left: 10px;
-*/
-  margin-top: 5px;
-}
-
-.logged-in-links a {
-  text-decoration: none;
-  color: var(--subdued-text);
-  margin-right: 10px;
-  font-size: 0.9em;
-}
-
-.logged-in-links a:hover {
-  text-decoration: underline;
-  color: var(--h1);
-}
-
-
-
-
-/* Main Menu Overlay Curtain */
-/*#main-menu-overlay {*/
-/*  background-color: var(--side-overlays);*/
-/*  color: var(--text-color);*/
-/*  z-index: 56;*/
-/*}*/
 
 #main-menu-overlay {
     background-color: var(--side-overlays);
