@@ -369,16 +369,6 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana"></div>
 
 
-
-
-
-    <!-- GoBrik Tour at the bottom
-    <div class="menu-page-item">
-      <a data-lang-id="1001-gobrik-tour" onclick="closeSettings(); setTimeout(guidedTour, 500);">Buwana Tour</a>
-      <span class="status-circle" style="background-color: yellow;" title="Working. Not translated."></span>
-    </div> -->
-
-
   </div> <!-- close overlay-content-settings -->
 </div> <!-- close main menu -->
 

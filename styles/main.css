@@ -544,12 +544,32 @@ display:none;
   text-decoration: underline;
   color: var(--h1);
 }
+
+
+
+
 /* Main Menu Overlay Curtain */
+/*#main-menu-overlay {*/
+/*  background-color: var(--side-overlays);*/
+/*  color: var(--text-color);*/
+/*  z-index: 56;*/
+/*}*/
+
 #main-menu-overlay {
-  background-color: var(--side-overlays);
-  color: var(--text-color);
-  z-index: 56;
+    background-color: var(--side-overlays);
+    color: var(--text-color);
+    z-index: 56;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-width: 100vw;
+    transition: width 0.5s ease;
 }
+
 
 /* Table of Contents Menu (background) */
 .overlay-settings {
@@ -565,15 +585,20 @@ display:none;
 
 /* Position the content inside the overlay */
 .overlay-content-settings {
-  text-align: center;
-  font-family: "Mulish";
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: auto;
-  min-width: 300px;
-  justify-content: center;
+    text-align: center;
+    font-family: "Mulish";
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
+
 
 @media screen and (max-width: 700px) {
   .overlay-content-settings {

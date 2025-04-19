@@ -68,19 +68,17 @@ function redirectToAppHome(apphome) {
 
 
 
-/* RIGHT SETTINGS OVERLAY */
+/* LEFT MAIN MENU OVERLAY */
 
 function openSideMenu() {
-  document.getElementById("main-menu-overlay").style.width = "100%";
-  document.getElementById("main-menu-overlay").style.display = "block";
-  document.body.style.overflowY = "hidden";
-  document.body.style.maxHeight = "101vh";
+    const modal = document.getElementById("main-menu-overlay");
+    modal.style.display = "block";
+    modal.style.width = "100vw"; // ensure viewport width only
+    document.body.style.overflowY = "hidden";
+    document.body.style.maxHeight = "100vh";
 
-  var modal = document.getElementById('main-menu-overlay');
-
-function modalShow () {
-   modal.setAttribute('tabindex', '0');
-   modal.focus();
+    modal.setAttribute('tabindex', '0');
+    modal.focus();
 }
 
 function focusRestrict ( event ) {
@@ -91,17 +89,21 @@ function focusRestrict ( event ) {
     }
   }, true);
 }
-}
+
 
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeSettings() {
-  document.getElementById("main-menu-overlay").style.width = "0%";
-  document.body.style.overflowY = "unset";
-document.body.style.maxHeight = "unset";
-  //document.body.style.height = "unset";
+    const modal = document.getElementById("main-menu-overlay");
+    modal.style.display = "none"; // Not just width = 0
+    modal.style.width = "0";
+
+    document.body.style.overflowY = "unset";
+    document.body.style.maxHeight = "unset";
+
     hideLoginSelector();
-    hideLangSelector()
-} 
+    hideLangSelector();
+}
+
 
 function modalCloseCurtains ( e ) {
   if ( !e.keyCode || e.keyCode === 27 ) {
