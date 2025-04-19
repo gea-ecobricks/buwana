@@ -72,13 +72,28 @@ function redirectToAppHome(apphome) {
 
 function openSideMenu() {
     const modal = document.getElementById("main-menu-overlay");
-    modal.style.width = "100vw"; // Viewport-safe width
+    modal.classList.add("open");
     modal.style.display = "block";
     document.body.style.overflowY = "hidden";
     document.body.style.maxHeight = "100vh";
 
     modal.setAttribute('tabindex', '0');
     modal.focus();
+}
+
+function closeSettings() {
+    const modal = document.getElementById("main-menu-overlay");
+    modal.classList.remove("open");
+
+    // Wait until animation completes before hiding
+    setTimeout(() => {
+        modal.style.display = "none";
+        document.body.style.overflowY = "unset";
+        document.body.style.maxHeight = "unset";
+    }, 400); // match transition time
+
+    hideLoginSelector?.();
+    hideLangSelector?.();
 }
 
 
@@ -91,19 +106,6 @@ function focusRestrict ( event ) {
   }, true);
 }
 
-
-/* Close when someone clicks on the "x" symbol inside the overlay */
-function closeSettings() {
-    const modal = document.getElementById("main-menu-overlay");
-    modal.style.display = "none"; // Not just width = 0
-    modal.style.width = "0";
-
-    document.body.style.overflowY = "unset";
-    document.body.style.maxHeight = "unset";
-
-    hideLoginSelector();
-    hideLangSelector();
-}
 
 
 function modalCloseCurtains ( e ) {

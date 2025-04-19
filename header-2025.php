@@ -251,11 +251,15 @@ display: none;
   background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') center no-repeat;
   background-size: contain;
   width: 80%;
-  max-height: 250px;
-  height: 250px;
+  height: 25%;
   margin-right: auto;
   margin-left: auto;
   margin:auto;
+}
+
+@media screen and (min-width: 700px) {
+.the-app-logo {
+max-height: 200px;
 }
 
 #top-app-logo {
@@ -333,33 +337,33 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
         Back to <?= htmlspecialchars($app_info['app_display_name']) ?>
       </a>
-      <span class="status-circle" style="background-color: green;" title="Deployed. Working well!"></span>
+      <span class="status-circle" style="background-color: purple;" title="Deployed. Working well!"></span>
     </div>
 
-<div class="menu-page-item">
-  <a href="bug-report.php" data-lang-id="1000-bug-report">
-    Report a Bug
+<!--<div class="menu-page-item">
+      <a href="bug-report.php" data-lang-id="1000-bug-report">
+        Report a Bug
 
-  </a>
-  <span class="status-circle" style="background-color: orange;" title="Under development"></span>
-</div>
+      </a>
+      <span class="status-circle" style="background-color: blue;" title="Under development"></span>
+    </div>-->
 
 <div class="menu-page-item">
 <a href="#" onclick="openTermsModal(); return false;">Terms of Use</a>
 
-  <span class="status-circle" style="background-color: orange;" title="Terms of Use"></span>
+  <span class="status-circle" style="background-color: green;" title="Terms of Use"></span>
 </div>
 <div class="menu-page-item">
 <a href="#" onclick="openPrivacyModal(); return false;">Privacy Policy</a>
 
-  <span class="status-circle" style="background-color: orange;" title="Privacy Policy"></span>
+  <span class="status-circle" style="background-color: yellow;" title="Privacy Policy"></span>
 </div>
 
 <div class="menu-page-item">
   <a href="javascript:void(0);" onclick="openAboutBuwanaModal()" data-lang-id="1000-about-buwana">
     About Buwana
   </a>
-  <span class="status-circle" style="background-color: red;" title="Under development"></span>
+  <span class="status-circle" style="background-color: orange;" title="Under development"></span>
 </div>
 
 
