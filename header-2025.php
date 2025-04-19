@@ -257,10 +257,15 @@ display: none;
   margin:auto;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (max-width: 700px) {
 .the-app-logo {
 max-height: 200px;
 }
+
+ .buwana-word-mark {
+ background: url('../svgs/b-logo.svg') center no-repeat;
+  height: 22px;
+  }
 }
 
 #top-app-logo {
@@ -282,6 +287,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
   margin: auto;
   margin-top: 5px;
   }
+
 
 
 
@@ -370,7 +376,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
 <!--<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
 -->
-<p style="margin:auto;margin-bottom: 5px;font-size: smaller">Authentication by</p>
+<p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;">Authentication by</p>
 <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana"></div>
 
 

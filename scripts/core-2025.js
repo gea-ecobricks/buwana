@@ -85,38 +85,22 @@ function closeSettings() {
     const modal = document.getElementById("main-menu-overlay");
     modal.classList.remove("open");
 
-    // Wait until animation completes before hiding
     setTimeout(() => {
         modal.style.display = "none";
         document.body.style.overflowY = "unset";
         document.body.style.maxHeight = "unset";
-    }, 400); // match transition time
+    }, 400);
 
-    hideLoginSelector?.();
-    hideLangSelector?.();
+    if (typeof hideLoginSelector === 'function') hideLoginSelector();
+    if (typeof hideLangSelector === 'function') hideLangSelector();
 }
 
-
-function focusRestrict ( event ) {
-  document.addEventListener('focus', function( event ) {
-    if ( modalOpen && !modal.contains( event.target ) ) {
-      event.stopPropagation();
-      modal.focus();
+function modalCloseCurtains(e) {
+    if (!e.keyCode || e.keyCode === 27) {
+        closeSettings();
     }
-  }, true);
 }
 
-
-
-function modalCloseCurtains ( e ) {
-  if ( !e.keyCode || e.keyCode === 27 ) {
-    
-  document.body.style.overflowY = "unset";
-  document.getElementById("main-menu-overlay").style.width = "0%";
-  /*document.getElementById("knack-overlay-curtain").style.height = "0%";*/
-
-  }
-}
 
 
 
