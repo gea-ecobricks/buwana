@@ -261,6 +261,7 @@ display: none;
 .the-app-logo {
 max-height: 200px;
 }
+}
 
 #top-app-logo {
 background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center no-repeat;
@@ -337,7 +338,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
         Back to <?= htmlspecialchars($app_info['app_display_name']) ?>
       </a>
-      <span class="status-circle" style="background-color: purple;" title="Deployed. Working well!"></span>
+      <span class="status-circle" style="background-color: blue;" title="Deployed. Working well!"></span>
     </div>
 
 <!--<div class="menu-page-item">
