@@ -37,10 +37,6 @@
   }
 
 
-
-    const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
-
-
    const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
 
      function startEarthlingEmojiSpinner() {
