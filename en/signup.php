@@ -262,30 +262,35 @@ document.addEventListener('DOMContentLoaded', () => {
   credentialSelect.addEventListener('change', validateFieldsLive);
   validateFieldsLive(); // Initial check
 
-  // ✅ Submit logic with animation, spinner, validation, and shake
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
+ form.addEventListener('submit', function (event) {
+   event.preventDefault();
 
-    if (validateOnSubmit()) {
-      // Begin animations
-      submitButton.classList.add('click-animating');
-      submitButton.classList.remove('pulse-started');
-      submitButton.removeAttribute('data-hovered');
-  submitButton.classList.add('click-animating', 'striding'); // Add striding class
+   if (validateOnSubmit()) {
+     // Start animations immediately
+     btnText.classList.add('hidden-text');               // Hide text
+     submitButton.classList.remove('pulse-started');     // Stop idle pulse
+     submitButton.classList.add('click-animating');      // Power stripe exit
 
-      // Hide text & spinner
-      btnText.classList.add('hidden-text');
+     // Start striding animation shortly after click animation
+     setTimeout(() => {
+       submitButton.classList.add('striding');
+     }, 650); // match the duration of click-animating
+
+     // Start emoji spinner right away (or after 650ms if you want it synchronized)
+     setTimeout(() => {
+     startEarthlingEmojiSpinner();
+     }, 650); // match the duration of click-animating
 
 
-      // Start Earthling Emoji Spinner after 0.4s (power stripe clears)
-      setTimeout(() => {
-        startEarthlingEmojiSpinner();
-        form.submit();
-      }, 4000);
-    } else {
-      shakeElement(submitButton);
-    }
-  });
+     // Delay form submission to allow animations to play
+     setTimeout(() => {
+       form.submit(); // Let PHP take it from here
+     }, 4000); // ⏳ Wait 4 seconds before submit
+   } else {
+     shakeElement(submitButton);
+   }
+ });
+
 
 
   // ✅ Shake animation

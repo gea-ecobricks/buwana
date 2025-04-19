@@ -35,13 +35,13 @@
 
 @keyframes powerStripeIdle {
   0% {
-    left: 12%;
+    left: 10%;
   }
   50% {
-    left: 16%;
+    left: 20%;
   }
   100% {
-    left: 12%;
+    left: 10%;
   }
 }
 
