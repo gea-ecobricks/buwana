@@ -256,7 +256,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return isValid;
   }
 
-  // === Event Listeners ===
+
+
+  // === Submit Event Listener ===
 
   firstNameInput.addEventListener('input', validateFieldsLive);
   credentialSelect.addEventListener('change', validateFieldsLive);

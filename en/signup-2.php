@@ -137,7 +137,7 @@ https://github.com/gea-ecobricks/buwana/-->
              <!-- Set Password -->
              <div class="form-item float-label-group" id="set-password" style="display: none;">
                <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
-               <label for="password_hash" data-lang-id="007-set-your-pass">Set your password...</label>
+               <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
                <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
                <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
              </div>
@@ -145,7 +145,7 @@ https://github.com/gea-ecobricks/buwana/-->
              <!-- Confirm Password -->
              <div class="form-item float-label-group" id="confirm-password-section" style="display: none;">
                <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " style="font-size: 22px !important;"/>
-               <label for="confirm_password" data-lang-id="009-confirm-pass">Confirm Your Password...</label>
+               <label for="confirm_password" data-lang-id="009-confirm-pass-x">Confirm Your Password...</label>
                <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;margin-bottom:13px;margin-right:15px; font-size:20px">🙈</span>
                <div id="maker-error-invalid" class="form-field-error" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
              </div>
@@ -157,13 +157,12 @@ https://github.com/gea-ecobricks/buwana/-->
                <label for="human_check" data-lang-id="011-prove-human">Please prove you are human by typing the word "ecobrick"...</label>
                <p class="form-caption">
                  <span data-lang-id="012-fun-fact">🤓 Fun fact: </span>
-                 <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick">ecobrick</a>
+                 <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick-x">ecobrick...</a>
                  <span data-lang-id="012b-is-spelled"> is spelled without a space, capital or hyphen!</span>
                </p>
                <div style="margin-top:-16px">
                  <input type="checkbox" id="terms" name="terms" required checked>
-                 <div class="form-caption" data-lang-id="013-by-registering">
-                   By registering today, I agree to the <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link">Terms of Service</a>
+                 <div class="form-caption" data-lang-id="013-by-registering-x">By registering today, I agree to the <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link">Terms of Service</a>
                  </div>
                </div>
              </div>
@@ -363,6 +362,78 @@ function updateSubmitButtonState() {
 
 
 /* Control the header position as the page scrolls*/
+form.addEventListener('submit', function (event) {
+   event.preventDefault();
+
+   if (validateOnSubmit()) {
+     // Start animations immediately
+     btnText.classList.add('hidden-text');               // Hide text
+     submitButton.classList.remove('pulse-started');     // Stop idle pulse
+     submitButton.classList.add('click-animating');      // Power stripe exit
+
+     // Start striding animation shortly after click animation
+     setTimeout(() => {
+       submitButton.classList.add('striding');
+     }, 400); // match the duration of click-animating
+
+     // Start emoji spinner right away (or after 650ms if you want it synchronized)
+     setTimeout(() => {
+     startEarthlingEmojiSpinner();
+     }, 400); // match the duration of click-animating
+
+
+     // Delay form submission to allow animations to play
+     setTimeout(() => {
+       form.submit(); // Let PHP take it from here
+     }, 4000); // ⏳ Wait 4 seconds before submit
+   } else {
+     shakeElement(submitButton);
+   }
+ });
+
+
+
+  // ✅ Shake animation
+  function shakeElement(element) {
+    element.classList.add('shake');
+    setTimeout(() => element.classList.remove('shake'), 400);
+  }
+
+
+
+
+  // ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
+  form.addEventListener('keypress', function (event) {
+    if (event.key === "Enter") {
+      if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
+        event.preventDefault();
+      } else {
+        this.dispatchEvent(new Event('submit', { cancelable: true }));
+      }
+    }
+  });
+
+  // ✅ Hover animation handlers
+  submitButton.addEventListener('mouseenter', () => {
+    submitButton.setAttribute('data-hovered', 'true');
+    submitButton.classList.remove('pulse-started', 'returning');
+
+    setTimeout(() => {
+      submitButton.classList.add('pulse-started');
+    }, 400);
+  });
+
+  submitButton.addEventListener('mouseleave', () => {
+    submitButton.removeAttribute('data-hovered');
+    submitButton.classList.remove('pulse-started');
+
+    submitButton.classList.add('returning');
+
+    setTimeout(() => {
+      submitButton.classList.remove('returning');
+    }, 500);
+  });
+});
 
 
 </script>
