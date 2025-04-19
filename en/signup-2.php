@@ -102,8 +102,8 @@ https://github.com/gea-ecobricks/buwana/-->
     <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
 
             <div style="text-align:center;width:100%;margin:auto;">
-                <h2 data-lang-id="001-setup-access-heading">Setup Your Access</h2>
-                <p>Ok <?php echo $first_name; ?>, <span data-lang-id="002-setup-access-heading-a">let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-setup-access-heading-b-x">as your means of <?= $app_info['app_display_name']; ?> registration and the way we contact you.</span></p>
+                <h2 data-lang-id="001-setup-access-heading-x">Register by email</h2>
+                <p>Ok <?php echo $first_name; ?>, <span data-lang-id="002-setup-access-heading-a">let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-setup-access-heading-b-x">to register on<?= $app_info['app_display_name']; ?>.</p>
             </div>
 
 <!-- <div class="form-item" id="last-name" class="user_lastname" style="display:none!important;">
@@ -117,7 +117,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
              <!-- Email / Credential Field -->
              <div class="form-item float-label-group" id="credential-section">
-               <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" placeholder=" " style="margin-left:35px"/>
+               <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" placeholder=" " style="padding-left:35px"/>
                <label for="credential_value">
                  <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please"> please:</span>
                </label>
