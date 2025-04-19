@@ -539,6 +539,16 @@ display:none;
     transform: translateX(0);
 }
 
+/* Prevent background scroll when overlay is open */
+.no-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 
 
 /* Table of Contents Menu (background) */

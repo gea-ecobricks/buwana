@@ -263,8 +263,7 @@ max-height: 200px;
 }
 
  .buwana-word-mark {
- background: url('../svgs/b-logo.svg') center no-repeat;
-  height: 22px;
+  max-height: 22px;
   }
 }
 
@@ -286,6 +285,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
   width: 300px;
   margin: auto;
   margin-top: 5px;
+
   }
 
 

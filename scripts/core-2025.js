@@ -74,8 +74,8 @@ function openSideMenu() {
     const modal = document.getElementById("main-menu-overlay");
     modal.classList.add("open");
     modal.style.display = "block";
-    document.body.style.overflowY = "hidden";
-    document.body.style.maxHeight = "100vh";
+
+    document.body.classList.add("no-scroll"); // ✅ Lock scroll
 
     modal.setAttribute('tabindex', '0');
     modal.focus();
@@ -87,13 +87,13 @@ function closeSettings() {
 
     setTimeout(() => {
         modal.style.display = "none";
-        document.body.style.overflowY = "unset";
-        document.body.style.maxHeight = "unset";
+        document.body.classList.remove("no-scroll"); // ✅ Re-enable scroll
     }, 400);
 
     if (typeof hideLoginSelector === 'function') hideLoginSelector();
     if (typeof hideLangSelector === 'function') hideLangSelector();
 }
+
 
 function modalCloseCurtains(e) {
     if (!e.keyCode || e.keyCode === 27) {
