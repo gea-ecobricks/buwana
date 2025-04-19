@@ -72,14 +72,20 @@ function redirectToAppHome(apphome) {
 
 function openSideMenu() {
     const modal = document.getElementById("main-menu-overlay");
-    modal.classList.add("open");
-    modal.style.display = "block";
 
-    document.body.classList.add("no-scroll"); // ✅ Lock scroll
+    modal.style.display = "block"; // Step 1: Make it visible
+
+    // Step 2: Use requestAnimationFrame to ensure the DOM has applied the display change before triggering the transition
+    requestAnimationFrame(() => {
+        modal.classList.add("open");
+    });
+
+    document.body.classList.add("no-scroll"); // Lock scroll
 
     modal.setAttribute('tabindex', '0');
     modal.focus();
 }
+
 
 function closeSettings() {
     const modal = document.getElementById("main-menu-overlay");

@@ -282,7 +282,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
  background: url('../svgs/b-logo.svg') center no-repeat;
    background-size: contain;
   height: 30px;
-  width: 300px;
+  width: 200px;
   margin: auto;
   margin-top: 5px;
 
@@ -344,7 +344,7 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
         Back to <?= htmlspecialchars($app_info['app_display_name']) ?>
       </a>
-      <span class="status-circle" style="background-color: blue;" title="Deployed. Working well!"></span>
+      <span class="status-circle" style="background-color: GREEN;" title="Deployed. Working well!"></span>
     </div>
 
 <!--<div class="menu-page-item">
@@ -358,26 +358,26 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 <div class="menu-page-item">
 <a href="#" onclick="openTermsModal(); return false;">Terms of Use</a>
 
-  <span class="status-circle" style="background-color: green;" title="Terms of Use"></span>
+  <span class="status-circle" style="background-color: YELLOW;" title="Terms of Use"></span>
 </div>
 <div class="menu-page-item">
 <a href="#" onclick="openPrivacyModal(); return false;">Privacy Policy</a>
 
-  <span class="status-circle" style="background-color: yellow;" title="Privacy Policy"></span>
+  <span class="status-circle" style="background-color: ORANGE;" title="Privacy Policy"></span>
 </div>
 
 <div class="menu-page-item">
   <a href="javascript:void(0);" onclick="openAboutBuwanaModal()" data-lang-id="1000-about-buwana">
     About Buwana
   </a>
-  <span class="status-circle" style="background-color: orange;" title="Under development"></span>
+  <span class="status-circle" style="background-color: RED;" title="Under development"></span>
 </div>
 
 
 <!--<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
 -->
 <p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;">Authentication by</p>
-<div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana"></div>
+<div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" href="https://github.com/gea-ecobricks/buwana"></div>
 
 
   </div> <!-- close overlay-content-settings -->
