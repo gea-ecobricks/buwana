@@ -136,15 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoginSelector();
     };
 
-    // 🌐 Language menu toggle
     window.showLangSelector = function () {
-        hideLoginSelector(); // Close other
-        langMenu.style.display = langMenu.style.display === 'flex' ? 'none' : 'flex';
+        hideLoginSelector();
+        langMenu.classList.add('menu-slider-visible');
         document.addEventListener('click', documentClickListenerLang);
     };
 
     window.hideLangSelector = function () {
-        langMenu.style.display = 'none';
+        langMenu.classList.remove('menu-slider-visible');
         document.removeEventListener('click', documentClickListenerLang);
     };
 
@@ -154,15 +153,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 🔐 Login menu toggle
     window.showLoginSelector = function () {
-        hideLangSelector(); // Close other
-        loginMenu.style.display = loginMenu.style.display === 'flex' ? 'none' : 'flex';
+        hideLangSelector();
+        loginMenu.classList.add('menu-slider-visible');
         document.addEventListener('click', documentClickListenerLogin);
     };
 
     window.hideLoginSelector = function () {
-        loginMenu.style.display = 'none';
+        loginMenu.classList.remove('menu-slider-visible');
         document.removeEventListener('click', documentClickListenerLogin);
     };
 
@@ -171,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hideLoginSelector();
         }
     }
+
 
     // Close settings panel on click outside
     document.addEventListener('click', function (e) {
@@ -186,6 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
     });
 });
+
+window.addEventListener('scroll', () => {
+    hideLangSelector();
+    hideLoginSelector();
+});
+
 
 
 

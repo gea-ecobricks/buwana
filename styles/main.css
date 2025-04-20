@@ -368,21 +368,31 @@
     font-family: 'Mulish', sans-serif;
 }
 
-/* SLIDER MENUS (Lang/Login) */
-.top-slider-menu {
+/* SLIDER MENUS (Lang/Login Dropdowns) */
+#language-menu-slider,
+#login-menu-slider {
     position: absolute;
     top: 60px;
     right: 10px;
-    display: none;
-    flex-direction: column;
     background-color: var(--settings-background);
     padding: 12px;
     border-radius: 12px;
-    z-index: 25;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 35;
+    display: none; /* Hidden by default */
 }
 
-/* Selector Boxes */
+/* Slide down + fade in */
+.menu-slider-visible {
+    display: flex !important;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Selector Containers */
 .lang-selector-box,
 .login-selector-box {
     display: flex;
@@ -390,6 +400,7 @@
     gap: 8px;
 }
 
+/* Buttons/Links */
 .lang-selector-box button,
 .login-selector-box a {
     background: none;
@@ -400,12 +411,17 @@
     text-align: left;
     color: var(--text-color);
     font-family: 'Mulish', sans-serif;
+    border-radius: 6px;
+    transition: background 0.2s ease;
 }
 
+/* Hover states */
 .lang-selector-box button:hover,
 .login-selector-box a:hover {
+    background-color: var(--hover-bg);
     color: var(--h1);
 }
+
 
 
 
