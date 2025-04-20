@@ -115,114 +115,78 @@ function modalCloseCurtains(e) {
 /* ---------- ------------------------------
 LANGUAGE SELECTOR
 -------------------------------------------*/
+document.addEventListener('DOMContentLoaded', () => {
+    const settingsButton = document.getElementById('top-settings-button');
+    const settingsPanel = document.getElementById('settings-buttons');
+    const langMenu = document.getElementById('language-menu-slider');
+    const loginMenu = document.getElementById('login-menu-slider');
 
-function showLangSelector() {
-    hideLoginSelector();
+    let settingsOpen = false;
 
-    var slider = document.getElementById('language-menu-slider');
-    var currentMarginTop = window.getComputedStyle(slider).marginTop;
-    slider.style.display = 'flex';
-    slider.style.marginTop = currentMarginTop === '70px' ? '0px' : '70px';
+    // 🔁 Toggle settings panel
+    window.toggleSettingsMenu = function () {
+        settingsOpen = !settingsOpen;
+        settingsPanel.classList.toggle('open', settingsOpen);
 
-    // Set zIndex of top-page-image
-    var topPageImage = document.querySelector('.top-page-image');
-    if (topPageImage) {
-        topPageImage.style.zIndex = '25';
+        // Accessibility
+        settingsButton.setAttribute('aria-expanded', settingsOpen ? 'true' : 'false');
+
+        // Close others
+        hideLangSelector();
+        hideLoginSelector();
+    };
+
+    // 🌐 Language menu toggle
+    window.showLangSelector = function () {
+        hideLoginSelector(); // Close other
+        langMenu.style.display = langMenu.style.display === 'flex' ? 'none' : 'flex';
+        document.addEventListener('click', documentClickListenerLang);
+    };
+
+    window.hideLangSelector = function () {
+        langMenu.style.display = 'none';
+        document.removeEventListener('click', documentClickListenerLang);
+    };
+
+    function documentClickListenerLang(e) {
+        if (!langMenu.contains(e.target) && e.target.id !== 'language-code') {
+            hideLangSelector();
+        }
     }
 
-    // Prevent event from bubbling to document
-    event.stopPropagation();
+    // 🔐 Login menu toggle
+    window.showLoginSelector = function () {
+        hideLangSelector(); // Close other
+        loginMenu.style.display = loginMenu.style.display === 'flex' ? 'none' : 'flex';
+        document.addEventListener('click', documentClickListenerLogin);
+    };
 
-    // Add named event listener for click on the document
-    document.addEventListener('click', documentClickListener);
-}
+    window.hideLoginSelector = function () {
+        loginMenu.style.display = 'none';
+        document.removeEventListener('click', documentClickListenerLogin);
+    };
 
-function hideLangSelector() {
-    var slider = document.getElementById('language-menu-slider');
-    slider.style.marginTop = '0px'; // Reset margin-top to 0px
-
-    // Set zIndex of top-page-image
-    var topPageImage = document.querySelector('.top-page-image');
-    if (topPageImage) {
-        topPageImage.style.zIndex = '35';
+    function documentClickListenerLogin(e) {
+        if (!loginMenu.contains(e.target) && !e.target.classList.contains('top-login-button')) {
+            hideLoginSelector();
+        }
     }
 
-    // Remove the named event listener from the document
-    document.removeEventListener('click', documentClickListener);
-}
-
-// Named function to be used as an event listener
-function documentClickListener() {
-    hideLangSelector();
-}
-
-/* ---------- ------------------------------
-SERVICE SELECTOR
--------------------------------------------*/
-
-function showLoginSelector() {
-    hideLangSelector();
-
-    var slider = document.getElementById('login-menu-slider');
-    var currentMarginTop = window.getComputedStyle(slider).marginTop;
-    slider.style.display = 'flex';
-    slider.style.marginTop = currentMarginTop === '70px' ? '0px' : '70px';
-
-    // Set zIndex of top-page-image
-    var topPageImage = document.querySelector('.top-page-image');
-    if (topPageImage) {
-        topPageImage.style.zIndex = '25';
-    }
-
-    // Prevent event from bubbling to document
-    event.stopPropagation();
-
-    // Add named event listener for click on the document
-    document.addEventListener('click', documentClickListenerLogin);
-}
-
-function hideLoginSelector() {
-    var slider = document.getElementById('login-menu-slider');
-    slider.style.marginTop = '0px'; // Reset margin-top to 0px
-
-    // Set zIndex of top-page-image
-    var topPageImage = document.querySelector('.top-page-image');
-    if (topPageImage) {
-        topPageImage.style.zIndex = '35';
-    }
-
-    // Remove the named event listener from the document
-    document.removeEventListener('click', documentClickListenerLogin);
-}
-
-// Named function to be used as an event listener
-function documentClickListenerLogin() {
-    hideLoginSelector();
-}
-
-function goBack() {
-    window.history.back();
-}
-
-
-
-
-document.querySelectorAll('.x-button').forEach(button => {
-    button.addEventListener('transitionend', (e) => {
-        // Ensure the transitioned property is the transform to avoid catching other transitions
-        if (e.propertyName === 'transform') {
-            // Check if the button is still being hovered over
-            if (button.matches(':hover')) {
-                button.style.backgroundImage = "url('../svgs/x-button-night-over.svg?v=3')";
-            }
+    // Close settings panel on click outside
+    document.addEventListener('click', function (e) {
+        if (!settingsPanel.contains(e.target) && e.target !== settingsButton) {
+            settingsPanel.classList.remove('open');
+            settingsOpen = false;
+            settingsButton.setAttribute('aria-expanded', 'false');
         }
     });
 
-    // Optionally, revert to the original background image when not hovering anymore
-    button.addEventListener('mouseleave', () => {
-        button.style.backgroundImage = "url('../svgs/x-button-night.svg?v=3')";
+    // Prevent menu auto-close on inside click
+    settingsPanel.addEventListener('click', function (e) {
+        e.stopPropagation();
     });
 });
+
 
 
 
