@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.65';
+$version = '0.64';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -141,8 +141,7 @@ https://github.com/gea-ecobricks/buwana/-->
        <!--SIGNUP FORM-->
 <form id="user-signup-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" novalidate>
 
-   <div class="form-item">
-       <div class="float-label-group">
+   <div class="form-item float-label-group">
      <input type="text" id="first_name" name="first_name"
             aria-label="Your first name"
             maxlength="255"
@@ -157,7 +156,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 
-
+    <div class="form-item" style="padding-top: 8px; padding-bottom: 8px;">
         <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 20px !important;color:var(--subdued-text);" >
             <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
             <option value="email">E-mail</option>
