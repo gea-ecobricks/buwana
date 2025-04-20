@@ -397,81 +397,60 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
 
 
-    <div id="header" class="top-menu" style="display: flex;
-    flex-flow: row;">
+    <!-- HEADER / TOP MENU -->
+    <header id="header" class="top-menu">
+      <!-- Left Menu Button -->
+      <button type="button" class="side-menu-button" onclick="openSideMenu()" aria-label="Open Main Menu"></button>
 
-        <button type="button" class="side-menu-button"  onclick="openSideMenu()" aria-label="Open Menu">
-                    </button>
+      <!-- App Logo -->
+      <div id="top-app-logo"
+           title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
+           onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')">
+      </div>
 
-        <div id="top-app-logo"
-             title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
-             onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')">
+      <!-- Right Settings Buttons -->
+      <div id="function-icons">
+        <div id="settings-buttons" class="" aria-label="App Settings Panel">
+          <button type="button"
+                  id="top-settings-button"
+                  aria-label="Toggle settings"
+                  aria-expanded="false"
+                  aria-controls="settings-buttons"
+                  onclick="toggleSettingsMenu()">
+          </button>
+
+          <!-- Language Switch -->
+          <div id="language-code" onclick="showLangSelector()" aria-label="Switch languages">
+            🌐 <span data-lang-id="000-language-code">EN</span>
+          </div>
+
+          <!-- Login Services -->
+          <button type="button" class="top-login-button" onclick="showLoginSelector()" aria-label="Login Options"></button>
+
+          <!-- Dark Mode Toggle -->
+          <dark-mode-toggle id="dark-mode-toggle" appearance="toggle"></dark-mode-toggle>
         </div>
+      </div>
+    </header>
 
-
-
-        <div id="function-icons" style="display: flex;flex-flow:row;margin:auto 10px auto auto;">
-
-
-            <div id="settings-buttons">
-
-                <button type="button" id="top-settings-button"  aria-label="Open site settings"></button>
-
-                <div id="language-code" onclick="showLangSelector()" aria-label="Switch languages">🌐 <span data-lang-id="000-language-code">EN</span></div>
-
-                <!-- <button type="button" class="top-search-button"  onclick="openSearch()"  aria-label="Search site">
-                </button>
-
-            <button type="button" class="top-lang-button" onclick="showLangSelector()" aria-label="Switch languages"></button>
-            -->
-
-
-
-                <button type="button" class="top-login-button" onclick="showLoginSelector()" aria-label="Login options"></button>
-
-
-
-                <dark-mode-toggle
-                id="dark-mode-toggle-5" style="min-width:82px;margin-top:-5px;margin-bottom:-15px;"
-                class="slider"
-                appearance="toggle">
-                </dark-mode-toggle>
-            </div>
-        </div>
+    <!-- LANGUAGE SELECTOR -->
+    <div id="language-menu-slider" class="top-slider-menu">
+      <div class="lang-selector-box">
+        <button onclick="navigateTo('../id/<?php echo ($page); ?>.php')">🇮🇩 IN</button>
+        <button onclick="navigateTo('../es/<?php echo ($page); ?>.php')">🇪🇸 ES</button>
+        <button onclick="navigateTo('../fr/<?php echo ($page); ?>.php')">🇫🇷 FR</button>
+        <button onclick="navigateTo('../en/<?php echo ($page); ?>.php')">🇬🇧 EN</button>
+      </div>
     </div>
 
-
-    <div id="language-menu-slider">
-  <div class="lang-selector-box">
-    <button type="button" class="lang-selector" onclick="navigateTo('../id/<?php echo ($page); ?>.php')" aria-label="Buka versi bahasa Indonesia">🇮🇩 IN</button>
-    <button type="button" class="lang-selector" onclick="navigateTo('../es/<?php echo ($page); ?>.php')" aria-label="Ir a la versión en español">🇪🇸 ES</button>
-    <button type="button" class="lang-selector" onclick="navigateTo('../fr/<?php echo ($page); ?>.php')" aria-label="Aller à la version française">🇫🇷 FR</button>
-    <button type="button" class="lang-selector" onclick="navigateTo('../en/<?php echo ($page); ?>.php')" aria-label="Go to English version">🇬🇧 EN</button>
-  </div>
-</div>
-
-
-
-<!--
-<div id="language-menu-slider">
-    <div class="lang-selector-box">
-      <button type="button" class="lang-selector" onclick="switchLanguage('id')">🇮🇩 IN</button>
-      <button type="button" class="lang-selector" onclick="switchLanguage('es')">🇪🇸 ES</button>
-      <button type="button" class="lang-selector" onclick="switchLanguage('fr')">🇫🇷 FR</button>
-      <button type="button" class="lang-selector" onclick="switchLanguage('en')">🇬🇧 EN</button>
+    <!-- LOGIN SELECTOR -->
+    <div id="login-menu-slider" class="top-slider-menu">
+      <div class="login-selector-box">
+        <a class="login-selector" target="_blank" href="https://gobrik.com/en/go.php#home">🌍 GoBrik</a>
+        <a class="login-selector" target="_blank" href="https://gobrik.com/email">🌒 EarthCal</a>
+      </div>
     </div>
-  </div> -->
 
-
-<div id="login-menu-slider">
-  <div class="login-selector-box">
-    <a class="login-selector" target="_blank" href='https://gobrik.com/en/go.php#home'>
-      <i style="background: url(../icons/gobrik-icon-white.svg) no-repeat; width:15px; height:15px;display: inline-block;background-size:contain;margin-right:4px;"></i>GoBrik</a>
-    <a class="login-selector" target="_blank" href='https://gobrik.com/email'>🌍 EarthCal</a>
-    <!--<a class="login-selector" target="_blank" href='https://nextcloud.gobrik.com'><i style="background: url(../icons/next-cloud-white.svg) no-repeat; width:22px; height:11px;display: inline-block;background-size:contain;margin-right:4px;"></i>Trainer NextCloud</a>
-    <button type="button" class="login-selector" onclick="clearSiteCache()" data-lang-id="1003-reset-preferences">❌ Reset Preferences</button>-->
-  </div>
-</div>
 
 
 <div id="main">
