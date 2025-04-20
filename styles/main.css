@@ -386,8 +386,8 @@
     z-index: 37;
     display: flex;
     flex-direction: column;
-    pointer-events: none;
     margin-right: -10px;
+    cursor: pointer;
 }
 
 /* When menu is visible */
