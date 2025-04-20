@@ -294,18 +294,21 @@
   pointer-events: none;
 }
 
-/* Floating Behavior */
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
   top: -10px;
-  left: 25px;
+  left: 50%;                          /* Center the label */
+  transform: translateX(-50%);        /* Shift it left by half its width */
   font-size: 15px;
   color: var(--subdued-text);
   background-color: var(--top-header);
   border-radius: 5px 5px 0px 0px;
   border: solid 2px var(--button-2-1);
   border-bottom: none;
+  padding: 0 8px;
+  text-align: center;
 }
+
 
 
 
