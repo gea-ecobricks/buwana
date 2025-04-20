@@ -373,7 +373,7 @@
 #language-menu-slider,
 #login-menu-slider {
     position: absolute;
-    top: 60px;
+    top: 0px;
     right: 10px;
     background-color: var(--settings-background);
     padding: 12px;
@@ -397,6 +397,7 @@
     transition-delay: 0s;
     pointer-events: none;
     display: flex !important;
+    top: 60px !important;
 }
 
 
