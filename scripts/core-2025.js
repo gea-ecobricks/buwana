@@ -123,26 +123,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let settingsOpen = false;
 
-    // 🔁 Toggle settings panel
-    window.toggleSettingsMenu = function () {
+    // Toggle main settings menu
+    window.toggleSettingsMenu = () => {
         settingsOpen = !settingsOpen;
         settingsPanel.classList.toggle('open', settingsOpen);
-
-        // Accessibility
         settingsButton.setAttribute('aria-expanded', settingsOpen ? 'true' : 'false');
-
-        // Close others
         hideLangSelector();
         hideLoginSelector();
     };
 
-    window.showLangSelector = function () {
+    // LANG SELECTOR
+    window.showLangSelector = () => {
         hideLoginSelector();
+        document.removeEventListener('click', documentClickListenerLang);
         langMenu.classList.add('menu-slider-visible');
         document.addEventListener('click', documentClickListenerLang);
     };
 
-    window.hideLangSelector = function () {
+    window.hideLangSelector = () => {
         langMenu.classList.remove('menu-slider-visible');
         document.removeEventListener('click', documentClickListenerLang);
     };
@@ -153,13 +151,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    window.showLoginSelector = function () {
+    // LOGIN SELECTOR
+    window.showLoginSelector = () => {
         hideLangSelector();
+        document.removeEventListener('click', documentClickListenerLogin);
         loginMenu.classList.add('menu-slider-visible');
         document.addEventListener('click', documentClickListenerLogin);
     };
 
-    window.hideLoginSelector = function () {
+    window.hideLoginSelector = () => {
         loginMenu.classList.remove('menu-slider-visible');
         document.removeEventListener('click', documentClickListenerLogin);
     };
@@ -170,9 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
-    // Close settings panel on click outside
-    document.addEventListener('click', function (e) {
+    // Global click listener to close settings panel
+    document.addEventListener('click', (e) => {
         if (!settingsPanel.contains(e.target) && e.target !== settingsButton) {
             settingsPanel.classList.remove('open');
             settingsOpen = false;
@@ -180,12 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Prevent menu auto-close on inside click
-    settingsPanel.addEventListener('click', function (e) {
+    // Prevent settings click bubbling
+    settingsPanel.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 });
 
+// Hide dropdowns on scroll
 window.addEventListener('scroll', () => {
     hideLangSelector();
     hideLoginSelector();
