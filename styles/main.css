@@ -337,7 +337,7 @@
     padding: 12px 43px 10px 12px;
     border-radius: 12px;
     transition: right 0.4s ease;
-    z-index: 32;
+    z-index: 37;
     will-change: right;
 }
 
@@ -383,7 +383,7 @@
     opacity: 0;
     visibility: hidden;
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
-    z-index: 35;
+    z-index: 36;
     display: flex;
     flex-direction: column;
     pointer-events: none;
