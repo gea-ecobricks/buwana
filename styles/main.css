@@ -407,9 +407,10 @@
 .login-selector-box {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: normal;
     justify-content: center;
-    padding-top: 39px
+    padding-top: 39px;
+    font-size: 15px;
 }
 
 /* Buttons/Links */
