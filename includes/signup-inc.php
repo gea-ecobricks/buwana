@@ -296,16 +296,16 @@
 
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -12px;
+  top: -8px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--subdued-text);
   background-color: var(--top-header);
   border-radius: 5px 5px 0px 0px;
   border: solid 2px var(--button-2-1);
   border-bottom: none;
-  padding: 5px 10px;
+  padding: 5px 10px 7px 10px;
   text-align: center;
   white-space: nowrap; /* ✅ Keep on one line */
   overflow: hidden;     /* Optional: hide overflow */
