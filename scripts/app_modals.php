@@ -1,7 +1,7 @@
 <!-- app-modals.php -->
 <script>
   function openTermsModal() {
-    closeSettings();
+    closeMainMenu();
 
     const modal = document.getElementById('form-modal-message');
     const modalBox = document.getElementById('modal-content-box');
@@ -19,7 +19,7 @@
   }
 
   function openPrivacyModal() {
-    closeSettings();
+    closeMainMenu();
 
     const modal = document.getElementById('form-modal-message');
     const modalBox = document.getElementById('modal-content-box');

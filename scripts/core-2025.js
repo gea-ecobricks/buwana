@@ -87,7 +87,7 @@ function openSideMenu() {
 }
 
 
-function closeSettings() {
+function closeMainMenu() {
     const modal = document.getElementById("main-menu-overlay");
     modal.classList.remove("open");
 
@@ -103,7 +103,7 @@ function closeSettings() {
 
 function modalCloseCurtains(e) {
     if (!e.keyCode || e.keyCode === 27) {
-        closeSettings();
+        closeMainMenu();
     }
 }
 
@@ -226,123 +226,6 @@ document.querySelectorAll('.x-button').forEach(button => {
 
 
 
-//ECOBRICK MODAL PREVIEW
-
-function ecobrickPreview(imageUrl, brik_serial, weight, owner, location) {
-    const modal = document.getElementById('form-modal-message');
-    const contentBox = modal.querySelector('.modal-content-box'); // This is the part we want to hide
-    const photoBox = modal.querySelector('.modal-photo-box'); // This is where we'll show the image
-    const photoContainer = modal.querySelector('.modal-photo'); // The container for the image
-
-    // Hide the content box and show the photo box
-    contentBox.style.display = 'none'; // Hide the content box
-    photoBox.style.display = 'block'; // Make sure the photo box is visible
-
-    // Clear previous images from the photo container
-    photoContainer.innerHTML = '';
-
-    // Create and append the ecobrick image to the photo container
-    var img = document.createElement('img');
-    img.src = imageUrl;
-    img.alt = "Ecobrick " + brik_serial;
-    img.style.maxWidth = '90%';
-    img.style.maxHeight = '75vh';
-    img.style.minHeight = "400px";
-    img.style.minWidth = "400px";
-    img.style.margin = 'auto';
-    // img.style.backgroundColor = '#8080802e'; hmmm
-    photoContainer.appendChild(img);
-
-    // Add ecobrick details and view details button inside photo container
-    var details = document.createElement('div');
-    details.className = 'ecobrick-details';
-    details.innerHTML = '<p>Ecobrick ' + brik_serial + ' | ' + weight + ' of plastic sequestered by ' + owner + ' in ' + location + '.</p>' +
-                        '<a href="brik.php?serial_no=' + brik_serial + '" class="preview-btn" style="margin-bottom: 50px;height: 25px;padding: 5px;border: none;padding: 5px 12px;">ℹ️ View Full Details</a>';
-    photoContainer.appendChild(details);
-
-    // Hide other parts of the modal that are not used for this preview
-    modal.querySelector('.modal-content-box').style.display = 'none'; // Assuming this contains elements not needed for this preview
-
-    // Show the modal
-    modal.style.display = 'flex';
-
-    //Blur out background
-    document.getElementById('page-content')?.classList.add('blurred');
-    document.getElementById('footer-full')?.classList.add('blurred');
-    document.body.classList.add('modal-open');
-}
-
-
-
-/* ---------- ------------------------------
-
-SCROLL CONTROL
-
--------------------------------------------*/
-// let lastScrollTop = 0;
-//
-// window.onscroll = function() {
-//     scrollLessThan30();
-//     scrollMoreThan30();
-//     scrollMoreThan800();
-//     scrollLessThan800();
-// };
-//
-// function scrollLessThan30() {
-//     if (window.pageYOffset <= 30) {
-// //        document.getElementById("header").style.height = "85px";
-//         document.getElementById("header").style.borderBottom = "none";
-//         document.getElementById("header").style.boxShadow = "none";
-// //        document.getElementById("gea-logo").style.width = "190px";
-// //        document.getElementById("gea-logo").style.height = "40px";
-//         document.getElementById("logo-gobrik").style.opacity = "1";
-// //        document.getElementById("header").style.top = "0";
-// //        document.getElementById("settings-buttons").style.padding = "16px 43px 16px 12px";
-// //        document.getElementById("language-menu-slider").style.top = "-15px";
-// //        document.getElementById("login-menu-slider").style.top = "-15px";
-//
-//         // Set zIndex for the top banner image
-//         var topPageImage = document.querySelector('.top-page-image');
-//         if (topPageImage) {
-//             topPageImage.style.zIndex = "35";
-//         }
-//     }
-// }
-//
-// function scrollMoreThan30() {
-//     if (window.pageYOffset > 30 && window.pageYOffset < 800) {
-// //        document.getElementById("header").style.height = "60px";
-//         document.getElementById("header").style.borderBottom = "var(--header-accent) 0.5px solid";
-//         document.getElementById("header").style.boxShadow = "0px 0px 15px rgba(0, 0, 10, 0.805)";
-//         document.getElementById("gea-logo").style.width = "170px";
-//         document.getElementById("gea-logo").style.height = "35px";
-//         document.getElementById("logo-gobrik").style.opacity = "0.9";
-// //        document.getElementById("settings-buttons").style.padding = "12px 43px 10px 12px";
-// //        document.getElementById("language-menu-slider").style.top = "-35px";
-// //        document.getElementById("login-menu-slider").style.top = "-35px";
-//
-//         // Tuck the top banner image under the header
-//         var topPageImage = document.querySelector('.top-page-image');
-//         if (topPageImage) {
-//             topPageImage.style.zIndex = "25";
-//         }
-//     }
-// }
-//
-// function scrollMoreThan800() {
-//     if (window.pageYOffset >= 800) {
-//         // Hide the header completely
-//         document.getElementById("header").style.top = "-140px";
-//     }
-// }
-//
-// function scrollLessThan800() {
-//     if (window.pageYOffset < 800) {
-//         // Show the header again
-//         document.getElementById("header").style.top = "0";
-//     }
-// }
-
 
 /* ---------- ------------------------------
 TOGGLE PASSWORD VISIBILITY
@@ -401,7 +284,7 @@ function handleLogout(event) {
 
 
 function openAboutBuwanaModal() {
-    closeSettings();
+    closeMainMenu();
 
     const modal = document.getElementById('form-modal-message');
     const modalBox = document.getElementById('modal-content-box');
@@ -423,9 +306,9 @@ function openAboutBuwanaModal() {
 
         <p><strong>Buwana</strong> is a regenerative alternative to corporate login systems, created to serve our global community with privacy, security, and principle. Rather than rely on closed-source platforms like Google or Facebook, Buwana provides an open, not-for-profit account system that enables secure access to our apps — including GoBrik, Ecobricks.org, Open Books, and the Brikcoin Wallet — while respecting user data and ecological values. Designed to hold community, geographical, and impact data, Buwana accounts are transferable across platforms and built for organizations committed to Earth service.</p>
         
-        <div style="text-align: center; margin-top: 20px;">
+        <div style="text-align: center; margin-top: 20px;width:77%;">
             <a href="https://github.com/gea-ecobricks/buwana" target="_blank" rel="noopener noreferrer" class="confirm-button enabled" style="text-decoration: none;">
-                🌐 View Buwana Project on GitHub
+                View Project on GitHub
             </a>
         </div>
     `;

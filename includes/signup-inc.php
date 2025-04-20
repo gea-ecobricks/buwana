@@ -296,10 +296,11 @@
 
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -10px;
+  top: -8px;
   left: 50%;                          /* Center the label */
   transform: translateX(-50%);        /* Shift it left by half its width */
   font-size: 15px;
+  width: fit-content;
   color: var(--subdued-text);
   background-color: var(--top-header);
   border-radius: 5px 5px 0px 0px;
