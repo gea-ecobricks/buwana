@@ -221,6 +221,8 @@
     @media (max-width: 769px) {
       .kick-ass-submit {
         width: 100%;
+        margin: 0px 8px 0px 8px;
+
 
 
       }
