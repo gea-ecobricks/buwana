@@ -236,93 +236,90 @@
             backdrop-filter: blur(10px);
         }
 
-          #header {
-            padding-top:10px !important;
-            height: 60px;
-            }
+/*             */
+/*@media screen and (min-width: 700px) {*/
+/*#gea-logo {*/
+/*    padding:0px;*/
+/*    margin: auto auto auto auto;*/
+/*    width: 170px;*/
+/*    height: 35px;*/
+/*    transition: 0.6s;*/
+/*    min-width: 150px;*/
+/*    padding-bottom: 5px;*/
 
-@media screen and (min-width: 700px) {
-#gea-logo {
-    padding:0px;
-    margin: auto auto auto auto;
-    width: 170px;
-    height: 35px;
-    transition: 0.6s;
-    min-width: 150px;
-    padding-bottom: 5px;
+/*  }*/
 
-  }
-
-}
+/*}*/
 
 
-@media screen and (max-width: 700px) {
+/*@media screen and (max-width: 700px) {*/
 
 
-  .what-are-ecobricks, .faqs-button, .header-divider {
-    display:none;
-  }
+/*  .what-are-ecobricks, .faqs-button, .header-divider {*/
+/*    display:none;*/
+/*  }*/
 
-  #gea-logo {
-    padding:2px;
-    margin: auto auto auto auto;
-    width: 190px;
-    height:40px;
-    transition: 0.6s;
-  }
-}
+/*  #gea-logo {*/
+/*    padding:2px;*/
+/*    margin: auto auto auto auto;*/
+/*    width: 190px;*/
+/*    height:40px;*/
+/*    transition: 0.6s;*/
+/*  }*/
+/*}*/
 
 
 
-#main-header-buttons {
-  display: flex;
-  flex-flow: row;
-  width: fit-content;
-  height: fit-content;
-  transition: 0.4s;
-  margin-right: 30px;
-  margin-top: 0px;
-  padding: 20px 20px 20px 0px;
-}
+/*#main-header-buttons {*/
+/*  display: flex;*/
+/*  flex-flow: row;*/
+/*  width: fit-content;*/
+/*  height: fit-content;*/
+/*  transition: 0.4s;*/
+/*  margin-right: 30px;*/
+/*  margin-top: 0px;*/
+/*  padding: 20px 20px 20px 0px;*/
+/*}*/
 
-.what-are-ecobricks {
-    font-size: 1.1em;
-  color: var(--text-color);
-  font-family: 'Mulish', sans-serif;
-  text-align: right;
-  padding: 7px;
-  margin-right: 10px;
-  cursor: pointer;
-}
+/*.what-are-ecobricks {*/
+/*    font-size: 1.1em;*/
+/*  color: var(--text-color);*/
+/*  font-family: 'Mulish', sans-serif;*/
+/*  text-align: right;*/
+/*  padding: 7px;*/
+/*  margin-right: 10px;*/
+/*  cursor: pointer;*/
+/*}*/
 
-.what-are-ecobricks:hover {
-  color: var(--emblem-pink);
-  text-decoration: underline;
-}
+/*.what-are-ecobricks:hover {*/
+/*  color: var(--emblem-pink);*/
+/*  text-decoration: underline;*/
+/*}*/
 
-.faqs-button {
-    font-size: 1.1em;
-  color: var(--text-color);
-  font-family: 'Mulish', sans-serif;
-  padding: 7px;
-  margin-right: 10px;
-  cursor: pointer;
-}
+/*.faqs-button {*/
+/*    font-size: 1.1em;*/
+/*  color: var(--text-color);*/
+/*  font-family: 'Mulish', sans-serif;*/
+/*  padding: 7px;*/
+/*  margin-right: 10px;*/
+/*  cursor: pointer;*/
+/*}*/
 
-.faqs-button:hover {
-  color: var(--emblem-green);
-  text-decoration: underline;
-}
+/*.faqs-button:hover {*/
+/*  color: var(--emblem-green);*/
+/*  text-decoration: underline;*/
+/*}*/
 
 
-.header-divider {
-    font-size: 1.1em;
-  color: var(--text-color);
-  font-family: Mulish;
-  padding: 7px;
-  margin-right: 10px;
+/*.header-divider {*/
+/*    font-size: 1.1em;*/
+/*  color: var(--text-color);*/
+/*  font-family: Mulish;*/
+/*  padding: 7px;*/
+/*  margin-right: 10px;*/
 
-}
+/*}*/
+
 
 #settings-buttons {
     display: flex;
