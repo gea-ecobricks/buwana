@@ -314,7 +314,7 @@
     position: absolute;
     top: 0;
     background: var(--top-header);
-    z-index: 30;
+    z-index: 36;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -337,7 +337,7 @@
     padding: 12px 43px 10px 12px;
     border-radius: 12px;
     transition: right 0.4s ease;
-    z-index: 37;
+    z-index: 38;
     will-change: right;
 }
 
@@ -383,7 +383,7 @@
     opacity: 0;
     visibility: hidden;
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
-    z-index: 36;
+    z-index: 37;
     display: flex;
     flex-direction: column;
     pointer-events: none;
@@ -397,7 +397,7 @@
     transition-delay: 0s;
     pointer-events: none;
     display: flex !important;
-    top: 60px !important;
+    top: 18px !important;
 }
 
 
