@@ -368,7 +368,7 @@
     font-family: 'Mulish', sans-serif;
 }
 
-/* SLIDER MENUS (Lang/Login Dropdowns) */
+/* Base state (hidden but in layout) */
 #language-menu-slider,
 #login-menu-slider {
     position: absolute;
@@ -380,17 +380,21 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     transform: translateY(-20px);
     opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
     z-index: 35;
-    display: none; /* Hidden by default */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Slide down + fade in */
+/* When menu is visible */
 .menu-slider-visible {
-    display: flex !important;
     transform: translateY(0);
     opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
 }
+
 
 /* Selector Containers */
 .lang-selector-box,
