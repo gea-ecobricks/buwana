@@ -296,7 +296,7 @@
 
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -12px;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 15px;
@@ -305,7 +305,7 @@
   border-radius: 5px 5px 0px 0px;
   border: solid 2px var(--button-2-1);
   border-bottom: none;
-  padding: 0 8px;
+  padding: 5px 10px;
   text-align: center;
   white-space: nowrap; /* ✅ Keep on one line */
   overflow: hidden;     /* Optional: hide overflow */
