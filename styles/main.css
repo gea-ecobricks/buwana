@@ -212,13 +212,21 @@
     }
   }
 
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-background);
 
+    /* Prevent scrolling overflow */
+    overflow-x: hidden;
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            background-color: var(--main-background);
-        }
+    /* Ensure it fills and limits the viewport */
+    max-width: 100vw;
+    max-height: 100vh;
+
+    /* Optional: smoother touch experience */
+    overscroll-behavior: contain;
+}
 
 
 
