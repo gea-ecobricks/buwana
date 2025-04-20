@@ -220,7 +220,7 @@
     /* Responsive width */
     @media (max-width: 769px) {
       .kick-ass-submit {
-        width: 85%;
+        width: 90%;
 
 
 
