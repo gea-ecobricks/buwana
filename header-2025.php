@@ -508,9 +508,9 @@ document.addEventListener('colorschemechange', (event) => {
   <div class="login-selector-box">
     <a class="login-selector" target="_blank" href='https://gobrik.com/en/go.php#home'>
       <i style="background: url(../icons/gobrik-icon-white.svg) no-repeat; width:15px; height:15px;display: inline-block;background-size:contain;margin-right:4px;"></i>GoBrik</a>
-    <a class="login-selector" target="_blank" href='https://gobrik.com/email'>✉️ Trainer Email</a>
-    <a class="login-selector" target="_blank" href='https://nextcloud.gobrik.com'><i style="background: url(../icons/next-cloud-white.svg) no-repeat; width:22px; height:11px;display: inline-block;background-size:contain;margin-right:4px;"></i>Trainer NextCloud</a>
-    <button type="button" class="login-selector" onclick="clearSiteCache()" data-lang-id="1003-reset-preferences">❌ Reset Preferences</button>
+    <a class="login-selector" target="_blank" href='https://gobrik.com/email'>🌍 EarthCal</a>
+    <!--<a class="login-selector" target="_blank" href='https://nextcloud.gobrik.com'><i style="background: url(../icons/next-cloud-white.svg) no-repeat; width:22px; height:11px;display: inline-block;background-size:contain;margin-right:4px;"></i>Trainer NextCloud</a>
+    <button type="button" class="login-selector" onclick="clearSiteCache()" data-lang-id="1003-reset-preferences">❌ Reset Preferences</button>-->
   </div>
 </div>
 
