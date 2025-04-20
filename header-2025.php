@@ -392,64 +392,69 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
 
 
+<!-- HEADER / TOP MENU -->
+<header id="header" class="top-menu">
+  <!-- Left Menu Button -->
+  <button type="button" class="side-menu-button" onclick="openSideMenu()" aria-label="Open Main Menu"></button>
 
+  <!-- App Logo -->
+  <div id="top-app-logo"
+       title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
+       onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')">
+  </div>
 
+  <!-- Right Settings Buttons -->
+  <div id="function-icons">
+    <div id="settings-buttons" class="" aria-label="App Settings Panel">
+      <button type="button"
+              id="top-settings-button"
+              aria-label="Toggle settings"
+              aria-expanded="false"
+              aria-controls="settings-buttons"
+              onclick="toggleSettingsMenu()">
+      </button>
 
-
-
-    <!-- HEADER / TOP MENU -->
-    <header id="header" class="top-menu">
-      <!-- Left Menu Button -->
-      <button type="button" class="side-menu-button" onclick="openSideMenu()" aria-label="Open Main Menu"></button>
-
-      <!-- App Logo -->
-      <div id="top-app-logo"
-           title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
-           onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')">
+      <!-- Language Switch -->
+      <div id="language-code" onclick="showLangSelector()" aria-label="Switch languages">
+        🌐 <span data-lang-id="000-language-code">EN</span>
       </div>
 
-      <!-- Right Settings Buttons -->
-      <div id="function-icons">
-        <div id="settings-buttons" class="" aria-label="App Settings Panel">
-          <button type="button"
-                  id="top-settings-button"
-                  aria-label="Toggle settings"
-                  aria-expanded="false"
-                  aria-controls="settings-buttons"
-                  onclick="toggleSettingsMenu()">
-          </button>
+      <!-- Login Services -->
+      <button type="button" class="top-login-button" onclick="showLoginSelector()" aria-label="Login Options"></button>
 
-          <!-- Language Switch -->
-          <div id="language-code" onclick="showLangSelector()" aria-label="Switch languages">
-            🌐 <span data-lang-id="000-language-code">EN</span>
-          </div>
-
-          <!-- Login Services -->
-          <button type="button" class="top-login-button" onclick="showLoginSelector()" aria-label="Login Options"></button>
-
-          <!-- Dark Mode Toggle -->
-          <dark-mode-toggle id="dark-mode-toggle" appearance="toggle"></dark-mode-toggle>
-        </div>
-      </div>
-    </header>
-
-    <!-- LANGUAGE SELECTOR -->
-    <div id="language-menu-slider" class="top-slider-menu">
-      <div class="lang-selector-box">
-        <button onclick="navigateTo('../id/<?php echo ($page); ?>.php')">🇮🇩 IN</button>
-        <button onclick="navigateTo('../es/<?php echo ($page); ?>.php')">🇪🇸 ES</button>
-        <button onclick="navigateTo('../fr/<?php echo ($page); ?>.php')">🇫🇷 FR</button>
-        <button onclick="navigateTo('../en/<?php echo ($page); ?>.php')">🇬🇧 EN</button>
-      </div>
+      <!-- Dark Mode Toggle -->
+                     <dark-mode-toggle
+                     id="dark-mode-toggle-5" style="min-width:82px;margin-top:-5px;margin-bottom:-15px;"
+                     class="slider"
+                     appearance="toggle">
+                     </dark-mode-toggle>
     </div>
+  </div>
+</header>
 
-    <!-- LOGIN SELECTOR -->
-    <div id="login-menu-slider" class="top-slider-menu">
-      <div class="login-selector-box">
-        <a class="login-selector" target="_blank" href="https://gobrik.com/en/go.php#home">🌍 GoBrik</a>
-        <a class="login-selector" target="_blank" href="https://gobrik.com/email">🌒 EarthCal</a>
-      </div>
-    </div>
+<!-- LANGUAGE SELECTOR -->
+<div id="language-menu-slider" class="top-slider-menu">
+  <div class="lang-selector-box">
+    <button onclick="navigateTo('../id/<?php echo ($page); ?>.php')">🇮🇩 IN</button>
+    <button onclick="navigateTo('../es/<?php echo ($page); ?>.php')">🇪🇸 ES</button>
+    <button onclick="navigateTo('../fr/<?php echo ($page); ?>.php')">🇫🇷 FR</button>
+    <button onclick="navigateTo('../en/<?php echo ($page); ?>.php')">🇬🇧 EN</button>
+  </div>
+</div>
+
+<!-- LOGIN SELECTOR -->
+<div id="login-menu-slider" class="top-slider-menu">
+  <div class="login-selector-box">
+    <a class="login-selector" target="_blank" href="https://gobrik.com/en/go.php#home">🌍 GoBrik</a>
+    <a class="login-selector" target="_blank" href="https://gobrik.com/email">🌒 EarthCal</a>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 

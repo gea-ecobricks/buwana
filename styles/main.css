@@ -410,6 +410,29 @@
 
 
 
+.side-menu-button  {
+    border: none;
+    cursor:pointer;
+    height:30px;
+    width:30px;
+    padding: 20px;
+    margin: auto;
+    margin-left: auto;
+    margin-left: 10px;
+    margin-right: 25px;
+    margin-top: 5px;
+}
+
+
+.top-toggle  {
+  border: none;
+  margin-right:10px;
+  cursor:pointer;
+  height:30px;
+  width:fit-content;
+}
+
+
 
 
 .main-menu-button {
