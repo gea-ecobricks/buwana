@@ -396,7 +396,6 @@
     opacity: 1 !important;
     visibility: visible !important;
     transition-delay: 0s;
-    pointer-events: none;
     display: flex !important;
     top: 18px !important;
 }
@@ -1503,7 +1502,7 @@ body.modal-locked {
 }
 
 .login-selector {
-    flex: 1;
+
     padding: 10px;
     background-color: var(--selector-highlight);
     margin: 10px;
