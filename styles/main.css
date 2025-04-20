@@ -1961,7 +1961,7 @@ label {
     max-width: 600px;
     padding: 10px;
     position: relative;
-    padding-top: 105px;
+    padding-top: 100px;
     padding-bottom: 20px;
   }
 }
@@ -2231,7 +2231,7 @@ z-index:5;
 
       .top-page-image {
        height: 115px;
-       margin-top:75px;
+       margin-top:70px;
 
       }
 
