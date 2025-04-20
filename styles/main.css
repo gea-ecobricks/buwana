@@ -338,6 +338,7 @@
     border-radius: 12px;
     transition: right 0.4s ease;
     z-index: 32;
+    will-change: right;
 }
 
 /* Slide in */
@@ -385,6 +386,7 @@
     z-index: 35;
     display: flex;
     flex-direction: column;
+    pointer-events: none;
 }
 
 /* When menu is visible */
@@ -393,7 +395,9 @@
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
+    pointer-events: none;
 }
+
 
 
 /* Selector Containers */
@@ -425,6 +429,25 @@
     background-color: var(--hover-bg);
     color: var(--h1);
 }
+
+
+/* Optional alt (fancier) animation if desired) */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-slider-visible {
+    animation: fadeSlideIn 0.3s ease forwards;
+    visibility: visible;
+}
+
 
 
 
