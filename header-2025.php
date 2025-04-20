@@ -391,7 +391,6 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
 
 
-
 <!-- HEADER / TOP MENU -->
 <header id="header" class="top-menu">
   <!-- Left Menu Button -->
@@ -405,35 +404,50 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 
   <!-- Right Settings Buttons -->
   <div id="function-icons">
-    <div id="settings-buttons" class="" aria-label="App Settings Panel">
+    <div id="settings-buttons" aria-label="App Settings Panel">
       <button type="button"
               id="top-settings-button"
-              aria-label="Toggle settings"
+              aria-label="Toggle settings menu"
               aria-expanded="false"
-              aria-controls="settings-buttons"
+              aria-controls="language-menu-slider login-menu-slider"
               onclick="toggleSettingsMenu()">
       </button>
 
       <!-- Language Switch -->
-      <div id="language-code" onclick="showLangSelector()" aria-label="Switch languages">
+      <div id="language-code"
+           onclick="showLangSelector()"
+           role="button"
+           tabindex="0"
+           aria-haspopup="true"
+           aria-expanded="false"
+           aria-controls="language-menu-slider"
+           aria-label="Switch language">
         🌐 <span data-lang-id="000-language-code">EN</span>
       </div>
 
       <!-- Login Services -->
-      <button type="button" class="top-login-button" onclick="showLoginSelector()" aria-label="Login Options"></button>
+      <button type="button"
+              class="top-login-button"
+              onclick="showLoginSelector()"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="login-menu-slider"
+              aria-label="Login Services">
+      </button>
 
       <!-- Dark Mode Toggle -->
-                     <dark-mode-toggle
-                     id="dark-mode-toggle-5" style="min-width:82px;margin-top:-5px;margin-bottom:-15px;"
-                     class="slider"
-                     appearance="toggle">
-                     </dark-mode-toggle>
+      <dark-mode-toggle
+        id="dark-mode-toggle-5"
+        class="slider"
+        style="min-width:82px;margin-top:-5px;margin-bottom:-15px;"
+        appearance="toggle">
+      </dark-mode-toggle>
     </div>
   </div>
 </header>
 
 <!-- LANGUAGE SELECTOR -->
-<div id="language-menu-slider" class="top-slider-menu">
+<div id="language-menu-slider" class="top-slider-menu" tabindex="-1" role="menu">
   <div class="lang-selector-box">
     <button onclick="navigateTo('../id/<?php echo ($page); ?>.php')">🇮🇩 IN</button>
     <button onclick="navigateTo('../es/<?php echo ($page); ?>.php')">🇪🇸 ES</button>
@@ -443,14 +457,12 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 </div>
 
 <!-- LOGIN SELECTOR -->
-<div id="login-menu-slider" class="top-slider-menu">
+<div id="login-menu-slider" class="top-slider-menu" tabindex="-1" role="menu">
   <div class="login-selector-box">
     <a class="login-selector" target="_blank" href="https://gobrik.com/en/go.php#home">🌍 GoBrik</a>
     <a class="login-selector" target="_blank" href="https://gobrik.com/email">🌒 EarthCal</a>
   </div>
 </div>
-
-
 
 
 
