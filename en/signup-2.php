@@ -103,7 +103,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
             <div style="text-align:center;width:100%;margin:auto;">
                 <h2 data-lang-id="001-setup-access-heading-x">Register by email</h2>
-                <p>Ok <?php echo $first_name; ?>, <span data-lang-id="002-setup-access-heading-a">let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-setup-access-heading-b-x">to register on<?= $app_info['app_display_name']; ?>.</p>
+                <p>✅ Ok <?php echo $first_name; ?>, <span data-lang-id="002-setup-access-heading-a"> your name is set.  Now, let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-setup-access-heading-b-x">to register on <?= $app_info['app_display_name']; ?>.</p>
             </div>
 
 <!-- <div class="form-item" id="last-name" class="user_lastname" style="display:none!important;">
@@ -119,7 +119,7 @@ https://github.com/gea-ecobricks/buwana/-->
              <div class="form-item float-label-group" id="credential-section">
                <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" placeholder=" " style="padding-left:35px"/>
                <label for="credential_value">
-                 <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please"> please:</span>
+                 <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please-x"> please...</span>
                </label>
 
                <div id="duplicate-email-error" class="form-field-error" data-lang-id="010-duplicate-email">
@@ -154,15 +154,15 @@ https://github.com/gea-ecobricks/buwana/-->
              <!-- Human Check -->
              <div class="form-item float-label-group" id="human-check-section" style="display: none;">
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
-               <label for="human_check" data-lang-id="011-prove-human">Please prove you are human by typing the word "ecobrick"...</label>
+               <label for="human_check" data-lang-id="011-prove-human">Human check: Please type the word "ecobrick"...</label>
                <p class="form-caption">
                  <span data-lang-id="012-fun-fact">🤓 Fun fact: </span>
-                 <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick-x">ecobrick...</a>
+                 <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick-x">ecobrick</a>
                  <span data-lang-id="012b-is-spelled"> is spelled without a space, capital or hyphen!</span>
                </p>
-               <div style="margin-top:-16px">
+               <div style="margin-top:-16px; display:flex;">
                  <input type="checkbox" id="terms" name="terms" required checked>
-                 <div class="form-caption" data-lang-id="013-by-registering-x">By registering today, I agree to the <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link">Terms of Service</a>
+                 <div class="form-caption" data-lang-id="013-by-registering">By registering today, I agree to the <a href="#" onclick="openTermsModal(); return false;" class="underline-link">Terms of Use</a>
                  </div>
                </div>
              </div>
