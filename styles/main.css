@@ -387,6 +387,7 @@
     display: flex;
     flex-direction: column;
     pointer-events: none;
+    margin-right: -10px;
 }
 
 /* When menu is visible */
@@ -407,7 +408,9 @@
 .login-selector-box {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
+    justify-content: center;
+    padding-top: 39px
 }
 
 /* Buttons/Links */
@@ -2209,7 +2212,7 @@ text-decoration: underline;
 
 .top-page-image {
     margin-bottom: 70px;
-    z-index:35;
+    z-index:24;
     position: absolute;
     text-align: center;
     width: 100%;
