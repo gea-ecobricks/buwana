@@ -328,19 +328,18 @@
 }
 
 #settings-buttons {
-    position: absolute;
+    position: fixed;
     top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: -210px;
     display: flex;
     align-items: center;
     background-color: var(--settings-background);
-    padding: 12px 20px;
+    padding: 12px 43px 10px 12px;
     border-radius: 12px;
-    transition: opacity 0.3s ease;
+    transition: right 0.4s ease;
     z-index: 32;
+    will-change: right;
 }
-
 
 /* Slide in */
 #settings-buttons.open {
@@ -370,32 +369,34 @@
     font-family: 'Mulish', sans-serif;
 }
 
-/* Shared Base Menu Style */
+/* Base state (hidden but in layout) */
 #language-menu-slider,
 #login-menu-slider {
     position: absolute;
     top: 60px;
-    right: 50%; /* 👈 center-based positioning */
-    transform: translate(50%, -20px); /* off-screen by default */
-    opacity: 0;
-    visibility: hidden;
+    right: 10px;
     background-color: var(--settings-background);
     padding: 12px;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    z-index: 35;
-    flex-direction: column;
+    transform: translateY(-20px);
+    opacity: 0;
+    visibility: hidden;
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
+    z-index: 35;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
 }
 
 /* When menu is visible */
 .menu-slider-visible {
-    transform: translate(50%, 0); /* slide into view */
+    transform: translateY(0);
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
+    pointer-events: none;
 }
-
 
 
 
