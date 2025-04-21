@@ -111,10 +111,6 @@ function modalCloseCurtains(e) {
 
 
 
-
-/* ---------- ------------------------------
-LANGUAGE SELECTOR
--------------------------------------------*/
 document.addEventListener('DOMContentLoaded', () => {
     const settingsButton = document.getElementById('top-settings-button');
     const settingsPanel = document.getElementById('settings-buttons');
@@ -123,21 +119,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let settingsOpen = false;
 
-    // Toggle main settings menu
+    // 🔁 Toggle settings panel
     window.toggleSettingsMenu = () => {
         settingsOpen = !settingsOpen;
         settingsPanel.classList.toggle('open', settingsOpen);
         settingsButton.setAttribute('aria-expanded', settingsOpen ? 'true' : 'false');
+
         hideLangSelector();
         hideLoginSelector();
     };
 
-    // LANG SELECTOR
+    // 🌐 Toggle language selector
     window.showLangSelector = () => {
+        const isVisible = langMenu.classList.contains('menu-slider-visible');
         hideLoginSelector();
-        document.removeEventListener('click', documentClickListenerLang);
-        langMenu.classList.add('menu-slider-visible');
-        document.addEventListener('click', documentClickListenerLang);
+
+        if (isVisible) {
+            hideLangSelector(); // If already shown, hide
+        } else {
+            langMenu.classList.add('menu-slider-visible');
+            document.addEventListener('click', documentClickListenerLang);
+        }
     };
 
     window.hideLangSelector = () => {
@@ -151,12 +153,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // LOGIN SELECTOR
+    // 🔐 Toggle login selector
     window.showLoginSelector = () => {
+        const isVisible = loginMenu.classList.contains('menu-slider-visible');
         hideLangSelector();
-        document.removeEventListener('click', documentClickListenerLogin);
-        loginMenu.classList.add('menu-slider-visible');
-        document.addEventListener('click', documentClickListenerLogin);
+
+        if (isVisible) {
+            hideLoginSelector(); // Hide if already visible
+        } else {
+            loginMenu.classList.add('menu-slider-visible');
+            document.addEventListener('click', documentClickListenerLogin);
+        }
     };
 
     window.hideLoginSelector = () => {
@@ -170,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Global click listener to close settings panel
+    // ✋ Click outside to close settings
     document.addEventListener('click', (e) => {
         if (!settingsPanel.contains(e.target) && e.target !== settingsButton) {
             settingsPanel.classList.remove('open');
@@ -179,19 +186,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Prevent settings click bubbling
+    // Prevent menu closure on internal click
     settingsPanel.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 });
 
-// Hide dropdowns on scroll
+// 🔻 Hide dropdowns on scroll
 window.addEventListener('scroll', () => {
     hideLangSelector();
     hideLoginSelector();
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.getElementById('header');
+
+    window.addEventListener('scroll', function () {
+        if (window.innerWidth < 769) {
+            if (window.scrollY > 30) {
+                header.style.position = 'fixed';
+                header.style.zIndex = '20';
+                header.style.top = '0'; // just in case
+            } else {
+                header.style.position = 'absolute';
+                header.style.zIndex = '30';
+            }
+        } else {
+            // Reset for larger screens (if needed)
+            header.style.position = 'absolute';
+            header.style.zIndex = '30';
+        }
+    });
+});
 
 
 
