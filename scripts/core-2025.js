@@ -204,18 +204,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('scroll', function () {
         if (window.innerWidth < 769) {
-            if (window.scrollY > 30) {
+            if (window.scrollY > 1) {
                 header.style.position = 'fixed';
                 header.style.zIndex = '20';
                 header.style.top = '0'; // just in case
             } else {
                 header.style.position = 'absolute';
-                header.style.zIndex = '30';
+                header.style.zIndex = '36';
             }
         } else {
             // Reset for larger screens (if needed)
             header.style.position = 'absolute';
-            header.style.zIndex = '30';
+            header.style.zIndex = '36';
         }
     });
 });
