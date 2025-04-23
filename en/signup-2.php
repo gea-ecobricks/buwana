@@ -165,9 +165,9 @@ https://github.com/gea-ecobricks/buwana/-->
                </p>
            </div>
 
-               <div style="margin-top:-16px; display:flex;" class="form-item">
+               <div style="display:flex;" class="form-item">
                  <input type="checkbox" id="terms" name="terms" required checked>
-                 <div class="form-caption" data-lang-id="013-by-registering">By registering today, I agree to the <a href="#" onclick="openTermsModal(); return false;" class="underline-link">Terms of Use</a>
+                 <div class="form-caption"><span data-lang-id="013-by-registering">By registering today, I agree to the </span><a href="#" onclick="openTermsModal(); return false;" class="underline-link"><?= $app_info['app_display_name']; ?><span>Terms of Use<</a>
                  </div>
                </div>
              </div>
