@@ -153,16 +153,19 @@ https://github.com/gea-ecobricks/buwana/-->
 
              <!-- Human Check -->
              <div class="form-item float-label-group" id="human-check-section" style="display: none;">
-                                     <p data-lang-id="011-human-check">Human check:</p>
+
 
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
-               <label for="human_check" data-lang-id="011-prove-human">Human check: Please type the word "ecobrick"...</label>
-               <p class="form-caption">
+               <label for="human_check" data-lang-id="011-prove-human">Type the word "ecobrick"...</label>
+               <p class="form-caption"><span>This is a little test to see if you're human</span>
+
                  <span data-lang-id="012-fun-fact">🤓 Fun fact: </span>
                  <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick-x">ecobrick</a>
                  <span data-lang-id="012b-is-spelled"> is spelled without a space, capital or hyphen!</span>
                </p>
-               <div style="margin-top:-16px; display:flex;">
+           </div>
+
+               <div style="margin-top:-16px; display:flex;" class="form-item">
                  <input type="checkbox" id="terms" name="terms" required checked>
                  <div class="form-caption" data-lang-id="013-by-registering">By registering today, I agree to the <a href="#" onclick="openTermsModal(); return false;" class="underline-link">Terms of Use</a>
                  </div>
