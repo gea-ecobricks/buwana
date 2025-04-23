@@ -160,7 +160,7 @@ https://github.com/gea-ecobricks/buwana/-->
         <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 20px !important;color:var(--subdued-text);" >
             <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
             <option value="email">E-mail</option>
-            <option value="mail">Phone number</option>
+            <option value="phone number">Phone number</option>
             <option value="peer" disabled>Peer</option>
         </select>
         <!--ERRORS-->
@@ -218,43 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorInvalid = document.getElementById('maker-error-invalid');
   const credentialError = document.getElementById('credential-error-required');
 
-
-
-firstNameInput.addEventListener('input', validateFieldsLive);
-credentialSelect.addEventListener('change', validateFieldsLive);
-validateFieldsLive(); // Initial check
-
-
-
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    if (validateOnSubmit()) {
-        // Start animations immediately
-        btnText.classList.add('hidden-text');               // Hide text
-        submitButton.classList.remove('pulse-started');     // Stop idle pulse
-        submitButton.classList.add('click-animating');      // Power stripe exit
-
-        // Start striding animation shortly after click animation
-        setTimeout(() => {
-            submitButton.classList.add('striding');
-        }, 400); // match the duration of click-animating
-
-        // Start emoji spinner right away (or after 650ms if you want it synchronized)
-        setTimeout(() => {
-            startEarthlingEmojiSpinner();
-        }, 400); // match the duration of click-animating
-
-
-        // Delay form submission to allow animations to play
-        setTimeout(() => {
-            form.submit(); // Let PHP take it from here
-        }, 4000); // ⏳ Wait 4 seconds before submit
-    } else {
-        shakeElement(submitButton);
-    }
-});
-
   // === Helper Functions ===
 
   function hasInvalidChars(value) {
@@ -294,6 +257,85 @@ form.addEventListener('submit', function (event) {
   }
 
 
+
+  // === Submit Event Listener ===
+
+  firstNameInput.addEventListener('input', validateFieldsLive);
+  credentialSelect.addEventListener('change', validateFieldsLive);
+  validateFieldsLive(); // Initial check
+
+ form.addEventListener('submit', function (event) {
+   event.preventDefault();
+
+   if (validateOnSubmit()) {
+     // Start animations immediately
+     btnText.classList.add('hidden-text');               // Hide text
+     submitButton.classList.remove('pulse-started');     // Stop idle pulse
+     submitButton.classList.add('click-animating');      // Power stripe exit
+
+     // Start striding animation shortly after click animation
+     setTimeout(() => {
+       submitButton.classList.add('striding');
+     }, 400); // match the duration of click-animating
+
+     // Start emoji spinner right away (or after 650ms if you want it synchronized)
+     setTimeout(() => {
+     startEarthlingEmojiSpinner();
+     }, 400); // match the duration of click-animating
+
+
+     // Delay form submission to allow animations to play
+     setTimeout(() => {
+       form.submit(); // Let PHP take it from here
+     }, 4000); // ⏳ Wait 4 seconds before submit
+   } else {
+     shakeElement(submitButton);
+   }
+ });
+
+
+
+  // ✅ Shake animation
+  function shakeElement(element) {
+    element.classList.add('shake');
+    setTimeout(() => element.classList.remove('shake'), 400);
+  }
+
+
+
+
+  // ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
+  form.addEventListener('keypress', function (event) {
+    if (event.key === "Enter") {
+      if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
+        event.preventDefault();
+      } else {
+        this.dispatchEvent(new Event('submit', { cancelable: true }));
+      }
+    }
+  });
+
+  // ✅ Hover animation handlers
+  submitButton.addEventListener('mouseenter', () => {
+    submitButton.setAttribute('data-hovered', 'true');
+    submitButton.classList.remove('pulse-started', 'returning');
+
+    setTimeout(() => {
+      submitButton.classList.add('pulse-started');
+    }, 400);
+  });
+
+  submitButton.addEventListener('mouseleave', () => {
+    submitButton.removeAttribute('data-hovered');
+    submitButton.classList.remove('pulse-started');
+
+    submitButton.classList.add('returning');
+
+    setTimeout(() => {
+      submitButton.classList.remove('returning');
+    }, 500);
+  });
+});
 
 
 
