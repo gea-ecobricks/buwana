@@ -180,6 +180,9 @@ https://github.com/gea-ecobricks/buwana/-->
 
 </div>
 
+
+</div>
+
 </form>
 
 </div>
@@ -204,6 +207,8 @@ https://github.com/gea-ecobricks/buwana/-->
 <?php require_once ("../footer-2025.php");?>
 
 </div><!--close page content-->
+
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
