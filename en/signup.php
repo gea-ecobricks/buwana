@@ -295,49 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // ✅ Shake animation
-  function shakeElement(element) {
-    element.classList.add('shake');
-    setTimeout(() => element.classList.remove('shake'), 400);
-  }
-
-
-
-
-  // ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
-  form.addEventListener('keypress', function (event) {
-    if (event.key === "Enter") {
-      if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
-        event.preventDefault();
-      } else {
-        this.dispatchEvent(new Event('submit', { cancelable: true }));
-      }
-    }
-  });
-
-  // ✅ Hover animation handlers
-  submitButton.addEventListener('mouseenter', () => {
-    submitButton.setAttribute('data-hovered', 'true');
-    submitButton.classList.remove('pulse-started', 'returning');
-
-    setTimeout(() => {
-      submitButton.classList.add('pulse-started');
-    }, 400);
-  });
-
-  submitButton.addEventListener('mouseleave', () => {
-    submitButton.removeAttribute('data-hovered');
-    submitButton.classList.remove('pulse-started');
-
-    submitButton.classList.add('returning');
-
-    setTimeout(() => {
-      submitButton.classList.remove('returning');
-    }, 500);
-  });
-});
-
-
 
 </script>
 

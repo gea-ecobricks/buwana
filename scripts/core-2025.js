@@ -316,40 +316,102 @@ function openAboutBuwanaModal() {
 }
 
 
-//
-//     document.addEventListener('colorschemechange', (event) => {
-//     const newMode = event.detail.colorScheme;
-//     const isDark = newMode === 'dark';
-//
-//     const topLogo = document.getElementById('top-app-logo');
-//     const appLogo = document.querySelector('.the-app-logo');
-//     const signupBanner = document.querySelector('.app-signup-banner');
-//
-//     const lightWordmark = '<?= $app_info["app_wordmark_url"] ?>';
-//     const darkWordmark = '<?= $app_info["app_wordmark_dark_url"] ?>';
-//     const lightLogo = '<?= $app_info["app_logo_url"] ?>';
-//     const darkLogo = '<?= $app_info["app_logo_dark_url"] ?>';
-//     const lightBanner = '<?= $app_info["signup_top_img_url"] ?>';
-//     const darkBanner = '<?= $app_info["signup_top_img_dark_url"] ?>';
-//
-//     if (topLogo) {
-//     topLogo.style.backgroundImage = `url('${isDark ? darkWordmark : lightWordmark}')`;
-// }
-//
-//     if (appLogo) {
-//     appLogo.style.backgroundImage = `url('${isDark ? darkLogo : lightLogo}')`;
-// }
-//
-//     if (signupBanner) {
-//     signupBanner.style.backgroundImage = `url('${isDark ? darkBanner : lightBanner}')`;
-// }
-// });
+
 
 
 /* SUBMIT BUTTON ANIMATION INTERACTIVITY */
 
 
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 🟢 GLOBAL KICK-ASS BUTTON SETUP
+    const forms = document.querySelectorAll('form');
+
+    forms.forEach(form => {
+        const submitButton = form.querySelector('.kick-ass-submit');
+        const btnText = submitButton?.querySelector('#submit-button-text');
+        const emojiSpinner = submitButton?.querySelector('#submit-emoji');
+
+        if (!submitButton || !btnText || !emojiSpinner) return;
+
+        // ✅ Submit animation handler
+        form.addEventListener('submit', function (event) {
+            // Page-specific validation should call `event.preventDefault()` if invalid
+            if (event.defaultPrevented) return;
+
+            btnText.classList.add('hidden-text');
+            submitButton.classList.remove('pulse-started');
+            submitButton.classList.add('click-animating');
+
+            setTimeout(() => {
+                submitButton.classList.add('striding');
+                startEarthlingEmojiSpinner(emojiSpinner);
+            }, 400);
+        });
+
+        // ✅ Enter key support
+        form.addEventListener('keypress', function (event) {
+            if (event.key === "Enter") {
+                if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
+                    event.preventDefault();
+                } else {
+                    this.dispatchEvent(new Event('submit', { cancelable: true }));
+                }
+            }
+        });
+
+        // ✅ Button hover animations
+        submitButton.addEventListener('mouseenter', () => {
+            submitButton.setAttribute('data-hovered', 'true');
+            submitButton.classList.remove('pulse-started', 'returning');
+
+            setTimeout(() => {
+                submitButton.classList.add('pulse-started');
+            }, 400);
+        });
+
+        submitButton.addEventListener('mouseleave', () => {
+            submitButton.removeAttribute('data-hovered');
+            submitButton.classList.remove('pulse-started');
+            submitButton.classList.add('returning');
+
+            setTimeout(() => {
+                submitButton.classList.remove('returning');
+            }, 500);
+        });
+    });
+
+    // 🔁 Earthling spinner handler (can be reused globally)
+    function startEarthlingEmojiSpinner(element) {
+        const emojis = ['🌍','🌎','🌏','🌐','🌱','🌿','🌳','🍃','✨','🔄'];
+        let i = 0;
+        element.style.display = 'inline';
+        element.textContent = emojis[i];
+        const interval = setInterval(() => {
+            i = (i + 1) % emojis.length;
+            element.textContent = emojis[i];
+        }, 120);
+
+        // Stop after 4 seconds (same as your animation delay)
+        setTimeout(() => {
+            clearInterval(interval);
+        }, 4000);
+    }
+
+    // Optional: globally accessible shake
+    window.shakeElement = function (element) {
+        element.classList.add('shake');
+        setTimeout(() => element.classList.remove('shake'), 400);
+    }
+
+});
 
 
+
+
+function browserBack(event) {
+    event.preventDefault(); // Prevent link default behavior
+    window.history.back();  // Go back one page
+}
 
 
