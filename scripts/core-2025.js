@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // === DOM Elements ===
     const submitButton = document.getElementById('submit-button'); // <== Used consistently
     const btnText = document.getElementById('submit-button-text');
-
+    const form = document.getElementById('user-signup-form');
 
 
 /* SUBMIT BUTTON ANIMATION INTERACTIVITY */

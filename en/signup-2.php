@@ -102,8 +102,8 @@ https://github.com/gea-ecobricks/buwana/-->
     <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
 
             <div style="text-align:center;width:100%;margin:auto;">
-                <h2><span data-lang-id="001-register-by">Register by </span><?php echo $credential_type; ?></h2>
-                <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Now, let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-to-register-on">to register on </span><?= $app_info['app_display_name']; ?>.</p>
+                <h2><span data-lang-id="001-register-by">Register by</span> <?php echo $credential_type; ?></h2>
+                <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Let's get you register on</span> <?= $app_info['app_display_name']; ?>.</p>
             </div>
 
 <!-- <div class="form-item" id="last-name" class="user_lastname" style="display:none!important;">
@@ -113,7 +113,7 @@ https://github.com/gea-ecobricks/buwana/-->
                 </div>-->
 
 
-           <form id="password-confirm-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+           <form id="user-signup-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
              <!-- Email / Credential Field -->
              <div class="form-item float-label-group" id="credential-section">
@@ -326,7 +326,7 @@ function updateSubmitButtonState() {
     termsCheckbox.addEventListener('change', updateSubmitButtonState);
 
     // Form submission
-    $('#password-confirm-form').on('submit', function(e) {
+    $('#user-signup-form').on('submit', function(e) {
         e.preventDefault(); // Prevent the form from submitting normally
         loadingSpinner.removeClass('green red').show();
 
