@@ -63,8 +63,7 @@
   --table-background-hover: #bcbcbc;
 
   --table-background-heading: #2A91DA;
-
-       --form-field-background:#00000015;
+    --form-field-background:#00000015;
 
 
   /*Colors for messenger conversation icons*/
@@ -426,10 +425,10 @@ light.css
   font-size: smaller !important;
 }
 
-#reg-up-button {
-  background: url(../svgs/up-reg-arrow-light.svg?v=3) center no-repeat;
-  background-size: contain;
-}
+/*#reg-up-button {*/
+/*  background: url(../svgs/up-reg-arrow-light.svg?v=3) center no-repeat;*/
+/*  background-size: contain;*/
+/*}*/
 
 .form-container .splash-heading {
   color: var(--text-color)!important;
