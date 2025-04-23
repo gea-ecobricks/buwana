@@ -204,13 +204,14 @@ https://github.com/gea-ecobricks/buwana/-->
 <?php require_once ("../footer-2025.php");?>
 
 </div><!--close page content-->
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   // === DOM Elements ===
   const form = document.getElementById('user-signup-form');
   const firstNameInput = document.getElementById('first_name');
   const credentialSelect = document.getElementById('credential');
-  const submitButton = document.getElementById('submit-button');
+  const submitButton = document.getElementById('submit-button'); // <== Used consistently
   const btnText = document.getElementById('submit-button-text');
   const errorRequired = document.getElementById('maker-error-required');
   const errorLong = document.getElementById('maker-error-long');
@@ -218,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const credentialError = document.getElementById('credential-error-required');
 
   // === Helper Functions ===
+
   function hasInvalidChars(value) {
     const invalidChars = /[\'\"><]/;
     return invalidChars.test(value);
@@ -254,37 +256,90 @@ document.addEventListener('DOMContentLoaded', () => {
     return isValid;
   }
 
+
+
   // === Submit Event Listener ===
+
   firstNameInput.addEventListener('input', validateFieldsLive);
   credentialSelect.addEventListener('change', validateFieldsLive);
-  validateFieldsLive();
+  validateFieldsLive(); // Initial check
 
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
+ form.addEventListener('submit', function (event) {
+   event.preventDefault();
 
-    if (validateOnSubmit()) {
-      btnText.classList.add('hidden-text');
-      submitButton.classList.remove('pulse-started');
-      submitButton.classList.add('click-animating');
+   if (validateOnSubmit()) {
+     // Start animations immediately
+     btnText.classList.add('hidden-text');               // Hide text
+     submitButton.classList.remove('pulse-started');     // Stop idle pulse
+     submitButton.classList.add('click-animating');      // Power stripe exit
 
-      setTimeout(() => {
-        submitButton.classList.add('striding');
-      }, 400);
+     // Start striding animation shortly after click animation
+     setTimeout(() => {
+       submitButton.classList.add('striding');
+     }, 400); // match the duration of click-animating
 
-      setTimeout(() => {
-        startEarthlingEmojiSpinner();
-      }, 400);
+     // Start emoji spinner right away (or after 650ms if you want it synchronized)
+     setTimeout(() => {
+     startEarthlingEmojiSpinner();
+     }, 400); // match the duration of click-animating
 
-      setTimeout(() => {
-        form.submit();
-      }, 4000);
-    } else {
-      shakeElement(submitButton);
+
+     // Delay form submission to allow animations to play
+     setTimeout(() => {
+       form.submit(); // Let PHP take it from here
+     }, 4000); // ⏳ Wait 4 seconds before submit
+   } else {
+     shakeElement(submitButton);
+   }
+ });
+
+
+
+  // ✅ Shake animation
+  function shakeElement(element) {
+    element.classList.add('shake');
+    setTimeout(() => element.classList.remove('shake'), 400);
+  }
+
+
+
+
+  // ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
+  form.addEventListener('keypress', function (event) {
+    if (event.key === "Enter") {
+      if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
+        event.preventDefault();
+      } else {
+        this.dispatchEvent(new Event('submit', { cancelable: true }));
+      }
     }
   });
-}); // ✅ ← this was missing!
-</script>
 
+  // ✅ Hover animation handlers
+  submitButton.addEventListener('mouseenter', () => {
+    submitButton.setAttribute('data-hovered', 'true');
+    submitButton.classList.remove('pulse-started', 'returning');
+
+    setTimeout(() => {
+      submitButton.classList.add('pulse-started');
+    }, 400);
+  });
+
+  submitButton.addEventListener('mouseleave', () => {
+    submitButton.removeAttribute('data-hovered');
+    submitButton.classList.remove('pulse-started');
+
+    submitButton.classList.add('returning');
+
+    setTimeout(() => {
+      submitButton.classList.remove('returning');
+    }, 500);
+  });
+});
+
+
+
+</script>
 
 
 
