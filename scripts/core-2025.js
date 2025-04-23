@@ -330,9 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // === Submit Event Listener ===
 
-firstNameInput.addEventListener('input', validateFieldsLive);
-credentialSelect.addEventListener('change', validateFieldsLive);
-validateFieldsLive(); // Initial check
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();

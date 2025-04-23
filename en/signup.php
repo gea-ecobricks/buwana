@@ -218,6 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorInvalid = document.getElementById('maker-error-invalid');
   const credentialError = document.getElementById('credential-error-required');
 
+
+
+firstNameInput.addEventListener('input', validateFieldsLive);
+credentialSelect.addEventListener('change', validateFieldsLive);
+validateFieldsLive(); // Initial check
+
   // === Helper Functions ===
 
   function hasInvalidChars(value) {
@@ -255,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return isValid;
   }
-
 
 
 
