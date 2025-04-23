@@ -153,7 +153,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
              <!-- Human Check -->
              <div class="form-item float-label-group" id="human-check-section" style="display: none;">
-                                     <a data-lang-id="011-human-check">Human check:p><br>
+                                     <a data-lang-id="011-human-check">Human check:</p>
 
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
                <label for="human_check" data-lang-id="011-prove-human">Human check: Please type the word "ecobrick"...</label>
@@ -183,7 +183,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
         </div>
 
-<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 400px; margin-top: 0px;" data-lang-id="000-go-back">
     <p style="font-size: medium;" >
         Need to correct something?
         <a href="#" onclick="browserBack(event)">Go back ↩️</a>
@@ -195,7 +195,6 @@ https://github.com/gea-ecobricks/buwana/-->
     </div>
 </div>
 
-    <!--FOOTER STARTS HERE-->
     <?php require_once ("../footer-2025.php"); ?>
 
 
