@@ -1979,8 +1979,8 @@ label {
 @media screen and (max-width: 700px) {
   .form-container {
     /*width: calc(100% - 22px) !important;*/
-      width: 100%;
-    margin-right: 0px !important;
+      width: 98%;
+    margin-right: 4px !important;
     margin-left: 0px ;
 
     max-width: 600px;

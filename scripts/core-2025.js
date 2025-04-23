@@ -317,64 +317,93 @@ function openAboutBuwanaModal() {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    // === DOM Elements ===
-    const submitButton = document.getElementById('submit-button'); // <== Used consistently
-    const btnText = document.getElementById('submit-button-text');
-    const form = document.getElementById('user-signup-form');
-
 
 /* SUBMIT BUTTON ANIMATION INTERACTIVITY */
 
 
+document.addEventListener('DOMContentLoaded', () => {
 
-// === Submit Event Listener ===
+    // 🟢 GLOBAL KICK-ASS BUTTON SETUP
+    const forms = document.querySelectorAll('form');
 
+    forms.forEach(form => {
+        const submitButton = form.querySelector('.kick-ass-submit');
+        const btnText = submitButton?.querySelector('#submit-button-text');
+        const emojiSpinner = submitButton?.querySelector('#submit-emoji');
 
+        if (!submitButton || !btnText || !emojiSpinner) return;
 
+        // ✅ Submit animation handler
+        form.addEventListener('submit', function (event) {
+            // Page-specific validation should call `event.preventDefault()` if invalid
+            if (event.defaultPrevented) return;
 
-// ✅ Shake animation
-function shakeElement(element) {
-    element.classList.add('shake');
-    setTimeout(() => element.classList.remove('shake'), 400);
-}
+            btnText.classList.add('hidden-text');
+            submitButton.classList.remove('pulse-started');
+            submitButton.classList.add('click-animating');
 
+            setTimeout(() => {
+                submitButton.classList.add('striding');
+                startEarthlingEmojiSpinner(emojiSpinner);
+            }, 400);
+        });
 
+        // ✅ Enter key support
+        form.addEventListener('keypress', function (event) {
+            if (event.key === "Enter") {
+                if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
+                    event.preventDefault();
+                } else {
+                    this.dispatchEvent(new Event('submit', { cancelable: true }));
+                }
+            }
+        });
 
+        // ✅ Button hover animations
+        submitButton.addEventListener('mouseenter', () => {
+            submitButton.setAttribute('data-hovered', 'true');
+            submitButton.classList.remove('pulse-started', 'returning');
 
-// ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
-form.addEventListener('keypress', function (event) {
-    if (event.key === "Enter") {
-        if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
-            event.preventDefault();
-        } else {
-            this.dispatchEvent(new Event('submit', { cancelable: true }));
-        }
+            setTimeout(() => {
+                submitButton.classList.add('pulse-started');
+            }, 400);
+        });
+
+        submitButton.addEventListener('mouseleave', () => {
+            submitButton.removeAttribute('data-hovered');
+            submitButton.classList.remove('pulse-started');
+            submitButton.classList.add('returning');
+
+            setTimeout(() => {
+                submitButton.classList.remove('returning');
+            }, 500);
+        });
+    });
+
+    // 🔁 Earthling spinner handler (can be reused globally)
+    function startEarthlingEmojiSpinner(element) {
+        const emojis = ['🌍','🌎','🌏','🌐','🌱','🌿','🌳','🍃','✨','🔄'];
+        let i = 0;
+        element.style.display = 'inline';
+        element.textContent = emojis[i];
+        const interval = setInterval(() => {
+            i = (i + 1) % emojis.length;
+            element.textContent = emojis[i];
+        }, 120);
+
+        // Stop after 4 seconds (same as your animation delay)
+        setTimeout(() => {
+            clearInterval(interval);
+        }, 4000);
     }
+
+    // Optional: globally accessible shake
+    window.shakeElement = function (element) {
+        element.classList.add('shake');
+        setTimeout(() => element.classList.remove('shake'), 400);
+    }
+
 });
-
-// ✅ Hover animation handlers
-submitButton.addEventListener('mouseenter', () => {
-    submitButton.setAttribute('data-hovered', 'true');
-    submitButton.classList.remove('pulse-started', 'returning');
-
-    setTimeout(() => {
-        submitButton.classList.add('pulse-started');
-    }, 400);
-});
-
-submitButton.addEventListener('mouseleave', () => {
-    submitButton.removeAttribute('data-hovered');
-    submitButton.classList.remove('pulse-started');
-
-    submitButton.classList.add('returning');
-
-    setTimeout(() => {
-        submitButton.classList.remove('returning');
-    }, 500);
-});
-});
-
 
 
 
