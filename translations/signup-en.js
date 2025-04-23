@@ -37,7 +37,9 @@ const en_Page_Translations = {
     "011-prove-human": "Please type the word \"ecobrick\"...",
     "012-fun-fact": "🤓 Fun fact:",
     "012b-is-spelled": " is spelled without a space, capital or hyphen!",
-    "013-by-registering": "By registering today, I agree to the <a href=\"#\" onclick=\"openTermsModal(); return false;\" class=\"underline-link\">Terms of Use</a>",
+    "013-by-registering": "By registering today, I agree to the ",
+    "014-terms-of-use": "Terms of Use",
+
     "000-browser-back-link": "<p style=\"font-size: medium;\">Need to correct something?<a href=\"#\" onClick=\"browserBack(event)\">Go back ↩️</a></p>"
 };
 
