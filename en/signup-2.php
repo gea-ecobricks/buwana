@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.59';
+$version = '0.6';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -102,8 +102,8 @@ https://github.com/gea-ecobricks/buwana/-->
     <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
 
             <div style="text-align:center;width:100%;margin:auto;">
-                <h2 data-lang-id="001-setup-access-heading-x">Register by email</h2>
-                <p>✅ Ok <?php echo $first_name; ?>, <span data-lang-id="002-setup-access-heading-a"> your name is set.  Now, let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-setup-access-heading-b-x">to register on <?= $app_info['app_display_name']; ?>.</p>
+                <h2><span data-lang-id="001-register-by">Register by </span><?php echo $credential_type; ?></h2>
+                <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Now, let's use your </span> <?php echo $credential_type; ?> <span data-lang-id="003-to-register-on">to register on </span><?= $app_info['app_display_name']; ?>.</p>
             </div>
 
 <!-- <div class="form-item" id="last-name" class="user_lastname" style="display:none!important;">
@@ -113,7 +113,7 @@ https://github.com/gea-ecobricks/buwana/-->
                 </div>-->
 
 
-           <form id="password-confirm-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>" novalidate>
+           <form id="password-confirm-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
              <!-- Email / Credential Field -->
              <div class="form-item float-label-group" id="credential-section">
