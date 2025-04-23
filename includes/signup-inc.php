@@ -297,7 +297,7 @@
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
   top: -3px;
-  right: 10;
+  right: 10px;
   left: auto;
   transform: none;
   font-size: 14px;
