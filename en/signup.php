@@ -324,25 +324,23 @@ console.log("submitButton:", document.getElementById('submit-button'));
   });
 
   // ✅ Hover animation handlers
-  submitButton.addEventListener('mouseenter', () => {
-  console.log("Hover started"); // ✅ Add this
-    submitButton.setAttribute('data-hovered', 'true');
-    submitButton.classList.remove('pulse-started', 'returning');
+submitButton.addEventListener('mouseenter', () => {
+  console.log("🟢 Hover detected!");
+  submitButton.setAttribute('data-hovered', 'true');
+  submitButton.classList.add('pulse-started'); // Add immediately now
+});
 
-    setTimeout(() => {
-      submitButton.classList.add('pulse-started');
-    }, 400);
-  });
 
-  submitButton.addEventListener('mouseleave', () => {
-    submitButton.removeAttribute('data-hovered');
-    submitButton.classList.remove('pulse-started', 'click-animating', 'striding');
-    submitButton.classList.add('returning');
+submitButton.addEventListener('mouseleave', () => {
+  submitButton.removeAttribute('data-hovered');
+  submitButton.classList.remove('pulse-started');
+  submitButton.classList.add('returning');
 
-    setTimeout(() => {
-      submitButton.classList.remove('returning');
-    }, 500);
-  });
+  setTimeout(() => {
+    submitButton.classList.remove('returning');
+  }, 500);
+});
+
 
 
   submitButton.addEventListener('mouseleave', () => {

@@ -106,9 +106,17 @@
 }
 
 /* When entrance completes, pulse begins */
-.kick-ass-submit.pulse-started::before {
+.kick-ass-submit[data-hovered="true"].pulse-started::before {
   animation: powerStripePulse 1.1s ease-in-out infinite;
+  animation-delay: 0.4s; /* Wait until entrance is done */
 }
+
+.kick-ass-submit[data-hovered="true"]::before {
+  animation: powerStripeEntrance 0.4s ease forwards;
+}
+
+
+
 
 /* The pull back animation on click */
 .kick-ass-submit.click-animating::before {
