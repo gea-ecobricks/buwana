@@ -10,7 +10,6 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 // Backslash (\): Should be escaped as \\ in JavaScript strings to prevent ending the string prematurely.
 // Forward slash (/): Should be escaped as \/ in </script> tags to prevent prematurely closing a script.
 
-
 const en_Page_Translations = {
     "001-signup-heading": "Create Account",
     "002-signup-subtext": " uses Buwana— a powerful and private, open-source and for-Earth account system that powers regenerative apps.",
@@ -18,12 +17,11 @@ const en_Page_Translations = {
     "000-name-field-too-long-error": "The entry is too long. Max 255 characters.",
     "005b-name-error": "The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.",
     "006-credential-choice": "Select how you register...",
-    "007-way-to-contact": "We'll send your account confirmation messages this way.  Later you'll login this way.",
+    "007-way-to-contact": "We'll send your account confirmation messages this way. Later you'll login this way.",
     "016-submit-to-password": "Next",
 
-/* Next page: Signup-2 - Set your name and email  */
-
- "001-register-by": "Register by",
+    // Next page: Signup-2 - Set your name and email
+    "001-register-by": "Register by",
     "002-now-lets-use": "let's use your ",
     "003-to-register-on": "to register on ",
     "004-your": "Your",
@@ -39,9 +37,8 @@ const en_Page_Translations = {
     "011-prove-human": "Please type the word \"ecobrick\"...",
     "012-fun-fact": "🤓 Fun fact:",
     "012b-is-spelled": " is spelled without a space, capital or hyphen!",
-    "013-by-registering": "By registering today, I agree to the <a href=\"#\" onclick=\"openTermsModal(); return false;\" class=\"underline-link\">Terms of Use",
-    "014-i-agree-newsletter": "I agree to receive the <a href=\"#\" onclick=\"showModalInfo('earthen', '<?php echo $lang; ?>')\" class=\"underline-link\">Earthen newsletter</a> for app, ecobrick, and earthen updates",
-
-
+    "013-by-registering": "By registering today, I agree to the <a href=\"#\" onclick=\"openTermsModal(); return false;\" class=\"underline-link\">Terms of Use</a>",
+    "000-browser-back-link": "<p style=\"font-size: medium;\">Need to correct something?<a href=\"#\" onClick=\"browserBack(event)\">Go back ↩️</a></p>"
 };
+
 

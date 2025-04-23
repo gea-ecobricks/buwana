@@ -410,3 +410,9 @@ submitButton.addEventListener('mouseleave', () => {
 
 
 
+function browserBack(event) {
+    event.preventDefault(); // Prevent link default behavior
+    window.history.back();  // Go back one page
+}
+
+
