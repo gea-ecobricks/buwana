@@ -19,9 +19,7 @@
   text-align: center;
   margin: 20px auto;
 }
-
 /* Animations */
-
 @keyframes shake {
   0% { transform: translateX(0); }
   20% { transform: translateX(-16px); }
@@ -31,105 +29,46 @@
   100% { transform: translateX(0); }
 }
 
-
 @keyframes powerStripeEntrance {
-  from {
-    left: 15%;
-  }
-  to {
-    left: 80%;
-  }
+  from { left: 15%; }
+  to { left: 80%; }
 }
 
-
-
 @keyframes powerStripeIdle {
-  0% {
-    left: 10%;
-  }
-  50% {
-    left: 20%;
-  }
-  100% {
-    left: 10%;
-  }
+  0% { left: 10%; }
+  50% { left: 20%; }
+  100% { left: 10%; }
 }
 
 @keyframes powerStripePulse {
-  0% {
-    left: 80%;
-  }
-  50% {
-    left: 60%;
-  }
-  100% {
-    left: 80%;
-  }
+  0% { left: 80%; }
+  50% { left: 60%; }
+  100% { left: 80%; }
 }
 
 @keyframes powerStripeReturn {
-  from {
-    left: 70%;
-  }
-  to {
-    left: 10%;
-  }
+  from { left: 70%; }
+  to { left: 10%; }
 }
 
 @keyframes powerStripeClick {
-  0% {
-    left: 70%;
-  }
-  66% {
-    left: 15%;
-  }
-  100% {
-    left: 104%;
-  }
+  0% { left: 70%; }
+  66% { left: 15%; }
+  100% { left: 104%; }
 }
-
-
 
 @keyframes powerStripeStride {
-  0% {
-    left: 0%;
-  }
-  100% {
-    left: 100%;
-  }
+  0% { left: 0%; }
+  100% { left: 100%; }
 }
 
-
-.kick-ass-submit[data-hovered="true"].pulse-started::before {
-  animation: powerStripeEntrance 0.4s ease forwards, powerStripePulse 1.1s ease-in-out infinite;
-  animation-delay: 0s, 0.4s; /* Entrance starts immediately, pulse starts after 0.4s */
-}
-
-
-
-/* The pull back animation on click */
-.kick-ass-submit.click-animating::before {
-  animation: powerStripeClick 0.6s ease forwards;
-}
-
-/* The striding animation while processing and emoji animating */
-.kick-ass-submit.striding::before {
-  animation: powerStripeStride 0.5s linear infinite;
-}
-
-.shake {
-  animation: shake 0.4s ease;
-}
-
-
-
-/* Kick-ass button core */
+/* Main Button Styling */
 .kick-ass-submit {
   position: relative;
   display: inline-block;
   width: 77%;
   max-width: 400px;
-     height:53px;
+  height: 53px;
   padding: 14px 24px;
   font-size: 1.3em;
   font-weight: 600;
@@ -147,9 +86,8 @@
   line-height: normal;
 }
 
-/* Power Stripe */
+/* Power Stripe Layer */
 .kick-ass-submit::before {
-
   content: "";
   position: absolute;
   top: 0;
@@ -167,12 +105,19 @@
   animation: powerStripeIdle 3s ease-in-out infinite;
 }
 
+/* Button text layering */
+.kick-ass-submit span,
+.kick-ass-submit > * {
+  position: relative;
+  z-index: 2;
+}
+
 .kick-ass-submit .hidden-text {
   opacity: 0;
   visibility: hidden;
 }
 
-
+/* Emoji Spinner */
 .submit-emoji {
   position: absolute;
   left: 50%;
@@ -181,26 +126,36 @@
   font-size: 28px;
   transition: opacity 0.1s ease-in-out;
   z-index: 3;
-  pointer-events: none; /* Don't let it affect interactions */
+  pointer-events: none;
   height: 35px;
   margin-top: -25px;
   opacity: 1 !important;
 }
 
-
-
-
-
-/* Button content stays above the stripe */
-.kick-ass-submit span,
-.kick-ass-submit > * {
-  position: relative;
-  z-index: 2;
+/* Hover State Pulse (combined) */
+.kick-ass-submit[data-hovered="true"].pulse-started:not(.click-animating):not(.striding)::before {
+  animation: powerStripeEntrance 0.4s ease forwards, powerStripePulse 1.1s ease-in-out infinite;
+  animation-delay: 0s, 0.4s;
 }
 
-/* Hover/active states */
+/* Click "power stripe shoot" */
+.kick-ass-submit.click-animating::before {
+  animation: powerStripeClick 0.6s ease forwards;
+}
+
+/* Striding = Email sending progress */
+.kick-ass-submit.striding::before {
+  animation: powerStripeStride 0.5s linear infinite;
+}
+
+/* Returning from hover */
+.kick-ass-submit.returning::before {
+  animation: powerStripeReturn 0.5s ease forwards;
+}
+
+/* Button hover & active visuals */
 .kick-ass-submit:hover {
-  background-color: var(--button-2-2-over, #005fa3); /* Fallback color if var missing */
+  background-color: var(--button-2-2-over, #005fa3);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
@@ -209,39 +164,29 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
-.kick-ass-submit.returning::before {
-  animation: powerStripeReturn 0.5s ease forwards;
+/* Shake if invalid */
+.shake {
+  animation: shake 0.4s ease;
 }
 
+/* Responsive */
+@media (max-width: 769px) {
+  .kick-ass-submit {
+    width: 90%;
+  }
+}
 
-    /* Responsive width */
-    @media (max-width: 769px) {
-      .kick-ass-submit {
-        width: 90%;
-
-
-
-
-      }
-    }
-
-
-
-
-
-
-/* Styles for the disabled state */
+/* Disabled override */
 .disabled {
-    background-color: #868e9c;
-    cursor: not-allowed !important;
+  background-color: #868e9c;
+  cursor: not-allowed !important;
+}
+.disabled:hover {
+  background-color: #868e9c;
+  box-shadow: none;
+  pointer-events: none !important;
 }
 
-.disabled:hover {
-    background-color: #868e9c;
-      cursor: not-allowed;
-      box-shadow: none;
-      pointer-events: none !important;
-}
 
 
 /* Floating Label for FIRST NAME Container */
