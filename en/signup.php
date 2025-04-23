@@ -204,14 +204,13 @@ https://github.com/gea-ecobricks/buwana/-->
 <?php require_once ("../footer-2025.php");?>
 
 </div><!--close page content-->
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   // === DOM Elements ===
   const form = document.getElementById('user-signup-form');
   const firstNameInput = document.getElementById('first_name');
   const credentialSelect = document.getElementById('credential');
-  const submitButton = document.getElementById('submit-button'); // <== Used consistently
+  const submitButton = document.getElementById('submit-button');
   const btnText = document.getElementById('submit-button-text');
   const errorRequired = document.getElementById('maker-error-required');
   const errorLong = document.getElementById('maker-error-long');
@@ -219,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const credentialError = document.getElementById('credential-error-required');
 
   // === Helper Functions ===
-
   function hasInvalidChars(value) {
     const invalidChars = /[\'\"><]/;
     return invalidChars.test(value);
@@ -256,47 +254,37 @@ document.addEventListener('DOMContentLoaded', () => {
     return isValid;
   }
 
-
-
   // === Submit Event Listener ===
-
   firstNameInput.addEventListener('input', validateFieldsLive);
   credentialSelect.addEventListener('change', validateFieldsLive);
-  validateFieldsLive(); // Initial check
+  validateFieldsLive();
 
- form.addEventListener('submit', function (event) {
-   event.preventDefault();
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
 
-   if (validateOnSubmit()) {
-     // Start animations immediately
-     btnText.classList.add('hidden-text');               // Hide text
-     submitButton.classList.remove('pulse-started');     // Stop idle pulse
-     submitButton.classList.add('click-animating');      // Power stripe exit
+    if (validateOnSubmit()) {
+      btnText.classList.add('hidden-text');
+      submitButton.classList.remove('pulse-started');
+      submitButton.classList.add('click-animating');
 
-     // Start striding animation shortly after click animation
-     setTimeout(() => {
-       submitButton.classList.add('striding');
-     }, 400); // match the duration of click-animating
+      setTimeout(() => {
+        submitButton.classList.add('striding');
+      }, 400);
 
-     // Start emoji spinner right away (or after 650ms if you want it synchronized)
-     setTimeout(() => {
-     startEarthlingEmojiSpinner();
-     }, 400); // match the duration of click-animating
+      setTimeout(() => {
+        startEarthlingEmojiSpinner();
+      }, 400);
 
-
-     // Delay form submission to allow animations to play
-     setTimeout(() => {
-       form.submit(); // Let PHP take it from here
-     }, 4000); // ⏳ Wait 4 seconds before submit
-   } else {
-     shakeElement(submitButton);
-   }
- });
-
-
-
-
+      setTimeout(() => {
+        form.submit();
+      }, 4000);
+    } else {
+      shakeElement(submitButton);
+    }
+  });
+}); // ✅ ← this was missing!
 </script>
+
 
 
 
