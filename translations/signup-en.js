@@ -22,7 +22,7 @@ const en_Page_Translations = {
 
     // Next page: Signup-2 - Set your name and email
     "001-register-by": "Register by",
-    "002-now-lets-use": "Let's get you registered on ",
+    "002-now-lets-use": "Let's get you set up on ",
     "003-to-register-on": "to register on ",
     "004-your": "Your",
     "004b-please": " please:",
