@@ -318,6 +318,13 @@ function openAboutBuwanaModal() {
 
 
 
+function browserBack(event) {
+    event.preventDefault(); // Prevent link default behavior
+    window.history.back();  // Go back one page
+}
+
+
+
 
 /* SUBMIT BUTTON ANIMATION INTERACTIVITY */
 
@@ -406,12 +413,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
-
-
-function browserBack(event) {
-    event.preventDefault(); // Prevent link default behavior
-    window.history.back();  // Go back one page
-}
 
 
