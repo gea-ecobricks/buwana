@@ -296,9 +296,10 @@
 
 .float-label-group input:focus + label,
 .float-label-group input:not(:placeholder-shown) + label {
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: -4px;
+  right: 0;
+  left: auto;
+  transform: none;
   font-size: 14px;
   color: var(--subdued-text);
   background-color: var(--top-header);
@@ -306,11 +307,12 @@
   border: solid 2px var(--button-2-1);
   border-bottom: none;
   padding: 5px 10px 7px 10px;
-  text-align: center;
-  white-space: nowrap; /* ✅ Keep on one line */
-  overflow: hidden;     /* Optional: hide overflow */
-  text-overflow: ellipsis; /* Optional: add "…" if text overflows */
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 
 
 

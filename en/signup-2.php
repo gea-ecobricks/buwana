@@ -129,7 +129,7 @@ https://github.com/gea-ecobricks/buwana/-->
                  🌏 <span data-lang-id="010-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
                </div>
 
-               <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 6px;"></div>
+               <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 1px;"></div>
 
                <p class="form-caption" data-lang-id="006-email-sub-caption" style="margin-bottom: -10px;">💌 This is the way we will contact you to confirm your account</p>
              </div>
@@ -153,6 +153,8 @@ https://github.com/gea-ecobricks/buwana/-->
 
              <!-- Human Check -->
              <div class="form-item float-label-group" id="human-check-section" style="display: none;">
+                                     <a data-lang-id="011-human-check">Human check:p><br>
+
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
                <label for="human_check" data-lang-id="011-prove-human">Human check: Please type the word "ecobrick"...</label>
                <p class="form-caption">

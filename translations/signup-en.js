@@ -35,10 +35,11 @@ const en_Page_Translations = {
     "008-password-advice": "🔑 Your password must be at least 6 characters.",
     "009-confirm-pass": "Confirm Your Password:",
     "010-pass-error-no-match": "👉 Passwords do not match.",
-    "011-prove-human": "Human check: Please type the word \"ecobrick\"...",
+    "011-human-check": "Human check:",
+    "011-prove-human": "Please type the word \"ecobrick\"...",
     "012-fun-fact": "🤓 Fun fact:",
     "012b-is-spelled": " is spelled without a space, capital or hyphen!",
-    "013-by-registering": "By registering today, I agree to the <a href=\"#\" onclick=\"showModalInfo('terms', '<?php echo $lang; ?>')\" class=\"underline-link\">GoBrik Terms of Service</a>",
+    "013-by-registering": "By registering today, I agree to the <a href=\"#\" onclick=\"openTermsModal(); return false;\" class=\"underline-link\">Terms of Use",
     "014-i-agree-newsletter": "I agree to receive the <a href=\"#\" onclick=\"showModalInfo('earthen', '<?php echo $lang; ?>')\" class=\"underline-link\">Earthen newsletter</a> for app, ecobrick, and earthen updates",
 
 
