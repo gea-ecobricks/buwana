@@ -153,7 +153,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
              <!-- Human Check -->
              <div class="form-item float-label-group" id="human-check-section" style="display: none;">
-                                     <a data-lang-id="011-human-check">Human check:</p>
+                                     <p data-lang-id="011-human-check">Human check:</p>
 
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
                <label for="human_check" data-lang-id="011-prove-human">Human check: Please type the word "ecobrick"...</label>
