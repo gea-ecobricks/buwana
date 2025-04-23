@@ -100,20 +100,11 @@
 }
 
 
-/* When hovering: run entrance */
-.kick-ass-submit[data-hovered="true"]::before {
-  animation: powerStripeEntrance 0.4s ease forwards;
-}
-
-/* When entrance completes, pulse begins */
 .kick-ass-submit[data-hovered="true"].pulse-started::before {
-  animation: powerStripePulse 1.1s ease-in-out infinite;
-  animation-delay: 0.4s; /* Wait until entrance is done */
+  animation: powerStripeEntrance 0.4s ease forwards, powerStripePulse 1.1s ease-in-out infinite;
+  animation-delay: 0s, 0.4s; /* Entrance starts immediately, pulse starts after 0.4s */
 }
 
-.kick-ass-submit[data-hovered="true"]::before {
-  animation: powerStripeEntrance 0.4s ease forwards;
-}
 
 
 /* The pull back animation on click */
@@ -211,7 +202,6 @@
 .kick-ass-submit:hover {
   background-color: var(--button-2-2-over, #005fa3); /* Fallback color if var missing */
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-  animation: powerStripeReturn 0.5s ease forwards;
 }
 
 .kick-ass-submit:active {
@@ -222,7 +212,6 @@
 .kick-ass-submit.returning::before {
   animation: powerStripeReturn 0.5s ease forwards;
 }
-
 
 
     /* Responsive width */
