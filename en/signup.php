@@ -322,6 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ✅ Hover animation handlers
   submitButton.addEventListener('mouseenter', () => {
+  console.log("Hover started"); // ✅ Add this
     submitButton.setAttribute('data-hovered', 'true');
     submitButton.classList.remove('pulse-started', 'returning');
 
@@ -329,6 +330,17 @@ document.addEventListener('DOMContentLoaded', () => {
       submitButton.classList.add('pulse-started');
     }, 400);
   });
+
+  submitButton.addEventListener('mouseleave', () => {
+    submitButton.removeAttribute('data-hovered');
+    submitButton.classList.remove('pulse-started', 'click-animating', 'striding');
+    submitButton.classList.add('returning');
+
+    setTimeout(() => {
+      submitButton.classList.remove('returning');
+    }, 500);
+  });
+
 
   submitButton.addEventListener('mouseleave', () => {
     submitButton.removeAttribute('data-hovered');
