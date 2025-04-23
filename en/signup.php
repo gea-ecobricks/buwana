@@ -212,6 +212,9 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+console.log("DOMContentLoaded");
+console.log("submitButton:", document.getElementById('submit-button'));
+
   // === DOM Elements ===
   const form = document.getElementById('user-signup-form');
   const firstNameInput = document.getElementById('first_name');
