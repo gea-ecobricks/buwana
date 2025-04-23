@@ -99,34 +99,27 @@
   }
 }
 
-
-/* When hovering: run entrance */
-.kick-ass-submit[data-hovered="true"]::before {
+/* Entrance animation on hover */
+.kick-ass-submit:hover::before {
   animation: powerStripeEntrance 0.4s ease forwards;
 }
 
-/* When entrance completes, pulse begins */
-.kick-ass-submit[data-hovered="true"].pulse-started::before {
+/* Pulse begins after entrance if .pulse-started is added */
+.kick-ass-submit:hover.pulse-started::before {
   animation: powerStripePulse 1.1s ease-in-out infinite;
   animation-delay: 0.4s; /* Wait until entrance is done */
 }
 
-.kick-ass-submit[data-hovered="true"]::before {
-  animation: powerStripeEntrance 0.4s ease forwards;
-}
-
-
-
-
-/* The pull back animation on click */
+/* Click animation (button was clicked) */
 .kick-ass-submit.click-animating::before {
   animation: powerStripeClick 0.6s ease forwards;
 }
 
-/* The striding animation while processing and emoji animating */
+/* Striding animation (email sending active) */
 .kick-ass-submit.striding::before {
   animation: powerStripeStride 0.5s linear infinite;
 }
+
 
 .shake {
   animation: shake 0.4s ease;
@@ -160,7 +153,6 @@
 
 /* Power Stripe */
 .kick-ass-submit::before {
-
   content: "";
   position: absolute;
   top: 0;
@@ -175,8 +167,8 @@
   transform: skewX(-45deg);
   pointer-events: none;
   z-index: 1;
-  animation: powerStripeIdle 3s ease-in-out infinite;
 }
+
 
 .kick-ass-submit .hidden-text {
   opacity: 0;

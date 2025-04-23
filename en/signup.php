@@ -323,19 +323,13 @@ console.log("submitButton:", document.getElementById('submit-button'));
     }
   });
 
-  // ✅ Hover animation handlers
 submitButton.addEventListener('mouseenter', () => {
-  console.log("🟢 Hover detected!");
-  submitButton.setAttribute('data-hovered', 'true');
-  submitButton.classList.add('pulse-started'); // Add immediately now
+  submitButton.classList.add('pulse-started');
 });
 
-
 submitButton.addEventListener('mouseleave', () => {
-  submitButton.removeAttribute('data-hovered');
   submitButton.classList.remove('pulse-started');
   submitButton.classList.add('returning');
-
   setTimeout(() => {
     submitButton.classList.remove('returning');
   }, 500);
