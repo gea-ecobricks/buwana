@@ -208,7 +208,11 @@
 }
 
 /* Hover/active states */
-
+.kick-ass-submit:hover {
+  background-color: var(--button-2-2-over, #005fa3); /* Fallback color if var missing */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  animation: powerStripeReturn 0.5s ease forwards;
+}
 
 .kick-ass-submit:active {
   transform: scale(0.98);
