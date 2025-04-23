@@ -152,6 +152,7 @@
 
 /* Power Stripe */
 .kick-ass-submit::before {
+  background: red !important;
   content: "";
   position: absolute;
   top: 0;
@@ -166,7 +167,7 @@
   transform: skewX(-45deg);
   pointer-events: none;
   z-index: 1;
-  animation: powerStripeIdle 3s ease-in-out infinite;
+  animation: powerStripeIdle 3s ease-in-out infinite !important;
 }
 
 .kick-ass-submit .hidden-text {
