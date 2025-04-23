@@ -331,35 +331,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // === Submit Event Listener ===
 
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    if (validateOnSubmit()) {
-        // Start animations immediately
-        btnText.classList.add('hidden-text');               // Hide text
-        submitButton.classList.remove('pulse-started');     // Stop idle pulse
-        submitButton.classList.add('click-animating');      // Power stripe exit
-
-        // Start striding animation shortly after click animation
-        setTimeout(() => {
-            submitButton.classList.add('striding');
-        }, 400); // match the duration of click-animating
-
-        // Start emoji spinner right away (or after 650ms if you want it synchronized)
-        setTimeout(() => {
-            startEarthlingEmojiSpinner();
-        }, 400); // match the duration of click-animating
-
-
-        // Delay form submission to allow animations to play
-        setTimeout(() => {
-            form.submit(); // Let PHP take it from here
-        }, 4000); // ⏳ Wait 4 seconds before submit
-    } else {
-        shakeElement(submitButton);
-    }
-});
-
 
 
 // ✅ Shake animation
