@@ -1981,7 +1981,7 @@ label {
     /*width: calc(100% - 22px) !important;*/
       width: 98%;
     margin-right: 4px !important;
-    margin-left: 0px ;
+    margin-left: 4px ;
 
     max-width: 600px;
     padding: 10px;
