@@ -316,13 +316,40 @@ function openAboutBuwanaModal() {
 }
 
 
+//
+//     document.addEventListener('colorschemechange', (event) => {
+//     const newMode = event.detail.colorScheme;
+//     const isDark = newMode === 'dark';
+//
+//     const topLogo = document.getElementById('top-app-logo');
+//     const appLogo = document.querySelector('.the-app-logo');
+//     const signupBanner = document.querySelector('.app-signup-banner');
+//
+//     const lightWordmark = '<?= $app_info["app_wordmark_url"] ?>';
+//     const darkWordmark = '<?= $app_info["app_wordmark_dark_url"] ?>';
+//     const lightLogo = '<?= $app_info["app_logo_url"] ?>';
+//     const darkLogo = '<?= $app_info["app_logo_dark_url"] ?>';
+//     const lightBanner = '<?= $app_info["signup_top_img_url"] ?>';
+//     const darkBanner = '<?= $app_info["signup_top_img_dark_url"] ?>';
+//
+//     if (topLogo) {
+//     topLogo.style.backgroundImage = `url('${isDark ? darkWordmark : lightWordmark}')`;
+// }
+//
+//     if (appLogo) {
+//     appLogo.style.backgroundImage = `url('${isDark ? darkLogo : lightLogo}')`;
+// }
+//
+//     if (signupBanner) {
+//     signupBanner.style.backgroundImage = `url('${isDark ? darkBanner : lightBanner}')`;
+// }
+// });
+
+
+/* SUBMIT BUTTON ANIMATION INTERACTIVITY */
 
 
 
 
-function browserBack(event) {
-    event.preventDefault(); // Prevent link default behavior
-    window.history.back();  // Go back one page
-}
 
 
