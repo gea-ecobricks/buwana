@@ -14,8 +14,8 @@ use PHPMailer\PHPMailer\Exception;
 
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'confirm-email';
-$version = '0.42';
+$page = 'signup';
+$version = '0.73';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 if (!empty($_SESSION['buwana_id'])) {
