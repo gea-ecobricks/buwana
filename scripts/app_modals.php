@@ -150,6 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
+
 function startEarthlingEmojiSpinner(emojiContainer) {
   const earthlings = ["🦋", "🦉", "🐵"];
   let index = 0;
