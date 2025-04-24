@@ -275,13 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Allow Enter key
-  form.addEventListener('keypress', function (event) {
-    if (event.key === "Enter" && !["BUTTON", "SELECT"].includes(event.target.tagName)) {
-      event.preventDefault();
-      form.dispatchEvent(new Event('submit', { cancelable: true }));
-    }
-  });
+
 });
 </script>
 

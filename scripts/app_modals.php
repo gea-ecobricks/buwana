@@ -71,7 +71,6 @@ function openAboutBuwanaModal() {
   }
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const buttons = document.querySelectorAll('.kick-ass-submit');
 
@@ -82,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!form || !btnText || !emoji) return;
 
-    // 🌀 Animate on hover
+    // 🌀 Hover Animation
     submitButton.addEventListener('mouseenter', () => {
       submitButton.setAttribute('data-hovered', 'true');
       submitButton.classList.add('pulse-started');
@@ -97,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
     });
 
-    // 🚀 Animate on submit — requires form-specific validation to trigger it
+    // 🚀 Animate on custom submit trigger
     form.addEventListener('kickAssSubmit', () => {
       btnText.classList.add('hidden-text');
       submitButton.classList.remove('pulse-started');
@@ -111,8 +110,38 @@ document.addEventListener('DOMContentLoaded', () => {
         startEarthlingEmojiSpinner(emoji, form);
       }, 400);
     });
+
+    // 🎯 Enter key support for text inputs
+    form.addEventListener('keydown', (event) => {
+      const tag = event.target.tagName.toUpperCase();
+      if (event.key === 'Enter' && !["TEXTAREA", "BUTTON", "SELECT"].includes(tag)) {
+        event.preventDefault();
+        if (typeof window.validateOnSubmit === 'function') {
+          if (window.validateOnSubmit()) {
+            form.dispatchEvent(new Event('kickAssSubmit'));
+          } else {
+            shakeElement(submitButton);
+          }
+        } else {
+          console.warn("⚠️ validateOnSubmit() not defined for this form.");
+        }
+      }
+    });
+
+    // 🧠 Manual click fallback (optional)
+    form.addEventListener('submit', function (event) {
+      if (typeof window.validateOnSubmit === 'function') {
+        event.preventDefault();
+        if (window.validateOnSubmit()) {
+          form.dispatchEvent(new Event('kickAssSubmit'));
+        } else {
+          shakeElement(submitButton);
+        }
+      }
+    });
   });
 });
+
 
 
 const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
