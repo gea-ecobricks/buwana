@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Emoji spinner + actual submission
       setTimeout(() => {
-        startEarthlingEmojiSpinner(emoji);
+        startEarthlingEmojiSpinner(emoji, form);
 
         // Submit via AJAX
         const formData = new FormData(form);
