@@ -1,7 +1,7 @@
 <?php
 //signup-2.php sends new users here.
 require '../vendor/autoload.php'; // Path to Composer's autoloader
-require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
+//require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\RequestException;
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.39';
+$version = '0.4';
 $page = 'activate';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
