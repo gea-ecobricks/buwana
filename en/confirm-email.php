@@ -1,23 +1,31 @@
-<?php
-//signup-2.php sends new users here.
+<?php //signup-2.php sends new users here.
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start(); // Needed for app context persistence
+
+require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
+require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 require '../vendor/autoload.php'; // Path to Composer's autoloader
-//require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
-
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.4';
+$version = '0.41';
 $page = 'activate';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
-$is_logged_in = false; // Ensure not logged in for this page
-if (isLoggedIn()) {
-    header('Location: dashboard.php'); // Redirect to dashboard if the user is logged in
+if (!empty($_SESSION['buwana_id'])) { // ✅ Direct session check instead of calling a function
+    $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? 'https://gobrik.com';
+    echo "<script>
+        alert('Looks like you already have an account and are logged in! Let\'s take you to your dashboard.');
+        window.location.href = '$redirect_url';
+    </script>";
     exit();
 }
+$response = ['success' => false];
+$buwana_id = $_GET['id'] ?? null;
 
 // Initialize user variables
 $ecobricker_id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
