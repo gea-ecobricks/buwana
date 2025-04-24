@@ -152,8 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
-
+  const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]'), JSON_UNESCAPED_UNICODE) ?>;
 // ✅ Reusable emoji spinner
 function startEarthlingEmojiSpinner(emojiContainer, form) {
   const earthlings = window.appEmojis?.length ? window.appEmojis : ["🐵", "🦉", "🦋"];
