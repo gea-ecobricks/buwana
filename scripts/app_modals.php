@@ -37,37 +37,86 @@
   }
 
 
-   const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
 
-     function startEarthlingEmojiSpinner() {
-       const emojiContainer = document.getElementById('submit-emoji');
-       const earthlings = appEmojis.length > 0 ? appEmojis : ["🐵", "🦉", "🦋"];
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.kick-ass-submit');
 
-       let index = 0;
-       emojiContainer.style.display = 'block';
-       emojiContainer.style.opacity = 1;
+  buttons.forEach((submitButton) => {
+    const form = submitButton.closest('form');
+    const btnText = submitButton.querySelector('#submit-button-text');
+    const emoji = submitButton.querySelector('.submit-emoji');
 
-       const emojiInterval = setInterval(() => {
-         if (index >= earthlings.length) {
-           clearInterval(emojiInterval);
-           return;
-         }
+    if (!form || !btnText || !emoji) return;
 
-         emojiContainer.textContent = earthlings[index];
-         emojiContainer.style.opacity = 1;
+    // 🌀 Animate on hover
+    submitButton.addEventListener('mouseenter', () => {
+      submitButton.setAttribute('data-hovered', 'true');
+      submitButton.classList.add('pulse-started');
+    });
 
-         setTimeout(() => {
-           emojiContainer.style.opacity = 0;
-         }, 200);
+    submitButton.addEventListener('mouseleave', () => {
+      submitButton.removeAttribute('data-hovered');
+      submitButton.classList.remove('pulse-started');
+      submitButton.classList.add('returning');
+      setTimeout(() => {
+        submitButton.classList.remove('returning');
+      }, 500);
+    });
 
-         index++;
-       }, 100);
+    // 🚀 Animate on submit — requires form-specific validation to trigger it
+    form.addEventListener('kickAssSubmit', () => {
+      btnText.classList.add('hidden-text');
+      submitButton.classList.remove('pulse-started');
+      submitButton.classList.add('click-animating');
 
-       // ✅ Submit after 0.5s regardless of how many emojis remain
-       setTimeout(() => {
-         form.submit();
-       }, 500);
-     }
+      setTimeout(() => {
+        submitButton.classList.add('striding');
+      }, 400);
+
+      setTimeout(() => {
+        startEarthlingEmojiSpinner(emoji, form);
+      }, 400);
+    });
+  });
+});
+
+
+const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
+
+// ✅ Reusable emoji spinner
+function startEarthlingEmojiSpinner(emojiContainer, form) {
+  const earthlings = window.appEmojis?.length ? window.appEmojis : ["🐵", "🦉", "🦋"];
+  let index = 0;
+  emojiContainer.style.display = 'block';
+  emojiContainer.style.opacity = 1;
+
+  const interval = setInterval(() => {
+    if (index >= earthlings.length) {
+      clearInterval(interval);
+      return;
+    }
+
+    emojiContainer.textContent = earthlings[index];
+    emojiContainer.style.opacity = 1;
+
+    setTimeout(() => {
+      emojiContainer.style.opacity = 0;
+    }, 200);
+
+    index++;
+  }, 100);
+
+  setTimeout(() => {
+    form.submit(); // Final fallback
+  }, 500);
+}
+
+// ✅ Optional shake function
+function shakeElement(element) {
+  element.classList.add('shake');
+  setTimeout(() => element.classList.remove('shake'), 400);
+}
+
 
 
     </script>
