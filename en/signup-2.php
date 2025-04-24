@@ -131,7 +131,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
                <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 1px;"></div>
 
-               <p class="form-caption" data-lang-id="006-email-sub-caption-xx" style="margin-bottom: -10px;">💌 We'll use this to contact you to confirm your account.</p>
+               <p class="form-caption" data-lang-id="006-email-sub-caption-xx" style="margin-bottom: -10px;">💌 We'll use this email to confirm your account.</p>
              </div>
 
              <!-- Set Password -->
@@ -146,7 +146,7 @@ https://github.com/gea-ecobricks/buwana/-->
              <div class="form-item float-label-group" id="confirm-password-section" style="display: none;">
                <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " style="font-size: 22px !important;"/>
                <label for="confirm_password" data-lang-id="009-confirm-pass-x">Confirm Your Password...</label>
-               <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;margin-bottom:13px;margin-right:15px; font-size:20px">🙈</span>
+               <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;margin-bottom:13px;margin-right:15px; font-size:20px;margin-top: 45px;">🙈</span>
                <div id="maker-error-invalid" class="form-field-error" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
              </div>
 
