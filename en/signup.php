@@ -209,24 +209,18 @@ https://github.com/gea-ecobricks/buwana/-->
 </div><!--close page content-->
 
 
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-console.log("DOMContentLoaded");
-console.log("submitButton:", document.getElementById('submit-button'));
-
-  // === DOM Elements ===
   const form = document.getElementById('user-signup-form');
+  const submitButton = document.getElementById('submit-button');
   const firstNameInput = document.getElementById('first_name');
   const credentialSelect = document.getElementById('credential');
-  const submitButton = document.getElementById('submit-button'); // <== Used consistently
   const btnText = document.getElementById('submit-button-text');
+
   const errorRequired = document.getElementById('maker-error-required');
   const errorLong = document.getElementById('maker-error-long');
   const errorInvalid = document.getElementById('maker-error-invalid');
   const credentialError = document.getElementById('credential-error-required');
-
-  // === Helper Functions ===
 
   function hasInvalidChars(value) {
     const invalidChars = /[\'\"><]/;
@@ -234,13 +228,15 @@ console.log("submitButton:", document.getElementById('submit-button'));
   }
 
   function displayError(element, show) {
-    element.style.display = show ? 'block' : 'none';
+    if (element) element.style.display = show ? 'block' : 'none';
   }
 
   function validateFieldsLive() {
-    const firstNameValid = firstNameInput.value.trim().length > 0 && firstNameInput.value.trim().length <= 255;
-    const credentialValid = credentialSelect.value !== "";
-    return firstNameValid && credentialValid;
+    const firstName = firstNameInput.value.trim();
+    const isFirstNameValid = firstName.length > 0 && firstName.length <= 255;
+    const isCredentialValid = credentialSelect.value !== "";
+
+    return isFirstNameValid && isCredentialValid;
   }
 
   function validateOnSubmit() {
@@ -251,12 +247,12 @@ console.log("submitButton:", document.getElementById('submit-button'));
     displayError(errorRequired, firstName === '');
     displayError(errorLong, firstName.length > 255);
     displayError(errorInvalid, hasInvalidChars(firstName));
+    displayError(credentialError, credential === '');
 
     if (firstName === '' || firstName.length > 255 || hasInvalidChars(firstName)) {
       isValid = false;
     }
 
-    displayError(credentialError, credential === '');
     if (credential === '') {
       isValid = false;
     }
@@ -264,100 +260,31 @@ console.log("submitButton:", document.getElementById('submit-button'));
     return isValid;
   }
 
-
-
-  // === Submit Event Listener ===
-
+  // Real-time validation
   firstNameInput.addEventListener('input', validateFieldsLive);
   credentialSelect.addEventListener('change', validateFieldsLive);
-  validateFieldsLive(); // Initial check
 
- form.addEventListener('submit', function (event) {
-   event.preventDefault();
+  // Custom submit logic
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
 
-   if (validateOnSubmit()) {
-     // Start animations immediately
-     btnText.classList.add('hidden-text');               // Hide text
-     submitButton.classList.remove('pulse-started');     // Stop idle pulse
-     submitButton.classList.add('click-animating');      // Power stripe exit
-
-     // Start striding animation shortly after click animation
-     setTimeout(() => {
-       submitButton.classList.add('striding');
-     }, 400); // match the duration of click-animating
-
-     // Start emoji spinner right away (or after 650ms if you want it synchronized)
-     setTimeout(() => {
-     startEarthlingEmojiSpinner();
-     }, 400); // match the duration of click-animating
-
-
-     // Delay form submission to allow animations to play
-     setTimeout(() => {
-       form.submit(); // Let PHP take it from here
-     }, 4000); // ⏳ Wait 4 seconds before submit
-   } else {
-     shakeElement(submitButton);
-   }
- });
-
-
-
-  // ✅ Shake animation
-  function shakeElement(element) {
-    element.classList.add('shake');
-    setTimeout(() => element.classList.remove('shake'), 400);
-  }
-
-
-
-
-  // ✅ Keyboard support: Allow Enter to submit unless on SELECT or BUTTON
-  form.addEventListener('keypress', function (event) {
-    if (event.key === "Enter") {
-      if (["BUTTON", "SELECT"].includes(event.target.tagName)) {
-        event.preventDefault();
-      } else {
-        this.dispatchEvent(new Event('submit', { cancelable: true }));
-      }
+    if (validateOnSubmit()) {
+      form.dispatchEvent(new Event('kickAssSubmit')); // Let global script handle animations
+    } else {
+      shakeElement(submitButton);
     }
   });
 
-  // ✅ Hover animation handlers
-submitButton.addEventListener('mouseenter', () => {
-  console.log("🟢 Hover detected!");
-  submitButton.setAttribute('data-hovered', 'true');
-  submitButton.classList.add('pulse-started'); // Add immediately now
-});
-
-
-submitButton.addEventListener('mouseleave', () => {
-  submitButton.removeAttribute('data-hovered');
-  submitButton.classList.remove('pulse-started');
-  submitButton.classList.add('returning');
-
-  setTimeout(() => {
-    submitButton.classList.remove('returning');
-  }, 500);
-});
-
-
-
-  submitButton.addEventListener('mouseleave', () => {
-    submitButton.removeAttribute('data-hovered');
-    submitButton.classList.remove('pulse-started');
-
-    submitButton.classList.add('returning');
-
-    setTimeout(() => {
-      submitButton.classList.remove('returning');
-    }, 500);
+  // Allow Enter key
+  form.addEventListener('keypress', function (event) {
+    if (event.key === "Enter" && !["BUTTON", "SELECT"].includes(event.target.tagName)) {
+      event.preventDefault();
+      form.dispatchEvent(new Event('submit', { cancelable: true }));
+    }
   });
 });
-
-
-
 </script>
+
 
 
 
