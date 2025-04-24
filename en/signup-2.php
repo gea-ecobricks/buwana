@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.72';
+$version = '0.73';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -131,7 +131,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
                <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 1px;"></div>
 
-               <p class="form-caption" data-lang-id="006-email-sub-caption" style="margin-bottom: -10px;">💌 This is the way we will contact you to confirm your account</p>
+               <p class="form-caption" data-lang-id="006-email-sub-caption-xx" style="margin-bottom: -10px;">💌 We'll use this to contact you to confirm your account.</p>
              </div>
 
              <!-- Set Password -->
