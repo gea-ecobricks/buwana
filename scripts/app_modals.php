@@ -151,12 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
 const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
 
-function startEarthlingEmojiSpinner(emojiContainer) {
-  const earthlings = ["🦋", "🦉", "🐵"];
+// ✅ Reusable emoji spinner
+function startEarthlingEmojiSpinner(emojiContainer, form) {
+  const earthlings = window.appEmojis?.length ? window.appEmojis : ["🐵", "🦉", "🦋"];
   let index = 0;
-
   emojiContainer.style.display = 'block';
   emojiContainer.style.opacity = 1;
 
@@ -175,6 +176,10 @@ function startEarthlingEmojiSpinner(emojiContainer) {
 
     index++;
   }, 100);
+
+  setTimeout(() => {
+    form.submit(); // Final fallback
+  }, 500);
 }
 
 function shakeElement(el) {
