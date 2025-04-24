@@ -71,17 +71,20 @@ function openAboutBuwanaModal() {
   }
 
 
+/* SUBMISSION PROCESS */
+
+
 document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('.kick-ass-submit');
+  const forms = document.querySelectorAll('form#user-signup-form');
 
-  buttons.forEach((submitButton) => {
-    const form = submitButton.closest('form');
-    const btnText = submitButton.querySelector('#submit-button-text');
-    const emoji = submitButton.querySelector('.submit-emoji');
+  forms.forEach((form) => {
+    const submitButton = form.querySelector('.kick-ass-submit');
+    const btnText = form.querySelector('#submit-button-text');
+    const emoji = form.querySelector('.submit-emoji');
 
-    if (!form || !btnText || !emoji) return;
+    if (!form || !submitButton || !btnText || !emoji) return;
 
-    // 🌀 Hover Animation
+    // 🌀 Hover animations
     submitButton.addEventListener('mouseenter', () => {
       submitButton.setAttribute('data-hovered', 'true');
       submitButton.classList.add('pulse-started');
@@ -91,13 +94,23 @@ document.addEventListener('DOMContentLoaded', () => {
       submitButton.removeAttribute('data-hovered');
       submitButton.classList.remove('pulse-started');
       submitButton.classList.add('returning');
-      setTimeout(() => {
-        submitButton.classList.remove('returning');
-      }, 500);
+      setTimeout(() => submitButton.classList.remove('returning'), 500);
     });
 
-    // 🚀 Animate on custom submit trigger
-    form.addEventListener('kickAssSubmit', () => {
+    // 💥 Submit logic
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const isValid = typeof window.validateOnSubmit === 'function'
+        ? window.validateOnSubmit()
+        : true;
+
+      if (!isValid) {
+        shakeElement(submitButton);
+        return;
+      }
+
+      // Kickass animations
       btnText.classList.add('hidden-text');
       submitButton.classList.remove('pulse-started');
       submitButton.classList.add('click-animating');
@@ -106,50 +119,41 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.classList.add('striding');
       }, 400);
 
+      // Emoji spinner + actual submission
       setTimeout(() => {
-        startEarthlingEmojiSpinner(emoji, form);
+        startEarthlingEmojiSpinner(emoji);
+
+        // Submit via AJAX
+        const formData = new FormData(form);
+        const actionUrl = form.getAttribute('action') || window.location.href;
+
+        fetch(actionUrl, {
+          method: 'POST',
+          body: formData
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success && data.redirect) {
+              window.location.href = data.redirect;
+            } else {
+              alert("Something went wrong. " + (data.error || "Please try again."));
+              console.error("Server error:", data);
+            }
+          })
+          .catch(err => {
+            alert("There was a problem submitting the form.");
+            console.error("Fetch error:", err);
+          });
+
       }, 400);
-    });
-
-    // 🎯 Enter key support for text inputs
-    form.addEventListener('keydown', (event) => {
-      const tag = event.target.tagName.toUpperCase();
-      if (event.key === 'Enter' && !["TEXTAREA", "BUTTON", "SELECT"].includes(tag)) {
-        event.preventDefault();
-        if (typeof window.validateOnSubmit === 'function') {
-          if (window.validateOnSubmit()) {
-            form.dispatchEvent(new Event('kickAssSubmit'));
-          } else {
-            shakeElement(submitButton);
-          }
-        } else {
-          console.warn("⚠️ validateOnSubmit() not defined for this form.");
-        }
-      }
-    });
-
-    // 🧠 Manual click fallback (optional)
-    form.addEventListener('submit', function (event) {
-      if (typeof window.validateOnSubmit === 'function') {
-        event.preventDefault();
-        if (window.validateOnSubmit()) {
-          form.dispatchEvent(new Event('kickAssSubmit'));
-        } else {
-          shakeElement(submitButton);
-        }
-      }
     });
   });
 });
 
-
-
-const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]')) ?>;
-
-// ✅ Reusable emoji spinner
-function startEarthlingEmojiSpinner(emojiContainer, form) {
-  const earthlings = window.appEmojis?.length ? window.appEmojis : ["🐵", "🦉", "🦋"];
+function startEarthlingEmojiSpinner(emojiContainer) {
+  const earthlings = ["🦋", "🦉", "🐵"];
   let index = 0;
+
   emojiContainer.style.display = 'block';
   emojiContainer.style.opacity = 1;
 
@@ -168,18 +172,12 @@ function startEarthlingEmojiSpinner(emojiContainer, form) {
 
     index++;
   }, 100);
-
-  setTimeout(() => {
-    form.submit(); // Final fallback
-  }, 500);
 }
 
-// ✅ Optional shake function
-function shakeElement(element) {
-  element.classList.add('shake');
-  setTimeout(() => element.classList.remove('shake'), 400);
+function shakeElement(el) {
+  el.classList.add('shake');
+  setTimeout(() => el.classList.remove('shake'), 400);
 }
-
 
 
     </script>
