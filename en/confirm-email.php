@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('resend-code').style.display = 'none';
 
                 setTimeout(function() {
-                    window.location.href = "activate_process.php?id=" + ecobricker_id + "&buwana_id=" + buwana_id;
+                    window.location.href = "../processing/activate_process.php?id=" + ecobricker_id + "&buwana_id=" + buwana_id;
                 }, 300);
             } else {
                 codeFeedback.textContent = feedbackMessages.incorrect;
