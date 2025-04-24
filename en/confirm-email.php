@@ -342,11 +342,18 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 </div>
 </div>
 
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
+    <p style="font-size: medium;" >
+        Need to correct something?
+        <a href="#" onclick="browserBack(event)">Go back ↩️</a>
+    </p>
+</div>
+
 </div> <!--Closes main-->
 
 
 <!--FOOTER STARTS HERE-->
-<?php require_once ("../footer-2024.php"); ?>
+<?php require_once ("../footer-2025.php"); ?>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
