@@ -46,7 +46,7 @@ function generateCode() {
 }
 
 // 📬 Mailgun Sender
-function sendVerificationCode($first_name, $email_addr, $code, $lang) {
+function sendVerificationCode($first_name, $credential_key, $code, $lang) {
     $client = new Client(['base_uri' => 'https://api.eu.mailgun.net/v3/']);
     $mailgunApiKey = getenv('MAILGUN_API_KEY');
     $mailgunDomain = 'mail.gobrik.com';
@@ -60,7 +60,7 @@ function sendVerificationCode($first_name, $email_addr, $code, $lang) {
             'auth' => ['api', $mailgunApiKey],
             'form_params' => [
                 'from' => 'Buwana Team <no-reply@mail.gobrik.com>',
-                'to' => $email_addr,
+                'to' => $credential_key,
                 'subject' => $subject,
                 'html' => $html_body,
                 'text' => $text_body
@@ -74,7 +74,7 @@ function sendVerificationCode($first_name, $email_addr, $code, $lang) {
 }
 
 // 📭 SMTP Fallback
-function backUpSMTPsender($first_name, $email_addr, $code) {
+function backUpSMTPsender($first_name, $credential_key, $code) {
     $mail = new PHPMailer(true);
 
     try {
@@ -88,7 +88,7 @@ function backUpSMTPsender($first_name, $email_addr, $code) {
         $mail->SMTPAutoTLS = false;
 
         $mail->setFrom('buwana@ecobricks.org', 'Buwana Backup Mailer');
-        $mail->addAddress($email_addr, $first_name);
+        $mail->addAddress($credential_key, $first_name);
 
         $mail->isHTML(true);
         $mail->Subject = 'Your Buwana Verification Code';
@@ -184,7 +184,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     <h2><span data-lang-id="001-alright">Alright</span> <?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="002-lets-confirm"> let's confirm your email.</span></h2>
     <p data-lang-id="003-to-create">To create your Buwana GoBrik account we need to confirm your chosen credential. This is how we'll keep in touch and keep your account secure.  Click the send button and we'll send an account activation code to:</p>
 
-    <h3><?php echo htmlspecialchars($email_addr); ?></h3>
+    <h3><?php echo htmlspecialchars($credential_key); ?></h3>
     <form id="send-email-code" method="post" action="">
         <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
             <div id="submit-section" style="text-align:center;margin-top:20px;padding-right:15px;padding-left:15px" title="Start Activation process" data-lang-id="004-send-email-button">
@@ -199,7 +199,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     class="<?php echo !$code_sent ? 'hidden' : ''; ?>"> <!-- Fix the inline PHP inside attributes -->
 
     <h2 data-lang-id="006-enter-code">Please enter your code:</h2>
-    <p><span data-lang-id="007-check-email">Check your email</span> <?php echo htmlspecialchars($email_addr); ?> <span data-lang-id="008-for-your-code">for your account confirmation code. Enter it here:</span></p>
+    <p><span data-lang-id="007-check-email">Check your email</span> <?php echo htmlspecialchars($credential_key); ?> <span data-lang-id="008-for-your-code">for your account confirmation code. Enter it here:</span></p>
 
     <div class="form-item" id="code-form" style="text-align:center;">
         <input type="text" maxlength="1" class="code-box" required placeholder="-">
