@@ -1,264 +1,157 @@
-<?php //signup-2.php sends new users here.
+<?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start(); // Needed for app context persistence
+session_start();
 
-require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
-require_once '../fetch_app_info.php';         // Retrieves designated app's core data
-require '../vendor/autoload.php'; // Path to Composer's autoloader
+require_once '../buwanaconn_env.php';
+require_once '../fetch_app_info.php';
+require '../vendor/autoload.php';
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// Set up page variables
+// Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.41';
-$page = 'activate';
+$page = 'confirm-email';
+$version = '0.42';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
-if (!empty($_SESSION['buwana_id'])) { // ✅ Direct session check instead of calling a function
-    $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? 'https://gobrik.com';
+if (!empty($_SESSION['buwana_id'])) {
+    $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? '/';
     echo "<script>
-        alert('Looks like you already have an account and are logged in! Let\'s take you to your dashboard.');
+        alert('Looks like you’re already logged in! Redirecting to your dashboard...');
         window.location.href = '$redirect_url';
     </script>";
     exit();
 }
-$response = ['success' => false];
+
+// 🧩 Pull Buwana ID
 $buwana_id = $_GET['id'] ?? null;
+if (!$buwana_id || !is_numeric($buwana_id)) {
+    die("⚠️ Invalid or missing Buwana ID.");
+}
 
-// Initialize user variables
-$ecobricker_id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+// Initialize
 $first_name = '';
-$email_addr = '';
-$code_sent = false;
-$static_code = 'AYYEW';
+$credential_key = '';
+$credential_type = '';
 $generated_code = '';
-$country_icon = '';
-$buwana_id = '';
+$code_sent_flag = false;
 
-// PART 2: FUNCTIONS
-
-// Function to generate a random 5-character alphanumeric code
+// 🔐 Generate activation code
 function generateCode() {
     return strtoupper(substr(bin2hex(random_bytes(3)), 0, 5));
 }
 
-// Function to send the verification code email using Mailgun API
-function sendVerificationCode($first_name, $email_addr, $verification_code, $lang) {
-    // Set up the Mailgun API client
-    $client = new Client(['base_uri' => 'https://api.eu.mailgun.net/v3/']); // EU endpoint for Mailgun
-    $mailgunApiKey = getenv('MAILGUN_API_KEY'); // Get Mailgun API key from environment
-    $mailgunDomain = 'mail.gobrik.com'; // Set Mailgun domain
+// 📬 Mailgun Sender
+function sendVerificationCode($first_name, $email_addr, $code, $lang) {
+    $client = new Client(['base_uri' => 'https://api.eu.mailgun.net/v3/']);
+    $mailgunApiKey = getenv('MAILGUN_API_KEY');
+    $mailgunDomain = 'mail.gobrik.com';
 
-    // Determine the email content based on the language
-    switch ($lang) {
-        case 'fr':
-            $subject = 'Code de vérification GoBrik';
-            $html_body = "Bonjour $first_name!<br><br>Si vous lisez ceci, un code d'activation pour votre compte GoBrik et Buwana a été demandé ! Le code pour activer votre compte est :<br><br><b>$verification_code</b><br><br>Retournez à votre navigateur et entrez le code.<br><br>L'équipe GoBrik";
-            $text_body = "Bonjour $first_name! Si vous lisez ceci, un code d'activation pour votre compte GoBrik et Buwana a été demandé ! Le code pour activer votre compte est : $verification_code. Retournez à votre navigateur et entrez le code. L'équipe GoBrik";
-            break;
-        case 'es':
-            $subject = 'Código de verificación de GoBrik';
-            $html_body = "Hola $first_name!<br><br>¡Si estás leyendo esto, se ha solicitado un código de activación para tu cuenta de GoBrik y Buwana! El código para activar tu cuenta es:<br><br><b>$verification_code</b><br><br>Vuelve a tu navegador e ingresa el código.<br><br>El equipo de GoBrik";
-            $text_body = "Hola $first_name! Si estás leyendo esto, se ha solicitado un código de activación para tu cuenta de GoBrik y Buwana! El código para activar tu cuenta es: $verification_code. Vuelve a tu navegador e ingresa el código. El equipo de GoBrik";
-            break;
-        case 'id':
-            $subject = 'Kode Verifikasi GoBrik';
-            $html_body = "Halo $first_name!<br><br>Jika Anda membaca ini, kode aktivasi untuk akun GoBrik dan Buwana Anda telah diminta! Kode untuk mengaktifkan akun Anda adalah:<br><br><b>$verification_code</b><br><br>Kembali ke browser Anda dan masukkan kodenya.<br><br>Tim GoBrik";
-            $text_body = "Halo $first_name! Jika Anda membaca ini, kode aktivasi untuk akun GoBrik dan Buwana Anda telah diminta! Kode untuk mengaktifkan akun Anda adalah: $verification_code. Kembali ke browser Anda dan masukkan kodenya. Tim GoBrik";
-            break;
-        case 'en':
-        default:
-            $subject = 'GoBrik Verification Code';
-            $html_body = "Hello $first_name!<br><br>If you are reading this, an activation code for your GoBrik and Buwana account has been requested! The code to activate your account is:<br><br><b>$verification_code</b><br><br>Return back to your browser and enter the code.<br><br>The GoBrik team";
-            $text_body = "Hello $first_name! If you're reading this, an activation code for your GoBrik and Buwana account has been requested! The code to activate your account is: $verification_code. Return back to your browser and enter the code. The GoBrik team";
-            break;
-    }
+    $subject = "Your Verification Code";
+    $html_body = "Hi $first_name,<br><br>Your verification code is: <b>$code</b><br><br>Enter this code to continue your registration.<br><br>— The Buwana Team";
+    $text_body = "Hi $first_name, your verification code is: $code. Enter this code to continue your registration. — The Buwana Team";
 
     try {
-        // Send the email using Mailgun's API
         $response = $client->post("{$mailgunDomain}/messages", [
             'auth' => ['api', $mailgunApiKey],
             'form_params' => [
-                'from' => 'GoBrik Team <no-reply@mail.gobrik.com>', // Verified domain email
+                'from' => 'Buwana Team <no-reply@mail.gobrik.com>',
                 'to' => $email_addr,
                 'subject' => $subject,
                 'html' => $html_body,
-                'text' => $text_body, // Plain text fallback
+                'text' => $text_body
             ]
         ]);
-
-        // Check response status
-        if ($response->getStatusCode() == 200) {
-            error_log("Mailgun: Verification email sent successfully to $email_addr");
-            return true;
-        } else {
-            error_log("Mailgun: Failed to send verification email. Status: " . $response->getStatusCode());
-            return false;
-        }
-
+        return $response->getStatusCode() === 200;
     } catch (RequestException $e) {
-        error_log("Mailgun API Exception: " . $e->getMessage());
+        error_log("Mailgun error: " . $e->getMessage());
         return false;
     }
 }
 
-// PART 3: Check if ecobricker_id is passed in the URL
-if (is_null($ecobricker_id)) {
-    echo '<script>
-        alert("Hmm... something went wrong. No ecobricker ID was passed along. Please try logging in again. If this problem persists, you\'ll need to create a new account.");
-        window.location.href = "login.php";
-    </script>';
-    exit();
-}
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-
-function backUpSMTPsender($first_name, $email_addr, $verification_code, $lang) {
+// 📭 SMTP Fallback
+function backUpSMTPsender($first_name, $email_addr, $code) {
     $mail = new PHPMailer(true);
 
     try {
-        // Enable SMTP debug output to logs (for development)
-        $mail->SMTPDebug = 2; // 0 = off, 2 = verbose
-        $mail->Debugoutput = function($str, $level) {
-            error_log("SMTP Debug [$level]: $str");
-        };
-
-        // Server settings
         $mail->isSMTP();
-$mail->Host = getenv('SMTP_HOST');
-$mail->SMTPAuth = true;
-$mail->Username = getenv('SMTP_USERNAME');
-$mail->Password = getenv('SMTP_PASSWORD');
-$mail->Port = getenv('SMTP_PORT');
+        $mail->Host = getenv('SMTP_HOST');
+        $mail->SMTPAuth = true;
+        $mail->Username = getenv('SMTP_USERNAME');
+        $mail->Password = getenv('SMTP_PASSWORD');
+        $mail->Port = getenv('SMTP_PORT');
+        $mail->SMTPSecure = false;
+        $mail->SMTPAutoTLS = false;
 
-// Disable encryption
-$mail->SMTPSecure = false;
-$mail->SMTPAutoTLS = false;
-
-        // Log basic SMTP config
-        error_log("SMTP fallback: Trying to send email using:");
-        error_log("Host: " . $mail->Host);
-        error_log("Port: " . $mail->Port);
-        error_log("Username: " . $mail->Username);
-        error_log("SMTPAuth: " . ($mail->SMTPAuth ? "true" : "false"));
-
-        // Sender & recipient
-        $mail->setFrom('gobrik@ecobricks.org', 'GoBrik Backup Mailer');
+        $mail->setFrom('buwana@ecobricks.org', 'Buwana Backup Mailer');
         $mail->addAddress($email_addr, $first_name);
 
-        // Language-specific content
-        switch ($lang) {
-            case 'fr':
-                $subject = 'Code de vérification GoBrik';
-                $html_body = "Bonjour $first_name!<br><br>Votre code d'activation est : <b>$verification_code</b><br><br>Retournez à votre navigateur pour le saisir.<br><br>L'équipe GoBrik";
-                $text_body = "Bonjour $first_name! Votre code d'activation est : $verification_code. Retournez à votre navigateur pour le saisir. L'équipe GoBrik";
-                break;
-            case 'es':
-                $subject = 'Código de verificación de GoBrik';
-                $html_body = "Hola $first_name!<br><br>Tu código de activación es: <b>$verification_code</b><br><br>Vuelve a tu navegador para ingresarlo.<br><br>El equipo de GoBrik";
-                $text_body = "Hola $first_name! Tu código de activación es: $verification_code. Vuelve a tu navegador para ingresarlo. El equipo de GoBrik";
-                break;
-            case 'id':
-                $subject = 'Kode Verifikasi GoBrik';
-                $html_body = "Halo $first_name!<br><br>Kode aktivasi Anda adalah: <b>$verification_code</b><br><br>Kembali ke browser Anda untuk memasukkan kode.<br><br>Tim GoBrik";
-                $text_body = "Halo $first_name! Kode aktivasi Anda adalah: $verification_code. Kembali ke browser Anda untuk memasukkan kode. Tim GoBrik";
-                break;
-            case 'en':
-            default:
-                $subject = 'GoBrik Verification Code';
-                $html_body = "Hello $first_name!<br><br>Your activation code is: <b>$verification_code</b><br><br>Return to your browser and enter the code.<br><br>The GoBrik team";
-                $text_body = "Hello $first_name! Your activation code is: $verification_code. Return to your browser and enter the code. The GoBrik team";
-                break;
-        }
-
-        // Email content
         $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body = $html_body;
-        $mail->AltBody = $text_body;
-
-        // Add timeouts and safety
-        $mail->Timeout = 10;
-        $mail->SMTPConnectTimeout = 10;
-        $mail->SMTPKeepAlive = false;
+        $mail->Subject = 'Your Buwana Verification Code';
+        $mail->Body = "Hello $first_name!<br><br>Your activation code is: <b>$code</b><br><br>Enter this code on the verification page.<br><br>The Buwana Team";
+        $mail->AltBody = "Hello $first_name! Your activation code is: $code. Enter this code on the verification page.";
 
         $mail->send();
-        error_log("✅ SMTP: Fallback verification email sent successfully to $email_addr");
         return true;
-
     } catch (\Throwable $e) {
-        error_log("🚨 PHPMailer Throwable Exception: " . $e->getMessage());
-        error_log("❌ PHPMailer ErrorInfo: " . $mail->ErrorInfo);
+        error_log("PHPMailer error: " . $e->getMessage());
         return false;
     }
 }
 
+// 🧠 PART 4: Get user info from Buwana DB
+$sql = "SELECT u.first_name, c.credential_key, c.credential_type
+        FROM users_tb u
+        JOIN credentials_tb c ON u.buwana_id = c.buwana_id
+        WHERE u.buwana_id = ?";
+$stmt = $buwana_conn->prepare($sql);
+$stmt->bind_param("i", $buwana_id);
+$stmt->execute();
+$stmt->bind_result($first_name, $credential_key, $credential_type);
+$stmt->fetch();
+$stmt->close();
 
-
-
-
-
-// PART 4: Look up user information using ecobricker_id provided in URL
-require_once("../gobrikconn_env.php");
-
-$sql_user_info = "SELECT first_name, email_addr, gobrik_migrated, buwana_id FROM tb_ecobrickers WHERE ecobricker_id = ?";
-$stmt_user_info = $gobrik_conn->prepare($sql_user_info);
-if ($stmt_user_info) {
-    $stmt_user_info->bind_param('i', $ecobricker_id);
-    $stmt_user_info->execute();
-    $stmt_user_info->bind_result($first_name, $email_addr, $gobrik_migrated, $buwana_id);
-    $stmt_user_info->fetch();
-    $stmt_user_info->close();
-} else {
-    die('Error preparing statement for fetching user info: ' . $gobrik_conn->error);
+if (!$credential_key || !$credential_type) {
+    die("⚠️ Missing or invalid credential information.");
 }
 
-// Check if buwana_id is empty and handle accordingly (if needed)
-if (empty($buwana_id)) {
-    // Handle the case where buwana_id is null or empty
-    $buwana_id = null; // You can choose to set it to null or any default value if needed
-}
-
-
-// PART 5: Generate the code and update the activation_code field in the database
+// PART 5: Generate and update activation code in credentials_tb
 $generated_code = generateCode();
 
-$sql_update_code = "UPDATE tb_ecobrickers SET activation_code = ? WHERE ecobricker_id = ?";
-$stmt_update_code = $gobrik_conn->prepare($sql_update_code);
-if ($stmt_update_code) {
-    $stmt_update_code->bind_param('si', $generated_code, $ecobricker_id);
-    $stmt_update_code->execute();
-    $stmt_update_code->close();
-} else {
-    die('Error preparing statement for updating activation code: ' . $gobrik_conn->error);
-}
+$update_sql = "UPDATE credentials_tb SET activation_code = ? WHERE buwana_id = ?";
+$update_stmt = $buwana_conn->prepare($update_sql);
+$update_stmt->bind_param("si", $generated_code, $buwana_id);
+$update_stmt->execute();
+$update_stmt->close();
 
-
-// PART 6: Handle form submission to send the confirmation code by email
+// 📩 PART 6: Send verification code
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['send_email']) || isset($_POST['resend_email']))) {
-    $code_sent = sendVerificationCode($first_name, $email_addr, $generated_code, $lang);
 
-    if (!$code_sent) {
-        // Try backup SMTP method
-        $code_sent = backUpSMTPsender($first_name, $email_addr, $generated_code, $lang);
+    if ($credential_type === 'e-mail' || $credential_type === 'email') {
+        $code_sent = sendVerificationCode($first_name, $credential_key, $generated_code, $lang);
+
+        if (!$code_sent) {
+            $code_sent = backUpSMTPsender($first_name, $credential_key, $generated_code);
+        }
+
+        if ($code_sent) {
+            $code_sent_flag = true;
+        } else {
+            echo '<script>alert("Verification email failed to send using both methods. Please try again later or contact support.");</script>';
+        }
+    } elseif ($credential_type === 'phone') {
+        echo '<script>alert("📱 SMS verification is under construction. Please use an email address for now.");</script>';
+    } else {
+        echo '<script>alert("Unsupported credential type.");</script>';
     }
-
-if ($code_sent) {
-    $code_sent_flag = true;
-} else {
-    echo '<script>alert("We tried both our main and backup servers, but your verification email could not be sent. Please try again later or contact support.");</script>';
-    error_log("❌ Final email attempt failed.");
 }
-}
-
-
-$gobrik_conn->close();
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
