@@ -2,19 +2,19 @@
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-ob_start(); // Start output buffering
+ob_start();
 
 $response = ['success' => false];
 
-require_once '../buwanaconn_env.php'; // Buwana DB only (no GoBrik now!)
+require_once '../buwanaconn_env.php';
 
 function sendJsonError($error) {
-    ob_end_clean(); // Clear any previous output
+    error_log("Signup-2 Error: $error"); // 🧠 Log it!
+    ob_end_clean();
     echo json_encode(['success' => false, 'error' => $error]);
     exit();
 }
 
-// PART 1: Process the incoming POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $buwana_id = $_GET['id'] ?? null;
 
@@ -22,18 +22,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         sendJsonError('invalid_buwana_id');
     }
 
-    // Sanitize inputs
-    $credential_value = filter_var($_POST['credential_value'], FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password_hash'];
+    // 🧼 Sanitize inputs
+    $credential_value = filter_var(trim($_POST['credential_value']), FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password_hash'] ?? '';
 
-    if (empty($credential_value)) sendJsonError('invalid_email');
-    if (empty($password) || strlen($password) < 6) sendJsonError('invalid_password');
+    if (!$credential_value) sendJsonError('invalid_email');
+    if (strlen($password) < 6) sendJsonError('invalid_password');
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    // PART 2: Get user's first name from Buwana DB
-    $sql = "SELECT first_name FROM users_tb WHERE buwana_id = ?";
-    $stmt = $buwana_conn->prepare($sql);
+    // 🎯 Get user's name (used later for potential messages/logs)
+    $stmt = $buwana_conn->prepare("SELECT first_name FROM users_tb WHERE buwana_id = ?");
     if (!$stmt) sendJsonError('db_error_first_name');
     $stmt->bind_param("i", $buwana_id);
     $stmt->execute();
@@ -43,9 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (empty($first_name)) sendJsonError('missing_first_name');
 
-    // PART 3: Check for email uniqueness in Buwana DB
-    $sql = "SELECT COUNT(*), buwana_id FROM users_tb WHERE email = ?";
-    $stmt = $buwana_conn->prepare($sql);
+    // 🔁 Check for existing email used by a different buwana_id
+    $stmt = $buwana_conn->prepare("SELECT COUNT(*), buwana_id FROM users_tb WHERE email = ?");
     if (!$stmt) sendJsonError('db_error_check_email');
     $stmt->bind_param("s", $credential_value);
     $stmt->execute();
@@ -57,30 +55,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         sendJsonError('duplicate_email');
     }
 
-    // PART 4: Update the user record
-    $sql = "UPDATE users_tb
-            SET email = ?, password_hash = ?,
-                account_status = 'signup-2_process run. Email unverified',
-                last_login = NOW()
-            WHERE buwana_id = ?";
-    $stmt = $buwana_conn->prepare($sql);
+    // 🔄 Update user record
+    $stmt = $buwana_conn->prepare("UPDATE users_tb
+        SET email = ?, password_hash = ?,
+            account_status = 'signup-2_process run. Email unverified',
+            last_login = NOW()
+        WHERE buwana_id = ?");
     if (!$stmt) sendJsonError('db_error_user_update');
-
     $stmt->bind_param("ssi", $credential_value, $password_hash, $buwana_id);
     if (!$stmt->execute()) sendJsonError('user_update_failed');
     $stmt->close();
 
-    // PART 5: Update credentials_tb
-    $sql = "UPDATE credentials_tb
-            SET credential_key = ?, credential_type = 'e-mail'
-            WHERE buwana_id = ?";
-    $stmt = $buwana_conn->prepare($sql);
+    // 🔑 Update credentials record
+    $stmt = $buwana_conn->prepare("UPDATE credentials_tb SET credential_key = ?, credential_type = 'email' WHERE buwana_id = ?");
     if (!$stmt) sendJsonError('db_error_credentials');
     $stmt->bind_param("si", $credential_value, $buwana_id);
     $stmt->execute();
     $stmt->close();
 
-    // ✅ Success – Redirect to confirm page with buwana_id
+    // ✅ Send response
     $response['success'] = true;
     $response['redirect'] = "signup-3.php?id=" . urlencode($buwana_id);
 }

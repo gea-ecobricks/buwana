@@ -189,7 +189,7 @@ if ($stmt_update_gobrik) {
 $gobrik_conn->close();
 
 // Redirect to the next step
-header("Location: activate-subscriptions.php?id=" . urlencode($buwana_id));
+header("Location: signup-5.php?id=" . urlencode($buwana_id));
 exit();
 
 
@@ -310,7 +310,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 </div>
 </div>
 <!-- FOOTER STARTS HERE -->
-<?php require_once ("../footer-2024.php"); ?>
+<?php require_once ("../footer-2025.php"); ?>
 
 
 
