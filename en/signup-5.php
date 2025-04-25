@@ -58,6 +58,7 @@ $subscribed_newsletters = [];
 // Include database connection
 include '../buwanaconn_env.php';
 include '../gobrikconn_env.php';
+require_once ("../scripts/earthen_subscribe_functions.php");
 
 // Look up user information if buwana_id is provided
 if ($buwana_id) {
