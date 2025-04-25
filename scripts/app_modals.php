@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("There was a problem submitting the form.");
             console.error("❌ Fetch error:", err);
           });
-      }, 6000);
+      }, 600);
     });
   });
 });
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]'), JSON_UNESCAPED_UNICODE) ?>;
 // ✅ Reusable emoji spinner
 function startEarthlingEmojiSpinner(emojiContainer, form) {
-  const earthlings = window.appEmojis?.length ? window.appEmojis : ["🐵", "🦉", "🦋"];
+  const earthlings = window.appEmojis?.length ? window.appEmojis : ["🐵", "🦉", "😍"];
   let index = 0;
   emojiContainer.style.display = 'block';
   emojiContainer.style.opacity = 1;
@@ -191,9 +191,6 @@ function startEarthlingEmojiSpinner(emojiContainer, form) {
     index++;
   }, 100);
 
-  setTimeout(() => {
-    form.submit(); // Final fallback
-  }, 5000);
 }
 
 function shakeElement(el) {
