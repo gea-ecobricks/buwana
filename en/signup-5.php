@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup';
-$version = '0.75';
+$version = '0.76';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -168,16 +168,22 @@ if (!empty($credential_key)) {
             </div>
         <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
 
-<p data-lang-id="008c-your-activation-complete-2" style="text-align:center;margin-top:35px;">Your Buwana account activation is almost complete!  We saved the best part for last.</p>
+
 
            </div>
 
-            <div id="submit-section" style="text-align:center;margin-top:10px;" data-lang-id="016x-complete-button">
- <button type="submit" id="submit-button" class="kick-ass-submit" title="Be sure to choose your local watershed!">
-                        <span id="submit-button-text" data-lang-id="015-next-button-x">Finalize ➡</span>
-                        <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
-                    </button>            </div>
-                <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
+
+                 <!-- Kick-Ass Submit Button -->
+            <div id="submit-section" class="submit-button-wrapper">
+               <p data-lang-id="008c-your-activation-complete-2" style="text-align:center;margin-top:35px;">Your Buwana account activation is almost complete!  We saved the best part for last.</p>
+
+                <button type="submit" id="submit-button" class="kick-ass-submit">
+                    <span id="submit-button-text" data-lang-id="015-next-button-x">Finalize ➡</span>
+                    <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
+                </button>
+            </div>
+
+        <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
 
         </form>
 
