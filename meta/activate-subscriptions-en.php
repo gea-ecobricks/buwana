@@ -1,7 +1,7 @@
 <title>Activate your Earthen Subscriptions | GoBrik</title>
 <meta name="keywords" content="Earthen, subscriptions, ativate, manage, unsubscribe">
 <meta name="description" content="Activate and manage your Earthen newsletter subscriptions">
-<meta name="author" content="GoBrik.com">
+<meta name="author" content="Buwana">
 <meta name="last-modified" content="' . $lastModified . '">
 <meta name="revised" content="' . $lastModified . '">
 
