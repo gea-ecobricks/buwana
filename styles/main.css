@@ -358,6 +358,19 @@
 }
 
 /* Language switcher */
+
+#language-menu-slider {
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    max-height: 0; /* Default collapsed */
+}
+
+.menu-slider-visible {
+    max-height: 500px; /* or whatever fits your menu content */
+}
+
+
+
 #language-code {
     font-size: 1.1em;
     padding: 6px 10px;

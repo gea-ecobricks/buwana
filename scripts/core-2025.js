@@ -122,16 +122,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // 🌐 Hide language selector with a slide-up animation
     function hideLangSelector() {
         const langMenu = document.getElementById('language-menu-slider');
-        if (langMenu && langMenu.classList.contains('menu-slider-visible')) {
-            langMenu.classList.remove('menu-slider-visible');
+        if (!langMenu) return;
 
-            // Optional: animate with slide-up if you want fancy
-            langMenu.style.transition = 'max-height 0.3s ease';
+        if (langMenu.classList.contains('menu-slider-visible')) {
+            // Animate slide up
             langMenu.style.maxHeight = '0';
+            langMenu.style.overflow = 'hidden';
+            langMenu.style.transition = 'max-height 0.4s ease';
+
+            // After animation is complete, remove the visible class to fully hide
+            setTimeout(() => {
+                langMenu.classList.remove('menu-slider-visible');
+                langMenu.style.removeProperty('max-height');  // Reset height
+                langMenu.style.removeProperty('overflow');    // Reset overflow
+                langMenu.style.removeProperty('transition');  // Reset transition
+            }, 400); // match transition duration
         }
 
         document.removeEventListener('click', documentClickListenerLang);
     }
+
 
 
     // 🔁 Toggle settings panel
