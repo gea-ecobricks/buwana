@@ -257,7 +257,7 @@ https://github.com/gea-ecobricks/buwana/-->
 document.addEventListener('DOMContentLoaded', function() {
     const staticCode = "AYYEW";
     const generatedCode = <?php echo json_encode($generated_code); ?>;
-    const buwana_id = <?php echo json_encode($buwana_id); ?>;
+
     const lang = '<?php echo $lang; ?>';
     let timeLeft = 60;
     const sendEmailForm = document.getElementById('send-email-code');
