@@ -150,21 +150,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['send_email']) || iss
     }
 }
 
+
+// Echo the HTML structure
+echo '<!DOCTYPE html>
+<html lang="' . htmlspecialchars($lang, ENT_QUOTES, 'UTF-8') . '">
+<head>
+<meta charset="UTF-8">
+';
+
+
 ?>
 
 
-<!DOCTYPE html>
-<html lang="<?php echo $lang; ?>">
-<head>
-<meta charset="UTF-8">
-<title>Confirm Your Email</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <!--
-GoBrik.com site version 3.0
+Buwana EarthenAuth
 Developed and made open source by the Global Ecobrick Alliance
 See our git hub repository for the full code and to help out:
-https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
+https://github.com/gea-ecobricks/buwana/-->
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <?php require_once ("../includes/signup-inc.php");?>
 

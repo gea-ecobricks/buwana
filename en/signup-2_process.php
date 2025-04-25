@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // PART 4: Update the user record
     $sql = "UPDATE users_tb
             SET email = ?, password_hash = ?,
-                account_status = 'signup_process run. Email unverified',
+                account_status = 'signup-2_process run. Email unverified',
                 last_login = NOW()
             WHERE buwana_id = ?";
     $stmt = $buwana_conn->prepare($sql);
