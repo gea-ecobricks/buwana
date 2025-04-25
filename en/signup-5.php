@@ -129,6 +129,7 @@ if (!empty($credential_key)) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <?php require_once ("../includes/signup-inc.php");?>
+
 <div class="splash-title-block"></div>
 <div id="splash-bar"></div>
 
@@ -190,7 +191,7 @@ if (!empty($credential_key)) {
 
 
         </div>
-    </did>
+
 
 
         <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
