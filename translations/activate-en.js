@@ -53,7 +53,7 @@ const en_Page_Translations = {
     "011-change-email": "Want to change your email?",
     "012-go-back-new-email": "Go back to enter a different email address.",
 
-    // activate-3.php
+    // signup-4.php
     "001-password-set": "your password is set.",
    "011-your-local-area": "Where is your home?",
   "011-location-full-caption": "Start typing your home location (without the street location!), and we'll fill in the rest.  Data source: OpenStreetMap API.",
