@@ -167,31 +167,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  const appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]'), JSON_UNESCAPED_UNICODE) ?>;
-// ✅ Reusable emoji spinner
-function startEarthlingEmojiSpinner(emojiContainer, form) {
+    window.appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]'), JSON_UNESCAPED_UNICODE) ?>;
+
+// ✅ Reusable emoji spinner for the Kick-Ass Button
+function startEarthlingEmojiSpinner(emojiContainer) {
   const earthlings = window.appEmojis?.length ? window.appEmojis : ["🐵", "🦉", "😍"];
   let index = 0;
+
+  // Show emoji container
   emojiContainer.style.display = 'block';
   emojiContainer.style.opacity = 1;
 
+  // 🌀 Start cycling emojis every 100ms
   const interval = setInterval(() => {
     if (index >= earthlings.length) {
-      clearInterval(interval);
+      clearInterval(interval); // ✅ Stop when we've run through all emojis
       return;
     }
 
-    emojiContainer.textContent = earthlings[index];
-    emojiContainer.style.opacity = 1;
+    emojiContainer.textContent = earthlings[index]; // Show emoji
 
+    // 🔄 Fade out each emoji after 200ms
     setTimeout(() => {
       emojiContainer.style.opacity = 0;
-    }, 200);
+    }, 600); // ⏱ Emoji fade duration
 
     index++;
-  }, 100);
-
+  }, 100); // ⏱ Time between emojis appearing
 }
+
 
 function shakeElement(el) {
   el.classList.add('shake');
