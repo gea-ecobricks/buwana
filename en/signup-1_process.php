@@ -73,9 +73,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $buwana_conn->close();
 
     // Redirect back to signup page with error (optional)
-    if (!$success) {
-        header("Location: signup-1.php?error=insert_failed");
-        exit();
-    }
+    echo json_encode([
+        'success' => true,
+        'redirect' => "signup-2.php?id=$buwana_id"
+    ]);
+    exit();
+
 }
 ?>
