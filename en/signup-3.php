@@ -257,7 +257,7 @@ https://github.com/gea-ecobricks/buwana/-->
 document.addEventListener('DOMContentLoaded', function() {
     const staticCode = "AYYEW";
     const generatedCode = <?php echo json_encode($generated_code); ?>;
-    const ecobricker_id = <?php echo json_encode($ecobricker_id); ?>;
+    const buwana_id = <?php echo json_encode($buwana_id); ?>;
     const lang = '<?php echo $lang; ?>';
     let timeLeft = 60;
     const sendEmailForm = document.getElementById('send-email-code');
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('resend-code').style.display = 'none';
 
                 setTimeout(function() {
-                    window.location.href = "../processing/activate_process.php?id=" + ecobricker_id + "&buwana_id=" + buwana_id;
+                    window.location.href = "../processing/signup-3_process.php?buwana_id=" + buwana_id;
                 }, 300);
             } else {
                 codeFeedback.textContent = feedbackMessages.incorrect;
