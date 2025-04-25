@@ -55,12 +55,6 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <?php require_once ("../includes/signup-inc.php");?>
 
-<?php if ($success): ?>
-    <script type="text/javascript">
-        showSuccessMessage();
-    </script>
-<?php endif; ?>
-
 
 <div class="splash-title-block"></div>
 <div id="splash-bar"></div>
@@ -80,7 +74,7 @@ https://github.com/gea-ecobricks/buwana/-->
         </div>
 
        <!--SIGNUP-1 FORM-->
-<form id="user-signup-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" novalidate>
+<form id="user-signup-form" method="post" action="signup-1_process.php" novalidate>
 
    <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
      <input type="text" id="first_name" name="first_name"
