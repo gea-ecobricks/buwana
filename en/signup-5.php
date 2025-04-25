@@ -155,53 +155,48 @@ if (!empty($credential_key)) {
             <!-- SLECT SUBSCRIPTIONS FORM
             Last Step <?php echo $first_name; ?>...-->
                    <!-- SIGNUP FORM -->
-        <!-- SIGNUP FORM -->
-        <form id="select-earthen-subs" method="post" action="signup-5_process.php" style="margin-top:30px;">
-             <input type="hidden" name="buwana_id" value="<?php echo htmlspecialchars($buwana_id); ?>">
-            <input type="hidden" name="credential_key" value="<?php echo htmlspecialchars($credential_key); ?>">
-            <input type="hidden" name="subscribed_newsletters" value="<?php echo htmlspecialchars(json_encode($subscribed_newsletters)); ?>">
-            <input type="hidden" name="ghost_member_id" value="<?php echo htmlspecialchars($ghost_member_id); ?>">
-            <input type="hidden" name="first_name" value="<?php echo htmlspecialchars($first_name); ?>"> <!-- Added input for first_name -->
+            <!-- SIGNUP FORM -->
+            <form id="select-earthen-subs" method="post" action="signup-5_process.php" style="margin-top:30px;">
+                 <input type="hidden" name="buwana_id" value="<?php echo htmlspecialchars($buwana_id); ?>">
+                <input type="hidden" name="credential_key" value="<?php echo htmlspecialchars($credential_key); ?>">
+                <input type="hidden" name="subscribed_newsletters" value="<?php echo htmlspecialchars(json_encode($subscribed_newsletters)); ?>">
+                <input type="hidden" name="ghost_member_id" value="<?php echo htmlspecialchars($ghost_member_id); ?>">
+                <input type="hidden" name="first_name" value="<?php echo htmlspecialchars($first_name); ?>"> <!-- Added input for first_name -->
 
-            <div class="subscription-boxes">
-                <!-- Subscription boxes will be populated here by the PHP function -->
-                <?php grabActiveEarthenSubs(); ?>
-            </div>
-        <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
-
-
-
-           </div>
+                <div class="subscription-boxes">
+                    <!-- Subscription boxes will be populated here by the PHP function -->
+                    <?php grabActiveEarthenSubs(); ?>
+                </div>
+            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
 
 
-                 <!-- Kick-Ass Submit Button -->
-            <div id="submit-section" class="submit-button-wrapper">
-               <p data-lang-id="008c-your-activation-complete-2" style="text-align:center;margin-top:35px;">Your Buwana account activation is almost complete!  We saved the best part for last.</p>
+                     <!-- Kick-Ass Submit Button -->
+                <div id="submit-section" class="submit-button-wrapper">
+                   <p data-lang-id="008c-your-activation-complete-2" style="text-align:center;margin-top:35px;">Your Buwana account activation is almost complete!  We saved the best part for last.</p>
 
-                <button type="submit" id="submit-button" class="kick-ass-submit">
-                    <span id="submit-button-text" data-lang-id="015-next-button-x">Finalize ➡</span>
-                    <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
-                </button>
-            </div>
+                    <button type="submit" id="submit-button" class="kick-ass-submit">
+                        <span id="submit-button-text" data-lang-id="015-next-button-x">Finalize ➡</span>
+                        <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
+                    </button>
+                </div>
 
-        <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
+            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
 
-        </form>
-
-
-
+            </form>
         </div>
-
-
-
-        <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
-            <p style="font-size: medium;">
-                <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a> if you need to correct something.
-            </p>
-        </div>
-
-
+    </div>
 </div>
+
+
+
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
+    <p style="font-size: medium;">
+        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a> if you need to correct something.
+    </p>
+</div>
+
+
+</div> <!--CLoses main-->
 
 <!-- FOOTER STARTS HERE -->
 <?php require_once ("../footer-2025.php"); ?>
