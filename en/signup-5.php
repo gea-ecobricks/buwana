@@ -155,7 +155,7 @@ if (!empty($credential_key)) {
             Last Step <?php echo $first_name; ?>...-->
                    <!-- SIGNUP FORM -->
         <!-- SIGNUP FORM -->
-        <form id="select-earthen-subs" method="post" action="process_sub_selections.php" style="margin-top:30px;">
+        <form id="select-earthen-subs" method="post" action="signup-5_process.php" style="margin-top:30px;">
              <input type="hidden" name="buwana_id" value="<?php echo htmlspecialchars($buwana_id); ?>">
             <input type="hidden" name="credential_key" value="<?php echo htmlspecialchars($credential_key); ?>">
             <input type="hidden" name="subscribed_newsletters" value="<?php echo htmlspecialchars(json_encode($subscribed_newsletters)); ?>">
