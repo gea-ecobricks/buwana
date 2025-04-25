@@ -72,8 +72,7 @@ function openAboutBuwanaModal() {
 
 
 /* SUBMISSION PROCESS */
-
-
+/* SUBMISSION PROCESS */
 document.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('form#user-signup-form');
 
@@ -119,36 +118,51 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.classList.add('striding');
       }, 400);
 
-      // Emoji spinner + actual submission
+      // Emoji spinner + AJAX submission
       setTimeout(() => {
         startEarthlingEmojiSpinner(emoji, form);
 
-        // Submit via AJAX
         const formData = new FormData(form);
         const actionUrl = form.getAttribute('action') || window.location.href;
+
+        console.log("🔄 Submitting form to:", actionUrl);
+        console.log("📤 FormData contents:");
+        for (const [key, value] of formData.entries()) {
+          console.log(`  ${key}: ${value}`);
+        }
 
         fetch(actionUrl, {
           method: 'POST',
           body: formData
         })
-          .then(res => res.json())
-          .then(data => {
+          .then(res => res.text()) // Inspect raw response
+          .then(text => {
+            console.log("📥 Raw response:", text);
+
+            let data;
+            try {
+              data = JSON.parse(text);
+            } catch (err) {
+              alert("⚠️ The server returned an invalid response. Check console.");
+              console.error("❌ JSON parse error:", err);
+              return;
+            }
+
             if (data.success && data.redirect) {
+              console.log("✅ Redirecting to:", data.redirect);
               window.location.href = data.redirect;
             } else {
               alert("Something went wrong. " + (data.error || "Please try again."));
-              console.error("Server error:", data);
+              console.error("❌ Server error:", data);
             }
           })
           .catch(err => {
-            alert("There was a problem submitting the form", err);
-            console.error("Fetch error:", err);
+            alert("There was a problem submitting the form.");
+            console.error("❌ Fetch error:", err);
           });
-
-      }, 4000);
+      }, 400);
     });
   });
-
 });
 
 
