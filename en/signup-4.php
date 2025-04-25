@@ -103,7 +103,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
         <!-- ACTIVATE 3 FORM -->
 
-      <form id="user-signup-form" method="post" action="activate-3.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+      <form id="user-signup-form" method="post" action="signup-4_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
     <!-- LOCATION FULL -->
     <div class="form-item">
@@ -147,16 +147,6 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
              </div>
 
 
-
-    <!-- SUBMIT SECTION
-    <div id="submit-section" style="text-align: center; margin-top: 25px; display: none;" data-lang-id="016-next-button-2">
-
-        <p style="margin-bottom:15px;">Buwana accounts use <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watersheds</a> as a great non-political way to localize users by bioregion!</p>
-
-        <input type="submit" id="submit-button" value="Next ➡️" class="submit-button enabled">
-
-    </div>-->
-
 </form>
 
 
@@ -166,9 +156,6 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </div>
 
 
-
-</div>
-
 <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
     <p style="font-size: medium;" >
 
@@ -176,9 +163,9 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </p>
 </div>
 
-
-
 </div>
+
+
 <!-- FOOTER STARTS HERE -->
 <?php require_once ("../footer-2025.php"); ?>
 

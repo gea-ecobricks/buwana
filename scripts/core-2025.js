@@ -177,6 +177,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
+    function hideLangSelector() {
+        var slider = document.getElementById('language-menu-slider');
+        slider.style.marginTop = '0px'; // Reset margin-top to 0px
+
+        // Set zIndex of top-page-image
+        var topPageImage = document.querySelector('.top-page-image');
+        if (topPageImage) {
+            topPageImage.style.zIndex = '35';
+        }
+
+        // Remove the named event listener from the document
+        document.removeEventListener('click', documentClickListener);
+    }
+
+
     // ✋ Click outside to close settings
     document.addEventListener('click', (e) => {
         if (!settingsPanel.contains(e.target) && e.target !== settingsButton) {
