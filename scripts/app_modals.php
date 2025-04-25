@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("There was a problem submitting the form.");
             console.error("❌ Fetch error:", err);
           });
-      }, 400);
+      }, 6000);
     });
   });
 });
@@ -193,7 +193,7 @@ function startEarthlingEmojiSpinner(emojiContainer, form) {
 
   setTimeout(() => {
     form.submit(); // Final fallback
-  }, 500);
+  }, 5000);
 }
 
 function shakeElement(el) {
