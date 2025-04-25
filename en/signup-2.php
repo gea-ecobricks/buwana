@@ -113,7 +113,7 @@ https://github.com/gea-ecobricks/buwana/-->
                 </div>-->
 
 
-           <form id="user-signup-form" method="post" action="signup_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+           <form id="user-signup-form" method="post" action="signup-2_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
              <!-- Email / Credential Field -->
              <div class="form-item float-label-group" id="credential-section">

@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // ✅ Success – Redirect to confirm page with buwana_id
     $response['success'] = true;
-    $response['redirect'] = "confirm-email.php?id=" . urlencode($buwana_id);
+    $response['redirect'] = "signup-3.php?id=" . urlencode($buwana_id);
 }
 
 ob_end_clean();
