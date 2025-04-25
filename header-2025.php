@@ -459,8 +459,8 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
 <!-- LOGIN SELECTOR -->
 <div id="login-menu-slider" class="top-slider-menu" tabindex="-1" role="menu">
   <div class="login-selector-box">
-    <a class="login-selector" target="_blank" href="https://gobrik.com/en/go.php#home">🌍 GoBrik</a>
-    <a class="login-selector" target="_blank" href="https://gobrik.com/email">🌒 EarthCal</a>
+    <a class="login-selector" target="_blank" href="https://buwana.ecobricks.org/en/signup-1.php?gbrk_f2c61a85a4cd4b8b89a7">🌍 GoBrik</a>
+    <a class="login-selector" target="_blank" href="https://buwana.ecobricks.org/en/signup-1.php?app=ecal_7f3da821d0a54f8a9b58">🌒 EarthCal</a>
   </div>
 </div>
 
