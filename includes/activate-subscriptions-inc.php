@@ -229,20 +229,6 @@ background: url('../icons/gobrik-news-icon.webp') no-repeat;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   .code-boxes {
         display: flex;
         justify-content: center;
