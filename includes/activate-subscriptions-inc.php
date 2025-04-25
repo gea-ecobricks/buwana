@@ -205,6 +205,8 @@ background: url('../icons/gobrik-news-icon.webp') no-repeat;
     }
 }
 
+
+
 /* Submit button at the bottom of the form */
 .submit-button {
     display: block;
@@ -224,7 +226,6 @@ background: url('../icons/gobrik-news-icon.webp') no-repeat;
 }
 
 
-//Next
 
 
 
