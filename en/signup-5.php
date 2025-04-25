@@ -168,15 +168,17 @@ if (!empty($credential_key)) {
             </div>
         <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
 
-<hr style="margin-top:50px; margin-bottom:14px;">
-<h2 data-lang-id="008-that-is-it">That's it!</h2>
-<p data-lang-id="008b-your-activation-complete">Your Buwana account activation process is complete!  Now you can wrap up and login...</p>
+<p data-lang-id="008c-your-activation-complete-2" style="text-align:center;margin-top:35px;">Your Buwana account activation is almost complete!  We saved the best part for last.</p>
 
            </div>
 
-            <div id="submit-section" style="text-align:center;margin-top:25px;" data-lang-id="016x-complete-button">
-                <input type="submit" id="submit-button" value="Finish & Login" class="submit-button enabled">
-            </div>
+            <div id="submit-section" style="text-align:center;margin-top:10px;" data-lang-id="016x-complete-button">
+ <button type="submit" id="submit-button" class="kick-ass-submit" title="Be sure to choose your local watershed!">
+                        <span id="submit-button-text" data-lang-id="015-next-button-x">Finalize ➡</span>
+                        <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
+                    </button>            </div>
+                <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
+
         </form>
 
 
@@ -185,8 +187,11 @@ if (!empty($credential_key)) {
     </did>
 
 
-    </div>
-</div>
+        <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
+            <p style="font-size: medium;">
+                <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a> if you need to correct something.
+            </p>
+        </div>
 
 
 </div>
@@ -256,6 +261,7 @@ enhanceNewsletterInfo();
 
 </script>
 
+<?php require_once ("../scripts/app_modals.php");?>
 
 
 
