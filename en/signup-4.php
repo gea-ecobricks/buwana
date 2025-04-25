@@ -1,46 +1,36 @@
 <?php
-//require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
 
-// Set up page variables
+require_once '../buwanaconn_env.php';
+require_once '../fetch_app_info.php';
+
+
+// PART 1: Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.43';
 $page = 'signup';
+$version = '0.73';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
-$is_logged_in = false; // Ensure not logged in for this page
-
-// Check if the user is logged in
-if (isLoggedIn()) {
+if (!empty($_SESSION['buwana_id'])) {
+    $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? '/';
     echo "<script>
-        alert('Looks like you already have an account and are logged in! Let\'s take you to your dashboard.');
-        window.location.href = 'dashboard.php';
+        alert('Looks like you’re already logged in! Redirecting to your dashboard...');
+        window.location.href = '$redirect_url';
     </script>";
     exit();
 }
 
-// Initialize variables
-$buwana_id = $_GET['id'] ?? null;  // Correctly initializing buwana_id
-$page = 'activate';
-$first_name = '';
-$pre_community = '';  // Ensure pre_community is initialized
-
-// PART 1: Check if the user is already logged in
-if (isset($_SESSION['buwana_id'])) {
-    header("Location: dashboard.php");
-    exit();
+// 🧩 Pull Buwana ID
+$buwana_id = $_GET['id'] ?? null;
+if (!$buwana_id || !is_numeric($buwana_id)) {
+    die("⚠️ Invalid or missing Buwana ID.");
 }
 
-// PART 2: Check if buwana_id is passed in the URL
-if (is_null($buwana_id)) {
-    echo '<script>
-        alert("Hmm... something went wrong. No buwana ID was passed along. Please try logging in again. If this problem persists, you\'ll need to create a new account.");
-        window.location.href = "login.php";
-    </script>';
-    exit();
-}
 
-// PART 3: Look up user information using buwana_id provided in URL
-require_once("../buwanaconn_env.php");
+
+// PART 2: Look up user information using buwana_id provided in URL
 
 // Fetch user information using buwana_id from the Buwana database
 $sql_user_info = "SELECT first_name FROM users_tb WHERE buwana_id = ?";
