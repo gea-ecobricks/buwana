@@ -141,13 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           })
           .catch(err => {
-            alert("There was a problem submitting the form.");
+            alert("There was a problem submitting the form", err);
             console.error("Fetch error:", err);
           });
 
-      }, 400);
+      }, 4000);
     });
   });
+
 });
 
 
