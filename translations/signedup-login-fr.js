@@ -20,5 +20,5 @@ const fr_Page_Translations = {
     "000-your-password": "Votre mot de passe :",
     "000-forgot-your-password": 'Mot de passe oublié ? <a href="#" onclick="showModalInfo(\'reset\')" class="underline-link">Réinitialisez-le.</a>',
     "000-password-wrong": "👉 Le mot de passe est incorrect.",
-    "000-no-account-yet": 'Vous n\'avez pas encore de compte ? <a href="signup.php">Inscrivez-vous !</a>'
+    "000-no-account-yet": 'Vous n\'avez pas encore de compte ? <a href="signup-1.php">Inscrivez-vous !</a>'
 };

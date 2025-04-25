@@ -14,7 +14,7 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 const id_Page_Translations = {
     "001-good-bye": "Selamat tinggal!",
     "002-successfuly-deleted": "Akun Anda telah berhasil dihapus.",
-    "003-change-mind": "Jika Anda berubah pikiran, Anda dapat <a href=\"signup.php\">membuat akun baru</a> kapan saja."
+    "003-change-mind": "Jika Anda berubah pikiran, Anda dapat <a href=\"signup-1.php\">membuat akun baru</a> kapan saja."
 };
 
 

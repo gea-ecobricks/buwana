@@ -14,6 +14,6 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 const fr_Page_Translations = {
     "001-good-bye": "Au revoir!",
     "002-successfuly-deleted": "Votre compte a été supprimé avec succès.",
-    "003-change-mind": "Si vous changez d'avis, vous pouvez <a href=\"signup.php\">créer un nouveau compte</a> à tout moment."
+    "003-change-mind": "Si vous changez d'avis, vous pouvez <a href=\"signup-1.php\">créer un nouveau compte</a> à tout moment."
 };
 

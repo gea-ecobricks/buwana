@@ -20,5 +20,5 @@ const en_Page_Translations = {
     "000-your-password": "Your password:",
     "000-forgot-your-password": "Forgot your password? <a href=\"#\" onclick=\"showModalInfo('reset')\" class=\"underline-link\">Reset it.</a>",
     "000-password-wrong": "👉 Password is wrong.",
-    "000-no-account-yet": "Don't have an account yet? <a href=\"signup.php\">Signup!</a>"
+    "000-no-account-yet": "Don't have an account yet? <a href=\"signup-1.php\">Signup!</a>"
 };

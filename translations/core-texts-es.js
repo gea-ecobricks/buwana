@@ -17,7 +17,7 @@ const es_Translations = {
     "000-your-password": "Tu contraseña:",
     "000-forgot-your-password": "¿Olvidaste tu contraseña? <a href=\"#\" onclick=\"showModalInfo('reset')\" class=\"underline-link\">Restablecerla.</a>",
     "000-password-wrong": "👉 La entrada es incorrecta.",
-    "000-no-account-yet": "¿Aún no tienes una cuenta? <a href=\"signup.php\">¡Regístrate!</a>",
+    "000-no-account-yet": "¿Aún no tienes una cuenta? <a href=\"signup-1.php\">¡Regístrate!</a>",
     "000-field-required-error": "☝️ Este campo de formulario es obligatorio.",
 
     /*Menú de páginas cortina*/

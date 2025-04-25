@@ -20,6 +20,6 @@ const id_Page_Translations = {
     "000-your-password": "Kata sandi Anda:",
     "000-forgot-your-password": 'Lupa kata sandi Anda? <a href="#" onclick="showModalInfo(\'reset\')" class="underline-link">Atur ulang.</a>',
     "000-password-wrong": "👉 Kata sandi salah.",
-    "000-no-account-yet": 'Belum punya akun? <a href="signup.php">Daftar!</a>'
+    "000-no-account-yet": 'Belum punya akun? <a href="signup-1.php">Daftar!</a>'
 };
 

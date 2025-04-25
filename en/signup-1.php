@@ -1,4 +1,9 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    require_once 'signup-1_process.php';
+    exit();
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start(); // Needed for app context persistence
@@ -21,76 +26,12 @@ if (!empty($_SESSION['buwana_id'])) {
         alert('Looks like you already have an account and are logged in! Let\'s take you to your dashboard.');
         window.location.href = '$redirect_url';
     </script>";
+    header("Location: $redirect_url"); // Fallback in case JS doesn't run
     exit();
 }
 
 
-$success = false;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = trim($_POST['first_name']);
-    $credential = trim($_POST['credential']);
-
-    $full_name = $first_name;
-    $created_at = date("Y-m-d H:i:s");
-    $last_login = date("Y-m-d H:i:s");
-    $account_status = 'name set only';
-    $role = 'ecobricker';
-    $notes = "Buwana beta testing";
-
-    $sql_user = "INSERT INTO users_tb (first_name, full_name, created_at, last_login, account_status, role, notes) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt_user = $buwana_conn->prepare($sql_user);
-
-    if ($stmt_user) {
-        $stmt_user->bind_param("sssssss", $first_name, $full_name, $created_at, $last_login, $account_status, $role, $notes);
-
-        if ($stmt_user->execute()) {
-            $buwana_id = $buwana_conn->insert_id;
-
-            // ✅ STEP: Register app connection
-            $client_id = $_SESSION['client_id'] ?? $default_client_id; // From fetch_app_info.php
-            $sql_connect = "INSERT INTO user_app_connections_tb (buwana_id, client_id) VALUES (?, ?)";
-            $stmt_connect = $buwana_conn->prepare($sql_connect);
-            if ($stmt_connect) {
-                $stmt_connect->bind_param("is", $buwana_id, $client_id);
-                $stmt_connect->execute();
-                $stmt_connect->close();
-            } else {
-                error_log("Error preparing app connection insert: " . $buwana_conn->error);
-            }
-
-            // Insert credential
-            $sql_credential = "INSERT INTO credentials_tb (buwana_id, credential_type, times_used, failed_password_count, last_login) VALUES (?, ?, 0, 0, ?)";
-            $stmt_credential = $buwana_conn->prepare($sql_credential);
-
-            if ($stmt_credential) {
-                $stmt_credential->bind_param("iss", $buwana_id, $credential, $last_login);
-
-                if ($stmt_credential->execute()) {
-                    $success = true;
-                    header("Location: signup-2.php?id=$buwana_id");
-                    exit();
-                } else {
-                    error_log("Error executing credential statement: " . $stmt_credential->error);
-                    $error_message = "An error occurred while creating your account. Please try again.";
-                }
-                $stmt_credential->close();
-            } else {
-                error_log("Error preparing credential statement: " . $buwana_conn->error);
-                $error_message = "An error occurred while creating your account. Please try again.";
-            }
-        } else {
-            error_log("Error executing user statement: " . $stmt_user->error);
-            $error_message = "An error occurred while creating your account. Please try again.";
-        }
-        $stmt_user->close();
-    } else {
-        error_log("Error preparing user statement: " . $buwana_conn->error);
-        $error_message = "An error occurred while creating your account. Please try again.";
-    }
-
-    $buwana_conn->close();
-}
 
 
 // Echo the HTML structure
@@ -138,7 +79,7 @@ https://github.com/gea-ecobricks/buwana/-->
             <div id="sub-status-message" style="margin-bottom:15px;"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="002-signup-subtext"> uses the Buwana Authentication protocol— a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
         </div>
 
-       <!--SIGNUP FORM-->
+       <!--SIGNUP-1 FORM-->
 <form id="user-signup-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" novalidate>
 
    <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
