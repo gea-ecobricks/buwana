@@ -119,6 +119,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let settingsOpen = false;
 
+    // 🌐 Hide language selector with a slide-up animation
+    function hideLangSelector() {
+        const langMenu = document.getElementById('language-menu-slider');
+        if (langMenu && langMenu.classList.contains('menu-slider-visible')) {
+            langMenu.classList.remove('menu-slider-visible');
+
+            // Optional: animate with slide-up if you want fancy
+            langMenu.style.transition = 'max-height 0.3s ease';
+            langMenu.style.maxHeight = '0';
+        }
+
+        document.removeEventListener('click', documentClickListenerLang);
+    }
+
+
     // 🔁 Toggle settings panel
     window.toggleSettingsMenu = () => {
         settingsOpen = !settingsOpen;
@@ -178,19 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    function hideLangSelector() {
-        var slider = document.getElementById('language-menu-slider');
-        slider.style.marginTop = '0px'; // Reset margin-top to 0px
-
-        // Set zIndex of top-page-image
-        var topPageImage = document.querySelector('.top-page-image');
-        if (topPageImage) {
-            topPageImage.style.zIndex = '35';
-        }
-
-        // Remove the named event listener from the document
-        document.removeEventListener('click', documentClickListener);
-    }
 
 
     // ✋ Click outside to close settings
@@ -213,6 +215,8 @@ window.addEventListener('scroll', () => {
     hideLangSelector();
     hideLoginSelector();
 });
+
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
