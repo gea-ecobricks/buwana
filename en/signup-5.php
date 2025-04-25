@@ -58,11 +58,9 @@ $subscribed_newsletters = [];
 // Include database connection
 include '../buwanaconn_env.php';
 include '../gobrikconn_env.php';
-require_once ("../scripts/earthen_subscribe_functions.php");
 
 // Look up user information if buwana_id is provided
 if ($buwana_id) {
-    $gea_status = getGEA_status($buwana_id);  //added here
     $sql_lookup_credential = "SELECT credential_type, credential_key FROM credentials_tb WHERE buwana_id = ?";
     $stmt_lookup_credential = $buwana_conn->prepare($sql_lookup_credential);
     if ($stmt_lookup_credential) {

@@ -66,104 +66,106 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
 
 
-
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <head>
-<meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--
+    GoBrik.com site version 3.0
+    Developed and made open source by the Global Ecobrick Alliance
+    See our git hub repository for the full code and to help out:
+    https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en
+    -->
 
+    <?php require_once ("../includes/signup-inc.php"); ?>
+</head>
 
-<!--
-GoBrik.com site version 3.0
-Developed and made open source by the Global Ecobrick Alliance
-See our git hub repository for the full code and to help out:
-https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
+<body>
 
-<?php require_once ("../includes/signup-inc.php");?>
+    <div class="splash-title-block"></div>
+    <div id="splash-bar"></div>
 
-<div class="splash-title-block"></div>
-<div id="splash-bar"></div>
+    <!-- PAGE CONTENT -->
+    <div id="top-page-image" class="welcome-casandra top-page-image"></div>
 
-<!-- PAGE CONTENT -->
-<div id="top-page-image" class="welcome-casandra top-page-image"></div>
+    <div id="form-submission-box" class="landing-page-form">
+        <div class="form-container">
 
-<div id="form-submission-box" class="landing-page-form">
-    <div class="form-container">
-        <div style="text-align:center;width:100%;margin:auto;">
-            <p style="color:green;">✔ <?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="001-password-set"> your password is set!</p>
-            <div id="status-message"><span data-lang-id="012-status-heading2"> Now let's get you localized.</span></div>
-            <div id="sub-status-message" data-lang-id="013-sub-ecozone" style="font-size:1.3em;padding-top:10px;padding-bottom:10px;">GoBrik is all about ecological action. Please help us determine your ecological zone:  the water shed or riverbasin where you live.</div>
+            <div style="text-align:center;width:100%;margin:auto;">
+                <p style="color:green;">✔ <?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="001-password-set"> your password is set!</span></p>
+                <div id="status-message"><span data-lang-id="012-status-heading2"> Now let's get you localized.</span></div>
+                <div id="sub-status-message" data-lang-id="013-sub-ecozone" style="font-size:1.3em;padding-top:10px;padding-bottom:10px;">
+                    GoBrik is all about ecological action. Please help us determine your ecological zone: the watershed or river basin where you live.
+                </div>
+            </div>
+
+            <!-- ACTIVATE 3 FORM -->
+            <form id="user-signup-form" method="post" action="signup-4_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+
+                <!-- LOCATION FULL -->
+                <div class="form-item">
+                    <label for="location_full" data-lang-id="011-your-local-area">Where is your home?</label><br>
+                    <div class="input-container">
+                        <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;">
+                        <div id="loading-spinner" class="spinner" style="display: none;"></div>
+                        <div id="location-pin" class="pin-icon">📍</div>
+                    </div>
+                    <p class="form-caption" data-lang-id="011-location-full-caption">
+                        Start typing your home location (without the street location!), and we'll fill in the rest. Data source: OpenStreetMap API.
+                    </p>
+                    <div id="location-error-required" class="form-field-error" data-lang-id="000-field-required-error">
+                        This field is required.
+                    </div>
+                </div>
+
+                <input type="hidden" id="lat" name="latitude">
+                <input type="hidden" id="lon" name="longitude">
+
+                <!-- MAP AND WATERSHED SEARCH SECTION -->
+                <div class="form-item" id="watershed-map-section" style="display: none; margin-top:20px;">
+                    <label for="watershed_select" data-lang-id="011-watershed-select">To what river/stream watershed does your local water flow?</label><br>
+                    <div id="map" style="height: 350px; border-radius: 0px 0px 12px 12px; margin-top: 8px;"></div>
+                    <p class="form-caption" data-lang-id="012-river-basics-2" style="margin-top:10px;">
+                        ℹ️ The map shows rivers and streams around you. Choose the one to which your water flows.
+                    </p>
+                    <select id="watershed_select" name="watershed_select" aria-label="Watershed Select" style="width: 100%; padding: 10px;">
+                        <option value="" disabled selected data-lang-id="011b-select-river">👉 Select river/stream...</option>
+                    </select>
+                </div>
+
+                <!-- Kick-Ass Submit Button -->
+                <div id="submit-section" style="display:none;" class="submit-button-wrapper">
+                    <p style="margin-bottom:15px;">
+                        Buwana accounts use
+                        <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watersheds</a>
+                        as a great non-political way to localize users by bioregion!
+                    </p>
+
+                    <button type="submit" id="submit-button" class="kick-ass-submit" title="Be sure to choose your local watershed!">
+                        <span id="submit-button-text" data-lang-id="015-next-button-x">Next ➡</span>
+                        <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
+                    </button>
+                </div>
+
+            </form>
+
         </div>
 
-        <!-- ACTIVATE 3 FORM -->
-
-      <form id="user-signup-form" method="post" action="signup-4_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
-
-    <!-- LOCATION FULL -->
-    <div class="form-item">
-        <label for="location_full" data-lang-id="011-your-local-area">Where is your home?</label><br>
-        <div class="input-container">
-            <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;">
-            <div id="loading-spinner" class="spinner" style="display: none;"></div>
-            <div id="location-pin" class="pin-icon">📍</div>
+        <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
+            <p style="font-size: medium;">
+                <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a> if you need to correct something.
+            </p>
         </div>
-        <p class="form-caption" data-lang-id="011-location-full-caption">Start typing your home location (without the street location!), and we'll fill in the rest.  Data source: OpenStreetMap API.</p>
-        <div id="location-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
     </div>
 
-    <input type="hidden" id="lat" name="latitude">
-    <input type="hidden" id="lon" name="longitude">
-
-    <!-- MAP AND WATERSHED SEARCH SECTION -->
-    <div class="form-item" id="watershed-map-section" style="display: none; margin-top:20px;">
-        <label for="watershed_select" data-lang-id="011-watershed-select">To what river/stream watershed does your local water flow?</label><br>
-        <div id="map" style="height: 350px; border-radius: 0px 0px 12px 12px; margin-top: 8px;"></div>
-        <p class="form-caption" data-lang-id="012-river-basics-2" style="margin-top:10px;">ℹ️ The map shows rivers and streams around you.  Choose the one to which your water flows.</p>
-        <select id="watershed_select" name="watershed_select" aria-label="Watershed Select" style="width: 100%; padding: 10px;">
-            <option value="" disabled selected data-lang-id="011b-select-river">👉 Select river/stream...</option>
-
-        </select>
-
-
-    </div>
-
-
-             <!-- Kick-Ass Submit Button -->
-             <div id="submit-section" style="display:none;" class="submit-button-wrapper">
-
-                         <p style="margin-bottom:15px;">Buwana accounts use <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watersheds</a> as a great non-political way to localize users by bioregion!</p>
-
-
-               <button type="submit" id="submit-button" class="kick-ass-submit" title="Be sure to choose your local watershed!">
-                 <span id="submit-button-text" data-lang-id="015-next-button-x">Next ➡</span>
-                 <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
-               </button>
-             </div>
-
-
-</form>
-
-
-
-
-
-    </div>
-
-
-<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
-    <p style="font-size: medium;" >
-
-        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a> if you need to correct something.
-    </p>
-</div>
-
-</div>
+</body>
+</html>
 
 
 <!-- FOOTER STARTS HERE -->
