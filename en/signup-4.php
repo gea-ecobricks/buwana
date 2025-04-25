@@ -245,7 +245,11 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
              <!-- Kick-Ass Submit Button -->
              <div id="submit-section" style="display:none;" class="submit-button-wrapper">
-               <button type="submit" id="submit-button" class="kick-ass-submit disabled" title="Be sure you wrote ecobrick correctly!">
+
+                         <p style="margin-bottom:15px;">Buwana accounts use <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watersheds</a> as a great non-political way to localize users by bioregion!</p>
+
+
+               <button type="submit" id="submit-button" class="kick-ass-submit" title="Be sure you wrote ecobrick correctly!">
                  <span id="submit-button-text" data-lang-id="015-next-button-x">Next ➡</span>
                  <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                </button>
@@ -269,14 +273,17 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 
     </div>
-</div>
 
 <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
     <p style="font-size: medium;" >
-        Need to correct something?
-        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a>
+
+        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a> if you need to correct something.
     </p>
 </div>
+
+</div>
+
+
 
 </div>
 <!-- FOOTER STARTS HERE -->
