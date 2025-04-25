@@ -53,7 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $stmt_cred->bind_param("iss", $buwana_id, $credential, $last_login);
                 if ($stmt_cred->execute()) {
                     $success = true;
-                    header("Location: signup-2.php?id=$buwana_id");
+                    echo json_encode([
+                        'success' => true,
+                        'redirect' => "signup-2.php?id=$buwana_id"
+                    ]);
                     exit();
                 } else {
                     error_log("❌ Failed to insert into credentials_tb: " . $stmt_cred->error);
