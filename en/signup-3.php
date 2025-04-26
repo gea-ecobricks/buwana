@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('resend-code').style.display = 'none';
 
                 setTimeout(function() {
-                    window.location.href = "../signup-3_process.php?id=" + buwana_id;
+                    window.location.href = "signup-3_process.php?id=" + buwana_id;
                 }, 300);
             } else {
                 codeFeedback.textContent = feedbackMessages.incorrect;
