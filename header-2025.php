@@ -305,7 +305,10 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
       }
     }
 
-
+body {
+width:100%;
+  overflow-x: hidden;
+}
 
 </style>
 
