@@ -389,15 +389,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function updateMainHeight() {
-    const main = document.getElementById('main');
-    const formBox = document.getElementById('form-submission-box');
-
-    if (main && formBox) {
-        main.style.height = formBox.offsetHeight + 'px';
-    }
-}
-
 
 
 </script>
