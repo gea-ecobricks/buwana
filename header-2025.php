@@ -388,7 +388,7 @@ width:100%;
 
 
 
-<div id="page-content"> <!--modal blur added here-->
+<div id="page-content" class="page-wrapper"> <!--modal blur added here-->
 
 
 
@@ -473,4 +473,4 @@ width:100%;
 
 
 
-<div id="main" class="page-wrapper">
+<div id="main" >
