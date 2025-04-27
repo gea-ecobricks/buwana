@@ -129,7 +129,7 @@ $update_stmt->execute();
 $update_stmt->close();
 
 // 📩 PART 6: Send verification code
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['send_email']) || isset($_POST['resend_email']))) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['submit-button']) || isset($_POST['resend_email']))) {
 
     if ($credential_type === 'e-mail' || $credential_type === 'email') {
         $code_sent = sendVerificationCode($first_name, $credential_key, $generated_code, $lang);
@@ -190,12 +190,12 @@ https://github.com/gea-ecobricks/buwana/-->
     <p data-lang-id="003-to-create">To create your Buwana GoBrik account we need to confirm your <?php echo htmlspecialchars($credential_type); ?>. This is how we'll keep in touch and keep your account secure.  Click the send button and we'll send an account activation code to:</p>
 
     <h3><?php echo htmlspecialchars($credential_key); ?></h3>
-    <form id="send-email-code" method="post" action="">
+    <form id="user-signup-form" method="post" action="">
 
 
          <!-- Kick-Ass Submit Button -->
                      <div id="submit-section" class="submit-button-wrapper">
-                       <button type="submit" id="submit-button" class="kick-ass-submit" title="Have the code sent to your email">
+                       <button type="submit" name="send_email" id="submit-button" class="kick-ass-submit" title="Have the code sent to your email">
                          <span id="submit-button-text" data-lang-id="015-register-button-x">📨 Send Code</span>
                          <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                        </button>
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const lang = '<?php echo $lang; ?>';
     let timeLeft = 60;
-    const sendEmailForm = document.getElementById('send-email-code');
+    const sendEmailForm = document.getElementById('user-signup-form');
     const buwana_id = <?php echo json_encode($buwana_id); ?>;
 
     const messages = {

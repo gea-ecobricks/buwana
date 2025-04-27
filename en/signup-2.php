@@ -206,110 +206,101 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 <script>
-$(document).ready(function () {
-  // === Elements ===
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('user-signup-form');
   const credentialField = document.getElementById('credential_value');
   const passwordField = document.getElementById('password_hash');
   const confirmPasswordField = document.getElementById('confirm_password');
   const humanCheckField = document.getElementById('human_check');
   const termsCheckbox = document.getElementById('terms');
   const submitButton = document.getElementById('submit-button');
-  const setPasswordSection = document.getElementById('set-password');
-  const confirmPasswordSection = document.getElementById('confirm-password-section');
-  const humanCheckSection = document.getElementById('human-check-section');
-  const submitSection = document.getElementById('submit-section');
-  const makerErrorInvalid = document.getElementById('maker-error-invalid');
   const duplicateEmailError = $('#duplicate-email-error');
   const duplicateGobrikEmail = $('#duplicate-gobrik-email');
   const loadingSpinner = $('#loading-spinner');
 
-  // === Initial UI State ===
-  setPasswordSection.style.display = 'none';
-  confirmPasswordSection.style.display = 'none';
-  humanCheckSection.style.display = 'none';
-  submitSection.style.display = 'none';
+  let filloutStartTime = null;
 
+  // 🧠 Helpers
   function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  // === Email Live Check ===
+  function checkHoneypot() {
+    const honeypot = document.getElementById('last_name');
+    return honeypot && honeypot.value.trim() !== '';
+  }
+
+  function startFilloutChrono() {
+    if (!filloutStartTime) {
+      filloutStartTime = Date.now();
+      console.log("🕰️ Fillout started...");
+    }
+  }
+
+  function calculateFilloutDuration() {
+    if (!filloutStartTime) return 999;
+    return Math.floor((Date.now() - filloutStartTime) / 1000);
+  }
+
+  // ✉️ Live email validation
   $('#credential_value').on('input blur', function () {
-    const email = $(this).val();
+    const email = $(this).val().trim();
     if (isValidEmail(email)) {
       loadingSpinner.removeClass('green red').show();
-      $.ajax({
-        url: '../scripts/check_email.php',
-        type: 'POST',
-        data: { credential_value: email },
-        success: function (response) {
-          loadingSpinner.hide();
-          try {
-            var res = JSON.parse(response);
-          } catch (e) {
-            console.error("Invalid JSON response", response);
-            alert("An error occurred while checking the email.");
-            return;
-          }
-
+      $.post('../scripts/check_email.php', { credential_value: email }, function (response) {
+        loadingSpinner.hide();
+        try {
+          const res = JSON.parse(response);
           if (res.success) {
             duplicateEmailError.hide();
             duplicateGobrikEmail.hide();
             loadingSpinner.addClass('green').show();
-            setPasswordSection.style.display = 'block';
           } else if (res.error === 'duplicate_email') {
             duplicateEmailError.show();
             duplicateGobrikEmail.hide();
             loadingSpinner.addClass('red').show();
-            setPasswordSection.style.display = 'none';
           } else if (res.error === 'duplicate_gobrik_email') {
             duplicateGobrikEmail.show();
             duplicateEmailError.hide();
             loadingSpinner.addClass('red').show();
-            setPasswordSection.style.display = 'none';
           } else {
-            alert("An error occurred: " + res.error);
+            alert("Error: " + res.error);
           }
-        },
-        error: function () {
-          loadingSpinner.hide();
-          alert("An error occurred while checking the email. Please try again.");
+        } catch (err) {
+          console.error("Invalid response:", response);
+          alert("Something went wrong checking email.");
         }
       });
-    } else {
-      setPasswordSection.style.display = 'none';
     }
   });
 
-  // === Password Matching Logic ===
+  // 🔐 Password validation
   passwordField.addEventListener('input', function () {
-    if (passwordField.value.length >= 6) {
-      confirmPasswordSection.style.display = 'block';
-    } else {
-      confirmPasswordSection.style.display = 'none';
-      humanCheckSection.style.display = 'none';
-      submitSection.style.display = 'none';
-    }
+    const confirmSection = document.getElementById('confirm-password-section');
+    confirmSection.style.display = passwordField.value.length >= 6 ? 'block' : 'none';
   });
 
   confirmPasswordField.addEventListener('input', function () {
+    const makerError = document.getElementById('maker-error-invalid');
+    const humanCheckSection = document.getElementById('human-check-section');
+    const submitSection = document.getElementById('submit-section');
+
     if (passwordField.value === confirmPasswordField.value) {
-      makerErrorInvalid.style.display = 'none';
+      makerError.style.display = 'none';
       humanCheckSection.style.display = 'block';
       submitSection.style.display = 'block';
     } else {
-      makerErrorInvalid.style.display = 'block';
+      makerError.style.display = 'block';
       humanCheckSection.style.display = 'none';
       submitSection.style.display = 'none';
     }
   });
 
-  // === Enable/Disable Submit Button ===
+  // 🧠 Human Check & Terms Check
   function updateSubmitButtonState() {
     const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
-    const enteredWord = humanCheckField.value.toLowerCase();
-    if (validWords.includes(enteredWord) && termsCheckbox.checked) {
+    const humanAnswer = humanCheckField.value.trim().toLowerCase();
+    if (validWords.includes(humanAnswer) && termsCheckbox.checked) {
       submitButton.classList.remove('disabled');
       submitButton.classList.add('enabled');
       submitButton.disabled = false;
@@ -323,89 +314,73 @@ $(document).ready(function () {
   humanCheckField.addEventListener('input', updateSubmitButtonState);
   termsCheckbox.addEventListener('change', updateSubmitButtonState);
 
-  // === Page-level Validation Function ===
-  window.validateOnSubmit = function () {
-      const email = credentialField.value.trim();
-      const password = passwordField.value;
-      const confirmPassword = confirmPasswordField.value;
-      const humanCheck = humanCheckField.value.toLowerCase();
-      const termsChecked = termsCheckbox.checked;
-      const honeypotTriggered = checkHoneypot(); // 🧠 check if honeypot filled
-      const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
+  // 🛰️ Form submit handler
+  form.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent native submit
 
-      // Optionally log it
-      console.log("Honeypot Triggered:", honeypotTriggered);
+    const filloutDuration = calculateFilloutDuration();
+    const honeypotTriggered = checkHoneypot();
+    const jsEnabledInput = document.createElement('input');
+    jsEnabledInput.type = 'hidden';
+    jsEnabledInput.name = 'js_enabled';
+    jsEnabledInput.value = 'true';
+    form.appendChild(jsEnabledInput);
 
-      return (
-        isValidEmail(email) &&
-        password.length >= 6 &&
-        password === confirmPassword &&
-        validWords.includes(humanCheck) &&
-        termsChecked
-      );
-  };
-
-});
-
-// === Track Form Fillout Time ===
-let filloutStartTime = null;
-
-function startFilloutChrono() {
-  if (!filloutStartTime) {
-    filloutStartTime = Date.now();
-    console.log("🕰️ Form filling started...");
-  }
-}
-
-function endFilloutChrono(event) {
-  if (filloutStartTime) {
-    const filloutEndTime = Date.now();
-    const filloutDuration = Math.floor((filloutEndTime - filloutStartTime) / 1000); // seconds
-    console.log(`✅ Form submitted after ${filloutDuration} seconds.`);
-
-    const chronoInput = document.getElementById('fillout_duration');
-    if (chronoInput) {
-      chronoInput.value = filloutDuration;
+    // 🧠 Append fillout duration
+    const durationInput = document.getElementById('fillout_duration');
+    if (durationInput) {
+      durationInput.value = filloutDuration;
     }
 
-    // Optional bot block:
-    if (filloutDuration < 5) {
-      alert("⚠️ Too fast! Possible bot.");
-      event.preventDefault();
+    // 🚀 Build FormData
+    const formData = new FormData(form);
+    formData.append('fillout_duration', filloutDuration);
+    if (honeypotTriggered) {
+      formData.set('last_name', document.getElementById('last_name').value.trim());
     }
-  }
-}
 
-// Start chrono on first user input
-document.querySelectorAll('#user-signup-form input').forEach(input => {
-  input.addEventListener('input', startFilloutChrono, { once: true });
+    console.log("📤 FormData being submitted:");
+    for (const [key, value] of formData.entries()) {
+      console.log(`- ${key}: ${value}`);
+    }
+
+    // 🎯 Finally post it
+    fetch(form.action, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(text => {
+      console.log("📥 Raw server response:", text);
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (error) {
+        console.error("❌ JSON parse error:", error);
+        alert("⚠️ Server returned invalid response.");
+        return;
+      }
+
+      if (data.success && data.redirect) {
+        window.location.href = data.redirect;
+      } else {
+        alert("⚠️ Submission failed: " + (data.error || "Unknown error"));
+      }
+    })
+    .catch(error => {
+      console.error("❌ Fetch error:", error);
+      alert("⚠️ Could not submit form. Please try again.");
+    });
+  });
+
+  // 🛫 Start chrono when user first types anywhere
+  document.querySelectorAll('#user-signup-form input').forEach(input => {
+    input.addEventListener('input', startFilloutChrono, { once: true });
+  });
+
 });
-
-// Attach chrono ender to form submit
-document.getElementById('user-signup-form').addEventListener('submit', endFilloutChrono);
-
-// === Mark JS enabled ===
-document.addEventListener('DOMContentLoaded', function () {
-  const jsEnabledInput = document.createElement('input');
-  jsEnabledInput.type = 'hidden';
-  jsEnabledInput.name = 'js_enabled';
-  jsEnabledInput.value = 'true';
-  document.getElementById('user-signup-form').appendChild(jsEnabledInput);
-});
-
-function checkHoneypot() {
-  const honeypotField = document.getElementById('last_name');
-  if (honeypotField && honeypotField.value.trim() !== '') {
-    console.log("🚨 Honeypot triggered! Bot likely.");
-    honeypotField.value = honeypotField.value.trim(); // just clean it
-    return 1;
-  }
-  return 0;
-}
-
-
-
 </script>
+
 
 
 
