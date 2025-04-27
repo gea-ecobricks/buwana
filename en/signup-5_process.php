@@ -58,7 +58,7 @@ if ($buwana_id) {
 // PART 4: Redirect the user to the finalize page with their buwana ID
 // PART 4: Redirect the user to the finalize page
 ob_clean(); // ✨ Clear any accidental output
-header('Location: finalize.php?id=' . urlencode($buwana_id));
+header('Location: signup-6.php?id=' . urlencode($buwana_id));
 exit();
 
 ?>
