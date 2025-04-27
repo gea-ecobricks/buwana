@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.76';
+$version = '0.77';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -103,7 +103,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
             <div style="text-align:center;width:100%;margin:auto;">
                 <h2><span data-lang-id="001-register-by">Register by</span> <?php echo $credential_type; ?></h2>
-                <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Let's get you set up on</span> <?= $app_info['app_display_name']; ?>.</p>
+                <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Let's set you up on</span> <?= $app_info['app_display_name']; ?>...</p>
             </div>
 
 <div class="form-item" id="last-name-field">
@@ -157,8 +157,8 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
-               <label for="human_check" data-lang-id="011-prove-human-x">Type the word "ecobrick"...</label>
-               <p class="form-caption"><span>This is a little test to see if you're human</span>
+               <label for="human_check" data-lang-id="011-prove-human">Type the word "ecobrick"...</label>
+               <p class="form-caption"><span>This is a little test to see if you're human!</span>
 
                  <span data-lang-id="012-fun-fact">🤓 Fun fact: </span>
                  <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick-x">ecobrick</a>

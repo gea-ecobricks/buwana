@@ -14,6 +14,14 @@
 
 <STYLE>
 
+
+    #main {
+      min-height: 100vh; /* Always at least full viewport height */
+      height: auto;      /* Allow dynamic expansion */
+      overflow: hidden;  /* Optional: if you want no accidental scrolls inside #main */
+    }
+
+
 /* Wrapper for button centering */
 .submit-button-wrapper {
   text-align: center;
@@ -354,12 +362,6 @@
 
     }
 
-
-
-
-#main {
-    height: fit-content;
-}
 
 
 .module-btn {

@@ -22,7 +22,7 @@ const en_Page_Translations = {
 
     // Next page: Signup-2 - Set your name and email
     "001-register-by": "Register by",
-    "002-now-lets-use": "Let's get you set up on ",
+    "002-now-lets-use": "Let's set you up on ",
     "003-to-register-on": "to register on ",
     "004-your": "Your",
     "004b-please": " please:",
@@ -34,7 +34,9 @@ const en_Page_Translations = {
     "009-confirm-pass": "Confirm Your Password:",
     "010-pass-error-no-match": "👉 Passwords do not match.",
     "011-human-check": "Human check:",
-    "011-prove-human": "Please type the word \"ecobrick\"...",
+    "011-prove-human": "Type the word \"ecobrick\"...",
+    "011b-prove-human": "This is a little test to see if you're human!",
+
     "012-fun-fact": "🤓 Fun fact:",
     "012b-is-spelled": " is spelled without a space, capital or hyphen!",
     "013-by-registering": "By registering today, I agree to the ",
