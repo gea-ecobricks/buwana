@@ -87,10 +87,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             bot_score = ?
         WHERE buwana_id = ?");
     if (!$stmt) sendJsonError('db_error_user_update');
-    $stmt->bind_param("ssiiiiii", $credential_value, $password_hash, $signup_timetaken, $honeypotted, $js_enabled_catch, $bot_score, $buwana_id);
+
+    $stmt->bind_param("ssiiiii", $credential_value, $password_hash, $signup_timetaken, $honeypotted, $js_enabled_catch, $bot_score, $buwana_id);
 
     if (!$stmt->execute()) sendJsonError('user_update_failed');
     $stmt->close();
+
 
     // 🔑 Update credentials_tb
     $stmt = $buwana_conn->prepare("UPDATE credentials_tb SET credential_key = ?, credential_type = 'email' WHERE buwana_id = ?");
