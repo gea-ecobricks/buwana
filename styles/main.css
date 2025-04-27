@@ -531,16 +531,7 @@
 
 }
 
-#main {
 
-    height: 100%;
-    transition: 0.3s; /* Smooth transition for height */
-    /* margin-top: 40px;
-    width: 100%;*/
-    margin-bottom: -1px;
-
-
-}
 
 
 .clearfix::after {
@@ -1785,11 +1776,14 @@ color: red;
 
 #main {
     width: 100%;
-    min-height: 100vh; /* Always at least full viewport height */
-    height: auto;      /* Let JS adjust it dynamically */
-    overflow: hidden;  /* Prevent weird overflows */
-    position: relative; /* So absolutely positioned children are relative to it */
+    min-height: 100vh;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    transition: height 0.3s ease;
+    margin-bottom:-1px;
 }
+
 
 
 
