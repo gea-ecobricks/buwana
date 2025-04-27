@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.771';
+$version = '0.772';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -325,21 +325,26 @@ $(document).ready(function () {
 
   // === Page-level Validation Function ===
   window.validateOnSubmit = function () {
-    const email = credentialField.value.trim();
-    const password = passwordField.value;
-    const confirmPassword = confirmPasswordField.value;
-    const humanCheck = humanCheckField.value.toLowerCase();
-    const termsChecked = termsCheckbox.checked;
-    const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
+      const email = credentialField.value.trim();
+      const password = passwordField.value;
+      const confirmPassword = confirmPasswordField.value;
+      const humanCheck = humanCheckField.value.toLowerCase();
+      const termsChecked = termsCheckbox.checked;
+      const honeypotTriggered = checkHoneypot(); // 🧠 check if honeypot filled
+      const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
 
-    return (
-      isValidEmail(email) &&
-      password.length >= 6 &&
-      password === confirmPassword &&
-      validWords.includes(humanCheck) &&
-      termsChecked
-    );
+      // Optionally log it
+      console.log("Honeypot Triggered:", honeypotTriggered);
+
+      return (
+        isValidEmail(email) &&
+        password.length >= 6 &&
+        password === confirmPassword &&
+        validWords.includes(humanCheck) &&
+        termsChecked
+      );
   };
+
 });
 
 // === Track Form Fillout Time ===
@@ -388,6 +393,15 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('user-signup-form').appendChild(jsEnabledInput);
 });
 
+function checkHoneypot() {
+  const honeypotField = document.getElementById('last_name');
+  if (honeypotField && honeypotField.value.trim() !== '') {
+    console.log("🚨 Honeypot triggered! Bot likely.");
+    honeypotField.value = honeypotField.value.trim(); // just clean it
+    return 1;
+  }
+  return 0;
+}
 
 
 
