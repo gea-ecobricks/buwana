@@ -1776,12 +1776,12 @@ color: red;
 
 #main {
     width: 100%;
-    min-height: 100vh;
-    height: auto;
-    overflow: hidden;
+    min-height: 100vh; /* 100% view height minimum */
+    height: auto; /* Let it grow! */
+    overflow-x: hidden; /* stop horizontal scroll */
+    overflow-y: visible; /* allow it to grow downwards */
     position: relative;
-    transition: height 0.3s ease;
-    margin-bottom:-1px;
+    display: block; /* default */
 }
 
 

@@ -200,7 +200,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
     </div>
-</div>
+</div>  <!--main closes-->
 
     <?php require_once ("../footer-2025.php"); ?>
 
