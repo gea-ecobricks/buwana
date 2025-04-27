@@ -190,10 +190,10 @@ https://github.com/gea-ecobricks/buwana/-->
 </div>
 
 
-<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
-    <p style="font-size: medium;" >
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" >
+    <p style="font-size: medium;" data-lang-id="000-go-back">
         Oops?<br>
-        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a>
+        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back</a>
     </p>
 </div>
 
