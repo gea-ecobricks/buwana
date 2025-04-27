@@ -387,6 +387,19 @@ document.addEventListener('DOMContentLoaded', function () {
   jsEnabledInput.value = 'true';
   document.getElementById('user-signup-form').appendChild(jsEnabledInput);
 });
+
+
+function updateMainHeight() {
+    const main = document.getElementById('main');
+    const formBox = document.getElementById('form-submission-box');
+
+    if (main && formBox) {
+        main.style.height = formBox.offsetHeight + 'px';
+    }
+}
+
+
+
 </script>
 
 
