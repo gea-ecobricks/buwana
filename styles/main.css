@@ -311,7 +311,7 @@
     width: 100%;
     height: 60px;
     padding-top: 10px;
-    position: absolute;
+    position: fixed;
     top: 0;
     background: var(--top-header);
     z-index: 36;
