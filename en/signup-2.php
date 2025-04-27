@@ -108,7 +108,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <div class="form-item" id="last-name-field">
     <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
-    <input type="text" id="last_name" name="last_name" class="required" placeholder="Your last name...">
+    <input type="text" id="last_name" name="last_name" placeholder="Your last name...">
     <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
 </div>
 
