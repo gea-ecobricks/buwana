@@ -97,10 +97,10 @@
     --button-1-1-over: #5b5bf6;
     --button-1-2: #3b3baf;
     --button-1-2-over: #5454ff;
-    --button-2-1: #05b905 /*#00a1f2*/;
+    --button-2-1: #00a1f2;
     --button-2-1-over: #3cb0fd;
-    --button-2-2: #05b905; /*#0992f2;*/
-    --button-2-2-over: #299431 /*#0381c6*/;
+    --button-2-2: #05b905; /*#0992f2;* main/
+    --button-2-2-over: #299431 /*#0381c6 over */;
     --shadow: rgba(57, 57, 57, 0.613);
     --login:rgb(244, 242, 242);
 

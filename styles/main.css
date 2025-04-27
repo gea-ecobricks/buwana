@@ -2168,7 +2168,7 @@ select {
 
 /* Styles for the enabled state */
 .enabled {
-    background-color: var(--button-2-1);
+    background-color: var(--button-2-2);
     cursor: pointer;
     padding-right:20px;
     padding-left:20px;
