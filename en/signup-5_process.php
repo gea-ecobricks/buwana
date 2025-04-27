@@ -3,7 +3,6 @@ ob_start(); // Start output buffering
 //require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
 
 require_once("../buwanaconn_env.php");
-require_once("../gobrikconn_env.php");
 
 // Include necessary files and setup JWT creation
 require_once '../scripts/earthen_subscribe_functions.php';
@@ -52,29 +51,12 @@ if ($buwana_id) {
     }
 }
 
-// PART 3: Update tb_ecobrickers record
-// if ($buwana_id) {
-//     $update_ecobricker_query = "UPDATE tb_ecobrickers
-//         SET earthen_registered = 1,
-//             account_notes = 'GoBrik 3 activation complete. Email verified. Earthen subscribed. No log in.',
-//             user_roles = 'Ecobricker',
-//             gea_status = 'Gobriker'
-//         WHERE buwana_id = ?";
-//
-//     $stmt_update_ecobricker = $gobrik_conn->prepare($update_ecobricker_query); // Use gobrik_conn
-//     if ($stmt_update_ecobricker) {
-//         $stmt_update_ecobricker->bind_param("i", $buwana_id);
-//         $stmt_update_ecobricker->execute();
-//         $stmt_update_ecobricker->close();
-//     } else {
-//         error_log('Error preparing statement for tb_ecobrickers update: ' . $gobrik_conn->error);
-//     }
-}
+
 
 
 
 // PART 4: Redirect the user to the finalize page with their buwana ID
+ob_end_flush(); // Flush the buffer and send output
 header('Location: finalize.php?id=' . urlencode($buwana_id));
 exit();
-ob_end_flush(); // Flush the buffer and send output
 ?>
