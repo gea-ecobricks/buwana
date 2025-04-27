@@ -11,7 +11,7 @@ $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup';
 $version = '0.77';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
-
+$pre_community = '';
 // Already logged in?
 if (!empty($_SESSION['buwana_id'])) {
     $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? '/';
@@ -41,80 +41,6 @@ if ($stmt) {
     $stmt->close();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Initialize variables
-$buwana_id = $_GET['id'] ?? null;
-$page = 'activate';
-$first_name = '';
-$pre_community = '';
-
-// PART 1: Check if the user is already logged in
-if (isset($_SESSION['buwana_id'])) {
-    header("Location: dashboard.php");
-    exit();
-}
-
-// PART 2: Check if buwana_id is passed in the URL
-if (is_null($buwana_id)) {
-    echo '<script>
-        alert("Hmm... something went wrong. No buwana ID was passed along. Please try logging in again. If this problem persists, you\'ll need to create a new account.");
-        window.location.href = "login.php";
-    </script>';
-    exit();
-}
-
-// PART 3: Look up user information using buwana_id provided in URL
-require_once("../buwanaconn_env.php");
-
-$sql_user_info = "SELECT first_name FROM users_tb WHERE buwana_id = ?";
-$stmt_user_info = $buwana_conn->prepare($sql_user_info);
-
-if ($stmt_user_info) {
-    $stmt_user_info->bind_param('i', $buwana_id);
-    $stmt_user_info->execute();
-    $stmt_user_info->bind_result($first_name);
-    $stmt_user_info->fetch();
-    $stmt_user_info->close();
-} else {
-    die('Error preparing statement for fetching user info: ' . $buwana_conn->error);
-}
-
-if (empty($first_name)) {
-    $first_name = 'User';
-}
-
-// PART 4: Fetch Ecobricker's community from GoBrik database
-require_once("../gobrikconn_env.php");
-
-$sql_ecobricker_community = "SELECT community FROM tb_ecobrickers WHERE buwana_id = ?";
-$stmt_ecobricker_community = $gobrik_conn->prepare($sql_ecobricker_community);
-
-if ($stmt_ecobricker_community) {
-    $stmt_ecobricker_community->bind_param('i', $buwana_id);
-    $stmt_ecobricker_community->execute();
-    $stmt_ecobricker_community->bind_result($pre_community);
-    $stmt_ecobricker_community->fetch();
-    $stmt_ecobricker_community->close();
-} else {
-    die('Error preparing statement for fetching ecobricker community: ' . $gobrik_conn->error);
-}
 
 // PART 5: Fetch all communities from the communities_tb table in Buwana database
 $communities = [];
@@ -150,8 +76,6 @@ if ($stmt_country_lookup) {
     $stmt_country_lookup->fetch();
     $stmt_country_lookup->close();
 }
-
-
 
 // Fetch all languages
 $languages = [];
@@ -231,10 +155,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <head>
@@ -265,8 +185,6 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
         <!-- FINALIZE ACCOUNT FORM -->
 
 <form id="user-info-form" method="post" action="finalize_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
-
-
 
 
 <!-- EARTHLING EMOJI SELECT -->

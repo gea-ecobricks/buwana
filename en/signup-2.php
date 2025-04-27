@@ -106,11 +106,12 @@ https://github.com/gea-ecobricks/buwana/-->
                 <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Let's get you set up on</span> <?= $app_info['app_display_name']; ?>.</p>
             </div>
 
-<!-- <div class="form-item" id="last-name" class="user_lastname" style="display:none!important;">
-                    <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
-                    <input type="text" id="human_check" class="required" placeholder="Your last name...">
-                    <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
-                </div>-->
+<div class="form-item" id="last-name-field">
+    <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
+    <input type="text" id="last_name" name="last_name" class="required" placeholder="Your last name...">
+    <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
+</div>
+
 
 
            <form id="user-signup-form" method="post" action="signup-2_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
@@ -213,10 +214,10 @@ $(document).ready(function () {
   const humanCheckField = document.getElementById('human_check');
   const termsCheckbox = document.getElementById('terms');
   const submitButton = document.getElementById('submit-button');
+  const setPasswordSection = document.getElementById('set-password');
   const confirmPasswordSection = document.getElementById('confirm-password-section');
   const humanCheckSection = document.getElementById('human-check-section');
   const submitSection = document.getElementById('submit-section');
-  const setPasswordSection = document.getElementById('set-password');
   const makerErrorInvalid = document.getElementById('maker-error-invalid');
   const duplicateEmailError = $('#duplicate-email-error');
   const duplicateGobrikEmail = $('#duplicate-gobrik-email');
@@ -236,10 +237,8 @@ $(document).ready(function () {
   // === Email Live Check ===
   $('#credential_value').on('input blur', function () {
     const email = $(this).val();
-
     if (isValidEmail(email)) {
       loadingSpinner.removeClass('green red').show();
-
       $.ajax({
         url: '../scripts/check_email.php',
         type: 'POST',
@@ -257,17 +256,17 @@ $(document).ready(function () {
           if (res.success) {
             duplicateEmailError.hide();
             duplicateGobrikEmail.hide();
-            loadingSpinner.removeClass('red').addClass('green').show();
+            loadingSpinner.addClass('green').show();
             setPasswordSection.style.display = 'block';
           } else if (res.error === 'duplicate_email') {
             duplicateEmailError.show();
             duplicateGobrikEmail.hide();
-            loadingSpinner.removeClass('green').addClass('red').show();
+            loadingSpinner.addClass('red').show();
             setPasswordSection.style.display = 'none';
           } else if (res.error === 'duplicate_gobrik_email') {
             duplicateGobrikEmail.show();
             duplicateEmailError.hide();
-            loadingSpinner.removeClass('red').addClass('green').show();
+            loadingSpinner.addClass('red').show();
             setPasswordSection.style.display = 'none';
           } else {
             alert("An error occurred: " + res.error);
@@ -306,11 +305,10 @@ $(document).ready(function () {
     }
   });
 
-  // === Enable/Disable Submit ===
+  // === Enable/Disable Submit Button ===
   function updateSubmitButtonState() {
     const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
     const enteredWord = humanCheckField.value.toLowerCase();
-
     if (validWords.includes(enteredWord) && termsCheckbox.checked) {
       submitButton.classList.remove('disabled');
       submitButton.classList.add('enabled');
@@ -325,81 +323,72 @@ $(document).ready(function () {
   humanCheckField.addEventListener('input', updateSubmitButtonState);
   termsCheckbox.addEventListener('change', updateSubmitButtonState);
 
-  // === Page-level Validation Function for Global Submit Listener ===
+  // === Page-level Validation Function ===
   window.validateOnSubmit = function () {
     const email = credentialField.value.trim();
     const password = passwordField.value;
     const confirmPassword = confirmPasswordField.value;
     const humanCheck = humanCheckField.value.toLowerCase();
     const termsChecked = termsCheckbox.checked;
-
     const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
-    const isEmailValid = isValidEmail(email);
-    const isPasswordValid = password.length >= 6;
-    const isPasswordMatch = password === confirmPassword;
-    const isHuman = validWords.includes(humanCheck);
 
     return (
-      isEmailValid &&
-      isPasswordValid &&
-      isPasswordMatch &&
-      isHuman &&
+      isValidEmail(email) &&
+      password.length >= 6 &&
+      password === confirmPassword &&
+      validWords.includes(humanCheck) &&
       termsChecked
     );
   };
 });
 
-
-
-
-
-
-
-// === Track Form Fillout Time ===
 // === Track Form Fillout Time ===
 let filloutStartTime = null;
 
 function startFilloutChrono() {
   if (!filloutStartTime) {
-    filloutStartTime = new Date().getTime();
+    filloutStartTime = Date.now();
     console.log("🕰️ Form filling started...");
   }
 }
 
 function endFilloutChrono(event) {
   if (filloutStartTime) {
-    const filloutEndTime = new Date().getTime();
+    const filloutEndTime = Date.now();
     const filloutDuration = Math.floor((filloutEndTime - filloutStartTime) / 1000); // seconds
-
     console.log(`✅ Form submitted after ${filloutDuration} seconds.`);
 
-    // 🛠️ Set the hidden field value
     const chronoInput = document.getElementById('fillout_duration');
     if (chronoInput) {
       chronoInput.value = filloutDuration;
     }
 
-    // 🛎️ Alert the user (for testing purposes)
-    alert(`You took ${filloutDuration} seconds to fill out the form.`);
-
-    // ⚡ Optional: if you want to block bots submitting too fast (example <5s)
+    // Optional bot block:
     if (filloutDuration < 5) {
-      alert("⚠️ Submission too fast — possible bot detected!");
-      event.preventDefault(); // Stop the form from submitting
+      alert("⚠️ Too fast! Possible bot.");
+      event.preventDefault();
     }
   }
 }
 
-// Start chrono when any input receives input
+// Start chrono on first user input
 document.querySelectorAll('#user-signup-form input').forEach(input => {
-  input.addEventListener('input', startFilloutChrono, { once: true }); // Only start once
+  input.addEventListener('input', startFilloutChrono, { once: true });
 });
 
 // Attach chrono ender to form submit
 document.getElementById('user-signup-form').addEventListener('submit', endFilloutChrono);
 
-
+// === Mark JS enabled ===
+document.addEventListener('DOMContentLoaded', function () {
+  const jsEnabledInput = document.createElement('input');
+  jsEnabledInput.type = 'hidden';
+  jsEnabledInput.name = 'js_enabled';
+  jsEnabledInput.value = 'true';
+  document.getElementById('user-signup-form').appendChild(jsEnabledInput);
+});
 </script>
+
 
 
 
