@@ -129,7 +129,7 @@ $update_stmt->execute();
 $update_stmt->close();
 
 // 📩 PART 6: Send verification code
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['send_mail']) || isset($_POST['resend_email']))) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['send_email']) || isset($_POST['resend_email']))) {
 
     if ($credential_type === 'e-mail' || $credential_type === 'email') {
         $code_sent = sendVerificationCode($first_name, $credential_key, $generated_code, $lang);
@@ -190,35 +190,14 @@ https://github.com/gea-ecobricks/buwana/-->
     <p data-lang-id="003-to-create">To create your Buwana GoBrik account we need to confirm your <?php echo htmlspecialchars($credential_type); ?>. This is how we'll keep in touch and keep your account secure.  Click the send button and we'll send an account activation code to:</p>
 
     <h3><?php echo htmlspecialchars($credential_key); ?></h3>
-  <form id="user-signup-form" method="post" action="signup-3_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
-
-
-
-         <!-- Kick-Ass Submit Button -->
-                     <div id="submit-section" class="submit-button-wrapper">
-                       <button type="submit" name="send_email" id="submit-button" class="kick-ass-submit" title="Have the code sent to your email">
-                         <span id="submit-button-text" data-lang-id="015-register-button-x">📨 Send Code</span>
-                         <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
-                       </button>
-                     </div>
-
-
-
-
-
-                <!--         <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
-                                         <div id="submit-section" style="text-align:center;margin-top:20px;padding-right:15px;padding-left:15px" title="Start Activation process" data-lang-id="004-send-email-button">
-                                             <input type="submit" name="send_email" id="send_email" value="📨 Send Code" class="submit-button activate">
--->
+    <form id="send-email-code" method="post" action="">
+        <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
+            <div id="submit-section" style="text-align:center;margin-top:20px;padding-right:15px;padding-left:15px" title="Start Activation process" data-lang-id="004-send-email-button">
+                <input type="submit" name="send_email" id="send_email" value="📨 Send Code" class="submit-button activate">
             </div>
         </div>
     </form>
 </div>
-
-
-
-
-
 
 <!-- Code entry form -->
 <div id="second-code-confirm" style="text-align:center;"
@@ -263,7 +242,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
     <p style="font-size: medium;" >
-
+        Need to correct something?
         <a href="#" onclick="browserBack(event)">Go back ↩️</a>
     </p>
 </div>
@@ -281,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const lang = '<?php echo $lang; ?>';
     let timeLeft = 60;
-    const sendEmailForm = document.getElementById('user-signup-form');
+    const sendEmailForm = document.getElementById('send-email-code');
     const buwana_id = <?php echo json_encode($buwana_id); ?>;
 
     const messages = {
@@ -384,9 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-
-
-<?php require_once ("../scripts/app_modals.php");?>
 
 </body>
 </html>
