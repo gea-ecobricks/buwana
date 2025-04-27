@@ -190,10 +190,10 @@ function startEarthlingEmojiSpinner(emojiContainer) {
     // 🔄 Fade out each emoji after 200ms
     setTimeout(() => {
       emojiContainer.style.opacity = 0;
-    }, 200); // ⏱ Emoji fade duration
+    }, 300); // ⏱ Emoji fade duration
 
     index++;
-  }, 500); // ⏱ Time between emojis appearing
+  }, 400); // ⏱ Time between emojis appearing
 }
 
 
