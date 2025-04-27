@@ -106,16 +106,18 @@ https://github.com/gea-ecobricks/buwana/-->
                 <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Let's set you up on</span> <?= $app_info['app_display_name']; ?>...</p>
             </div>
 
-<div class="form-item" id="last-name-field">
-    <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
-    <input type="text" id="last_name" name="last_name" placeholder="Your last name...">
-    <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
-</div>
 
 
 
            <form id="user-signup-form" method="post" action="signup-2_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
+
+
+<div class="form-item" id="last-name-field">
+    <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
+    <input type="text" id="last_name" name="last_name" placeholder="Your last name...">
+    <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
+</div>
              <!-- Email / Credential Field -->
              <div class="form-item float-label-group" id="credential-section">
                <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" value="<?php echo htmlspecialchars($credential_key); ?>" placeholder=" " style="padding-left:35px"/>
