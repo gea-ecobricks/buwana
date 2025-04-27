@@ -118,7 +118,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
              <!-- Email / Credential Field -->
              <div class="form-item float-label-group" id="credential-section">
-               <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" placeholder=" " style="padding-left:35px"/>
+               <input type="text" id="credential_value" name="credential_value" required aria-label="Your email" value="<?php echo htmlspecialchars($credential_key); ?>" placeholder=" " style="padding-left:35px"/>
                <label for="credential_value">
                  <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please-x"> please...</span>
                </label>
