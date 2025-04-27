@@ -84,9 +84,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
     -->
 
     <?php require_once ("../includes/signup-inc.php"); ?>
-</head>
 
-<body>
 
     <div class="splash-title-block"></div>
     <div id="splash-bar"></div>

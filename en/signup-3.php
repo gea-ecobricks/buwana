@@ -129,7 +129,7 @@ $update_stmt->execute();
 $update_stmt->close();
 
 // 📩 PART 6: Send verification code
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['submit-button']) || isset($_POST['resend_email']))) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['send_mail']) || isset($_POST['resend_email']))) {
 
     if ($credential_type === 'e-mail' || $credential_type === 'email') {
         $code_sent = sendVerificationCode($first_name, $credential_key, $generated_code, $lang);
@@ -196,7 +196,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
          <!-- Kick-Ass Submit Button -->
                      <div id="submit-section" class="submit-button-wrapper">
-                       <button type="submit" name="submit-button" id="submit-button" class="kick-ass-submit" title="Have the code sent to your email">
+                       <button type="submit" name="send_email" id="submit-button" class="kick-ass-submit" title="Have the code sent to your email">
                          <span id="submit-button-text" data-lang-id="015-register-button-x">📨 Send Code</span>
                          <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                        </button>
