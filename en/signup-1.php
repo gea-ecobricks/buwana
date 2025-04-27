@@ -92,7 +92,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
     <div class="form-item" style="padding-top: 8px; padding-bottom: 8px;border-radius:5px 5px 10px 10px;margin-top: -5px;">
-        <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 20px !important;color:var(--subdued-text);" >
+        <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 20px !important;" >
             <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
             <option value="email">E-mail</option>
             <option value="mail">Phone number</option>
