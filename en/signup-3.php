@@ -190,12 +190,13 @@ https://github.com/gea-ecobricks/buwana/-->
     <p data-lang-id="003-to-create">To create your Buwana GoBrik account we need to confirm your <?php echo htmlspecialchars($credential_type); ?>. This is how we'll keep in touch and keep your account secure.  Click the send button and we'll send an account activation code to:</p>
 
     <h3><?php echo htmlspecialchars($credential_key); ?></h3>
-    <form id="user-signup-form" method="post" action="">
+  <form id="user-signup-form" method="post" action="signup-3_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+
 
 
          <!-- Kick-Ass Submit Button -->
                      <div id="submit-section" class="submit-button-wrapper">
-                       <button type="submit" name="send_email" id="submit-button" class="kick-ass-submit" title="Have the code sent to your email">
+                       <button type="submit" name="submit-button" id="submit-button" class="kick-ass-submit" title="Have the code sent to your email">
                          <span id="submit-button-text" data-lang-id="015-register-button-x">📨 Send Code</span>
                          <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                        </button>
