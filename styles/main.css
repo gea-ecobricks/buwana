@@ -1783,9 +1783,15 @@ color: red;
   }
 
 
-    #main {
-        height: fit-content;
-    }
+#main {
+    width: 100%;
+    min-height: 100vh; /* Always at least full viewport height */
+    height: auto;      /* Let JS adjust it dynamically */
+    overflow: hidden;  /* Prevent weird overflows */
+    position: relative; /* So absolutely positioned children are relative to it */
+}
+
+
 
     .preview-text {
         font-family: 'Mulish', Arial, Helvetica, sans-serif;
