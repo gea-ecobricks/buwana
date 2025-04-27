@@ -1,22 +1,63 @@
 <?php
-require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
 
-// Set up page variables
+require_once '../buwanaconn_env.php';
+require_once '../fetch_app_info.php';
+
+// Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.44';
-$page = 'activate';
+$page = 'signup';
+$version = '0.77';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
-$is_logged_in = false; // Ensure not logged in for this page
-
-// Check if the user is logged in
-if (isLoggedIn()) {
+// Already logged in?
+if (!empty($_SESSION['buwana_id'])) {
+    $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? '/';
     echo "<script>
-        alert('Looks like you already have an account and are logged in! Let\'s take you to your dashboard.');
-        window.location.href = 'dashboard.php';
+        alert('Looks like you’re already logged in! Redirecting to your dashboard...');
+        window.location.href = '$redirect_url';
     </script>";
     exit();
 }
+
+
+// 🧩 Validate buwana_id
+$buwana_id = $_GET['id'] ?? null;
+if (!$buwana_id || !is_numeric($buwana_id)) {
+    die("⚠️ Invalid or missing Buwana ID.");
+}
+
+// 🧠 Fetch user info
+$first_name = 'User';
+$sql = "SELECT first_name FROM users_tb WHERE buwana_id = ?";
+$stmt = $buwana_conn->prepare($sql);
+if ($stmt) {
+    $stmt->bind_param('i', $buwana_id);
+    $stmt->execute();
+    $stmt->bind_result($first_name);
+    $stmt->fetch();
+    $stmt->close();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Initialize variables
 $buwana_id = $_GET['id'] ?? null;

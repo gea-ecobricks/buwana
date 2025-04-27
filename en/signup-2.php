@@ -171,6 +171,9 @@ https://github.com/gea-ecobricks/buwana/-->
                  </div>
                </div>
 
+           <input type="hidden" id="fillout_duration" name="fillout_duration" value="">
+
+
 
              <!-- Kick-Ass Submit Button -->
              <div id="submit-section" style="display:none;" class="submit-button-wrapper">
@@ -345,6 +348,57 @@ $(document).ready(function () {
     );
   };
 });
+
+
+
+
+
+
+
+// === Track Form Fillout Time ===
+// === Track Form Fillout Time ===
+let filloutStartTime = null;
+
+function startFilloutChrono() {
+  if (!filloutStartTime) {
+    filloutStartTime = new Date().getTime();
+    console.log("🕰️ Form filling started...");
+  }
+}
+
+function endFilloutChrono(event) {
+  if (filloutStartTime) {
+    const filloutEndTime = new Date().getTime();
+    const filloutDuration = Math.floor((filloutEndTime - filloutStartTime) / 1000); // seconds
+
+    console.log(`✅ Form submitted after ${filloutDuration} seconds.`);
+
+    // 🛠️ Set the hidden field value
+    const chronoInput = document.getElementById('fillout_duration');
+    if (chronoInput) {
+      chronoInput.value = filloutDuration;
+    }
+
+    // 🛎️ Alert the user (for testing purposes)
+    alert(`You took ${filloutDuration} seconds to fill out the form.`);
+
+    // ⚡ Optional: if you want to block bots submitting too fast (example <5s)
+    if (filloutDuration < 5) {
+      alert("⚠️ Submission too fast — possible bot detected!");
+      event.preventDefault(); // Stop the form from submitting
+    }
+  }
+}
+
+// Start chrono when any input receives input
+document.querySelectorAll('#user-signup-form input').forEach(input => {
+  input.addEventListener('input', startFilloutChrono, { once: true }); // Only start once
+});
+
+// Attach chrono ender to form submit
+document.getElementById('user-signup-form').addEventListener('submit', endFilloutChrono);
+
+
 </script>
 
 
