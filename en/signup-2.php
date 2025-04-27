@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.75';
+$version = '0.76';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -192,7 +192,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
     <p style="font-size: medium;" >
-        Need to correct something?
+        Oops?<br>
         <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a>
     </p>
 </div>

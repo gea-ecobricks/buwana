@@ -9,7 +9,7 @@ $response = ['success' => false];
 require_once '../buwanaconn_env.php';
 
 function sendJsonError($error) {
-    error_log("Signup-2 Error: $error"); // 🧠 Log it!
+    error_log("Signup-2 Error: $error");
     ob_end_clean();
     echo json_encode(['success' => false, 'error' => $error]);
     exit();
@@ -31,7 +31,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    // 🎯 Get user's name (used later for potential messages/logs)
+    // 🧠 Extra Anti-Bot Fields
+    $signup_timetaken = isset($_POST['fillout_duration']) ? (int)$_POST['fillout_duration'] : null;
+    $honeypot_field = isset($_POST['last_name']) ? trim($_POST['last_name']) : '';
+    $honeypotted = (!empty($honeypot_field)) ? 1 : 0;
+    $js_enabled_catch = (isset($_POST['js_enabled']) && $_POST['js_enabled'] === 'true') ? 1 : 0;
+
+    // 🤖 Simple Bot Scoring
+    $bot_score = 0;
+    if ($signup_timetaken !== null) {
+        if ($signup_timetaken < 5) $bot_score += 50;       // Way too fast → big suspicion
+        elseif ($signup_timetaken < 10) $bot_score += 20;  // Still pretty fast
+    }
+    if ($honeypotted) $bot_score += 40;                   // Honeypot filled → big suspicion
+    if (!$js_enabled_catch) $bot_score += 20;              // No JS? Suspicious
+
+    // Keep bot score capped between 0-100
+    $bot_score = min($bot_score, 100);
+
+    // 🔥 Get user's first name
     $stmt = $buwana_conn->prepare("SELECT first_name FROM users_tb WHERE buwana_id = ?");
     if (!$stmt) sendJsonError('db_error_first_name');
     $stmt->bind_param("i", $buwana_id);
@@ -42,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (empty($first_name)) sendJsonError('missing_first_name');
 
-    // 🔁 Check for existing email used by a different buwana_id
+    // 📧 Check if email already used by different user
     $stmt = $buwana_conn->prepare("SELECT COUNT(*), buwana_id FROM users_tb WHERE email = ?");
     if (!$stmt) sendJsonError('db_error_check_email');
     $stmt->bind_param("s", $credential_value);
@@ -55,25 +73,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         sendJsonError('duplicate_email');
     }
 
-    // 🔄 Update user record
+    // 🛠️ Update user record
     $stmt = $buwana_conn->prepare("UPDATE users_tb
-        SET email = ?, password_hash = ?,
+        SET email = ?,
+            password_hash = ?,
             account_status = 'signup-2_process run. Email unverified',
-            last_login = NOW()
+            last_login = NOW(),
+            signup_timetaken = ?,
+            honeypotted = ?,
+            js_enabled_catch = ?,
+            bot_score = ?
         WHERE buwana_id = ?");
     if (!$stmt) sendJsonError('db_error_user_update');
-    $stmt->bind_param("ssi", $credential_value, $password_hash, $buwana_id);
+    $stmt->bind_param("ssiiiii", $credential_value, $password_hash, $signup_timetaken, $honeypotted, $js_enabled_catch, $bot_score, $buwana_id);
+
     if (!$stmt->execute()) sendJsonError('user_update_failed');
     $stmt->close();
 
-    // 🔑 Update credentials record
+    // 🔑 Update credentials
     $stmt = $buwana_conn->prepare("UPDATE credentials_tb SET credential_key = ?, credential_type = 'email' WHERE buwana_id = ?");
     if (!$stmt) sendJsonError('db_error_credentials');
     $stmt->bind_param("si", $credential_value, $buwana_id);
     $stmt->execute();
     $stmt->close();
 
-    // ✅ Send response
+    // 🚀 Success!
     $response['success'] = true;
     $response['redirect'] = "signup-3.php?id=" . urlencode($buwana_id);
 }

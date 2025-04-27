@@ -473,4 +473,4 @@ width:100%;
 
 
 
-<div id="main">
+<div id="main" class="page-wrapper">
