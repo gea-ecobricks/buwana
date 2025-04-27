@@ -14,7 +14,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.73';
+$version = '0.74';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -92,7 +92,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
     <div class="form-item" style="padding-top: 8px; padding-bottom: 8px;border-radius:5px 5px 10px 10px;margin-top: -5px;">
-        <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 20px !important;" >
+        <select id="credential" name="credential" aria-label="Preferred Credential" required style="font-size: 20px !important;color:var(--subdued-text);" >
             <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
             <option value="email">E-mail</option>
             <option value="mail">Phone number</option>
