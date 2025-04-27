@@ -56,7 +56,9 @@ if ($buwana_id) {
 
 
 // PART 4: Redirect the user to the finalize page with their buwana ID
-ob_end_flush(); // Flush the buffer and send output
+// PART 4: Redirect the user to the finalize page
+ob_clean(); // ✨ Clear any accidental output
 header('Location: finalize.php?id=' . urlencode($buwana_id));
 exit();
+
 ?>
