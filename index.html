@@ -137,19 +137,19 @@ document.addEventListener('DOMContentLoaded', function() {
         let langDir = 'en/';
 
         if (userLang.includes('fr')) {
-            langDir = 'fr/signup.php';
+            langDir = 'fr/signup-1.php';
         } else if (userLang.includes('id')) {
-            langDir = 'id/signup.php';
+            langDir = 'id/signup-1.php';
         } else if (userLang.includes('es')) {
-            langDir = 'es/signup.php';
+            langDir = 'es/signup-1.php';
         } else if (userLang.includes('en')) {
             langDir = 'en/signup.php';
         } else {
-            langDir = 'en/signup.php';
+            langDir = 'en/signup-1.php';
         }
 
         window.location.href = langDir;
-    }, 600); // 10 seconds
+    }, 6000); // 10 seconds
 });
 
 </script>
@@ -157,8 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
     <div class="container">
-        <!--<div class="logo"></div>-->
-        <h1>🌏</h1>
+        <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" href="https://github.com/gea-ecobricks/buwana"></div>
+
         <!--<p>We're almost ready to launch GoBrik 3.0!</p>
         <h3 style="margin-bottom:50px;">Coming November 3rd, 2024</h3>-->
 
