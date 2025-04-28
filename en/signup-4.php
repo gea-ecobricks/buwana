@@ -116,7 +116,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
                     </div>
                 <label for="location_full" data-lang-id="011-your-local-area-xxx" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">Your neighbourhood...</label>
                     <p class="form-caption" data-lang-id="011-location-full-caption">
-                        Start typing the name of your neighbourhood or community, and we'll fill in the rest. Data source: OpenStreetMap API.
+                        Start typing the name of your neighbourhood, and openstreetmaps will fill in the rest.
                     </p>
                     <div id="location-error-required" class="form-field-error" data-lang-id="000-field-required-error">
                         This field is required.
@@ -133,17 +133,16 @@ if ($result_languages && $result_languages->num_rows > 0) {
                     <p class="form-caption" data-lang-id="012-river-basics-2" style="margin-top:10px;">
                         ℹ️ The map shows rivers and streams around you. Choose the one to which your water flows.
                     </p>
-                    <select id="watershed_select" name="watershed_select" aria-label="Watershed Select" style="width: 100%; padding: 10px;">
-                        <option value="" disabled selected data-lang-id="011b-select-river">👉 Select river/stream...</option>
+                    <select id="watershed_select" name="watershed_select" aria-label="Watershed Select" style="width: 100%; padding: 10px;" required>
+                        <option value="" disabled selected data-lang-id="011b-select-river-x">👉 Select your local river...</option>
                     </select>
                 </div>
 
                 <!-- Kick-Ass Submit Button -->
                 <div id="submit-section" style="display:none;" class="submit-button-wrapper">
                     <p style="margin-bottom:15px;">
-                        Buwana accounts use
-                        <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watersheds</a>
-                        as a great non-political way to localize users by bioregion!
+                        Yes!  We use <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watersheds</a> as an alternative non-politcal, grounded way to localize our users.
+
                     </p>
 
                     <button type="submit" id="submit-button" class="kick-ass-submit" title="Be sure to choose your local watershed!">
@@ -158,7 +157,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
         <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
             <p style="font-size: medium;">
-                <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back </a> if you need to correct something.
+                <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back one step</a>
             </p>
         </div>
     </div>
