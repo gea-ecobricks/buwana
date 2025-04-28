@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup';
-$version = '0.771';
+$version = '0.772';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $pre_community = '';
 // Already logged in?
@@ -262,10 +262,11 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 
   <!-- COMMUNITY FIELD -->
-<div class="form-item" style="margin-bottom: -20px">
-    <p>Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</p>
+<div class="form-item" style="margin-bottom: -30px; border-radius: 10px 10px 0px 0px">
+    <p>👥 Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</p>
    </div>
-<div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+
+<div class="form-item float-label-group" style="border-radius:0px 0px 10px 10px;padding-bottom:0px;">
 
     <label for="community_name" data-lang-id="012-community-name-x">Start typing your community...</label>
     <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"  placeholder=" "  style="width: 100%; padding: 10px;" value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
@@ -278,7 +279,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </datalist>
     <!-- "Add a new community" text link -->
     <p class="form-caption" data-lang-id="012-community-caption-xx">
-        Start typing to see and select a community. There's a good chance someone local to you has already set one up!  <a href="#" onclick="openAddCommunityModal(); return false;" style="color: #007BFF; text-decoration: underline;">Don't see your community?  + Add it.
+        Start typing to see and select a community. There's a good chance someone local to you has already set one up! <br><a href="#" onclick="openAddCommunityModal(); return false;" style="color: #007BFF; text-decoration: underline;">+ Don't see your community? Add it.
         </a>
     </p>
 </div>
