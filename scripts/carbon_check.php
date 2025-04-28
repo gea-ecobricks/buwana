@@ -32,7 +32,7 @@ if ($response === false || $httpcode >= 400) {
         'error' => 'Failed to fetch data from Website Carbon API',
         'details' => $curl_error
     ]);
-
+return;
 }
 
 // Success: Output API response
