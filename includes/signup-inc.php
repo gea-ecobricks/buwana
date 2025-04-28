@@ -15,6 +15,39 @@
 <STYLE>
 
 
+/* Style the select box itself */
+#credential {
+    font-size: 20px;
+    font-family: 'Mulish', sans-serif;
+    padding: 10px 15px;
+    border-radius: 5px 5px 10px 10px;
+    border: 1px solid var(--form-border, #ccc);
+    background-color: var(--main-background);
+    color: var(--h1); /* Regular text color */
+    width: 100%;
+    appearance: none; /* Remove browser default */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Placeholder option (first disabled option) */
+#credential option[disabled][selected] {
+    color: var(--subdued-text);
+}
+
+/* Normal options */
+#credential option {
+    color: var(--h1);
+    background-color: var(--main-background);
+}
+
+/* If you want a little dropdown arrow indicator too */
+#credential {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px 18px;
+}
 
 
 
