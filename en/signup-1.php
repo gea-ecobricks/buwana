@@ -93,7 +93,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <div class="form-item credential-select-wrapper">
     <select id="credential" name="credential" aria-label="Preferred Credential" required
-        style="font-size: 20px; font-family: 'Mulish',sans-serif; padding-left: 15px; color: var(--subdued-text);">
+        style="font-size: 20px !important; font-family: 'Mulish',sans-serif; padding-left: 15px; color: var(--subdued-text);">
         <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
         <option value="e-mail">E-mail</option>
         <option value="Phone number">Phone number</option>
