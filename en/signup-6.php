@@ -283,20 +283,25 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </p>
 </div>
 
-
 <!-- COUNTRY SELECT -->
-<div class="form-item" id="country-section" style="margin-top: 20px;">
-    <label for="country_name">🌍 Please make sure we've connected you with the right country:</label><br>
-    <select id="country_name" name="country_name" required style="width: 100%; padding: 10px;">
-        <option value="">-- Select your country --</option>
-        <?php foreach ($countries as $country): ?>
-            <option value="<?php echo htmlspecialchars($country['country_id']); ?>"
-                <?php echo ($country['country_id'] == $user_country_id) ? 'selected' : ''; ?>>
-                <?php echo htmlspecialchars($country['country_name']); ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+<div class="form-item" id="country-section" style="margin-top: 20px; position: relative;">
+    <label for="country_name">Please make sure we've connected you with the right country:</label><br>
+
+    <div class="select-wrapper" style="position: relative;">
+        <span class="select-icon" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 22px;">🌍</span>
+
+        <select id="country_name" name="country_name" required style="width: 100%; padding: 10px 10px 10px 40px;">
+            <option value="">-- Select your country --</option>
+            <?php foreach ($countries as $country): ?>
+                <option value="<?php echo htmlspecialchars($country['country_id']); ?>"
+                    <?php echo ($country['country_id'] == $user_country_id) ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($country['country_name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
 </div>
+
 
 
 
