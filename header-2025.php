@@ -73,66 +73,33 @@
     try {
         // 📥 1. Load saved theme immediately
         var savedTheme = localStorage.getItem('dark-mode-toggle');
-        if (savedTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: dark"]').forEach(link => {
-                link.media = "all";
-                link.disabled = false;
-            });
-            document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: light"]').forEach(link => {
-                link.media = "not all";
-                link.disabled = true;
-            });
-        } else if (savedTheme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-            document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: light"]').forEach(link => {
-                link.media = "all";
-                link.disabled = false;
-            });
-            document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: dark"]').forEach(link => {
-                link.media = "not all";
-                link.disabled = true;
-            });
+        const toggle = document.getElementById('dark-mode-toggle-5');
+
+        if (savedTheme && toggle) {
+            toggle.mode = savedTheme;  // 🧠 Set mode properly
+            document.documentElement.setAttribute('data-theme', savedTheme); // Optional: for custom CSS
         }
 
-        // 📦 2. Setup after DOM fully loaded
         document.addEventListener('DOMContentLoaded', function() {
-            const toggle = document.getElementById('dark-mode-toggle-5');
             const appLogo = document.querySelector('.the-app-logo');
             const appWordmark = document.getElementById('top-app-logo');
 
-            // 🔄 Function to update logos
             function updateLogos() {
-                const currentTheme = localStorage.getItem('dark-mode-toggle');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-                // Update main logo
+                const mode = toggle ? toggle.mode : 'light';
                 if (appLogo) {
                     const lightLogo = appLogo.getAttribute('data-light-logo');
                     const darkLogo = appLogo.getAttribute('data-dark-logo');
-                    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-                        appLogo.style.backgroundImage = `url('${darkLogo}')`;
-                    } else {
-                        appLogo.style.backgroundImage = `url('${lightLogo}')`;
-                    }
+                    appLogo.style.backgroundImage = mode === 'dark' ? `url('${darkLogo}')` : `url('${lightLogo}')`;
                 }
-
-                // Update wordmark logo
                 if (appWordmark) {
                     const lightWordmark = appWordmark.getAttribute('data-light-wordmark');
                     const darkWordmark = appWordmark.getAttribute('data-dark-wordmark');
-                    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-                        appWordmark.style.backgroundImage = `url('${darkWordmark}')`;
-                    } else {
-                        appWordmark.style.backgroundImage = `url('${lightWordmark}')`;
-                    }
+                    appWordmark.style.backgroundImage = mode === 'dark' ? `url('${darkWordmark}')` : `url('${lightWordmark}')`;
                 }
             }
 
-            // 🚀 Run immediately on page load
-            updateLogos();
+            updateLogos(); // 🚀 Update once
 
-            // 🎯 Listen for color scheme toggle
             if (toggle) {
                 toggle.addEventListener('colorschemechange', function(event) {
                     const mode = event.detail.colorScheme;
@@ -140,30 +107,7 @@
                     console.log('🌗 Saved user theme preference:', mode);
 
                     document.documentElement.setAttribute('data-theme', mode);
-
-                    // ⚡ Reapply stylesheets
-                    if (mode === 'dark') {
-                        document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: dark"]').forEach(link => {
-                            link.media = "all";
-                            link.disabled = false;
-                        });
-                        document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: light"]').forEach(link => {
-                            link.media = "not all";
-                            link.disabled = true;
-                        });
-                    } else {
-                        document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: light"]').forEach(link => {
-                            link.media = "all";
-                            link.disabled = false;
-                        });
-                        document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: dark"]').forEach(link => {
-                            link.media = "not all";
-                            link.disabled = true;
-                        });
-                    }
-
-                    // 🔥 Reupdate logos too
-                    updateLogos();
+                    updateLogos(); // 🔄 Update logos too
                 });
             }
         });
@@ -173,6 +117,7 @@
     }
 })();
 </script>
+
 
 
 
