@@ -93,11 +93,11 @@ if ($result_languages && $result_languages->num_rows > 0) {
     <div id="top-page-image" class="welcome-casandra top-page-image"></div>
 
     <div id="form-submission-box" class="landing-page-form">
-        <div class="form-container">
+        <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
 
             <div style="text-align:center;width:100%;margin:auto;">
                 <p style="color:green;" data-lang-id="001-password-set">✔ Your email is confirmed!</span></p>
-                <div id="status-message"><span data-lang-id="012-status-heading2-x"> Now <?php echo htmlspecialchars($first_name); ?> let's get you localized.</span></div>
+                <div id="status-message" data-lang-id="001-signup-heading" style="font-family: 'Arvo';margin-top:15px;" data-lang-id="012-status-heading2-x"> Now <?php echo htmlspecialchars($first_name); ?> let's get you localized.</div>
                 <div id="sub-status-message" data-lang-id="013-sub-ecozone" style="font-size:1.3em;padding-top:10px;padding-bottom:10px;">
                     Let's determine your bioregion: the watershed where you live.
                 </div>
