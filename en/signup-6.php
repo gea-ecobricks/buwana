@@ -263,9 +263,11 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 
   <!-- COMMUNITY FIELD -->
-
-<div class="form-item float-label-group" id="community-section" style="margin-top:20px;">
+<div class="form-tem" style="margin-bottom: -20px">
     <p>Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</p>
+   </div>
+<div class="form-item float-label-group" id="community-section" style="margin-top:20px;">
+
     <label for="community_name" data-lang-id="012-community-name-x">Start typing your community...</label>
     <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
            placeholder=" "  style="width: 100%; padding: 10px;"
