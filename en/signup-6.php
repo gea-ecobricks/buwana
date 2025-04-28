@@ -177,9 +177,9 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
         <div style="text-align:center;width:100%;margin:auto;">
-            <p style="color:green;">✔ <?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="001-subs-set"> your Earthen subscriptions are confirmed!</p>
+            <p style="color:green;">✔ <span data-lang-id="001-subs-set">Your Earthen subscriptions are confirmed!</p>
             <div id="status-message"><h4 data-lang-id="012-status-heading2" style="margin-bottom: 12px;"> Now the fun part!</h4></div>
-            <p data-lang-id="013-sub-ecozone-x" style="font-size:1.4em;padding-bottom:10px;">To finalize your account, please choose your fellow Earthling emoji to best represent who you are.</p>
+            <p data-lang-id="013-sub-ecozone-x" style="font-size:1.4em;padding-bottom:10px;"><?php echo htmlspecialchars($first_name); ?>, to finalize your account, choose an Earthling emoji to best represent yourself.</p>
         </div>
 
         <!-- FINALIZE ACCOUNT FORM -->
@@ -263,8 +263,9 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 
   <!-- COMMUNITY FIELD -->
-  <p>Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</p>
-<div class="form-item" id="community-section" style="margin-top:20px;" class="float-label-group">
+
+<div class="form-item float-label-group" id="community-section" style="margin-top:20px;">
+    <p>Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</p>
     <label for="community_name" data-lang-id="012-community-name-x">Start typing your community...</label>
     <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
            placeholder=" "  style="width: 100%; padding: 10px;"
