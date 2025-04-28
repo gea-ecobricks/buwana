@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup';
-$version = '0.77';
+$version = '0.771';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $pre_community = '';
 // Already logged in?
@@ -179,13 +179,12 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
         <div style="text-align:center;width:100%;margin:auto;">
             <p style="color:green;">✔ <?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="001-subs-set"> your Earthen subscriptions are confirmed!</p>
             <div id="status-message"><h4 data-lang-id="012-status-heading2" style="margin-bottom: 12px;"> Now the fun part!</h4></div>
-            <p data-lang-id="013-sub-ecozone" style="font-size:1.4em;padding-bottom:10px;">To finalize your account, please choose your fellow Earthling emoji to best represent who you are.  This is your Buwana totem that will accompany your username when you're logged in.</p>
+            <p data-lang-id="013-sub-ecozone-x" style="font-size:1.4em;padding-bottom:10px;">To finalize your account, please choose your fellow Earthling emoji to best represent who you are.</p>
         </div>
 
         <!-- FINALIZE ACCOUNT FORM -->
 
 <form id="user-info-form" method="post" action="finalize_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
-
 
 <!-- EARTHLING EMOJI SELECT -->
 <div class="form-item" id="emoji-section" style="margin-top: 20px;">
@@ -229,7 +228,7 @@ $emoji_options = [
 
 
   <!-- COMMUNITY FIELD -->
-<div class="form-item" id="community-section" style="margin-top:20px;">
+<div class="form-item" id="community-section" style="margin-top:20px;" class="float-label-group">
     <label for="community_name" data-lang-id="012-community-name-x">Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</label><br>
     <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
            placeholder="Type your community" style="width: 100%; padding: 10px;"
@@ -251,7 +250,7 @@ $emoji_options = [
 
 
 <!-- COUNTRY SELECT -->
-<div class="form-item" id="country-section" style="margin-top: 20px;">
+<div class="form-item" id="country-section" style="margin-top: 20px;" class="float-label-group">
     <label for="country_name">🌍 Please make sure we've connected you with the right country:</label><br>
     <select id="country_name" name="country_name" required style="width: 100%; padding: 10px;">
         <option value="">-- Select your country --</option>
@@ -273,7 +272,7 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
 ?>
 
 <!-- LANGUAGE SELECT -->
-<div class="form-item" id="language-section" style="margin-top: 20px;">
+<div class="form-item" id="language-section" style="margin-top: 20px;" class="float-label-group">
     <label for="language_id">🗣️ Please make sure we've selected the right primary language for you:</label><br>
     <select id="language_id" name="language_id" required style="width: 100%; padding: 10px;">
         <option value="">-- Select your language --</option>
@@ -287,12 +286,16 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
 </div>
 
 
+<!-- Kick-Ass Submit Button -->
+                <div id="submit-section" class="submit-button-wrapper">
 
-    <!-- SUBMIT SECTION -->
-    <div id="submit-section" style="text-align: center; margin-top: 25px; " data-lang-id="016-all-done-button">
-        <input type="submit" id="submit-button" value="👌 All done!" class="submit-button enabled">
+                    <button type="submit" id="submit-button" class="kick-ass-submit">
+                        <span id="submit-button-text" data-lang-id="015-next-button-x">👌 All done!</span>
+                        <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
+                    </button>
+                </div>
 
-    </div>
+
 <p class="form-caption" data-lang-id="022" style="text-align: center;margin-top: 20px;">Now you're ready to login! 🐵</p>
 
 </form>
@@ -302,10 +305,18 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
 
 
     </div>
+
+
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
+    <p style="font-size: medium;">
+        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back one</a>
+    </p>
+</div>
+
 </div>
 </div>
 <!-- FOOTER STARTS HERE -->
-<?php require_once ("../footer-2024.php"); ?>
+<?php require_once ("../footer-2025.php"); ?>
 
 
 <!-- place at the bottom of your HTML page -->
@@ -447,6 +458,8 @@ function selectEmoji(element) {
 
 
 </script>
+
+<?php require_once ("../scripts/app_modals.php");?>
 
 
 </body>
