@@ -91,19 +91,14 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 
-<div class="form-item credential-select-wrapper">
-    <select id="credential" name="credential" aria-label="Preferred Credential" required>
-        <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
-        <option value="e-mail">E-mail</option>
-        <option value="Phone number">Phone number</option>
-        <option value="peer" disabled>Peer</option>
-    </select>
+<select id="credential" name="credential" aria-label="Preferred Credential" required
+    style="font-size: 20px; font-family: 'Mulish',sans-serif; padding-left: 15px; color: var(--subdued-text);">
+    <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
+    <option value="e-mail">E-mail</option>
+    <option value="Phone number">Phone number</option>
+    <option value="peer" disabled>Peer</option>
+</select>
 
-    <!-- Error Message -->
-    <div id="credential-error-required" class="form-field-error" data-lang-id="000-field-required-error">
-        This field is required.
-    </div>
-</div>
 
 
 
@@ -147,6 +142,27 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const credentialSelect = document.getElementById('credential');
+
+        function updateCredentialColor() {
+            if (credentialSelect.value === "") {
+                credentialSelect.style.color = "var(--subdued-text)";
+            } else {
+                credentialSelect.style.color = "var(--h1)";
+            }
+        }
+
+        // Run it initially (in case a value is pre-selected)
+        updateCredentialColor();
+
+        // Run it whenever user changes selection
+        credentialSelect.addEventListener('change', updateCredentialColor);
+    });
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('user-signup-form');
   const submitButton = document.getElementById('submit-button');
