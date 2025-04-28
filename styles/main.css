@@ -1782,6 +1782,7 @@ color: red;
     overflow-y: visible; /* allow it to grow downwards */
     position: relative;
     display: block; /* default */
+    margin-bottom: -1px;
 }
 
 
