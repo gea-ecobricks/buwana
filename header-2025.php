@@ -112,6 +112,40 @@
         console.warn('⚠️ Could not access localStorage for dark-mode-toggle.');
     }
 })();
+
+<script>
+function updateAppLogos(theme) {
+    const appLogo = document.getElementById('the-app-logo');
+    const appWordmark = document.getElementById('top-app-logo');
+
+    if (appLogo && appWordmark) {
+        if (theme === 'dark') {
+            const darkLogoUrl = appLogo.getAttribute('data-dark-logo');
+            const darkWordmarkUrl = appWordmark.getAttribute('data-dark-wordmark');
+            appLogo.style.backgroundImage = `url('${darkLogoUrl}')`;
+            appWordmark.style.backgroundImage = `url('${darkWordmarkUrl}')`;
+        } else {
+            const lightLogoUrl = appLogo.getAttribute('data-light-logo');
+            const lightWordmarkUrl = appWordmark.getAttribute('data-light-wordmark');
+            appLogo.style.backgroundImage = `url('${lightLogoUrl}')`;
+            appWordmark.style.backgroundImage = `url('${lightWordmarkUrl}')`;
+        }
+    }
+}
+
+// === On page load, set the correct logos ===
+document.addEventListener('DOMContentLoaded', function() {
+    const savedTheme = localStorage.getItem('dark-mode-toggle') || 'light'; // Default to light
+    updateAppLogos(savedTheme);
+});
+
+// === Also listen for theme changes from the toggle ===
+document.addEventListener('colorschemechange', function(event) {
+    const newTheme = event.detail.colorScheme;
+    updateAppLogos(newTheme);
+});
+</script>
+
 </script>
 
 
@@ -248,39 +282,6 @@ display: none;
     display: flex;
 }
 
-
-.the-app-logo {
-
-  background: url('<?= htmlspecialchars($app_info['app_logo_url']) ?>') center no-repeat;
-  background-size: contain;
-  width: 80%;
-  height: 25%;
-  margin-right: auto;
-  margin-left: auto;
-  margin:auto;
-}
-
-@media screen and (max-width: 700px) {
-.the-app-logo {
-max-height: 200px;
-}
-
- .buwana-word-mark {
-  max-height: 22px;
-  }
-}
-
-#top-app-logo {
-background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center no-repeat;
-  background-size: contain;
- height: 80%;
- display: flex;
- cursor: pointer;
- width:100%;
- margin-right:70px;
- margin-top: 5px;
- }
-
  .buwana-word-mark {
  background: url('../svgs/b-logo.svg') center no-repeat;
    background-size: contain;
@@ -292,23 +293,47 @@ background: url('<?= htmlspecialchars($app_info['app_wordmark_url']) ?>') center
   }
 
 
-    @media (prefers-color-scheme: dark) {
-        .the-app-logo {
-
-          background: url('<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>') center no-repeat;
-          background-size: contain;
-        }
-
-    #top-app-logo {
-    background: url('<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>') center no-repeat;
-      background-size: contain;
-      }
-    }
-
-body {
-width:100%;
-  overflow-x: hidden;
+@media screen and (max-width: 700px) {
+.the-app-logo {
+max-height: 200px;
 }
+
+ .buwana-word-mark {
+  max-height: 22px;
+  }
+}
+
+
+.the-app-logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80%;
+  height: 25%;
+  margin: auto;
+}
+
+#top-app-logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 80%;
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  margin-right: 70px;
+  margin-top: 5px;
+}
+
+/* You don't need this anymore:
+@media (prefers-color-scheme: dark) {...}
+*/
+
+
+/* body { */
+/* width:100%; */
+/*   overflow-x: hidden; */
+/* } */
 
 </style>
 
@@ -340,7 +365,8 @@ width:100%;
   <button type="button" onclick="closeMainMenu()" aria-label="Click to close main menu page" class="x-button"></button>
   <div class="overlay-content-settings">
 
-   <div class="the-app-logo" alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"></div>
+   <div class="the-app-logo" alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>" data-light-logo="<?= htmlspecialchars($app_info['app_logo_url']) ?>"
+    data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>"></div>
 
 
     <div class="menu-page-item">
@@ -402,8 +428,10 @@ width:100%;
   <!-- App Logo -->
   <div id="top-app-logo"
        title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
-       onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')">
+       onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')"  data-light-wordmark="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>"
+        data-dark-wordmark="<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>">
   </div>
+
 
   <!-- Right Settings Buttons -->
   <div id="function-icons">
