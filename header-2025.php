@@ -71,43 +71,46 @@
 <script>
 (function() {
     try {
-        // 📥 1. Load saved theme immediately
         var savedTheme = localStorage.getItem('dark-mode-toggle');
         const toggle = document.getElementById('dark-mode-toggle-5');
 
         if (savedTheme && toggle) {
-            toggle.mode = savedTheme;  // 🧠 Set mode properly
-            document.documentElement.setAttribute('data-theme', savedTheme); // Optional: for custom CSS
+            toggle.mode = savedTheme;
+            document.documentElement.setAttribute('data-theme', savedTheme);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const appLogo = document.querySelector('.the-app-logo');
-            const appWordmark = document.getElementById('top-app-logo');
+            const logoElement = document.querySelector('.the-app-logo');
+            const wordmarkElement = document.getElementById('top-app-logo');
 
             function updateLogos() {
-                const mode = toggle ? toggle.mode : 'light';
-                if (appLogo) {
-                    const lightLogo = appLogo.getAttribute('data-light-logo');
-                    const darkLogo = appLogo.getAttribute('data-dark-logo');
-                    appLogo.style.backgroundImage = mode === 'dark' ? `url('${darkLogo}')` : `url('${lightLogo}')`;
+                const mode = document.documentElement.getAttribute('data-theme') || 'light';
+
+                if (logoElement) {
+                    const lightLogo = logoElement.getAttribute('data-light-logo');
+                    const darkLogo = logoElement.getAttribute('data-dark-logo');
+                    logoElement.style.transition = 'background-image 0.5s ease'; // ✨ Smooth transition
+                    logoElement.style.backgroundImage = mode === 'dark' ? `url('${darkLogo}')` : `url('${lightLogo}')`;
                 }
-                if (appWordmark) {
-                    const lightWordmark = appWordmark.getAttribute('data-light-wordmark');
-                    const darkWordmark = appWordmark.getAttribute('data-dark-wordmark');
-                    appWordmark.style.backgroundImage = mode === 'dark' ? `url('${darkWordmark}')` : `url('${lightWordmark}')`;
+
+                if (wordmarkElement) {
+                    const lightWordmark = wordmarkElement.getAttribute('data-light-wordmark');
+                    const darkWordmark = wordmarkElement.getAttribute('data-dark-wordmark');
+                    wordmarkElement.style.transition = 'background-image 0.5s ease'; // ✨ Smooth transition
+                    wordmarkElement.style.backgroundImage = mode === 'dark' ? `url('${darkWordmark}')` : `url('${lightWordmark}')`;
                 }
             }
 
-            updateLogos(); // 🚀 Update once
+            updateLogos(); // 🚀 Initial on load
 
             if (toggle) {
                 toggle.addEventListener('colorschemechange', function(event) {
                     const mode = event.detail.colorScheme;
                     localStorage.setItem('dark-mode-toggle', mode);
                     console.log('🌗 Saved user theme preference:', mode);
-
                     document.documentElement.setAttribute('data-theme', mode);
-                    updateLogos(); // 🔄 Update logos too
+
+                    updateLogos(); // 🔥 Update logos immediately on toggle!
                 });
             }
         });
@@ -117,6 +120,7 @@
     }
 })();
 </script>
+
 
 
 
