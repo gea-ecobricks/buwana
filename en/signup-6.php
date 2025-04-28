@@ -187,51 +187,87 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <form id="user-info-form" method="post" action="finalize_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
 <!-- EARTHLING EMOJI SELECT -->
-<div class="form-item" id="emoji-section" style="margin-top: 20px;">
-    <!--<label for="earthling_emoji">🧬 Choose an emoji to represent you:</label>-->
-    <div id="emoji-grid" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
-        <?php
-        // A curated list of lifeform-related emojis
-$emoji_options = [
-    // Mammals
-    '🐶','🐺','🦊','🐱','🐯','🦁','🐮','🐷','🐸','🐵','🦍','🦧','🐔','🐧','🦇','🐻','🐨','🐼','🦘','🦡','🦨','🦥','🦦','🦣','🦌','🦬','🐐','🐑','🐎','🫏','🐪','🐫','🦙','🦒','🦓','🐘','🐖','🐄','🐂',
+<!-- EARTHLING EMOJI SELECT -->
+<div class="form-item" id="emoji-section">
+    <!-- Top tab bar -->
+    <ul class="emoji-tabs" id="emojiTabs">
+        <li data-tab="mammals"  class="active">Mammals</li>
+        <li data-tab="marine">Marine</li>
+        <li data-tab="reptiles">Reptiles & Amphibians</li>
+        <li data-tab="birds">Birds</li>
+        <li data-tab="insects">Insects</li>
+        <li data-tab="plants">Plants</li>
+        <li data-tab="humans">Human-like</li>
+    </ul>
 
-    // Marine
-    '🐬','🐳','🐋','🐟','🐠','🐡','🦈','🐙','🦑','🦐','🦀','🪼',
+    <!-- ONE grid per category -->
+    <div class="emoji-grids">
 
-    // Reptiles & Amphibians
-    '🐊','🦎','🐍','🐢','🦕','🦖',
+        <div id="tab-mammals"  class="emoji-grid active">
+            <?php foreach ([
+                '🐶','🐺','🦊','🐱','🐯','🦁','🐮','🐷','🐸','🐵','🦍','🦧','🐔',
+                '🐧','🦇','🐻','🐨','🐼','🦘','🦡','🦨','🦥','🦦','🦣','🦌','🦬',
+                '🐐','🐑','🐎','🫏','🐪','🐫','🦙','🦒','🦓','🐘','🐖','🐄','🐂'
+            ] as $emoji): ?>
+                <div class="emoji-option" onclick="selectEmoji(this)"><?php echo $emoji;?></div>
+            <?php endforeach; ?>
+        </div>
 
-    // Birds
-    '🐦','🐧','🕊️','🦅','🦆','🦢','🦉','🦜','🪶',
+        <div id="tab-marine" class="emoji-grid">
+            <?php foreach (['🐬','🐳','🐋','🐟','🐠','🐡','🦈','🐙','🦑','🦐','🦀','🪼'] as $emoji): ?>
+                <div class="emoji-option" onclick="selectEmoji(this)"><?php echo $emoji;?></div>
+            <?php endforeach; ?>
+        </div>
 
-    // Insects
-    '🐝','🐞','🦋','🐛','🦗','🪲','🪳','🦟','🪰','🪱',
+        <div id="tab-reptiles" class="emoji-grid">
+            <?php foreach (['🐊','🦎','🐍','🐢','🦕','🦖'] as $emoji): ?>
+                <div class="emoji-option" onclick="selectEmoji(this)"><?php echo $emoji;?></div>
+            <?php endforeach; ?>
+        </div>
 
-    // Plants
-    '🌱','🌿','☘️','🍀','🎋','🌵','🌴','🌲','🌳','🪴','🪹','🪺',
+        <div id="tab-birds" class="emoji-grid">
+            <?php foreach (['🐦','🐧','🕊️','🦅','🦆','🦢','🦉','🦜','🪶'] as $emoji): ?>
+                <div class="emoji-option" onclick="selectEmoji(this)"><?php echo $emoji;?></div>
+            <?php endforeach; ?>
+        </div>
 
-    // Human-like characters (no faces)
-    '🧑','🧒','🧓','👩','👨','👧','👦',
-    '🧕','🧔','👮','🕵️','💂','🧙','🧝','🧛','🧟','🧞','🧜','🧚','🧑‍🚀','🧑‍🔬','🧑‍🌾','🧑‍🏫','🧑‍🎨','🧑‍🚒','🧑‍🍳','🧑‍⚖️','🧑‍💻','🧑‍🔧','🧑‍🔬','🧑‍🏭'
-];
-        foreach ($emoji_options as $emoji): ?>
-            <div class="emoji-option" onclick="selectEmoji(this)" style="cursor:pointer; font-size: 28px; padding: 6px 10px; border: 2px solid transparent; border-radius: 8px;">
-                <?php echo $emoji; ?>
-            </div>
-        <?php endforeach; ?>
+        <div id="tab-insects" class="emoji-grid">
+            <?php foreach (['🐝','🐞','🦋','🐛','🦗','🪲','🪳','🦟','🪰','🪱'] as $emoji): ?>
+                <div class="emoji-option" onclick="selectEmoji(this)"><?php echo $emoji;?></div>
+            <?php endforeach; ?>
+        </div>
+
+        <div id="tab-plants" class="emoji-grid">
+            <?php foreach (['🌱','🌿','☘️','🍀','🎋','🌵','🌴','🌲','🌳','🪴','🪹','🪺'] as $emoji): ?>
+                <div class="emoji-option" onclick="selectEmoji(this)"><?php echo $emoji;?></div>
+            <?php endforeach; ?>
+        </div>
+
+        <div id="tab-humans" class="emoji-grid">
+            <?php foreach ([
+                '🧑','🧒','🧓','👩','👨','👧','👦','🧕','🧔','👮','🕵️','💂','🧙',
+                '🧝','🧛','🧟','🧞','🧜','🧚','🧑‍🚀','🧑‍🔬','🧑‍🌾','🧑‍🏫','🧑‍🎨',
+                '🧑‍🚒','🧑‍🍳','🧑‍⚖️','🧑‍💻','🧑‍🔧','🧑‍🏭'
+            ] as $emoji): ?>
+                <div class="emoji-option" onclick="selectEmoji(this)"><?php echo $emoji;?></div>
+            <?php endforeach; ?>
+        </div>
+
     </div>
+
     <input type="hidden" name="earthling_emoji" id="earthling_emoji">
-    <p style="margin-top: 5px; font-size: 0.9em; color: #555;">Click one emoji to represent your Earthling identity.</p>
+    <p class="emoji-hint">Click one emoji to represent your Earthling identity.</p>
 </div>
 
 
 
+
   <!-- COMMUNITY FIELD -->
+  <p>Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</p>
 <div class="form-item" id="community-section" style="margin-top:20px;" class="float-label-group">
-    <label for="community_name" data-lang-id="012-community-name-x">Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</label><br>
+    <label for="community_name" data-lang-id="012-community-name-x">Start typing your community...</label>
     <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
-           placeholder="Type your community" style="width: 100%; padding: 10px;"
+           placeholder=" "  style="width: 100%; padding: 10px;"
            value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
     <datalist id="community_list">
         <?php foreach ($communities as $community) : ?>
@@ -250,7 +286,7 @@ $emoji_options = [
 
 
 <!-- COUNTRY SELECT -->
-<div class="form-item" id="country-section" style="margin-top: 20px;" class="float-label-group">
+<div class="form-item" id="country-section" style="margin-top: 20px;">
     <label for="country_name">🌍 Please make sure we've connected you with the right country:</label><br>
     <select id="country_name" name="country_name" required style="width: 100%; padding: 10px;">
         <option value="">-- Select your country --</option>
@@ -272,7 +308,7 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
 ?>
 
 <!-- LANGUAGE SELECT -->
-<div class="form-item" id="language-section" style="margin-top: 20px;" class="float-label-group">
+<div class="form-item" id="language-section" style="margin-top: 20px;">
     <label for="language_id">🗣️ Please make sure we've selected the right primary language for you:</label><br>
     <select id="language_id" name="language_id" required style="width: 100%; padding: 10px;">
         <option value="">-- Select your language --</option>
@@ -320,7 +356,33 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
 
 
 <!-- place at the bottom of your HTML page -->
+
+
 <script>
+
+// --- tab behaviour ---------------------------------
+document.getElementById('emojiTabs').addEventListener('click', e => {
+    if (e.target.tagName !== 'LI') return;
+
+    // update tab bar
+    document.querySelectorAll('#emojiTabs li').forEach(li => li.classList.toggle('active', li === e.target));
+
+    // show / hide the right grid
+    const tabName = e.target.getAttribute('data-tab');
+    document.querySelectorAll('.emoji-grid').forEach(grid => {
+        grid.classList.toggle('active', grid.id === 'tab-' + tabName);
+    });
+});
+
+// --- keep your existing picker logic ---------------
+function selectEmoji(el) {
+    // remove previous selection
+    document.querySelectorAll('.emoji-option').forEach(opt => opt.classList.remove('selected'));
+
+    // mark new one
+    el.classList.add('selected');
+    document.getElementById('earthling_emoji').value = el.textContent.trim();
+}
 
 
 
