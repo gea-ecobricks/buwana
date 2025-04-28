@@ -267,10 +267,10 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </label><br>
 
     <div class="select-wrapper" style="position: relative;">
-        <span class="select-icon" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 20px;">👥</span>
+        <span class="select-icon" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 20px;">👥</span>
 
         <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
-               placeholder="Type your community" style="width: 100%; padding: 12px 10px 12px 50px; font-size: 20px;"
+               placeholder="Type your community" style="width: 100%; padding: 11px 10px 11px 50px; font-size: 20px !important;"
                value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
     </div>
 
@@ -347,13 +347,13 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
                 <div id="submit-section" class="submit-button-wrapper">
 
                     <button type="submit" id="submit-button" class="kick-ass-submit">
-                        <span id="submit-button-text" data-lang-id="015-next-button-x">👌 All done!</span>
+                        <span id="submit-button-text" data-lang-id="015-next-button-x">All done! 👌</span>
                         <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                     </button>
                 </div>
 
 
-<p class="form-caption" data-lang-id="022" style="text-align: center;margin-top: 20px;">Now you're ready to login! 🐵</p>
+<p class="form-caption" data-lang-id="022" style="text-align: center;margin-top: 20px;">Now you're ready to login!</p>
 
 </form>
 
