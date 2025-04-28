@@ -68,59 +68,6 @@
 
 <script src="../scripts/language-switcher.js?v=<?php echo ($version); ;?>"></script>
 
-<script>
-(function() {
-    try {
-        var savedTheme = localStorage.getItem('dark-mode-toggle');
-        const toggle = document.getElementById('dark-mode-toggle-5');
-
-        if (savedTheme && toggle) {
-            toggle.mode = savedTheme;
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoElement = document.querySelector('.the-app-logo');
-            const wordmarkElement = document.getElementById('top-app-logo');
-
-            function updateLogos() {
-                const mode = document.documentElement.getAttribute('data-theme') || 'light';
-
-                if (logoElement) {
-                    const lightLogo = logoElement.getAttribute('data-light-logo');
-                    const darkLogo = logoElement.getAttribute('data-dark-logo');
-                    logoElement.style.transition = 'background-image 0.5s ease'; // ✨ Smooth transition
-                    logoElement.style.backgroundImage = mode === 'dark' ? `url('${darkLogo}')` : `url('${lightLogo}')`;
-                }
-
-                if (wordmarkElement) {
-                    const lightWordmark = wordmarkElement.getAttribute('data-light-wordmark');
-                    const darkWordmark = wordmarkElement.getAttribute('data-dark-wordmark');
-                    wordmarkElement.style.transition = 'background-image 0.5s ease'; // ✨ Smooth transition
-                    wordmarkElement.style.backgroundImage = mode === 'dark' ? `url('${darkWordmark}')` : `url('${lightWordmark}')`;
-                }
-            }
-
-            updateLogos(); // 🚀 Initial on load
-
-            if (toggle) {
-                toggle.addEventListener('colorschemechange', function(event) {
-                    const mode = event.detail.colorScheme;
-                    localStorage.setItem('dark-mode-toggle', mode);
-                    console.log('🌗 Saved user theme preference:', mode);
-                    document.documentElement.setAttribute('data-theme', mode);
-
-                    updateLogos(); // 🔥 Update logos immediately on toggle!
-                });
-            }
-        });
-
-    } catch (err) {
-        console.warn('⚠️ Could not access localStorage for dark-mode-toggle.');
-    }
-})();
-</script>
-
 
 
 
