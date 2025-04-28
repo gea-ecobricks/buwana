@@ -14,7 +14,7 @@ $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
 
-require_once '../carbon-check.php';   //calls carbon
+require_once '../scripts/carbon_check.php';   //calls carbon
 
 // ✅ Direct session check instead of calling a function
 if (!empty($_SESSION['buwana_id'])) {
