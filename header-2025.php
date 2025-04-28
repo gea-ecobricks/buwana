@@ -114,36 +114,29 @@
 })();
 
 
-function updateAppLogos(theme) {
-    const appLogo = document.getElementById('the-app-logo');
-    const appWordmark = document.getElementById('top-app-logo');
-
-    if (appLogo && appWordmark) {
-        if (theme === 'dark') {
-            const darkLogoUrl = appLogo.getAttribute('data-dark-logo');
-            const darkWordmarkUrl = appWordmark.getAttribute('data-dark-wordmark');
-            appLogo.style.backgroundImage = `url('${darkLogoUrl}')`;
-            appWordmark.style.backgroundImage = `url('${darkWordmarkUrl}')`;
-        } else {
-            const lightLogoUrl = appLogo.getAttribute('data-light-logo');
-            const lightWordmarkUrl = appWordmark.getAttribute('data-light-wordmark');
-            appLogo.style.backgroundImage = `url('${lightLogoUrl}')`;
-            appWordmark.style.backgroundImage = `url('${lightWordmarkUrl}')`;
-        }
-    }
-}
-
-// === On page load, set the correct logos ===
 document.addEventListener('DOMContentLoaded', function() {
-    const savedTheme = localStorage.getItem('dark-mode-toggle') || 'light'; // Default to light
-    updateAppLogos(savedTheme);
+  const logoElement = document.querySelector('.the-app-logo');
+  if (!logoElement) return;
+
+  const lightLogo = logoElement.getAttribute('data-light-logo');
+  const darkLogo = logoElement.getAttribute('data-dark-logo');
+
+  function setLogo() {
+    const savedTheme = localStorage.getItem('dark-mode-toggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      logoElement.style.backgroundImage = `url('${darkLogo}')`;
+    } else {
+      logoElement.style.backgroundImage = `url('${lightLogo}')`;
+    }
+  }
+
+  setLogo(); // 🧠 <<< call it right away on page load
+
+  window.addEventListener('colorschemechange', setLogo); // 🔥 update on toggle change
 });
 
-// === Also listen for theme changes from the toggle ===
-document.addEventListener('colorschemechange', function(event) {
-    const newTheme = event.detail.colorScheme;
-    updateAppLogos(newTheme);
-});
 
 
 </script>
@@ -351,8 +344,13 @@ max-height: 200px;
   <button type="button" onclick="closeMainMenu()" aria-label="Click to close main menu page" class="x-button"></button>
   <div class="overlay-content-settings">
 
-   <div class="the-app-logo" alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo" title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>" data-light-logo="<?= htmlspecialchars($app_info['app_logo_url']) ?>"
-    data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>"></div>
+   <div class="the-app-logo"
+        alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo"
+        title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"
+        data-light-logo="<?= htmlspecialchars($app_info['app_logo_url']) ?>"
+        data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>">
+   </div>
+
 
 
     <div class="menu-page-item">
