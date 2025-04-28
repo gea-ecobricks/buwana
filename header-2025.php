@@ -304,9 +304,7 @@ max-height: 200px;
   margin-top: 5px;
 }
 
-/* You don't need this anymore:
-@media (prefers-color-scheme: dark) {...}
-*/
+
 
 
 /* body { */
@@ -409,12 +407,14 @@ max-height: 200px;
   <!-- Left Menu Button -->
   <button type="button" class="side-menu-button" onclick="openSideMenu()" aria-label="Open Main Menu"></button>
 
-  <!-- App Logo -->
+  <!-- Center header App Logo -->
   <div id="top-app-logo"
        title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
-       onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')"  data-light-wordmark="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>"
-        data-dark-wordmark="<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>">
+       onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')"
+       data-light-wordmark="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>"
+       data-dark-wordmark="<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>">
   </div>
+
 
 
   <!-- Right Settings Buttons -->

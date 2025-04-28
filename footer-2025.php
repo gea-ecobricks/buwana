@@ -19,7 +19,7 @@
 
             <div id="wcb" class="carbonbadge wcb-d"></div>
 
-            <div class="footer-conclusion" data-lang-id="419x-conclusion-disclosure">We track and disclose our net-green ecological impact.  See our <a href="https://ecobricks.org/en/regenreports.php" target="_blank">Regen Reporting</a> for 2024.</a>
+            <div class="footer-conclusion" data-lang-id="419x-conclusion-disclosure">We track and disclose our net-green ecological impact.  See our <a href="https://ecobricks.org/en/regenreports.php" target="_blank">Regen Reporting</a> for 2025.</a>
             </div>
 
             <div class="footer-conclusion" data-lang-id="420-conclusion-contribute">
@@ -184,74 +184,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function viewGalleryImage(imageSrc, altText) {
-    const modal = document.getElementById('form-modal-message');
-    const contentBox = modal.querySelector('.modal-content-box'); // This is the part we want to hide
-    const photoBox = modal.querySelector('.modal-photo-box'); // This is where we'll show the image
-    const photoContainer = modal.querySelector('.modal-photo'); // The container for the image
-
-    // Hide the content box and show the photo box
-    contentBox.style.display = 'none'; // Hide the content box
-    photoBox.style.display = 'block'; // Make sure the photo box is visible
-
-    // Clear previous images from the photo container
-    photoContainer.innerHTML = '';
-
-    // Create and append the new image
-    const img = document.createElement('img');
-    img.src = imageSrc;
-    img.alt = altText;
-    img.style.maxWidth = '90%';
-    img.style.maxHeight = '80vh';
-    img.style.margin = 'auto';
-    img.style.minHeight = '400px';
-    img.style.minWidth = '400px';
-
-    // Create and append the caption
-    const caption = document.createElement('p');
-    caption.textContent = altText;
-    caption.style.textAlign = 'center';
-
-    // Append image and caption to the photo container
-    photoContainer.appendChild(img);
-    photoContainer.appendChild(caption);
-
-    // Show the modal
-    modal.style.display = 'flex';
-
-    // If you have other page elements adjusted when the modal opens, such as blurring the background,
-    // you may want to include those adjustments here as well
-    document.getElementById('page-content')?.classList.add('blurred');
-    document.getElementById('footer-full')?.classList.add('blurred');
-    document.body.classList.add('modal-open');
-}
 
 
-
-
-function createInfoModal(infoText) {
-    console.log("Modal Function called");
-    const modal = document.getElementById('form-modal-message');
-    const messageContainer = modal.querySelector('.modal-message');
-    messageContainer.textContent = infoText;
-
-    // Toggle classes to show the modal
-    // modal.classList.remove('modal-hidden');
-    // modal.classList.add('modal-shown');
-    modal.style.display = 'flex';
-
-
-    // Update other page elements as needed
-    document.getElementById('page-content').classList.add('blurred');
-    document.getElementById('footer-full').classList.add('blurred');
-    document.body.classList.add('modal-open');
-
-
-    // Show all buttons with class "x-button" again
-    const xButtons = document.querySelectorAll('.x-button');
-    xButtons.forEach(button => button.style.display = 'inline-block');
-
-}
+//
+// function createInfoModal(infoText) {
+//     console.log("Modal Function called");
+//     const modal = document.getElementById('form-modal-message');
+//     const messageContainer = modal.querySelector('.modal-message');
+//     messageContainer.textContent = infoText;
+//
+//     // Toggle classes to show the modal
+//     // modal.classList.remove('modal-hidden');
+//     // modal.classList.add('modal-shown');
+//     modal.style.display = 'flex';
+//
+//
+//     // Update other page elements as needed
+//     document.getElementById('page-content').classList.add('blurred');
+//     document.getElementById('footer-full').classList.add('blurred');
+//     document.body.classList.add('modal-open');
+//
+//
+//     // Show all buttons with class "x-button" again
+//     const xButtons = document.querySelectorAll('.x-button');
+//     xButtons.forEach(button => button.style.display = 'inline-block');
+//
+// }
 
 
 
