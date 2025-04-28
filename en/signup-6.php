@@ -261,16 +261,16 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 
 <!-- COMMUNITY FIELD -->
-<div class="form-item" id="community-section" style="margin-top:20px;">
+<div class="form-item" id="community-section" style="margin-top:20px;padding-bottom: 0px;">
     <label for="community_name" data-lang-id="012-community-name-x">
-        Buwana accounts are all about connecting us with our local and global communities. Select your primary local community:
+        Buwana accounts let you connect with local and global communities...
     </label><br>
 
     <div class="select-wrapper" style="position: relative;">
-        <span class="select-icon" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 22px;">👥</span>
+        <span class="select-icon" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 20px;">👥</span>
 
         <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
-               placeholder="Type your community" style="width: 100%; padding: 10px 10px 10px 40px;"
+               placeholder="Type your community" style="width: 100%; padding: 10px 10px 10px 50px; font-size: 20px;"
                value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
     </div>
 
@@ -285,9 +285,9 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
     <!-- "Add a new community" text link -->
     <p class="form-caption" data-lang-id="012-community-caption-xx">
-        Start typing to see and select a community. There's a good chance someone local to you has already set one up!
+        Start typing to see and select a community. There's a good chance someone local to you has already set one up!<br>
         <a href="#" onclick="openAddCommunityModal(); return false;" style="color: #007BFF; text-decoration: underline;">
-            Don't see your community? + Add it.
+            + Don't see your community? Add it.
         </a>
     </p>
 </div>
