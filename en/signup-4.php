@@ -140,9 +140,8 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
                 <!-- Kick-Ass Submit Button -->
                 <div id="submit-section" style="display:none;" class="submit-button-wrapper">
-                    <p style="margin-bottom:15px;">
-                        Yes!  We use <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watersheds</a> as an alternative non-politcal, grounded way to localize our users.
-
+                    <p style="margin-bottom:25px;">
+                        Yes!  We use <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watershed bioregions</a> as an alternative non-politcal, grounded way to localize our users.
                     </p>
 
                     <button type="submit" id="submit-button" class="kick-ass-submit" title="Be sure to choose your local watershed!">
