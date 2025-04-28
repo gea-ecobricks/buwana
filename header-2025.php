@@ -113,7 +113,7 @@
     }
 })();
 
-<script>
+
 function updateAppLogos(theme) {
     const appLogo = document.getElementById('the-app-logo');
     const appWordmark = document.getElementById('top-app-logo');
@@ -144,7 +144,7 @@ document.addEventListener('colorschemechange', function(event) {
     const newTheme = event.detail.colorScheme;
     updateAppLogos(newTheme);
 });
-</script>
+
 
 </script>
 
@@ -192,20 +192,6 @@ document.addEventListener('colorschemechange', function(event) {
   src: url("../fonts/Arvo-Regular.ttf");
   font-display: swap;
  }
-
-
-/* .rotate-plus { */
-/*     display: inline-block; */
-/*     transform: rotate(45deg); */
-/*     transition: transform 0.5s ease; */
-/* } */
-
-/* .rotate-minus { */
-/*     display: inline-block; */
-/*     transform: rotate(90deg);  *//* This effectively rotates it back by 45 degrees from the .rotate-plus state */
-/*     transition: transform 0.5s ease; */
-/* } */
-
 
 
 
