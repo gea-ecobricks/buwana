@@ -110,6 +110,39 @@
 //     });
 //
 // }
+
+
+(function() {
+    try {
+        var savedTheme = localStorage.getItem('dark-mode-toggle');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            // Optional: If you use separate dark CSS files
+            document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: dark"]').forEach(link => {
+                link.media = "all";
+                link.disabled = false;
+            });
+            document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: light"]').forEach(link => {
+                link.media = "not all";
+                link.disabled = true;
+            });
+        } else if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: light"]').forEach(link => {
+                link.media = "all";
+                link.disabled = false;
+            });
+            document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: dark"]').forEach(link => {
+                link.media = "not all";
+                link.disabled = true;
+            });
+        }
+    } catch (err) {
+        console.warn('⚠️ Could not access localStorage for dark-mode-toggle.');
+    }
+})();
+
+
 </script>
 
 
