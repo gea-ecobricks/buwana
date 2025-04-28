@@ -1,7 +1,7 @@
 const wcID = e => document.getElementById(e),
     wcU = encodeURIComponent(window.location.href),
     newRequest = function (e = !0) {
-        fetch("/carbon-check.php?url=" + wcU)
+        fetch("../scripts/carbon_check.php?url=" + wcU)
 
             .then(function (e) {
                 if (!e.ok) throw Error(e);
