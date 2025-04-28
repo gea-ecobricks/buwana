@@ -184,9 +184,8 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
         <!-- FINALIZE ACCOUNT FORM -->
 
-<form id="user-info-form" method="post" action="finalize_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+<form id="user-signup-form" method="post" action="signup-6_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
-<!-- EARTHLING EMOJI SELECT -->
 <!-- EARTHLING EMOJI SELECT -->
 <div class="form-item" id="emoji-section">
     <!-- Top tab bar -->
@@ -269,9 +268,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
 
     <label for="community_name" data-lang-id="012-community-name-x">Start typing your community...</label>
-    <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
-           placeholder=" "  style="width: 100%; padding: 10px;"
-           value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+    <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"  placeholder=" "  style="width: 100%; padding: 10px;" value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
     <datalist id="community_list">
         <?php foreach ($communities as $community) : ?>
             <option value="<?php echo htmlspecialchars($community, ENT_QUOTES, 'UTF-8'); ?>" <?php echo (isset($pre_community) && $community === $pre_community) ? 'selected' : ''; ?>>
@@ -279,7 +276,6 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
             </option>
         <?php endforeach; ?>
     </datalist>
-
     <!-- "Add a new community" text link -->
     <p class="form-caption" data-lang-id="012-community-caption-xx">
         Start typing to see and select a community. There's a good chance someone local to you has already set one up!  <a href="#" onclick="openAddCommunityModal(); return false;" style="color: #007BFF; text-decoration: underline;">Don't see your community?  + Add it.
