@@ -262,8 +262,10 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 
   <!-- COMMUNITY FIELD -->
-<div class="form-item" style="margin-bottom: -30px; border-radius: 10px 10px 0px 0px">
-    <p>👥 Buwana accounts are all about connecting us with our local and global communities.  Select your primary local community:</p>
+<div class="form-item" style="margin-bottom: -24px; border-radius: 10px 10px 0px 0px; padding:
+10px 10px 0px 0px;
+  ">
+    <p>👥 Buwana accounts are all about connecting us with our local and global communities.</p>
    </div>
 
 <div class="form-item float-label-group" style="border-radius:0px 0px 10px 10px;padding-bottom:0px;">
@@ -313,18 +315,25 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
 ?>
 
 <!-- LANGUAGE SELECT -->
-<div class="form-item" id="language-section" style="margin-top: 20px;">
-    <label for="language_id">🗣️ Please make sure we've selected the right primary language for you:</label><br>
-    <select id="language_id" name="language_id" required style="width: 100%; padding: 10px;">
-        <option value="">-- Select your language --</option>
-        <?php foreach ($languages as $language): ?>
-            <option value="<?php echo htmlspecialchars($language['language_id']); ?>"
-                <?php echo ($language['language_id'] === $current_lang_dir) ? 'selected' : ''; ?>>
-                <?php echo htmlspecialchars($language['languages_native_name']); ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+<!-- LANGUAGE SELECT -->
+<div class="form-item" id="language-section" style="margin-top: 20px; position: relative;">
+    <label for="language_id">Please make sure we've selected the right primary language for you:</label><br>
+
+    <div class="select-wrapper" style="position: relative;">
+        <span class="select-icon" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 22px;">🗣️</span>
+
+        <select id="language_id" name="language_id" required style="width: 100%; padding: 10px 10px 10px 40px;">
+            <option value="">-- Select your language --</option>
+            <?php foreach ($languages as $language): ?>
+                <option value="<?php echo htmlspecialchars($language['language_id']); ?>"
+                    <?php echo ($language['language_id'] === $current_lang_dir) ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($language['languages_native_name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
 </div>
+
 
 
 <!-- Kick-Ass Submit Button -->
