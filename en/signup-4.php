@@ -96,10 +96,10 @@ if ($result_languages && $result_languages->num_rows > 0) {
         <div class="form-container">
 
             <div style="text-align:center;width:100%;margin:auto;">
-                <p style="color:green;">✔ <?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="001-password-set"> your password is set!</span></p>
-                <div id="status-message"><span data-lang-id="012-status-heading2"> Now let's get you localized.</span></div>
+                <p style="color:green;" data-lang-id="001-password-set">✔ Your email is confirmed!</span></p>
+                <div id="status-message"><span data-lang-id="012-status-heading2-x"> Now <?php echo htmlspecialchars($first_name); ?> let's get you localized.</span></div>
                 <div id="sub-status-message" data-lang-id="013-sub-ecozone" style="font-size:1.3em;padding-top:10px;padding-bottom:10px;">
-                    GoBrik is all about ecological action. Please help us determine your ecological zone: the watershed or river basin where you live.
+                    Let's determine your bioregion: the watershed where you live.
                 </div>
             </div>
 
@@ -107,15 +107,15 @@ if ($result_languages && $result_languages->num_rows > 0) {
             <form id="user-signup-form" method="post" action="signup-4_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
                 <!-- LOCATION FULL -->
-                <div class="form-item">
-                    <label for="location_full" data-lang-id="011-your-local-area">Where is your home?</label><br>
+                <div class="form-item float-label-group">
+                    <label for="location_full" data-lang-id="011-your-local-area-x" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">Your neighbourhood...</label>
                     <div class="input-container">
                         <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;">
                         <div id="loading-spinner" class="spinner" style="display: none;"></div>
                         <div id="location-pin" class="pin-icon">📍</div>
                     </div>
                     <p class="form-caption" data-lang-id="011-location-full-caption">
-                        Start typing your home location (without the street location!), and we'll fill in the rest. Data source: OpenStreetMap API.
+                        Start typing the name of your neighbourhood or community, and we'll fill in the rest. Data source: OpenStreetMap API.
                     </p>
                     <div id="location-error-required" class="form-field-error" data-lang-id="000-field-required-error">
                         This field is required.
