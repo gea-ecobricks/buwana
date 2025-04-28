@@ -116,7 +116,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
                     </div>
                 <label for="location_full" data-lang-id="011-your-local-area-xxx" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">Your neighbourhood...</label>
                     <p class="form-caption" data-lang-id="011-location-full-caption">
-                        Start typing the name of your neighbourhood, and openstreetmaps will fill in the rest.
+                        Start typing the name of your neighbourhood, and <a href="https://openstreetmap.org.org" target="_blank">openstreetmaps.org</a> will fill in the rest.
                     </p>
                     <div id="location-error-required" class="form-field-error" data-lang-id="000-field-required-error">
                         This field is required.
