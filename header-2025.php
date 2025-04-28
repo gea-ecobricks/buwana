@@ -7,7 +7,9 @@
   $name = "";
 
 
+
 	;?>
+
 
 
 	<link rel="canonical" href="https://buwana.ecobricks.org/<?php echo ($lang); ;?>/<?php echo ($name); ;?>">
@@ -69,7 +71,7 @@
 <script>
 (function() {
     try {
-        // First: Apply saved theme immediately
+        // 📥 1. Load saved theme immediately
         var savedTheme = localStorage.getItem('dark-mode-toggle');
         if (savedTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
@@ -93,17 +95,75 @@
             });
         }
 
-        // Second: Listen for toggle changes and save new choice
+        // 📦 2. Setup after DOM fully loaded
         document.addEventListener('DOMContentLoaded', function() {
             const toggle = document.getElementById('dark-mode-toggle-5');
+            const appLogo = document.querySelector('.the-app-logo');
+            const appWordmark = document.getElementById('top-app-logo');
+
+            // 🔄 Function to update logos
+            function updateLogos() {
+                const currentTheme = localStorage.getItem('dark-mode-toggle');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+                // Update main logo
+                if (appLogo) {
+                    const lightLogo = appLogo.getAttribute('data-light-logo');
+                    const darkLogo = appLogo.getAttribute('data-dark-logo');
+                    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+                        appLogo.style.backgroundImage = `url('${darkLogo}')`;
+                    } else {
+                        appLogo.style.backgroundImage = `url('${lightLogo}')`;
+                    }
+                }
+
+                // Update wordmark logo
+                if (appWordmark) {
+                    const lightWordmark = appWordmark.getAttribute('data-light-wordmark');
+                    const darkWordmark = appWordmark.getAttribute('data-dark-wordmark');
+                    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+                        appWordmark.style.backgroundImage = `url('${darkWordmark}')`;
+                    } else {
+                        appWordmark.style.backgroundImage = `url('${lightWordmark}')`;
+                    }
+                }
+            }
+
+            // 🚀 Run immediately on page load
+            updateLogos();
+
+            // 🎯 Listen for color scheme toggle
             if (toggle) {
                 toggle.addEventListener('colorschemechange', function(event) {
                     const mode = event.detail.colorScheme;
                     localStorage.setItem('dark-mode-toggle', mode);
                     console.log('🌗 Saved user theme preference:', mode);
 
-                    // (Optional) Update <html> data-theme immediately too
                     document.documentElement.setAttribute('data-theme', mode);
+
+                    // ⚡ Reapply stylesheets
+                    if (mode === 'dark') {
+                        document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: dark"]').forEach(link => {
+                            link.media = "all";
+                            link.disabled = false;
+                        });
+                        document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: light"]').forEach(link => {
+                            link.media = "not all";
+                            link.disabled = true;
+                        });
+                    } else {
+                        document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: light"]').forEach(link => {
+                            link.media = "all";
+                            link.disabled = false;
+                        });
+                        document.querySelectorAll('link[rel="stylesheet"][media*="prefers-color-scheme: dark"]').forEach(link => {
+                            link.media = "not all";
+                            link.disabled = true;
+                        });
+                    }
+
+                    // 🔥 Reupdate logos too
+                    updateLogos();
                 });
             }
         });
@@ -112,34 +172,8 @@
         console.warn('⚠️ Could not access localStorage for dark-mode-toggle.');
     }
 })();
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  const logoElement = document.querySelector('.the-app-logo');
-  if (!logoElement) return;
-
-  const lightLogo = logoElement.getAttribute('data-light-logo');
-  const darkLogo = logoElement.getAttribute('data-dark-logo');
-
-  function setLogo() {
-    const savedTheme = localStorage.getItem('dark-mode-toggle');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      logoElement.style.backgroundImage = `url('${darkLogo}')`;
-    } else {
-      logoElement.style.backgroundImage = `url('${lightLogo}')`;
-    }
-  }
-
-  setLogo(); // 🧠 <<< call it right away on page load
-
-  window.addEventListener('colorschemechange', setLogo); // 🔥 update on toggle change
-});
-
-
-
 </script>
+
 
 
 
