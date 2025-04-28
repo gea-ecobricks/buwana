@@ -191,11 +191,24 @@ https://github.com/gea-ecobricks/buwana/-->
 
     <h3><?php echo htmlspecialchars($credential_key); ?></h3>
     <form id="send-email-code" method="post" action="">
+
+
+            <!-- Kick-Ass Submit Button -->
+                     <div id="submit-section" style="display:none;" class="submit-button-wrapper">
+                       <button type="submit" name="send_email" id="send_email" class="kick-ass-submit" title="Send the code." value="📨 Send Code">
+                         <span id="submit-button-text" data-lang-id="015-register-button-x">Register ➡</span>
+                         <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
+                       </button>
+                     </div>
+
+
+
+        <!--
         <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
             <div id="submit-section" style="text-align:center;margin-top:20px;padding-right:15px;padding-left:15px" title="Start Activation process" data-lang-id="004-send-email-button">
                 <input type="submit" name="send_email" id="send_email" value="📨 Send Code" class="submit-button activate">
             </div>
-        </div>
+        </div>-->
     </form>
 </div>
 
@@ -362,6 +375,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
+
+
+<?php require_once ("../scripts/app_modals.php");?>
 
 
 </body>

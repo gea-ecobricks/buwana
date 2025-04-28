@@ -72,7 +72,6 @@ function openAboutBuwanaModal() {
 
 
 /* SUBMISSION PROCESS */
-/* SUBMISSION PROCESS */
 document.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('form#user-signup-form');
 

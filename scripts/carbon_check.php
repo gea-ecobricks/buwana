@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
 // Hardcoded URL to check
-$target_url = 'buwana.ecobricks.org/en/signup-1.php';
+$target_url = 'https://gobrik.com/en/signup.php';
 $encoded_url = urlencode($target_url);
 
 // API endpoint
