@@ -203,7 +203,7 @@ if (!empty($credential_key)) {
 
 <script>
 
-    // subBoxHighlighter.js
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const subBoxes = document.querySelectorAll('.sub-box');
