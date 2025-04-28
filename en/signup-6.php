@@ -260,31 +260,38 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 
 
+<!-- COMMUNITY FIELD -->
+<div class="form-item" id="community-section" style="margin-top:20px;">
+    <label for="community_name" data-lang-id="012-community-name-x">
+        Buwana accounts are all about connecting us with our local and global communities. Select your primary local community:
+    </label><br>
 
-  <!-- COMMUNITY FIELD -->
-<div class="form-item" style="margin-bottom: -24px; border-radius: 10px 10px 0px 0px; padding:
-10px 10px 0px 0px;
-  ">
-    <p>👥 Buwana accounts are all about connecting us with our local and global communities.</p>
-   </div>
+    <div class="select-wrapper" style="position: relative;">
+        <span class="select-icon" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 22px;">👥</span>
 
-<div class="form-item float-label-group" style="border-radius:0px 0px 10px 10px;padding-bottom:0px;">
+        <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
+               placeholder="Type your community" style="width: 100%; padding: 10px 10px 10px 40px;"
+               value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+    </div>
 
-    <label for="community_name" data-lang-id="012-community-name-x">Start typing your community...</label>
-    <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"  placeholder=" "  style="width: 100%; padding: 10px;" value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
     <datalist id="community_list">
         <?php foreach ($communities as $community) : ?>
-            <option value="<?php echo htmlspecialchars($community, ENT_QUOTES, 'UTF-8'); ?>" <?php echo (isset($pre_community) && $community === $pre_community) ? 'selected' : ''; ?>>
+            <option value="<?php echo htmlspecialchars($community, ENT_QUOTES, 'UTF-8'); ?>"
+                <?php echo (isset($pre_community) && $community === $pre_community) ? 'selected' : ''; ?>>
                 <?php echo htmlspecialchars($community, ENT_QUOTES, 'UTF-8'); ?>
             </option>
         <?php endforeach; ?>
     </datalist>
+
     <!-- "Add a new community" text link -->
     <p class="form-caption" data-lang-id="012-community-caption-xx">
-        Start typing to see and select a community. There's a good chance someone local to you has already set one up! <br><a href="#" onclick="openAddCommunityModal(); return false;" style="color: #007BFF; text-decoration: underline;">+ Don't see your community? Add it.
+        Start typing to see and select a community. There's a good chance someone local to you has already set one up!
+        <a href="#" onclick="openAddCommunityModal(); return false;" style="color: #007BFF; text-decoration: underline;">
+            Don't see your community? + Add it.
         </a>
     </p>
 </div>
+
 
 <!-- COUNTRY SELECT -->
 <div class="form-item" id="country-section" style="margin-top: 20px; position: relative;">

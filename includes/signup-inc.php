@@ -22,7 +22,7 @@
     list-style: none;
     margin: 0 0 12px 0;
     padding: 0;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid var(--subdued-text);
     overflow-x: auto;              /* mobile friendliness */
 }
 .emoji-tabs li {
@@ -33,7 +33,7 @@
     border-bottom: 3px solid transparent;
     transition: background .15s, border-color .15s;
 }
-.emoji-tabs li:hover      { background:#f5f5f5; }
+.emoji-tabs li:hover      { background:var(--form-background); }
 .emoji-tabs li.active     { border-color:#2d8cff; font-weight:600; }
 
 .emoji-grid {
@@ -56,6 +56,22 @@
 
 .emoji-hint { margin-top: 6px; font-size: .9em; color:#555; }
 
+
+/* Form field icons (signup-6)*/
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 22px;
+}
 
 
 
