@@ -62,7 +62,7 @@
 <script src="../translations/<?php echo ($page); ;?>-es.js?v=<?php echo ($version); ;?>"></script>
 
 
-    <script src="../scripts/website-carbon-badges@1.1.3/b.min.js" defer></script>
+    <script src="../scripts/website-carbon-badges@b.min.js" defer></script>
 
 
 
