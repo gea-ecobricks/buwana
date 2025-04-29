@@ -88,8 +88,8 @@ AND UNIQUE to HTML Pages-->
 .buwana-word-mark {
     background: url('svgs/b-logo.svg') center no-repeat;
     background-size: contain;
-    height: 30px;
-    width: 200px;
+    height: 50px;
+    width: 300px;
     margin: auto;
 
 
@@ -136,7 +136,14 @@ font-size: 1.1em;
         margin-top: 20px;
 
 }
-
+/* Rotating-Earth headline */
+#earth-animation.emoji-parade {
+    font-size: 2em;               /* 2 × normal text */
+    line-height: 1;
+    text-align: center;
+    margin: 1rem 0;               /* space above word-mark */
+    user-select: none;            /* no accidental selection flicker */
+}
 
 </style>
 
@@ -159,25 +166,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         window.location.href = langDir;
-    }, 6000); // 10 seconds
+    }, 3000); // 10 seconds
+});
+/* Rotating Earth-emoji parade
+ * Shows 🌍, 🌎, 🌏 for 0.2 s each, on an infinite loop.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const earthFrames = ['🌍', '🌎', '🌏'];
+    const target      = document.getElementById('earth-animation');
+
+    let frame = 0;
+    setInterval(() => {
+        target.textContent = earthFrames[frame];
+        frame = (frame + 1) % earthFrames.length;
+    }, 300);   // 0.2 s per frame
 });
 
 </script>
 
 </head>
 <body>
-    <div class="container">
-        <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" href="https://github.com/gea-ecobricks/buwana"></div>
+<div class="container">
+    <div id="earth-animation" class="emoji-parade" aria-label="Rotating Earth emoji">🌏</div>
 
-        <!--<p>We're almost ready to launch GoBrik 3.0!</p>
-        <h3 style="margin-bottom:50px;">Coming November 3rd, 2024</h3>-->
+    <div class="buwana-word-mark"
+         title="Authentication by Buwana"
+         href="https://github.com/gea-ecobricks/buwana"></div>
 
-        <div class="subtitle" >
-            <p>The Buwana account protocol is a project of the </p>
-            <p><a href="https://ecobricks.org/en/about.php">Global Ecobrick Alliance</a></p>
-                        <div id="gea-icon"></div>
-
-        </div>
+    <div class="subtitle">
+        <p>The Buwana account protocol is a project of the</p>
+        <p><a href="https://ecobricks.org/en/about.php">Global Ecobrick Alliance</a></p>
+        <div id="gea-icon"></div>
     </div>
+</div>
+
+
+
+
 </body>
 </html>
