@@ -1794,8 +1794,8 @@ color: red;
     appearance:none;   /* the rest */
 
     /* 3. Typography & spacing */
-    font: 20px/1 'Mulish', sans-serif;   /* line-height fixes clipping in Safari */
-    padding-left:15px;
+    font: 22px/1 'Mulish', sans-serif;   /* line-height fixes clipping in Safari */
+    padding:15px 10px 8px 10px;
     color: var(--subdued-text, #555);    /* fallback for Safari ≤13 */
 
     /* Optional: full-width, no default arrow so we can add our own */
@@ -1803,7 +1803,7 @@ color: red;
     background-color:transparent;
     background-image:none;               /* hide the arrow */
     border:1px solid var(--border, #ccc);
-    border-radius:4px;
+    border-radius:5px;
 }
 
 /* Nice custom arrow (optional) */
@@ -1814,7 +1814,7 @@ color: red;
     content:"▼";
     pointer-events:none;
     position:absolute;
-    right:12px;
+    right:22px;
     top:50%;
     transform:translateY(-50%);
     font-size:12px;
