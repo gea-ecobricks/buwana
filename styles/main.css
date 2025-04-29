@@ -1820,7 +1820,7 @@ color: red;
     position:relative;
 }
 .credential-select-wrapper::after{
-    content:"▼";
+    content:"👇";
     pointer-events:none;
     position:absolute;
     right:22px;
