@@ -1,56 +1,65 @@
 <?php
-require_once '../earthenAuth_helper.php';
-require_once("../buwanaconn_env.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+ob_start();
 
-// Get buwana_id from URL
+require_once '../buwanaconn_env.php';
+require_once '../fetch_app_info.php';
+require_once '../scripts/user_create.php'; // 👈 where we’ll define the new function
+
+// Validate Buwana ID
 $buwana_id = $_GET['id'] ?? null;
-
-if (!$buwana_id || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die('Invalid request.');
+if (!$buwana_id || !is_numeric($buwana_id)) {
+    die("⚠️ Invalid or missing Buwana ID.");
 }
 
-// Collect form data
-$community_name   = $_POST['community_name'] ?? null;
-$country_id       = $_POST['country_name'] ?? null; // now actually the country_id
-$language_id      = $_POST['language_id'] ?? null;
-$earthling_emoji  = $_POST['earthling_emoji'] ?? null;
+// Validate POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    die("Invalid request method.");
+}
 
-// Lookup continent_code for selected country_id
+// Sanitize Inputs
+$community_name = trim($_POST['community_name'] ?? '');
+$country_id = (int)($_POST['country_name'] ?? 0);
+$language_id = trim($_POST['language_id'] ?? 'en');
+$earthling_emoji = trim($_POST['earthling_emoji'] ?? '🌍');
+
+// Get continent code
 $continent_code = null;
-
-$sql_country = "SELECT continent_code FROM countries_tb WHERE country_id = ?";
-$stmt_country = $buwana_conn->prepare($sql_country);
-
-if ($stmt_country) {
-    $stmt_country->bind_param('i', $country_id);
-    $stmt_country->execute();
-    $stmt_country->bind_result($continent_code);
-    $stmt_country->fetch();
-    $stmt_country->close();
-} else {
-    die('Failed to prepare country lookup: ' . $buwana_conn->error);
+$stmt = $buwana_conn->prepare("SELECT continent_code FROM countries_tb WHERE country_id = ?");
+if ($stmt) {
+    $stmt->bind_param('i', $country_id);
+    $stmt->execute();
+    $stmt->bind_result($continent_code);
+    $stmt->fetch();
+    $stmt->close();
 }
 
-// Update users_tb
-$sql_update = "UPDATE users_tb
+// Update Buwana user record
+$stmt = $buwana_conn->prepare("
+    UPDATE users_tb
     SET continent_code = ?,
         country_id = ?,
-        community_id = (SELECT community_id FROM communities_tb WHERE com_name = ?),
+        community_id = (SELECT community_id FROM communities_tb WHERE com_name = ? LIMIT 1),
         language_id = ?,
         earthling_emoji = ?
-    WHERE buwana_id = ?";
-
-$stmt_update = $buwana_conn->prepare($sql_update);
-
-if ($stmt_update) {
-    $stmt_update->bind_param('sisssi', $continent_code, $country_id, $community_name, $language_id, $earthling_emoji, $buwana_id);
-    $stmt_update->execute();
-    $stmt_update->close();
+    WHERE buwana_id = ?");
+if ($stmt) {
+    $stmt->bind_param('sisssi', $continent_code, $country_id, $community_name, $language_id, $earthling_emoji, $buwana_id);
+    $stmt->execute();
+    $stmt->close();
 } else {
-    die('Failed to prepare update statement: ' . $buwana_conn->error);
+    die('Error updating Buwana: ' . $buwana_conn->error);
 }
 
-// Redirect to login with first-time status
-header('Location: login.php?status=firsttime&id=' . urlencode($buwana_id));
+// 🌍 Create user in the client app database
+$result = createUserInClientApp($buwana_id, $app_name);
+if (!$result['success']) {
+    error_log("❌ Client user creation failed: " . $result['error']);
+    die("There was an error provisioning your account in the app. Please contact support.");
+}
+
+// ✅ Done! Go to dashboard
+header("Location: dashboard.php");
 exit();
-?>

@@ -9,9 +9,9 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup';
-$version = '0.773';
+$version = '0.774';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
-$pre_community = '';
+
 // Already logged in?
 if (!empty($_SESSION['buwana_id'])) {
     $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? '/';
@@ -22,17 +22,15 @@ if (!empty($_SESSION['buwana_id'])) {
     exit();
 }
 
-
 // 🧩 Validate buwana_id
 $buwana_id = $_GET['id'] ?? null;
 if (!$buwana_id || !is_numeric($buwana_id)) {
     die("⚠️ Invalid or missing Buwana ID.");
 }
 
-// 🧠 Fetch user info
+// 🧠 Fetch basic user info
 $first_name = 'User';
-$sql = "SELECT first_name FROM users_tb WHERE buwana_id = ?";
-$stmt = $buwana_conn->prepare($sql);
+$stmt = $buwana_conn->prepare("SELECT first_name FROM users_tb WHERE buwana_id = ?");
 if ($stmt) {
     $stmt->bind_param('i', $buwana_id);
     $stmt->execute();
@@ -41,117 +39,38 @@ if ($stmt) {
     $stmt->close();
 }
 
-
-// PART 5: Fetch all communities from the communities_tb table in Buwana database
-$communities = [];
-$sql_communities = "SELECT com_name FROM communities_tb";
-$result_communities = $buwana_conn->query($sql_communities);
-
-if ($result_communities && $result_communities->num_rows > 0) {
-    while ($row = $result_communities->fetch_assoc()) {
-        $communities[] = $row['com_name'];
-    }
-}
-
-// Fetch all countries
+// 📋 Fetch countries
 $countries = [];
-$sql_countries = "SELECT country_id, country_name FROM countries_tb ORDER BY country_name ASC";
-$result_countries = $buwana_conn->query($sql_countries);
-
-if ($result_countries && $result_countries->num_rows > 0) {
-    while ($row = $result_countries->fetch_assoc()) {
-        $countries[] = $row;
-    }
+$result_countries = $buwana_conn->query("SELECT country_id, country_name FROM countries_tb ORDER BY country_name ASC");
+while ($row = $result_countries->fetch_assoc()) {
+    $countries[] = $row;
 }
 
-// Fetch user's country_id from users_tb
-$user_country_id = null;
-
-$sql_country_lookup = "SELECT country_id FROM users_tb WHERE buwana_id = ?";
-$stmt_country_lookup = $buwana_conn->prepare($sql_country_lookup);
-if ($stmt_country_lookup) {
-    $stmt_country_lookup->bind_param('i', $buwana_id);
-    $stmt_country_lookup->execute();
-    $stmt_country_lookup->bind_result($user_country_id);
-    $stmt_country_lookup->fetch();
-    $stmt_country_lookup->close();
-}
-
-// Fetch all languages
+// 📋 Fetch languages
 $languages = [];
-$sql_languages = "SELECT language_id, languages_native_name FROM languages_tb ORDER BY languages_native_name ASC";
-$result_languages = $buwana_conn->query($sql_languages);
-
-if ($result_languages && $result_languages->num_rows > 0) {
-    while ($row = $result_languages->fetch_assoc()) {
-        $languages[] = $row;
-    }
+$result_languages = $buwana_conn->query("SELECT language_id, languages_native_name FROM languages_tb ORDER BY languages_native_name ASC");
+while ($row = $result_languages->fetch_assoc()) {
+    $languages[] = $row;
 }
 
-// PART 6: Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $selected_community_name = $_POST['community_name'];
-    $selected_country_name = $_POST['country_name'];
-    $selected_language_id = $_POST['language_id'];
-    $earthling_emoji = $_POST['earthling_emoji'] ?? '🌍'; // Fallback default emoji
-
-    // Fetch country_id and continent_code from selected country
-    $sql_country = "SELECT country_id, continent_code FROM countries_tb WHERE country_name = ?";
-    $stmt_country = $buwana_conn->prepare($sql_country);
-
-    if ($stmt_country) {
-        $stmt_country->bind_param('s', $selected_country_name);
-        $stmt_country->execute();
-        $stmt_country->bind_result($set_country_id, $set_continent_code);
-        $stmt_country->fetch();
-        $stmt_country->close();
-    } else {
-        die('Error preparing statement for fetching country info: ' . $buwana_conn->error);
-    }
-
-    $set_country_id = !empty($set_country_id) ? $set_country_id : null;
-    $set_continent_code = !empty($set_continent_code) ? $set_continent_code : null;
-
-    // Update Buwana user with country, continent, language, community, and emoji
-    $sql_update_buwana = "UPDATE users_tb SET continent_code = ?, country_id = ?, community_id = (SELECT community_id FROM communities_tb WHERE com_name = ?), language_id = ?, earthling_emoji = ? WHERE buwana_id = ?";
-    $stmt_update_buwana = $buwana_conn->prepare($sql_update_buwana);
-
-    if ($stmt_update_buwana) {
-        $stmt_update_buwana->bind_param('sisssi', $set_continent_code, $set_country_id, $selected_community_name, $selected_language_id, $earthling_emoji, $buwana_id);
-        $stmt_update_buwana->execute();
-        $stmt_update_buwana->close();
-
-        // Update GoBrik record
-        require_once("../gobrikconn_env.php");
-
-        $sql_update_gobrik = "UPDATE tb_ecobrickers
-            SET community_id = (SELECT community_id FROM communities_tb WHERE com_name = ?),
-                country_id = ?,
-                language_id = ?,
-                account_notes = CONCAT(account_notes, ' Finalized community and language.')
-            WHERE buwana_id = ?";
-
-        $stmt_update_gobrik = $gobrik_conn->prepare($sql_update_gobrik);
-
-        if ($stmt_update_gobrik) {
-            $stmt_update_gobrik->bind_param('siii', $selected_community_name, $set_country_id, $selected_language_id, $buwana_id);
-            $stmt_update_gobrik->execute();
-            $stmt_update_gobrik->close();
-        } else {
-            error_log('Error preparing GoBrik update: ' . $gobrik_conn->error);
-            echo "Failed to update GoBrik record.";
-        }
-
-        $gobrik_conn->close();
-
-        // Redirect to dashboard or next step
-        header("Location: dashboard.php");
-        exit();
-    } else {
-        error_log('Error preparing Buwana update: ' . $buwana_conn->error);
-        echo "Failed to update Buwana record.";
-    }
+// 📋 Fetch communities
+$communities = [];
+$result_communities = $buwana_conn->query("SELECT com_name FROM communities_tb");
+while ($row = $result_communities->fetch_assoc()) {
+    $communities[] = $row['com_name'];
 }
+
+// 📋 Fetch user's current country id
+$user_country_id = null;
+$stmt = $buwana_conn->prepare("SELECT country_id FROM users_tb WHERE buwana_id = ?");
+if ($stmt) {
+    $stmt->bind_param('i', $buwana_id);
+    $stmt->execute();
+    $stmt->bind_result($user_country_id);
+    $stmt->fetch();
+    $stmt->close();
+}
+
 ?>
 
 
