@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup';
-$version = '0.76';
+$version = '0.77';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -110,11 +110,12 @@ if ($result_languages && $result_languages->num_rows > 0) {
                 <div class="form-item  float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
 
                     <div class="input-container">
+                        <label for="location_full" data-lang-id="011-your-local-area-xxx" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
                         <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;">
                         <div id="loading-spinner" class="spinner" style="display: none;"></div>
                         <div id="location-pin" class="pin-icon">📍</div>
                     </div>
-                <label for="location_full" data-lang-id="011-your-local-area-xxx" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">Your neighbourhood...</label>
+
                     <p class="form-caption" data-lang-id="011-location-full-caption">
                         Start typing the name of your neighbourhood, and <a href="https://openstreetmap.org.org" target="_blank">openstreetmaps.org</a> will fill in the rest.
                     </p>
