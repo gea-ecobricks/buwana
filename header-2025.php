@@ -140,13 +140,10 @@ display: none;
 .modal-content-box {
 
   position: relative;
-
   color: var(--h1);
   font-family: 'Mulish', sans-serif;
-
   display: flex;
   margin: auto;
-
 }
 
 @media screen and (min-width: 700px) {
@@ -167,10 +164,11 @@ display: none;
 @media screen and (max-width: 700px) {
 
     .modal-content-box {
-        padding: 10px;
-        border-radius: 8px;
-        width: 88%;
-        height: 80%;
+        padding: 18px;
+        border-radius: 10px;
+        width: 98%;
+        height: 95%;
+        max-height: 98vh;
         /*background: none !important;*/
     }
 
