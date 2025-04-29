@@ -90,7 +90,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
     <div id="splash-bar"></div>
 
     <!-- PAGE CONTENT -->
-    <div id="top-page-image" class="welcome-casandra top-page-image"></div>
+    <div id="top-page-image" class="bioregions-top top-page-image"></div>
 
     <div id="form-submission-box" class="landing-page-form">
         <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
@@ -128,7 +128,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
                 <!-- MAP AND WATERSHED SEARCH SECTION -->
                 <div class="form-item" id="watershed-map-section" style="display: none; margin-top:20px;">
-                    <label for="watershed_select" data-lang-id="011-watershed-select">To what river/stream watershed does your local water flow?</label><br>
+                    <label for="watershed_select" data-lang-id="011-watershed-select-x">In which river basin do you live?</label><br>
                     <div id="map" style="height: 350px; border-radius: 0px 0px 12px 12px; margin-top: 8px;"></div>
                     <p class="form-caption" data-lang-id="012-river-basics-2" style="margin-top:10px;">
                         ℹ️ The map shows rivers and streams around you. Choose the one to which your water flows.

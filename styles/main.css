@@ -528,6 +528,14 @@
 #page-content {
   width: 100%;
   overflow-x: clip;
+    min-height: 100vh; /* 100% view height minimum */
+    height: auto; /* Let it grow! */
+    overflow-x: hidden; /* stop horizontal scroll */
+    overscroll-behavior: contain;
+    overflow-y: visible; /* allow it to grow downwards */
+    position: relative;
+    display: block; /* default */
+    margin-bottom: -1px;
 
 }
 
@@ -1780,7 +1788,7 @@ color: red;
     height: auto; /* Let it grow! */
     overflow-x: hidden; /* stop horizontal scroll */
     overscroll-behavior: contain;
-    overflow-y: hidden; /* allow it to grow downwards */
+    overflow-y: visible; /* allow it to grow downwards */
     position: relative;
     display: block; /* default */
     margin-bottom: -1px;

@@ -701,3 +701,8 @@ background: url(../webps/brikchain-450px.webp) no-repeat center;
   }
 
 
+.bioregions-top {
+    background: url(../svgs/bioregions-top-day.svg) no-repeat center;
+    background-size: contain;
+}
+
