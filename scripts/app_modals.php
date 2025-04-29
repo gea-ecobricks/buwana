@@ -203,37 +203,64 @@ function shakeElement(el) {
 
 
 
-// 📏 Dynamically update #main height to match #form-submission-box
-function updateMainHeight() {
-    const main = document.getElementById('main');
-    const formBox = document.getElementById('form-submission-box');
 
-    if (main && formBox) {
-        main.style.height = formBox.offsetHeight + 'px';
-    }
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.getElementById('header');
 
-document.addEventListener('DOMContentLoaded', () => {
-    updateMainHeight(); // Set initial height
-
-    const form = document.getElementById('user-signup-form');
-    if (form) {
-        // 🧠 Watch for ANY changes inside the form
-        const observer = new MutationObserver(() => {
-            updateMainHeight();
-        });
-
-        observer.observe(form, {
-            childList: true,    // Watch for adding/removing elements
-            subtree: true,      // Watch all descendants
-            attributes: true,   // Watch attribute changes (like style.display)
-            characterData: false
-        });
-
-        // 📐 Also adjust on window resize
-        window.addEventListener('resize', updateMainHeight);
-    }
+    window.addEventListener('scroll', function () {
+        if (window.innerWidth < 769) {
+            if (window.scrollY > 1) {
+                header.style.position = 'fixed';
+                header.style.zIndex = '20';
+                header.style.top = '0'; // just in case
+                header.overflow ="hidden"
+            } else {
+                header.style.position = 'absolute';
+                header.style.zIndex = '36';
+                header.overflow ="hidden"
+            }
+        } else {
+            // Reset for larger screens (if needed)
+            header.style.position = 'absolute';
+            header.style.zIndex = '36';
+            header.overflow ="hidden"
+        }
+    });
 });
+
+
+//
+// // 📏 Dynamically update #main height to match #form-submission-box
+// function updateMainHeight() {
+//     const main = document.getElementById('main');
+//     const formBox = document.getElementById('form-submission-box');
+//
+//     if (main && formBox) {
+//         main.style.height = formBox.offsetHeight + 'px';
+//     }
+// }
+//
+// document.addEventListener('DOMContentLoaded', () => {
+//     updateMainHeight(); // Set initial height
+//
+//     const form = document.getElementById('user-signup-form');
+//     if (form) {
+//         // 🧠 Watch for ANY changes inside the form
+//         const observer = new MutationObserver(() => {
+//             updateMainHeight();
+//         });
+//
+//         observer.observe(form, {
+//             childList: true,    // Watch for adding/removing elements
+//             subtree: true,      // Watch all descendants
+//             attributes: true,   // Watch attribute changes (like style.display)
+//             characterData: false
+//         });
+//
+//         // 📐 Also adjust on window resize
+//         window.addEventListener('resize', updateMainHeight);
+//     }
+// });
 
 
     </script>

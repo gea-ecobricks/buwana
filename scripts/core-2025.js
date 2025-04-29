@@ -218,29 +218,6 @@ window.addEventListener('scroll', () => {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const header = document.getElementById('header');
-
-    window.addEventListener('scroll', function () {
-        if (window.innerWidth < 769) {
-            if (window.scrollY > 1) {
-                header.style.position = 'fixed';
-                header.style.zIndex = '20';
-                header.style.top = '0'; // just in case
-                header.overflow ="hidden"
-            } else {
-                header.style.position = 'absolute';
-                header.style.zIndex = '36';
-                header.overflow ="hidden"
-            }
-        } else {
-            // Reset for larger screens (if needed)
-            header.style.position = 'absolute';
-            header.style.zIndex = '36';
-            header.overflow ="hidden"
-        }
-    });
-});
 
 
 

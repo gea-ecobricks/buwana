@@ -137,13 +137,13 @@ https://github.com/gea-ecobricks/buwana/-->
                  🌏 <span data-lang-id="010-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
                </div>
 
-               <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 1px;"></div>
+               <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 7px;"></div>
 
                <p class="form-caption" data-lang-id="006-email-sub-caption-xx" style="margin-bottom: -10px;">💌 We'll use this email to confirm your account.</p>
              </div>
 
              <!-- Set Password -->
-             <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 5px;margin-bottom: -10px;padding-bottom: 1px;">
+             <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 14px;margin-bottom: -10px;padding-bottom: 1px;">
                <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
                <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
                <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
@@ -160,7 +160,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
              <!-- Human Check -->
-             <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:-10px;">
+             <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:15px;">
 
 
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
