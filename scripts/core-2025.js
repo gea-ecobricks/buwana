@@ -1,14 +1,14 @@
-function openProfile() {
-    window.location.href = 'profile.php';
-}
-
-function logoutUser() {
-    // Extracts only the part of the URL after the last slash, including query parameters
-    const path = window.location.pathname.split("/").pop() + window.location.search;
-    const redirectUrl = encodeURIComponent(path);
-    window.location.href = `logout.php?redirect=${redirectUrl}`;
-}
-
+// function openProfile() {
+//     window.location.href = 'profile.php';
+// }
+//
+// function logoutUser() {
+//     // Extracts only the part of the URL after the last slash, including query parameters
+//     const path = window.location.pathname.split("/").pop() + window.location.search;
+//     const redirectUrl = encodeURIComponent(path);
+//     window.location.href = `logout.php?redirect=${redirectUrl}`;
+// }
+//
 
 
 
@@ -53,17 +53,7 @@ function redirectToAppHome(apphome) {
 }
 
 
-// document.addEventListener("scroll", function() {
-//     var scrollPosition = window.scrollY || document.documentElement.scrollTop;
-//
-//     // Check if the user has scrolled more than 1000px
-//     if (scrollPosition > 1000) {
-//         var footer = document.getElementById('footer-full');
-//         if (footer) {
-//             footer.style.display = 'block'; // Show the footer
-//         }
-//     }
-// });
+
 
 
 
@@ -236,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.innerWidth < 769) {
             if (window.scrollY > 1) {
                 header.style.position = 'fixed';
-                header.style.zIndex = '20';
+                header.style.zIndex = '10';
                 header.style.top = '0'; // just in case
             } else {
                 header.style.position = 'absolute';
@@ -288,24 +278,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 -------------------------------------------*/
-
-function handleLogout(event) {
-    event.preventDefault(); // Prevent default link behavior
-
-    // Perform logout via AJAX
-    fetch(event.target.href)
-        .then(response => {
-            if (response.ok) {
-                // Redirect to the login page with the appropriate parameters
-                window.location.href = response.url;
-            } else {
-                console.error('Failed to log out:', response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Error during logout:', error);
-        });
-}
+//
+// function handleLogout(event) {
+//     event.preventDefault(); // Prevent default link behavior
+//
+//     // Perform logout via AJAX
+//     fetch(event.target.href)
+//         .then(response => {
+//             if (response.ok) {
+//                 // Redirect to the login page with the appropriate parameters
+//                 window.location.href = response.url;
+//             } else {
+//                 console.error('Failed to log out:', response.statusText);
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error during logout:', error);
+//         });
+// }
 
 
 
@@ -348,3 +338,14 @@ function handleLogout(event) {
 
 
 
+// document.addEventListener("scroll", function() {
+//     var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+//
+//     // Check if the user has scrolled more than 1000px
+//     if (scrollPosition > 1000) {
+//         var footer = document.getElementById('footer-full');
+//         if (footer) {
+//             footer.style.display = 'block'; // Show the footer
+//         }
+//     }
+// });

@@ -27,7 +27,7 @@ function openAboutBuwanaModal() {
 
         <div style="text-align: center; margin-top: 20px;width:100%;">
             <a href="https://github.com/gea-ecobricks/buwana" target="_blank" rel="noopener noreferrer" class="kick-ass-submit" style="text-decoration: none;">
-                🌏 View Project on GitHub
+                🌏 Project on GitHub
             </a>
         </div>
     `;

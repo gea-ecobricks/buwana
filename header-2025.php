@@ -409,9 +409,4 @@ max-height: 200px;
 </div>
 
 
-
-
-
-
-
 <div id="main" >
