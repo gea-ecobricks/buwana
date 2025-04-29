@@ -110,8 +110,9 @@ if ($result_languages && $result_languages->num_rows > 0) {
                 <div class="form-item  float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
 
                     <div class="input-container">
-                        <label for="location_full" data-lang-id="011-your-local-area-xxx" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
+
                         <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;">
+                        <label for="location_full" data-lang-id="011-your-local-area-xxx" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
                         <div id="loading-spinner" class="spinner" style="display: none;"></div>
                         <div id="location-pin" class="pin-icon">📍</div>
                     </div>
