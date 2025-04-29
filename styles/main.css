@@ -1802,7 +1802,7 @@ color: red;
     appearance:none;   /* the rest */
 
     /* 3. Typography & spacing */
-    font: 22px/1 'Mulish', sans-serif !important;   /* line-height fixes clipping in Safari */
+    font: 20px/1 'Mulish', sans-serif !important;   /* line-height fixes clipping in Safari */
     padding:15px 10px 8px 10px;
     color: var(--subdued-text, #555);    /* fallback for Safari ≤13 */
 
