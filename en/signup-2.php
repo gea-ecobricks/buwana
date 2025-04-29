@@ -143,7 +143,7 @@ https://github.com/gea-ecobricks/buwana/-->
              </div>
 
              <!-- Set Password -->
-             <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 2px;">
+             <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 5px;argin-bottom: -10px;padding-bottom: 1px;">
                <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
                <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
                <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
@@ -243,51 +243,64 @@ $(document).ready(function () {
 
   // === Email Live Check ===
   $('#credential_value').on('input blur', function () {
-    const email = $(this).val();
-    if (isValidEmail(email)) {
-      loadingSpinner.removeClass('green red').show();
-      $.ajax({
-        url: '../scripts/check_email.php',
-        type: 'POST',
-        data: { credential_value: email },
-        success: function (response) {
-          loadingSpinner.hide();
-          try {
-            var res = JSON.parse(response);
-          } catch (e) {
-            console.error("Invalid JSON response", response);
-            alert("An error occurred while checking the email.");
-            return;
-          }
+      const email = $(this).val();
+      if (isValidEmail(email)) {
+        loadingSpinner.removeClass('green red').show();
+        $('#credential_value').css('padding-left', '35px');  // <--- ADD padding immediately when checking
 
-          if (res.success) {
-            duplicateEmailError.hide();
-            duplicateGobrikEmail.hide();
-            loadingSpinner.addClass('green').show();
-            setPasswordSection.style.display = 'block';
-          } else if (res.error === 'duplicate_email') {
-            duplicateEmailError.show();
-            duplicateGobrikEmail.hide();
-            loadingSpinner.addClass('red').show();
-            setPasswordSection.style.display = 'none';
-          } else if (res.error === 'duplicate_gobrik_email') {
-            duplicateGobrikEmail.show();
-            duplicateEmailError.hide();
-            loadingSpinner.addClass('red').show();
-            setPasswordSection.style.display = 'none';
-          } else {
-            alert("An error occurred: " + res.error);
+        $.ajax({
+          url: '../scripts/check_email.php',
+          type: 'POST',
+          data: { credential_value: email },
+          success: function (response) {
+            loadingSpinner.hide();
+            try {
+              var res = JSON.parse(response);
+            } catch (e) {
+              console.error("Invalid JSON response", response);
+              alert("An error occurred while checking the email.");
+              $('#credential_value').css('padding-left', ''); // <--- RESET padding if error
+              return;
+            }
+
+            if (res.success) {
+              duplicateEmailError.hide();
+              duplicateGobrikEmail.hide();
+              loadingSpinner.addClass('green').show();
+              setPasswordSection.style.display = 'block';
+              $('#credential_value').css('padding-left', '35px');  // <--- Keep padding when success
+            } else if (res.error === 'duplicate_email') {
+              duplicateEmailError.show();
+              duplicateGobrikEmail.hide();
+              loadingSpinner.addClass('red').show();
+              setPasswordSection.style.display = 'none';
+              $('#credential_value').css('padding-left', '35px');  // <--- Keep padding when duplicate
+            } else if (res.error === 'duplicate_gobrik_email') {
+              duplicateGobrikEmail.show();
+              duplicateEmailError.hide();
+              loadingSpinner.addClass('red').show();
+              setPasswordSection.style.display = 'none';
+              $('#credential_value').css('padding-left', '35px');  // <--- Keep padding when gobrik duplicate
+            } else {
+              alert("An error occurred: " + res.error);
+              $('#credential_value').css('padding-left', '');  // <--- Reset padding if unknown error
+            }
+          },
+          error: function () {
+            loadingSpinner.hide();
+            alert("An error occurred while checking the email. Please try again.");
+            $('#credential_value').css('padding-left', ''); // <--- RESET padding on request failure
           }
-        },
-        error: function () {
-          loadingSpinner.hide();
-          alert("An error occurred while checking the email. Please try again.");
-        }
-      });
-    } else {
-      setPasswordSection.style.display = 'none';
-    }
+        });
+
+      } else {
+        // If invalid email format, hide spinner and remove padding
+        loadingSpinner.hide();
+        $('#credential_value').css('padding-left', '');
+        setPasswordSection.style.display = 'none';
+      }
   });
+
 
   // === Password Matching Logic ===
   passwordField.addEventListener('input', function () {
