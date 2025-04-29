@@ -14,7 +14,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.772';
+$version = '0.773';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -124,11 +124,12 @@ https://github.com/gea-ecobricks/buwana/-->
 
 </form>
 
-</div>
 
     <div style="font-size: medium; text-align: center; margin: auto; align-self: center;padding-top:40px;padding-bottom:50px;margin-top: 0px;">
-        <p style="font-size:medium;"><span data-lang-id="000-already-have-account">Already have a Buwana account?</span> <a href="<?= htmlspecialchars($app_info['app_url']) ?>/">Login to <?= htmlspecialchars($app_info['app_display_name']) ?></a>.</p>
+        <p style="font-size:medium;"><span data-lang-id="000-already-have-account">Already have a Buwana or <?= htmlspecialchars($app_info['app_display_name']) ?> account?</span> <a href="<?= htmlspecialchars($app_info['app_url']) ?>/">Login to <?= htmlspecialchars($app_info['app_display_name']) ?></a>.</p>
     </div>
+</div>
+
 
     </div><!--closes Landing content-->
 
