@@ -1826,7 +1826,7 @@ color: red;
     right:22px;
     top:50%;
     transform:translateY(-50%);
-    font-size:12px;
+    font-size:15px;
     color:var(--subdued-text,#555);
 }
 

@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.776';
+$version = '0.7761';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -125,7 +125,7 @@ https://github.com/gea-ecobricks/buwana/-->
                <?php if (!empty($credential_key)) : ?>
                    value="<?php echo htmlspecialchars($credential_key); ?>"
                <?php endif; ?>
-               placeholder=" " style="padding-left:35px;" />
+               placeholder=" "  />  <!--style="padding-left:35px;"-->
                <label for="credential_value">
                  <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please-x"> please...</span>
                </label>
@@ -143,7 +143,7 @@ https://github.com/gea-ecobricks/buwana/-->
              </div>
 
              <!-- Set Password -->
-             <div class="form-item float-label-group" id="set-password" style="display: none;">
+             <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 2px;">
                <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
                <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
                <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
