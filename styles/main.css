@@ -1665,6 +1665,7 @@ body.modal-locked {
 .spinner.red {
     background-color: red;
     border: 1px solid red;
+    top: 31px;
 }
 
 @keyframes spin {
