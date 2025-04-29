@@ -6,7 +6,7 @@ ob_start();
 
 require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
-require_once '../scripts/user_create.php'; // 👈 where we’ll define the new function
+require_once '../scripts/create_user.php'; // 👈 where we’ll define the new function
 
 // Validate Buwana ID
 $buwana_id = $_GET['id'] ?? null;
