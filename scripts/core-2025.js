@@ -1,14 +1,3 @@
-// function openProfile() {
-//     window.location.href = 'profile.php';
-// }
-//
-// function logoutUser() {
-//     // Extracts only the part of the URL after the last slash, including query parameters
-//     const path = window.location.pathname.split("/").pop() + window.location.search;
-//     const redirectUrl = encodeURIComponent(path);
-//     window.location.href = `logout.php?redirect=${redirectUrl}`;
-// }
-//
 
 
 
