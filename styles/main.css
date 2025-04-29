@@ -322,7 +322,7 @@
     padding-top: 10px;
     position: absolute;
     top: 0;
-    background: var(--top-header);
+    /*background: var(--top-header);*/
     z-index: 36;
     display: flex;
     align-items: center;
@@ -1794,7 +1794,7 @@ color: red;
     appearance:none;   /* the rest */
 
     /* 3. Typography & spacing */
-    font: 22px/1 'Mulish', sans-serif;   /* line-height fixes clipping in Safari */
+    font: 22px/1 'Mulish', sans-serif !important;   /* line-height fixes clipping in Safari */
     padding:15px 10px 8px 10px;
     color: var(--subdued-text, #555);    /* fallback for Safari ≤13 */
 
@@ -1804,6 +1804,7 @@ color: red;
     background-image:none;               /* hide the arrow */
     border:1px solid var(--border, #ccc);
     border-radius:5px;
+    cursor: pointer;
 }
 
 /* Nice custom arrow (optional) */
