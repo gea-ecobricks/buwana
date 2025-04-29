@@ -143,6 +143,7 @@ font-size: 1.1em;
     text-align: center;
     margin: 1rem 0;               /* space above word-mark */
     user-select: none;            /* no accidental selection flicker */
+    margin-top:auto;
 }
 
 </style>
@@ -166,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         window.location.href = langDir;
-    }, 3000); // 10 seconds
+    }, 14000); // 10 seconds
 });
 /* Rotating Earth-emoji parade
  * Shows 🌍, 🌎, 🌏 for 0.2 s each, on an infinite loop.
@@ -179,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
         target.textContent = earthFrames[frame];
         frame = (frame + 1) % earthFrames.length;
-    }, 300);   // 0.2 s per frame
+    }, 200);   // 0.2 s per frame
 });
 
 </script>
