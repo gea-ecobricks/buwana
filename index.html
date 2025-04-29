@@ -88,8 +88,8 @@ AND UNIQUE to HTML Pages-->
 .buwana-word-mark {
     background: url('svgs/b-logo.svg') center no-repeat;
     background-size: contain;
-    height: 30px;
-    width: 200px;
+    height: 25px;
+    width: 170px;
     margin: auto;
     margin-top: 10px
 
@@ -139,7 +139,7 @@ font-size: 1.1em;
 }
 /* Rotating-Earth headline */
 #earth-animation.emoji-parade {
-    font-size: 4em;               /* 2 × normal text */
+    font-size: 6em;               /* 2 × normal text */
     line-height: 1;
     text-align: center;
     margin: 1rem 0;               /* space above word-mark */
@@ -167,13 +167,13 @@ document.addEventListener('DOMContentLoaded', function() {
             langDir = 'en/signup-1.php';
         }
         window.location.href = langDir;
-    }, 15000); // 10 seconds
+    }, 3000); // 10 seconds
 });
 /* Rotating Earth-emoji parade
  * Shows 🌍, 🌎, 🌏 for 0.2 s each, on an infinite loop.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    const earthFrames = ['🌍', '🌎', '🌏'];
+    const earthFrames = ['🐬','🐳','🐋','🐟','🐠','🐡','🦈','🐙','🦑','🦐','🐊','🦎','🐍','🐢','🦕','🦖'];
     const target      = document.getElementById('earth-animation');
 
     let frame = 0;

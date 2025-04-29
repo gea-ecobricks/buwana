@@ -70,7 +70,7 @@ https://github.com/gea-ecobricks/buwana/-->
                 Create Your Account
             </div>
 
-            <div id="sub-status-message" style="margin-bottom:15px;"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="002-signup-subtext"> uses the Buwana Authentication protocol— a powerful and private, opensource and for-Earth protocol that powers regenerative apps.</div>
+            <div id="sub-status-message" style="margin-bottom:15px;"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="002-signup-subtext"> uses the Buwana Authentication protocol— a secure, open-source and for-Earth protocol that powers regenerative apps.</div>
         </div>
 
        <!--SIGNUP-1 FORM-->

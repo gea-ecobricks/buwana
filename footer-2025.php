@@ -7,7 +7,7 @@
 
     <div class="footer-vision" data-lang-id="1004-gea-vision">
 
-        We envision a Transition in our Households, Communities and Enterprises from Plastic to an ever Greener Harmony with Earth's Cycles.
+        We envision a Transition in our Households, Communities and Enterprises to an ever Greener Harmony with Earth's Cycles.
 
     </div>
 
@@ -16,14 +16,13 @@
     <div class="footer-bottom">
         <div class="footer-conclusion">
 
+<div class="footer-conclusion" data-lang-id="419x-conclusion-disclosure">We track and disclose our net-green ecological impact.  See our <a href="https://ecobricks.org/en/regenreports.php" target="_blank">Regen Reporting</a>.</a>
+            </div>
 
             <div id="wcb" class="carbonbadge wcb-d"></div>
 
-            <div class="footer-conclusion" data-lang-id="419x-conclusion-disclosure">We track and disclose our net-green ecological impact.  See our <a href="https://ecobricks.org/en/regenreports.php" target="_blank">Regen Reporting</a> for 2025.</a>
-            </div>
-
             <div class="footer-conclusion" data-lang-id="420-conclusion-contribute">
-                The Buwana project is hand coded in open source HTML, PHP MYSQL, CSS and Javascript. Contribute to making this page better by leaving a bug report or push request on Github:
+                The Buwana project is hand-coded and open source HTML.  We use ZERO big-tech platforms, databases, hosting or web services.
             </div>
 
             <div class="footer-conclusion">

@@ -160,7 +160,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
              <!-- Human Check -->
-             <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:15px;">
+             <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:15px;margin-bottom:15px;padding-bottom:5px;">
 
 
                <input type="text" id="human_check" name="human_check" required placeholder=" " />

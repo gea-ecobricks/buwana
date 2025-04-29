@@ -216,13 +216,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 header.overflow ="hidden"
             } else {
                 header.style.position = 'absolute';
-                header.style.zIndex = '36';
+                header.style.zIndex = '20';
                 header.overflow ="hidden"
             }
         } else {
             // Reset for larger screens (if needed)
             header.style.position = 'absolute';
-            header.style.zIndex = '36';
+            header.style.zIndex = '20';
             header.overflow ="hidden"
         }
     });
