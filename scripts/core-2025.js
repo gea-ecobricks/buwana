@@ -228,14 +228,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 header.style.position = 'fixed';
                 header.style.zIndex = '20';
                 header.style.top = '0'; // just in case
+                header.overflow ="hidden"
             } else {
                 header.style.position = 'absolute';
                 header.style.zIndex = '36';
+                header.overflow ="hidden"
             }
         } else {
             // Reset for larger screens (if needed)
             header.style.position = 'absolute';
             header.style.zIndex = '36';
+            header.overflow ="hidden"
         }
     });
 });
