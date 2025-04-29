@@ -14,7 +14,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.773';
+$version = '0.774';
 $page = 'signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -90,19 +90,23 @@ https://github.com/gea-ecobricks/buwana/-->
    </div>
 
 
-
 <div class="form-item credential-select-wrapper">
-    <select id="credential" name="credential" aria-label="Preferred Credential" required
-        style="font-size: 20px !important; font-family: 'Mulish',sans-serif; padding-left: 15px; color: var(--subdued-text);">
-        <option value="" disabled selected data-lang-id="006-credential-choice">Select how you register...</option>
-        <option value="e-mail">E-mail</option>
-        <option value="Phone number">Phone number</option>
+    <select id="credential"
+            name="credential"
+            aria-label="Preferred Credential"
+            required>
+        <option value="" disabled selected data-lang-id="006-credential-choice">
+            Select how you register...
+        </option>
+        <option value="email">E-mail</option>
+        <option value="phone">Phone number</option>
         <option value="peer" disabled>Peer</option>
     </select>
 
-
-    <!-- Error Message -->
-    <div id="credential-error-required" class="form-field-error" data-lang-id="000-field-required-error">
+    <!-- Error message -->
+    <div id="credential-error-required"
+         class="form-field-error"
+         data-lang-id="000-field-required-error">
         This field is required.
     </div>
 </div>
