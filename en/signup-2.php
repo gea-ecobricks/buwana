@@ -143,7 +143,7 @@ https://github.com/gea-ecobricks/buwana/-->
              </div>
 
              <!-- Set Password -->
-             <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 5px;argin-bottom: -10px;padding-bottom: 1px;">
+             <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 5px;margin-bottom: -10px;padding-bottom: 1px;">
                <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
                <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
                <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
@@ -160,7 +160,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
              <!-- Human Check -->
-             <div class="form-item float-label-group" id="human-check-section" style="display: none;">
+             <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:-10px;">
 
 
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
