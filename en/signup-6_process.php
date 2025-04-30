@@ -115,9 +115,11 @@ if (!$response['success']) {
 // ✅ Redirect to login with first-time status
 // ✅ Redirect to login with first-time status
 if ($response['success']) {
-    $redirect_url = "signup-7.php?id=" . urlencode($buwana_id);
-    header("Location: $redirect_url");
-    exit();
+    echo json_encode([
+      'success' => true,
+      'redirect' => "signup-7.php?id=$buwana_id"
+    ]);
+    exit;
 }
  else {
     error_log("❌ Failed to create user in client app: " . $response['error']);
@@ -125,4 +127,5 @@ if ($response['success']) {
 }
 
 ?>
+
 
