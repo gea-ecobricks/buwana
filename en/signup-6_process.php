@@ -77,7 +77,7 @@ error_log("✅ Loaded client config: $client_env_path");
 $client_conn = $cal_conn ?? $gobrik_conn ?? null;
 
 if (!$client_conn || !($client_conn instanceof mysqli)) {
-    error_log("❌ Client DB connection variable is not set or invalid.");
+    error_log("❌❌ Client DB connection variable is not set or invalid.");
     if (isset($cal_conn)) error_log("🧪 cal_conn is set");
     if (isset($gobrik_conn)) error_log("🧪 gobrik_conn is set");
     die("❌ Client DB connection could not be initialized.");
