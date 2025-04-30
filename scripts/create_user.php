@@ -6,7 +6,7 @@ require_once '../buwanaconn_env.php'; // Required to update buwana DB records
 /**
  * Main function to create user in client app DB and update Buwana DB accordingly.
  */
-function createClientUser($buwana_id, $userData, $app_name, $client_conn, $buwana_conn, $client_id) {
+function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $buwana_conn, $client_id) {
     // 🕒 Set the current timestamp
     $created_at = date('Y-m-d H:i:s');
 
