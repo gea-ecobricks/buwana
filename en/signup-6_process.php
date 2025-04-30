@@ -113,13 +113,16 @@ if (!$response['success']) {
 }
 
 // ✅ Redirect to login with first-time status
+// ✅ Redirect to login with first-time status
 if ($response['success']) {
-    $login_redirect = $app_login_url . "?status=firsttime&id=" . urlencode($buwana_id);
-    header("Location: $login_redirect");
+    $redirect_url = "signup-7.php?id=" . urlencode($buwana_id);
+    header("Location: $redirect_url");
     exit();
-} else {
+}
+ else {
     error_log("❌ Failed to create user in client app: " . $response['error']);
     die("❌ Failed to create user in client app.");
 }
 
 ?>
+
