@@ -97,7 +97,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     <div class="form-container">
         <div style="text-align:center;width:100%;margin:auto;">
             <p style="color:green;">✔ <span data-lang-id="001-subs-set">Your Earthen subscriptions are confirmed!</p>
-            <div id="status-message"><h4 data-lang-id="012-status-heading2" style="margin-bottom: 12px;"> Now the fun part!</h4></div>
+            <div id="status-message"><h4 data-lang-id="012-status-heading2" style="margin-bottom: 12px;margin-top:0px;"> Now the fun part!</h4></div>
             <p data-lang-id="013-sub-ecozone-x" style="font-size:1.4em;padding-bottom:10px;"><?php echo htmlspecialchars($first_name); ?>, to finalize your account, choose an Earthling emoji to best represent yourself.</p>
         </div>
 
@@ -174,7 +174,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </div>
 
     <input type="hidden" name="earthling_emoji" id="earthling_emoji">
-    <p class="emoji-hint">Click one emoji to represent your Earthling identity.</p>
+    <p class="emoji-hint" style="text-align: center;"><span data-lang-id="000-emoji-hint" >Choose one emoji to represent you on <?= htmlspecialchars($app_info['app_display_name']) ?>.</span></p>
 </div>
 
 
