@@ -52,14 +52,14 @@ if ($stmt) {
 <div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-<div id="top-page-image" class="credentials-banner top-page-image"></div>
+<div id="top-page-image" class=" top-page-image"></div>
 
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
         <div style="text-align:center;width:100%;margin:auto;">
-            <h2 data-lang-id="001-your-account-created">🎉 Your Account has been created!</h2>
-            <p>You're being redirected to your new app dashboard...
-            </p>
+            <div class="emoji-banner" style="text-align:center;font-size:5em;">🙉 $earthling_emoji </div>
+            <h2 data-lang-id="001-your-account-created">🎉 $first_name, Your account has been created!</h2>
+            <p>You're being redirected to $app_display_name to login.</p>
            <p>If you're not redirected automatically, <a href="<?= htmlspecialchars($redirect_url) ?>">click here</a>.</p>
         </div>
     </div>
