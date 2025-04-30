@@ -65,6 +65,7 @@ $stmt->close();
 
 // --- STEP 5: Load client connection file ---
 $client_env_path = "../config/{$app_name}_env.php";
+
 if (!file_exists($client_env_path)) {
     error_log("❌ Client config file not found at: $client_env_path");
     die("❌ Missing DB config: $client_env_path");
@@ -73,17 +74,14 @@ if (!file_exists($client_env_path)) {
 require_once $client_env_path;
 error_log("✅ Loaded client config: $client_env_path");
 
-// --- Detect correct DB connection object ---
-$client_conn = $cal_conn ?? $gobrik_conn ?? null;
-
-if (!$client_conn || !($client_conn instanceof mysqli)) {
-    error_log("❌❌ Client DB connection variable is not set or invalid.");
-    if (isset($cal_conn)) error_log("🧪 cal_conn is set");
-    if (isset($gobrik_conn)) error_log("🧪 gobrik_conn is set");
+// --- Validate $client_conn existence and connection ---
+if (!isset($client_conn) || !($client_conn instanceof mysqli) || $client_conn->connect_error) {
+    error_log("❌ Client DB connection is not set or is invalid.");
     die("❌ Client DB connection could not be initialized.");
 }
 
-error_log("✅ Client DB connection established successfully.");
+error_log("✅ Client DB connection ($app_name) established successfully.");
+
 
 // --- STEP 6: Fetch Buwana user fields for provisioning ---
 $userData = [];
