@@ -72,6 +72,7 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
     </div>
   </div>
 </div>
+</div>
 
 <?php require_once ("../footer-2025.php"); ?>
 
@@ -83,7 +84,7 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
 
 
 <script>
-  let seconds = 5;
+  let seconds = 25;
   const countdownEl = document.getElementById('countdown');
 
   const countdown = setInterval(() => {

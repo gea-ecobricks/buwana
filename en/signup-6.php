@@ -96,9 +96,9 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
         <div style="text-align:center;width:100%;margin:auto;">
-            <p style="color:green;">✔ <span data-lang-id="001-subs-set">Your Earthen subscriptions are confirmed!</p>
-            <div id="status-message"><h4 data-lang-id="012-status-heading2" style="margin-bottom: 12px;margin-top:0px;"> Now the fun part!</h4></div>
-            <p data-lang-id="013-sub-ecozone-x" style="font-size:1.4em;padding-bottom:10px;"><?php echo htmlspecialchars($first_name); ?>, to finalize your account, choose an Earthling emoji to best represent yourself.</p>
+            <p style="color:green;" data-lang-id="001-subs-set">✔ Your Earthen subscriptions are confirmed!</p>
+            <div id="status-message"><h4 data-lang-id="002-fun-part" style="margin-bottom: 12px;margin-top:0px;">Now the fun part!</h4></div>
+            <p style="font-size:1.4em;padding-bottom:10px;"><?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="003-finalize">to finalize your account, choose an Earthling emoji to best represent yourself.</span></p>
         </div>
 
         <!-- FINALIZE ACCOUNT FORM -->
@@ -109,13 +109,13 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <div class="form-item" id="emoji-section">
     <!-- Top tab bar -->
     <ul class="emoji-tabs" id="emojiTabs">
-        <li data-tab="mammals"  class="active">Mammals</li>
-        <li data-tab="marine">Marine</li>
-        <li data-tab="reptiles">Reptiles & Amphibians</li>
-        <li data-tab="birds">Birds</li>
-        <li data-tab="insects">Insects</li>
-        <li data-tab="plants">Plants</li>
-        <li data-tab="humans">Human-like</li>
+        <li data-tab="mammals"  class="active" data-lang-id="004-mammals">Mammals</li>
+        <li data-tab="marine" data-lang-id="004-marine">Marine</li>
+        <li data-tab="reptiles" data-lang-id="004-reptiles-amphibians">Reptiles & Amphibians</li>
+        <li data-tab="birds" data-lang-id="004-birds">Birds</li>
+        <li data-tab="insects" data-lang-id="004-insects">Insects</li>
+        <li data-tab="plants" data-lang-id="004-plants">Plants</li>
+        <li data-tab="humans" data-lang-id="004-humman-like">Human-like</li>
     </ul>
 
     <!-- ONE grid per category -->
@@ -174,7 +174,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </div>
 
     <input type="hidden" name="earthling_emoji" id="earthling_emoji">
-    <p class="emoji-hint" style="text-align: center;"><span data-lang-id="000-emoji-hint" >Choose one emoji to represent you on <?= htmlspecialchars($app_info['app_display_name']) ?>.</span></p>
+    <p class="emoji-hint" style="text-align: center;"><span data-lang-id="005-emoji-hint" >Choose one emoji to represent you on </span><?= htmlspecialchars($app_info['app_display_name']) ?>.</p>
 </div>
 
 

@@ -5,7 +5,31 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 
 
 const en_Page_Translations = {
-    "001-signup-heading": "Create Account",
+    "001-subs-set": "✔ Your Earthen subscriptions are confirmed!",
+    "002-fun-part": "Now the fun part!",
+    "003-to-finalize": "to finalize your account, choose an Earthling emoji to best represent yourself.",
+    "004-mammals": "Mammals",
+    "004-marine": "Marine",
+    "004-reptiles-amphibians": "Reptiles & Amphibians",
+    "004-birds": "Birds",
+    "004-plants": "Plants",
+    "004-insects": "Insects",
+    "004-human-link": "Human-link",
+    "005-emoji-hint": "Choose one emoji to represent you on ",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     "002-signup-subtext": " uses Buwana— a powerful and private, open-source and for-Earth account system that powers regenerative apps.",
     "003-firstname": "What's your first name?",
     "000-name-field-too-long-error": "The entry is too long. Max 255 characters.",
@@ -13,6 +37,8 @@ const en_Page_Translations = {
     "006-credential-choice": "Select how you register...",
     "007-way-to-contact": "We'll send your account confirmation messages this way. Later you'll login this way.",
     "016-submit-to-password": "Next",
+
+
 
     // Next page: Signup-2 - Set your name and email
     "001-register-by": "Register by",
