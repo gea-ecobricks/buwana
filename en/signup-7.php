@@ -39,12 +39,14 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
 <html lang="<?= htmlspecialchars($lang) ?>">
 <head>
   <meta charset="UTF-8">
-  <title><?= htmlspecialchars($first_name) ?>, welcome to <?= htmlspecialchars($app_display_name) ?>!</title>
-  <meta name="robots" content="noindex">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <?php require_once ("../includes/signup-inc.php"); ?>
-</head>
-<body>
+
+  <!--
+  GoBrik.com site version 3.0
+  Developed and made open source by the Global Ecobrick Alliance
+  See our git hub repository for the full code and to help out:
+  https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
+
+  <?php require_once ("../includes/signup-inc.php");?>
 
 <div class="splash-title-block"></div>
 <div id="splash-bar"></div>
@@ -60,8 +62,9 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
         🎉 <?= htmlspecialchars($first_name) ?>, your account has been created!
       </h2>
       <p data-lang-id="002-redirecting-msg">
-        You're being redirected to <strong><?= htmlspecialchars($app_display_name) ?></strong> to log in.
+        In <span id="countdown">25</span> seconds you'll be redirected to <strong><?= htmlspecialchars($app_display_name) ?></strong> to log in.
       </p>
+
       <p data-lang-id="003-manual-redirect">
         If you're not redirected automatically,
         <a href="<?= htmlspecialchars($redirect_url) ?>">click here</a>.
@@ -75,7 +78,26 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
 <script>
   setTimeout(() => {
     window.location.href = <?= json_encode($redirect_url) ?>;
-  }, 5000);
+  }, 25000);
+</script>
+
+
+<script>
+  let seconds = 5;
+  const countdownEl = document.getElementById('countdown');
+
+  const countdown = setInterval(() => {
+    seconds--;
+    if (seconds <= 0) {
+      clearInterval(countdown);
+    } else {
+      countdownEl.textContent = seconds;
+    }
+  }, 1000);
+
+  setTimeout(() => {
+    window.location.href = <?= json_encode($redirect_url) ?>;
+  }, 25000);
 </script>
 
 </body>
