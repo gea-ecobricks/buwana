@@ -1,26 +1,33 @@
 <?php
 // create_user.php
 
-require_once '../buwanaconn_env.php'; // Required to update buwana DB records
+require_once '../buwanaconn_env.php'; // Required for updating Buwana DB
 
 /**
- * Main function to create user in client app DB and update Buwana DB accordingly.
+ * ===========================================
+ * FUNCTION: Create a user in the client app DB
+ * ===========================================
  */
 function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $buwana_conn, $client_id) {
-    // 🕒 Set the current timestamp
     $created_at = date('Y-m-d H:i:s');
 
-    // 🔐 Safety check: Ensure client connection is valid
-    if (!isset($client_conn)) {
-        return ['success' => false, 'error' => 'Client DB connection not established'];
+    // ✅ Robustly check that $client_conn is a valid mysqli connection
+    if (!($client_conn instanceof mysqli) || $client_conn->connect_errno) {
+        error_log("❌ Invalid or failed client DB connection in create_user.php");
+        return ['success' => false, 'error' => 'Client DB connection not initialized properly'];
     }
 
-    // ============================================
-    // PART 1: Insert user into client users_tb
-    // ============================================
-    $insert_sql = "INSERT INTO users_tb
-        (buwana_id, username, first_name, last_name, full_name, email, created_at, terms_of_service, notes, profile_pic, country_id, language_id, watershed_id, continent_code, location_full, location_watershed, location_lat, location_long, community_id, earthling_emoji)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    error_log("📥 Creating user in client app: $app_name for Buwana ID $buwana_id");
+
+    /**
+     * PART 1: Insert user into client app's users_tb
+     */
+    $insert_sql = "INSERT INTO users_tb (
+        buwana_id, username, first_name, last_name, full_name, email,
+        created_at, terms_of_service, notes, profile_pic, country_id,
+        language_id, watershed_id, continent_code, location_full,
+        location_watershed, location_lat, location_long, community_id, earthling_emoji
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $client_conn->prepare($insert_sql);
     if (!$stmt) {
@@ -56,12 +63,13 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
     if ($stmt->execute()) {
         $stmt->close();
 
-        // ============================================
-        // PART 2: Update Buwana DB records
-        // ============================================
+        /**
+         * PART 2: Update Buwana DB connection status and notes
+         */
         updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
         updateBuwanaUserNotes($buwana_conn, $buwana_id, $app_name, $created_at);
 
+        error_log("✅ User successfully created in client app ($app_name)");
         return ['success' => true];
     } else {
         error_log('❌ Client DB Insert Error: ' . $stmt->error);
@@ -71,9 +79,10 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
     }
 }
 
-
 /**
- * Updates user_app_connections_tb with status and timestamp.
+ * ===========================================
+ * FUNCTION: Update user_app_connections_tb status
+ * ===========================================
  */
 function updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, $status, $connected_at = null) {
     $connected_at = $connected_at ?? date('Y-m-d H:i:s');
@@ -87,14 +96,16 @@ function updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, $status
         $stmt->bind_param('ssii', $status, $connected_at, $buwana_id, $client_id);
         $stmt->execute();
         $stmt->close();
+        error_log("📌 App connection status updated to '$status' for client ID $client_id");
     } else {
         error_log('❌ Failed to update app connection status: ' . $buwana_conn->error);
     }
 }
 
-
 /**
- * Appends a registration note to the user's Buwana users_tb record.
+ * ===========================================
+ * FUNCTION: Add notes to users_tb
+ * ===========================================
  */
 function updateBuwanaUserNotes($buwana_conn, $buwana_id, $app_name, $created_at) {
     $note_text = "First registered on $app_name at $created_at.";
@@ -108,8 +119,9 @@ function updateBuwanaUserNotes($buwana_conn, $buwana_id, $app_name, $created_at)
         $stmt->bind_param('si', $note_text, $buwana_id);
         $stmt->execute();
         $stmt->close();
+        error_log("📝 Notes updated for Buwana ID $buwana_id");
     } else {
-        error_log('❌ Failed to update buwana user notes: ' . $buwana_conn->error);
+        error_log('❌ Failed to update Buwana user notes: ' . $buwana_conn->error);
     }
 }
 ?>
