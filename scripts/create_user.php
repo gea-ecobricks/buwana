@@ -20,52 +20,103 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
     error_log("📥 Creating user in client app: $app_name for Buwana ID $buwana_id");
 
     /**
-     * PART 1: Insert user into client app's users_tb
+     * ===========================================
+     * SPECIAL CASE: GoBrik Legacy Table
+     * ===========================================
      */
-    $insert_sql = "INSERT INTO users_tb (
-        buwana_id, username, first_name, last_name, full_name, email,
-        created_at, terms_of_service, notes, profile_pic, country_id,
-        language_id, watershed_id, continent_code, location_full,
-        location_watershed, location_lat, location_long, community_id, earthling_emoji
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    if ($app_name === 'gobrik') {
+        $insert_sql = "INSERT INTO tb_ecobrickers (
+            buwana_id, first_name, last_name, full_name, email_addr,
+            date_registered, terms_of_service, account_notes, profile_pic,
+            country_id, language_id, watershed_id, continent_code,
+            location_full, location_watershed, location_lat, location_long,
+            community_id, earthling_emoji
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    $stmt = $client_conn->prepare($insert_sql);
-    if (!$stmt) {
-        error_log('❌ Client DB Prepare Error: ' . $client_conn->error);
-        updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'failed');
-        return ['success' => false, 'error' => 'Client DB prepare failed'];
+        $stmt = $client_conn->prepare($insert_sql);
+        if (!$stmt) {
+            error_log('❌ GoBrik DB Prepare Error: ' . $client_conn->error);
+            updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'failed');
+            return ['success' => false, 'error' => 'GoBrik DB prepare failed'];
+        }
+
+        $stmt->bind_param(
+            'isssssissiiissssddis',
+            $buwana_id,
+            $userData['first_name'],
+            $userData['last_name'],
+            $userData['full_name'],
+            $userData['email'],
+            $created_at,
+            $userData['terms_of_service'],
+            $userData['notes'],
+            $userData['profile_pic'],
+            $userData['country_id'],
+            $userData['language_id'],
+            $userData['watershed_id'],
+            $userData['continent_code'],
+            $userData['location_full'],
+            $userData['location_watershed'],
+            $userData['location_lat'],
+            $userData['location_long'],
+            $userData['community_id'],
+            $userData['earthling_emoji']
+        );
     }
 
-    $stmt->bind_param(
-        'issssssisisissssddis',
-        $buwana_id,
-        $userData['username'],
-        $userData['first_name'],
-        $userData['last_name'],
-        $userData['full_name'],
-        $userData['email'],
-        $created_at,
-        $userData['terms_of_service'],
-        $userData['notes'],
-        $userData['profile_pic'],
-        $userData['country_id'],
-        $userData['language_id'],
-        $userData['watershed_id'],
-        $userData['continent_code'],
-        $userData['location_full'],
-        $userData['location_watershed'],
-        $userData['location_lat'],
-        $userData['location_long'],
-        $userData['community_id'],
-        $userData['earthling_emoji']
-    );
+    /**
+     * ===========================================
+     * DEFAULT CASE: Modern apps using users_tb
+     * ===========================================
+     */
+    else {
+        $insert_sql = "INSERT INTO users_tb (
+            buwana_id, username, first_name, last_name, full_name, email,
+            created_at, terms_of_service, notes, profile_pic, country_id,
+            language_id, watershed_id, continent_code, location_full,
+            location_watershed, location_lat, location_long, community_id, earthling_emoji
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+        $stmt = $client_conn->prepare($insert_sql);
+        if (!$stmt) {
+            error_log('❌ Client DB Prepare Error: ' . $client_conn->error);
+            updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'failed');
+            return ['success' => false, 'error' => 'Client DB prepare failed'];
+        }
+
+        $stmt->bind_param(
+            'issssssisisissssddis',
+            $buwana_id,
+            $userData['username'],
+            $userData['first_name'],
+            $userData['last_name'],
+            $userData['full_name'],
+            $userData['email'],
+            $created_at,
+            $userData['terms_of_service'],
+            $userData['notes'],
+            $userData['profile_pic'],
+            $userData['country_id'],
+            $userData['language_id'],
+            $userData['watershed_id'],
+            $userData['continent_code'],
+            $userData['location_full'],
+            $userData['location_watershed'],
+            $userData['location_lat'],
+            $userData['location_long'],
+            $userData['community_id'],
+            $userData['earthling_emoji']
+        );
+    }
+
+    /**
+     * ===========================================
+     * Execute insert and update Buwana
+     * ===========================================
+     */
     if ($stmt->execute()) {
         $stmt->close();
 
-        /**
-         * PART 2: Update Buwana DB connection status and notes
-         */
         updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
         updateBuwanaUserNotes($buwana_conn, $buwana_id, $app_name, $created_at);
 
