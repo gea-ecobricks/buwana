@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup';
-$version = '0.774';
+$version = '0.775';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -91,7 +91,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-<div id="top-page-image" class="message-birded top-page-image"></div>
+<div id="top-page-image" class="marine-animals-top top-page-image"></div>
 
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">

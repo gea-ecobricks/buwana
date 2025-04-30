@@ -560,5 +560,10 @@ background: url(../webps/brikchain-450px.webp) no-repeat center;
     background-size: contain;
 }
 
+.marine-animals-top {
+    background: url(../svgs/marine-animals-top.svg) no-repeat center;
+    background-size: contain;
+}
+
 
 /* Light mode pastel colors */

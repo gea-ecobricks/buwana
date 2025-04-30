@@ -31,8 +31,12 @@ $app_login_url = $app_info['app_login_url'] ?? '/';
 $client_id = $app_info['client_id'] ?? null;
 
 if (!$app_name || !$client_id) {
+    error_log("❌ Missing app configuration: app_name = $app_name | client_id = $client_id");
     die("❌ Missing app configuration details.");
 }
+
+error_log("🔍 App Info Loaded: name = $app_name, login_url = $app_login_url, client_id = $client_id");
+
 
 // --- STEP 3: Resolve country_id & continent_code ---
 $set_country_id = null;
@@ -62,15 +66,24 @@ $stmt->close();
 // --- STEP 5: Load client connection file ---
 $client_env_path = "../config/{$app_name}_env.php";
 if (!file_exists($client_env_path)) {
+    error_log("❌ Client config file not found at: $client_env_path");
     die("❌ Missing DB config: $client_env_path");
 }
-require_once $client_env_path;
 
-// Resolve the correct DB connection var from client
+require_once $client_env_path;
+error_log("✅ Loaded client config: $client_env_path");
+
+// --- Detect correct DB connection object ---
 $client_conn = $cal_conn ?? $gobrik_conn ?? null;
-if (!$client_conn) {
+
+if (!$client_conn || !($client_conn instanceof mysqli)) {
+    error_log("❌ Client DB connection variable is not set or invalid.");
+    if (isset($cal_conn)) error_log("🧪 cal_conn is set");
+    if (isset($gobrik_conn)) error_log("🧪 gobrik_conn is set");
     die("❌ Client DB connection could not be initialized.");
 }
+
+error_log("✅ Client DB connection established successfully.");
 
 // --- STEP 6: Fetch Buwana user fields for provisioning ---
 $userData = [];
