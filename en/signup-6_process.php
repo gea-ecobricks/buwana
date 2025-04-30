@@ -114,7 +114,13 @@ if (!$response['success']) {
     die("There was an error provisioning your account in the app. Please contact support.");
 }
 
-// --- STEP 8: Redirect to client app login/dashboard ---
-ob_end_clean();
-header("Location: $app_login_url");
-exit();
+// ✅ Redirect to login with first-time status
+if ($result['success']) {
+    $login_redirect = $app_login_url . "?status=firsttime&id=" . urlencode($buwana_id);
+    header("Location: $login_redirect");
+    exit();
+} else {
+    error_log("❌ Failed to create user in client app: " . $result['error']);
+    die("❌ Failed to create user in client app.");
+}
+?>
