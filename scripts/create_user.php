@@ -27,11 +27,11 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
     if ($app_name === 'gobrik') {
         $insert_sql = "INSERT INTO tb_ecobrickers (
             buwana_id, first_name, last_name, full_name, email_addr,
-            date_registered, terms_of_service, account_notes, profile_pic,
-            country_id, language_id, watershed_id, continent_code,
-            location_full, location_watershed, location_lat, location_long,
-            community_id, earthling_emoji
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            date_registered, terms_of_service, account_notes, country_id,
+            language_id, community_id, earthling_emoji, profile_pic,
+            continent_code, location_full, location_lat, location_long
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 
         $stmt = $client_conn->prepare($insert_sql);
         if (!$stmt) {
@@ -41,7 +41,7 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
         }
 
         $stmt->bind_param(
-            'isssssissiiissssddis',
+            'isssssisisissssdd',
             $buwana_id,
             $userData['first_name'],
             $userData['last_name'],
@@ -50,18 +50,17 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
             $created_at,
             $userData['terms_of_service'],
             $userData['notes'],
-            $userData['profile_pic'],
             $userData['country_id'],
             $userData['language_id'],
-            $userData['watershed_id'],
+            $userData['community_id'],
+            $userData['earthling_emoji'],
+            $userData['profile_pic'],
             $userData['continent_code'],
             $userData['location_full'],
-            $userData['location_watershed'],
             $userData['location_lat'],
-            $userData['location_long'],
-            $userData['community_id'],
-            $userData['earthling_emoji']
+            $userData['location_long']
         );
+
     }
 
     /**
