@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup';
-$version = '0.775';
+$version = '0.776';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -181,7 +181,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
 <!-- COMMUNITY FIELD -->
 <div class="form-item" id="community-section" style="margin-top:20px;padding-bottom: 0px;">
-    <label for="community_name" data-lang-id="012-community-name-xx">
+    <label for="community_name" data-lang-id="006-community-connect">
         Buwana accounts let you connect with local and global communities...
     </label><br>
 
@@ -189,7 +189,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
         <span class="select-icon" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 20px;">👥</span>
 
         <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
-               placeholder="Type your community" style="width: 100%; padding: 11px 10px 11px 50px; font-size: 20px !important;"
+               placeholder="Type your community..." style="width: 100%; padding: 11px 10px 11px 50px; font-size: 20px !important;"
                value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
     </div>
 
