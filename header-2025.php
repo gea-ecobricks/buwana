@@ -49,10 +49,12 @@
 <meta name="msapplication-TileImage" content="../icons/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
-<!--MAIN STYLE SHEETS -->
+<!--MAIN STYLE SHEETS
+
+<link rel="stylesheet" type="text/css" href="../styles/content-2025.css?v=3<?php echo ($version); ;?>">
+-->
 
 <link rel="stylesheet" type="text/css" href="../styles/mode-slider.css?v=4">
-<link rel="stylesheet" type="text/css" href="../styles/content-2025.css?v=3<?php echo ($version); ;?>">
 
 <link rel="stylesheet" type="text/css" href="../styles/main.css?v=6<?php echo ($version); ;?>">
 
