@@ -22,12 +22,15 @@
             <div id="wcb" class="carbonbadge wcb-d"></div>
 
             <div class="footer-conclusion" data-lang-id="420-conclusion-contribute">
-                The Buwana project is hand-coded and open source HTML.  We use ZERO big-tech platforms, databases, hosting or web services.
+                  We use no big-tech platforms, databases, hosting or web services. The Buwana project is open-source on Github:
             </div>
 
             <div class="footer-conclusion">
             ↳ <a href="https://github.com/gea-ecobricks/buwana/blob/main/<?php echo ($lang); ;?>/<?php echo ($name); ;?>" target="_blank">github.com/gea-ecobricks/buwana/blob/main/<?php echo ($lang); ;?>/<?php echo ($name); ;?></a>
             </div>
+            <div class="footer-conclusion" data-lang-id="422-conclusion-copyright">
+                        The Buwana, GEA, Earthen, AES and Gobrik logos and emblems are copyright 2010-2025 by the Global Ecobrick Alliance.
+                    </div>
 
             <div style="margin-top:15px">
                 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons BY SA 4.0 License" src="../icons/cc-by-sa.svg" style="width:200px;height:45px;border-width:0" loading="lazy"></a>
@@ -35,9 +38,7 @@
 
 
 
-            <div class="footer-conclusion" data-lang-id="422-conclusion-copyright">
-                The Buwana, GEA, Earthen, AES and Gobrik logos and emblems are copyright 2010-2025 by the Global Ecobrick Alliance.
-            </div>
+
 
         </div>
 
