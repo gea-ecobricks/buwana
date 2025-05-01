@@ -107,60 +107,52 @@ https://github.com/gea-ecobricks/buwana/-->
                 <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Let's set you up on</span> <?= $app_info['app_display_name']; ?>...</p>
             </div>
 
-
-
-
            <form id="user-signup-form" method="post" action="signup-2_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+                <div class="form-item" id="last-name-field">
+                    <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
+                    <input type="text" id="last_name" name="last_name" placeholder="Your last name...">
+                    <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
+                </div>
+                 <!-- Email / Credential Field -->
+                 <div class="form-item float-label-group" id="credential-section">
+                   <input type="text" id="credential_value" name="credential_value" required aria-label="Your email"
+                   <?php if (!empty($credential_key)) : ?>
+                       value="<?php echo htmlspecialchars($credential_key); ?>"
+                   <?php endif; ?>
+                   placeholder=" "  />  <!--style="padding-left:35px;"-->
+                   <label for="credential_value">
+                     <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please-x"> please...</span>
+                   </label>
 
+                   <div id="duplicate-email-error" class="form-field-error" data-lang-id="010-duplicate-email">
+                     🚧 Whoops! Looks like that e-mail address is already being used by a Buwana Account. Please choose another.
+                   </div>
+                   <div id="duplicate-gobrik-email" class="form-warning">
+                     🌏 <span data-lang-id="010-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
+                   </div>
 
+                   <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 7px;"></div>
 
-<div class="form-item" id="last-name-field">
-    <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
-    <input type="text" id="last_name" name="last_name" placeholder="Your last name...">
-    <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
-</div>
-             <!-- Email / Credential Field -->
-             <div class="form-item float-label-group" id="credential-section">
-               <input type="text" id="credential_value" name="credential_value" required aria-label="Your email"
-               <?php if (!empty($credential_key)) : ?>
-                   value="<?php echo htmlspecialchars($credential_key); ?>"
-               <?php endif; ?>
-               placeholder=" "  />  <!--style="padding-left:35px;"-->
-               <label for="credential_value">
-                 <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please-x"> please...</span>
-               </label>
+                   <p class="form-caption" data-lang-id="006-email-sub-caption-xx" style="margin-bottom: -10px;">💌 We'll use this email to confirm your account.</p>
+                 </div>
 
-               <div id="duplicate-email-error" class="form-field-error" data-lang-id="010-duplicate-email">
-                 🚧 Whoops! Looks like that e-mail address is already being used by a Buwana Account. Please choose another.
-               </div>
-               <div id="duplicate-gobrik-email" class="form-warning">
-                 🌏 <span data-lang-id="010-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
-               </div>
+                 <!-- Set Password -->
+                 <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 14px;margin-bottom: -10px;padding-bottom: 1px;">
+                   <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
+                   <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
+                   <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
+                   <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
+                 </div>
 
-               <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 7px;"></div>
-
-               <p class="form-caption" data-lang-id="006-email-sub-caption-xx" style="margin-bottom: -10px;">💌 We'll use this email to confirm your account.</p>
-             </div>
-
-             <!-- Set Password -->
-             <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 14px;margin-bottom: -10px;padding-bottom: 1px;">
-               <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
-               <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
-               <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
-               <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
-             </div>
-
-             <!-- Confirm Password -->
-             <div class="form-item float-label-group" id="confirm-password-section" style="display: none;">
-               <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " style="font-size: 22px !important;"/>
-               <label for="confirm_password" data-lang-id="009-confirm-pass-x">Confirm Your Password...</label>
-               <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;margin-bottom:13px;margin-right:15px; font-size:20px;margin-top: 45px;">🙈</span>
-               <div id="maker-error-invalid" class="form-field-error" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
-             </div>
-
-
-             <!-- Human Check -->
-             <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:15px;margin-bottom:15px;padding-bottom:5px;">
+                 <!-- Confirm Password -->
+                 <div class="form-item float-label-group" id="confirm-password-section" style="display: none;">
+                   <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " style="font-size: 22px !important;"/>
+                   <label for="confirm_password" data-lang-id="009-confirm-pass-x">Confirm Your Password...</label>
+                   <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;margin-bottom:13px;margin-right:15px; font-size:20px;margin-top: 45px;">🙈</span>
+                   <div id="maker-error-invalid" class="form-field-error" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
+                 </div>
+                 <!-- Human Check -->
+                 <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:15px;margin-bottom:15px;padding-bottom:5px;">
 
 
                <input type="text" id="human_check" name="human_check" required placeholder=" " />
