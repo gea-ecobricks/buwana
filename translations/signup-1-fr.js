@@ -10,7 +10,7 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 // Backslash (\): Should be escaped as \\ in JavaScript strings to prevent ending the string prematurely.
 // Forward slash (/): Should be escaped as \/ in </script> tags to prevent prematurely closing a script.
 
-const en_Page_Translations = {
+const fr_Page_Translations = {
     "001-signup-heading": "Create Account",
     "002-signup-subtext": " uses Buwana— a powerful and private, open-source and for-Earth account system that powers regenerative apps.",
     "003-firstname": "What's your first name?",

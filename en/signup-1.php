@@ -14,7 +14,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.776';
+$version = '0.777';
 $page = 'signup-1';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -230,14 +230,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Custom submit logic
   form.addEventListener('submit', function (event) {
-    event.preventDefault();
+    event.preventDefault(); // Always block the native form submission
 
-    if (validateOnSubmit()) {
-      form.dispatchEvent(new Event('kickAssSubmit')); // Let global script handle animations
-    } else {
+    const isValid = validateOnSubmit();
+
+    if (!isValid) {
+      console.warn("🚫 Form blocked due to validation errors.");
       shakeElement(submitButton);
+      return;
     }
+
+    // ✅ Validation passed — manually dispatch a custom event that your global script expects
+    const submitEvent = new Event('kickAssSubmit', { bubbles: true });
+    form.dispatchEvent(submitEvent);
   });
+
 
 
 });
