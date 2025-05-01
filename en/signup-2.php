@@ -97,7 +97,7 @@ https://github.com/gea-ecobricks/buwana/-->
 <div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-   <div id="top-page-image" class="credentials-banner top-page-image"></div>
+<div id="top-page-image" class="credentials-banner top-page-image"></div>
 
 <div id="form-submission-box" class="landing-page-form" >
     <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
