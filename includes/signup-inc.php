@@ -83,18 +83,6 @@
 
 
 
-#last-name-field {
-    position: absolute;
-    left: -9999px;
-    top: auto;
-    width: 1px;
-    height: 1px;
-
-    z-index: 0;
-}
-
-
-
 
 /* .earthcycles-logo { */
 /*   margin:15px auto 0 auto; */
@@ -138,15 +126,15 @@
     }
 
 
-    .hidden {
-        display: none;
-    }
-    .error {
-        color: red;
-    }
-    .success {
-        color: green;
-    }
+/*     .hidden { */
+/*         display: none; */
+/*     } */
+/*     .error { */
+/*         color: red; */
+/*     } */
+/*     .success { */
+/*         color: green; */
+/*     } */
 
 
 /* SUBSCRIPTION LAYOUT PAGE */
