@@ -11,6 +11,9 @@ function switchLanguage(langCode) {
         'fr': {...fr_Translations, ...fr_Page_Translations},
         'es': {...es_Translations, ...es_Page_Translations},
         'id': {...id_Translations, ...id_Page_Translations}
+        'ar': {...ar_Translations, ...ar_Page_Translations},
+        'cn': {...cn_Translations, ...cn_Page_Translations},
+        'de': {...de_Translations, ...de_Page_Translations}
     };
 
     const currentTranslations = languageMappings[currentLanguage];
