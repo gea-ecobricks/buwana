@@ -103,38 +103,48 @@ function closeInfoModal() {
 }
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
     const settingsButton = document.getElementById('top-settings-button');
     const settingsPanel = document.getElementById('settings-buttons');
     const langMenu = document.getElementById('language-menu-slider');
     const loginMenu = document.getElementById('login-menu-slider');
+    const header = document.getElementById('header');
 
     let settingsOpen = false;
 
+    // 🔄 Update header background depending on menu state
+    function updateHeaderBackground() {
+        const langVisible = langMenu.classList.contains('menu-slider-visible');
+        const loginVisible = loginMenu.classList.contains('menu-slider-visible');
+
+        if (langVisible || loginVisible) {
+            header.style.background = 'var(--top-header)';
+        } else {
+            header.style.background = 'none';
+        }
+    }
+
     // 🌐 Hide language selector with a slide-up animation
     function hideLangSelector() {
-        const langMenu = document.getElementById('language-menu-slider');
         if (!langMenu) return;
 
         if (langMenu.classList.contains('menu-slider-visible')) {
-            // Animate slide up
             langMenu.style.maxHeight = '0';
             langMenu.style.overflow = 'hidden';
             langMenu.style.transition = 'max-height 0.4s ease';
 
-            // After animation is complete, remove the visible class to fully hide
             setTimeout(() => {
                 langMenu.classList.remove('menu-slider-visible');
-                langMenu.style.removeProperty('max-height');  // Reset height
-                langMenu.style.removeProperty('overflow');    // Reset overflow
-                langMenu.style.removeProperty('transition');  // Reset transition
-            }, 400); // match transition duration
+                langMenu.style.removeProperty('max-height');
+                langMenu.style.removeProperty('overflow');
+                langMenu.style.removeProperty('transition');
+                updateHeaderBackground(); // ✅ Update header after hiding
+            }, 400);
         }
 
         document.removeEventListener('click', documentClickListenerLang);
     }
-
-
 
     // 🔁 Toggle settings panel
     window.toggleSettingsMenu = () => {
@@ -152,16 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoginSelector();
 
         if (isVisible) {
-            hideLangSelector(); // If already shown, hide
+            hideLangSelector();
         } else {
             langMenu.classList.add('menu-slider-visible');
             document.addEventListener('click', documentClickListenerLang);
+            updateHeaderBackground(); // ✅ Show header background
         }
     };
 
     window.hideLangSelector = () => {
         langMenu.classList.remove('menu-slider-visible');
         document.removeEventListener('click', documentClickListenerLang);
+        updateHeaderBackground(); // ✅ Remove header background
     };
 
     function documentClickListenerLang(e) {
@@ -176,16 +188,18 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLangSelector();
 
         if (isVisible) {
-            hideLoginSelector(); // Hide if already visible
+            hideLoginSelector();
         } else {
             loginMenu.classList.add('menu-slider-visible');
             document.addEventListener('click', documentClickListenerLogin);
+            updateHeaderBackground(); // ✅ Show header background
         }
     };
 
     window.hideLoginSelector = () => {
         loginMenu.classList.remove('menu-slider-visible');
         document.removeEventListener('click', documentClickListenerLogin);
+        updateHeaderBackground(); // ✅ Remove header background
     };
 
     function documentClickListenerLogin(e) {
@@ -193,6 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
             hideLoginSelector();
         }
     }
+
+
 
 
 
