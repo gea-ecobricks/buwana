@@ -2014,7 +2014,7 @@ padding-top:50px;
 
 @media screen and (min-width: 700px) {
 	.splash-title-block {
-        background-color: var(--top-header);
+        /*background-color: var(--top-header);*/
         filter: none !important;
         min-height: 22vh !important;
         height: 22vh !important;
