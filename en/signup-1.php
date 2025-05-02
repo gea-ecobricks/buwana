@@ -94,7 +94,7 @@ https://github.com/gea-ecobricks/buwana/-->
     <select id="credential"
             name="credential"
             aria-label="Preferred Credential"
-            required>
+            required title="We'll send your account confirmation messages this way and you'll use this to login.">
         <option value="" disabled selected data-lang-id="006-credential-choice">
             Select how you register...
         </option>
@@ -130,7 +130,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
     <div style="font-size: medium; text-align: center; margin: auto; align-self: center;padding-top:40px;padding-bottom:50px;margin-top: 0px;">
-        <p style="font-size:medium;"><span data-lang-id="000-already-have-account">Already have an account?</span> <a href="<?= htmlspecialchars($app_info['app_url']) ?>/">Login to <?= htmlspecialchars($app_info['app_display_name']) ?></a>.</p>
+        <p style="font-size:medium;"><span data-lang-id="000-already-have-account">Already have an account?</span> <br> <a href="<?= htmlspecialchars($app_info['app_url']) ?>/"><span data-lang-id="000-login-to"> Login to <?= htmlspecialchars($app_info['app_display_name']) ?> ↗</a>.</p>
     </div>
 </div>
 
