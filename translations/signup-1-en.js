@@ -1,5 +1,5 @@
 /*-----------------------------------
-TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
+TEXT TRANSLATION SNIPPETS FOR Signup-1.php
 -----------------------------------*/
 
 
