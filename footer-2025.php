@@ -74,7 +74,7 @@
   const version = '<?php echo $version; ?>';
 
   // Debug alert using template literal
-  alert(`../translations/${page}-${lang}.js?v=${version}`);
+//   alert(`../translations/${page}-${lang}.js?v=${version}`);
 
   loadTranslationScripts(lang, page, () => {
       switchLanguage(lang);
