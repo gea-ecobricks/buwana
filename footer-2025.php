@@ -50,22 +50,30 @@
 
 
 
-<!-- Translation variable files for the languageSwitcher-->
-<script src="../translations/core-texts-en.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/core-texts-fr.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/core-texts-id.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/core-texts-es.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/core-texts-ar.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/core-texts-de.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/core-texts-cn.js?v=<?php echo ($version); ;?>"></script>
+    <!-- Translation variable files for the languageSwitcher
+    <script src="../translations/core-texts-en.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/core-texts-fr.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/core-texts-id.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/core-texts-es.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/core-texts-ar.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/core-texts-de.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/core-texts-cn.js?v=<?php echo ($version); ;?>"></script>
 
-<script src="../translations/<?php echo ($page); ;?>-en.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/<?php echo ($page); ;?>-fr.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/<?php echo ($page); ;?>-id.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/<?php echo ($page); ;?>-es.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/<?php echo ($page); ;?>-cn.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/<?php echo ($page); ;?>-ar.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/<?php echo ($page); ;?>-de.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/<?php echo ($page); ;?>-en.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/<?php echo ($page); ;?>-fr.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/<?php echo ($page); ;?>-id.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/<?php echo ($page); ;?>-es.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/<?php echo ($page); ;?>-cn.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/<?php echo ($page); ;?>-ar.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/<?php echo ($page); ;?>-de.js?v=<?php echo ($version); ;?>"></script>-->
+
+    <script src="../translations/core-texts-<?php echo $lang; ?>.js?v=<?php echo $version; ?>"></script>
+    <script src="../translations/<?php echo $page; ?>-<?php echo $lang; ?>.js?v=<?php echo $version; ?>"></script>
+<script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        switchLanguage('<?php echo $lang; ?>');
+    });
+</script>
 
 <script src="../scripts/website-carbon-badges.js" defer></script>
 

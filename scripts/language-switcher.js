@@ -3,15 +3,13 @@
 
 /* ---------- ------------------------------
 
-EARTHEN LANGUAGE SELECTOR v
+EARTHEN LANGUAGE SELECTOR v2.0
 
 -------------------------------------------*/
 
-
 function switchLanguage(langCode) {
-    currentLanguage = langCode; // Update the global language variable
+    window.currentLanguage = langCode;
 
-    // Dynamic selection of the correct translations object
     const languageMappings = {
         'en': {...en_Translations, ...en_Page_Translations},
         'fr': {...fr_Translations, ...fr_Page_Translations},
@@ -22,13 +20,24 @@ function switchLanguage(langCode) {
         'de': {...de_Translations, ...de_Page_Translations},
     };
 
+    if (!languageMappings[currentLanguage]) {
+        console.warn(`No translations found for language: ${currentLanguage}`);
+        return;
+    }
+
     const currentTranslations = languageMappings[currentLanguage];
 
+    // RTL Support
+    const rtlLanguages = ['ar', 'he', 'fa', 'ur'];
+    document.documentElement.setAttribute(
+        'dir',
+        rtlLanguages.includes(currentLanguage) ? 'rtl' : 'ltr'
+    );
 
     const elements = document.querySelectorAll('[data-lang-id]');
     elements.forEach(element => {
         const langId = element.getAttribute('data-lang-id');
-        const translation = currentTranslations[langId]; // Access the correct translations
+        const translation = currentTranslations[langId];
         if (translation) {
             if (element.tagName.toLowerCase() === 'input' && element.type !== 'submit') {
                 element.placeholder = translation;
@@ -37,12 +46,12 @@ function switchLanguage(langCode) {
             } else if (element.tagName.toLowerCase() === 'img') {
                 element.alt = translation;
             } else {
-                element.innerHTML = translation; // Directly set innerHTML for other elements
+                element.textContent = translation; // use textContent to avoid injection
             }
         }
     });
-
 }
+
 
 
 
