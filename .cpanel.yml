@@ -11,6 +11,9 @@ deployment:
     - mkdir -p $DEPLOYPATH/fr/
     - mkdir -p $DEPLOYPATH/es/
     - mkdir -p $DEPLOYPATH/id/
+    - mkdir -p $DEPLOYPATH/ar/
+    - mkdir -p $DEPLOYPATH/cn/
+    - mkdir -p $DEPLOYPATH/de/
 
     # Copy files from the English directory to the French directory
     - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/fr/
@@ -23,6 +26,18 @@ deployment:
     # Copy files from the English directory to the Indonesian directory
     - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/id/
     - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/id/"
+
+    # Copy files from the English directory to the Chinese directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/cn/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/cn/"
+
+    # Copy files from the English directory to the Arabic directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/ar/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/ar/"
+
+    # Copy files from the English directory to the Deutsh directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/de/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/de/"
 
     # Log completion of deployment
     - echo "Deployment tasks completed successfully."

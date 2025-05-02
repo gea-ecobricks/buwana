@@ -286,7 +286,7 @@
 /* Language switcher */
 
 #language-menu-slider {
-    overflow: hidden;
+    /*overflow: hidden;*/
     transition: max-height 0.4s ease;
     max-height: 0; /* Default collapsed */
 }
@@ -1319,7 +1319,7 @@ GUIDED TOUR---*
     background-color: var(--selector);
     display: flex;
     flex-flow: row;
-    z-index: 26;
+    z-index: 18;
     color: var(--text-color) !important;
     transition: 0.3s;
     margin-top: 0px;
