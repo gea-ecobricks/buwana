@@ -1,5 +1,5 @@
 /*-----------------------------------
-GLOBAL TEXT TRANSLATION SNIPPETS FOR BUWANA SIGNUP PROCESS
+ENGLISH GLOBAL TEXT SNIPPETS FOR BUWANA SIGNUP PROCESS
 -----------------------------------*/
 
 const en_Translations = {
