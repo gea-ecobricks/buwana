@@ -397,8 +397,12 @@ max-height: 200px;
     <button onclick="navigateTo('../es/<?php echo ($page); ?>.php')">🇪🇸 ES</button>
     <button onclick="navigateTo('../fr/<?php echo ($page); ?>.php')">🇫🇷 FR</button>
     <button onclick="navigateTo('../en/<?php echo ($page); ?>.php')">🇬🇧 EN</button>
+    <button onclick="navigateTo('../ar/<?php echo ($page); ?>.php')">🇸🇦 AR</button>
+    <button onclick="navigateTo('../cn/<?php echo ($page); ?>.php')">🇨🇳 中文</button>
+    <button onclick="navigateTo('../de/<?php echo ($page); ?>.php')">🇩🇪 DE</button>
   </div>
 </div>
+
 
 <!-- LOGIN SELECTOR -->
 <div id="login-menu-slider" class="top-slider-menu" tabindex="-1" role="menu">
