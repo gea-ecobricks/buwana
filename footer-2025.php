@@ -73,10 +73,14 @@
   const page = '<?php echo $page; ?>';
   const version = '<?php echo $version; ?>';
 
+  // Debug alert using template literal
+  alert(`../translations/${page}-${lang}.js?v=${version}`);
+
   loadTranslationScripts(lang, page, () => {
       switchLanguage(lang);
   });
 </script>
+
 
 
 <script src="../scripts/website-carbon-badges.js" defer></script>

@@ -54,6 +54,9 @@ function switchLanguage(langCode) {
 
 
 function loadTranslationScripts(lang, page, callback) {
+    coreScript.onerror = () => console.error(`Failed to load: ${coreScript.src}`);
+    pageScript.onerror = () => console.error(`Failed to load: ${pageScript.src}`);
+
     let loadedScripts = 0;
 
     function scriptLoaded() {
