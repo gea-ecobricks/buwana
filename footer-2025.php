@@ -67,12 +67,14 @@
     <script src="../translations/<?php echo ($page); ;?>-ar.js?v=<?php echo ($version); ;?>"></script>
     <script src="../translations/<?php echo ($page); ;?>-de.js?v=<?php echo ($version); ;?>"></script>-->
 
-    <script src="../translations/core-texts-<?php echo $lang; ?>.js?v=<?php echo $version; ?>"></script>
-    <script src="../translations/<?php echo $page; ?>-<?php echo $lang; ?>.js?v=<?php echo $version; ?>"></script>
-
 <script>
   const lang = '<?php echo $lang; ?>';
-  switchLanguage(lang);
+  const page = '<?php echo $page; ?>';
+  const version = '<?php echo $version; ?>';
+
+  loadTranslationScripts(lang, page, () => {
+      switchLanguage(lang);
+  });
 </script>
 
 
