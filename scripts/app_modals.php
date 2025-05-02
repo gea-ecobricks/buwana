@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', function () {
         if (window.innerWidth < 769) {
             if (window.scrollY > 1) {
-                header.style.position = 'fixed';
+                header.style.position = 'relative';
                 header.style.zIndex = '20';
                 header.style.top = '0'; // just in case
                 header.overflow ="hidden"

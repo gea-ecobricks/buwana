@@ -1314,7 +1314,7 @@ GUIDED TOUR---*
   #language-menu-slider {
     position: fixed;
     width: 100%;
-    height: 95px;
+    /*height: 95px;*/
     top: -35px;
     background-color: var(--selector);
     display: flex;
