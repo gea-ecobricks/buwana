@@ -332,7 +332,7 @@ max-height: 200px;
 
 
 <!-- HEADER / TOP MENU -->
-<header id="header" class="top-menu">
+<div id="header" class="top-menu">
   <!-- Left Menu Button -->
   <button type="button" class="side-menu-button" onclick="openSideMenu()" aria-label="Open Main Menu"></button>
 
@@ -388,7 +388,7 @@ max-height: 200px;
       </dark-mode-toggle>
     </div>
   </div>
-</header>
+</div>
 
 <!-- LANGUAGE SELECTOR -->
 <div id="language-menu-slider" class="top-slider-menu" tabindex="-1" role="menu">
