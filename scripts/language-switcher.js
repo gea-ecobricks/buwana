@@ -53,6 +53,29 @@ function switchLanguage(langCode) {
 }
 
 
+function loadTranslationScripts(lang, page, callback) {
+    let loadedScripts = 0;
+
+    function scriptLoaded() {
+        loadedScripts++;
+        if (loadedScripts === 2) {
+            callback(); // Both scripts loaded
+        }
+    }
+
+    const coreScript = document.createElement('script');
+    coreScript.src = `../translations/core-texts-${lang}.js?v=${version}`;
+    coreScript.onload = scriptLoaded;
+    document.head.appendChild(coreScript);
+
+    const pageScript = document.createElement('script');
+    pageScript.src = `../translations/${page}-${lang}.js?v=${version}`;
+    pageScript.onload = scriptLoaded;
+    document.head.appendChild(pageScript);
+}
+
+
+
 
 
 

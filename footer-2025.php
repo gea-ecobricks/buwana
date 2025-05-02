@@ -69,11 +69,12 @@
 
     <script src="../translations/core-texts-<?php echo $lang; ?>.js?v=<?php echo $version; ?>"></script>
     <script src="../translations/<?php echo $page; ?>-<?php echo $lang; ?>.js?v=<?php echo $version; ?>"></script>
-<script defer>
-    document.addEventListener('DOMContentLoaded', function () {
-        switchLanguage('<?php echo $lang; ?>');
-    });
+
+<script>
+  const lang = '<?php echo $lang; ?>';
+  switchLanguage(lang);
 </script>
+
 
 <script src="../scripts/website-carbon-badges.js" defer></script>
 
