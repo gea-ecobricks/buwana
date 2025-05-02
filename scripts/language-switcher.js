@@ -10,28 +10,39 @@ EARTHEN LANGUAGE SELECTOR v2.0
 function switchLanguage(langCode) {
     window.currentLanguage = langCode;
 
-    const languageMappings = {
-        'en': {...en_Translations, ...en_Page_Translations},
-        'fr': {...fr_Translations, ...fr_Page_Translations},
-        'es': {...es_Translations, ...es_Page_Translations},
-        'id': {...id_Translations, ...id_Page_Translations},
-        'ar': {...ar_Translations, ...ar_Page_Translations},
-        'cn': {...cn_Translations, ...cn_Page_Translations},
-        'de': {...de_Translations, ...de_Page_Translations},
-    };
-
-    if (!languageMappings[currentLanguage]) {
-        console.warn(`No translations found for language: ${currentLanguage}`);
-        return;
+    let currentTranslations = {};
+    switch (langCode) {
+        case 'en':
+            currentTranslations = {...en_Translations, ...en_Page_Translations};
+            break;
+        case 'fr':
+            currentTranslations = {...fr_Translations, ...fr_Page_Translations};
+            break;
+        case 'es':
+            currentTranslations = {...es_Translations, ...es_Page_Translations};
+            break;
+        case 'id':
+            currentTranslations = {...id_Translations, ...id_Page_Translations};
+            break;
+        case 'ar':
+            currentTranslations = {...ar_Translations, ...ar_Page_Translations};
+            break;
+        case 'cn':
+            currentTranslations = {...cn_Translations, ...cn_Page_Translations};
+            break;
+        case 'de':
+            currentTranslations = {...de_Translations, ...de_Page_Translations};
+            break;
+        default:
+            console.warn(`No translations found for language: ${langCode}`);
+            return;
     }
-
-    const currentTranslations = languageMappings[currentLanguage];
 
     // RTL Support
     const rtlLanguages = ['ar', 'he', 'fa', 'ur'];
     document.documentElement.setAttribute(
         'dir',
-        rtlLanguages.includes(currentLanguage) ? 'rtl' : 'ltr'
+        rtlLanguages.includes(langCode) ? 'rtl' : 'ltr'
     );
 
     const elements = document.querySelectorAll('[data-lang-id]');
@@ -46,11 +57,12 @@ function switchLanguage(langCode) {
             } else if (element.tagName.toLowerCase() === 'img') {
                 element.alt = translation;
             } else {
-                element.textContent = translation; // use textContent to avoid injection
+                element.textContent = translation;
             }
         }
     });
 }
+
 
 
 function loadTranslationScripts(lang, page, callback) {
