@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.7763';
+$version = '0.7764';
 $page = 'signup-2';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -137,7 +137,7 @@ https://github.com/gea-ecobricks/buwana/-->
                  </div>
 
                  <!-- Set Password -->
-                 <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 14px;margin-bottom: -10px;padding-bottom: 1px;">
+                 <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 14px;margin-bottom: 15px;padding-bottom: 1px;">
                    <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
                    <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
                    <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
