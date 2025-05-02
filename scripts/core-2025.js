@@ -181,6 +181,10 @@ document.addEventListener('DOMContentLoaded', () => {
             hideLangSelector();
         } else {
             langMenu.classList.add('menu-slider-visible');
+            langMenu.style.maxHeight = '400px'; // or whatever max height fits your menu
+            langMenu.style.overflow = 'hidden';
+            langMenu.style.transition = 'max-height 0.4s ease';
+
             document.addEventListener('click', documentClickListenerLang);
             updateHeaderVisuals(); // ✅ Apply background and z-index
         }
@@ -207,6 +211,10 @@ document.addEventListener('DOMContentLoaded', () => {
             hideLoginSelector();
         } else {
             loginMenu.classList.add('menu-slider-visible');
+            loginMenu.style.maxHeight = '400px';
+            loginMenu.style.overflow = 'hidden';
+            loginMenu.style.transition = 'max-height 0.4s ease';
+
             document.addEventListener('click', documentClickListenerLogin);
             updateHeaderVisuals(); // ✅ Apply background and z-index
         }
