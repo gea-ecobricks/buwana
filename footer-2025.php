@@ -5,7 +5,7 @@
         <img src="../webps/vision-day-2024.webp" style="width:100%; margin-top:-2px;" loading="lazy" data-lang-id="400-visionscape-description" alt="We envision a great green transition from ways that pollute to ways that enrich.  And it starts with our plastic.">
     </div>
 
-    <div class="footer-vision" data-lang-id="1004-gea-vision">
+    <div class="footer-vision" data-lang-id="2000-buwana-vision">
 
         We envision a Transition in our Households, Communities and Enterprises to an ever Greener Harmony with Earth's Cycles.
 
@@ -16,19 +16,19 @@
     <div class="footer-bottom">
         <div class="footer-conclusion">
 
-<div class="footer-conclusion" data-lang-id="419x-conclusion-disclosure">We track and disclose our net-green ecological impact.  See our <a href="https://ecobricks.org/en/regenreports.php" target="_blank">Regen Reporting</a>.</a>
+<div class="footer-conclusion" data-lang-id="2000-we-track-and-disclose">We track and disclose our net-green ecological impact.  See our <a href="https://ecobricks.org/en/regenreports.php" target="_blank">Regen Reporting</a>.</a>
             </div>
 
             <div id="wcb" class="carbonbadge wcb-d"></div>
 
-            <div class="footer-conclusion" data-lang-id="420-conclusion-contribute">
-                  We use no big-tech platforms, databases, hosting or web services. The Buwana project is open-source on Github:
+            <div class="footer-conclusion" data-lang-id="2000-no-big-tech">
+                  We use no Big-Tech platforms, databases, or web services. The Buwana system is an open source CC-BY_SA project by the <a href="https://ecobricks.org/about.php">Global Ecobrick Alliance Earthen Enterprise</a>.  See the code for this page on Github:
             </div>
 
             <div class="footer-conclusion">
             ↳ <a href="https://github.com/gea-ecobricks/buwana/blob/main/<?php echo ($lang); ;?>/<?php echo ($name); ;?>" target="_blank">github.com/gea-ecobricks/buwana/blob/main/<?php echo ($lang); ;?>/<?php echo ($name); ;?></a>
             </div>
-            <div class="footer-conclusion" data-lang-id="422-conclusion-copyright">
+            <div class="footer-conclusion" data-lang-id="2000-copyright">
                         The Buwana, GEA, Earthen, AES and Gobrik logos and emblems are copyright 2010-2025 by the Global Ecobrick Alliance.
                     </div>
 
@@ -55,11 +55,17 @@
 <script src="../translations/core-texts-fr.js?v=<?php echo ($version); ;?>"></script>
 <script src="../translations/core-texts-id.js?v=<?php echo ($version); ;?>"></script>
 <script src="../translations/core-texts-es.js?v=<?php echo ($version); ;?>"></script>
+<script src="../translations/core-texts-ar.js?v=<?php echo ($version); ;?>"></script>
+<script src="../translations/core-texts-de.js?v=<?php echo ($version); ;?>"></script>
+<script src="../translations/core-texts-cn.js?v=<?php echo ($version); ;?>"></script>
 
 <script src="../translations/<?php echo ($page); ;?>-en.js?v=<?php echo ($version); ;?>"></script>
 <script src="../translations/<?php echo ($page); ;?>-fr.js?v=<?php echo ($version); ;?>"></script>
 <script src="../translations/<?php echo ($page); ;?>-id.js?v=<?php echo ($version); ;?>1"></script>
 <script src="../translations/<?php echo ($page); ;?>-es.js?v=<?php echo ($version); ;?>"></script>
+<script src="../translations/<?php echo ($page); ;?>-cn.js?v=<?php echo ($version); ;?>"></script>
+<script src="../translations/<?php echo ($page); ;?>-ar.js?v=<?php echo ($version); ;?>1"></script>
+<script src="../translations/<?php echo ($page); ;?>-de.js?v=<?php echo ($version); ;?>"></script>
 
 <script src="../scripts/website-carbon-badges.js" defer></script>
 

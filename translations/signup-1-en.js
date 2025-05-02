@@ -9,7 +9,6 @@ const en_Page_Translations = {
     "003-firstname": "What's your first name?",
     "006-credential-choice": "Select how you register...",
     "007-way-to-contact": "We'll send your account confirmation messages this way. Later you'll login this way.",
-    "016-submit-to-password": "Next",
 
 
 };

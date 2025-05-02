@@ -14,7 +14,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.7773';
+$version = '0.7774';
 $page = 'signup-1';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -66,11 +66,9 @@ https://github.com/gea-ecobricks/buwana/-->
     <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
 
         <div style="text-align:center;width:100%;margin:auto;">
-            <div id="status-message" data-lang-id="001-signup-heading" style="font-family: 'Arvo';margin-top:15px;">
-                Create Your Account
-            </div>
+            <div id="status-message" data-lang-id="001-signup-heading" style="font-family: 'Arvo';margin-top:15px;"><!--Create Your Account--></div>
 
-            <div id="sub-status-message" style="margin-bottom:15px;"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="002-signup-subtext"> uses the Buwana Authentication protocol— a secure, open-source and for-Earth protocol that powers regenerative apps.</div>
+            <div id="sub-status-message" style="margin-bottom:15px;"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="002-signup-subtext"> <!--uses the Buwana Authentication protocol— a secure, open-source and for-Earth protocol that powers regenerative apps.--></div>
         </div>
 
        <!--SIGNUP-1 FORM-->
@@ -116,7 +114,7 @@ https://github.com/gea-ecobricks/buwana/-->
 <div class="submit-button-wrapper">
 
 <button type="submit" id="submit-button" class="kick-ass-submit">
-  <span id="submit-button-text">Next ➡</span>
+  <span id="submit-button-text" data-lang-id="000-next"><!--Next ➡--></span>
   <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
 </button>
 
