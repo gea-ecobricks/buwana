@@ -282,7 +282,7 @@ max-height: 200px;
 
     <div class="menu-page-item">
       <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
-        Back to <?= htmlspecialchars($app_info['app_display_name']) ?>
+        <?= htmlspecialchars($app_info['app_domain']) ?> ↗
       </a>
       <span class="status-circle" style="background-color: GREEN;" title="Deployed. Working well!"></span>
     </div>
