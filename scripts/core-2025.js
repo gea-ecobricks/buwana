@@ -103,7 +103,6 @@ function closeInfoModal() {
 }
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const settingsButton = document.getElementById('top-settings-button');
     const settingsPanel = document.getElementById('settings-buttons');
@@ -113,15 +112,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let settingsOpen = false;
 
-    // 🔄 Update header background depending on menu state
-    function updateHeaderBackground() {
+    // 🔄 Update header background and z-index based on menu visibility
+    function updateHeaderVisuals() {
         const langVisible = langMenu.classList.contains('menu-slider-visible');
         const loginVisible = loginMenu.classList.contains('menu-slider-visible');
 
         if (langVisible || loginVisible) {
             header.style.background = 'var(--top-header)';
+            header.style.zIndex = '36';
+
+            if (langVisible) {
+                langMenu.style.zIndex = '35';
+            } else {
+                langMenu.style.zIndex = '18'; // reset if not visible
+            }
+
+            if (loginVisible) {
+                loginMenu.style.zIndex = '35';
+            } else {
+                loginMenu.style.zIndex = '19'; // reset if not visible
+            }
+
         } else {
             header.style.background = 'none';
+            header.style.zIndex = '20';
+            langMenu.style.zIndex = '18';
+            loginMenu.style.zIndex = '19';
         }
     }
 
@@ -139,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 langMenu.style.removeProperty('max-height');
                 langMenu.style.removeProperty('overflow');
                 langMenu.style.removeProperty('transition');
-                updateHeaderBackground(); // ✅ Update header after hiding
+                updateHeaderVisuals(); // ✅ Update after animation
             }, 400);
         }
 
@@ -166,14 +182,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             langMenu.classList.add('menu-slider-visible');
             document.addEventListener('click', documentClickListenerLang);
-            updateHeaderBackground(); // ✅ Show header background
+            updateHeaderVisuals(); // ✅ Apply background and z-index
         }
     };
 
     window.hideLangSelector = () => {
         langMenu.classList.remove('menu-slider-visible');
         document.removeEventListener('click', documentClickListenerLang);
-        updateHeaderBackground(); // ✅ Remove header background
+        updateHeaderVisuals(); // ✅ Update visuals
     };
 
     function documentClickListenerLang(e) {
@@ -192,14 +208,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             loginMenu.classList.add('menu-slider-visible');
             document.addEventListener('click', documentClickListenerLogin);
-            updateHeaderBackground(); // ✅ Show header background
+            updateHeaderVisuals(); // ✅ Apply background and z-index
         }
     };
 
     window.hideLoginSelector = () => {
-        loginMenu.classList.remove('menu-slider-visible');
-        document.removeEventListener('click', documentClickListenerLogin);
-        updateHeaderBackground(); // ✅ Remove header background
+        if (loginMenu.classList.contains('menu-slider-visible')) {
+            loginMenu.classList.remove('menu-slider-visible');
+            document.removeEventListener('click', documentClickListenerLogin);
+            updateHeaderVisuals(); // ✅ Update visuals when hidden
+        }
     };
 
     function documentClickListenerLogin(e) {
@@ -207,10 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hideLoginSelector();
         }
     }
-
-
-
-
 
 
     // ✋ Click outside to close settings

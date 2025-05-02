@@ -1460,14 +1460,14 @@ color: red;
 
 
 /* 1. Scope the rule so it only hits this <select>  */
-.credential-select-wrapper  select{
+.credential-select-wrapper select{
     /* 2. Turn off the native skin so our styles stick */
     -webkit-appearance:none;   /* Safari / iOS */
     appearance:none;   /* the rest */
 
     /* 3. Typography & spacing */
     font: 20px 'Mulish', sans-serif !important;   /* line-height fixes clipping in Safari */
-    padding:10px 15px 10px 10px;
+    padding:10px 35px 10px 10px;
     color: var(--subdued-text, #555);    /* fallback for Safari ≤13 */
 
     /* Optional: full-width, no default arrow so we can add our own */
