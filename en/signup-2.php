@@ -145,7 +145,7 @@ https://github.com/gea-ecobricks/buwana/-->
                  </div>
 
                  <!-- Confirm Password -->
-                 <div class="form-item float-label-group" id="confirm-password-section" style="display: none;">
+                 <div class="form-item float-label-group" id="confirm-password-section" style="display: none;margin-top: 10px;">
                    <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " style="font-size: 22px !important;"/>
                    <label for="confirm_password" data-lang-id="009-confirm-pass-x">Confirm Your Password...</label>
                    <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;margin-bottom:13px;margin-right:15px; font-size:20px;margin-top: 45px;">🙈</span>

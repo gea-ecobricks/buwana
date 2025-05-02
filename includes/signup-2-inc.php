@@ -31,20 +31,43 @@
 
 
 .spinner {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-  vertical-align: middle;
+    display: none;
+    position: absolute;
+    top: 30%;  /* Center vertically in the input field */
+    left: 11px; /* Distance from the right edge of the input field */
+    transform: translateY(-50%); /* Ensures the spinner is exactly centered vertically */
+    width: 15px;
+    height: 15px;
+    border: 4px solid rgba(0,0,0,0.1);
+    border-top: 4px solid var(--emblem-pink);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.pin-icon {
+    display: block;
+    position: absolute;
+    top: 30%;  /* Center vertically in the input field */
+    left: 16px; /* Distance from the right edge of the input field */
+    transform: translateY(-50%); /* Ensures the spinner is exactly centered vertically */
+    width: 15px;
+    height: 0px;
+
+}
+
+.spinner.green {
+    background-color: green;
+    border: 1px solid green;
+}
+
+.spinner.red {
+    background-color: red;
+    border: 1px solid red;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+    0% { transform: rotate(0deg); translateY(-50%); }
+    100% { transform: rotate(360deg); translateY(-50%); }
 }
 
 
