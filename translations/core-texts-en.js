@@ -7,12 +7,10 @@ const en_Translations = {
     "000-ecobricking": "ecobricking",
     "000-your": "Your",
     "000-already-have-account": "Already have a Buwana account?",
-    "000-select": "Select...",
-    "000-your-password": "Your password:",
-    "000-forgot-your-password": "Forgot your password? <a href=\"#\" onclick=\"showModalInfo('reset')\" class=\"underline-link\">Reset it.</a>",
-    "000-password-wrong": "👉 Entry is incorrect.",
-    "000-no-account-yet": "Don't have an account yet? <a href=\"signup-1.php\">Signup!</a>",
     "000-field-required-error": "⚠️ This field is required.",
+    "000-name-field-too-long-error": "The entry is too long. Max 255 characters.",
+    "005b-name-error": "The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.",
+
 
 
     /*INTERFACE CURTAINS*/

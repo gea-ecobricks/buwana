@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 💥 Submit logic
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('kickAssSubmit', function (e) {
       e.preventDefault();
 
       const isValid = typeof window.validateOnSubmit === 'function'
