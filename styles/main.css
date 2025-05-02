@@ -2310,7 +2310,7 @@ Sign up process
 .float-label-group {
     position: relative;
     margin-top: 1.5rem;
-    margin-bottom: 2rem;
+    /*margin-bottom: 2rem;*/
 }
 
 /* Input Styling (inherits your existing styles + minor tweaks) */
