@@ -215,13 +215,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 header.style.top = '0'; // just in case
                 header.overflow ="hidden"
             } else {
-                header.style.position = 'absolute';
+                header.style.position = 'relative';
                 header.style.zIndex = '20';
                 header.overflow ="hidden"
             }
         } else {
             // Reset for larger screens (if needed)
-            header.style.position = 'absolute';
+            header.style.position = 'relative';
             header.style.zIndex = '20';
             header.overflow ="hidden"
         }
