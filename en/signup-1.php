@@ -53,7 +53,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 
-<?php require_once ("../includes/signup-inc.php");?>
+<?php require_once ("../includes/signup-1-inc.php");?>
 
 
 <div class="splash-title-block"></div>

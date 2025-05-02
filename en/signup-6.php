@@ -8,8 +8,8 @@ require_once '../fetch_app_info.php';
 
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'signup';
-$version = '0.776';
+$page = 'signup-6';
+$version = '0.777';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?

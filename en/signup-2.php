@@ -90,7 +90,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<?php require_once ("../includes/signup-inc.php");?>
+<?php require_once ("../includes/signup-2-inc.php");?>
 
 
 <div class="splash-title-block"></div>

@@ -8,8 +8,8 @@ require_once '../fetch_app_info.php';
 
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'signup';
-$version = '0.77';
+$page = 'signup-5';
+$version = '0.771';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -128,7 +128,7 @@ if (!empty($credential_key)) {
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<?php require_once ("../includes/signup-inc.php");?>
+<?php require_once ("../includes/signup-5-inc.php");?>
 
 <div class="splash-title-block"></div>
 <div id="splash-bar"></div>

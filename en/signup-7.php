@@ -8,8 +8,8 @@ require_once '../fetch_app_info.php';
 
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'signup';
-$version = '0.775';
+$page = 'signup-7';
+$version = '0.776';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // 🧩 Validate buwana_id
@@ -46,7 +46,7 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
   See our git hub repository for the full code and to help out:
   https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
-  <?php require_once ("../includes/signup-inc.php");?>
+  <?php require_once ("../includes/signup-7-inc.php");?>
 
 <div class="splash-title-block"></div>
 <div id="splash-bar"></div>

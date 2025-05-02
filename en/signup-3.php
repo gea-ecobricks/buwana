@@ -14,8 +14,8 @@ use PHPMailer\PHPMailer\Exception;
 
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'signup';
-$version = '0.73';
+$page = 'signup-3';
+$version = '0.731';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 if (!empty($_SESSION['buwana_id'])) {
@@ -171,7 +171,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<?php require_once ("../includes/signup-inc.php");?>
+<?php require_once ("../includes/signup-3-inc.php");?>
 
 <div class="splash-title-block"></div>
 <div id="splash-bar"></div>
