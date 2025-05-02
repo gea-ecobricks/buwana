@@ -61,10 +61,10 @@
 
 <script src="../translations/<?php echo ($page); ;?>-en.js?v=<?php echo ($version); ;?>"></script>
 <script src="../translations/<?php echo ($page); ;?>-fr.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/<?php echo ($page); ;?>-id.js?v=<?php echo ($version); ;?>1"></script>
+<script src="../translations/<?php echo ($page); ;?>-id.js?v=<?php echo ($version); ;?>"></script>
 <script src="../translations/<?php echo ($page); ;?>-es.js?v=<?php echo ($version); ;?>"></script>
 <script src="../translations/<?php echo ($page); ;?>-cn.js?v=<?php echo ($version); ;?>"></script>
-<script src="../translations/<?php echo ($page); ;?>-ar.js?v=<?php echo ($version); ;?>1"></script>
+<script src="../translations/<?php echo ($page); ;?>-ar.js?v=<?php echo ($version); ;?>"></script>
 <script src="../translations/<?php echo ($page); ;?>-de.js?v=<?php echo ($version); ;?>"></script>
 
 <script src="../scripts/website-carbon-badges.js" defer></script>
