@@ -292,7 +292,7 @@
 }
 
 .menu-slider-visible {
-    max-height: 500px; /* or whatever fits your menu content */
+    max-height: 500px !important; /* or whatever fits your menu content */
 }
 
 
@@ -322,7 +322,7 @@
     opacity: 0;
     visibility: hidden;
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
-    z-index: 37;
+    z-index: 19;
     display: flex;
     flex-direction: column;
     margin-right: -10px;
@@ -2344,7 +2344,7 @@ Sign up process
 .float-label-group label {
     position: absolute;
     left: 20px;
-    top: 26px;
+    top: 33px;
     color: var(--subdued-text);
     background-color: var(--top-header);
     font-size: 20px;
