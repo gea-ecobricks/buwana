@@ -7,7 +7,7 @@
    version="1.1"
    viewBox="0 0 158.58525 71.855823"
    id="svg145"
-   sodipodi:docname="00002-signup-banner-night.svg"
+   sodipodi:docname="earthcal-signup-banner-dark.svg"
    inkscape:version="1.4.1-rc (06eac75fbf, 2025-03-29)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,14 +24,14 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.6110048"
-     inkscape:cx="281.19097"
+     inkscape:cx="281.50133"
      inkscape:cy="238.05019"
      inkscape:window-width="2256"
      inkscape:window-height="1427"
      inkscape:window-x="0"
      inkscape:window-y="40"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g5340"
+     inkscape:current-layer="g33"
      showgrid="false" />
   <defs
      id="defs11">
@@ -203,7 +203,7 @@
        fill-opacity="0.8"
        stroke-width="0.2401"
        id="ellipse11"
-       style="fill:#232323;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
     <g
        transform="translate(-0.69493,-5.1774)"
        fill="#fbc02d"
@@ -345,62 +345,67 @@
      transform="matrix(0.59096212,0,0,0.59096214,-153.31753,102.00363)"
      id="g5340"
      clip-path="url(#clipPath5535-2)"
-     style="mix-blend-mode:difference">
-    <g
-       transform="matrix(0.57548,0,0,0.57548,393.14,-121.3)"
-       stroke-width="0.92194"
-       id="g5338"
-       clip-path="none">
-      <path
-         id="october"
-         d="m -45.782,-77.133 a 90,90 0 0 1 45.225,-12.02 l -0.29047,90 z"
-         fill="#00e6a7" />
-      <path
-         id="september"
-         d="m -78.752,-44.219 a 90,90 0 0 1 32.97,-32.915 l 44.934,77.98 z"
-         fill="#00e513" />
-      <path
-         id="august"
-         d="m -90.848,0.77143 a 90,90 0 0 1 12.095,-44.989 l 77.904,45.065 z"
-         fill="#beee00" />
-      <path
-         d="m -78.827,45.782 a 90,90 0 0 1 -12.02,-45.01 l 90,0.075889 z"
-         fill="#fbfb00"
-         id="path5328" />
-      <path
-         id="june"
-         d="M -45.914,78.752 A 90,90 0 0 1 -78.829,45.782 L -0.849,0.848 Z"
-         fill="#ffd119" />
-      <path
-         id="july"
-         d="m -0.92271,90.847 a 90,90 0 0 1 -44.989,-12.095 l 45.065,-77.904 z"
-         fill="#ff8201" />
-      <path
-         id="april"
-         d="m 44.087,78.827 a 90,90 0 0 1 -45.01,12.02 l 0.075889,-90 z"
-         fill="#ff6303" />
-      <path
-         id="march"
-         d="M 77.057,45.913 A 90,90 0 0 1 44.087,78.828 L -0.847,0.848 Z"
-         fill="#fb0000" />
-      <path
-         id="february"
-         d="m 89.152,0.92271 a 90,90 0 0 1 -12.095,44.989 L -0.847,0.84671 Z"
-         fill="#ff11ce" />
-      <path
-         id="january"
-         d="m 77.309,-43.817 c 7.8877,13.688 11.857,28.941 11.844,44.74 l -90,-0.075889 z"
-         fill="#7f2aff" />
-      <path
-         id="december"
-         d="M 43.780351,-77.057 A 91.196669,91.196669 0 0 1 77.133,-43.64862 L -1.8838474,1.8828369 Z"
-         fill="#4343ff"
-         style="stroke-width:0.934198" />
-      <path
-         id="november"
-         d="m -0.77143,-89.153 a 90,90 0 0 1 44.989,12.095 l -45.065,77.904 z"
-         fill="#0cacf5" />
-    </g>
+     style="mix-blend-mode:normal">
+    <path
+       id="october"
+       d="m 366.79337,-165.6885 a 51.7932,51.7932 0 0 1 26.02609,-6.91727 l -0.16716,51.7932 z"
+       fill="#00e6a7"
+       style="stroke-width:0.530558" />
+    <path
+       id="september"
+       d="m 347.8198,-146.74715 a 51.7932,51.7932 0 0 1 18.97357,-18.94192 l 25.85862,44.87593 z"
+       fill="#00e513"
+       style="stroke-width:0.530558" />
+    <path
+       id="august"
+       d="m 340.85879,-120.85606 a 51.7932,51.7932 0 0 1 6.96043,-25.89027 l 44.8322,25.93401 z"
+       fill="#beee00"
+       style="stroke-width:0.530558" />
+    <path
+       d="m 347.77664,-94.953375 a 51.7932,51.7932 0 0 1 -6.91727,-25.902355 l 51.7932,0.0437 z"
+       fill="#fbfb00"
+       id="path5328"
+       style="stroke-width:0.530558" />
+    <path
+       id="june"
+       d="m 366.71741,-75.979799 a 51.7932,51.7932 0 0 1 -18.94192,-18.973576 l 44.87593,-25.858615 z"
+       fill="#ffd119"
+       style="stroke-width:0.530558" />
+    <path
+       id="july"
+       d="m 392.609,-69.019368 a 51.7932,51.7932 0 0 1 -25.89027,-6.960431 l 25.93401,-44.832191 z"
+       fill="#ff8201"
+       style="stroke-width:0.530558" />
+    <path
+       id="april"
+       d="m 418.51119,-75.936638 a 51.7932,51.7932 0 0 1 -25.90236,6.91727 l 0.0437,-51.793202 z"
+       fill="#ff6303"
+       style="stroke-width:0.530558" />
+    <path
+       id="march"
+       d="m 437.48476,-94.877987 a 51.7932,51.7932 0 0 1 -18.97357,18.941924 l -25.85862,-44.875927 z"
+       fill="#fb0000"
+       style="stroke-width:0.530558" />
+    <path
+       id="february"
+       d="m 444.44519,-120.769 a 51.7932,51.7932 0 0 1 -6.96043,25.890271 l -44.83219,-25.934011 z"
+       fill="#ff11ce"
+       style="stroke-width:0.530558" />
+    <path
+       id="january"
+       d="m 437.62978,-146.51581 c 4.53922,7.87717 6.82347,16.65497 6.81599,25.74698 l -51.7932,-0.0437 z"
+       fill="#7f2aff"
+       style="stroke-width:0.530558" />
+    <path
+       id="december"
+       d="m 418.33472,-165.64476 a 52.481859,52.481859 0 0 1 19.19378,19.22585 l -45.47262,26.20244 z"
+       fill="#4343ff"
+       style="stroke-width:0.537612" />
+    <path
+       id="november"
+       d="m 392.69606,-172.60577 a 51.7932,51.7932 0 0 1 25.89027,6.96043 l -25.93401,44.8322 z"
+       fill="#0cacf5"
+       style="stroke-width:0.530558" />
   </g>
   <g
      transform="matrix(0.81693435,-0.020679,0.01136646,0.72824,-4.0270641,-29.513848)"
