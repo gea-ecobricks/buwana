@@ -439,7 +439,7 @@ function checkHoneypot() {
 
 
 <script>
-document.getElementById('signup-2-form').addEventListener('submit', function(event) {
+document.getElementById('user-signup-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const form = event.target;
