@@ -2,24 +2,22 @@
 
 <?php require_once ("../meta/$page-$lang.php");?>
 
-<STYLE>
-
-    .app-signup-banner (prefers-color-scheme: light) {
-        background: url('<?= htmlspecialchars($app_info['signup_top_img_url']) ?>') no-repeat center;
-        background-size: contain;
+<style>
+    @media (prefers-color-scheme: light) {
+        .app-signup-banner {
+            background: url('<?= htmlspecialchars($app_info['signup_top_img_url']) ?>') no-repeat center;
+            background-size: contain;
+        }
     }
-
 
     @media (prefers-color-scheme: dark) {
         .app-signup-banner {
             background: url('<?= htmlspecialchars($app_info['signup_top_img_dark_url']) ?>') no-repeat center;
             background-size: contain;
         }
-
     }
+</style>
 
-
-</STYLE>
 
 
 
