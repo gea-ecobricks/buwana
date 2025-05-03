@@ -4,7 +4,7 @@
 
 <STYLE>
 
-    .app-signup-banner {
+    .app-signup-banner (prefers-color-scheme: light) {
         background: url('<?= htmlspecialchars($app_info['signup_top_img_url']) ?>') no-repeat center;
         background-size: contain;
     }

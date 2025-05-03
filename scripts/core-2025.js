@@ -6,11 +6,6 @@ function redirectToAppHome(apphome) {
 }
 
 
-
-
-
-
-
 /* LEFT MAIN MENU OVERLAY */
 
 function openSideMenu() {
@@ -252,32 +247,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-/*-------------------------------------------
-
-
- SCRIPTS FOR ONCE LOGGED IN
-
-
--------------------------------------------*/
-//
-// function handleLogout(event) {
-//     event.preventDefault(); // Prevent default link behavior
-//
-//     // Perform logout via AJAX
-//     fetch(event.target.href)
-//         .then(response => {
-//             if (response.ok) {
-//                 // Redirect to the login page with the appropriate parameters
-//                 window.location.href = response.url;
-//             } else {
-//                 console.error('Failed to log out:', response.statusText);
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error during logout:', error);
-//         });
-// }
-
 
 
 
@@ -286,47 +255,3 @@ document.addEventListener("DOMContentLoaded", function() {
     window.location.href = url;
 }
 
-
-//
-//     document.addEventListener('colorschemechange', (event) => {
-//     const newMode = event.detail.colorScheme;
-//     const isDark = newMode === 'dark';
-//
-//     const topLogo = document.getElementById('top-app-logo');
-//     const appLogo = document.querySelector('.the-app-logo');
-//     const signupBanner = document.querySelector('.app-signup-banner');
-//
-//     const lightWordmark = '<?= $app_info["app_wordmark_url"] ?>';
-//     const darkWordmark = '<?= $app_info["app_wordmark_dark_url"] ?>';
-//     const lightLogo = '<?= $app_info["app_logo_url"] ?>';
-//     const darkLogo = '<?= $app_info["app_logo_dark_url"] ?>';
-//     const lightBanner = '<?= $app_info["signup_top_img_url"] ?>';
-//     const darkBanner = '<?= $app_info["signup_top_img_dark_url"] ?>';
-//
-//     if (topLogo) {
-//     topLogo.style.backgroundImage = `url('${isDark ? darkWordmark : lightWordmark}')`;
-// }
-//
-//     if (appLogo) {
-//     appLogo.style.backgroundImage = `url('${isDark ? darkLogo : lightLogo}')`;
-// }
-//
-//     if (signupBanner) {
-//     signupBanner.style.backgroundImage = `url('${isDark ? darkBanner : lightBanner}')`;
-// }
-// });
-
-
-
-
-// document.addEventListener("scroll", function() {
-//     var scrollPosition = window.scrollY || document.documentElement.scrollTop;
-//
-//     // Check if the user has scrolled more than 1000px
-//     if (scrollPosition > 1000) {
-//         var footer = document.getElementById('footer-full');
-//         if (footer) {
-//             footer.style.display = 'block'; // Show the footer
-//         }
-//     }
-// });
