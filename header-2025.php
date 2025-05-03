@@ -403,18 +403,20 @@ max-height: 200px;
   </div>
 </div>
 
+
 <!-- LANGUAGE SELECTOR -->
 <div id="language-menu-slider" class="top-slider-menu" tabindex="-1" role="menu">
   <div class="lang-selector-box">
-    <button onclick="navigateTo('../id/<?php echo ($page); ?>.php')">🇮🇩 IN</button>
-    <button onclick="navigateTo('../es/<?php echo ($page); ?>.php')">🇪🇸 ES</button>
-    <button onclick="navigateTo('../fr/<?php echo ($page); ?>.php')">🇫🇷 FR</button>
-    <button onclick="navigateTo('../en/<?php echo ($page); ?>.php')">🇬🇧 EN</button>
-    <button onclick="navigateTo('../ar/<?php echo ($page); ?>.php')">🇸🇦 AR</button>
-    <button onclick="navigateTo('../zh/<?php echo ($page); ?>.php')">🇨🇳 中文</button>
-    <button onclick="navigateTo('../de/<?php echo ($page); ?>.php')">🇩🇪 DE</button>
+    <button onclick="navigateTo('../id/<?php echo $active_url; ?>')">🇮🇩 IN</button>
+    <button onclick="navigateTo('../es/<?php echo $active_url; ?>')">🇪🇸 ES</button>
+    <button onclick="navigateTo('../fr/<?php echo $active_url; ?>')">🇫🇷 FR</button>
+    <button onclick="navigateTo('../en/<?php echo $active_url; ?>')">🇬🇧 EN</button>
+    <button onclick="navigateTo('../ar/<?php echo $active_url; ?>')">🇸🇦 AR</button>
+    <button onclick="navigateTo('../zh/<?php echo $active_url; ?>')">🇨🇳 中文</button>
+    <button onclick="navigateTo('../de/<?php echo $active_url; ?>')">🇩🇪 DE</button>
   </div>
 </div>
+
 
 
 <!-- LOGIN SELECTOR -->
