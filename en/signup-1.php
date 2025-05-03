@@ -14,7 +14,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.77773';
+$version = '0.77774';
 $page = 'signup-1';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -64,7 +64,7 @@ https://github.com/gea-ecobricks/buwana/-->
    ?>
 
    <div id="top-page-image"
-        class="app-signup-banner top-page-image"
+        class="top-page-image"
         data-light-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_light']) ?>"
         data-dark-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_dark']) ?>">
    </div>

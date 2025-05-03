@@ -1955,6 +1955,8 @@ text-decoration: underline;
     position: absolute;
     text-align: center;
     width: 100%;
+    background: no-repeat center;
+    background-size: contain;
 
   }
 
