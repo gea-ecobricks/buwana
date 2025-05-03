@@ -59,7 +59,12 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 <!-- PAGE CONTENT -->
-   <div id="top-page-image" class="app-signup-banner top-page-image"></div>
+   <div id="top-page-image"
+        class="app-signup-banner top-page-image"
+        data-light-img="<?= htmlspecialchars($app_info[$page . '_top_img_light']) ?>"
+        data-dark-img="<?= htmlspecialchars($app_info[$page . '_top_img_dark']) ?>">
+   </div>
+
 
 <div id="form-submission-box" class="landing-page-form" >
     <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">

@@ -92,7 +92,7 @@
     try {
         var savedTheme = localStorage.getItem('dark-mode-toggle');
         const toggle = document.getElementById('dark-mode-toggle-5');
-
+const bannerElement = document.getElementById('top-page-image');
         if (savedTheme && toggle) {
             toggle.mode = savedTheme;
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -120,7 +120,22 @@
                 }
             }
 
+
+
+        function updateBanner() {
+            const mode = document.documentElement.getAttribute('data-theme') || 'light';
+
+            if (bannerElement) {
+                const lightImg = bannerElement.getAttribute('data-light-img');
+                const darkImg = bannerElement.getAttribute('data-dark-img');
+                bannerElement.style.transition = 'background-image 0.5s ease'; // Smooth fade
+                bannerElement.style.backgroundImage = mode === 'dark' ? `url('${darkImg}')` : `url('${lightImg}')`;
+            }
+        }
+
+
             updateLogos(); // 🚀 Initial on load
+            updateBanner();
 
             if (toggle) {
                 toggle.addEventListener('colorschemechange', function(event) {
@@ -130,6 +145,7 @@
                     document.documentElement.setAttribute('data-theme', mode);
 
                     updateLogos(); // 🔥 Update logos immediately on toggle!
+                    updateBanner();
                 });
             }
         });
