@@ -173,11 +173,17 @@ https://github.com/gea-ecobricks/buwana/-->
 
 <?php require_once ("../includes/signup-3-inc.php");?>
 
-<div class="splash-title-block"></div>
-<div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-<div id="top-page-image" class="message-birded top-page-image"></div>
+   <?php
+   $page_key = str_replace('-', '_', $page); // e.g. 'signup-1' → 'signup_1'
+   ?>
+
+   <div id="top-page-image"
+        class="top-page-image"
+        data-light-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_light']) ?>"
+        data-dark-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_dark']) ?>">
+   </div>
 
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
