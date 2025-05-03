@@ -118,6 +118,8 @@ https://github.com/gea-ecobricks/buwana/-->
             </div>
 
            <form id="user-signup-form" method="post" action="signup-2_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
+
+
                 <div class="form-item" id="last-name-field">
                     <label for="last_name" data-lang-id="003b-last-name">Now what is your last name?</label><br>
                     <input type="text" id="last_name" name="last_name" placeholder="Your last name...">
@@ -435,6 +437,34 @@ function checkHoneypot() {
 
 </script>
 
+
+<script>
+document.getElementById('signup-2-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const action = form.action;
+    const formData = new FormData(form);
+
+    fetch(action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success && data.redirect) {
+            window.location.href = data.redirect;
+        } else {
+            alert("Something went wrong. Please try again.");
+            console.error(data.error || "Unknown error");
+        }
+    })
+    .catch(error => {
+        alert("A network error occurred.");
+        console.error("Network error:", error);
+    });
+});
+</script>
 
 
 
