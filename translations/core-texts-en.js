@@ -16,8 +16,8 @@ const en_Translations = {
     "000-already-have-account": "Already have a Buwana account?",
     "000-field-required-error": "⚠️ This field is required.",
     "000-name-field-too-long-error": "⚠️ The entry is too long. Max 255 characters.",
-    "005b-name-error": "⚠️ The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.",
-
+    "000-name-error": "⚠️ The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.",
+    "000-go-back": "go-back",
 
     //1000 HEADER
 

@@ -1,8 +1,8 @@
-<title><?= htmlspecialchars($app_info['app_display_name']) ?> Register | Buwana Accounts</title>
+<title>Regístrate en <?= htmlspecialchars($app_info['app_display_name']) ?> | Cuentas Buwana</title>
 
-<meta name="keywords" content="buwana, register, signup, sign up, sign, up">
-<meta name="description" content="Register for a Buwana account to use on <?= htmlspecialchars($app_info['app_display_name']) ?>">
-<meta name="author" content="Earthen">
+<meta name="keywords" content="buwana, registro, registrarse, crear cuenta, cuenta, inscripción, para-la-tierra, bio-regiones, cuentas bioregionales">
+<meta name="description" content="Regístrate para obtener una cuenta de Buwana y usarla en <?= htmlspecialchars($app_info['app_display_name']) ?>">
+<meta name="author" content="Terrestre">
 <meta name="last-modified" content="' . $lastModified . '">
 <meta name="revised" content="' . $lastModified . '">
 
@@ -10,11 +10,11 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
 <meta property="og:url"           content="https://www.buwana.ecobricks.org/' . $lang . '/' . $page . '">
 <meta property="og:type"          content="app">
-<meta property="og:title"         content="<?= htmlspecialchars($app_info['app_display_name']) ?> Register | Buwana Accounts">
-<meta property="og:description"   content="Register for a Buwana account to use on <?= htmlspecialchars($app_info['app_display_name']) ?>" >
+<meta property="og:title"         content="Registro en <?= htmlspecialchars($app_info['app_display_name']) ?> | Cuentas Buwana">
+<meta property="og:description"   content="Regístrate para obtener una cuenta de Buwana y usarla en <?= htmlspecialchars($app_info['app_display_name']) ?>" >
 <meta property="og:image"         content="https://www.gobrik.com/images/social-banner-1200px.png" >
 <meta property="fb:app_id"        content="1781710898523821" >
 <meta property="og:image:width"   content="1200" >
 <meta property="og:image:height"  content="1000" >
-<meta property="og:image:alt"     content="A metaphorical road winding into the distance with various ecobrick and earth constructions along side it and the GoBrik logo floating above">
-<meta property="og:locale"        content="en_GB">
+<meta property="og:image:alt"     content="Un camino metafórico que se extiende hacia la distancia con varias construcciones de ecoladrillos y tierra a los lados, y el logo de GoBrik flotando arriba">
+<meta property="og:locale"        content="es_ES">

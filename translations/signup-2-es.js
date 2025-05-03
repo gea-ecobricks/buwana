@@ -1,33 +1,27 @@
-
-
 /*-----------------------------------
 TEXT TRANSLATION SNIPPETS FOR signup-2.php
 -----------------------------------*/
 const es_Page_Translations = {
 
-    // Next page: Signup-2 - Set your name and email
-    "001-register-by": "Register by",
-    "002-now-lets-use": "Let's set you up on ",
-    "003-to-register-on": "to register on ",
-    "004-your": "Your",
-    "004b-please": " please:",
-    "010-duplicate-email": "🚧 Whoops! Looks like that e-mail address is already being used by a Buwana Account. Please choose another.",
-    "010-gobrik-duplicate": "🌏 It looks like this email is already being used with a legacy GoBrik account. Please <a href=\"login.php\" class=\"underline-link\">login with this email to upgrade your account.</a>",
-    "006-email-sub-caption": "💌 This is the way we will contact you to confirm your account",
-    "007-set-your-pass": "Set your password:",
-    "008-password-advice": "🔑 Your password must be at least 6 characters.",
-    "009-confirm-pass": "Confirm Your Password:",
-    "010-pass-error-no-match": "👉 Passwords do not match.",
-    "011-human-check": "Human check:",
-    "011-prove-human": "Type the word \"ecobrick\"...",
-    "011b-prove-human": "This is a little test to see if you're human!",
+    "001-register-by": "Regístrate por",
+    "002-now-lets-use": "Vamos a configurarte en ",
+    "003-to-register-on": "para registrarte en ",
+    "003b-last-name": "¿Cuál es tu apellido?",
+    "004-your": "Tu",
+    "004b-please": " por favor...",
+    "005-duplicate-email": "🚧 ¡Uy! Parece que esa dirección de correo ya está siendo usada por una cuenta Buwana. Por favor elige otra.",
+    "006-gobrik-duplicate": "🌏 Parece que este correo ya se usa con una cuenta heredada de GoBrik. Por favor <a href=\"login.php\" class=\"underline-link\">inicia sesión con este correo para actualizar tu cuenta.</a>",
+    "007-email-sub-caption": "💌 Esta será la forma en que te contactaremos para confirmar tu cuenta",
+    "008-set-your-pass": "Crea tu contraseña:",
+    "008-password-advice": "🔑 Tu contraseña debe tener al menos 6 caracteres.",
+    "009-confirm-pass": "Confirma tu contraseña...",
+    "010-pass-error-no-match": "👉 Las contraseñas no coinciden.",
+    "011-human-check": "Escribe la palabra \"ecoladrillo\"...",
+    "012-prove-human": "¡Esta es una pequeña prueba para ver si eres humano!",
 
-    "012-fun-fact": "🤓 Fun fact:",
-    "012b-is-spelled": " is spelled without a space, capital or hyphen!",
-    "013-by-registering": "By registering today, I agree to the ",
-    "014-terms-of-use": "Terms of Use",
+    "013-fun-fact": "🤓 Dato curioso:",
+    "014-is-spelled": " se escribe sin espacio, mayúscula ni guion!",
+    "015-by-registering": "Al registrarme hoy, acepto los ",
 
-    "000-browser-back-link": "<p style=\"font-size: medium;\">Need to correct something?<a href=\"#\" onClick=\"browserBack(event)\">Go back ↩️</a></p>"
+    "016-register-button": "Registrar ➡",
 };
-
-

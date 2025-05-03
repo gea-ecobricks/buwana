@@ -1,6 +1,6 @@
-<title><?= htmlspecialchars($app_info['app_display_name']) ?> Register | Buwana Accounts</title>
+<title>Sign up to <?= htmlspecialchars($app_info['app_display_name']) ?> | Buwana Accounts</title>
 
-<meta name="keywords" content="buwana, register, signup, sign up, sign, up">
+<meta name="keywords" content="buwana, register, signup, sign up, sign, up, registration, for-earth, bio-regions, biogregional accounts">
 <meta name="description" content="Register for a Buwana account to use on <?= htmlspecialchars($app_info['app_display_name']) ?>">
 <meta name="author" content="Earthen">
 <meta name="last-modified" content="' . $lastModified . '">

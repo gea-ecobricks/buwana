@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.7764';
+$version = '0.776';
 $page = 'signup-2';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -93,14 +93,14 @@ https://github.com/gea-ecobricks/buwana/-->
 <?php require_once ("../includes/signup-2-inc.php");?>
 
 
-<div class="splash-title-block"></div>
-<div id="splash-bar"></div>
+<!--<div class="splash-title-block"></div>
+    <div id="splash-bar"></div>-->
 
 <!-- PAGE CONTENT -->
 <div id="top-page-image" class="credentials-banner top-page-image"></div>
 
 <div id="form-submission-box" class="landing-page-form" >
-    <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
+    <div class="form-container">
 
             <div style="text-align:center;width:100%;margin:auto;">
                 <h2><span data-lang-id="001-register-by">Register by</span> <?php echo $credential_type; ?></h2>
@@ -109,7 +109,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
            <form id="user-signup-form" method="post" action="signup-2_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
                 <div class="form-item" id="last-name-field">
-                    <label for="last_name" data-lang-id="011b-last-name">Now what is your last name?</label><br>
+                    <label for="last_name" data-lang-id="003b-last-name">Now what is your last name?</label><br>
                     <input type="text" id="last_name" name="last_name" placeholder="Your last name...">
                     <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
                 </div>
@@ -121,25 +121,25 @@ https://github.com/gea-ecobricks/buwana/-->
                    <?php endif; ?>
                    placeholder=" "  />  <!--style="padding-left:35px;"-->
                    <label for="credential_value">
-                     <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please-x"> please...</span>
+                     <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please"> please...</span>
                    </label>
 
-                   <div id="duplicate-email-error" class="form-field-error" data-lang-id="010-duplicate-email">
+                   <div id="duplicate-email-error" class="form-field-error" data-lang-id="005-duplicate-email">
                      🚧 Whoops! Looks like that e-mail address is already being used by a Buwana Account. Please choose another.
                    </div>
                    <div id="duplicate-gobrik-email" class="form-warning">
-                     🌏 <span data-lang-id="010-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
+                     🌏 <span data-lang-id="006-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
                    </div>
 
                    <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 7px;"></div>
 
-                   <p class="form-caption" data-lang-id="006-email-sub-caption-xx" style="margin-bottom: -10px;">💌 We'll use this email to confirm your account.</p>
+                   <p class="form-caption" data-lang-id="007-email-sub-caption" style="margin-bottom: -10px;">💌 We'll use this email to confirm your account.</p>
                  </div>
 
                  <!-- Set Password -->
                  <div class="form-item float-label-group" id="set-password" style="display: none;margin-top: 14px;margin-bottom: 15px;padding-bottom: 1px;">
                    <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;"/>
-                   <label for="password_hash" data-lang-id="007-set-your-pass-x">Set your password...</label>
+                   <label for="password_hash" data-lang-id="008-set-your-pass">Set your password...</label>
                    <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%;margin-right:15px;font-size:20px;">🙈</span>
                    <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
                  </div>
@@ -147,27 +147,25 @@ https://github.com/gea-ecobricks/buwana/-->
                  <!-- Confirm Password -->
                  <div class="form-item float-label-group" id="confirm-password-section" style="display: none;margin-top: 10px;">
                    <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " style="font-size: 22px !important;"/>
-                   <label for="confirm_password" data-lang-id="009-confirm-pass-x">Confirm Your Password...</label>
+                   <label for="confirm_password" data-lang-id="009-confirm-pass">Confirm your password...</label>
                    <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer;margin-bottom:13px;margin-right:15px; font-size:20px;margin-top: 45px;">🙈</span>
                    <div id="maker-error-invalid" class="form-field-error" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
                  </div>
                  <!-- Human Check -->
                  <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:15px;margin-bottom:15px;padding-bottom:5px;">
+                       <input type="text" id="human_check" name="human_check" required placeholder=" " />
+                       <label for="human_check" data-lang-id="011-prove-human">Type the word "ecobrick"...</label>
+                       <p class="form-caption"><span data-lang-id="012-human-test">This is a little test to see if you're human!</span>
 
-
-               <input type="text" id="human_check" name="human_check" required placeholder=" " />
-               <label for="human_check" data-lang-id="011-prove-human">Type the word "ecobrick"...</label>
-               <p class="form-caption"><span>This is a little test to see if you're human!</span>
-
-                 <span data-lang-id="012-fun-fact">🤓 Fun fact: </span>
-                 <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick-x">ecobrick</a>
-                 <span data-lang-id="012b-is-spelled"> is spelled without a space, capital or hyphen!</span>
+                 <span data-lang-id="013-fun-fact">🤓 Fun fact: </span>
+                 <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick-low">ecobrick</a>
+                 <span data-lang-id="014-is-spelled"> is spelled without a space, capital or hyphen!</span>
                </p>
            </div>
 
                <div style="display:flex;" class="form-item">
                  <input type="checkbox" id="terms" name="terms" required checked>
-                 <div class="form-caption"><span data-lang-id="013-by-registering">By registering today, I agree to the </span><a href="#" onclick="openTermsModal(); return false;" class="underline-link"><?= $app_info['app_display_name']; ?> <span>Terms of Use</a>.
+                 <div class="form-caption"><span data-lang-id="015-by-registering">By registering today, I agree to the </span><a href="#" onclick="openTermsModal(); return false;" class="underline-link"><?= $app_info['app_display_name']; ?> <span data-lang-id="1000-terms-of-use">Terms of Use</a>.
                  </div>
                </div>
 
@@ -178,7 +176,7 @@ https://github.com/gea-ecobricks/buwana/-->
              <!-- Kick-Ass Submit Button -->
              <div id="submit-section" style="display:none;" class="submit-button-wrapper">
                <button type="submit" id="submit-button" class="kick-ass-submit disabled" title="Be sure you wrote ecobrick correctly!">
-                 <span id="submit-button-text" data-lang-id="015-register-button-x">Register ➡</span>
+                 <span id="submit-button-text" data-lang-id="015-register-button">Register ➡</span>
                  <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                </button>
              </div>
@@ -190,7 +188,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
 <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" >
-    <p style="font-size: medium;" data-lang-id="000-go-back">
+    <p style="font-size: medium;">
 
         <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back a step</a>
     </p>
