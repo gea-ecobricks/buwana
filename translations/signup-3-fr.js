@@ -1,20 +1,18 @@
-
 /*-----------------------------------
 TEXT TRANSLATION SNIPPETS FOR signup-3.php
 -----------------------------------*/
 const fr_Page_Translations = {
 
     // confirm email
-    "001-alright": "Alright",
-    "002-lets-confirm": "let's confirm your email.",
-    "003-to-create": "To create your Buwana GoBrik account we need to confirm your chosen credential. This is how we'll keep in touch and keep your account secure. Click the send button and we'll send an account activation code to:",
-    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 Send Code" class="submit-button activate">',
-    "006-enter-code": "Please enter your code:",
-    "007-check-email": "Check your email",
-    "008-for-your-code": "for your account confirmation code. Enter it here:",
-    "009-no-code": "Didn't get your code? You can request a resend of the code in",
-    "010-email-no-longer": "Do you no longer use this email address?<br>If not, you'll need to <a href=\"signup-1.php\">create a new account</a> or contact our team at support@gobrik.com.",
-    "011-change-email": "Want to change your email?",
-    "012-go-back-new-email": "Go back to enter a different email address.",
-
+    "001-alright": "D'accord",
+    "002-lets-confirm": "confirmons votre adresse e-mail.",
+    "003-to-create": "Pour créer votre compte Buwana GoBrik, nous devons confirmer vos identifiants choisis. C’est ainsi que nous resterons en contact et sécuriserons votre compte. Cliquez sur le bouton d’envoi et nous vous enverrons un code d’activation à :",
+    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 Envoyer le code" class="submit-button activate">',
+    "006-enter-code": "Veuillez entrer votre code :",
+    "007-check-email": "Vérifiez votre boîte e-mail",
+    "008-for-your-code": "pour trouver votre code de confirmation de compte. Entrez-le ici :",
+    "009-no-code": "Vous n'avez pas reçu votre code ? Vous pouvez demander un nouvel envoi dans",
+    "010-email-no-longer": "N’utilisez-vous plus cette adresse e-mail ?<br>Dans ce cas, vous devez <a href=\"signup-1.php\">créer un nouveau compte</a> ou contacter notre équipe à support@gobrik.com.",
+    "011-change-email": "Vous souhaitez changer d’adresse e-mail ?",
+    "012-go-back-new-email": "Revenez en arrière pour saisir une autre adresse e-mail.",
 };

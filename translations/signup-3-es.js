@@ -1,20 +1,18 @@
-
 /*-----------------------------------
 TEXT TRANSLATION SNIPPETS FOR signup-3.php
 -----------------------------------*/
 const es_Page_Translations = {
 
     // confirm email
-    "001-alright": "Alright",
-    "002-lets-confirm": "let's confirm your email.",
-    "003-to-create": "To create your Buwana GoBrik account we need to confirm your chosen credential. This is how we'll keep in touch and keep your account secure. Click the send button and we'll send an account activation code to:",
-    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 Send Code" class="submit-button activate">',
-    "006-enter-code": "Please enter your code:",
-    "007-check-email": "Check your email",
-    "008-for-your-code": "for your account confirmation code. Enter it here:",
-    "009-no-code": "Didn't get your code? You can request a resend of the code in",
-    "010-email-no-longer": "Do you no longer use this email address?<br>If not, you'll need to <a href=\"signup-1.php\">create a new account</a> or contact our team at support@gobrik.com.",
-    "011-change-email": "Want to change your email?",
-    "012-go-back-new-email": "Go back to enter a different email address.",
-
+    "001-alright": "Muy bien",
+    "002-lets-confirm": "vamos a confirmar tu correo electrónico.",
+    "003-to-create": "Para crear tu cuenta Buwana GoBrik necesitamos confirmar la credencial que has elegido. Así podremos mantenernos en contacto y asegurar tu cuenta. Haz clic en el botón para que te enviemos un código de activación a:",
+    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 Enviar código" class="submit-button activate">',
+    "006-enter-code": "Por favor ingresa tu código:",
+    "007-check-email": "Revisa tu correo electrónico",
+    "008-for-your-code": "para encontrar el código de confirmación de tu cuenta. Escríbelo aquí:",
+    "009-no-code": "¿No recibiste tu código? Puedes solicitar que lo reenviemos en",
+    "010-email-no-longer": "¿Ya no usas esta dirección de correo electrónico?<br>Si no, necesitarás <a href=\"signup-1.php\">crear una nueva cuenta</a> o contactar a nuestro equipo en support@gobrik.com.",
+    "011-change-email": "¿Quieres cambiar tu correo electrónico?",
+    "012-go-back-new-email": "Regresa para ingresar una dirección diferente.",
 };

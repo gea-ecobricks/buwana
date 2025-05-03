@@ -40,10 +40,10 @@ function switchLanguage(langCode) {
 
     // RTL Support
     const rtlLanguages = ['ar', 'he', 'fa', 'ur'];
-    document.documentElement.setAttribute(
-        'dir',
-        rtlLanguages.includes(langCode) ? 'rtl' : 'ltr'
-    );
+    const formContainer = document.getElementById('form-submission-box');
+    if (formContainer) {
+        formContainer.setAttribute('dir', rtlLanguages.includes(langCode) ? 'rtl' : 'ltr');
+    }
 
     const elements = document.querySelectorAll('[data-lang-id]');
     elements.forEach(element => {

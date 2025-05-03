@@ -1,20 +1,18 @@
-
 /*-----------------------------------
 TEXT TRANSLATION SNIPPETS FOR signup-3.php
 -----------------------------------*/
 const id_Page_Translations = {
 
     // confirm email
-    "001-alright": "Alright",
-    "002-lets-confirm": "let's confirm your email.",
-    "003-to-create": "To create your Buwana GoBrik account we need to confirm your chosen credential. This is how we'll keep in touch and keep your account secure. Click the send button and we'll send an account activation code to:",
-    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 Send Code" class="submit-button activate">',
-    "006-enter-code": "Please enter your code:",
-    "007-check-email": "Check your email",
-    "008-for-your-code": "for your account confirmation code. Enter it here:",
-    "009-no-code": "Didn't get your code? You can request a resend of the code in",
-    "010-email-no-longer": "Do you no longer use this email address?<br>If not, you'll need to <a href=\"signup-1.php\">create a new account</a> or contact our team at support@gobrik.com.",
-    "011-change-email": "Want to change your email?",
-    "012-go-back-new-email": "Go back to enter a different email address.",
-
+    "001-alright": "Baiklah",
+    "002-lets-confirm": "mari kita konfirmasi email Anda.",
+    "003-to-create": "Untuk membuat akun Buwana GoBrik Anda, kami perlu mengonfirmasi kredensial yang Anda pilih. Ini adalah cara kami tetap terhubung dan menjaga keamanan akun Anda. Klik tombol kirim dan kami akan mengirimkan kode aktivasi ke:",
+    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 Kirim Kode" class="submit-button activate">',
+    "006-enter-code": "Silakan masukkan kode Anda:",
+    "007-check-email": "Periksa email Anda",
+    "008-for-your-code": "untuk menemukan kode konfirmasi akun Anda. Masukkan di sini:",
+    "009-no-code": "Tidak menerima kode? Anda dapat meminta pengiriman ulang dalam",
+    "010-email-no-longer": "Tidak lagi menggunakan alamat email ini?<br>Jika iya, Anda perlu <a href=\"signup-1.php\">membuat akun baru</a> atau hubungi tim kami di support@gobrik.com.",
+    "011-change-email": "Ingin mengganti alamat email?",
+    "012-go-back-new-email": "Kembali untuk memasukkan alamat email yang berbeda.",
 };
