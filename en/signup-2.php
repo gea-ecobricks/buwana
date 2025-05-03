@@ -103,8 +103,8 @@ https://github.com/gea-ecobricks/buwana/-->
     <div class="form-container">
 
             <div style="text-align:center;width:100%;margin:auto;">
-                <h2><span data-lang-id="001-register-by">Register by</span> <?php echo $credential_type; ?></h2>
-                <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use">  Let's set you up on</span> <?= $app_info['app_display_name']; ?>...</p>
+                <h2><span data-lang-id="001-register-by"></span> <?php echo $credential_type; ?></h2>
+                <p>Ok <?php echo $first_name; ?>! <span data-lang-id="002-now-lets-use"></span> <?= $app_info['app_display_name']; ?>...</p>
             </div>
 
            <form id="user-signup-form" method="post" action="signup-2_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
