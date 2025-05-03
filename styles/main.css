@@ -1951,14 +1951,16 @@ text-decoration: underline;
 
 .top-page-image {
     margin-bottom: 70px;
-    z-index:24;
+    z-index: 24;
     position: absolute;
     text-align: center;
     width: 100%;
-    background: no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: contain;
+    transition: background-image 0.7s ease-in-out; /* ✨ Smooth transition */
+}
 
-  }
 
 
 
