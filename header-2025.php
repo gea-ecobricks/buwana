@@ -10,6 +10,19 @@
 
 	;?>
 
+	<?php
+    // Get full request URI (e.g. "/en/signup-1.php?gbrk_...")
+    $requestUri = $_SERVER['REQUEST_URI'];
+
+    // Extract the path after the first language directory
+    // This assumes the URL structure is always /[lang]/[page]
+    $uriParts = explode('/', $requestUri, 3);
+
+    // Set default in case something goes wrong
+    $active_url = isset($uriParts[2]) ? $uriParts[2] : '';
+    ?>
+
+
 
 
 	<link rel="canonical" href="https://buwana.ecobricks.org/<?php echo ($lang); ;?>/<?php echo ($name); ;?>">
@@ -398,7 +411,7 @@ max-height: 200px;
     <button onclick="navigateTo('../fr/<?php echo ($page); ?>.php')">🇫🇷 FR</button>
     <button onclick="navigateTo('../en/<?php echo ($page); ?>.php')">🇬🇧 EN</button>
     <button onclick="navigateTo('../ar/<?php echo ($page); ?>.php')">🇸🇦 AR</button>
-    <button onclick="navigateTo('../cn/<?php echo ($page); ?>.php')">🇨🇳 中文</button>
+    <button onclick="navigateTo('../zh/<?php echo ($page); ?>.php')">🇨🇳 中文</button>
     <button onclick="navigateTo('../de/<?php echo ($page); ?>.php')">🇩🇪 DE</button>
   </div>
 </div>

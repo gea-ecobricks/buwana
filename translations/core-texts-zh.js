@@ -2,7 +2,7 @@
 CHINESE GLOBAL TEXT SNIPPETS FOR BUWANA SIGNUP PROCESS
 -----------------------------------*/
 
-const cn_Translations = {
+const zh_Translations = {
 
     //GENERAL PAGE WORDS
 

@@ -1,7 +1,7 @@
 /*-----------------------------------
 TEXT TRANSLATION SNIPPETS FOR Signup-1.php
 -----------------------------------*/
-const cn_Page_Translations = {
+const zh_Page_Translations = {
     "001-signup-heading": "创建账户",
     "002-signup-subtext": " 使用 Buwana —— 一个强大、私密、开源并面向地球的账户系统，驱动再生应用。",
     "003-firstname": "你的名字是什么？",

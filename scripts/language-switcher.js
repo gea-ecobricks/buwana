@@ -27,8 +27,8 @@ function switchLanguage(langCode) {
         case 'ar':
             currentTranslations = {...ar_Translations, ...ar_Page_Translations};
             break;
-        case 'cn':
-            currentTranslations = {...cn_Translations, ...cn_Page_Translations};
+        case 'zh':
+            currentTranslations = {...zh_Translations, ...zh_Page_Translations};
             break;
         case 'de':
             currentTranslations = {...de_Translations, ...de_Page_Translations};

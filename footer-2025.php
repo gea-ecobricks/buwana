@@ -57,7 +57,7 @@
     <script src="../translations/core-texts-es.js?v=<?php echo ($version); ;?>"></script>
     <script src="../translations/core-texts-ar.js?v=<?php echo ($version); ;?>"></script>
     <script src="../translations/core-texts-de.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/core-texts-cn.js?v=<?php echo ($version); ;?>"></script>
+    <script src="../translations/core-texts-zh.js?v=<?php echo ($version); ;?>"></script>
 
     <script src="../translations/<?php echo ($page); ;?>-en.js?v=<?php echo ($version); ;?>"></script>
     <script src="../translations/<?php echo ($page); ;?>-fr.js?v=<?php echo ($version); ;?>"></script>

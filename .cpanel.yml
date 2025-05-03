@@ -12,7 +12,7 @@ deployment:
     - mkdir -p $DEPLOYPATH/es/
     - mkdir -p $DEPLOYPATH/id/
     - mkdir -p $DEPLOYPATH/ar/
-    - mkdir -p $DEPLOYPATH/cn/
+    - mkdir -p $DEPLOYPATH/zh/
     - mkdir -p $DEPLOYPATH/de/
 
     # Copy files from the English directory to the French directory
@@ -28,8 +28,8 @@ deployment:
     - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/id/"
 
     # Copy files from the English directory to the Chinese directory
-    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/cn/
-    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/cn/"
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/zh/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/zh/"
 
     # Copy files from the English directory to the Arabic directory
     - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/ar/
