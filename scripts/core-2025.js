@@ -247,6 +247,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+function browserBack() {
+    window.history.back();
+}
 
 
 
