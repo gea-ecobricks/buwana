@@ -17,7 +17,7 @@ const en_Translations = {
     "000-field-required-error": "⚠️ This field is required.",
     "000-name-field-too-long-error": "⚠️ The entry is too long. Max 255 characters.",
     "000-name-error": "⚠️ The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.",
-    "000-go-back": "go-back",
+    "000-go-back": "↩ Go back one step",
 
     //1000 HEADER
 

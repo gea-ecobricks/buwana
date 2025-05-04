@@ -1,7 +1,7 @@
 <title>Set your bioregion on <?= htmlspecialchars($app_info['app_display_name']) ?> | Buwana Accounts</title>
 
-<meta name="keywords" content="buwana, register, signup, sign up, sign, up">
-<meta name="description" content="Select the waterbasin of your local river where you live.">
+<meta name="keywords" content="bioregion, watershed, location, water basin, river, stream, buwana, register, signup, sign up, sign, up">
+<meta name="description" content="Select the waterbasin of your local river.">
 <meta name="author" content="Earthen">
 <meta name="last-modified" content="' . $lastModified . '">
 <meta name="revised" content="' . $lastModified . '">

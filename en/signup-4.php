@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-4';
-$version = '0.771';
+$version = '0.772';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -114,7 +114,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
             <form id="user-signup-form" method="post" action="signup-4_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
                 <!-- LOCATION FULL -->
-                <div class="form-item  float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+                <div class="form-item">
 
                     <div class="input-container">
 
@@ -163,7 +163,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
         </div>
 
-        <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
+        <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
             <p style="font-size: medium;">
                 <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back one step</a>
             </p>
