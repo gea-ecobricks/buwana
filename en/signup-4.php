@@ -86,11 +86,18 @@ if ($result_languages && $result_languages->num_rows > 0) {
     <?php require_once ("../includes/signup-4-inc.php"); ?>
 
 
-    <div class="splash-title-block"></div>
-    <div id="splash-bar"></div>
 
-    <!-- PAGE CONTENT -->
-    <div id="top-page-image" class="bioregions-top top-page-image"></div>
+<!-- PAGE CONTENT -->
+   <?php
+   $page_key = str_replace('-', '_', $page); // e.g. 'signup-1' → 'signup_1'
+   ?>
+
+   <div id="top-page-image"
+        class="top-page-image"
+        data-light-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_light']) ?>"
+        data-dark-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_dark']) ?>">
+   </div>
+
 
     <div id="form-submission-box" class="landing-page-form">
         <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
