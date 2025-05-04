@@ -125,6 +125,7 @@ https://github.com/gea-ecobricks/buwana/-->
                     <input type="text" id="last_name" name="last_name" placeholder="Your last name...">
                     <p class="form-caption" data-lang-id="011b-required" style="color:red">*This field is required.</p>
                 </div>
+
                  <!-- Email / Credential Field -->
                  <div class="form-item float-label-group" id="credential-section">
                    <input type="text" id="credential_value" name="credential_value" required aria-label="Your email"

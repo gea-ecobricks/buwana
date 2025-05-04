@@ -103,9 +103,9 @@ if ($result_languages && $result_languages->num_rows > 0) {
         <div class="form-container" style="box-shadow: #0000001f 0px 5px 20px;">
 
             <div style="text-align:center;width:100%;margin:auto;">
-                <p style="color:green;" data-lang-id="001-password-set">✔ Your email is confirmed!</p>
-                <div id="status-message" data-lang-id="001-signup-heading-xxx" style="font-family: 'Arvo';margin-top:15px;"> Now <?php echo htmlspecialchars($first_name); ?> let's get you localized.</div>
-                <div id="sub-status-message" data-lang-id="013-sub-ecozone" style="font-size:1.3em;padding-top:10px;padding-bottom:10px;">
+                <p style="color:green;" data-lang-id="001-email-confirmed">✔ Your email is confirmed!</p>
+                <div id="status-message" style="font-family: 'Arvo';margin-top:15px;"><span data-lang-id="002-now"> Now</span> <?php echo htmlspecialchars($first_name); ?><span data-lang-id="003-now-localize-you"> let's get you localized.</div>
+                <div id="sub-status-message" data-lang-id="004-lets-determine-bioregion" style="font-size:1.3em;padding-top:10px;padding-bottom:10px;">
                     Let's determine your bioregion: the watershed where you live.
                 </div>
             </div>
@@ -114,17 +114,17 @@ if ($result_languages && $result_languages->num_rows > 0) {
             <form id="user-signup-form" method="post" action="signup-4_process.php?id=<?php echo htmlspecialchars($buwana_id); ?>">
 
                 <!-- LOCATION FULL -->
-                <div class="form-item">
+                <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
 
-                    <div class="input-container">
+
 
                         <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;">
-                        <label for="location_full" data-lang-id="011-your-local-area-xxx" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
+                        <label for="location_full" data-lang-id="005-your-neighbourhood" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
                         <div id="loading-spinner" class="spinner" style="display: none;"></div>
                         <div id="location-pin" class="pin-icon">📍</div>
-                    </div>
 
-                    <p class="form-caption" data-lang-id="011-location-full-caption">
+
+                    <p class="form-caption" data-lang-id="006-start-typing-neighbourhood">
                         Start typing the name of your neighbourhood, and <a href="https://openstreetmap.org.org" target="_blank">openstreetmaps.org</a> will fill in the rest.
                     </p>
                     <div id="location-error-required" class="form-field-error" data-lang-id="000-field-required-error">
@@ -137,24 +137,24 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
                 <!-- MAP AND WATERSHED SEARCH SECTION -->
                 <div class="form-item" id="watershed-map-section" style="display: none; margin-top:20px;">
-                    <label for="watershed_select" data-lang-id="011-watershed-select-x">In which river basin do you live?</label><br>
+                    <label for="watershed_select" data-lang-id="007-in-which-river-basin">In which river basin do you live?</label><br>
                     <div id="map" style="height: 350px; border-radius: 0px 0px 12px 12px; margin-top: 8px;"></div>
-                    <p class="form-caption" data-lang-id="012-river-basics-2" style="margin-top:10px;">
+                    <p class="form-caption" data-lang-id="008-the map shows" style="margin-top:10px;">
                         ℹ️ The map shows rivers and streams around you. Choose the one to which your water flows.
                     </p>
                     <select id="watershed_select" name="watershed_select" aria-label="Watershed Select" style="width: 100%; padding: 10px;" required>
-                        <option value="" disabled selected data-lang-id="011b-select-river-x">👉 Select your local river...</option>
+                        <option value="" disabled selected data-lang-id="010-select-your-river">👉 Select your local river...</option>
                     </select>
                 </div>
 
                 <!-- Kick-Ass Submit Button -->
                 <div id="submit-section" style="display:none;" class="submit-button-wrapper">
-                    <p style="margin-bottom:25px;">
+                    <p style="margin-bottom:25px;" data-lang-id="011-non-political">
                         Yes!  We use <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watershed bioregions</a> as an alternative non-politcal, grounded way to localize our users.
                     </p>
 
-                    <button type="submit" id="submit-button" class="kick-ass-submit" title="Be sure to choose your local watershed!">
-                        <span id="submit-button-text" data-lang-id="015-next-button-x">Next ➡</span>
+                    <button type="submit" id="submit-button" class="kick-ass-submit">
+                        <span id="submit-button-text" data-lang-id="012-next-button">Next ➡</span>
                         <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                     </button>
                 </div>
