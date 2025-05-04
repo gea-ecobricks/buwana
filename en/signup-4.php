@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-4';
-$version = '0.772';
+$version = '0.773';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -119,7 +119,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
 
                         <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;">
-                        <label for="location_full" data-lang-id="005-your-neighbourhood" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
+                        <label for="location_full" data-lang-id="005-your-neighbourhood" style="border-radius:10px 10px 0px 0px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
                         <div id="loading-spinner" class="spinner" style="display: none;"></div>
                         <div id="location-pin" class="pin-icon">📍</div>
 
