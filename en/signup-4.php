@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-4';
-$version = '0.775';
+$version = '0.776';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -165,7 +165,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
         <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
             <p style="font-size: medium;">
-                <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back one step</a>
+                <a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back one step</a>
             </p>
         </div>
     </div>
@@ -411,7 +411,7 @@ function openAboutOSM() {
     const content = `
         <div style="text-align: center;margin:auto;padding:10%;">
             <h2>OpenStreetMap.org</h2>
-            <p data-lang-id="015-oss-description">We make a point of not using Google maps and instead use OpenStreetMap (a foundation not a for-profit corporation) for localizing users. OpenStreetMap is built by a community of mappers that contribute and maintain data about roads, rivers, trails, and much more, all over the world. OpenStreetMap is open-data and open-source: anyone is free to use it for any purpose as long as you credit OpenStreetMap and its contributors.</p>
+            <p data-lang-id="015-osm-description">We make a point of not using Google maps and instead use OpenStreetMap (a foundation not a for-profit corporation) for localizing users. OpenStreetMap is built by a community of mappers that contribute and maintain data about roads, rivers, trails, and much more, all over the world. OpenStreetMap is open-data and open-source: anyone is free to use it for any purpose as long as you credit OpenStreetMap and its contributors.</p>
             <p><a href="https://www.openstreetmap.org/about" target="_blank">↗ openstreetmap.org/about</a></p>
         </div>
     `;
