@@ -308,7 +308,7 @@ $(function () {
 // --- SECTION 5: Fetch nearby rivers/watersheds from the Overpass API ---
 function fetchNearbyRivers(lat, lon) {
     riverLayerGroup.clearLayers(); // Clear previous rivers from the map
-    $("#watershed_select").empty().append('<option value="" disabled selected>Select a river or watershed</option>');
+    $("#watershed_select").empty().append('<option value="" disabled selected>👉 Select your local river....</option>');
 
     const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];(way["waterway"="river"](around:5000,${lat},${lon});relation["waterway"="river"](around:5000,${lat},${lon}););out geom;`;
 
