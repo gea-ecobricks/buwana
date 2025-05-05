@@ -398,10 +398,7 @@ function fetchNearbyRivers(lat, lon) {
 
 /* WATERSHED MODAL  */
 
-
 function openAboutRiverBasins() {
-
-
     const modal = document.getElementById('form-modal-message');
     const modalBox = document.getElementById('modal-content-box');
 
@@ -416,12 +413,19 @@ function openAboutRiverBasins() {
 
     modalBox.innerHTML = `
         <div style="text-align: center;margin:auto;padding:10%;">
-            <div class="bioregions-top" style="width:250px;height:60px;"></div>
-            <h1 data-lang-id="013-watershed-title">💦 Watersheds</h1>
-            <p data-lang-id="014-watershed-description">A watershed is an area defined by the drainage of  rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
+            <div class="bioregions-top" style="width:300px;height:75px;"></div>
+            <h2 data-lang-id="013-watershed-title">Watersheds</h2>
+            <p data-lang-id="014-watershed-description">A watershed is an area defined by the drainage of rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
+            <h2>💦</h2>
         </div>
     `;
+
+    // ✅ Translate the newly injected modal content
+    if (window.currentLanguage) {
+        switchLanguage(window.currentLanguage);
+    }
 }
+
 
 </script>
 
