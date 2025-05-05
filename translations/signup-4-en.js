@@ -19,6 +19,8 @@ const en_Page_Translations = {
     '011c-unknown': "I don't know",
     '011d-unseen': "I don't see my local river/stream",
     '011e-no-watershed': 'No watershed',
+    '011f-fetch-error': "Error fetching rivers",
+    '011b-no-rivers-found': "No rivers found near you. :-(",
 
 
     "011-non-political": "Yes!  We use <a href=\"#\" onclick=\"openAboutRiverBasins()\" class=\"underline-link\">watershed bioregions</a> as an alternative non-politcal, grounded way to localize our users.",
