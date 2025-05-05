@@ -59,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_update->bind_param('sissdsi', $continent_code, $country_id, $location_full, $latitude, $longitude, $watershed_select, $buwana_id);
         if ($stmt_update->execute()) {
             $stmt_update->close();
-            $response['success'] = true;
-            $response['redirect'] = "signup-5.php?id=" . urlencode($buwana_id);
+            header("Location: signup-5.php?id=" . urlencode($buwana_id));
+            exit();
         } else {
             echo json_encode(['success' => false, 'error' => 'db_update_failed']);
             exit();
