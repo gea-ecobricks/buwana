@@ -428,7 +428,7 @@ function fetchNearbyRivers(lat, lon) {
 //         console.log('Longitude:', $('#lon').val());
 //         // Additional submit handling if needed
 //     });
-// });
+});
 
 
 function openAboutRiverBasins() {
