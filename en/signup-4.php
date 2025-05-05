@@ -413,10 +413,39 @@ function openAboutRiverBasins() {
 
     modalBox.innerHTML = `
         <div style="text-align: center;margin:auto;padding:10%;">
-            <div class="bioregions-top" style="width:300px;height:75px;"></div>
+            <div class="bioregions-top" style="width:375px;height:155px;"></div>
             <h2 data-lang-id="013-watershed-title">Watersheds</h2>
             <p data-lang-id="014-watershed-description">A watershed is an area defined by the drainage of rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
             <h2>💦</h2>
+        </div>
+    `;
+
+    // ✅ Translate the newly injected modal content
+    if (window.currentLanguage) {
+        switchLanguage(window.currentLanguage);
+    }
+}
+
+
+function openAboutOSM() {
+    const modal = document.getElementById('form-modal-message');
+    const modalBox = document.getElementById('modal-content-box');
+
+    modal.style.display = 'flex';
+    modalBox.style.flexFlow = 'column';
+    document.getElementById('page-content')?.classList.add('blurred');
+    document.getElementById('footer-full')?.classList.add('blurred');
+    document.body.classList.add('modal-open');
+
+    modalBox.style.maxHeight = '80vh';
+    modalBox.style.overflowY = 'auto';
+
+    modalBox.innerHTML = `
+        <div style="text-align: center;margin:auto;padding:10%;">
+
+            <h2">OpenStreetMap.org</h2>
+            <p data-lang-id="015-oss-description">We make a point of not using Google maps and instead use OpenStreetMap (a foundation not a for-profit corporation) for localizing users.  OpenStreetMap is built by a community of mappers that contribute and maintain data about roads, rivers, trails, and much more, all over the world. OpenStreetMap is open-data and open-source: anyone is free to use it for any purpose as long as you credit OpenStreetMap and its contributors.</p>
+            <p href="https://www.openstreetmap.org/about" target=_blank">↗ openstreetmap.org/about</p>
         </div>
     `;
 
