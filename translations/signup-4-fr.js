@@ -14,7 +14,6 @@ const fr_Page_Translations = {
     "010-select-your-river": "👉 Sélectionnez votre rivière locale...",
 
     "011-watershed-select": "Dans quel bassin/réseau hydrographique votre eau locale s’écoule-t-elle ?",
-    "011b-select-river": "👉 Sélectionnez votre rivière locale...",
     "011c-unknown": "Je ne sais pas",
     "011d-unseen": "Je ne vois pas ma rivière/ruisseau local(e)",
     "011e-no-watershed": "Aucun bassin versant",
