@@ -48,26 +48,6 @@
 
 	<!--FOOTER ENDS-->
 
-
-
-    <!-- Translation variable files for the languageSwitcher
-    <script src="../translations/core-texts-en.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/core-texts-fr.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/core-texts-id.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/core-texts-es.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/core-texts-ar.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/core-texts-de.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/core-texts-zh.js?v=<?php echo ($version); ;?>"></script>
-
-    <script src="../translations/<?php echo ($page); ;?>-en.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/<?php echo ($page); ;?>-fr.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/<?php echo ($page); ;?>-id.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/<?php echo ($page); ;?>-es.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/<?php echo ($page); ;?>-cn.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/<?php echo ($page); ;?>-ar.js?v=<?php echo ($version); ;?>"></script>
-    <script src="../translations/<?php echo ($page); ;?>-de.js?v=<?php echo ($version); ;?>"></script>-->
-
-
 <script>
   const lang = '<?php echo $lang; ?>';
   const page = '<?php echo $page; ?>';

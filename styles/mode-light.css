@@ -566,4 +566,9 @@ background: url(../webps/brikchain-450px.webp) no-repeat center;
 }
 
 
+.earthen-subs-top {
+    background: url(../svgs/earthen-subscribe-top-day.svg) no-repeat center;
+    background-size: contain;
+}
+
 /* Light mode pastel colors */

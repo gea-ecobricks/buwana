@@ -16,5 +16,8 @@ const en_Page_Translations = {
     "011-non-political": "Yes!  We use <a href=\"#\" onclick=\"showModalInfo('watershed', '<?php echo $lang; ?>')\" class=\"underline-link\">watershed bioregions</a> as an alternative non-politcal, grounded way to localize our users.",
     "012-next-button": "Next ➡",
 
+    "013-watershed-title": "💦 Watersheds",
+    "014-watershed-description": "A watershed is an area defined by the drainage of  rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.",
+
 
 };

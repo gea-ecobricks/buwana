@@ -57,7 +57,7 @@ function switchLanguage(langCode) {
             } else if (element.tagName.toLowerCase() === 'img') {
                 element.alt = translation;
             } else {
-                element.textContent = translation;
+                element.innerHTML = translation;
             }
         }
     });

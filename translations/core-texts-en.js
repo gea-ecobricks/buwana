@@ -40,11 +40,10 @@ const en_Translations = {
     "earthen-title": "Earthen Newsletter",
     "earthen-text": "Started in 2016 in the land of the Igorot people, Earthen is our bi-monthly newsletter for the global for-Earth movement. We share the latest news from the world of regenerative technology and philosophy: earth building, ecobricks, GoBrik announcements and GEA news. Free with an option for a contributive subscription.",
 
-    "ecobrick-title": "The Term",
-    "ecobrick-text": "In 2016, plastic transition leaders around the world agreed to use the non-hyphenated, non-capitalized term 'ecobrick' as the consistent, standardized term of reference in the guidebook and their materials. In this way, ecobrickers around the world would be able to refer with one word to the same concept, and web searches and hashtags would accelerate global dissemination. See wikipedia.org/ecobricks for the full history.",
+    "3000-ecobrick-title": "The Term",
+    "3001-ecobrick-text": "In 2016, plastic transition leaders around the world agreed to use the non-hyphenated, non-capitalized term 'ecobrick' as the consistent, standardized term of reference in the guidebook and their materials. In this way, ecobrickers around the world would be able to refer with one word to the same concept, and web searches and hashtags would accelerate global dissemination. See wikipedia.org/ecobricks for the full history.",
 
-    "watershed-title": "Watersheds",
-    "watershed-text": "A watershed is an area of land where all the water from rain, melting snow, or ice converges to a single point, typically a river, lake, or ocean. These basins are a natural boundary that captures and channels precipitation through a network of rivers, streams, and underground aquifers, eventually directing the water to a common outlet. Watersheds play a crucial ecological role and provide water for human use. The health and management of watersheds are vital for ecological vitality.",
+
 
 
     "an-ecobrick-title": "Ecobrick",

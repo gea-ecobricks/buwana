@@ -702,11 +702,16 @@ background: url(../webps/brikchain-450px.webp) no-repeat center;
 
 
 .bioregions-top {
-    background: url(../svgs/bioregions-top-day.svg) no-repeat center;
+    background: url(../webps/bioregion-top-day.webp) no-repeat center;
     background-size: contain;
 }
 
 .marine-animals-top {
     background: url(../svgs/marine-animals-top.svg) no-repeat center;
+    background-size: contain;
+}
+
+.earthen-subs-top {
+    background: url(../svgs/earthen-subscribe-top-day.svg) no-repeat center;
     background-size: contain;
 }
