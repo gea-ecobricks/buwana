@@ -150,7 +150,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
                 <!-- Kick-Ass Submit Button -->
                 <div id="submit-section" style="display:none;" class="submit-button-wrapper">
                     <p style="margin-bottom:25px;" data-lang-id="011-non-political">
-                        Yes!  We use <a href="#" onclick="showModalInfo('watershed', '<?php echo $lang; ?>')" class="underline-link">watershed bioregions</a> as an alternative non-politcal, grounded way to localize our users.
+                        Yes!  We use <a href="#" onclick="openAboutRiverBasins()" class="underline-link">watershed bioregions</a> as an alternative non-politcal, grounded way to localize our users.
                     </p>
 
                     <button type="submit" id="submit-button" class="kick-ass-submit">
@@ -415,12 +415,14 @@ function openAboutRiverBasins() {
     modalBox.style.overflowY = 'auto';
 
     modalBox.innerHTML = `
-        <div style="text-align: center;">
+        <div style="text-align: center;margin:auto;padding:10%;">
             <div class="top-page-image bioregions-top"></div>
             <h1 data-lang-id="013-watershed-title">💦 Watersheds</h1>
-        </div>
+
 
         <p data-lang-id="014-watershed-description">A watershed is an area defined by the drainage of  rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
+
+        </div>
     `;
 }
 
