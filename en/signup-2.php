@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.777';
+$version = '0.7771';
 $page = 'signup-2';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -167,9 +167,8 @@ https://github.com/gea-ecobricks/buwana/-->
                  <!-- Human Check -->
                  <div class="form-item float-label-group" id="human-check-section" style="display: none;margin-top:15px;margin-bottom:15px;padding-bottom:5px;">
                        <input type="text" id="human_check" name="human_check" required placeholder=" " />
-                       <label for="human_check" data-lang-id="011-prove-human">Type the word "ecobrick"...</label>
-                       <p class="form-caption"><span data-lang-id="012-human-test">This is a little test to see if you're human!</span>
-
+                       <label for="human_check" data-lang-id="011-human-check">Type the word "ecobrick"...</label>
+                       <p class="form-caption"><span data-lang-id="012-prove-human">This is a little test to see if you're human!</span>
                  <span data-lang-id="013-fun-fact">🤓 Fun fact: </span>
                  <a href="#" onclick="openAboutKeyWord()" class="underline-link" data-lang-id="000-ecobrick-low">ecobrick</a>
                  <span data-lang-id="014-is-spelled"> is spelled without a space, capital or hyphen!</span>
@@ -189,7 +188,7 @@ https://github.com/gea-ecobricks/buwana/-->
              <!-- Kick-Ass Submit Button -->
              <div id="submit-section" style="display:none;" class="submit-button-wrapper">
                <button type="submit" id="submit-button" class="kick-ass-submit disabled" title="Be sure you wrote ecobrick correctly!">
-                 <span id="submit-button-text" data-lang-id="015-register-button">Register ➡</span>
+                 <span id="submit-button-text" data-lang-id="016-register-button">Register ➡</span>
                  <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                </button>
              </div>
