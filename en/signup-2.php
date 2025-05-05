@@ -487,7 +487,7 @@ function openAboutKeyWord() {
     modalBox.style.overflowY = 'auto';
 
     modalBox.innerHTML = `
-        <div style="text-align: center;">
+        <div style="text-align: center;margin:auto;padding:10%;">
             <h2 data-lang-id="3000-ecobrick-title">"Ecobrick"</h2>
 
 
