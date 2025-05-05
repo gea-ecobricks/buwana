@@ -320,7 +320,7 @@ max-height: 200px;
 </div>
 
 <div class="menu-page-item">
-  <a href="javascript:void(0);" onclick="openAboutBuwanaModal()" data-lang-id="1000-about-buwana">
+  <a href="javascript:void(0);" onclick="openAboutBuwana()" data-lang-id="1000-about-buwana">
     About Buwana
   </a>
   <span class="status-circle" style="background-color: RED;" title="About the Buwana Project"></span>
