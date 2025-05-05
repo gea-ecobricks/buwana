@@ -21,10 +21,10 @@
     display: none;
     position: absolute;
     top: 30%;  /* Center vertically in the input field */
-    left: 11px; /* Distance from the right edge of the input field */
+    left: 20px; /* Distance from the right edge of the input field */
     transform: translateY(-50%); /* Ensures the spinner is exactly centered vertically */
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border: 4px solid rgba(0,0,0,0.1);
     border-top: 4px solid var(--emblem-pink);
     border-radius: 50%;
@@ -35,7 +35,7 @@
     display: block;
     position: absolute;
     top: 30%;  /* Center vertically in the input field */
-    left: 16px; /* Distance from the right edge of the input field */
+    left: 20px; /* Distance from the right edge of the input field */
     transform: translateY(-50%); /* Ensures the spinner is exactly centered vertically */
     width: 15px;
     height: 0px;
