@@ -171,7 +171,7 @@ https://github.com/gea-ecobricks/buwana/-->
                        <p class="form-caption"><span data-lang-id="012-human-test">This is a little test to see if you're human!</span>
 
                  <span data-lang-id="013-fun-fact">🤓 Fun fact: </span>
-                 <a href="#" onclick="openAboutEcobricks()" class="underline-link" data-lang-id="000-ecobrick-low">ecobrick</a>
+                 <a href="#" onclick="openAboutKeyWord()" class="underline-link" data-lang-id="000-ecobrick-low">ecobrick</a>
                  <span data-lang-id="014-is-spelled"> is spelled without a space, capital or hyphen!</span>
                </p>
            </div>
@@ -471,7 +471,7 @@ document.getElementById('user-signup-form').addEventListener('submit', function(
 /* MODALS  */
 
 
-function openAboutEcobricks() {
+function openAboutKeyWord() {
 
 
     const modal = document.getElementById('form-modal-message');
@@ -488,10 +488,11 @@ function openAboutEcobricks() {
 
     modalBox.innerHTML = `
         <div style="text-align: center;">
-            <h1 data-lang-id="3000-ecobrick-title">The Term Ecobrick</h1>
-        </div>
+            <h2 data-lang-id="3000-ecobrick-title">"Ecobrick"</h2>
+
 
         <p data-lang-id="3001-ecobrick-text">An ecobrick is a PET bottle packed solid with used plastic to the standards of plastic sequestration in order to make a reusable building block. It prevents plastic from degrading into toxins and microplastics, and turns it into a useful, durable building material.</p>
+        </div>
     `;
 }
 
