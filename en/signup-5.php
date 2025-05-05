@@ -134,7 +134,16 @@ if (!empty($credential_key)) {
 <div id="splash-bar"></div>
 
 <!-- PAGE CONTENT -->
-<div id="top-page-image" class="credentials-banner top-page-image"></div>
+   <?php
+   $page_key = str_replace('-', '_', $page); // e.g. 'signup-1' → 'signup_1'
+   ?>
+
+   <div id="top-page-image"
+        class="top-page-image"
+        data-light-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_light']) ?>"
+        data-dark-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_dark']) ?>">
+   </div>
+
 
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
@@ -261,6 +270,19 @@ function enhanceNewsletterInfo() {
 enhanceNewsletterInfo();
 
 
+
+
+function openAboutEarthen() {
+    const content = `
+        <div style="text-align: center;margin:auto;padding:10%;">
+            <div class="bioregions-top" style="width:375px;height:155px;margin:margin:auto auto -10px auto"></div>
+            <h2 data-lang-id="013-watershed-title">Watersheds</h2>
+            <p data-lang-id="014-watershed-description">A watershed is an area defined by the drainage of rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
+            <h2>💦</h2>
+        </div>
+    `;
+    openModal(content);
+}
 </script>
 
 <?php require_once ("../scripts/app_modals.php");?>

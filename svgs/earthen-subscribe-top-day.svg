@@ -24,14 +24,14 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.1785767"
-     inkscape:cx="368.24079"
-     inkscape:cy="473.87668"
+     inkscape:cx="368.24078"
+     inkscape:cy="473.87667"
      inkscape:window-width="2256"
      inkscape:window-height="1427"
      inkscape:window-x="0"
      inkscape:window-y="40"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g44" />
+     inkscape:current-layer="g19" />
   <defs
      id="defs8">
     <linearGradient
@@ -136,7 +136,8 @@
        clip-path="url(#clipPath14)"
        fill="#32c63d"
        opacity=".86056"
-       id="g14">
+       id="g14"
+       style="opacity:1">
       <path
          d="m80.205 119.5c0.78266-2.441 0.81359-1.1754 0.65624-0.19034 0.77965-1.7561-0.32288 1.803 0.76204-0.35445-0.75132 2.4271 1.2715-2.1531 0.33244 0.5636 1.0464-1.8257 1.165-2.0814 0.37675 0.0521 0.44508-0.57094 1.0677-1.6394 0.39586 0.51681 0.64173-0.43065 0.47837-0.97874 0.49353 0.0549 0.88314-0.46552-0.51607 1.2081 0.83446-0.22535-0.0797 0.75977 0.3853 0.10695-0.25842 1.6837 0.81951-1.2176 1.1522-2.6355 0.7097-0.38257 1.3613-2.2495-0.09093 1.4581 1.1948-0.9864 0.05491 0.32522-0.14729 1.5382-0.22208 2.224"
          fill="#32c63d"
