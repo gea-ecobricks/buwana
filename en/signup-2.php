@@ -171,7 +171,7 @@ https://github.com/gea-ecobricks/buwana/-->
                        <p class="form-caption"><span data-lang-id="012-human-test">This is a little test to see if you're human!</span>
 
                  <span data-lang-id="013-fun-fact">🤓 Fun fact: </span>
-                 <a href="#" onclick="showModalInfo('ecobrick', '<?php echo $lang; ?>')" class="underline-link" data-lang-id="000-ecobrick-low">ecobrick</a>
+                 <a href="#" onclick="openAboutEcobricks()" class="underline-link" data-lang-id="000-ecobrick-low">ecobrick</a>
                  <span data-lang-id="014-is-spelled"> is spelled without a space, capital or hyphen!</span>
                </p>
            </div>
