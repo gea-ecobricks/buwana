@@ -89,7 +89,7 @@ function loadTranslationScripts(lang, page, callback) {
 
     // Buwana-specific terms and policies
     const buwanaScript = document.createElement('script');
-    buwanaScript.src = `../translations/${lang}-buwana-terms.js?v=${version}`;
+    buwanaScript.src = `../translations/buwana-terms-${lang}.js?v=${version}`;
     buwanaScript.onload = scriptLoaded;
     document.head.appendChild(buwanaScript);
 }
