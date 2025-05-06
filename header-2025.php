@@ -105,6 +105,9 @@
 
 <script>
   const buwanaClientAppName = <?= json_encode($app_info['app_display_name']) ?>;
+  const appName = window.buwanaClientAppName || "this app";
+  translated = translated.replace('{{appName}}', appName);
+
 
 </script>
 
@@ -309,6 +312,11 @@ max-height: 200px;
 
       </a>
       <span class="status-circle" style="background-color: blue;" title="Under development"></span>
+
+      <div class="menu-page-item">
+        <a href="javascript:void(0);" onclick="openAboutEarthen()" data-lang-id="1000-about-earthen">
+          About Earthen
+        </a>
     </div>-->
 
 <div class="menu-page-item">
