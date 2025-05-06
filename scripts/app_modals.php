@@ -245,11 +245,17 @@ function openAboutBuwana() {
 }
 
 function openBuwanaPrivacy() {
+
+  // Replace the placeholder with the actual app name
+  translated = translated.replace('{{appName}}', buwanaClientAppName);
+
+
+
     const content = `
         <div style="text-align: center;margin:auto;padding:10%;">
             <h2 data-lang-id="3000-buwana-privacy-title">Buwana Privacy Policy 🔐</h2>
-            <p data-lang-id="3000-buwana-privacy-full">A watershed is an area defined by the drainage of rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
-            <h2>💦</h2>
+            <p data-lang-id="3000-buwana-privacy-full" style="text-align-left;">A watershed is an area defined by the drainage of rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
+            <h2>🍃</h2>
         </div>
     `;
     openModal(content);
