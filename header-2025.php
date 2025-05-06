@@ -105,8 +105,6 @@
 
 <script>
   const buwanaClientAppName = <?= json_encode($app_info['app_display_name']) ?>;
-  const appName = window.buwanaClientAppName || "this app";
-  translated = translated.replace('{{appName}}', appName);
 
 </script>
 
