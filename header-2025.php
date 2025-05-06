@@ -103,11 +103,7 @@
 <script src="../scripts/site-search.js?v=<?php echo ($version); ;?>" defer></script>
 
 
-<script>
-  const buwanaClientAppName = <?= json_encode($app_info['app_display_name']) ?>;
-  const appName = window.buwanaClientAppName || "this app";
-  translated = translated.replace('{{appName}}', appName);
-</script>
+
 
 
 <!-- Inline styling to lay out the most important part of the page for first load view-->

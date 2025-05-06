@@ -249,7 +249,7 @@ function openAboutBuwana() {
 function openAboutEarthen() {
     const content = `
         <div style="text-align: center;margin:auto;padding:10%;">
-            <div class="about-earthen-top" style="width:375px;height:155px;margin:margin:auto auto -10px auto"></div>
+            <div class="about-earthen-top" style="width:150px;height:150px;margin:margin:auto auto -10px auto"><img src="../svgs/earthen-newsletter-logo.svg"</div>
             <h2 data-lang-id="3000-about-earthen-title">About Earthen</h2>
             <p data-lang-id="3000-about-earthen-full"></p>
             <h2>💦</h2>
@@ -259,7 +259,14 @@ function openAboutEarthen() {
 }
 
 
+
+
+
 function openBuwanaPrivacy() {
+ const buwanaClientAppName = <?= json_encode($app_info['app_display_name']) ?>;
+  const appName = window.buwanaClientAppName || "this app";
+  translated = translated.replace('{{appName}}', appName);
+
   const appName = window.buwanaClientAppName || "this app";
   let translated = translations['3000-buwana-privacy-full'] || '';
   translated = translated.replace('{{appName}}', appName);
