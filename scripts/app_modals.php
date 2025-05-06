@@ -227,11 +227,10 @@ function openBuwanaPrivacy() {
 
 
   function openTermsModal() {
-    const content = `
-        <div style="text-align: center;margin:auto;padding:10%;">
-         <?= json_encode($app_info['app_terms_txt']) ?>
-        </div>
-      `;
+  const terms = <?= json_encode($app_info['app_terms_txt']) ?>;
+
+    const content = `<div style="text-align: center;margin:auto;padding:10%;">${terms}</div>`;
+
       openModal(content);
     }
 

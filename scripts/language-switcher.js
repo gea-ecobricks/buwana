@@ -38,12 +38,16 @@ function switchLanguage(langCode) {
             return;
     }
 
+
     // RTL Support
     const rtlLanguages = ['ar', 'he', 'fa', 'ur'];
     const formContainer = document.getElementById('form-submission-box');
     if (formContainer) {
         formContainer.setAttribute('dir', rtlLanguages.includes(langCode) ? 'rtl' : 'ltr');
     }
+
+    window.translations = currentTranslations; // ✅ Make globally accessible
+
 
     const elements = document.querySelectorAll('[data-lang-id]');
     elements.forEach(element => {

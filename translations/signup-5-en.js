@@ -6,7 +6,7 @@ TEXT TRANSLATION SNIPPETS FOR signup-4.php
 const en_Page_Translations = {
     "001-select-subs": "Select Earthen Subscriptions",
     "002-sub-subtitle": "📬 We share news by email.",
-    "003-get-your": "Our <a href=\"#\" onclick=\"openAboutEarthen\" class=\"underline-link\"> Earthen newsletter</a> was first sent 10 years ago from the land of the Igorot people.  Its still free, but now we have different channels.  Later you can upgrade to a paid subscription to support the movement.</span>" +
+    "003-get-your": "Our <a href=\"#\" onclick=\"openAboutEarthen\" class=\"underline-link\"> Earthen newsletter</a> was first sent 10 years ago from the land of the Igorot people.  It is still free, but now we have different channels.  Later you can upgrade to a paid subscription to support the movement.</span>" +
         "            ",
     "004-later-upgrade": "Later you can upgrade to a paid subscription to support the movement.",
     "005-nice": "Nice! You're already subscribed to:",
