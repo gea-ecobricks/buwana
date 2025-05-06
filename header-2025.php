@@ -314,15 +314,19 @@ max-height: 200px;
     </div>-->
 
 <div class="menu-page-item">
-<a href="#" onclick="openTermsModal(); return false;"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-terms-of-use">Terms of Use</span></a>
+<a href="#" onclick="openTermsModal(); return false;"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="1000-terms-of-use">Terms of Use</span></a>
 
   <span class="status-circle" style="background-color: YELLOW;" title="Terms of Use"></span>
 </div>
 <div class="menu-page-item">
-<a href="#" onclick="openBuwanaPrivacy(); return false;" data-lang-id="1000-privacy-policy">Privacy Policy</a>
+<a href="#" onclick="openBuwanaPrivacy(); return false;" data-lang-id="1000-privacy-policy">Privacy</a>
 
   <span class="status-circle" style="background-color: ORANGE;" title="Privacy Policy"></span>
 </div>
+<div class="menu-page-item">
+  <a href="javascript:void(0);" onclick="openAboutEarthen()" data-lang-id="1000-about-earthen">
+    About Earthen
+  </a>
 
 <div class="menu-page-item">
   <a href="javascript:void(0);" onclick="openAboutBuwana()" data-lang-id="1000-about-buwana">
