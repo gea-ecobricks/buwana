@@ -255,11 +255,11 @@ function openAboutBuwana() {
 
 function openAboutEarthen() {
     const content = `
-        <div style="text-align: center;margin:auto;padding:10%;">
-            <div class="about-earthen-top" style="width:150px;height:150px;margin:margin:auto auto -10px auto"><img src="../svgs/earthen-newsletter-logo.svg"></div>
+        <div style="text-align:center; margin:auto; padding:10%;">
+            <div class="about-earthen-top" style="width:150px;height:150px;margin:auto auto -10px auto" alt="Earthen Newsletter Logo"><img src="../svgs/earthen-newsletter-logo.svg"></div>
             <h2 data-lang-id="3000-about-earthen-title">About Earthen</h2>
             <p data-lang-id="3000-about-earthen-full"></p>
-            <h2>🌍</h2>
+            <h2>🌳</h2>
         </div>
     `;
     openModal(content);
