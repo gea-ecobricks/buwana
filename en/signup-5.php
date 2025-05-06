@@ -148,10 +148,9 @@ if (!empty($credential_key)) {
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
         <div style="text-align:center;width:100%;margin:auto;">
-            <h2 data-lang-id="001-select-subs">Select Earthen Subscriptions</h2>
-            <h4 style="color:#748931;" data-lang-id="002-sub-subtitle">We share news by email.</h4>
-            <p><span  data-lang-id="003-get-your">Our <a href="#" onclick="openAboutEarthen" class="underline-link"> Earthen newsletter</a> was first sent 10 years ago from the land of the Igorot people.  Its still free, but now we have different channels.  Later you can upgrade to a paid subscription to support the movement.</span>
-            </p>
+            <h2 data-lang-id="001-select-subs"></h2>
+            <h4 style="color:#748931;" data-lang-id="002-sub-subtitle"></h4>
+            <p><span  data-lang-id="003-get-your"></p>
            <div id="subscribed" style="color:green;display:<?php echo $is_subscribed ? 'block' : 'none'; ?>;">
                 <?php if ($is_subscribed && !empty($earthen_subscriptions)): ?>
                     <p style="color:green;font-size:1em;">👍 <span data-lang-id="005-nice">Nice! You're already subscribed to:</span> <?php echo htmlspecialchars($earthen_subscriptions); ?>.  <span data-lang-id="006-choose"> Choose to add or remove subscriptions below:</span></p>
