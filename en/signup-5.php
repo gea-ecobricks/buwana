@@ -205,6 +205,9 @@ if (!empty($credential_key)) {
 <!-- FOOTER STARTS HERE -->
 <?php require_once ("../footer-2025.php"); ?>
 
+<?php require_once ("../scripts/app_modals.php");?>
+
+
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -264,7 +267,6 @@ enhanceNewsletterInfo();
 
 </script>
 
-<?php require_once ("../scripts/app_modals.php");?>
 
 
 </body>

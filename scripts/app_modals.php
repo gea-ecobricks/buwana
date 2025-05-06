@@ -208,7 +208,20 @@ function openAboutEarthen() {
 }
 
 
+function openBuwanaPrivacy() {
+  const appName = <?= json_encode($app_info['app_display_name']) ?>;
+  let translated = translations['3000-buwana-privacy-full'] || '';
+  translated = translated.replace('{{appName}}', appName);
 
+  const content = `
+    <div style="text-align: center;margin:auto;padding:10%;">
+      <h2>${translations['3000-buwana-privacy-title']}</h2>
+      ${translated}
+      <h2>💦</h2>
+    </div>
+  `;
+  openModal(content);
+}
 
 
 
