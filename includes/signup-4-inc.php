@@ -20,7 +20,7 @@
 .spinner {
     display: none;
     position: absolute;
-    top: 30%;  /* Center vertically in the input field */
+    top: 25%;  /* Center vertically in the input field */
     left: 20px; /* Distance from the right edge of the input field */
     transform: translateY(-50%); /* Ensures the spinner is exactly centered vertically */
     width: 20px;

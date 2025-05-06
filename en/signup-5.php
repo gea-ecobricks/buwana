@@ -130,8 +130,8 @@ if (!empty($credential_key)) {
 
 <?php require_once ("../includes/signup-5-inc.php");?>
 
-<div class="splash-title-block"></div>
-<div id="splash-bar"></div>
+<!--<div class="splash-title-block"></div>
+    <div id="splash-bar"></div>-->
 
 <!-- PAGE CONTENT -->
    <?php
