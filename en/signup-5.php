@@ -153,7 +153,7 @@ if (!empty($credential_key)) {
                     <p style="color:green;font-size:1em;">👍 <span data-lang-id="005-nice">Nice! You're already subscribed to:</span> <?php echo htmlspecialchars($earthen_subscriptions); ?>.  <span data-lang-id="006-choose"> Choose to add or remove subscriptions below:</span></p>
                 <?php endif; ?>
             </div>
-            <div id="not-subscribed" style="color:grey;display:<?php echo !$is_subscribed ? 'block' : 'none'; ?>;"><?php echo $credential_key; ?>.<span data-lang-id="007-later-upgrade"> is not yet subscribed to any Earthen newsletters yet.  All are free with upgrade options later.  Please select:</div>
+            <div id="not-subscribed" style="color:grey;display:<?php echo !$is_subscribed ? 'block' : 'none'; ?>;"><?php echo $credential_key; ?><span data-lang-id="007-later-upgrade"> is not yet subscribed to any Earthen newsletters.</div>
             <div id="earthen-server-error" class="form-field-error"></div>
 
             <!-- SIGNUP FORM -->
@@ -179,7 +179,7 @@ if (!empty($credential_key)) {
                     </button>
                 </div>
 
-            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms"><a href="#" onclick="openBuwanaTerms" class="underline-link" data-lang-id="1000-privacy-policy"></a>.</p>
+            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;"><span  data-lang-id="009-terms"></span><a href="#" onclick="openBuwanaTerms" class="underline-link" data-lang-id="1000-privacy-policy"></a>.</p>
 
             </form>
         </div>
