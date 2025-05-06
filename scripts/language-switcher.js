@@ -64,27 +64,34 @@ function switchLanguage(langCode) {
 }
 
 
-
 function loadTranslationScripts(lang, page, callback) {
-
+    const totalScripts = 3;
     let loadedScripts = 0;
 
     function scriptLoaded() {
         loadedScripts++;
-        if (loadedScripts === 2) {
-            callback(); // Both scripts loaded
+        if (loadedScripts === totalScripts) {
+            callback(); // All scripts loaded
         }
     }
 
+    // Core UI translations
     const coreScript = document.createElement('script');
     coreScript.src = `../translations/core-texts-${lang}.js?v=${version}`;
     coreScript.onload = scriptLoaded;
     document.head.appendChild(coreScript);
 
+    // Page-specific translations
     const pageScript = document.createElement('script');
     pageScript.src = `../translations/${page}-${lang}.js?v=${version}`;
     pageScript.onload = scriptLoaded;
     document.head.appendChild(pageScript);
+
+    // Buwana-specific terms and policies
+    const buwanaScript = document.createElement('script');
+    buwanaScript.src = `../translations/${lang}-buwana-terms.js?v=${version}`;
+    buwanaScript.onload = scriptLoaded;
+    document.head.appendChild(buwanaScript);
 }
 
 
