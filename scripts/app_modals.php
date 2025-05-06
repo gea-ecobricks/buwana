@@ -208,7 +208,7 @@ function openAboutEarthen() {
 }
 
 function openBuwanaPrivacy() {
-  const appName = <?= json_encode($app_info['app_display_name']) ?>;
+  const appName = <?= json_Termsencode($app_info['app_display_name']) ?>;
 
   if (!window.translations) {
     console.error("❌ No translations loaded.");

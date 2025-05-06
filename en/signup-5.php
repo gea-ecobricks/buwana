@@ -153,7 +153,7 @@ if (!empty($credential_key)) {
                     <p style="color:green;font-size:1em;">👍 <span data-lang-id="005-nice">Nice! You're already subscribed to:</span> <?php echo htmlspecialchars($earthen_subscriptions); ?>.  <span data-lang-id="006-choose"> Choose to add or remove subscriptions below:</span></p>
                 <?php endif; ?>
             </div>
-            <div id="not-subscribed" style="color:grey;display:<?php echo !$is_subscribed ? 'block' : 'none'; ?>;" data-lang-id="007-not-subscribed"><?php echo $credential_key; ?>.<span data-lang-id="004-later-upgrade"> not yet subscribed to any Earthen newsletters yet.  All are free with upgrade options later.  Please select:</div>
+            <div id="not-subscribed" style="color:grey;display:<?php echo !$is_subscribed ? 'block' : 'none'; ?>;"><?php echo $credential_key; ?>.<span data-lang-id="007-later-upgrade"> is not yet subscribed to any Earthen newsletters yet.  All are free with upgrade options later.  Please select:</div>
             <div id="earthen-server-error" class="form-field-error"></div>
 
             <!-- SIGNUP FORM -->
@@ -171,7 +171,7 @@ if (!empty($credential_key)) {
 
                      <!-- Kick-Ass Submit Button -->
                 <div id="submit-section" class="submit-button-wrapper">
-                   <p data-lang-id="008c-your-activation-complete-2" style="text-align:center;margin-top:35px;">Your Buwana account activation is almost complete!  We saved the best part for last.</p>
+                   <p data-lang-id="008-almost-done" style="text-align:center;margin-top:35px;">Your Buwana account activation is almost complete!</p>
 
                     <button type="submit" id="submit-button" class="kick-ass-submit">
                         <span id="submit-button-text" data-lang-id="015-next-button-x">Finalize ➡</span>
@@ -179,7 +179,7 @@ if (!empty($credential_key)) {
                     </button>
                 </div>
 
-            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="openBuwanaTerms" class="underline-link"> Terms of Service</a>.</p>
+            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms"><a href="#" onclick="openBuwanaTerms" class="underline-link" data-lang-id="1000-privacy-policy"></a>.</p>
 
             </form>
         </div>
