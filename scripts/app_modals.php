@@ -225,9 +225,7 @@ function openAboutBuwana() {
                  style="margin: 0 auto 10px auto; width: 220px; height: 50px; background-size: contain; background-repeat: no-repeat; background-position: center; text-align: center;">
             </div>
 
-            <p data-lang-id="3000-about-buwana-description">
-                <strong>Buwana</strong> is a regenerative alternative to corporate login systems, created to serve our global community with privacy, security, and principle. Rather than rely on closed-source platforms like Google or Facebook, Buwana provides an open, not-for-profit account system that enables secure access to our apps — including GoBrik, Ecobricks.org, Open Books, and the Brikcoin Wallet — while respecting user data and ecological values. Designed to hold community, geographical, and impact data, Buwana accounts are transferable across platforms and built for organizations committed to Earth service.
-            </p>
+            <p data-lang-id="3000-about-buwana-description"></p>
 
             <div style="text-align: center; margin-top: 20px; width: 100%;">
                 <a href="https://github.com/gea-ecobricks/buwana"
@@ -261,13 +259,8 @@ function openAboutEarthen() {
 
 
 
-
 function openBuwanaPrivacy() {
- const buwanaClientAppName = <?= json_encode($app_info['app_display_name']) ?>;
-  const appName = window.buwanaClientAppName || "this app";
-  translated = translated.replace('{{appName}}', appName);
-
-  const appName = window.buwanaClientAppName || "this app";
+  const appName = <?= json_encode($app_info['app_display_name']) ?>;
   let translated = translations['3000-buwana-privacy-full'] || '';
   translated = translated.replace('{{appName}}', appName);
 
