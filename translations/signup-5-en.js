@@ -5,7 +5,7 @@ TEXT TRANSLATION SNIPPETS FOR signup-4.php
 
 const en_Page_Translations = {
     "001-select-subs": "Select Earthen Subscriptions",
-    "002-sub-subtitle": "We share news by email.",
+    "002-sub-subtitle": "📬 We share news by email.",
     "003-get-your": "Get our free Earthen newsletter sent to ",
     "004-later-upgrade": "Later you can upgrade to a paid subscription to support the movement.",
     "005-nice": "Nice! You're already subscribed to:",

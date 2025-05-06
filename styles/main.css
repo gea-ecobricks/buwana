@@ -1120,7 +1120,7 @@ label {
     max-width: 600px;
     padding: 10px;
     position: relative;
-    padding-top: 100px;
+    padding-top: 115px;
     padding-bottom: 20px;
   }
 }
@@ -1393,7 +1393,7 @@ z-index:5;
 	}
 
       .top-page-image {
-       height: 115px;
+       height: 130px;
        margin-top:25px;
 
       }
