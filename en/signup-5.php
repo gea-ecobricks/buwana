@@ -150,14 +150,14 @@ if (!empty($credential_key)) {
         <div style="text-align:center;width:100%;margin:auto;">
             <h2 data-lang-id="001-select-subs">Select Earthen Subscriptions</h2>
             <h4 style="color:#748931;" data-lang-id="002-sub-subtitle">We share news by email.</h4>
-            <p><span  data-lang-id="003-get-your">Get our free Earthen newsletter sent to </span><?php echo $credential_key; ?>.<span data-lang-id="004-later-upgrade">  Later you can upgrade to a paid subscription to support the movement.</span>
+            <p><span  data-lang-id="003-get-your">Our <a href="#" onclick="openAboutEarthen" class="underline-link"> Earthen newsletter</a> was first sent 10 years ago from the land of the Igorot people.  Its still free, but now we have different channels.  Later you can upgrade to a paid subscription to support the movement.</span>
             </p>
            <div id="subscribed" style="color:green;display:<?php echo $is_subscribed ? 'block' : 'none'; ?>;">
                 <?php if ($is_subscribed && !empty($earthen_subscriptions)): ?>
                     <p style="color:green;font-size:1em;">👍 <span data-lang-id="005-nice">Nice! You're already subscribed to:</span> <?php echo htmlspecialchars($earthen_subscriptions); ?>.  <span data-lang-id="006-choose"> Choose to add or remove subscriptions below:</span></p>
                 <?php endif; ?>
             </div>
-            <div id="not-subscribed" style="color:grey;display:<?php echo !$is_subscribed ? 'block' : 'none'; ?>;" data-lang-id="007-not-subscribed">You're not yet subscribed to any Earthen newsletters yet.  All are free with upgrade options later.  Please select:</div>
+            <div id="not-subscribed" style="color:grey;display:<?php echo !$is_subscribed ? 'block' : 'none'; ?>;" data-lang-id="007-not-subscribed"><?php echo $credential_key; ?>.<span data-lang-id="004-later-upgrade"> not yet subscribed to any Earthen newsletters yet.  All are free with upgrade options later.  Please select:</div>
             <div id="earthen-server-error" class="form-field-error"></div>
 
 
@@ -187,7 +187,7 @@ if (!empty($credential_key)) {
                     </button>
                 </div>
 
-            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="showModalInfo('terms', '<?php echo $lang; ?>')" class="underline-link"> Terms of Service</a>.</p>
+            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;" data-lang-id="009-terms">Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href="#" onclick="openBuwanaTerms" class="underline-link"> Terms of Service</a>.</p>
 
             </form>
         </div>
@@ -196,7 +196,7 @@ if (!empty($credential_key)) {
 
 
 
-<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
     <p><a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back one</a></p>
 </div>
 
