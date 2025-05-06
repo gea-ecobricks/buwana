@@ -130,9 +130,6 @@ if (!empty($credential_key)) {
 
 <?php require_once ("../includes/signup-5-inc.php");?>
 
-<!--<div class="splash-title-block"></div>
-    <div id="splash-bar"></div>-->
-
 <!-- PAGE CONTENT -->
    <?php
    $page_key = str_replace('-', '_', $page); // e.g. 'signup-1' → 'signup_1'
@@ -159,10 +156,6 @@ if (!empty($credential_key)) {
             <div id="not-subscribed" style="color:grey;display:<?php echo !$is_subscribed ? 'block' : 'none'; ?>;" data-lang-id="007-not-subscribed"><?php echo $credential_key; ?>.<span data-lang-id="004-later-upgrade"> not yet subscribed to any Earthen newsletters yet.  All are free with upgrade options later.  Please select:</div>
             <div id="earthen-server-error" class="form-field-error"></div>
 
-
-            <!-- SLECT SUBSCRIPTIONS FORM
-            Last Step <?php echo $first_name; ?>...-->
-                   <!-- SIGNUP FORM -->
             <!-- SIGNUP FORM -->
             <form id="user-signup-form" method="post" action="signup-5_process.php" style="margin-top:30px;">
                  <input type="hidden" name="buwana_id" value="<?php echo htmlspecialchars($buwana_id); ?>">
@@ -205,7 +198,7 @@ if (!empty($credential_key)) {
 <!-- FOOTER STARTS HERE -->
 <?php require_once ("../footer-2025.php"); ?>
 
-<?php require_once ("../scripts/app_modals.php");?>
+<?php require_once ("../scripts/app_modals.php"); ?>
 
 
 <script>
