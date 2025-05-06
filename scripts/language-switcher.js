@@ -13,30 +13,33 @@ function switchLanguage(langCode) {
     let currentTranslations = {};
     switch (langCode) {
         case 'en':
-            currentTranslations = {...en_Translations, ...en_Page_Translations};
+            currentTranslations = { ...en_Translations, ...en_Page_Translations, ...en_buwana_terms };
             break;
         case 'fr':
-            currentTranslations = {...fr_Translations, ...fr_Page_Translations};
+            currentTranslations = { ...fr_Translations, ...fr_Page_Translations, ...fr_buwana_terms };
             break;
         case 'es':
-            currentTranslations = {...es_Translations, ...es_Page_Translations};
+            currentTranslations = { ...es_Translations, ...es_Page_Translations, ...es_buwana_terms };
             break;
         case 'id':
-            currentTranslations = {...id_Translations, ...id_Page_Translations};
+            currentTranslations = { ...id_Translations, ...id_Page_Translations, ...id_buwana_terms };
             break;
         case 'ar':
-            currentTranslations = {...ar_Translations, ...ar_Page_Translations};
+            currentTranslations = { ...ar_Translations, ...ar_Page_Translations, ...ar_buwana_terms };
             break;
         case 'zh':
-            currentTranslations = {...zh_Translations, ...zh_Page_Translations};
+            currentTranslations = { ...zh_Translations, ...zh_Page_Translations, ...zh_buwana_terms };
             break;
         case 'de':
-            currentTranslations = {...de_Translations, ...de_Page_Translations};
+            currentTranslations = { ...de_Translations, ...de_Page_Translations, ...de_buwana_terms };
             break;
         default:
             console.warn(`No translations found for language: ${langCode}`);
             return;
     }
+
+    window.translations = currentTranslations; // ✅ Make globally accessible
+
 
 
     // RTL Support
@@ -45,8 +48,6 @@ function switchLanguage(langCode) {
     if (formContainer) {
         formContainer.setAttribute('dir', rtlLanguages.includes(langCode) ? 'rtl' : 'ltr');
     }
-
-    window.translations = currentTranslations; // ✅ Make globally accessible
 
 
     const elements = document.querySelectorAll('[data-lang-id]');
