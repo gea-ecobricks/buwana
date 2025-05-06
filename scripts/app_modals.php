@@ -246,21 +246,33 @@ function openAboutBuwana() {
 
 
 
-
-
-function openBuwanaPrivacy() {
-
-  // Replace the placeholder with the actual app name
-  translated = translated.replace('{{appName}}', buwanaClientAppName);
-
+function openAboutEarthen() {
     const content = `
         <div style="text-align: center;margin:auto;padding:10%;">
-            <h2 data-lang-id="3000-buwana-privacy-title"></h2>
-            <p data-lang-id="3000-buwana-privacy-full" style="text-align-left;"></p>
-            <h2>🍃</h2>
+            <div class="about-earthen-top" style="width:375px;height:155px;margin:margin:auto auto -10px auto"></div>
+            <h2 data-lang-id="3000-about-earthen-title">About Earthen</h2>
+            <p data-lang-id="3000-about-earthen-full"></p>
+            <h2>💦</h2>
         </div>
     `;
     openModal(content);
 }
+
+
+function openBuwanaPrivacy() {
+  const appName = window.buwanaClientAppName || "this app";
+  let translated = translations['3000-buwana-privacy-full'] || '';
+  translated = translated.replace('{{appName}}', appName);
+
+  const content = `
+    <div style="text-align: center;margin:auto;padding:10%;">
+      <h2>${translations['3000-buwana-privacy-title']}</h2>
+      ${translated}
+      <h2>💦</h2>
+    </div>
+  `;
+  openModal(content);
+}
+
 
     </script>

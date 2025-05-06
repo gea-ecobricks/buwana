@@ -107,8 +107,6 @@
   const buwanaClientAppName = <?= json_encode($app_info['app_display_name']) ?>;
   const appName = window.buwanaClientAppName || "this app";
   translated = translated.replace('{{appName}}', appName);
-
-
 </script>
 
 
@@ -313,14 +311,10 @@ max-height: 200px;
       </a>
       <span class="status-circle" style="background-color: blue;" title="Under development"></span>
 
-      <div class="menu-page-item">
-        <a href="javascript:void(0);" onclick="openAboutEarthen()" data-lang-id="1000-about-earthen">
-          About Earthen
-        </a>
-    </div>-->
+      -->
 
 <div class="menu-page-item">
-<a href="#" onclick="openTermsModal(); return false;"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="1000-terms-of-use">Terms of Use</span></a>
+<a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span><span data-lang-id="1000-terms-of-use">Terms of Use</span></a>
 
   <span class="status-circle" style="background-color: YELLOW;" title="Terms of Use"></span>
 </div>
@@ -329,6 +323,13 @@ max-height: 200px;
 
   <span class="status-circle" style="background-color: ORANGE;" title="Privacy Policy"></span>
 </div>
+
+<div class="menu-page-item">
+        <a href="javascript:void(0);" onclick="openAboutEarthen()" data-lang-id="1000-about-earthen">
+          About Earthen
+        </a>
+    <span class="status-circle" style="background-color: blue;" title="Under development"></span>
+    </div>
 
 
 <div class="menu-page-item">
