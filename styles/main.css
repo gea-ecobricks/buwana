@@ -1394,7 +1394,7 @@ z-index:5;
 
       .top-page-image {
        height: 115px;
-       margin-top:70px;
+       margin-top:25px;
 
       }
 
@@ -1405,9 +1405,7 @@ z-index:5;
         margin: 10px 0 5px;
         }
 
-  .landing-page-form {
-/*height:100vh;*/
-padding-top:50px;
+
 }
 
 }

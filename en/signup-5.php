@@ -149,8 +149,8 @@ if (!empty($credential_key)) {
     <div class="form-container">
         <div style="text-align:center;width:100%;margin:auto;">
             <h2 data-lang-id="001-select-subs">Select Earthen Subscriptions</h2>
-            <h4 style="color:#748931;" data-lang-id="002-sub-subtitle">We share news and notifications by email.</h4>
-            <p><span  data-lang-id="003-get-your">Get our free Earthen newsletter and GoBrik notifications sent to </span><?php echo $credential_key; ?>.<span data-lang-id="004-later-upgrade">  Later you can upgrade to a paid subscription to support the movement.</span>
+            <h4 style="color:#748931;" data-lang-id="002-sub-subtitle">We share news by email.</h4>
+            <p><span  data-lang-id="003-get-your">Get our free Earthen newsletter sent to </span><?php echo $credential_key; ?>.<span data-lang-id="004-later-upgrade">  Later you can upgrade to a paid subscription to support the movement.</span>
             </p>
            <div id="subscribed" style="color:green;display:<?php echo $is_subscribed ? 'block' : 'none'; ?>;">
                 <?php if ($is_subscribed && !empty($earthen_subscriptions)): ?>
