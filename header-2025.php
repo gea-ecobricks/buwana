@@ -309,12 +309,12 @@ max-height: 200px;
     </div>-->
 
 <div class="menu-page-item">
-<a href="#" onclick="openTermsModal(); return false;" data-lang-id="1000-terms-of-use">Terms of Use</a>
+<a href="#" onclick="openTermsModal(); return false;"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-terms-of-use">Terms of Use</span></a>
 
   <span class="status-circle" style="background-color: YELLOW;" title="Terms of Use"></span>
 </div>
 <div class="menu-page-item">
-<a href="#" onclick="openPrivacyModal(); return false;" data-lang-id="1000-privacy-policy">Privacy Policy</a>
+<a href="#" onclick="openBuwanaPrivacy(); return false;" data-lang-id="1000-privacy-policy">Privacy Policy</a>
 
   <span class="status-circle" style="background-color: ORANGE;" title="Privacy Policy"></span>
 </div>
