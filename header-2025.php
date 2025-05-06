@@ -321,10 +321,7 @@ max-height: 200px;
 
   <span class="status-circle" style="background-color: ORANGE;" title="Privacy Policy"></span>
 </div>
-<div class="menu-page-item">
-  <a href="javascript:void(0);" onclick="openAboutEarthen()" data-lang-id="1000-about-earthen">
-    About Earthen
-  </a>
+
 
 <div class="menu-page-item">
   <a href="javascript:void(0);" onclick="openAboutBuwana()" data-lang-id="1000-about-buwana">
