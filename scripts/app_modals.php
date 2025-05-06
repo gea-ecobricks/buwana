@@ -207,21 +207,27 @@ function openAboutEarthen() {
     openModal(content);
 }
 
-
 function openBuwanaPrivacy() {
   const appName = <?= json_encode($app_info['app_display_name']) ?>;
-  let translated = translations['3000-buwana-privacy-full'] || '';
-  translated = translated.replace('{{appName}}', appName);
+
+  if (!window.translations) {
+    console.error("❌ No translations loaded.");
+    return;
+  }
+
+  const rawHtml = window.translations['3000-buwana-privacy-full'] || '';
+  const translated = rawHtml.replace('{{appName}}', appName);
 
   const content = `
-    <div style="text-align: center;margin:auto;padding:10%;">
-      <h2>${translations['3000-buwana-privacy-title']}</h2>
+    <div style="text-align: center; margin: auto; padding: 10%;">
+      <h2>${window.translations['3000-buwana-privacy-title'] || 'Privacy Policy'}</h2>
       ${translated}
       <h2>💦</h2>
     </div>
   `;
   openModal(content);
 }
+
 
 function openTermsModal() {
   const terms = <?= json_encode($app_info['app_terms_txt']) ?>;
