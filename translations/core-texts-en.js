@@ -45,5 +45,4 @@ const en_Translations = {
     "3000-about-earthen-full": "Started in 2016 in the land of the Igorot people, Earthen is our bi-monthly newsletter for the global for-Earth movement. We share the latest news from the world of regenerative technology and philosophy: earth building, ecobricks, GoBrik announcements and GEA news. Free with an option for a contributive subscription.",
 
 
-
 };

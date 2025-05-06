@@ -53,13 +53,11 @@
   const page = '<?php echo $page; ?>';
   const version = '<?php echo $version; ?>';
 
-  // Debug alert using template literal
-//   alert(`../translations/${page}-${lang}.js?v=${version}`);
-
   loadTranslationScripts(lang, page, () => {
-      switchLanguage(lang);
+    switchLanguage(lang); // Or your language rendering logic
   });
 </script>
+
 
 
 
