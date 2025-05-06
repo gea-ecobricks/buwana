@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-5';
-$version = '0.771';
+$version = '0.772';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -200,7 +200,7 @@ if (!empty($credential_key)) {
 
 <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
     <p style="font-size: medium;">
-        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back one</a>
+        <a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back one</a>
     </p>
 </div>
 
