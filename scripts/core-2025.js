@@ -266,8 +266,8 @@ function openModal(contentHtml) {
     modal.style.display = 'flex';
     modalBox.style.flexFlow = 'column';
     modalBox.style.maxHeight = '100vh';
-    modalBox.style.marginTop = '4px';
-    modalBox.style.marginBottom = '4px';
+    modalBox.style.marginTop = '2px';
+    modalBox.style.marginBottom = '2px';
     modalBox.style.overflowY = 'auto';
 
     document.getElementById('page-content')?.classList.add('blurred');

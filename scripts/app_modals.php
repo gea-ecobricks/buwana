@@ -216,41 +216,50 @@ document.addEventListener('DOMContentLoaded', function () {
 // });
 
 
-
 function openAboutBuwana() {
-    const content = `
-        <div style="text-align: center; margin: auto; padding: 10%;">
-            <div class="buwana-word-mark"
-                 title="Authentication by Buwana"
-                 style="margin: 0 auto 10px auto; width: 220px; height: 50px; background-size: contain; background-repeat: no-repeat; background-position: center; text-align: center;">
-            </div>
+  const content = `
+    <div style="text-align: center; margin: auto; padding: 10%;">
+      <div
+        class="buwana-word-mark"
+        title="Authentication by Buwana"
+        style="
+          margin: 0 auto 10px auto;
+          width: 220px;
+          height: 50px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+        ">
+      </div>
 
-            <p data-lang-id="3000-about-buwana-description"></p>
+      <p data-lang-id="3000-about-buwana-description"></p>
 
-            <div style="text-align: center; margin-top: 20px; width: 100%;">
-                <a href="https://github.com/gea-ecobricks/buwana"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="kick-ass-submit"
-                   data-lang-id="3001-buwana-on-github"
-                   style="text-decoration: none;">
-                    🌏 Buwana on GitHub
-                </a>
-            </div>
-        </div>
-    `;
-    openModal(content);
+      <div style="text-align: center; margin-top: 20px;">
+        <a
+          href="https://github.com/gea-ecobricks/buwana"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="kick-ass-submit"
+          data-lang-id="3001-buwana-on-github"
+          style="text-decoration: none;">
+          🌏 Buwana on GitHub
+        </a>
+      </div>
+    </div>
+  `;
+  openModal(content);
 }
+
 
 
 
 function openAboutEarthen() {
     const content = `
         <div style="text-align: center;margin:auto;padding:10%;">
-            <div class="about-earthen-top" style="width:150px;height:150px;margin:margin:auto auto -10px auto"><img src="../svgs/earthen-newsletter-logo.svg"</div>
+            <div class="about-earthen-top" style="width:150px;height:150px;margin:margin:auto auto -10px auto"><img src="../svgs/earthen-newsletter-logo.svg"></div>
             <h2 data-lang-id="3000-about-earthen-title">About Earthen</h2>
             <p data-lang-id="3000-about-earthen-full"></p>
-            <h2>💦</h2>
+            <h2>🌍</h2>
         </div>
     `;
     openModal(content);
