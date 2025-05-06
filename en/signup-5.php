@@ -207,8 +207,6 @@ if (!empty($credential_key)) {
 
 <script>
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const subBoxes = document.querySelectorAll('.sub-box');
 
@@ -263,15 +261,6 @@ function enhanceNewsletterInfo() {
 
 // Call the function to apply the updates
 enhanceNewsletterInfo();
-
-
-
-
-
-
-
-
-
 
 </script>
 
