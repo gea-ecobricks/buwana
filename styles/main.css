@@ -222,18 +222,16 @@
   }
 
 
-
 ul, ol {
-    padding-left: 1.5em; /* Add some indentation for list markers */
-    margin: 0 0 1em 0;   /* Optional: controls spacing around lists */
+    margin: 0 0 1em 0;
+    padding-left: 2em; /* ensures there's space for bullets/numbers */
+    text-align: left;  /* aligns the whole list block left inside its container */
 }
 
 ul li, ol li {
-    text-align: left;
-    display: block;
-    margin: 0.5em 0;     /* Space between list items */
-    line-height: 1.5;    /* Paragraph-like line spacing */
+    text-align: left;   /* aligns the text inside each list item to the left */
 }
+
 
 
 
