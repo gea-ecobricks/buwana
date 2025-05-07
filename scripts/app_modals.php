@@ -234,7 +234,7 @@ function openBuwanaPrivacy() {
 function openTermsModal() {
   const terms = <?= json_encode($app_info['app_terms_txt']) ?>;
   const content = `
-    <div style="text-align: center; margin: auto; padding: 5%;">
+    <div style="text-align: left; margin: auto; padding: 5%;">
       ${terms}
     </div>
   `;
