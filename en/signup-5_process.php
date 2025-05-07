@@ -55,8 +55,8 @@ if ($buwana_id) {
 ob_clean(); // ✨ Clear any accidental output
 // ✅ Instead of header redirect:
 echo json_encode([
-    'success' => true,
-    'redirect' => 'signup-6.php?id=' . urlencode($buwana_id)
+    header("Location: signup-6.php?id=" . urlencode($buwana_id));
+                exit();
 ]);
 exit();
 ?>
