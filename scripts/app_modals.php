@@ -223,7 +223,7 @@ function openBuwanaPrivacy() {
   const content = `
     <div  style="margin: auto; padding: 5%;">
       <h2 style="text-align: center;>${window.translations['3000-buwana-privacy-title'] || 'Privacy Policy'}</h2>
-      ${translated}
+      <p>${translated}</p>
       <h2>💦</h2>
     </div>
   `;
