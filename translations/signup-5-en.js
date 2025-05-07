@@ -12,6 +12,7 @@ const en_Page_Translations = {
     "006-choose": "Choose to add or remove subscriptions below:",
     "007-not-subscribed": " is not yet subscribed to any Earthen newsletters.",
     "008-almost-done": "Your Buwana account activation is almost complete.  We saved the best for last...",
-    "009-terms": "Earthen newsletters are sent according to our ",
-    "016-complete-button": "<input type=\"submit\" id=\"submit-button\" value=\"Finish & Login\" class=\"submit-button enabled\">"
+    "009-finalize-button": "🐣 Finalize ➡",
+    "010-terms": "Earthen newsletters are sent according to our ",
+
 };
