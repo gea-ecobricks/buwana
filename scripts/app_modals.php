@@ -221,7 +221,7 @@ function openBuwanaPrivacy() {
   const translated = rawHtml.replace('{{appName}}', appName);
 
   const content = `
-    <div  style="margin: auto; padding: 10%;">
+    <div  style="margin: auto; padding: 5%;">
       <h2 style="text-align: center;>${window.translations['3000-buwana-privacy-title'] || 'Privacy Policy'}</h2>
       ${translated}
       <h2>💦</h2>

@@ -226,7 +226,7 @@ ul, ol {
     margin: 0 0 1em 0;
     padding-left: 3.5em; /* ensures there's space for bullets/numbers */
     text-align: left;  /* aligns the whole list block left inside its container */
-    font-weight: normal;
+    font-weight: 300;
 }
 
 ul li, ol li {

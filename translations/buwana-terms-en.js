@@ -2,7 +2,7 @@ const en_buwana_terms = {
     "3000-buwana-privacy-title": "Buwana Privacy Policy 🔐",
 
     "3000-buwana-privacy-full": `
-    <p style="font-size:medium;">Last revised: April 18, 2025</p>
+    <p style="font-size:smaller;">Last revised: April 18, 2025</p>
 
     <p>Buwana is an open-source user authentication and registration platform for regenerative apps. Buwana is developed by the Global Ecobrick Alliance, a for-Earth Enterprise with the mission of serving people and planet. {{appName}} has chosen to use the Buwana protocol for managing its user account because of our principles, privacy commitments and security. As your user data flows through Buwana and as we have no ulterior motives in collecting your data, you'll be happy to hear we have a strict privacy policy. Since, by principle, the Global Ecobrick Alliance is not in the business of marketing, advertising or data-brokering, we can make the following commitments:</p>
 
