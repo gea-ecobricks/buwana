@@ -224,7 +224,7 @@ function openBuwanaPrivacy() {
     <div  style="margin:auto; padding: 5%;">
       <h2>${window.translations['3000-buwana-privacy-title'] || 'Privacy Policy'}</h2>
       <p>${translated}</p>
-      <h2>💦</h2>
+      <h2 style="text-align: center;">🍃</h2>
     </div>
   `;
   openModal(content);
