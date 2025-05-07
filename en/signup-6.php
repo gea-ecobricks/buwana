@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-6';
-$version = '0.777';
+$version = '0.7771';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -85,13 +85,18 @@ Developed and made open source by the Global Ecobrick Alliance
 See our git hub repository for the full code and to help out:
 https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
-<?php require_once ("../includes/signup-inc.php");?>
-
-<div class="splash-title-block"></div>
-<div id="splash-bar"></div>
+<?php require_once ("../includes/signup-6-inc.php");?>
 
 <!-- PAGE CONTENT -->
-<div id="top-page-image" class="marine-animals-top top-page-image"></div>
+   <?php
+   $page_key = str_replace('-', '_', $page); // e.g. 'signup-1' → 'signup_1'
+   ?>
+
+   <div id="top-page-image"
+        class="top-page-image"
+        data-light-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_light']) ?>"
+        data-dark-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_dark']) ?>">
+   </div>
 
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">

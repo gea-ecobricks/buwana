@@ -113,12 +113,13 @@ if (!$response['success']) {
 }
 
 // ✅ Redirect to login with first-time status
-// ✅ Redirect to login with first-time status
 if ($response['success']) {
-    echo json_encode([
-      'success' => true,
-      'redirect' => "signup-7.php?id=$buwana_id"
-    ]);
+//     echo json_encode([
+//       'success' => true,
+//       'redirect' => "signup-7.php?id=$buwana_id"
+//     ]);
+header("Location: signup-7.php?id=" . urlencode($buwana_id));
+
     exit;
 }
  else {
