@@ -1,6 +1,8 @@
 <!-- app-modals.php -->
 <script>
 
+
+
 /* SUBMISSION PROCESS */
 document.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('form#user-signup-form');
@@ -132,29 +134,29 @@ function shakeElement(el) {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const header = document.getElementById('header');
-
-    window.addEventListener('scroll', function () {
-        if (window.innerWidth < 769) {
-            if (window.scrollY > 1) {
-                header.style.position = 'relative';
-                header.style.zIndex = '36';
-                header.style.top = '0'; // just in case
-                header.overflow ="hidden"
-            } else {
-                header.style.position = 'relative';
-                header.style.zIndex = '36';
-                header.overflow ="hidden"
-            }
-        } else {
-            // Reset for larger screens (if needed)
-            header.style.position = 'relative';
-            header.style.zIndex = '36';
-            header.overflow ="hidden"
-        }
-    });
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     const header = document.getElementById('header');
+//
+//     window.addEventListener('scroll', function () {
+//         if (window.innerWidth < 769) {
+//             if (window.scrollY > 1) {
+//                 header.style.position = 'relative';
+//                 header.style.zIndex = '36';
+//                 header.style.top = '0'; // just in case
+//                 header.overflow ="hidden"
+//             } else {
+//                 header.style.position = 'relative';
+//                 header.style.zIndex = '36';
+//                 header.overflow ="hidden"
+//             }
+//         } else {
+//             // Reset for larger screens (if needed)
+//             header.style.position = 'relative';
+//             header.style.zIndex = '36';
+//             header.overflow ="hidden"
+//         }
+//     });
+// });
 
 
 
@@ -193,8 +195,6 @@ function openAboutBuwana() {
 }
 
 
-
-
 function openAboutEarthen() {
     const content = `
         <div style="text-align:center; margin:auto; padding:10%;">
@@ -208,7 +208,9 @@ function openAboutEarthen() {
 }
 
 function openBuwanaPrivacy() {
-  const appName = <?= json_Termsencode($app_info['app_display_name']) ?>;
+  const appName = "<?= addslashes($app_info['app_display_name']) ?>";
+
+;
 
   if (!window.translations) {
     console.error("❌ No translations loaded.");
