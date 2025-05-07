@@ -1,6 +1,6 @@
 
 /*-----------------------------------
-TEXT TRANSLATION SNIPPETS FOR signup-4.php
+TEXT TRANSLATION SNIPPETS FOR signup-5.php
 -----------------------------------*/
 
 const en_Page_Translations = {

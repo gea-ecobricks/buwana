@@ -1,18 +1,16 @@
-
 /*-----------------------------------
-TEXT TRANSLATION SNIPPETS FOR signup-4.php
+TEXT TRANSLATION SNIPPETS FOR signup-5.php
 -----------------------------------*/
 
 const es_Page_Translations = {
-    "001-select-subs": "Select Earthen Subscriptions",
-    "002-sub-subtitle": "We share news and notifications by email.",
-    "003-get-your": "Get our free Earthen newsletter and GoBrik notifications sent to ",
-    "004-later-upgrade": "Later you can upgrade to a paid subscription to support the movement.",
-    "005-nice": "Nice! You're already subscribed to:",
-    "006-choose": "Choose to add or remove subscriptions below:",
-    "007-not-subscribed": "You're not yet subscribed to any Earthen newsletters yet. All are free with upgrade options later. Please select:",
-    "009-terms": "Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href=\"#\" onclick=\"showModalInfo('terms', '<?php echo $lang; ?>')\" class=\"underline-link\">Terms of Service</a>.",
-    "008-that-is-it": "That's it!",
-    "008b-your-activation-complete": "Your Buwana account activation process is complete! Now you can wrap up and login...",
-    "016-complete-button": "<input type=\"submit\" id=\"submit-button\" value=\"Finish & Login\" class=\"submit-button enabled\">"
+    "001-select-subs": "Seleccionar Suscripciones Terrestres",
+    "002-sub-subtitle": "📬 Compartimos noticias por correo electrónico.",
+    "003-get-your": "Nuestro <a href=\"#\" onclick=\"openAboutEarthen()\" class=\"underline-link\">boletín terrestre</a> fue enviado por primera vez hace 10 años desde la tierra del pueblo Igorot. Sigue siendo gratuito, pero ahora tenemos diferentes canales para elegir...</span>",
+    "004-later-upgrade": "Más adelante puedes actualizar a una suscripción paga para apoyar el movimiento.",
+    "005-nice": "¡Genial! Ya estás suscrito a:",
+    "006-choose": "Elige agregar o quitar suscripciones a continuación:",
+    "007-not-subscribed": " aún no está suscrito a ningún boletín terrestre.",
+    "008-almost-done": "La activación de tu cuenta de Buwana está casi completa. Guardamos lo mejor para el final...",
+    "009-finalize-button": "🐣 Finalizar ➡",
+    "010-terms": "Los boletines terrestres se envían de acuerdo con nuestros ",
 };

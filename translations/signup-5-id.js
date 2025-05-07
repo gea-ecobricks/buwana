@@ -1,18 +1,16 @@
-
 /*-----------------------------------
 TEXT TRANSLATION SNIPPETS FOR signup-4.php
 -----------------------------------*/
 
-const es_Page_Translations = {
-    "001-select-subs": "Select Earthen Subscriptions",
-    "002-sub-subtitle": "We share news and notifications by email.",
-    "003-get-your": "Get our free Earthen newsletter and GoBrik notifications sent to ",
-    "004-later-upgrade": "Later you can upgrade to a paid subscription to support the movement.",
-    "005-nice": "Nice! You're already subscribed to:",
-    "006-choose": "Choose to add or remove subscriptions below:",
-    "007-not-subscribed": "You're not yet subscribed to any Earthen newsletters yet. All are free with upgrade options later. Please select:",
-    "009-terms": "Earthen newsletters and GoBrik are sent according to our non-profit, privacy <a href=\"#\" onclick=\"showModalInfo('terms', '<?php echo $lang; ?>')\" class=\"underline-link\">Terms of Service</a>.",
-    "008-that-is-it": "That's it!",
-    "008b-your-activation-complete": "Your Buwana account activation process is complete! Now you can wrap up and login...",
-    "016-complete-button": "<input type=\"submit\" id=\"submit-button\" value=\"Finish & Login\" class=\"submit-button enabled\">"
+const id_Page_Translations = {
+    "001-select-subs": "Pilih Langganan Terestrial",
+    "002-sub-subtitle": "📬 Kami berbagi kabar melalui email.",
+    "003-get-your": "<a href=\"#\" onclick=\"openAboutEarthen()\" class=\"underline-link\">Buletin terestrial</a> kami pertama kali dikirim 10 tahun lalu dari tanah masyarakat Igorot. Sekarang masih gratis, tetapi kami memiliki berbagai saluran untuk dipilih...</span>",
+    "004-later-upgrade": "Nanti kamu bisa meningkatkan ke langganan berbayar untuk mendukung gerakan ini.",
+    "005-nice": "Bagus! Kamu sudah berlangganan:",
+    "006-choose": "Pilih untuk menambah atau menghapus langganan di bawah ini:",
+    "007-not-subscribed": " belum berlangganan buletin terestrial apa pun.",
+    "008-almost-done": "Akun Buwana kamu hampir aktif sepenuhnya. Kami menyimpan yang terbaik untuk akhir...",
+    "009-finalize-button": "🐣 Selesaikan ➡",
+    "010-terms": "Buletin terestrial dikirim sesuai dengan ",
 };
