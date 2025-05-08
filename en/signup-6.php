@@ -353,7 +353,7 @@ console.log("🌍 userCountryId:", userCountryId);
     document.getElementById('footer-full')?.classList.add('blurred');
     document.body.classList.add('modal-open');
 
-    modalBox.style.maxHeight = '80vh';
+    modalBox.style.maxHeight = '100vh';
     modalBox.style.overflowY = 'auto';
 
     modalBox.innerHTML = `

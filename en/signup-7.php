@@ -101,5 +101,42 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
   }, 25000);
 </script>
 
+
+<script>
+  // 👀 Get app emoji sequence (already injected by PHP)
+  window.appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]'), JSON_UNESCAPED_UNICODE) ?>;
+
+  // ✅ Spinner for signup-7 page to replace earthling emoji
+  function runSignup7EmojiSpinner(containerSelector) {
+    const emojiContainer = document.querySelector(containerSelector);
+    if (!emojiContainer || !window.appEmojis || !window.appEmojis.length) return;
+
+    const emojis = window.appEmojis;
+    let index = 0;
+
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (index >= emojis.length) {
+          clearInterval(interval);
+          emojiContainer.textContent = emojis[emojis.length - 1]; // Final emoji
+          return;
+        }
+
+        emojiContainer.textContent = emojis[index];
+        emojiContainer.style.opacity = 1;
+
+        setTimeout(() => {
+          emojiContainer.style.opacity = 0;
+        }, 300);
+
+        index++;
+      }, 400);
+    }, 500); // Start after 0.5s
+  }
+
+  // ✅ Run the spinner on the emoji banner
+  runSignup7EmojiSpinner('.emoji-banner');
+</script>
+
 </body>
 </html>

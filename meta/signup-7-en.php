@@ -1,4 +1,4 @@
-<title>Your <?= htmlspecialchars($app_info['app_display_name']) ?> is being generated! | Buwana Accounts</title>
+<title>Your <?= htmlspecialchars($app_info['app_display_name']) ?> account is being generated! | Buwana Accounts</title>
 
 <meta name="keywords" content="buwana, register, signup, sign up, sign, up">
 <meta name="description" content="One moment while we generate you Your <?= htmlspecialchars($app_info['app_display_name']) ?> is being generated! | Buwana Accounts account and direct to login for the first time.">
