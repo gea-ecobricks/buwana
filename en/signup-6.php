@@ -103,7 +103,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
         <div style="text-align:center;width:100%;margin:auto;">
             <p style="color:green;" data-lang-id="001-subs-set">✔ Your Earthen subscriptions are confirmed!</p>
             <div id="status-message"><h4 data-lang-id="002-fun-part" style="margin-bottom: 12px;margin-top:0px;">Now the fun part!</h4></div>
-            <p style="font-size:1.4em;padding-bottom:10px;"><?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="003-finalize">to finalize your account, choose an Earthling emoji to best represent yourself.</span></p>
+            <p style="font-size:1.4em;padding-bottom:10px;"><?php echo htmlspecialchars($first_name); ?>, <span data-lang-id="003-to-finalize">to finalize your account, choose an Earthling emoji to best represent yourself.</span></p>
         </div>
 
         <!-- FINALIZE ACCOUNT FORM -->
