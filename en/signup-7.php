@@ -59,16 +59,16 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
         <?= htmlspecialchars($earthling_emoji) ?>
       </div>
       <h2 data-lang-id="001-your-account-created">
-        🎉 <?= htmlspecialchars($first_name) ?>, your account has been created!
+        Hurray! <?= htmlspecialchars($first_name) ?>, your Buwanaaccount has been created.
       </h2>
       <p data-lang-id="002-redirecting-msg">
-        In <span id="countdown">25</span> seconds you'll be redirected to <strong><?= htmlspecialchars($app_display_name) ?></strong> to log in.
+        In <span id="countdown">3</span> seconds you'll be redirected to <strong><?= htmlspecialchars($app_display_name) ?></strong> to log in.
       </p>
 
 
     </div>
   </div>
-  <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
+  <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
       <p data-lang-id="003-manual-redirect">
                 If you're not redirected automatically,
                 <a href="<?= htmlspecialchars($redirect_url) ?>">click here</a>.
@@ -103,7 +103,7 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
 
   setTimeout(() => {
     window.location.href = <?= json_encode($redirect_url) ?>;
-  }, 25000);
+  }, 3000);
 
 
 
