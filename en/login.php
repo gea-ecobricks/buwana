@@ -82,7 +82,6 @@ echo '<!DOCTYPE html>
 // JavaScript variables for dynamic use
 echo '<script>';
 echo 'const status = "' . addslashes($status) . '";';
-echo 'const lang = "' . addslashes($lang) . '";';
 echo 'const firstName = "' . addslashes($first_name) . '";';
 echo 'const buwanaId = "' . addslashes($buwana_id) . '";';
 echo 'const code = "' . addslashes($code) . '";';
