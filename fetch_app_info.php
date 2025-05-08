@@ -8,6 +8,12 @@ require_once 'buwanaconn_env.php'; // DB connection ($buwana_conn)
 $default_client_id = 'gbrk_f2c61a85a4cd4b8b89a7';
 $client_id = isset($_GET['app']) ? trim($_GET['app']) : ($_SESSION['client_id'] ?? $default_client_id);
 
+
+  $login_url = "login.php?app=" . urlencode($client_id);
+  if ($buwana_id) {
+      $login_url .= "&id=" . urlencode($buwana_id);
+  }
+
 // Store the current client_id in session for later pages
 $_SESSION['client_id'] = $client_id;
 

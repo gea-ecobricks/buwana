@@ -20,6 +20,8 @@
 
     // Set default in case something goes wrong
     $active_url = isset($uriParts[2]) ? $uriParts[2] : '';
+
+
     ?>
 
 
