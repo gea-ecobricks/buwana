@@ -309,8 +309,8 @@ max-height: 200px;
 
       -->
 
-<div class="menu-page-item">
-<a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span><span> </space><span data-lang-id="1000-terms-of-use" style="margin-right:auto;">Terms of Use</span></a>
+<div class="menu-page-item" style="text-align:left !important">
+<a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span><span> </space><span data-lang-id="1000-terms-of-use" style="margin-right:auto;text-align:left !important">Terms of Use</span></a>
 
   <span class="status-circle" style="background-color: YELLOW;" title="Terms of Use"></span>
 </div>

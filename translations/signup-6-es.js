@@ -1,25 +1,42 @@
-/*-----------------------------------
-TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
------------------------------------*/
-// SIGNUP-6
+// SPANISH TEXT SNIPPETS FOR SIGNUP-6
+/*-----------------------------------*/
 
 
 const es_Page_Translations = {
-    "001-subs-set": "✔ Your Earthen subscriptions are confirmed!",
-    "002-fun-part": "Now the fun part!",
-    "003-to-finalize": "to finalize your account, choose an Earthling emoji to best represent yourself.",
-    "004-mammals": "Mammals",
-    "004-marine": "Marine",
-    "004-reptiles-amphibians": "Reptiles & Amphibians",
-    "004-birds": "Birds",
-    "004-plants": "Plants",
-    "004-insects": "Insects",
-    "004-human-link": "Human-link",
-    "005-emoji-hint": "Choose one emoji to represent you on ",
-    "006-emoji-hint": "Buwana accounts let you connect with local and global communities...",
+    "001-subs-set": "✔ ¡Tus suscripciones terrestres están confirmadas!",
+    "002-fun-part": "¡Ahora viene la parte divertida!",
+    "003-to-finalize": "para finalizar tu cuenta, elige un emoji terrícola que mejor te represente.",
+    "004-mammals": "Mamíferos",
+    "004-marine": "Marinos",
+    "004-reptiles-amphibians": "Reptiles y anfibios",
+    "004-birds": "Aves",
+    "004-plants": "Plantas",
+    "004-insects": "Insectos",
+    "004-human-link": "Vínculo humano",
+    "005-emoji-hint": "Elige un emoji para representarte en ",
+    "006-community-connect": "Las cuentas de Buwana te permiten conectarte con tu comunidad local...",
+    "007-community-placeholder": "Escribe tu comunidad...",
+    "008-start-typing-community": "Empieza a escribir para ver y seleccionar una comunidad. ¡Es probable que alguien cercano ya haya creado una!",
+    "009-add-community": "¿No ves tu comunidad? Agrégala.",
+    "010-check-country": "Asegúrate de que te hemos conectado con el país correcto:",
+    "010b-select-country-option": "-- Selecciona tu país --",
+    "011-confirm-language-choice": "Asegúrate de que hemos identificado correctamente tu idioma...",
+    "012-select-language-option": "-- Selecciona tu idioma --",
+    "013-all-done-button": "¡Todo listo! 👌",
+    "013b-ready-to-login": "¡Ahora estás listo para iniciar sesión!",
 
-
-    "000-browser-back-link": "<p style=\"font-size: medium;\">Need to correct something?<a href=\"#\" onClick=\"browserBack(event)\">Go back ↩️</a></p>"
+    "014-add-community-title": "Agrega tu comunidad",
+    "015-add-community-desc": "Agrega tu comunidad a Buwana para que otros puedan conectarse a través de aplicaciones regenerativas.",
+    "016-community-name-label": "Nombre de la comunidad:",
+    "017-community-type-label": "Tipo de comunidad:",
+    "018-select-type-option": "Selecciona el tipo",
+    "019-type-neighborhood": "Barrio",
+    "020-type-city": "Ciudad",
+    "021-type-school": "Escuela",
+    "022-type-organization": "Organización",
+    "023-country-label": "País:",
+    "024-select-country-option": "Selecciona un país...",
+    "025-language-label": "Idioma preferido:",
+    "026-select-language-option": "Selecciona un idioma...",
+    "027-submit-button": "➕ Crear comunidad",
 };
-
-
