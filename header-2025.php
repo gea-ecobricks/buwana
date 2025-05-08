@@ -21,7 +21,10 @@
     // Set default in case something goes wrong
     $active_url = isset($uriParts[2]) ? $uriParts[2] : '';
 
-
+      $login_url = "login.php?app=" . urlencode($client_id);
+      if ($buwana_id) {
+          $login_url .= "&id=" . urlencode($buwana_id);
+      }
     ?>
 
 
