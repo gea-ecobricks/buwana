@@ -65,13 +65,18 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
         In <span id="countdown">25</span> seconds you'll be redirected to <strong><?= htmlspecialchars($app_display_name) ?></strong> to log in.
       </p>
 
-      <p data-lang-id="003-manual-redirect">
-        If you're not redirected automatically,
-        <a href="<?= htmlspecialchars($redirect_url) ?>">click here</a>.
-      </p>
+
     </div>
   </div>
+  <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
+      <p data-lang-id="003-manual-redirect">
+                If you're not redirected automatically,
+                <a href="<?= htmlspecialchars($redirect_url) ?>">click here</a>.
+      </p>
+  </div>
 </div>
+
+
 </div>
 
 <?php require_once ("../footer-2025.php"); ?>
