@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-6';
-$version = '0.7771';
+$version = '0.7773';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -356,44 +356,45 @@ console.log("🌍 userCountryId:", userCountryId);
     modalBox.style.overflowY = 'auto';
 
     modalBox.innerHTML = `
-        <h4 style="text-align:center;">Add Your Community</h4>
-        <p>Add your community to GoBrik so you can manage local projects and ecobricks.</p>
+       <h4 style="text-align:center;" data-lang-id="014-add-community-title">Add Your Community</h4>
+       <p data-lang-id="015-add-community-desc">Add your community to Buwana so that others can connect across regenerative apps.</p>
 
-        <form id="addCommunityForm" onsubmit="addCommunity2Buwana(event)">
-            <label for="newCommunityName">Name of Community:</label>
-            <input type="text" id="newCommunityName" name="newCommunityName" required>
+       <form id="addCommunityForm" onsubmit="addCommunity2Buwana(event)">
+           <label for="newCommunityName" data-lang-id="016-community-name-label">Name of Community:</label>
+           <input type="text" id="newCommunityName" name="newCommunityName" required>
 
-            <label for="newCommunityType">Type of Community:</label>
-            <select id="newCommunityType" name="newCommunityType" required>
-                <option value="">Select Type</option>
-                <option value="neighborhood">Neighborhood</option>
-                <option value="city">City</option>
-                <option value="school">School</option>
-                <option value="organization">Organization</option>
-            </select>
+           <label for="newCommunityType" data-lang-id="017-community-type-label">Type of Community:</label>
+           <select id="newCommunityType" name="newCommunityType" required>
+               <option value="" data-lang-id="018-select-type-option">Select Type</option>
+               <option value="neighborhood" data-lang-id="019-type-neighborhood">Neighborhood</option>
+               <option value="city" data-lang-id="020-type-city">City</option>
+               <option value="school" data-lang-id="021-type-school">School</option>
+               <option value="organization" data-lang-id="022-type-organization">Organization</option>
+           </select>
 
-            <label for="communityCountry">Country:</label>
-            <select id="communityCountry" name="communityCountry" required>
-                <option value="">Select Country</option>
-                <?php foreach ($countries as $country) : ?>
-                    <option value="<?php echo $country['country_id']; ?>">
-                        <?php echo htmlspecialchars($country['country_name'], ENT_QUOTES, 'UTF-8'); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+           <label for="communityCountry" data-lang-id="023-country-label">Country:</label>
+           <select id="communityCountry" name="communityCountry" required>
+               <option value="" data-lang-id="024-select-country-option">Select Country...</option>
+               <?php foreach ($countries as $country) : ?>
+                   <option value="<?php echo $country['country_id']; ?>">
+                       <?php echo htmlspecialchars($country['country_name'], ENT_QUOTES, 'UTF-8'); ?>
+                   </option>
+               <?php endforeach; ?>
+           </select>
 
-            <label for="communityLanguage">Preferred Language:</label>
-            <select id="communityLanguage" name="communityLanguage" required>
-                <option value="">Select Language</option>
-                <?php foreach ($languages as $language) : ?>
-                    <option value="<?php echo $language['language_id']; ?>">
-                        <?php echo htmlspecialchars($language['languages_native_name'], ENT_QUOTES, 'UTF-8'); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+           <label for="communityLanguage" data-lang-id="025-language-label">Preferred Language:</label>
+           <select id="communityLanguage" name="communityLanguage" required>
+               <option value="" data-lang-id="026-select-language-option">Select Language...</option>
+               <?php foreach ($languages as $language) : ?>
+                   <option value="<?php echo $language['language_id']; ?>">
+                       <?php echo htmlspecialchars($language['languages_native_name'], ENT_QUOTES, 'UTF-8'); ?>
+                   </option>
+               <?php endforeach; ?>
+           </select>
 
-            <button type="submit" style="margin-top:10px;" class="confirm-button enabled">Submit</button>
-        </form>
+           <button type="submit" style="margin-top:10px;" class="confirm-button enabled" data-lang-id="027-submit-button">Create Community</button>
+       </form>
+
     `;
 
     // Preselect country and language after form is injected

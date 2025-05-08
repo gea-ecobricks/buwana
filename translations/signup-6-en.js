@@ -29,9 +29,20 @@ const en_Page_Translations = {
     "012-select-language-option": "-- Select your language --",
     "013-all-done-button": "All done! 👌",
 
-
-
-
+    "014-add-community-title": "Add Your Community",
+    "015-add-community-desc": "Add your community to Buwana so that others can connect across regenerative apps.",
+    "016-community-name-label": "Name of Community:",
+    "017-community-type-label": "Type of Community:",
+    "018-select-type-option": "Select Type",
+    "019-type-neighborhood": "Neighborhood",
+    "020-type-city": "City",
+    "021-type-school": "School",
+    "022-type-organization": "Organization",
+    "023-country-label": "Country:",
+    "024-select-country-option": "Select Country...",
+    "025-language-label": "Preferred Language:",
+    "026-select-language-option": "Select Language...",
+    "027-submit-button": "Create Community",
 
 };
 
