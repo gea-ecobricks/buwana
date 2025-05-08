@@ -98,7 +98,15 @@ echo '</script>';
     <div id="splash-bar"></div>-->
 
 <!-- PAGE CONTENT -->
-<div id="top-page-image" class="earth-community top-page-image"></div>
+   <?php
+   $page_key = str_replace('-', '_', $page); // e.g. 'signup-1' → 'signup_1'
+   ?>
+
+   <div id="top-page-image"
+        class="top-page-image"
+        data-light-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_light']) ?>"
+        data-dark-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_dark']) ?>">
+   </div>
 
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
@@ -108,7 +116,7 @@ echo '</script>';
      Update to include translations and variations of the H4 tag-->
 
     <div style="text-align:center;width:100%;margin:auto;" >
-        <div id="status-message">Login to GoBrik</div>
+        <div id="status-message">Login to <?= htmlspecialchars($app_info['app_display_name']) ?></div>
         <div id="sub-status-message">Please signin with your account credentials.</div>
     </div>
 

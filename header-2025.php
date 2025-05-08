@@ -298,7 +298,7 @@ max-height: 200px;
 
  <div class="menu-page-item">
    <a href="login.php?app=<?= htmlspecialchars($client_id) ?>">
-     <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-right:auto;text-align:left !important">Login</span>
+     <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-left: 6px; margin-right:auto;text-align:left !important">Login</span>
    </a>
    <span class="status-circle" style="background-color: skyblue;" title="Login directly"></span>
  </div>
@@ -314,7 +314,7 @@ max-height: 200px;
       -->
 
 <div class="menu-page-item" style="text-align:left !important">
-<a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span><span> </span><span data-lang-id="1000-terms-of-use" style="margin-right:auto;text-align:left !important">Terms of Use</span></a>
+<a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span><span data-lang-id="1000-terms-of-use" style="margin-left: 6px;margin-right:auto;text-align:left !important">Terms of Use</span></a>
 
   <span class="status-circle" style="background-color: YELLOW;" title="Terms of Use"></span>
 </div>
