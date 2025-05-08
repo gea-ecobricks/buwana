@@ -1443,7 +1443,7 @@ z-index:5;
         }
 
   .landing-page-form {
-height:100vh;
+min-height:100vh;
 padding-top:55px;
 }
 

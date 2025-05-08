@@ -43,7 +43,7 @@ const en_Page_Translations = {
     "024-select-country-option": "Select Country...",
     "025-language-label": "Preferred Language:",
     "026-select-language-option": "Select Language...",
-    "027-submit-button": "Create Community",
+    "027-submit-button": "➕ Create Community",
 
 };
 
