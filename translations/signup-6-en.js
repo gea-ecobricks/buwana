@@ -1,7 +1,10 @@
 /*-----------------------------------
 TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 -----------------------------------*/
-// SIGNUP-6
+// ENGLISH TEXT SNIPPERTS FOR SIGNUP-6
+/*-----------------------------------
+TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
+-----------------------------------*/
 
 
 const en_Page_Translations = {
@@ -16,10 +19,20 @@ const en_Page_Translations = {
     "004-insects": "Insects",
     "004-human-link": "Human-link",
     "005-emoji-hint": "Choose one emoji to represent you on ",
-    "006-emoji-hint": "Buwana accounts let you connect with local and global communities...",
+    "006-community-connect": "Buwana accounts let you connect with your local community...",
+    "007-community-placeholder": "Type your community...",
+    "008-start-typing-community": "Start typing to see and select a community. There's a good chance someone local to you has already set one up!",
+    "009-add-community": "Don't see your community? Add it.",
+    "010-check-country": "Please make sure we've connected you with the right country:",
+    "010b-select-country-option": "-- Select your country --",
+    "011-confirm-language-choice": "Please make sure we've got your language right...",
+    "012-select-language-option": "-- Select your language --",
+    "013-all-done-button": "All done! 👌",
 
 
-    "000-browser-back-link": "<p style=\"font-size: medium;\">Need to correct something?<a href=\"#\" onClick=\"browserBack(event)\">Go back ↩️</a></p>"
+
+
+
 };
 
 

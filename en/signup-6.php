@@ -113,7 +113,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 <!-- EARTHLING EMOJI SELECT -->
 <div class="form-item" id="emoji-section">
     <!-- Top tab bar -->
-    <ul class="emoji-tabs" id="emojiTabs">
+    <ul class="emoji-tabs" id="emojiTabs" style="color:var(--subdued-text)">
         <li data-tab="mammals"  class="active" data-lang-id="004-mammals">Mammals</li>
         <li data-tab="marine" data-lang-id="004-marine">Marine</li>
         <li data-tab="reptiles" data-lang-id="004-reptiles-amphibians">Reptiles & Amphibians</li>
@@ -193,9 +193,18 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     <div class="select-wrapper" style="position: relative;">
         <span class="select-icon" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 20px;">👥</span>
 
-        <input type="text" id="community_name" name="community_name" aria-label="Community Name" list="community_list"
-               placeholder="Type your community..." style="width: 100%; padding: 11px 10px 11px 50px; font-size: 20px !important;"
-               value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+        <input
+        	type="text"
+        	id="community_name"
+        	name="community_name"
+        	aria-label="Community Name"
+        	list="community_list"
+        	data-lang-id="007-community-placeholder"
+        	placeholder="Type your community..."
+        	style="width: 100%; padding: 11px 10px 11px 50px; font-size: 20px !important;"
+        	value="<?php echo htmlspecialchars($pre_community ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+        >
+
     </div>
 
     <datalist id="community_list">
@@ -208,24 +217,23 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </datalist>
 
     <!-- "Add a new community" text link -->
-    <p class="form-caption" data-lang-id="012-community-caption-xx">
-        Start typing to see and select a community. There's a good chance someone local to you has already set one up!<br>
-        <a href="#" onclick="openAddCommunityModal(); return false;" style="color: #007BFF; text-decoration: underline;">
-            + Don't see your community? Add it.
-        </a>
+    <p class="form-caption"><span data-lang-id="008-start-typing-community">
+        Start typing to see and select a community. There's a good chance someone local to you has already set one up!</span>
+    <br> ➕
+        <a href="#" onclick="openAddCommunityModal(); return false;" style="color: #007BFF; text-decoration: underline;" data-lang-id="009-add-community"></a>
     </p>
 </div>
 
 
 <!-- COUNTRY SELECT -->
 <div class="form-item" id="country-section" style="margin-top: 20px; position: relative;">
-    <label for="country_name">Please make sure we've connected you with the right country:</label><br>
+    <label for="country_name" data-lang-id="010-check-country">Please make sure we've connected you with the right country:</label><br>
 
     <div class="select-wrapper" style="position: relative;">
         <span class="select-icon" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 22px;">🌍</span>
 
         <select id="country_name" name="country_name" required style="width: 100%; padding: 10px 10px 10px 40px;">
-            <option value="">-- Select your country --</option>
+            <option value="" data-lang-id="010b-select-country-option">-- Select your country --</option>
             <?php foreach ($countries as $country): ?>
                 <option value="<?php echo htmlspecialchars($country['country_id']); ?>"
                     <?php echo ($country['country_id'] == $user_country_id) ? 'selected' : ''; ?>>
@@ -236,25 +244,22 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
     </div>
 </div>
 
-
-
-
+<!-- LANGUAGE SELECT -->
 
 <?php
 // Get current language directory from URL (e.g., 'en', 'fr', etc.)
 $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
 ?>
 
-<!-- LANGUAGE SELECT -->
-<!-- LANGUAGE SELECT -->
+
 <div class="form-item" id="language-section" style="margin-top: 20px; position: relative;">
-    <label for="language_id">Please make sure we've selected the right primary language for you:</label><br>
+    <label for="language_id" data-lang-id="011-confirm-language-choice">Please make sure we've selected the right primary language for you:</label><br>
 
     <div class="select-wrapper" style="position: relative;">
         <span class="select-icon" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 22px;">🗣️</span>
 
         <select id="language_id" name="language_id" required style="width: 100%; padding: 10px 10px 10px 40px;">
-            <option value="">-- Select your language --</option>
+            <option value="" data-lang-id="012-select-language-option">-- Select your language --</option>
             <?php foreach ($languages as $language): ?>
                 <option value="<?php echo htmlspecialchars($language['language_id']); ?>"
                     <?php echo ($language['language_id'] === $current_lang_dir) ? 'selected' : ''; ?>>
@@ -271,13 +276,13 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
                 <div id="submit-section" class="submit-button-wrapper">
 
                     <button type="submit" id="submit-button" class="kick-ass-submit">
-                        <span id="submit-button-text" data-lang-id="015-next-button-x">All done! 👌</span>
+                        <span id="submit-button-text" data-lang-id="013-all-done-button">All done! 👌</span>
                         <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                     </button>
                 </div>
 
 
-<p class="form-caption" data-lang-id="022" style="text-align: center;margin-top: 20px;">Now you're ready to login!</p>
+
 
 </form>
 
@@ -288,13 +293,13 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
     </div>
 
 
-<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
-    <p style="font-size: medium;">
-        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back one</a>
-    </p>
-</div>
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
+            <p style="font-size: medium;">
+                <a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back one step</a>
+            </p>
+        </div>
 
-</div>
+
 </div>
 <!-- FOOTER STARTS HERE -->
 <?php require_once ("../footer-2025.php"); ?>
