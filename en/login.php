@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.772';
+$version = '0.773';
 $page = 'login';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -196,7 +196,7 @@ echo '</script>';
 <!-- FOOTER STARTS HERE -->
 <?php require_once ("../footer-2025.php");?>
 
-
+<?php require_once ("../scripts/app_modals.php");?>
 
 <script>
 
@@ -205,9 +205,9 @@ echo '</script>';
 
     is this needed?!*/
 
-        var siteName = 'gobrik.com';
-    var currentLanguage = '<?php echo ($lang); ?>'; // Default language code
-    switchLanguage(currentLanguage);
+//         var siteName = 'gobrik.com';
+//     var currentLanguage = '<?php echo ($lang); ?>'; // Default language code
+//     switchLanguage(currentLanguage);
 
 
 
@@ -988,7 +988,7 @@ function enableCodeEntry() {
 
 </script>
 
-<?php require_once ("../scripts/app_modals.php");?>
+
 
 
 </body>
