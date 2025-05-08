@@ -58,21 +58,19 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
       <div class="emoji-banner" style="text-align:center;font-size:5em;">
         <?= htmlspecialchars($earthling_emoji) ?>
       </div>
-      <h1 data-lang-id="001-your-account-created">
-        Hurray <?= htmlspecialchars($first_name) ?>!
+      <h1>
+        <span data-lang-id="001-hurray">Hurray</span> <?= htmlspecialchars($first_name) ?>!
       </h1>
-      <h4>Your Buwana account has been created.</h4>
-      <p data-lang-id="002-redirecting-msg">
-        In <span id="countdown">3</span> seconds you'll be redirected to <strong><?= htmlspecialchars($app_display_name) ?></strong> to log in.
+      <h4 data-lang-id="002-your-buwana-create">Your Buwana account has been created.</h4>
+      <p>
+        <span data-lang-id="003-you-will-be">You'll be redirected to login to </span><?= htmlspecialchars($app_display_name) ?><span data-lang-id="004-after">after</span><span id="countdown">3</span><span data-lang-id="005-seconds">seconds</span>.
       </p>
 
 
     </div>
   </div>
   <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
-      <p data-lang-id="003-manual-redirect">
-                If you're not redirected automatically,
-                <a href="<?= htmlspecialchars($redirect_url) ?>">click here</a>.
+      <p><span data-lang-id="006-manual-redirect">If you're not redirected automatically,</span><a href="<?= htmlspecialchars($redirect_url) ?>"><span data-lang-id="007-click-here"click here</span></a>.
       </p>
   </div>
 </div>
