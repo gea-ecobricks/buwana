@@ -99,44 +99,39 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
   setTimeout(() => {
     window.location.href = <?= json_encode($redirect_url) ?>;
   }, 25000);
-</script>
 
 
-<script>
-  // 👀 Get app emoji sequence (already injected by PHP)
+
+
+  // 👀 Injected emoji array for the app
   window.appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]'), JSON_UNESCAPED_UNICODE) ?>;
 
-  // ✅ Spinner for signup-7 page to replace earthling emoji
-  function runSignup7EmojiSpinner(containerSelector) {
-    const emojiContainer = document.querySelector(containerSelector);
+  // 🔁 Continuous emoji spinner for signup-7.php
+  function runSignup7EmojiSpinner(selector) {
+    const emojiContainer = document.querySelector(selector);
     if (!emojiContainer || !window.appEmojis || !window.appEmojis.length) return;
 
     const emojis = window.appEmojis;
     let index = 0;
 
     setTimeout(() => {
-      const interval = setInterval(() => {
-        if (index >= emojis.length) {
-          clearInterval(interval);
-          emojiContainer.textContent = emojis[emojis.length - 1]; // Final emoji
-          return;
-        }
-
+      setInterval(() => {
         emojiContainer.textContent = emojis[index];
         emojiContainer.style.opacity = 1;
 
+        // Optional: fade-out effect
         setTimeout(() => {
-          emojiContainer.style.opacity = 0;
-        }, 300);
+          emojiContainer.style.opacity = 0.7;
+        }, 200); // fade slightly after 200ms
 
-        index++;
-      }, 400);
-    }, 500); // Start after 0.5s
+        index = (index + 1) % emojis.length; // loop back
+      }, 280); // ⏱ 30% faster (was 400ms)
+    }, 500); // Initial delay
   }
 
-  // ✅ Run the spinner on the emoji banner
   runSignup7EmojiSpinner('.emoji-banner');
 </script>
+
 
 </body>
 </html>
