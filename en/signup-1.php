@@ -31,9 +31,6 @@ if (!empty($_SESSION['buwana_id'])) {
 }
 
 
-
-
-
 // Echo the HTML structure
 echo '<!DOCTYPE html>
 <html lang="' . htmlspecialchars($lang, ENT_QUOTES, 'UTF-8') . '">

@@ -215,21 +215,6 @@
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .code-box {
     text-align: center;
     font-family: 'Arvo', serif;
@@ -294,7 +279,7 @@ box-shadow: #0000001f 0px 5px 20px;
 </style>
 
 
-<?php require_once ("../header-2024.php");?>
+<?php require_once ("../header-2025.php");?>
 
 
 

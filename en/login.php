@@ -1,11 +1,18 @@
 <?php
 require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start(); // Needed for app context persistence
+
+require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
+require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
 // Set page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $version = '0.772';
 $page = 'login';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
+$is_logged_in = false; // Ensure not logged in for this page
 
 // Initialize user variables
 $first_name = '';
@@ -83,16 +90,12 @@ echo '</script>';
 ?>
 
 
-
-
-
-
-
 <!-- Include necessary scripts and styles -->
 <?php require_once ("../includes/login-inc.php");?>
 
-<div class="splash-title-block"></div>
-<div id="splash-bar"></div>
+<!--
+    <div class="splash-title-block"></div>
+    <div id="splash-bar"></div>-->
 
 <!-- PAGE CONTENT -->
 <div id="top-page-image" class="earth-community top-page-image"></div>
@@ -184,7 +187,7 @@ echo '</script>';
 </div>
 
 <!-- FOOTER STARTS HERE -->
-<?php require_once ("../footer-2024.php");?>
+<?php require_once ("../footer-2025.php");?>
 
 
 

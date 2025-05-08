@@ -98,9 +98,7 @@
 <!--This enables the Light and Dark mode switching-->
 <script type="module" src="../scripts/mode-toggle.mjs.js?v=<?php echo ($version); ;?>"></script>
 
-<script src="../scripts/guided-tour.js?v=<?php echo ($version); ;?>" defer></script>
 
-<script src="../scripts/site-search.js?v=<?php echo ($version); ;?>" defer></script>
 
 
 
@@ -293,12 +291,13 @@ max-height: 200px;
 
 
 
-    <div class="menu-page-item">
-      <a href="<?= htmlspecialchars($app_info['app_url']) ?>" data-lang-id="1000-landing-page-x">
-        <?= htmlspecialchars($app_info['app_domain']) ?> ↗
-      </a>
-      <span class="status-circle" style="background-color: GREEN;" title="Deployed. Working well!"></span>
-    </div>
+ <div class="menu-page-item">
+   <a href="login.php?app=<?= htmlspecialchars($client_id) ?>">
+     <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login">Login</span>
+   </a>
+   <span class="status-circle" style="background-color: skyblue;" title="Login directly"></span>
+ </div>
+
 
 <!--<div class="menu-page-item">
       <a href="bug-report.php" data-lang-id="1000-bug-report">
