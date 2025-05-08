@@ -139,3 +139,20 @@ function clearSiteCache() {
         alert(alertMessage);
     }
 }
+
+
+function applyTranslations() {
+    const elements = document.querySelectorAll('[data-lang-id]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-lang-id');
+        if (translations[key]) {
+            if (el.placeholder !== undefined) {
+                el.placeholder = translations[key];
+            } else if (el.tagName.toLowerCase() === 'option') {
+                el.textContent = translations[key];
+            } else {
+                el.innerHTML = translations[key];
+            }
+        }
+    });
+}
