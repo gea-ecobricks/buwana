@@ -298,7 +298,7 @@ max-height: 200px;
 
  <div class="menu-page-item">
    <a href="login.php?app=<?= htmlspecialchars($client_id) ?>">
-     <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login">Login</span>
+     <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-right:auto;text-align:left !important">Login</span>
    </a>
    <span class="status-circle" style="background-color: skyblue;" title="Login directly"></span>
  </div>

@@ -2,7 +2,7 @@
 require_once '../earthenAuth_helper.php'; // Include the authentication helper functions
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start(); // Needed for app context persistence
+
 
 require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
