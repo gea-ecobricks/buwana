@@ -28,6 +28,7 @@ const en_Page_Translations = {
     "011-confirm-language-choice": "Please make sure we've got your language right...",
     "012-select-language-option": "-- Select your language --",
     "013-all-done-button": "All done! 👌",
+    "013b-ready-to-login": "Now you're ready to login!",
 
     "014-add-community-title": "Add Your Community",
     "015-add-community-desc": "Add your community to Buwana so that others can connect across regenerative apps.",

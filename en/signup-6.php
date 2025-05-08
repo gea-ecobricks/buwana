@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-6';
-$version = '0.7773';
+$version = '0.7774';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Already logged in?
@@ -282,6 +282,7 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
                 </div>
 
 
+            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;"><span  data-lang-id="013b-ready-to-login">Now you're ready to login!</p>
 
 
 </form>
@@ -298,7 +299,7 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
                 <a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back one step</a>
             </p>
         </div>
-
+    </div>
 
 </div>
 <!-- FOOTER STARTS HERE -->
