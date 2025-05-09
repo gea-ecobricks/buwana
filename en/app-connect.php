@@ -101,29 +101,25 @@ padding-top: 10px !important;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
-/* App logo background image loader */
-.app-logo {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+.icon-box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--subdued-text);
+    background-color: var(--lighter);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.app-logo::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-image: url(var(--logo-light));
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+.icon-box img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
 }
 
-/* Inject logo via JavaScript depending on light/dark theme */
-:root {
-  --logo-light: '';
-  --logo-dark: '';
-}
 
 /* Arrow styling */
 .connect-arrow::before {
@@ -159,12 +155,11 @@ padding-top: 10px !important;
             <?= htmlspecialchars($earthling_emoji) ?>
           </div>
           <div class="connect-arrow"></div>
-          <div class="icon-box app-logo the-app-logo"
-               alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo"
-               title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"
-               data-light-logo="<?= htmlspecialchars($app_info['app_logo_url']) ?>"
-               data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>">
+          <div class="icon-box app-icon"
+               title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>">
+              <img src="<?= htmlspecialchars($app_info['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Icon" />
           </div>
+
         </div>
 
       <h2>
@@ -192,12 +187,12 @@ padding-top: 10px !important;
                 </button>
             </div>
 
-            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;">By connecting you agree to the <span  data-lang-id="010-terms"></span><a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span><span data-lang-id="1000-terms-of-use">Terms of Use</span></a></p>
+            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;">By connecting you agree to the <a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span> <span data-lang-id="1000-terms-of-use">Terms of Use</span></a></p>
         </form>
     </div>
   </div>
   <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
-      <p><span data-lang-id="006-manual-redirect">If you don't want to connect, no problem!  Return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="000-home">home</span></a>.
+      <p><span data-lang-id="006-manual-redirect">If you don't want to connect, no problem!<br>>Return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>.
       </p>
   </div>
 </div>

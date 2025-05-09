@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="103.23279mm"
+   height="103.58669mm"
+   version="1.1"
+   viewBox="0 0 103.23278 103.58668"
+   id="svg5"
+   sodipodi:docname="earthcal-icon.svg"
+   inkscape:version="1.4.1-rc (06eac75fbf, 2025-03-29)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview5"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.96816019"
+     inkscape:cx="242.21198"
+     inkscape:cy="530.38743"
+     inkscape:window-width="2256"
+     inkscape:window-height="1427"
+     inkscape:window-x="0"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5" />
+  <defs
+     id="defs1">
+    <clipPath
+       id="clipPath5535">
+      <path
+         d="m 393.29,-172.81 a 52.077,52.077 0 0 0 -52.077,52.076 52.077,52.077 0 0 0 52.077,52.077 52.077,52.077 0 0 0 52.077,-52.077 52.077,52.077 0 0 0 -52.077,-52.076 z m -1.0583,22.029 a 30.048,30.048 0 0 1 30.048,30.047 30.048,30.048 0 0 1 -30.048,30.048 30.048,30.048 0 0 1 -30.048,-30.048 30.048,30.048 0 0 1 30.048,-30.047 z"
+         fill="#00ffff"
+         stroke-width="0"
+         id="path1" />
+    </clipPath>
+  </defs>
+  <g
+     transform="translate(-341.213,172.60604)"
+     clip-path="url(#clipPath5535)"
+     id="g3">
+    <g
+       transform="matrix(0.57548,0,0,0.57548,393.14,-121.3)"
+       stroke-width="0.92194"
+       id="g2">
+      <path
+         id="october"
+         d="m -45.782,-77.133 a 90,90 0 0 1 45.225,-12.02 l -0.29047,90 z"
+         fill="#00e6a7" />
+      <path
+         id="september"
+         d="m -78.752,-44.219 a 90,90 0 0 1 32.97,-32.915 l 44.934,77.98 z"
+         fill="#00e513" />
+      <path
+         id="august"
+         d="m -90.848,0.77143 a 90,90 0 0 1 12.095,-44.989 l 77.904,45.065 z"
+         fill="#beee00" />
+      <path
+         d="m -78.827,45.782 a 90,90 0 0 1 -12.02,-45.01 l 90,0.075889 z"
+         fill="#fbfb00"
+         id="path2" />
+      <path
+         id="june"
+         d="M -45.914,78.752 A 90,90 0 0 1 -78.829,45.782 L -0.849,0.848 Z"
+         fill="#ffd119" />
+      <path
+         id="july"
+         d="m -0.92271,90.847 a 90,90 0 0 1 -44.989,-12.095 l 45.065,-77.904 z"
+         fill="#ff8201" />
+      <path
+         id="april"
+         d="m 44.087,78.827 a 90,90 0 0 1 -45.01,12.02 l 0.075889,-90 z"
+         fill="#ff6303" />
+      <path
+         id="march"
+         d="M 77.057,45.913 A 90,90 0 0 1 44.087,78.828 L -0.847,0.848 Z"
+         fill="#fb0000" />
+      <path
+         id="february"
+         d="m 89.152,0.92271 a 90,90 0 0 1 -12.095,44.989 L -0.847,0.84671 Z"
+         fill="#ff11ce" />
+      <path
+         id="january"
+         d="m 77.309,-43.817 c 7.8877,13.688 11.857,28.941 11.844,44.74 l -90,-0.075889 z"
+         fill="#7f2aff" />
+      <path
+         id="december"
+         d="m 43.78,-77.057 a 91.197,91.197 0 0 1 33.353,33.408 L -1.884,1.882 Z"
+         fill="#4343ff"
+         stroke-width="0.9342" />
+      <path
+         id="november"
+         d="m -0.77143,-89.153 a 90,90 0 0 1 44.989,12.095 l -45.065,77.904 z"
+         fill="#0cacf5" />
+    </g>
+  </g>
+</svg>
