@@ -22,8 +22,10 @@ const en_Translations = {
 
     //1000 HEADER
 
+
+
     "1000-terms-of-use": "Terms of use",
-    "1000-privacy-policy": "Buwana Privacy policy",
+    "1000-privacy-policy": "Buwana privacy policy",
     "1000-about-buwana": "About Buwana",
     "1000-authentication-by": "Authentication by",
     "1000-login": "Login",

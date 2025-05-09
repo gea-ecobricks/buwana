@@ -104,7 +104,7 @@ https://github.com/gea-ecobricks/buwana/-->
             Select how you register...
         </option>
         <option value="email">E-mail</option>
-        <option value="phone">Phone number</option>
+        <option value="phone" disabled>Phone number</option>
         <option value="peer" disabled>Peer</option>
     </select>
 

@@ -276,6 +276,14 @@ max-width: 800px !important;
 box-shadow: #0000001f 0px 5px 20px;
 }
 
+
+#sub-status-message {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'Arvo', Georgia, serif;
+  color: var(--subdued-text);
+  font-weight: 300;
+}
 </style>
 
 

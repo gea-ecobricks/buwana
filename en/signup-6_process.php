@@ -1,7 +1,7 @@
 <?php
 // ----------------------------------------
 // 🌐 signup-6_process.php
-// Final step of Buwana signup: Save final user settings,
+// Final step of Buwana account creation: Save final user settings,
 // and provision account in the client app (e.g. GoBrik, Earthcal).
 // ----------------------------------------
 
@@ -31,23 +31,26 @@ $app_login_url = $app_info['app_login_url'] ?? '/';
 $client_id = $app_info['client_id'] ?? null;
 
 if (!$app_name || !$client_id) {
-    error_log("❌ Missing app configuration: app_name = $app_name | client_id = $client_id");
     die("❌ Missing app configuration details.");
 }
-
-error_log("🔍 App Info Loaded: name = $app_name, login_url = $app_login_url, client_id = $client_id");
-
 
 // --- STEP 3: Resolve country_id & continent_code ---
 $set_country_id = null;
 $set_continent_code = null;
 
-$stmt = $buwana_conn->prepare("SELECT country_id, continent_code FROM countries_tb WHERE country_name = ?");
-$stmt->bind_param('s', $selected_country_name);
-$stmt->execute();
-$stmt->bind_result($set_country_id, $set_continent_code);
-$stmt->fetch();
-$stmt->close();
+$sql_country = "SELECT country_id, continent_code FROM countries_tb WHERE country_name = ?";
+$stmt_country = $buwana_conn->prepare($sql_country);
+
+if ($stmt_country) {
+    $stmt_country->bind_param('s', $selected_country_name);
+    $stmt_country->execute();
+    $stmt_country->bind_result($set_country_id, $set_continent_code);
+    $stmt_country->fetch();
+    $stmt_country->close();
+}
+
+$set_country_id = !empty($set_country_id) ? $set_country_id : null;
+$set_continent_code = !empty($set_continent_code) ? $set_continent_code : null;
 
 // --- STEP 4: Update Buwana User Record ---
 $update_sql = "
@@ -65,23 +68,16 @@ $stmt->close();
 
 // --- STEP 5: Load client connection file ---
 $client_env_path = "../config/{$app_name}_env.php";
-
 if (!file_exists($client_env_path)) {
-    error_log("❌ Client config file not found at: $client_env_path");
     die("❌ Missing DB config: $client_env_path");
 }
 
 require_once $client_env_path;
-error_log("✅ Loaded client config: $client_env_path");
 
 // --- Validate $client_conn existence and connection ---
 if (!isset($client_conn) || !($client_conn instanceof mysqli) || $client_conn->connect_error) {
-    error_log("❌ Client DB connection is not set or is invalid.");
     die("❌ Client DB connection could not be initialized.");
 }
-
-error_log("✅ Client DB connection ($app_name) established successfully.");
-
 
 // --- STEP 6: Fetch Buwana user fields for provisioning ---
 $userData = [];
@@ -107,26 +103,10 @@ $stmt->close();
 // --- STEP 7: Create user in client app ---
 $response = createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $buwana_conn, $client_id);
 
-if (!$response['success']) {
-    error_log("❌ Client user creation failed: " . $response['error']);
-    die("There was an error provisioning your account in the app. Please contact support.");
-}
-
-// ✅ Redirect to login with first-time status
 if ($response['success']) {
-//     echo json_encode([
-//       'success' => true,
-//       'redirect' => "signup-7.php?id=$buwana_id"
-//     ]);
-header("Location: signup-7.php?id=" . urlencode($buwana_id));
-
+    header("Location: signup-7.php?id=" . urlencode($buwana_id));
     exit;
-}
- else {
-    error_log("❌ Failed to create user in client app: " . $response['error']);
+} else {
     die("❌ Failed to create user in client app.");
 }
-
 ?>
-
-
