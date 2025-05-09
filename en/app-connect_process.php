@@ -5,7 +5,7 @@ session_start();
 
 require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
-require_once 'create_user.php'; // Includes createUserInClientApp()
+require_once '../scripts/create_user.php'; // Includes createUserInClientApp()
 
 // Get POSTed form data
 $buwana_id = isset($_POST['buwana_id']) ? (int) $_POST['buwana_id'] : null;
