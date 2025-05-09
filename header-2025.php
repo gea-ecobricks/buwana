@@ -342,8 +342,8 @@ max-height: 200px;
 
 <!--<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
 -->
-<p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;" data-lang-id="1000-authentication-by">Authentication by</p>
-<div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" href="https://github.com/gea-ecobricks/buwana"></div>
+<p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;" data-lang-id="1000-authentication-by" >Authentication by</p>
+<div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" href="https://github.com/gea-ecobricks/buwana" href="singup-1.php"></div>
 
 
   </div> <!-- close overlay-content-settings -->
