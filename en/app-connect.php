@@ -124,7 +124,7 @@ padding-top: 10px !important;
   position: relative;
   width: 50px;
   height: 50px;
-  animation: chevronPulse 0.6s ease-in-out infinite;
+  animation: chevronPulse 1.5s ease-in-out infinite;
   transform-origin: center;
 }
 
@@ -140,14 +140,14 @@ padding-top: 10px !important;
 }
 
 .connect-arrow::before {
-  top: 5px;
-  left: 5px;
+  top: 0px;
+  left: 30px;
   transform: rotate(-45deg);
 }
 
 .connect-arrow::after {
-  top: 5px;
-  left: 5px;
+  top: 0px;
+  left: 30px;
   transform: rotate(-135deg);
 }
 
@@ -156,7 +156,7 @@ padding-top: 10px !important;
   0% {
     transform: translateX(0) scaleY(1.1); /* Left + stretch */
   }
-  50% {
+  30% {
     transform: translateX(10px) scaleY(0.9); /* Right + compress */
   }
   100% {
