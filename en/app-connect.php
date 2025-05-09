@@ -208,7 +208,7 @@ padding-top: 10px !important;
     </div>
   </div>
   <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
-      <p style="line-height:1.3em;"><span data-lang-id="006-no-connect">If you don't want to connect, no problem!<br>Return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>.
+      <p style="line-height:1.3em;"><span data-lang-id="006-no-connect">Or... return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a> ↩
       </p>
   </div>
 </div>
