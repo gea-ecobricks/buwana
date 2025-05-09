@@ -84,9 +84,9 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
         }
 
         $stmt->bind_param(
-            'issssssisisissssddis',
+            'isssssisisissssddis',
             $buwana_id,
-            $userData['username'],
+
             $userData['first_name'],
             $userData['last_name'],
             $userData['full_name'],
