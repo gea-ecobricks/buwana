@@ -235,7 +235,7 @@
 }
 
 .vision-landscape {
-  background: url(../webps/buwana-vision-2025.webp) no-repeat bottom;
+  background: url(../webps/buwana-vision-2025.webp?v=2) no-repeat bottom;
   background-size: cover;
 
 }
