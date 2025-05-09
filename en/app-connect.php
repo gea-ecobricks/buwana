@@ -124,49 +124,29 @@ padding-top: 10px !important;
   position: relative;
   width: 30px;
   height: 30px;
-  margin: 0 10px;
-  animation: pulseSlide 1.1s ease-in-out infinite;
-  transform-origin: center;
 }
 
 .connect-arrow::before,
 .connect-arrow::after {
   content: '';
   position: absolute;
-  width: 3px;
-  height: 18px;
+  width: 2px;
+  height: 16px;
   background-color: limegreen;
-  border-radius: 2px;
-  top: 6px;
-  left: 10px;
-  transform-origin: left center;
+  border-radius: 1px;
+  transform-origin: bottom right;
 }
 
 .connect-arrow::before {
+  top: 7px;
+  left: 10px;
   transform: rotate(45deg);
 }
 
 .connect-arrow::after {
+  top: 7px;
+  left: 10px;
   transform: rotate(-45deg);
-}
-
-@keyframes pulseSlide {
-  0% {
-    transform: translateX(0) scaleY(1);
-    opacity: 0.9;
-  }
-  30% {
-    transform: translateX(10px) scaleY(0.8); /* compress vertically */
-    opacity: 1;
-  }
-  60% {
-    transform: translateX(5px) scaleY(1.15); /* stretch vertically */
-    opacity: 0.95;
-  }
-  100% {
-    transform: translateX(0) scaleY(1);
-    opacity: 0.8;
-  }
 }
 
 
@@ -194,6 +174,7 @@ padding-top: 10px !important;
       <h1>
         <span data-lang-id="001-first-time-to-connect">Connect to</span> <?= htmlspecialchars($app_info['app_display_name']) ?>
       </h1>
+  <p style="text-align:center; margin-top: 10px;color:green;font-size:1em;">✅ <?= htmlspecialchars($app_info['app_display_name']) ?> is an authorized Buwana app</p>
       <h4>
           <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-are-you-sure"> it looks like you are trying to login to <?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice.</span>
       </h4>
@@ -203,7 +184,7 @@ padding-top: 10px !important;
             <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana credentials so that you can login and make use of the app.</span>.
        </p>
 
-   <p style="text-align:center; margin-top: 10px;color:green;">✅ <?= htmlspecialchars($app_info['app_display_name']) ?> is an authorized Buwana app</p>
+
 
         <form id="user-signup-form" method="post" action="app-connect_process.php" novalidate>
             <input type="hidden" name="buwana_id" value="<?= htmlspecialchars($buwana_id) ?>">
@@ -222,6 +203,7 @@ padding-top: 10px !important;
 
 
             <p style="text-align:center; margin-top: 10px;font-size:0.9em;">By connecting you agree to the <a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span> <span data-lang-id="1000-terms-of-use">Terms of Use</span></a></p>
+            </div>
         </form>
     </div>
   </div>
