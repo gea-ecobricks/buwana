@@ -33,9 +33,11 @@ if ($stmt) {
 // 🔗 Get app info
 $app_display_name = $app_info['app_display_name'] ?? 'Your App';
 $client_id = $app_info['client_id'] ?? null;
+$client_id = $app_info['client_id'] ?? null;
 $redirect_url = $client_id
-    ? "login.php?id=" . urlencode($buwana_id) . "&app=" . urlencode($client_id)
+    ? "login.php?id=" . urlencode($buwana_id) . "&app=" . urlencode($client_id) . "&status=firsttime"
     : '/';
+
 ?>
 
 <!DOCTYPE html>
