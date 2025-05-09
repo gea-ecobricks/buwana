@@ -127,6 +127,7 @@ padding-top: 10px !important;
   height: 50px;
   animation: chevronPulse 1.5s ease-in-out infinite;
   transform-origin: center;
+  margin-left: -10px;
 }
 
 /* Chevron arms */
