@@ -12,14 +12,45 @@ $page = 'app-connect';
 $version = '0.777';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
-// 🧩 Validate buwana_id
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+
+require_once '../buwanaconn_env.php';
+require_once '../fetch_app_info.php';
+
+// Page setup
+$lang = basename(dirname($_SERVER['SCRIPT_NAME']));
+$page = 'app-connect';
+$version = '0.777';
+$lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
+
+// --- Validate inputs
 $buwana_id = $_GET['id'] ?? null;
+$client_id = $app_info['client_id'] ?? null;
+
+// --- Conditional validation and JavaScript fallback handling
+if (!$buwana_id && !$client_id) {
+    echo "<script>alert('Sorry! Something went wrong. Please select your Buwana app and login again.'); window.location.href = 'index.php';</script>";
+    exit();
+}
+
 if (!$buwana_id || !is_numeric($buwana_id)) {
-    die("⚠️ Invalid or missing Buwana ID.");
+    $safe_client_id = urlencode($client_id);
+    echo "<script>alert(\"Sorry! We couldn't discern who is logging in. Please try again.\"); window.location.href = 'login.php?app=$safe_client_id';</script>";
+    exit();
 }
-if (!$app_info || empty($app_info['client_id'])) {
-    die("⚠️ Invalid or missing app client ID.");
+
+if (!$client_id) {
+    $safe_buwana_id = urlencode($buwana_id);
+    echo "<script>alert(\"Sorry! Seems like the target app wasn't set! Please select the app you want to use and try logging in again.\"); window.location.href = 'index.php?id=$safe_buwana_id';</script>";
+    exit();
 }
+
+// 🔗 Get app info
+$app_display_name = $app_info['app_display_name'] ?? 'Your App';
+$redirect_url = $app_info['app_dashboard_url'] ?? '/';
+
 
 // 🔍 Fetch user info
 $first_name = 'User';

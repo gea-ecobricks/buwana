@@ -300,7 +300,7 @@ max-height: 200px;
    <a href="login.php?app=<?= htmlspecialchars($client_id) ?>">
      <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-left: 6px; margin-right:auto;text-align:left !important">Login</span>
    </a>
-   <span class="status-circle" style="background-color: skyblue;" title="Login directly"></span>
+   <span class="status-circle" style="background-color: green;" title="Login directly"></span>
  </div>
 
 
@@ -328,7 +328,7 @@ max-height: 200px;
         <a href="javascript:void(0);" onclick="openAboutEarthen()" data-lang-id="1000-about-earthen">
           About Earthen
         </a>
-    <span class="status-circle" style="background-color: blue;" title="Under development"></span>
+    <span class="status-circle" style="background-color: RED;" title="Under development"></span>
     </div>
 
 
@@ -336,7 +336,7 @@ max-height: 200px;
   <a href="javascript:void(0);" onclick="openAboutBuwana()" data-lang-id="1000-about-buwana">
     About Buwana
   </a>
-  <span class="status-circle" style="background-color: RED;" title="About the Buwana Project"></span>
+  <span class="status-circle" style="background-color: PINK;" title="About the Buwana Project"></span>
 </div>
 
 
