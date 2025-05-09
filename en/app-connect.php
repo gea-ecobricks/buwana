@@ -120,12 +120,14 @@ padding-top: 10px !important;
     object-fit: contain;
 }
 
+
 .connect-arrow {
   position: relative;
   width: 20px;
   height: 20px;
   margin: 0 10px;
-  animation: pulseSlide 1.1s infinite;
+  animation: pulseSlide 1.1s ease-in-out infinite;
+  transform-origin: center;
 }
 
 .connect-arrow::before,
@@ -137,8 +139,8 @@ padding-top: 10px !important;
   background-color: limegreen;
   border-radius: 1px;
   top: 3px;
-  left: 50%;
-  transform-origin: bottom center;
+  left: 8px;
+  transform-origin: center;
 }
 
 .connect-arrow::before {
@@ -151,18 +153,23 @@ padding-top: 10px !important;
 
 @keyframes pulseSlide {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) scaleY(1);
     opacity: 0.9;
   }
   30% {
-    transform: translateX(10px);
+    transform: translateX(10px) scaleY(0.8); /* compress vertically */
     opacity: 1;
   }
+  60% {
+    transform: translateX(5px) scaleY(1.15); /* stretch vertically on return */
+    opacity: 0.95;
+  }
   100% {
-    transform: translateX(0);
+    transform: translateX(0) scaleY(1);
     opacity: 0.8;
   }
 }
+
 
 
 </STYLE>
@@ -184,16 +191,16 @@ padding-top: 10px !important;
 
         </div>
 
-      <h2>
+      <h1>
         <span data-lang-id="001-first-time-to-connect">Connect to</span> <?= htmlspecialchars($app_info['app_display_name']) ?>
-      </h2>
-      <p>
+      </h1>
+      <h4>
           <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-are-you-sure"> it looks like you are trying to login to <?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice.</span>
-      </p>
+      </h4>
 
 
        <p>
-            <span data-lang-id="003-if-so">If so, the </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="004-will-be-granted"> will be granted access to your Buwana account so that you can login in make use of its regenerative functionality.</span>.
+            <span data-lang-id="003-if-so">By connecting, you grant </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="004-will-be-granted"> access to your Buwana account so that you can login and make use of its regenerative functionality.</span>.
        </p>
 
         <form id="user-signup-form" method="post" action="app-connect_process.php" novalidate>
@@ -213,7 +220,7 @@ padding-top: 10px !important;
         </form>
     </div>
   </div>
-  <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
+  <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;line-height:1.3em;">
       <p><span data-lang-id="006-no-connect">If you don't want to connect, no problem!<br>Return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>.
       </p>
   </div>
