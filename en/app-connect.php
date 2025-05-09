@@ -122,9 +122,9 @@ padding-top: 10px !important;
 
 .connect-arrow {
   position: relative;
-  width: 30px;
-  height: 30px;
-  animation: chevronPulse 1.2s ease-in-out infinite;
+  width: 50px;
+  height: 50px;
+  animation: chevronPulse 0.6s ease-in-out infinite;
   transform-origin: center;
 }
 
@@ -141,7 +141,7 @@ padding-top: 10px !important;
 
 .connect-arrow::before {
   top: 5px;
-  left: 5px; /* Start from center-left */
+  left: 5px;
   transform: rotate(-45deg);
 }
 
@@ -151,25 +151,19 @@ padding-top: 10px !important;
   transform: rotate(-135deg);
 }
 
-/* Animation */
+/* Chevron pulse animation */
 @keyframes chevronPulse {
   0% {
-    transform: translateX(0) scaleY(1);
-    opacity: 1;
+    transform: translateX(0) scaleY(1.1); /* Left + stretch */
   }
-  30% {
-    transform: translateX(10px) scaleY(0.85); /* Move right, compress */
-    opacity: 1;
-  }
-  60% {
-    transform: translateX(5px) scaleY(1.15); /* Return partway, stretch */
-    opacity: 0.9;
+  50% {
+    transform: translateX(10px) scaleY(0.9); /* Right + compress */
   }
   100% {
-    transform: translateX(0) scaleY(1);
-    opacity: 0.85;
+    transform: translateX(0) scaleY(1.1); /* Back to left + stretch */
   }
 }
+
 
 
 
