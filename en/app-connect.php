@@ -78,13 +78,60 @@ if ($stmt) {
 padding-top: 10px !important;
 }
 
-#right-arrow-connect-icon::before {
-  content: '➤';
+.app-connect-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 500px;
+}
+
+.icon-box {
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--subdued-text);
+  background-color: var(--lighter);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 3rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* App logo background image loader */
+.app-logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.app-logo::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(var(--logo-light));
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Inject logo via JavaScript depending on light/dark theme */
+:root {
+  --logo-light: '';
+  --logo-dark: '';
+}
+
+/* Arrow styling */
+.connect-arrow::before {
+  content: '➤';
+  font-size: 2rem;
   color: limegreen;
   animation: pulseArrow 1.8s ease-in-out infinite;
   display: inline-block;
-  padding: 0 20px;
 }
 
 @keyframes pulseArrow {
@@ -93,18 +140,10 @@ padding-top: 10px !important;
     opacity: 0.8;
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.2);
     opacity: 1;
   }
 }
-
-
-.the-app-logo {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 175px;
-  height: 100px;
 
 }
 
@@ -115,24 +154,26 @@ padding-top: 10px !important;
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <div style="text-align:center;width:100%;margin:auto;">
-      <h1>
+        <div class="app-connect-container">
+          <div class="icon-box earthling-icon">
+            <?= htmlspecialchars($earthling_emoji) ?>
+          </div>
+          <div class="connect-arrow"></div>
+          <div class="icon-box app-logo the-app-logo"
+               alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo"
+               title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"
+               data-light-logo="<?= htmlspecialchars($app_info['app_logo_url']) ?>"
+               data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>">
+          </div>
+        </div>
+
+      <h2>
         <span data-lang-id="001-first-time-to-connect">Connect to</span> <?= htmlspecialchars($app_info['app_display_name']) ?>
-      </h1>
+      </h2>
       <p>
           <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-are-you-sure"> it looks like you are trying to login to <?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice.</span>
       </p>
-      <div id="app-connect-relationship" style="display:flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px; margin: 20px auto;">
-          <div class="emoji-banner" style="text-align:center;font-size:5em;">
-              <?= htmlspecialchars($earthling_emoji) ?>
-          </div>
-          <div class="right-arrow-connect-icon"></div>
-             <div class="the-app-logo"
-                  alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo"
-                  title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"
-                  data-light-logo="<?= htmlspecialchars($app_info['app_logo_url']) ?>"
-                  data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>">
-             </div>
-      </div>
+
 
        <p>
             <span data-lang-id="003-if-so">If so, the </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="004-will-be-granted"> will be granted access to your Buwana account so that you can login in make use of its regenerative functionality.</span>.
@@ -146,12 +187,12 @@ padding-top: 10px !important;
 
 
                 <button type="submit" id="submit-button" class="kick-ass-submit">
-                    <span id="submit-button-text" data-lang-id="009-connect-button">Connect ↔</span>
+                    <span id="submit-button-text" data-lang-id="009-connect-button">Connect</span>
                     <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                 </button>
             </div>
 
-            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;">By connecting you agree to the <span  data-lang-id="010-terms"></span><a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span><span data-lang-id="1000-terms-of-use" style="margin-left: 6px;margin-right:auto;text-align:left !important">Terms of Use</span></a></p>
+            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;">By connecting you agree to the <span  data-lang-id="010-terms"></span><a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span><span data-lang-id="1000-terms-of-use">Terms of Use</span></a></p>
         </form>
     </div>
   </div>
@@ -165,6 +206,21 @@ padding-top: 10px !important;
 </div>
 
 <?php require_once ("../footer-2025.php"); ?>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const logoBox = document.querySelector('.the-app-logo');
+      if (!logoBox) return;
+
+      const lightLogo = logoBox.getAttribute('data-light-logo');
+      const darkLogo = logoBox.getAttribute('data-dark-logo');
+
+      // Simple match for dark/light mode
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.style.setProperty('--logo-light', prefersDark ? darkLogo : lightLogo);
+    });
+</script>
 
 </body>
 </html>
