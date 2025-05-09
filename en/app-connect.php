@@ -198,7 +198,7 @@ padding-top: 10px !important;
 
 
        <p style="margin-top:-15px;margin-bottom:20px;">
-            <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?>. <span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana <?= htmlspecialchars($credential_key) ?> credentials so that you can login and make use of the app.</span>.
+            <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?>. <span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana <?= htmlspecialchars($email) ?> credentials so that you can login and make use of the app.</span>.
        </p>
 
 
