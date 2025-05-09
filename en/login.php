@@ -7,6 +7,10 @@ ini_set('display_errors', 1);
 require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
+if (!empty($app_info['client_id'])) {
+    $_SESSION['client_id'] = $app_info['client_id'];
+}
+
 // Set page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $version = '0.773';

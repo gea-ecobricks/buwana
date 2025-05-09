@@ -35,7 +35,7 @@ if ($stmt_check_email) {
         $stmt_check_email->fetch();
 //If Account is unactivated send them to activate
         if ($buwana_activated == '0') {
-            header("Location: ../$lang/activate.php?id=$ecobricker_id");
+            header("Location: https://gobrik.com/$lang/activate.php?id=$ecobricker_id");
             exit();
         }
 
@@ -104,31 +104,47 @@ if ($stmt_credential) {
                         die('Error preparing statement for updating credentials_tb: ' . $buwana_conn->error);
                     }
 
-                // PART 5: Upon successful login: Update GoBrik Account
-                $sql_update_ecobricker = "UPDATE tb_ecobrickers
-                    SET last_login = NOW(),
-                        login_count = login_count + 1,
-                        account_notes = CONCAT('GoBrik 3.0 account active. Logged in ', login_count + 1, ' times.')
-                    WHERE email_addr = ?";
-                $stmt_update_ecobricker = $gobrik_conn->prepare($sql_update_ecobricker);
+       // Set session variable to indicate the user is logged in
+       $_SESSION['buwana_id'] = $buwana_id;
 
-                if ($stmt_update_ecobricker) {
-                    $stmt_update_ecobricker->bind_param('s', $credential_key);
-                    $stmt_update_ecobricker->execute();
-                    $stmt_update_ecobricker->close();
-                } else {
-                    die('Error preparing statement for updating tb_ecobrickers: ' . $gobrik_conn->error);
-                }
+       $client_id = $_SESSION['client_id'] ?? null;
+       $app_dashboard_url = 'dashboard.php'; // default fallback
 
-                    // Set the session variable to indicate the user is logged in
-                    $_SESSION['buwana_id'] = $buwana_id;
+       if ($client_id) {
+           // Get app's dashboard URL
+           $sql = "SELECT app_dashboard_url FROM apps_tb WHERE client_id = ?";
+           $stmt = $buwana_conn->prepare($sql);
+           if ($stmt) {
+               $stmt->bind_param('s', $client_id);
+               $stmt->execute();
+               $stmt->bind_result($app_dashboard_url);
+               $stmt->fetch();
+               $stmt->close();
+           }
 
-                   // PART 6: Redirect to the appropriate page
-                    $redirect_url = !empty($redirect) ? $redirect : 'dashboard.php';
+           // 🔍 Check if the user is already connected to this app
+           $check_sql = "SELECT COUNT(*) FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?";
+           $check_stmt = $buwana_conn->prepare($check_sql);
+           if ($check_stmt) {
+               $check_stmt->bind_param('is', $buwana_id, $client_id);
+               $check_stmt->execute();
+               $check_stmt->bind_result($connection_count);
+               $check_stmt->fetch();
+               $check_stmt->close();
 
-                    // Redirect to the final URL
-                    header("Location: $redirect_url");
-                    exit();
+               if ($connection_count == 0) {
+                   // 🚪 Not yet connected → send to app-connect page
+                   header("Location: ../app-connect.php?buwana_id=$buwana_id&client_id=$client_id");
+                   exit();
+               }
+           }
+       }
+
+       // ✅ Default redirect
+       $redirect_url = !empty($redirect) ? $redirect : $app_dashboard_url;
+       header("Location: $redirect_url");
+       exit();
+
 
                 } else {
                     // PART 6: Handle failed login attempts
