@@ -200,7 +200,7 @@ padding-top: 10px !important;
 
 
        <p>
-            <span data-lang-id="003-if-so">By connecting, you grant </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="004-will-be-granted"> access to your Buwana account so that you can login and make use of its regenerative functionality.</span>.
+            <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana credentials so that you can login and make use of the app.</span>.
        </p>
 
         <form id="user-signup-form" method="post" action="app-connect_process.php" novalidate>
@@ -216,12 +216,15 @@ padding-top: 10px !important;
                 </button>
             </div>
 
-            <p class="form-caption" style="text-align:center; margin-top: 10px;font-size:0.9em;">By connecting you agree to the <a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span> <span data-lang-id="1000-terms-of-use">Terms of Use</span></a></p>
+            <div class="form-caption" style="text-align:center; margin-top: 10px;color:green;">
+                <p>✅ <?= htmlspecialchars($app_info['app_display_name']) ?> is an authorized Buwana app</p>
+
+            <p style="text-align:center; margin-top: 10px;font-size:0.9em;">By connecting you agree to the <a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span> <span data-lang-id="1000-terms-of-use">Terms of Use</span></a></p>
         </form>
     </div>
   </div>
-  <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;line-height:1.3em;">
-      <p><span data-lang-id="006-no-connect">If you don't want to connect, no problem!<br>Return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>.
+  <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
+      <p style="line-height:1.3em;"><span data-lang-id="006-no-connect">If you don't want to connect, no problem!<br>Return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>.
       </p>
   </div>
 </div>
