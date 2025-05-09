@@ -25,9 +25,11 @@ $is_logged_in = isLoggedIn(); // Check if the user is logged in using the helper
 
 // Check if user is logged in and session active
 if ($is_logged_in) {
-    header('Location: dashboard.php');
+    $redirect_url = $app_info['app_dashboard_url'] ?? 'dashboard.php';
+    header("Location: $redirect_url");
     exit();
 }
+
 
 // Generate CSRF token if not already set
 if (empty($_SESSION['csrf_token'])) {

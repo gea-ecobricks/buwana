@@ -92,7 +92,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
    $page_key = str_replace('-', '_', $page); // e.g. 'signup-1' → 'signup_1'
    ?>
 
-   <div id="top-page-image"
+   <div id="top-page-image" style="max-width:88%"
         class="top-page-image"
         data-light-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_light']) ?>"
         data-dark-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_dark']) ?>">
