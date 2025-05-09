@@ -120,28 +120,50 @@ padding-top: 10px !important;
     object-fit: contain;
 }
 
-
-/* Arrow styling */
-.connect-arrow::before {
-  content: '➤';
-  font-size: 2rem;
-  color: limegreen;
-  animation: pulseArrow 1.8s ease-in-out infinite;
-  display: inline-block;
+.connect-arrow {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  animation: pulseSlide 1.1s infinite;
 }
 
-@keyframes pulseArrow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
+.connect-arrow::before,
+.connect-arrow::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 14px;
+  background-color: limegreen;
+  border-radius: 1px;
+  top: 3px;
+  left: 50%;
+  transform-origin: bottom center;
+}
+
+.connect-arrow::before {
+  transform: rotate(45deg);
+}
+
+.connect-arrow::after {
+  transform: rotate(-45deg);
+}
+
+@keyframes pulseSlide {
+  0% {
+    transform: translateX(0);
+    opacity: 0.9;
   }
-  50% {
-    transform: scale(1.2);
+  30% {
+    transform: translateX(10px);
     opacity: 1;
   }
+  100% {
+    transform: translateX(0);
+    opacity: 0.8;
+  }
 }
 
-}
 
 </STYLE>
 
@@ -192,7 +214,7 @@ padding-top: 10px !important;
     </div>
   </div>
   <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
-      <p><span data-lang-id="006-manual-redirect">If you don't want to connect, no problem!<br>>Return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>.
+      <p><span data-lang-id="006-no-connect">If you don't want to connect, no problem!<br>Return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>.
       </p>
   </div>
 </div>
@@ -202,7 +224,7 @@ padding-top: 10px !important;
 
 <?php require_once ("../footer-2025.php"); ?>
 
-
+<?php require_once ("../scripts/app_modals.php");?>
 
 </body>
 </html>
