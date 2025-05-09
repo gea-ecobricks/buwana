@@ -144,10 +144,10 @@ padding-top: 10px !important;
             <input type="hidden" name="client_id" value="<?= htmlspecialchars($app_info['client_id']) ?>">
  <!-- Kick-Ass Submit Button -->
             <div id="submit-section" class="submit-button-wrapper">
-               <p data-lang-id="008-almost-done" style="text-align:center;margin-top:35px;margin-bottom:15px">Your Buwana account activation is almost complete!</p>
+
 
                 <button type="submit" id="submit-button" class="kick-ass-submit">
-                    <span id="submit-button-text" data-lang-id="009-finalize-button">Finalize ➡</span>
+                    <span id="submit-button-text" data-lang-id="009-connect-button">Connect ↔</span>
                     <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                 </button>
             </div>
