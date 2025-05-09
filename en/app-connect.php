@@ -203,6 +203,8 @@ padding-top: 10px !important;
             <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana credentials so that you can login and make use of the app.</span>.
        </p>
 
+   <p style="text-align:center; margin-top: 10px;color:green;">✅ <?= htmlspecialchars($app_info['app_display_name']) ?> is an authorized Buwana app</p>
+
         <form id="user-signup-form" method="post" action="app-connect_process.php" novalidate>
             <input type="hidden" name="buwana_id" value="<?= htmlspecialchars($buwana_id) ?>">
             <input type="hidden" name="client_id" value="<?= htmlspecialchars($app_info['client_id']) ?>">
@@ -216,8 +218,8 @@ padding-top: 10px !important;
                 </button>
             </div>
 
-            <div class="form-caption" style="text-align:center; margin-top: 10px;color:green;">
-                <p>✅ <?= htmlspecialchars($app_info['app_display_name']) ?> is an authorized Buwana app</p>
+            <div class="form-caption" >
+
 
             <p style="text-align:center; margin-top: 10px;font-size:0.9em;">By connecting you agree to the <a href="#" onclick="openTermsModal(); return false;"><span><?= htmlspecialchars($app_info['app_display_name']) ?></span> <span data-lang-id="1000-terms-of-use">Terms of Use</span></a></p>
         </form>
