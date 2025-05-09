@@ -120,11 +120,10 @@ padding-top: 10px !important;
     object-fit: contain;
 }
 
-
 .connect-arrow {
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin: 0 10px;
   animation: pulseSlide 1.1s ease-in-out infinite;
   transform-origin: center;
@@ -134,13 +133,13 @@ padding-top: 10px !important;
 .connect-arrow::after {
   content: '';
   position: absolute;
-  width: 2px;
-  height: 14px;
+  width: 3px;
+  height: 18px;
   background-color: limegreen;
-  border-radius: 1px;
-  top: 3px;
-  left: 8px;
-  transform-origin: center;
+  border-radius: 2px;
+  top: 6px;
+  left: 10px;
+  transform-origin: left center;
 }
 
 .connect-arrow::before {
@@ -161,7 +160,7 @@ padding-top: 10px !important;
     opacity: 1;
   }
   60% {
-    transform: translateX(5px) scaleY(1.15); /* stretch vertically on return */
+    transform: translateX(5px) scaleY(1.15); /* stretch vertically */
     opacity: 0.95;
   }
   100% {
@@ -169,6 +168,7 @@ padding-top: 10px !important;
     opacity: 0.8;
   }
 }
+
 
 
 
