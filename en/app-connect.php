@@ -208,19 +208,6 @@ padding-top: 10px !important;
 <?php require_once ("../footer-2025.php"); ?>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const logoBox = document.querySelector('.the-app-logo');
-      if (!logoBox) return;
-
-      const lightLogo = logoBox.getAttribute('data-light-logo');
-      const darkLogo = logoBox.getAttribute('data-dark-logo');
-
-      // Simple match for dark/light mode
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.style.setProperty('--logo-light', prefersDark ? darkLogo : lightLogo);
-    });
-</script>
 
 </body>
 </html>
