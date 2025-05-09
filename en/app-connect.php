@@ -100,6 +100,15 @@ padding-top: 10px !important;
 }
 
 
+.the-app-logo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80%;
+  height: 25%;
+  margin: auto;
+}
+
 </STYLE>
 
 <?php require_once ("../header-2025.php");?>  <!-- this file closes HEAD-->
@@ -118,9 +127,12 @@ padding-top: 10px !important;
               <?= htmlspecialchars($earthling_emoji) ?>
           </div>
           <div class="right-arrow-connect-icon"></div>
-          <div class="app-icon" style="text-align:center;font-size:5em;">
-              <img src="<?= htmlspecialchars($app_info['app_icon_url']) ?>">
-          </div>
+             <div class="the-app-logo"
+                  alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo"
+                  title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"
+                  data-light-logo="<?= htmlspecialchars($app_info['app_logo_url']) ?>"
+                  data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>">
+             </div>
       </div>
 
        <p>

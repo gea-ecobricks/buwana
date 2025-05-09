@@ -321,14 +321,14 @@ max-height: 200px;
 <div class="menu-page-item">
 <a href="#" onclick="openBuwanaPrivacy(); return false;" data-lang-id="1000-privacy-policy">Privacy</a>
 
-  <span class="status-circle" style="background-color: ORANGE;" title="Privacy Policy"></span>
+  <span class="status-circle" style="background-color: RED;" title="Privacy Policy"></span>
 </div>
 
 <div class="menu-page-item">
         <a href="javascript:void(0);" onclick="openAboutEarthen()" data-lang-id="1000-about-earthen">
           About Earthen
         </a>
-    <span class="status-circle" style="background-color: RED;" title="Under development"></span>
+    <span class="status-circle" style="background-color: fuchsia;" title="Under development"></span>
     </div>
 
 
@@ -336,7 +336,7 @@ max-height: 200px;
   <a href="javascript:void(0);" onclick="openAboutBuwana()" data-lang-id="1000-about-buwana">
     About Buwana
   </a>
-  <span class="status-circle" style="background-color: PINK;" title="About the Buwana Project"></span>
+  <span class="status-circle" style="background-color: Blue;" title="About the Buwana Project"></span>
 </div>
 
 
