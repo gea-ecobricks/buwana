@@ -140,15 +140,15 @@ padding-top: 10px !important;
 }
 
 .connect-arrow::before {
-  top: 0px;
-  left: 30px;
-  transform: rotate(-45deg);
+  top: 5px;
+    left: 32px;
+    transform: rotate(-55deg);
 }
 
 .connect-arrow::after {
-  top: 0px;
-  left: 30px;
-  transform: rotate(-135deg);
+  top: 5px;
+    left: 32px;
+    transform: rotate(-125deg);
 }
 
 /* Chevron pulse animation */
@@ -223,8 +223,8 @@ padding-top: 10px !important;
         </form>
     </div>
   </div>
-  <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
-      <p style="line-height:1.3em;"><span data-lang-id="006-no-connect">Or... return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a> ↩
+  <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: -20px;">
+      <p style="line-height:1.3em;"><span data-lang-id="006-no-connect"> ↩ Or... return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>
       </p>
   </div>
 </div>
