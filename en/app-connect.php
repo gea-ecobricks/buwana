@@ -54,11 +54,12 @@ $redirect_url = $app_info['app_dashboard_url'] ?? '/';
 // 🔍 Fetch user info
 $first_name = 'User';
 $earthling_emoji = '🌍';
-$stmt = $buwana_conn->prepare("SELECT first_name, earthling_emoji FROM users_tb WHERE buwana_id = ?");
+$email = 'email';
+$stmt = $buwana_conn->prepare("SELECT email, first_name, earthling_emoji FROM users_tb WHERE buwana_id = ?");
 if ($stmt) {
     $stmt->bind_param('i', $buwana_id);
     $stmt->execute();
-    $stmt->bind_result($first_name, $earthling_emoji);
+    $stmt->bind_result($email, $first_name, $earthling_emoji);
     $stmt->fetch();
     $stmt->close();
 }
