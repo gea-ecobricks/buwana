@@ -17,6 +17,9 @@ $buwana_id = $_GET['id'] ?? null;
 if (!$buwana_id || !is_numeric($buwana_id)) {
     die("⚠️ Invalid or missing Buwana ID.");
 }
+if (!$app_info || empty($app_info['client_id'])) {
+    die("⚠️ Invalid or missing app client ID.");
+}
 
 // 🔍 Fetch user info
 $first_name = 'User';
@@ -44,6 +47,27 @@ if ($stmt) {
 .form-container {
 padding-top: 10px !important;
 }
+
+#right-arrow-connect-icon::before {
+  content: '➤';
+  font-size: 3rem;
+  color: limegreen;
+  animation: pulseArrow 1.8s ease-in-out infinite;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+@keyframes pulseArrow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+}
+
 
 </STYLE>
 
