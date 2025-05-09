@@ -124,8 +124,11 @@ padding-top: 10px !important;
   position: relative;
   width: 30px;
   height: 30px;
+  animation: chevronPulse 1.2s ease-in-out infinite;
+  transform-origin: center;
 }
 
+/* Chevron arms */
 .connect-arrow::before,
 .connect-arrow::after {
   content: '';
@@ -133,20 +136,39 @@ padding-top: 10px !important;
   width: 3px;
   height: 20px;
   background-color: green;
-  border-radius: 0px;
   transform-origin: bottom right;
 }
 
 .connect-arrow::before {
-  top: 10px;
-  left: 10px;
+  top: 5px;
+  left: 5px; /* Start from center-left */
   transform: rotate(-45deg);
 }
 
 .connect-arrow::after {
-  top: 10px;
-  left: 10px;
+  top: 5px;
+  left: 5px;
   transform: rotate(-135deg);
+}
+
+/* Animation */
+@keyframes chevronPulse {
+  0% {
+    transform: translateX(0) scaleY(1);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(10px) scaleY(0.85); /* Move right, compress */
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(5px) scaleY(1.15); /* Return partway, stretch */
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(0) scaleY(1);
+    opacity: 0.85;
+  }
 }
 
 
