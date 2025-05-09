@@ -104,9 +104,9 @@ padding-top: 10px !important;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 80%;
-  height: 25%;
-  margin: auto;
+  width: 175px;
+  height: 100px;
+
 }
 
 </STYLE>
@@ -116,12 +116,12 @@ padding-top: 10px !important;
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <div style="text-align:center;width:100%;margin:auto;">
-      <h2>
-        <span data-lang-id="001-first-time-to-connect">It looks like this is your first time logging into </span> <?= htmlspecialchars($app_info['app_display_name']) ?>
-      </h2>
-      <h3>
-          <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-are-you-sure">Are you sure you want to connect?</span>
-      </h3>
+      <h1>
+        <span data-lang-id="001-first-time-to-connect">Connect to</span> <?= htmlspecialchars($app_info['app_display_name']) ?>
+      </h1>
+      <p>
+          <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-are-you-sure"> it looks like you are trying to login to <?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice.</span>
+      </p>
       <div id="app-connect-relationship" style="display:flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px; margin: 20px auto;">
           <div class="emoji-banner" style="text-align:center;font-size:5em;">
               <?= htmlspecialchars($earthling_emoji) ?>
