@@ -20,16 +20,27 @@ if (!$buwana_id || !$client_id) {
 $app_name = $app_info['app_name'] ?? 'default_app';
 $app_dashboard_url = $app_info['app_dashboard_url'] ?? '/';
 
-// 🔗 Load the correct client DB connection
-$client_db_path = "../client_dbs/{$client_id}_conn.php";
-if (!file_exists($client_db_path)) {
-    die("❌ Could not find DB connection for client ID: $client_id");
-}
-require_once $client_db_path; // Provides $client_conn
 
-if (!isset($client_conn)) {
-    die("❌ Client DB connection not properly initialized.");
+// --- STEP 5: Load client connection file ---
+$client_env_path = "../config/{$app_name}_env.php";
+
+if (!file_exists($client_env_path)) {
+    error_log("❌ Client config file not found at: $client_env_path");
+    die("❌ Missing DB config: $client_env_path");
 }
+
+require_once $client_env_path;
+error_log("✅ Loaded client config: $client_env_path");
+
+// --- Validate $client_conn existence and connection ---
+if (!isset($client_conn) || !($client_conn instanceof mysqli) || $client_conn->connect_error) {
+    error_log("❌ Client DB connection is not set or is invalid.");
+    die("❌ Client DB connection could not be initialized.");
+}
+
+error_log("✅ Client DB connection ($app_name) established successfully.");
+
+
 
 // 🧠 Fetch full user data from Buwana
 $stmt = $buwana_conn->prepare("SELECT * FROM users_tb WHERE buwana_id = ?");
