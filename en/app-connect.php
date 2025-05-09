@@ -138,15 +138,15 @@ padding-top: 10px !important;
 }
 
 .connect-arrow::before {
-  top: 7px;
+  top: 10px;
   left: 10px;
-  transform: rotate(45deg);
+  transform: rotate(0deg);
 }
 
 .connect-arrow::after {
-  top: 7px;
+  top: 10px;
   left: 10px;
-  transform: rotate(-45deg);
+  transform: rotate(-90deg);
 }
 
 
@@ -180,7 +180,7 @@ padding-top: 10px !important;
       </h4>
 
 
-       <p>
+       <p style="margin-top:-10px;margin-bottom:10px;">
             <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana credentials so that you can login and make use of the app.</span>.
        </p>
 
