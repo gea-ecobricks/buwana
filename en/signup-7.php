@@ -45,16 +45,9 @@ $redirect_url = $client_id
 <head>
   <meta charset="UTF-8">
 
-  <!--
-  GoBrik.com site version 3.0
-  Developed and made open source by the Global Ecobrick Alliance
-  See our git hub repository for the full code and to help out:
-  https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
   <?php require_once ("../includes/signup-7-inc.php");?>
 
-<div class="splash-title-block"></div>
-<div id="splash-bar"></div>
 <div id="top-page-image" class="top-page-image"></div>
 
 <div id="form-submission-box" class="landing-page-form">
