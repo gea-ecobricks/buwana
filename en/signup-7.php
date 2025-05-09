@@ -32,7 +32,10 @@ if ($stmt) {
 
 // 🔗 Get app info
 $app_display_name = $app_info['app_display_name'] ?? 'Your App';
-$redirect_url = $app_info['app_login_url'] ?? '/';
+$client_id = $app_info['client_id'] ?? null;
+$redirect_url = $client_id
+    ? "login.php?id=" . urlencode($buwana_id) . "&app=" . urlencode($client_id)
+    : '/';
 ?>
 
 <!DOCTYPE html>
@@ -106,34 +109,34 @@ $redirect_url = $app_info['app_login_url'] ?? '/';
 
 
 
-
-  // 👀 Injected emoji array for the app
-  window.appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]'), JSON_UNESCAPED_UNICODE) ?>;
-
-  // 🔁 Continuous emoji spinner for signup-7.php
-  function runSignup7EmojiSpinner(selector) {
-    const emojiContainer = document.querySelector(selector);
-    if (!emojiContainer || !window.appEmojis || !window.appEmojis.length) return;
-
-    const emojis = window.appEmojis;
-    let index = 0;
-
-    setTimeout(() => {
-      setInterval(() => {
-        emojiContainer.textContent = emojis[index];
-        emojiContainer.style.opacity = 1;
-
-        // Optional: fade-out effect
-        setTimeout(() => {
-          emojiContainer.style.opacity = 0.7;
-        }, 200); // fade slightly after 200ms
-
-        index = (index + 1) % emojis.length; // loop back
-      }, 200); // ⏱ 30% faster (was 400ms)
-    }, 1000); // Initial delay
-  }
-
-  runSignup7EmojiSpinner('.emoji-banner');
+//
+//   // 👀 Injected emoji array for the app
+//   window.appEmojis = <?= json_encode(json_decode($app_info['app_emojis_array'] ?? '[]'), JSON_UNESCAPED_UNICODE) ?>;
+//
+//   // 🔁 Continuous emoji spinner for signup-7.php
+//   function runSignup7EmojiSpinner(selector) {
+//     const emojiContainer = document.querySelector(selector);
+//     if (!emojiContainer || !window.appEmojis || !window.appEmojis.length) return;
+//
+//     const emojis = window.appEmojis;
+//     let index = 0;
+//
+//     setTimeout(() => {
+//       setInterval(() => {
+//         emojiContainer.textContent = emojis[index];
+//         emojiContainer.style.opacity = 1;
+//
+//         // Optional: fade-out effect
+//         setTimeout(() => {
+//           emojiContainer.style.opacity = 0.7;
+//         }, 200); // fade slightly after 200ms
+//
+//         index = (index + 1) % emojis.length; // loop back
+//       }, 200); // ⏱ 30% faster (was 400ms)
+//     }, 1000); // Initial delay
+//   }
+//
+//   runSignup7EmojiSpinner('.emoji-banner');
 </script>
 
 
