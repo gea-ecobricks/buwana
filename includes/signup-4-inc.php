@@ -34,7 +34,7 @@
 .pin-icon {
     display: block;
     position: absolute;
-    top: 25%;  /* Center vertically in the input field */
+    top: 35px;  /* Center vertically in the input field */
     left: 20px; /* Distance from the right edge of the input field */
     transform: translateY(-50%); /* Ensures the spinner is exactly centered vertically */
     width: 15px;

@@ -1,8 +1,8 @@
 <!--FOOTER STARTS-->
-<div id="footer-full" style="margin-top:0px;">
+<div id="footer-full" style="margin-top:0px;background-color: var(--footer-background);">
 
     <div class="vision-landscape" style="background-color: var(--footer-background);">
-        <img src="../webps/vision-day-2025.webp" style="width:100%; margin-top:-2px;" loading="lazy" data-lang-id="400-visionscape-description" alt="We envision a great green transition from ways that pollute to ways that enrich.  And it starts with our plastic.">
+        <img src="../webps/vision-day-2025.webp" style="width:100%; margin-top:-2px;margin-bottom:10px;" loading="lazy" data-lang-id="400-visionscape-description" alt="We envision a great green transition from ways that pollute to ways that enrich.  And it starts with our plastic.">
     </div>
 
     <div class="footer-vision" data-lang-id="2000-buwana-vision">

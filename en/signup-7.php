@@ -30,14 +30,14 @@ if ($stmt) {
     $stmt->close();
 }
 
-// 🔗 Get app info
+// 🔗 Get app info for redirect to the client app's url
 $app_display_name = $app_info['app_display_name'] ?? 'Your App';
-$client_id = $app_info['client_id'] ?? null;
-$client_id = $app_info['client_id'] ?? null;
-$redirect_url = $client_id
-    ? "login.php?id=" . urlencode($buwana_id) . "&app=" . urlencode($client_id) . "&status=firsttime"
+$app_login_url = $app_info['app_login_url'] ?? null;
+$redirect_url = $app_login_url
+    ? $app_login_url . '?lang=' . urlencode($lang) .
+      '&id=' . urlencode($buwana_id) .
+      '&status=firsttime'
     : '/';
-
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +61,7 @@ $redirect_url = $client_id
       </h1>
       <h4 data-lang-id="002-your-buwana-create">Your Buwana account has been created.</h4>
       <p>
-        <span data-lang-id="003-you-will-be">You'll be redirected to login to </span><?= htmlspecialchars($app_display_name) ?><span data-lang-id="004-after">after</span><span id="countdown">3</span><span data-lang-id="005-seconds">seconds</span>.
+        <span data-lang-id="003-you-will-be">You'll be redirected to login to </span><?= htmlspecialchars($app_display_name) ?> <span data-lang-id="004-after">after</span> <span id="countdown">5</span> <span data-lang-id="005-seconds">seconds</span>.
       </p>
 
 

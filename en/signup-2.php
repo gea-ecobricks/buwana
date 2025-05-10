@@ -433,8 +433,6 @@ function checkHoneypot() {
   return 0;
 }
 
-
-
 </script>
 
 
