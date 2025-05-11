@@ -420,7 +420,6 @@ console.log("🌍 userCountryId:", userCountryId);
 
 
 function addCommunity2Buwana(event) {
-alert('form is working!');
     event.preventDefault(); // Prevent normal form submission
 
     const form = document.getElementById('addCommunityForm');

@@ -34,7 +34,7 @@ if (!$app_name || !$client_id) {
     die("❌ Missing app configuration details.");
 }
 
-// --- STEP 3: Resolve country_id & continent_code ---
+// STEP 3: Resolve country_id & continent_code
 $set_country_id = null;
 $set_continent_code = null;
 
@@ -44,13 +44,19 @@ $stmt_country = $buwana_conn->prepare($sql_country);
 if ($stmt_country) {
     $stmt_country->bind_param('s', $selected_country_name);
     $stmt_country->execute();
-    $stmt_country->bind_result($set_country_id, $set_continent_code);
-    $stmt_country->fetch();
+    $stmt_country->store_result();
+
+    if ($stmt_country->num_rows === 1) {
+        $stmt_country->bind_result($set_country_id, $set_continent_code);
+        $stmt_country->fetch();
+    } else {
+        // Handle lookup failure gracefully
+        $set_country_id = null;
+        $set_continent_code = null;
+    }
+
     $stmt_country->close();
 }
-
-$set_country_id = !empty($set_country_id) ? $set_country_id : null;
-$set_continent_code = !empty($set_continent_code) ? $set_continent_code : null;
 
 // --- STEP 4: Update Buwana User Record ---
 $update_sql = "
