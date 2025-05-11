@@ -92,7 +92,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
    $page_key = str_replace('-', '_', $page); // e.g. 'signup-1' → 'signup_1'
    ?>
 
-   <div id="top-page-image" style="max-width:88%"
+   <div id="top-page-image"
         class="top-page-image"
         data-light-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_light']) ?>"
         data-dark-img="<?= htmlspecialchars($app_info[$page_key . '_top_img_dark']) ?>">
@@ -199,6 +199,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
         	name="community_name"
         	aria-label="Community Name"
         	list="community_list"
+        	autocomplete="off"
         	data-lang-id="007-community-placeholder"
         	placeholder="Type your community..."
         	style="width: 100%; padding: 11px 10px 11px 50px; font-size: 20px !important;"
@@ -419,6 +420,7 @@ console.log("🌍 userCountryId:", userCountryId);
 
 
 function addCommunity2Buwana(event) {
+alert('form is working!');
     event.preventDefault(); // Prevent normal form submission
 
     const form = document.getElementById('addCommunityForm');

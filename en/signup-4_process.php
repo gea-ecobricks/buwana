@@ -44,6 +44,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
+
+
+//PART 2:  Get the user's timezone using their lattitude and longitude
+
+// 🌍 Step 4.1: Determine time zone using TimeZoneDB API
+// $timezone_api_key = 'YOUR_API_KEY_HERE';  // 🔐 Replace with your actual key
+// $timezone_url = "http://api.timezonedb.com/v2.1/get-time-zone?key={$timezone_api_key}&format=json&by=position&lat={$latitude}&lng={$longitude}";
+//
+// $timezone_response = file_get_contents($timezone_url);
+// $timezone_data = json_decode($timezone_response, true);
+//
+// // Fallback if something fails
+// $user_timezone = $timezone_data['status'] === 'OK' ? $timezone_data['zoneName'] : null;
+
+// $sql_update = "UPDATE users_tb SET
+//     continent_code = ?,
+//     country_id = ?,
+//     location_full = ?,
+//     location_lat = ?,
+//     location_long = ?,
+//     location_watershed = ?,
+//     time_zone = ?
+//     WHERE buwana_id = ?";
+//
+// $stmt_update = $buwana_conn->prepare($sql_update);
+//
+// if ($stmt_update) {
+//     $stmt_update->bind_param('sissdssi', $continent_code, $country_id, $location_full, $latitude, $longitude, $watershed_select, $user_timezone, $buwana_id);
+//
+
+
+
+
     // 🌱 Update user info
     $sql_update = "UPDATE users_tb SET
         continent_code = ?,

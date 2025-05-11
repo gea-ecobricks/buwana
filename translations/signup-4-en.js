@@ -4,7 +4,7 @@ TEXT TRANSLATION SNIPPETS FOR signup-4.php
 -----------------------------------*/
 const en_Page_Translations = {
 
-    "001-email-confirmed": "✔ Your email is confirmed!",
+    "001-email-confirmed": "✔ Your credentials are set.",
     "002-now": "Now",
     "003-now-localize-you": " let's get you localized.",
     "004-lets-determine-bioregion": "Let's determine your bioregion: the watershed where you live.",
@@ -22,7 +22,7 @@ const en_Page_Translations = {
     '011b-no-rivers-found': "No rivers found near you. :-(",
 
 
-    "011-non-political": "Yes!  We use <a href=\"#\" onclick=\"openAboutRiverBasins()\" class=\"underline-link\">watershed bioregions</a> as an alternative non-politcal, grounded way to localize our users.",
+    "011-non-political": "Yes!  We use <a href=\"#\" onclick=\"openAboutRiverBasins()\" class=\"underline-link\">watershed bioregions</a> as an alternative non-political, grounded way to localize our users.",
 
 
     "012-next-button": "Next ➡",

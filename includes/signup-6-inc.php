@@ -46,6 +46,23 @@
 
 .emoji-hint { margin-top: 6px; font-size: .9em; color:#555; }
 
+@media (max-width: 768px) {
+  input[list] {
+    font-size: 18px;
+    padding: 12px 10px 12px 50px;
+    -webkit-appearance: none; /* Safari fix */
+  }
+
+  .select-wrapper {
+    padding: 0;
+    margin: 0;
+  }
+
+  .select-icon {
+    left: 12px;
+    font-size: 18px;
+  }
+}
 
 </STYLE>
 
