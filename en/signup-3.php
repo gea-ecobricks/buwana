@@ -15,7 +15,7 @@ use PHPMailer\PHPMailer\Exception;
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-3';
-$version = '0.731';
+$version = '0.732';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 if (!empty($_SESSION['buwana_id'])) {
@@ -256,11 +256,10 @@ https://github.com/gea-ecobricks/buwana/-->
 </div>
 </div>
 
-<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" data-lang-id="000-go-back">
-    <p style="font-size: medium;" >
-        Need to correct something?
-        <a href="#" onclick="browserBack(event)">Go back ↩️</a>
-    </p>
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" >
+
+        <a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back</a>
+
 </div>
 
 </div> <!--Closes main-->
