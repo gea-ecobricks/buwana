@@ -356,6 +356,21 @@ $(document).ready(function () {
   });
 
 
+  // === Enable/Disable Submit Button ===
+  function updateSubmitButtonState() {
+    const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
+    const enteredWord = humanCheckField.value.toLowerCase();
+    if (validWords.includes(enteredWord) && termsCheckbox.checked) {
+      submitButton.classList.remove('disabled');
+      submitButton.classList.add('enabled');
+      submitButton.disabled = false;
+    } else {
+      submitButton.classList.remove('enabled');
+      submitButton.classList.add('disabled');
+      submitButton.disabled = true;
+    }
+  }
+
   humanCheckField.addEventListener('input', updateSubmitButtonState);
   termsCheckbox.addEventListener('change', updateSubmitButtonState);
 

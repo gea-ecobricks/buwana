@@ -50,7 +50,7 @@
         color: red;
     }
     .success {
-        color: green;
+        color: limegreen;
     }
 
 
@@ -82,8 +82,8 @@
 }
 
 .spinner.green {
-    background-color: green;
-    border: 1px solid green;
+    background-color: limegreen;
+    border: 1px solid limegreen;
         width: 12px;
         height: 12px;
         margin-top: 12px !important;
