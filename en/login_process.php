@@ -134,7 +134,7 @@ if ($stmt_credential) {
 
                if ($connection_count == 0) {
                    // 🚪 Not yet connected → send to app-connect page
-                   header("Location: app-connect.php?id=$buwana_id&client_id=$client_id");
+                   header("Location: https://buwana.ecobricks.org/app-connect.php?id=$buwana_id&client_id=$client_id");
                    exit();
                }
            }

@@ -4,6 +4,32 @@
 
 <STYLE>
 
+.bullet-container {
+  position: relative;
+  padding-left: 28px; /* Leave space for the bullet */
+  margin-bottom: 20px;
+}
+
+.bullet-indicator {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: grey;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+/* Optional: style toggle icons */
+.toggle-password {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  font-size: 20px;
+  transform: translateY(-50%);
+}
 
 
 #last-name-field {
