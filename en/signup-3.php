@@ -279,9 +279,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const messages = {
         en: { confirmed: "👍 Code confirmed!", incorrect: "😕 Code incorrect. Try again." },
         fr: { confirmed: "👍 Code confirmé!", incorrect: "😕 Code incorrect. Réessayez." },
-        es: { confirmed: "👍 Código confirmado!", incorrect: "Código incorrecto. Inténtalo de nuevo." },
-        id: { confirmed: "👍 Kode dikonfirmasi!", incorrect: "😕 Kode salah. Coba lagi." }
+        es: { confirmed: "👍 Código confirmado!", incorrect: "😕 Código incorrecto. Inténtalo de nuevo." },
+        id: { confirmed: "👍 Kode dikonfirmasi!", incorrect: "😕 Kode salah. Coba lagi." },
+        de: { confirmed: "👍 Code bestätigt!", incorrect: "😕 Code falsch. Bitte erneut versuchen." },
+        zh: { confirmed: "👍 验证码确认成功！", incorrect: "😕 验证码错误，请重试。" },
+        ar: { confirmed: "👍 تم تأكيد الرمز!", incorrect: "😕 الرمز غير صحيح. حاول مرة أخرى." }
     };
+
 
     const feedbackMessages = messages[lang] || messages.en;
     const codeFeedback = document.querySelector('#code-feedback');

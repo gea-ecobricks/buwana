@@ -19,6 +19,16 @@
         display: none;
     }
 
+    .hidden {
+        display: none;
+    }
+    .error {
+        color: red;
+    }
+    .success {
+        color: green;
+    }
+
 
 </STYLE>
 
