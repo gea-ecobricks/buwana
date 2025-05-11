@@ -33,16 +33,15 @@ if (!$app_name || !$client_id) {
     die("❌ Missing app configuration details.");
 }
 
-// --- STEP 3: Resolve continent_code & country_code using country_id ---
+// --- STEP 3: Resolve continent_code using country_id ---
 $set_continent_code = null;
-$set_country_code   = null;
 
-$sql = "SELECT continent_code, country_code FROM countries_tb WHERE country_id = ? LIMIT 1";
+$sql = "SELECT continent_code FROM countries_tb WHERE country_id = ? LIMIT 1";
 $stmt = $buwana_conn->prepare($sql);
 if ($stmt) {
     $stmt->bind_param("i", $selected_country_id);
     $stmt->execute();
-    $stmt->bind_result($set_continent_code, $set_country_code);
+    $stmt->bind_result($set_continent_code);
     $stmt->fetch();
     $stmt->close();
 }
@@ -63,16 +62,15 @@ if (!empty($selected_community)) {
 // --- STEP 5: Update Buwana User Record ---
 $update_sql = "
     UPDATE users_tb
-    SET continent_code = ?, country_id = ?, country_code = ?,
+    SET continent_code = ?, country_id = ?,
         community_id = ?, language_id = ?, earthling_emoji = ?
     WHERE buwana_id = ?
 ";
 $stmt = $buwana_conn->prepare($update_sql);
 $stmt->bind_param(
-    'sisssii',
+    'sissii',
     $set_continent_code,
     $selected_country_id,
-    $set_country_code,
     $community_id,
     $selected_language_id,
     $earthling_emoji,
