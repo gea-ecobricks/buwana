@@ -238,15 +238,6 @@ https://github.com/gea-ecobricks/buwana/-->
     <p id="resend-code" style="font-size:1em"><span data-lang-id="009-no-code">Didn't get your code? You can request a resend of the code in</span> <span id="timer">1:00</span></p>
 </div>
 
-<?php if (!empty($buwana_id)) : ?>
-<div id="new-account-another-email-please" style="text-align:center;width:90%;margin:auto;margin-top:30px;margin-bottom:30px;">
-    <p style="font-size:1em;"><span data-lang-id="011-change-email">Want to change your email? </span><span data-lang-id="012-go-back-new-email"> Return a step to enter a different email address.</span>
-    </p>
-<?php else : ?>
-<div id="legacy-account-email-not-used" style="text-align:center;width:90%;margin:auto;margin-top:30px;margin-bottom:50px;">
-    <p style="font-size:1em;" data-lang-id="010-email-no-longer">Do you no longer use this email address?<br>If not, you'll need to <a href="signup.php">create a new account</a> or contact our team at support@gobrik.com.</p>
-</div>
-<?php endif; ?>
 
 </div>
 
@@ -257,7 +248,16 @@ https://github.com/gea-ecobricks/buwana/-->
 </div>
 
 <p id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" >
-     <a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back</a>
+
+<?php if (!empty($buwana_id)) : ?>
+<div id="new-account-another-email-please" style="text-align:center;width:90%;margin:auto;margin-top:30px;margin-bottom:30px;">
+    <p style="font-size:1em;"><span data-lang-id="011-change-email">Want to change your email? </span><a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back</a>
+    </p>
+<?php else : ?>
+<div id="legacy-account-email-not-used" style="text-align:center;width:90%;margin:auto;margin-top:30px;margin-bottom:50px;">
+    <p style="font-size:1em;" data-lang-id="010-email-no-longer">Do you no longer use this email address?<br>If not, you'll need to <a href="signup-1.php">create a new account</a> or contact our team at support@gobrik.com.</p>
+</div>
+<?php endif; ?>
 </p>
 
 </div> <!--Closes main-->

@@ -48,5 +48,8 @@ const en_Translations = {
     "3000-about-earthen-title": "Earthen Newsletter",
     "3000-about-earthen-full": "Started in 2016 in the land of the Igorot people, Earthen is our bi-monthly newsletter for the global for-Earth movement. We share the latest news from the world of regenerative technology and philosophy: earth building, ecobricks, GoBrik announcements and GEA news. Free with an option for a contributive subscription.",
 
+    "3000-ecobrick-title": "Ecobrick",
+    "3001-ecobrick-text": "An ecobrick is a PET bottle packed solid with used plastic to the standards of plastic sequestration in order to make a reusable building block. It prevents plastic from degrading into toxins and microplastics, and turns it into a useful, durable building material.  In 2016, plastic transition leaders around the world agreed to use the non-hyphenated, non-capitalized term 'ecobrick' as the consistent, standardized term of reference in the guidebook and their materials.",
+
 
 };
