@@ -189,7 +189,7 @@ if (!empty($credential_key)) {
 
 
 <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
-    <p><a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back one</a></p>
+    <p style="font-size: 1em"><a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back one</a></p>
 </div>
 
 

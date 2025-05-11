@@ -1,8 +1,7 @@
 <?php
 // ----------------------------------------
 // 🌐 signup-6_process.php
-// Final step of Buwana account creation: Save final user settings,
-// and provision account in the client app (e.g. GoBrik, Earthcal).
+// Final step of Buwana account creation
 // ----------------------------------------
 
 error_reporting(E_ALL);
@@ -11,8 +10,8 @@ ob_start();
 session_start();
 
 require_once '../buwanaconn_env.php';
-require_once '../fetch_app_info.php';          // Provides $app_info[]
-require_once '../scripts/create_user.php';      // Defines createUserInClientApp()
+require_once '../fetch_app_info.php';
+require_once '../scripts/create_user.php';
 
 // --- STEP 1: Validate and extract inputs ---
 $buwana_id = $_GET['id'] ?? null;
@@ -20,72 +19,80 @@ if (!$buwana_id || !is_numeric($buwana_id)) {
     die("⚠️ Invalid or missing Buwana ID.");
 }
 
-$selected_community = $_POST['community_name'] ?? '';
-$selected_country_name = $_POST['country_name'] ?? '';
+$selected_community   = $_POST['community_name'] ?? '';
+$selected_country_id  = $_POST['country_name'] ?? null; // this is the country_id
 $selected_language_id = $_POST['language_id'] ?? '';
-$earthling_emoji = $_POST['earthling_emoji'] ?? '🌍';
+$earthling_emoji      = $_POST['earthling_emoji'] ?? '🌍';
 
-// --- STEP 2: Load app info from $app_info ---
-$app_name = $app_info['app_name'] ?? null;
+// --- STEP 2: Load app info ---
+$app_name     = $app_info['app_name'] ?? null;
 $app_login_url = $app_info['app_login_url'] ?? '/';
-$client_id = $app_info['client_id'] ?? null;
+$client_id    = $app_info['client_id'] ?? null;
 
 if (!$app_name || !$client_id) {
     die("❌ Missing app configuration details.");
 }
 
-// STEP 3: Resolve country_id & continent_code
-$set_country_id = null;
+// --- STEP 3: Resolve continent_code & country_code using country_id ---
 $set_continent_code = null;
+$set_country_code   = null;
 
-$sql_country = "SELECT country_id, continent_code FROM countries_tb WHERE country_name = ?";
-$stmt_country = $buwana_conn->prepare($sql_country);
-
-if ($stmt_country) {
-    $stmt_country->bind_param('s', $selected_country_name);
-    $stmt_country->execute();
-    $stmt_country->store_result();
-
-    if ($stmt_country->num_rows === 1) {
-        $stmt_country->bind_result($set_country_id, $set_continent_code);
-        $stmt_country->fetch();
-    } else {
-        // Handle lookup failure gracefully
-        $set_country_id = null;
-        $set_continent_code = null;
-    }
-
-    $stmt_country->close();
+$sql = "SELECT continent_code, country_code FROM countries_tb WHERE country_id = ? LIMIT 1";
+$stmt = $buwana_conn->prepare($sql);
+if ($stmt) {
+    $stmt->bind_param("i", $selected_country_id);
+    $stmt->execute();
+    $stmt->bind_result($set_continent_code, $set_country_code);
+    $stmt->fetch();
+    $stmt->close();
 }
 
-// --- STEP 4: Update Buwana User Record ---
+// --- STEP 4: Get community_id (if exists) ---
+$community_id = null;
+if (!empty($selected_community)) {
+    $stmt = $buwana_conn->prepare("SELECT community_id FROM communities_tb WHERE com_name = ? LIMIT 1");
+    if ($stmt) {
+        $stmt->bind_param("s", $selected_community);
+        $stmt->execute();
+        $stmt->bind_result($community_id);
+        $stmt->fetch();
+        $stmt->close();
+    }
+}
+
+// --- STEP 5: Update Buwana User Record ---
 $update_sql = "
     UPDATE users_tb
-    SET continent_code = ?, country_id = ?,
-        community_id = (SELECT community_id FROM communities_tb WHERE com_name = ?),
-        language_id = ?, earthling_emoji = ?
+    SET continent_code = ?, country_id = ?, country_code = ?,
+        community_id = ?, language_id = ?, earthling_emoji = ?
     WHERE buwana_id = ?
 ";
-
 $stmt = $buwana_conn->prepare($update_sql);
-$stmt->bind_param('sisssi', $set_continent_code, $set_country_id, $selected_community, $selected_language_id, $earthling_emoji, $buwana_id);
+$stmt->bind_param(
+    'sisssii',
+    $set_continent_code,
+    $selected_country_id,
+    $set_country_code,
+    $community_id,
+    $selected_language_id,
+    $earthling_emoji,
+    $buwana_id
+);
 $stmt->execute();
 $stmt->close();
 
-// --- STEP 5: Load client connection file ---
+// --- STEP 6: Load client connection ---
 $client_env_path = "../config/{$app_name}_env.php";
 if (!file_exists($client_env_path)) {
     die("❌ Missing DB config: $client_env_path");
 }
-
 require_once $client_env_path;
 
-// --- Validate $client_conn existence and connection ---
 if (!isset($client_conn) || !($client_conn instanceof mysqli) || $client_conn->connect_error) {
     die("❌ Client DB connection could not be initialized.");
 }
 
-// --- STEP 6: Fetch Buwana user fields for provisioning ---
+// --- STEP 7: Fetch user fields for provisioning ---
 $userData = [];
 $stmt = $buwana_conn->prepare("
     SELECT first_name, last_name, full_name, email, terms_of_service, profile_pic,
@@ -106,7 +113,7 @@ $stmt->bind_result(
 $stmt->fetch();
 $stmt->close();
 
-// --- STEP 7: Create user in client app ---
+// --- STEP 8: Create user in client app ---
 $response = createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $buwana_conn, $client_id);
 
 if ($response['success']) {

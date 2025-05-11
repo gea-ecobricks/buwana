@@ -86,7 +86,7 @@ $redirect_url = $app_login_url
 
 
 <script>
-  let seconds = 25;
+  let seconds = 5;
   const countdownEl = document.getElementById('countdown');
 
   const countdown = setInterval(() => {
@@ -100,7 +100,7 @@ $redirect_url = $app_login_url
 
   setTimeout(() => {
     window.location.href = <?= json_encode($redirect_url) ?>;
-  }, 6000);
+  }, 5000);
 
 
 
