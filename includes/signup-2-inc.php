@@ -102,10 +102,6 @@
     100% { transform: rotate(360deg); translateY(-50%); }
 }
 
-/* .toggle-password { */
-/* top: 40px; */
-/*   right: 25px; */
-/*   } */
 
 
 .bullet-indicator.green {
