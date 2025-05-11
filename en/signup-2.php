@@ -312,49 +312,28 @@ $(document).ready(function () {
   });
 
 
-  // === Password Length Check + Bullet Update ===
+  // === Password Matching Logic ===
   passwordField.addEventListener('input', function () {
     if (passwordField.value.length >= 6) {
       confirmPasswordSection.style.display = 'block';
-      document.getElementById('bullet-password').classList.add('green');
     } else {
       confirmPasswordSection.style.display = 'none';
       humanCheckSection.style.display = 'none';
       submitSection.style.display = 'none';
-      document.getElementById('bullet-password').classList.remove('green');
     }
   });
 
-  // === Confirm Password Match + Bullet Update ===
   confirmPasswordField.addEventListener('input', function () {
-    if (passwordField.value === confirmPasswordField.value && passwordField.value.length >= 6) {
+    if (passwordField.value === confirmPasswordField.value) {
       makerErrorInvalid.style.display = 'none';
       humanCheckSection.style.display = 'block';
       submitSection.style.display = 'block';
-      document.getElementById('bullet-confirm').classList.add('green');
     } else {
       makerErrorInvalid.style.display = 'block';
       humanCheckSection.style.display = 'none';
       submitSection.style.display = 'none';
-      document.getElementById('bullet-confirm').classList.remove('green');
     }
   });
-
-  // === Human Check Validation + Bullet Update ===
-  humanCheckField.addEventListener('input', function () {
-    const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
-    const enteredWord = humanCheckField.value.toLowerCase();
-
-    if (validWords.includes(enteredWord)) {
-      document.getElementById('bullet-human').classList.add('green');
-    } else {
-      document.getElementById('bullet-human').classList.remove('green');
-    }
-
-    // Still update the submit button regardless
-    updateSubmitButtonState();
-  });
-
 
   // === Enable/Disable Submit Button ===
   function updateSubmitButtonState() {
