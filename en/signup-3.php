@@ -247,7 +247,7 @@ https://github.com/gea-ecobricks/buwana/-->
 </div>
 
 <?php if (!empty($buwana_id)) : ?>
-<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;"
+<div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
     <p style="font-size:1em;"><span data-lang-id="011-change-email">Want to change your email? </span><a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back</a>
     </p>
 <?php else : ?>
