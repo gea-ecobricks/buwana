@@ -12,8 +12,8 @@
 
 .bullet-indicator {
   position: absolute;
-  top: 18px;
-  left: 0;
+  top: 37px;
+  left: 20px;
   width: 12px;
   height: 12px;
   background-color: grey;
@@ -59,11 +59,11 @@
 .spinner {
     display: none;
     position: absolute;
-    top: 30%;  /* Center vertically in the input field */
+    top: 28px;  /* Center vertically in the input field */
     left: 11px; /* Distance from the right edge of the input field */
     transform: translateY(-50%); /* Ensures the spinner is exactly centered vertically */
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border: 4px solid rgba(0,0,0,0.1);
     border-top: 4px solid var(--emblem-pink);
     border-radius: 50%;
@@ -84,11 +84,15 @@
 .spinner.green {
     background-color: green;
     border: 1px solid green;
+        width: 12px;
+        height: 12px;
 }
 
 .spinner.red {
     background-color: red;
     border: 1px solid red;
+            width: 12px;
+            height: 12px;
 }
 
 @keyframes spin {
