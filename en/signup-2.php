@@ -153,7 +153,7 @@ https://github.com/gea-ecobricks/buwana/-->
                <!-- Set Password -->
                <div class="form-item float-label-group bullet-container" id="set-password" style="display: none; margin-top: 14px; margin-bottom: 15px; padding-bottom: 1px;">
                  <div class="bullet-indicator" id="bullet-password"></div>
-                 <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important;" />
+                 <input type="password" id="password_hash" name="password_hash" required minlength="6" placeholder=" " style="font-size: 22px !important; padding-left: 30px;" />
                  <label for="password_hash" data-lang-id="008-set-your-pass">Set your password...</label>
                  <span toggle="#password_hash" class="toggle-password" style="cursor: pointer; top:36%; margin-right:15px; font-size:20px;">🙈</span>
                  <p class="form-caption" data-lang-id="008-password-advice">🔑 Your password must be at least 6 characters.</p>
@@ -162,7 +162,7 @@ https://github.com/gea-ecobricks/buwana/-->
                <!-- Confirm Password -->
                <div class="form-item float-label-group bullet-container" id="confirm-password-section" style="display: none; margin-top: 10px;">
                  <div class="bullet-indicator" id="bullet-confirm"></div>
-                 <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " style="font-size: 22px !important;" />
+                 <input type="password" id="confirm_password" name="confirm_password" required placeholder=" " style="font-size: 22px !important; padding-left: 30px;" />
                  <label for="confirm_password" data-lang-id="009-confirm-pass">Confirm your password...</label>
                  <span toggle="#confirm_password" class="toggle-password" style="cursor: pointer; margin-bottom:13px; margin-right:15px; font-size:20px; margin-top: 45px;">🙈</span>
                  <div id="maker-error-invalid" class="form-field-error" data-lang-id="010-pass-error-no-match">👉 Passwords do not match.</div>
