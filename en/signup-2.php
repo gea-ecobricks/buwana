@@ -9,7 +9,7 @@ require_once '../fetch_app_info.php';         // Retrieves designated app's core
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.7771';
+$version = '0.7772';
 $page = 'signup-2';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -171,7 +171,7 @@ https://github.com/gea-ecobricks/buwana/-->
                <!-- Human Check -->
                <div class="form-item float-label-group bullet-container" id="human-check-section" style="display: none; margin-top:15px; margin-bottom:15px; padding-bottom:5px;">
                  <div class="bullet-indicator" id="bullet-human"></div>
-                 <input type="text" id="human_check" name="human_check" required placeholder=" " />
+                 <input type="text" id="human_check" name="human_check" style="padding-left: 30px;" required placeholder=" " />
                  <label for="human_check" data-lang-id="011-human-check">Type the word "ecobrick"...</label>
                  <p class="form-caption">
                    <span data-lang-id="012-prove-human">This is a little test to see if you're human!</span>
@@ -210,7 +210,7 @@ https://github.com/gea-ecobricks/buwana/-->
 <div id="browser-back-link" style="font-size: medium; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;" >
     <p style="font-size: medium;">
 
-        <a href="#" onclick="browserBack(event)" data-lang-id="000-goback">↩ Go back a step</a>
+        <a href="#" onclick="browserBack(event)" data-lang-id="000-go-back">↩ Go back a step</a>
     </p>
 </div>
 
@@ -312,43 +312,49 @@ $(document).ready(function () {
   });
 
 
-  // === Password Matching Logic ===
+  // === Password Length Check + Bullet Update ===
   passwordField.addEventListener('input', function () {
     if (passwordField.value.length >= 6) {
       confirmPasswordSection.style.display = 'block';
+      document.getElementById('bullet-password').classList.add('green');
     } else {
       confirmPasswordSection.style.display = 'none';
       humanCheckSection.style.display = 'none';
       submitSection.style.display = 'none';
+      document.getElementById('bullet-password').classList.remove('green');
     }
   });
 
+  // === Confirm Password Match + Bullet Update ===
   confirmPasswordField.addEventListener('input', function () {
-    if (passwordField.value === confirmPasswordField.value) {
+    if (passwordField.value === confirmPasswordField.value && passwordField.value.length >= 6) {
       makerErrorInvalid.style.display = 'none';
       humanCheckSection.style.display = 'block';
       submitSection.style.display = 'block';
+      document.getElementById('bullet-confirm').classList.add('green');
     } else {
       makerErrorInvalid.style.display = 'block';
       humanCheckSection.style.display = 'none';
       submitSection.style.display = 'none';
+      document.getElementById('bullet-confirm').classList.remove('green');
     }
   });
 
-  // === Enable/Disable Submit Button ===
-  function updateSubmitButtonState() {
+  // === Human Check Validation + Bullet Update ===
+  humanCheckField.addEventListener('input', function () {
     const validWords = ['ecobrick', 'ecoladrillo', 'écobrique', 'ecobrique'];
     const enteredWord = humanCheckField.value.toLowerCase();
-    if (validWords.includes(enteredWord) && termsCheckbox.checked) {
-      submitButton.classList.remove('disabled');
-      submitButton.classList.add('enabled');
-      submitButton.disabled = false;
+
+    if (validWords.includes(enteredWord)) {
+      document.getElementById('bullet-human').classList.add('green');
     } else {
-      submitButton.classList.remove('enabled');
-      submitButton.classList.add('disabled');
-      submitButton.disabled = true;
+      document.getElementById('bullet-human').classList.remove('green');
     }
-  }
+
+    // Still update the submit button regardless
+    updateSubmitButtonState();
+  });
+
 
   humanCheckField.addEventListener('input', updateSubmitButtonState);
   termsCheckbox.addEventListener('change', updateSubmitButtonState);
