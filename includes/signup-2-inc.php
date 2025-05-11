@@ -86,6 +86,7 @@
     border: 1px solid green;
         width: 12px;
         height: 12px;
+        margin-top: 12px !important;
 }
 
 .spinner.red {
@@ -93,12 +94,18 @@
     border: 1px solid red;
             width: 12px;
             height: 12px;
+              margin-top: 12px !important;
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); translateY(-50%); }
     100% { transform: rotate(360deg); translateY(-50%); }
 }
+
+.toggle-password {
+top: 40px;
+  right: 25px;
+  }
 
 
 </STYLE>
