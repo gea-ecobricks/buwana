@@ -97,23 +97,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 🌐 Hide language selector with a slide-up animation
-    function hideLangSelector() {
-        if (!langMenu) return;
-
-        if (langMenu.classList.contains('menu-slider-visible')) {
-            langMenu.style.maxHeight = '0';
-            langMenu.style.overflow = 'hidden';
-            langMenu.style.transition = 'max-height 0.4s ease';
-
-            setTimeout(() => {
-                langMenu.classList.remove('menu-slider-visible');
-                langMenu.style.removeProperty('max-height');
-                langMenu.style.removeProperty('overflow');
-                langMenu.style.removeProperty('transition');
-                updateHeaderVisuals(); // ✅ Update after animation
-            }, 400);
-        }
+    // // 🌐 Hide language selector with a slide-up animation
+    // function hideLangSelector() {
+    //     if (!langMenu) return;
+    //
+    //     if (langMenu.classList.contains('menu-slider-visible')) {
+    //         langMenu.style.maxHeight = '0';
+    //         langMenu.style.overflow = 'hidden';
+    //         langMenu.style.transition = 'max-height 0.4s ease';
+    //
+    //         setTimeout(() => {
+    //             langMenu.classList.remove('menu-slider-visible');
+    //             langMenu.style.removeProperty('max-height');
+    //             langMenu.style.removeProperty('overflow');
+    //             langMenu.style.removeProperty('transition');
+    //             updateHeaderVisuals(); // ✅ Update after animation
+    //         }, 400);
+    //     }
 
         document.removeEventListener('click', documentClickListenerLang);
     }
@@ -283,3 +283,20 @@ function openModal(contentHtml) {
 
 
 
+// 🌐 Hide language selector with a slide-up animation
+function hideLangSelector() {
+    if (!langMenu) return;
+
+    if (langMenu.classList.contains('menu-slider-visible')) {
+        langMenu.style.maxHeight = '0';
+        langMenu.style.overflow = 'hidden';
+        langMenu.style.transition = 'max-height 0.4s ease';
+
+        setTimeout(() => {
+            langMenu.classList.remove('menu-slider-visible');
+            langMenu.style.removeProperty('max-height');
+            langMenu.style.removeProperty('overflow');
+            langMenu.style.removeProperty('transition');
+            updateHeaderVisuals(); // ✅ Update after animation
+        }, 400);
+    }
