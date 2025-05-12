@@ -30,15 +30,23 @@ if (!$buwana_id || !is_numeric($buwana_id)) {
 
 // 🧠 Fetch user info
 $first_name = 'User';
-$sql = "SELECT first_name FROM users_tb WHERE buwana_id = ?";
+$location_full = '';
+$location_watershed = '';
+$latitude = '';
+$longitude = '';
+
+$sql = "SELECT first_name, location_full, location_watershed, location_lat, location_long FROM users_tb WHERE buwana_id = ?";
 $stmt = $buwana_conn->prepare($sql);
 if ($stmt) {
     $stmt->bind_param('i', $buwana_id);
     $stmt->execute();
-    $stmt->bind_result($first_name);
+    $stmt->bind_result($first_name, $location_full, $location_watershed, $latitude, $longitude);
     $stmt->fetch();
     $stmt->close();
 }
+
+
+
 
 // 🌍 Fetch countries
 $countries = [];
@@ -115,15 +123,10 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
                 <!-- LOCATION FULL -->
                 <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-
-
-
-                        <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;">
-                        <label for="location_full" data-lang-id="005-your-neighbourhood" style="border-radius:10px 10px 0px 0px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
-                        <div id="loading-spinner" class="spinner" style="display: none;"></div>
-                        <div id="location-pin" class="pin-icon">📍</div>
-
-
+                    <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;" value="<?= htmlspecialchars($location_full) ?>">>
+                    <label for="location_full" data-lang-id="005-your-neighbourhood" style="border-radius:10px 10px 0px 0px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
+                    <div id="loading-spinner" class="spinner" style="display: none;"></div>
+                    <div id="location-pin" class="pin-icon">📍</div>
                     <p class="form-caption" data-lang-id="006-start-typing-neighbourhood">
                         Start typing the name of your neighbourhood, and <a href="https://openstreetmap.org.org" target="_blank">openstreetmaps.org</a> will fill in the rest.
                     </p>
@@ -132,8 +135,9 @@ if ($result_languages && $result_languages->num_rows > 0) {
                     </div>
                 </div>
 
-                <input type="hidden" id="lat" name="latitude">
-                <input type="hidden" id="lon" name="longitude">
+                <!-- Hidden Coordinates -->
+                <input type="hidden" id="lat" name="latitude" value="<?= htmlspecialchars($latitude) ?>">
+                <input type="hidden" id="lon" name="longitude" value="<?= htmlspecialchars($longitude) ?>">
 
                 <!-- MAP AND WATERSHED SEARCH SECTION -->
                 <div class="form-item" id="watershed-map-section" style="display: none; margin-top:20px;">
@@ -143,7 +147,10 @@ if ($result_languages && $result_languages->num_rows > 0) {
                         ℹ️ The map shows rivers and streams around you. Choose the one to which your water flows.
                     </p>
                     <select id="watershed_select" name="watershed_select" aria-label="Watershed Select" style="width: 100%; padding: 10px;" required>
-                        <option value="" disabled selected data-lang-id="010-select-your-river">👉 Select your local river...</option>
+                        <option value="" disabled <?= empty($location_watershed) ? 'selected' : '' ?> data-lang-id="010-select-your-river">👉 Select your local river...</option>
+                        <?php if (!empty($location_watershed)) : ?>
+                            <option value="<?= htmlspecialchars($location_watershed) ?>" selected><?= htmlspecialchars($location_watershed) ?></option>
+                        <?php endif; ?>
                     </select>
                 </div>
 
