@@ -48,15 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 //PART 2:  Get the user's timezone using their lattitude and longitude
 
-// 🌍 Step 4.1: Determine time zone using TimeZoneDB API
-// $timezone_api_key = 'YOUR_API_KEY_HERE';  // 🔐 Replace with your actual key
-// $timezone_url = "http://api.timezonedb.com/v2.1/get-time-zone?key={$timezone_api_key}&format=json&by=position&lat={$latitude}&lng={$longitude}";
-//
-// $timezone_response = file_get_contents($timezone_url);
-// $timezone_data = json_decode($timezone_response, true);
-//
-// // Fallback if something fails
-// $user_timezone = $timezone_data['status'] === 'OK' ? $timezone_data['zoneName'] : null;
+// 🌍 Step 4.1: Determine time zone using GeoNames API
+$geonames_username = 'ecobricks25';
+$timezone_url = "http://api.geonames.org/timezoneJSON?lat={$latitude}&lng={$longitude}&username={$geonames_username}";
+
+$timezone_response = @file_get_contents($timezone_url);
+$timezone_data = $timezone_response ? json_decode($timezone_response, true) : null;
+
+// Extract the timezone or fall back to null
+$user_timezone = $timezone_data['timezoneId'] ?? null;
+
 
 // $sql_update = "UPDATE users_tb SET
 //     continent_code = ?,
