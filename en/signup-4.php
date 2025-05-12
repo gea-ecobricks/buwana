@@ -123,7 +123,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
                 <!-- LOCATION FULL -->
                 <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-                    <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;" value="<?= htmlspecialchars($location_full) ?>">>
+                    <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;" value="<?= htmlspecialchars($location_full) ?>">
                     <label for="location_full" data-lang-id="005-your-neighbourhood" style="border-radius:10px 10px 0px 0px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
                     <div id="loading-spinner" class="spinner" style="display: none;"></div>
                     <div id="location-pin" class="pin-icon">📍</div>
@@ -182,6 +182,22 @@ if ($result_languages && $result_languages->num_rows > 0) {
 
 <!-- FOOTER STARTS HERE -->
 <?php require_once ("../footer-2025.php"); ?>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const locationField = document.getElementById('location_full');
+    const watershedSection = document.getElementById('watershed-map-section');
+    const submitSection = document.getElementById('submit-section');
+
+    if (locationField && locationField.value.trim() !== '') {
+        watershedSection.style.display = 'block';
+        if (submitSection) {
+            submitSection.style.display = 'block';
+        }
+    }
+});
+</script>
 
 
 <script>
