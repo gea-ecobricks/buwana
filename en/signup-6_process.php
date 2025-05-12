@@ -68,7 +68,7 @@ $update_sql = "
 ";
 $stmt = $buwana_conn->prepare($update_sql);
 $stmt->bind_param(
-    'sissii',
+    'sisssi',
     $set_continent_code,
     $selected_country_id,
     $community_id,
