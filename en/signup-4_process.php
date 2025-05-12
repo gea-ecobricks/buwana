@@ -17,8 +17,8 @@ if (empty($buwana_id) || !is_numeric($buwana_id)) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $location_full = trim($_POST['location_full'] ?? '');
-    $latitude = (float) $latitude;
-    $longitude = (float) $longitude;
+    $latitude = trim($_POST['latitude'] ?? '');
+    $longitude = trim($_POST['longitude'] ?? '');
     $watershed_select = trim($_POST['watershed_select'] ?? '');
 
     if (empty($location_full) || empty($latitude) || empty($longitude)) {
