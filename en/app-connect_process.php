@@ -86,8 +86,11 @@ if ($check_stmt->num_rows === 0) {
     $check_stmt->close();
 }
 
-// ✅ Step 3: Redirect to the app dashboard
-header("Location: $app_dashboard_url");
+// ✅ Step 3: Redirect to the app login page with upgraded status
+$app_login_url = $app_info['app_login_url'] ?? '/';
+$redirect_url = $app_login_url . '?id=' . urlencode($buwana_id) . '&status=upgraded';
+
+header("Location: $redirect_url");
 exit;
 
 ?>
