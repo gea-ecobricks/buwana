@@ -55,9 +55,9 @@ $timezone_url = "http://api.geonames.org/timezoneJSON?lat={$latitude}&lng={$long
 $timezone_response = @file_get_contents($timezone_url);
 $timezone_data = $timezone_response ? json_decode($timezone_response, true) : null;
 
-// Extract the timezone or fall back to null
-$user_timezone = $timezone_data['timezoneId'] ?? null;
-
+$user_timezone = (isset($timezone_data['timezoneId']) && !empty($timezone_data['timezoneId']))
+    ? $timezone_data['timezoneId']
+    : 'Etc/GMT'; // fallback
 
 $sql_update = "UPDATE users_tb SET
     continent_code = ?,
@@ -72,7 +72,18 @@ $sql_update = "UPDATE users_tb SET
 $stmt_update = $buwana_conn->prepare($sql_update);
 
 if ($stmt_update) {
-    $stmt_update->bind_param('sissdssi', $continent_code, $country_id, $location_full, $latitude, $longitude, $watershed_select, $user_timezone, $buwana_id);
+    $stmt_update->bind_param(
+        'sisddssi',
+        $continent_code,
+        $country_id,
+        $location_full,
+        $latitude,
+        $longitude,
+        $watershed_select,
+        $user_timezone,
+        $buwana_id
+    );
+
 
 
         if ($stmt_update->execute()) {
