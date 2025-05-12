@@ -7,7 +7,7 @@ $success = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // ✅ Sanitize input
-    $first_name = trim($_POST['first_name'] ?? '');
+    $first_name = ucfirst(strtolower(trim($_POST['first_name'] ?? '')));
     $credential = trim($_POST['credential'] ?? '');
 
     if (empty($first_name) || empty($credential)) {

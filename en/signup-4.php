@@ -11,6 +11,7 @@ $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-4';
 $version = '0.776';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
+$location_full = "";
 
 // Already logged in?
 if (!empty($_SESSION['buwana_id'])) {
