@@ -52,15 +52,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $geonames_username = 'ecobricks25';
 $timezone_url = "https://secure.geonames.org/timezoneJSON?lat={$latitude}&lng={$longitude}&username={$geonames_username}";
 
-$timezone_response = @file_get_contents($timezone_url);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $timezone_url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
-error_log("GeoNames raw response: $timezone_response");
+$timezone_response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    error_log("❌ cURL error: " . curl_error($ch));
+}
+
+curl_close($ch);
+
+error_log("GeoNames raw response (cURL): $timezone_response");
 
 $timezone_data = $timezone_response ? json_decode($timezone_response, true) : null;
 
-$user_timezone = (isset($timezone_data['timezoneId']) && !empty($timezone_data['timezoneId']))
-    ? $timezone_data['timezoneId']
-    : 'Etc/GMT'; // fallback
+$user_timezone = isset($timezone_data['timezoneId']) ? trim($timezone_data['timezoneId']) : 'Etc/GMT';
+
+error_log("✅ Final timezone result: $user_timezone");
 
 
 
