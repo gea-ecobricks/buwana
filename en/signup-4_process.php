@@ -59,38 +59,22 @@ $timezone_data = $timezone_response ? json_decode($timezone_response, true) : nu
 $user_timezone = $timezone_data['timezoneId'] ?? null;
 
 
-// $sql_update = "UPDATE users_tb SET
-//     continent_code = ?,
-//     country_id = ?,
-//     location_full = ?,
-//     location_lat = ?,
-//     location_long = ?,
-//     location_watershed = ?,
-//     time_zone = ?
-//     WHERE buwana_id = ?";
-//
-// $stmt_update = $buwana_conn->prepare($sql_update);
-//
-// if ($stmt_update) {
-//     $stmt_update->bind_param('sissdssi', $continent_code, $country_id, $location_full, $latitude, $longitude, $watershed_select, $user_timezone, $buwana_id);
-//
+$sql_update = "UPDATE users_tb SET
+    continent_code = ?,
+    country_id = ?,
+    location_full = ?,
+    location_lat = ?,
+    location_long = ?,
+    location_watershed = ?,
+    time_zone = ?
+    WHERE buwana_id = ?";
+
+$stmt_update = $buwana_conn->prepare($sql_update);
+
+if ($stmt_update) {
+    $stmt_update->bind_param('sissdssi', $continent_code, $country_id, $location_full, $latitude, $longitude, $watershed_select, $user_timezone, $buwana_id);
 
 
-
-
-    // 🌱 Update user info
-    $sql_update = "UPDATE users_tb SET
-        continent_code = ?,
-        country_id = ?,
-        location_full = ?,
-        location_lat = ?,
-        location_long = ?,
-        location_watershed = ?
-        WHERE buwana_id = ?";
-    $stmt_update = $buwana_conn->prepare($sql_update);
-
-    if ($stmt_update) {
-        $stmt_update->bind_param('sissdsi', $continent_code, $country_id, $location_full, $latitude, $longitude, $watershed_select, $buwana_id);
         if ($stmt_update->execute()) {
             $stmt_update->close();
             header("Location: signup-5.php?id=" . urlencode($buwana_id));
