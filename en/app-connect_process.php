@@ -53,16 +53,41 @@ if (!$userData = $result->fetch_assoc()) {
 }
 $stmt->close();
 
-// ✅ Create the user in the client app
+// ✅ Step 1: Try to create the user in the client app
 $response = createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $buwana_conn, $client_id);
 
-// 🎯 Redirect or error
-if ($response['success']) {
-    header("Location: $app_dashboard_url");
-    exit;
-} else {
+// ⚠️ Even if creation fails (e.g. duplicate), continue to connection logic
+if (!$response['success'] && $response['error'] !== 'duplicate_user') {
     echo "<h2>⚠️ Failed to connect your account</h2>";
     echo "<p>Error: " . htmlspecialchars($response['error']) . "</p>";
     echo "<p><a href='javascript:history.back()'>Try again</a></p>";
+    exit;
 }
+
+// ✅ Step 2: Check if the connection already exists
+$check_sql = "SELECT 1 FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ? LIMIT 1";
+$check_stmt = $buwana_conn->prepare($check_sql);
+$check_stmt->bind_param('is', $buwana_id, $client_id);
+$check_stmt->execute();
+$check_stmt->store_result();
+
+if ($check_stmt->num_rows === 0) {
+    $check_stmt->close();
+
+    // 🔗 Insert new app connection
+    $status = 'registered';
+    $connected_at = date('Y-m-d H:i:s');
+    $insert_sql = "INSERT INTO user_app_connections_tb (buwana_id, client_id, status, connected_at) VALUES (?, ?, ?, ?)";
+    $insert_stmt = $buwana_conn->prepare($insert_sql);
+    $insert_stmt->bind_param('isss', $buwana_id, $client_id, $status, $connected_at);
+    $insert_stmt->execute();
+    $insert_stmt->close();
+} else {
+    $check_stmt->close();
+}
+
+// ✅ Step 3: Redirect to the app dashboard
+header("Location: $app_dashboard_url");
+exit;
+
 ?>
