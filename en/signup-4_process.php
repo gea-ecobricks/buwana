@@ -53,6 +53,9 @@ $geonames_username = 'ecobricks25';
 $timezone_url = "https://secure.geonames.org/timezoneJSON?lat={$latitude}&lng={$longitude}&username={$geonames_username}";
 
 $timezone_response = @file_get_contents($timezone_url);
+
+error_log("GeoNames raw response: $timezone_response");
+
 $timezone_data = $timezone_response ? json_decode($timezone_response, true) : null;
 
 $user_timezone = (isset($timezone_data['timezoneId']) && !empty($timezone_data['timezoneId']))
