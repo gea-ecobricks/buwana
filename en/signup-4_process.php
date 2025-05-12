@@ -17,8 +17,8 @@ if (empty($buwana_id) || !is_numeric($buwana_id)) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $location_full = trim($_POST['location_full'] ?? '');
-    $latitude = trim($_POST['latitude'] ?? '');
-    $longitude = trim($_POST['longitude'] ?? '');
+    $latitude = (float) $latitude;
+    $longitude = (float) $longitude;
     $watershed_select = trim($_POST['watershed_select'] ?? '');
 
     if (empty($location_full) || empty($latitude) || empty($longitude)) {
@@ -60,6 +60,7 @@ $user_timezone = (isset($timezone_data['timezoneId']) && !empty($timezone_data['
     : 'Etc/GMT'; // fallback
 
 
+
 $sql_update = "UPDATE users_tb SET
     continent_code = ?,
     country_id = ?,
@@ -71,6 +72,9 @@ $sql_update = "UPDATE users_tb SET
     WHERE buwana_id = ?";
 
 $stmt_update = $buwana_conn->prepare($sql_update);
+
+error_log("Timezone result: $user_timezone");
+error_log("Updating user ID: $buwana_id with tz: $user_timezone");
 
 if ($stmt_update) {
     $stmt_update->bind_param(
