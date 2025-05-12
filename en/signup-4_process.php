@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // 🌍 Step 4.1: Determine time zone using GeoNames API
 $geonames_username = 'ecobricks25';
-$timezone_url = "http://api.geonames.org/timezoneJSON?lat={$latitude}&lng={$longitude}&username={$geonames_username}";
+$timezone_url = "https://secure.geonames.org/timezoneJSON?lat={$latitude}&lng={$longitude}&username={$geonames_username}";
 
 $timezone_response = @file_get_contents($timezone_url);
 $timezone_data = $timezone_response ? json_decode($timezone_response, true) : null;
@@ -58,6 +58,7 @@ $timezone_data = $timezone_response ? json_decode($timezone_response, true) : nu
 $user_timezone = (isset($timezone_data['timezoneId']) && !empty($timezone_data['timezoneId']))
     ? $timezone_data['timezoneId']
     : 'Etc/GMT'; // fallback
+
 
 $sql_update = "UPDATE users_tb SET
     continent_code = ?,
