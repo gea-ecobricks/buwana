@@ -21,11 +21,13 @@ if (!$buwana_id || !is_numeric($buwana_id)) {
 // 🔍 Fetch user info
 $first_name = 'User';
 $earthling_emoji = '🌍';
-$stmt = $buwana_conn->prepare("SELECT first_name, earthling_emoji FROM users_tb WHERE buwana_id = ?");
+$time_zone = 'Etc/GMT'; // Default fallback
+
+$stmt = $buwana_conn->prepare("SELECT first_name, earthling_emoji, time_zone FROM users_tb WHERE buwana_id = ?");
 if ($stmt) {
     $stmt->bind_param('i', $buwana_id);
     $stmt->execute();
-    $stmt->bind_result($first_name, $earthling_emoji);
+    $stmt->bind_result($first_name, $earthling_emoji, $time_zone);
     $stmt->fetch();
     $stmt->close();
 }
@@ -33,12 +35,16 @@ if ($stmt) {
 // 🔗 Get app info for redirect to the client app's url
 $app_display_name = $app_info['app_display_name'] ?? 'Your App';
 $app_login_url = $app_info['app_login_url'] ?? null;
+
 $redirect_url = $app_login_url
-    ? $app_login_url . '?lang=' . urlencode($lang) .
+    ? $app_login_url .
+      '?lang=' . urlencode($lang) .
       '&id=' . urlencode($buwana_id) .
-      '&status=firsttime'
+      '&status=firsttime' .
+      '&timezone=' . urlencode($time_zone) .
+      '&emoji=' . urlencode($earthling_emoji)
     : '/';
-?>
+
 
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>">
