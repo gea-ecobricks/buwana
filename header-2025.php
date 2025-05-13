@@ -300,7 +300,7 @@ max-height: 200px;
    <a href="login.php?app=<?= htmlspecialchars($client_id) ?>">
      <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-left: 6px; margin-right:auto;text-align:left !important">Login</span>
    </a>
-   <span class="status-circle" style="background-color: green;" title="Login directly"></span>
+   <span class="status-circle" style="background-color: limegreen;" title="Login directly"></span>
  </div>
 
 
