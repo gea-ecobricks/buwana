@@ -44,7 +44,7 @@ $redirect_url = $app_login_url
       '&timezone=' . urlencode($time_zone) .
       '&emoji=' . urlencode($earthling_emoji)
     : '/';
-
+?>
 
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>">
