@@ -7,7 +7,7 @@ const zh_Page_Translations = {
     "001-alright": "好的",
     "002-lets-confirm": "让我们确认你的邮箱。",
     "003-to-create": "为了创建你的 Buwana GoBrik 账户，我们需要确认你选择的凭证。这是我们保持联系并保护你账户的方式。点击发送按钮，我们会将激活码发送至：",
-    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 发送验证码" class="submit-button activate">',
+    "004-send-email-button": '📨 发送验证码 ➡',
     "006-enter-code": "请输入你的验证码：",
     "007-check-email": "请检查你的邮箱",
     "008-for-your-code": "以获取你的账户确认码。请在此输入：",

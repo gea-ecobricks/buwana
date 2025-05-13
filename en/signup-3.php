@@ -201,7 +201,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
             <!-- Kick-Ass Submit Button -->
                      <div id="submit-section" class="submit-button-wrapper" >
-                       <button type="submit" name="send_email" id="send_email" class="kick-ass-submit" title="Send the code.">
+                       <button type="submit" name="send_email" id="send_email" class="kick-ass-submit">
                          <span id="submit-button-text" data-lang-id="004-send-email-button">📨 Send Code ➡</span>
                          <span id="submit-emoji" class="submit-emoji" style="display: none;"></span>
                        </button>

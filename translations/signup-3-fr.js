@@ -7,7 +7,7 @@ const fr_Page_Translations = {
     "001-alright": "D'accord",
     "002-lets-confirm": "confirmons votre adresse e-mail.",
     "003-to-create": "Pour créer votre compte Buwana GoBrik, nous devons confirmer vos identifiants choisis. C’est ainsi que nous resterons en contact et sécuriserons votre compte. Cliquez sur le bouton d’envoi et nous vous enverrons un code d’activation à :",
-    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 Envoyer le code" class="submit-button activate">',
+    "004-send-email-button": '📨 Envoyer le code ➡',
     "006-enter-code": "Veuillez entrer votre code :",
     "007-check-email": "Vérifiez votre boîte e-mail",
     "008-for-your-code": "pour trouver votre code de confirmation de compte. Entrez-le ici :",

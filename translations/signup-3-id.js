@@ -7,7 +7,7 @@ const id_Page_Translations = {
     "001-alright": "Baiklah",
     "002-lets-confirm": "mari kita konfirmasi email Anda.",
     "003-to-create": "Untuk membuat akun Buwana GoBrik Anda, kami perlu mengonfirmasi kredensial yang Anda pilih. Ini adalah cara kami tetap terhubung dan menjaga keamanan akun Anda. Klik tombol kirim dan kami akan mengirimkan kode aktivasi ke:",
-    "004-send-email-button": '<input type="submit" name="send_email" id="send_email" value="📨 Kirim Kode" class="submit-button activate">',
+    "004-send-email-button": '📨 Kirim Kode ➡',
     "006-enter-code": "Silakan masukkan kode Anda:",
     "007-check-email": "Periksa email Anda",
     "008-for-your-code": "untuk menemukan kode konfirmasi akun Anda. Masukkan di sini:",
