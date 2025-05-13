@@ -74,7 +74,7 @@ $redirect_url = $app_login_url
     </div>
   </div>
   <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: 0px;">
-      <p><span data-lang-id="006-manual-redirect">If you're not redirected automatically,</span><a href="<?= htmlspecialchars($redirect_url) ?>"><span data-lang-id="007-click-here">click here</span></a>.
+      <p><span data-lang-id="006-manual-redirect">If you're not redirected automatically,</span><a href="<?= htmlspecialchars($redirect_url) ?>"> <span data-lang-id="007-click-here">click here</span></a>.
       </p>
   </div>
 </div>
