@@ -50,7 +50,7 @@ if ($buwana_id) {
         $response['error'] = 'db_error';
     }
 
-    $sql_lookup_user = "SELECT first_name, account_status, emoji_icon FROM users_tb WHERE buwana_id = ?";
+    $sql_lookup_user = "SELECT first_name, account_status, $earthling_emoji FROM users_tb WHERE buwana_id = ?";
     $stmt_lookup_user = $buwana_conn->prepare($sql_lookup_user);
     if ($stmt_lookup_user) {
         $stmt_lookup_user->bind_param("i", $buwana_id);
