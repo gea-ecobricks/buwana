@@ -8,7 +8,7 @@ require_once '../fetch_app_info.php';
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'buwana-index';
-$version = '0.778';
+$version = '0.7781';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 $buwana_id = isset($_GET['id']) && is_numeric($_GET['id']) ? intval($_GET['id']) : null;
