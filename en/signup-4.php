@@ -37,18 +37,19 @@ $latitude = '';
 $longitude = '';
 $emoji_icon = null; // Added variable
 
-$sql = "SELECT first_name, location_full, location_watershed, location_lat, location_long, emoji_icon FROM users_tb WHERE buwana_id = ?";
+$sql = "SELECT first_name, location_full, location_watershed, location_lat, location_long, earthling_emoji FROM users_tb WHERE buwana_id = ?";
 $stmt = $buwana_conn->prepare($sql);
 if ($stmt) {
     $stmt->bind_param('i', $buwana_id);
     $stmt->execute();
-    $stmt->bind_result($first_name, $location_full, $location_watershed, $latitude, $longitude, $emoji_icon);
+    $stmt->bind_result($first_name, $location_full, $location_watershed, $latitude, $longitude, $earthling_emoji);
     $stmt->fetch();
     $stmt->close();
 }
 
 // ✅ Check if signup is already completed
-if (!is_null($emoji_icon) && trim($emoji_icon) !== '') {
+if (!is_null($earthling_emoji) && trim($earthling_emoji) !== '') {
+    // Redirect because signup is already done
     echo "<script>
         alert('Whoops! Looks like you’ve already completed your signup. No need to return to this page! Please login to your " . htmlspecialchars($app_info['app_display_name']) . " account.');
         window.location.href = '" . htmlspecialchars($app_info['app_login_url']) . "?lang=" . urlencode($lang) . "&id=" . urlencode($buwana_id) . "';
