@@ -64,9 +64,8 @@ if ($app_results && $app_results->num_rows > 0) {
       Buwana is an open-source login system for regenerative web applications developed by the Global Ecobrick Alliance. These apps all share a common commitment to people, planet, and privacy.
     </p>
 
-<p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;" data-lang-id="1000-authentication-by" >Authentication by</p>
-<div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" href="https://github.com/gea-ecobricks/buwana" href="singup-1.php"></div>
-
+<p>The Buwana code-base and documention Wiki is on Github</p>
+<a href="https://github.com/gea-ecobricks/Buwana/tree/main">Check it out ↗</a>
 
   </div>
 </div>

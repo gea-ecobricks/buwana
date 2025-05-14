@@ -293,7 +293,7 @@ max-height: 200px;
         data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>">
     </div>
 <?php else: ?>
-    <div id="buwana-logo" class="the-app-logo buwana-word-mark"
+    <div id="buwana-logo" class="the-app-logo buwana-top-logo"
         alt="Buwana Logo"
         title="Authentication by Buwana">
     </div>
