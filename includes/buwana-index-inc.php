@@ -1,24 +1,16 @@
 
-<!--  Set any page specific graphics to preload-->
 
-<!--  Set any page specific graphics to preload
-<link rel="preload" as="image" href="../webps/ecobrick-team-blank.webp" media="(max-width: 699px)">
-<link rel="preload" as="image" href="../svgs/richard-and-team-day.svg">
-<link rel="preload" as="image" href="../svgs/richard-and-team-night.svg">
-<link rel="preload" as="image" href="../webps/biosphere2.webp">
-<link rel="preload" as="image" href="../webps/biosphere-day.webp">-->
+<!--  Set any page specific graphics to preload-->
+<link rel="preload" as="image" href="../svgs/b-logo.svg">
 
 <?php require_once ("../meta/buwana-index-en.php");?>
 
-
 <style>
-
 
  #buwana-top-logo {
  background: url('../svgs/b-logo.svg') center no-repeat;
    background-size: contain;
   }
-
 
 .form-container {
   padding-top: 30px !important;
@@ -76,13 +68,6 @@
   margin: 0;
 }
 
-
-
 </style>
 
-
-
 <?php require_once ("../header-2025.php");?>
-
-
-
