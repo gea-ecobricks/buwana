@@ -293,7 +293,7 @@ max-height: 200px;
         data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>">
     </div>
 <?php else: ?>
-    <div id="buwana-logo" class="the-app-logo buwana-wordmark"
+    <div id="buwana-logo" class="the-app-logo buwana-word-mark"
         alt="Buwana Logo"
         title="Authentication by Buwana">
     </div>
@@ -378,7 +378,7 @@ max-height: 200px;
              data-dark-wordmark="<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>">
         </div>
   <?php else: ?>
-      <div id="buwana-logo" class="the-app-logo buwana-wordmark"
+      <div id="buwana-logo" class="the-app-logo buwana-word-mark"
           alt="Buwana Logo"
           title="Authentication by Buwana">
       </div>
