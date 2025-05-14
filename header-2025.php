@@ -368,12 +368,21 @@ max-height: 200px;
   <button type="button" class="side-menu-button" onclick="openSideMenu()" aria-label="Open Main Menu"></button>
 
   <!-- Center header App Logo -->
-  <div id="top-app-logo"
-       title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
-       onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')"
-       data-light-wordmark="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>"
-       data-dark-wordmark="<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>">
-  </div>
+
+
+  <?php if (stripos($page, 'buwana') === false): ?>
+      <div id="top-app-logo"
+             title="<?= htmlspecialchars($app_info['app_display_name']) ?> | v<?= htmlspecialchars($app_info['app_version']) ?>"
+             onclick="redirectToAppHome('<?= htmlspecialchars($app_info['app_url']) ?>')"
+             data-light-wordmark="<?= htmlspecialchars($app_info['app_wordmark_url']) ?>"
+             data-dark-wordmark="<?= htmlspecialchars($app_info['app_wordmark_dark_url']) ?>">
+        </div>
+  <?php else: ?>
+      <div id="buwana-logo" class="the-app-logo buwana-wordmark"
+          alt="Buwana Logo"
+          title="Authentication by Buwana">
+      </div>
+  <?php endif; ?>
 
 
 
