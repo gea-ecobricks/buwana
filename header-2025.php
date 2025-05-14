@@ -6,8 +6,6 @@
 	if (strcmp($name, "welcome.php") == 0)
   $name = "";
 
-
-
 	;?>
 
 	<?php
@@ -340,10 +338,10 @@ max-height: 200px;
 </div>
 
 
-<!--<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
--->
+<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
+
 <p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;" data-lang-id="1000-authentication-by" >Authentication by</p>
-<div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" href="https://github.com/gea-ecobricks/buwana" href="singup-1.php"></div>
+<div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" onclick="navigateTo('index.php')" style="cursor:pointer;"></div>
 
 
   </div> <!-- close overlay-content-settings -->

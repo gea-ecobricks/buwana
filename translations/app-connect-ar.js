@@ -3,9 +3,9 @@ APP-CONNECT.PHP Translations
  */
 
 
-const en_Page_Translations = {
+const ar_Page_Translations = {
 
 
 
 
-    };
+};

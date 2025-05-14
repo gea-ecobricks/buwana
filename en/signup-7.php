@@ -42,7 +42,6 @@ $redirect_url = $app_login_url
       '&id=' . urlencode($buwana_id) .
       '&status=firsttime' .
       '&timezone=' . urlencode($time_zone) .
-      '&emoji=' . urlencode($earthling_emoji)
     : '/';
 ?>
 

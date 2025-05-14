@@ -18,12 +18,13 @@ const en_Translations = {
     "000-name-field-too-long-error": "⚠️ The entry is too long. Max 255 characters.",
     "000-name-error": "⚠️ The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.",
     "000-go-back": "↩ Go back",
+    "000-login-to": "Login to",
 
 
     //1000 HEADER
 
-    "1000-terms-of-use": "Terms of use",
-    "1000-privacy-policy": "Buwana privacy policy",
+    "1000-terms-of-use": "Terms",
+    "1000-privacy-policy": "Buwana Privacy",
     "1000-about-buwana": "About Buwana",
     "1000-authentication-by": "Authentication by",
     "1000-login": "Login",
