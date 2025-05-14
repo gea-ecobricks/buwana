@@ -37,12 +37,13 @@ $app_display_name = $app_info['app_display_name'] ?? 'Your App';
 $app_login_url = $app_info['app_login_url'] ?? null;
 
 $redirect_url = $app_login_url
-    ? $app_login_url .
-      '?lang=' . urlencode($lang) .
-      '&id=' . urlencode($buwana_id) .
-      '&status=firsttime' .
-      '&timezone=' . urlencode($time_zone) .
+    ? ($app_login_url .
+        '?lang=' . urlencode($lang) .
+        '&id=' . urlencode($buwana_id) .
+        '&status=firsttime' .
+        '&timezone=' . urlencode($time_zone))
     : '/';
+
 ?>
 
 <!DOCTYPE html>
