@@ -250,10 +250,6 @@ max-height: 200px;
 
 
 
-/* body { */
-/* width:100%; */
-/*   overflow-x: hidden; */
-/* } */
 
 </style>
 
@@ -302,7 +298,7 @@ max-height: 200px;
 
 
  <div class="menu-page-item">
-   <a href="login.php?app=<?= htmlspecialchars($client_id) ?>">
+   <a href="<?= htmlspecialchars($app_info['app_login_url']) ?>">
      <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-left: 6px; margin-right:auto;text-align:left !important">Login</span>
    </a>
    <span class="status-circle" style="background-color: limegreen;" title="Login directly"></span>
