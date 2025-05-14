@@ -41,7 +41,8 @@
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+  text-decoration: none !important;
 }
 
 .app-display-box:hover {
