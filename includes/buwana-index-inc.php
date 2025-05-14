@@ -14,14 +14,9 @@
 <style>
 
 
- .buwana-word-mark {
+ #buwana-top-logo {
  background: url('../svgs/b-logo.svg') center no-repeat;
    background-size: contain;
-  height: 50px;
-  width: 250px;
-  margin: auto;
-  margin-top: 2px;
-
   }
 
 
