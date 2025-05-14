@@ -41,8 +41,8 @@ if ($app_results && $app_results->num_rows > 0) {
 
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
-    <h1 style="text-align:center;" data-lang-id="1000-explore-buwana-apps">Explore Buwana Apps</h1>
-
+<!--    <h1 style="text-align:center;" data-lang-id="1000-explore-buwana-apps">Explore Buwana Apps</h1>
+-->
 
     <div class="app-grid">
       <?php foreach ($apps as $app):
@@ -60,12 +60,14 @@ if ($app_results && $app_results->num_rows > 0) {
       <?php endforeach; ?>
     </div>
 
-<p style="text-align:center; max-width:600px; margin:auto; margin-bottom:25px;" data-lang-id="3000-about-buwana-description">
+<div style="text-align:center; max-width:600px; margin:auto; margin-bottom:25px;">
+    <p  data-lang-id="3000-about-buwana-description">
       Buwana is an open-source login system for regenerative web applications developed by the Global Ecobrick Alliance. These apps all share a common commitment to people, planet, and privacy.
     </p>
 
-<p>The Buwana code-base and documention Wiki is on Github</p>
-<a href="https://github.com/gea-ecobricks/Buwana/tree/main">Check it out ↗</a>
+    <p>The Buwana code-base and documention Wiki is on Github</p>
+    <a href="https://github.com/gea-ecobricks/Buwana/tree/main">Check it out ↗</a>
+ </div>
 
   </div>
 </div>
