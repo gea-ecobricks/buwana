@@ -7,7 +7,7 @@ require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'index';
+$page = 'buwana-index';
 $version = '0.778';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
@@ -37,7 +37,7 @@ if ($app_results && $app_results->num_rows > 0) {
   <meta charset="UTF-8">
 
 
-  <?php require_once ("../includes/landing-inc.php");?>
+<?php require_once ("../includes/buwana-index-inc.php");?>
 
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
