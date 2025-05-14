@@ -285,14 +285,19 @@ max-height: 200px;
   <button type="button" onclick="closeMainMenu()" aria-label="Click to close main menu page" class="x-button"></button>
   <div class="overlay-content-settings">
 
-   <div class="the-app-logo"
+<?php if (stripos($page, 'buwana') === false): ?>
+    <div class="the-app-logo"
         alt="<?= htmlspecialchars($app_info['app_display_name']) ?> App Logo"
         title="<?= htmlspecialchars($app_info['app_display_name']) ?> <?= htmlspecialchars($app_info['app_version']) ?> | <?= htmlspecialchars($app_info['app_slogan']) ?>"
         data-light-logo="<?= htmlspecialchars($app_info['app_logo_url']) ?>"
         data-dark-logo="<?= htmlspecialchars($app_info['app_logo_dark_url']) ?>">
-   </div>
-
-   <div class="the-app-logo buwana-wordmark" alt="Buwana Logo" title="Authentication by Buwana"></div>
+    </div>
+<?php else: ?>
+    <div id="buwana-logo" class="the-app-logo buwana-wordmark"
+        alt="Buwana Logo"
+        title="Authentication by Buwana">
+    </div>
+<?php endif; ?>
 
 
 
