@@ -9,7 +9,16 @@
 
  #buwana-top-logo {
  background: url('../svgs/b-logo.svg') center no-repeat;
-   background-size: contain;
+
+    background-size: contain;
+     background-repeat: no-repeat;
+     background-position: center;
+     height: 80%;
+     display: flex;
+     cursor: pointer;
+     width: 100%;
+     margin-right: 70px;
+     margin-top: 5px;
   }
 
 .form-container {

@@ -235,7 +235,7 @@ max-height: 200px;
   margin: auto;
 }
 
-#top-app-logo #buwana-top-logo {
+#top-app-logo {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
