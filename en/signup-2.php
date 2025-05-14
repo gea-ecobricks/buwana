@@ -55,7 +55,7 @@ if ($buwana_id) {
     if ($stmt_lookup_user) {
         $stmt_lookup_user->bind_param("i", $buwana_id);
         $stmt_lookup_user->execute();
-        $stmt_lookup_user->bind_result($first_name, $account_status, $emoji_icon); // ← Added
+        $stmt_lookup_user->bind_result($first_name, $account_status, $earthling_emoji); // ← Added
         $stmt_lookup_user->fetch();
         $stmt_lookup_user->close();
     } else {
@@ -64,7 +64,7 @@ if ($buwana_id) {
 
 
 // ✅ Check if signup is already completed
-if (!is_null($emoji_icon) && trim($emoji_icon) !== '') {
+if (!is_null($earthling_emoji) && trim($earthling_emoji) !== '') {
     echo "<script>
         alert('Whoops! Looks like you’ve already completed your signup. No need to return to this page! Please login to your " . htmlspecialchars($app_info['app_display_name']) . " account.');
         window.location.href = '" . htmlspecialchars($app_info['app_login_url']) . "?lang=" . urlencode($lang) . "&id=" . urlencode($buwana_id) . "';
