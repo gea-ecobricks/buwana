@@ -458,7 +458,7 @@ function fetchNearbyRivers(lat, lon) {
 function openAboutRiverBasins() {
     const content = `
         <div style="text-align: center;margin:auto;padding:10%;">
-            <div class="bioregions-top" style="width:60%;margin:auto auto -10px auto"></div>
+            <div class="bioregions-top" style="width:100%; max-height:155px; margin:auto auto -10px auto"></div>
             <h2 data-lang-id="013-watershed-title">Watersheds</h2>
             <p data-lang-id="014-watershed-description">A watershed is an area defined by the drainage of rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
             <h2>💦</h2>
