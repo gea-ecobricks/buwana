@@ -67,12 +67,14 @@ if ($stmt_lookup_user) {
 
 // ✅ Check if signup is already completed
 if (!is_null($earthling_emoji) && trim($earthling_emoji) !== '') {
+    // Redirect because signup is already done
     echo "<script>
         alert('Whoops! Looks like you’ve already completed your signup. No need to return to this page! Please login to your " . htmlspecialchars($app_info['app_display_name']) . " account.');
         window.location.href = '" . htmlspecialchars($app_info['app_login_url']) . "?lang=" . urlencode($lang) . "&id=" . urlencode($buwana_id) . "';
     </script>";
     exit();
 }
+
 
 
     $credential_type = htmlspecialchars($credential_type);
