@@ -34,6 +34,7 @@ $credential_key = '';
 $first_name = '';
 $account_status = '';
 $country_icon = '';
+$earthling_emoji = '';
 
 
 // Look up user information if buwana_id is provided
@@ -50,17 +51,18 @@ if ($buwana_id) {
         $response['error'] = 'db_error';
     }
 
-    $sql_lookup_user = "SELECT first_name, account_status, $earthling_emoji FROM users_tb WHERE buwana_id = ?";
-    $stmt_lookup_user = $buwana_conn->prepare($sql_lookup_user);
-    if ($stmt_lookup_user) {
-        $stmt_lookup_user->bind_param("i", $buwana_id);
-        $stmt_lookup_user->execute();
-        $stmt_lookup_user->bind_result($first_name, $account_status, $earthling_emoji); // ← Added
-        $stmt_lookup_user->fetch();
-        $stmt_lookup_user->close();
-    } else {
-        $response['error'] = 'db_error';
-    }
+$sql_lookup_user = "SELECT first_name, account_status, earthling_emoji FROM users_tb WHERE buwana_id = ?";
+$stmt_lookup_user = $buwana_conn->prepare($sql_lookup_user);
+if ($stmt_lookup_user) {
+    $stmt_lookup_user->bind_param("i", $buwana_id);
+    $stmt_lookup_user->execute();
+    $stmt_lookup_user->bind_result($first_name, $account_status, $earthling_emoji);
+    $stmt_lookup_user->fetch();
+    $stmt_lookup_user->close();
+} else {
+    $response['error'] = 'db_error';
+}
+
 
 
 // ✅ Check if signup is already completed
@@ -71,6 +73,7 @@ if (!is_null($earthling_emoji) && trim($earthling_emoji) !== '') {
     </script>";
     exit();
 }
+
 
     $credential_type = htmlspecialchars($credential_type);
     $first_name = htmlspecialchars($first_name);
