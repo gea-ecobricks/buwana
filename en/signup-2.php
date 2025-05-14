@@ -50,17 +50,27 @@ if ($buwana_id) {
         $response['error'] = 'db_error';
     }
 
-    $sql_lookup_user = "SELECT first_name, account_status FROM users_tb WHERE buwana_id = ?";
+    $sql_lookup_user = "SELECT first_name, account_status, emoji_icon FROM users_tb WHERE buwana_id = ?";
     $stmt_lookup_user = $buwana_conn->prepare($sql_lookup_user);
     if ($stmt_lookup_user) {
         $stmt_lookup_user->bind_param("i", $buwana_id);
         $stmt_lookup_user->execute();
-        $stmt_lookup_user->bind_result($first_name, $account_status);
+        $stmt_lookup_user->bind_result($first_name, $account_status, $emoji_icon); // ← Added
         $stmt_lookup_user->fetch();
         $stmt_lookup_user->close();
     } else {
         $response['error'] = 'db_error';
     }
+
+
+// ✅ Check if signup is already completed
+if (!is_null($emoji_icon) && trim($emoji_icon) !== '') {
+    echo "<script>
+        alert('Whoops! Looks like you’ve already completed your signup. No need to return to this page! Please login to your " . htmlspecialchars($app_info['app_display_name']) . " account.');
+        window.location.href = '" . htmlspecialchars($app_info['app_login_url']) . "?lang=" . urlencode($lang) . "&id=" . urlencode($buwana_id) . "';
+    </script>";
+    exit();
+}
 
     $credential_type = htmlspecialchars($credential_type);
     $first_name = htmlspecialchars($first_name);

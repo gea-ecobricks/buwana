@@ -29,23 +29,32 @@ if (!$buwana_id || !is_numeric($buwana_id)) {
     die("⚠️ Invalid or missing Buwana ID.");
 }
 
-// 🧠 Fetch user info
+// 🧠 PART 1: Fetch user info
 $first_name = 'User';
 $location_full = '';
 $location_watershed = '';
 $latitude = '';
 $longitude = '';
+$emoji_icon = null; // Added variable
 
-$sql = "SELECT first_name, location_full, location_watershed, location_lat, location_long FROM users_tb WHERE buwana_id = ?";
+$sql = "SELECT first_name, location_full, location_watershed, location_lat, location_long, emoji_icon FROM users_tb WHERE buwana_id = ?";
 $stmt = $buwana_conn->prepare($sql);
 if ($stmt) {
     $stmt->bind_param('i', $buwana_id);
     $stmt->execute();
-    $stmt->bind_result($first_name, $location_full, $location_watershed, $latitude, $longitude);
+    $stmt->bind_result($first_name, $location_full, $location_watershed, $latitude, $longitude, $emoji_icon);
     $stmt->fetch();
     $stmt->close();
 }
 
+// ✅ Check if signup is already completed
+if (!is_null($emoji_icon) && trim($emoji_icon) !== '') {
+    echo "<script>
+        alert('Whoops! Looks like you’ve already completed your signup. No need to return to this page! Please login to your " . htmlspecialchars($app_info['app_display_name']) . " account.');
+        window.location.href = '" . htmlspecialchars($app_info['app_login_url']) . "?lang=" . urlencode($lang) . "&id=" . urlencode($buwana_id) . "';
+    </script>";
+    exit();
+}
 
 
 
@@ -85,12 +94,6 @@ if ($result_languages && $result_languages->num_rows > 0) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!--
-    GoBrik.com site version 3.0
-    Developed and made open source by the Global Ecobrick Alliance
-    See our git hub repository for the full code and to help out:
-    https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en
-    -->
 
     <?php require_once ("../includes/signup-4-inc.php"); ?>
 
@@ -458,7 +461,7 @@ function fetchNearbyRivers(lat, lon) {
 function openAboutRiverBasins() {
     const content = `
         <div style="text-align: center;margin:auto;padding:10%;">
-            <div class="bioregions-top" style="width:100%; max-height:155px; margin:auto auto -10px auto"></div>
+            <div class="bioregions-top" style="width:100%; height:155px; margin:auto auto -10px auto"></div>
             <h2 data-lang-id="013-watershed-title">Watersheds</h2>
             <p data-lang-id="014-watershed-description">A watershed is an area defined by the drainage of rain, melting snow, or ice converging to a single point, typically a river, lake, or ocean. These basins form natural boundaried bioregions, usually demarked by the crests of hills or mountains. Watersheds play a crucial ecological role and provide water for human use.</p>
             <h2>💦</h2>
