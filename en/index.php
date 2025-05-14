@@ -47,7 +47,7 @@ if ($app_results && $app_results->num_rows > 0) {
     <div class="app-grid">
       <?php foreach ($apps as $app):
           $client_id = urlencode($app['client_id']);
-          $link = "login.php?app=$client_id";
+          $link = "signup-1.php?app=$client_id";
           if ($buwana_id) {
               $link .= "&id=$buwana_id";
           }
