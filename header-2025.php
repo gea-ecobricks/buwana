@@ -338,7 +338,7 @@ max-height: 200px;
 </div>
 
 
-<h3><?= htmlspecialchars($app_info['app_slogan']) ?></h3>
+<h4 style="margin-top:15px"><?= htmlspecialchars($app_info['app_slogan']) ?></h4>
 
 <p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;" data-lang-id="1000-authentication-by" >Authentication by</p>
 <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" onclick="navigateTo('index.php')" style="cursor:pointer;"></div>

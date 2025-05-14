@@ -20,8 +20,8 @@ const id_Translations = {
 
     //1000 HEADER
 
-    "1000-terms-of-use": "Syarat penggunaan",
-    "1000-privacy-policy": "Kebijakan privasi Buwana",
+    "1000-terms-of-use": "Terms",
+    "1000-privacy-policy": "Privasi Buwana",
     "1000-about-buwana": "Tentang Buwana",
     "1000-authentication-by": "Otentikasi oleh",
     "1000-login": "Masuk",
