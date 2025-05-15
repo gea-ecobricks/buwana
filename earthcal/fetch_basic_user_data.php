@@ -6,14 +6,21 @@ require_once '../calconn_env.php'; // Include EarthCal database connection
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING); // Suppress warnings and notices
 ini_set('display_errors', '0'); // Disable error display for production
 
-$allowed_origins = [
-    'https://cal.earthen.io',
-    'https://cycles.earthen.io',
-    'https://ecobricks.org',
-    'https://gobrik.com',
-    'http://localhost',
-    'file://' // Allow local Snap apps or filesystem-based origins
-];
+if (empty($origin)) {
+    // Allow requests with no origin (e.g., file:// or local filesystem)
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Allow-Credentials: true');
+
+    // Optionally log for debugging:
+    // error_log("CORS allowed for local file-based request.");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0); // Preflight complete
+    }
+}
+
 
 // Normalize the HTTP_ORIGIN (remove trailing slashes or fragments)
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? rtrim($_SERVER['HTTP_ORIGIN'], '/') : '';
