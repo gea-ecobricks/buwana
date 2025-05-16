@@ -180,6 +180,7 @@ https://github.com/gea-ecobricks/gobrik-3.0/tree/main/en-->
 
     <input type="hidden" name="earthling_emoji" id="earthling_emoji">
     <p class="emoji-hint" style="text-align: center;"><span data-lang-id="005-emoji-hint" >Choose one emoji to represent you on </span><?= htmlspecialchars($app_info['app_display_name']) ?>.</p>
+    <p id="emoji-error" style="color:red; display:none;">⚠️ Please select an emoji before continuing.</p>
 </div>
 
 
@@ -475,6 +476,24 @@ function selectEmoji(element) {
 
 
 </script>
+
+
+<script>
+document.getElementById('user-signup-form').addEventListener('submit', function (e) {
+    const emojiInput = document.getElementById('earthling_emoji');
+
+  const errorMsg = document.getElementById('emoji-error');
+  if (!emojiInput.value || emojiInput.value.trim() === '') {
+      e.preventDefault();
+      errorMsg.style.display = 'block';
+  } else {
+      errorMsg.style.display = 'none';
+  }
+
+    }
+});
+</script>
+
 
 <?php require_once ("../scripts/app_modals.php");?>
 
