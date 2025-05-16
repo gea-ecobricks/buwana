@@ -17,6 +17,7 @@ $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-3';
 $version = '0.732';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
+$earthling_emoji = '';
 
 if (!empty($_SESSION['buwana_id'])) {
     $redirect_url = $_SESSION['redirect_url'] ?? $app_info['app_url'] ?? '/';
