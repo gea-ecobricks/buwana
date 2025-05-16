@@ -70,8 +70,8 @@ if (empty($buwana_id) || !is_numeric($buwana_id)) {
 }
 
 try {
-    // Fetch user data from users_tb
-    $sqlUser = "SELECT first_name, last_sync_ts, continent_code, location_full FROM users_tb WHERE buwana_id = ?";
+    // Fetch only last_sync_ts from users_tb
+    $sqlUser = "SELECT last_sync_ts FROM users_tb WHERE buwana_id = ?";
     $stmtUser = $cal_conn->prepare($sqlUser);
     $stmtUser->bind_param("i", $buwana_id);
     $stmtUser->execute();
@@ -81,6 +81,7 @@ try {
     if (!$userData) {
         throw new Exception("User not found.");
     }
+
 
     // Fetch personal calendars
     $sqlPersonalCalendars = "SELECT calendar_id, calendar_name FROM calendars_tb WHERE buwana_id = ?";
@@ -109,10 +110,11 @@ try {
 
     // Prepare response
     $response['success'] = true;
-    $response['user'] = $userData;
+    $response['last_sync_ts'] = $userData['last_sync_ts'];  // if you want to keep it
     $response['personal_calendars'] = $personalCalendars;
     $response['subscribed_calendars'] = $subscribedCalendars;
     $response['public_calendars'] = $publicCalendars;
+
 
 
 } catch (Exception $e) {

@@ -135,7 +135,7 @@ https://github.com/gea-ecobricks/buwana/-->
 
 
     <div style="font-size: medium; text-align: center; margin: auto; align-self: center;padding-top:40px;padding-bottom:50px;margin-top: 0px;">
-        <p style="font-size:medium;line-height:2em;"><span data-lang-id="000-already-have-account">Already have an account?</span> <br> <a href="<?= htmlspecialchars($app_info['app_login_url']) ?>/"><span data-lang-id="000-login-to"> Login to </span><?= htmlspecialchars($app_info['app_display_name']) ?> ↗</a>.</p>
+        <p style="font-size:medium;line-height:2em;"><span data-lang-id="000-already-have-account">Already have an account?</span> <br> <a href="<?= htmlspecialchars($app_info['app_login_url']) ?>/"><span data-lang-id="000-login-to"> Login to </span> <?= htmlspecialchars($app_info['app_display_name']) ?> ↗</a>.</p>
     </div>
 </div>
 
