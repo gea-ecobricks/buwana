@@ -312,187 +312,134 @@ $current_lang_dir = basename(dirname($_SERVER['SCRIPT_NAME']));
 
 
 <script>
-
-// --- tab behaviour ---------------------------------
-document.getElementById('emojiTabs').addEventListener('click', e => {
-    if (e.target.tagName !== 'LI') return;
-
-    // update tab bar
-    document.querySelectorAll('#emojiTabs li').forEach(li => li.classList.toggle('active', li === e.target));
-
-    // show / hide the right grid
-    const tabName = e.target.getAttribute('data-tab');
-    document.querySelectorAll('.emoji-grid').forEach(grid => {
-        grid.classList.toggle('active', grid.id === 'tab-' + tabName);
-    });
-});
-
-// --- keep your existing picker logic ---------------
-function selectEmoji(el) {
-    // remove previous selection
-    document.querySelectorAll('.emoji-option').forEach(opt => opt.classList.remove('selected'));
-
-    // mark new one
-    el.classList.add('selected');
-    document.getElementById('earthling_emoji').value = el.textContent.trim();
-}
-
-
-
-const userLanguageId = "<?php echo $current_lang_dir; ?>"; // from URL directory
-const userCountryId = "<?php echo htmlspecialchars($user_country_id ?? '', ENT_QUOTES, 'UTF-8'); ?>"; // from DB
-
-
-
-function openAddCommunityModal() {
-console.log("🌍 userCountryId:", userCountryId);
-    const modal = document.getElementById('form-modal-message');
-    const modalBox = document.getElementById('modal-content-box');
-
-    modal.style.display = 'flex';
-    modalBox.style.flexFlow = 'column';
-    document.getElementById('page-content')?.classList.add('blurred');
-    document.getElementById('footer-full')?.classList.add('blurred');
-    document.body.classList.add('modal-open');
-
-    modalBox.style.maxHeight = '100vh';
-    modalBox.style.overflowY = 'auto';
-
-    modalBox.innerHTML = `
-       <h4 style="text-align:center;" data-lang-id="014-add-community-title">Add Your Community</h4>
-       <p data-lang-id="015-add-community-desc">Add your community to Buwana so that others can connect across regenerative apps.</p>
-
-       <form id="addCommunityForm" onsubmit="addCommunity2Buwana(event)">
-           <label for="newCommunityName" data-lang-id="016-community-name-label">Name of Community:</label>
-           <input type="text" id="newCommunityName" name="newCommunityName" required>
-
-           <label for="newCommunityType" data-lang-id="017-community-type-label">Type of Community:</label>
-           <select id="newCommunityType" name="newCommunityType" required>
-               <option value="" data-lang-id="018-select-type-option">Select Type</option>
-               <option value="neighborhood" data-lang-id="019-type-neighborhood">Neighborhood</option>
-               <option value="city" data-lang-id="020-type-city">City</option>
-               <option value="school" data-lang-id="021-type-school">School</option>
-               <option value="organization" data-lang-id="022-type-organization">Organization</option>
-           </select>
-
-           <label for="communityCountry" data-lang-id="023-country-label">Country:</label>
-           <select id="communityCountry" name="communityCountry" required>
-               <option value="" data-lang-id="024-select-country-option">Select Country...</option>
-               <?php foreach ($countries as $country) : ?>
-                   <option value="<?php echo $country['country_id']; ?>">
-                       <?php echo htmlspecialchars($country['country_name'], ENT_QUOTES, 'UTF-8'); ?>
-                   </option>
-               <?php endforeach; ?>
-           </select>
-
-           <label for="communityLanguage" data-lang-id="025-language-label">Preferred Language:</label>
-           <select id="communityLanguage" name="communityLanguage" required>
-               <option value="" data-lang-id="026-select-language-option">Select Language...</option>
-               <?php foreach ($languages as $language) : ?>
-                   <option value="<?php echo $language['language_id']; ?>">
-                       <?php echo htmlspecialchars($language['languages_native_name'], ENT_QUOTES, 'UTF-8'); ?>
-                   </option>
-               <?php endforeach; ?>
-           </select>
-
-           <button type="submit" style="margin-top:10px;" class="confirm-button enabled" data-lang-id="027-submit-button">Create Community</button>
-       </form>
-
-    `;
-
-    applyTranslations();
-
-    // Preselect country and language after form is injected
-    setTimeout(() => {
-        const countrySelect = document.getElementById('communityCountry');
-        const languageSelect = document.getElementById('communityLanguage');
-
-        if (countrySelect && userCountryId) {
-            countrySelect.value = userCountryId;
-        }
-
-        if (languageSelect && userLanguageId) {
-            languageSelect.value = userLanguageId;
-        }
-    }, 100); // Small delay ensures elements exist in the DOM
-}
-
-
-
-
-function addCommunity2Buwana(event) {
-    event.preventDefault(); // Prevent normal form submission
-
-    const form = document.getElementById('addCommunityForm');
-    const formData = new FormData(form);
-
-    fetch('../scripts/add_community.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert(data.message); // Show success or error message
-
-        if (data.success) {
-            // Close modal
-            closeInfoModal();
-
-            // Add the new community to the dropdown
-            const communityInput = document.getElementById('community_name');
-            const communityList = document.getElementById('community_list');
-
-            // Create new option
-            const newOption = document.createElement('option');
-            newOption.value = data.community_name;
-            newOption.textContent = data.community_name;
-            communityList.appendChild(newOption);
-
-            // Set selected value
-            communityInput.value = data.community_name;
-        }
-    })
-    .catch(error => {
-        alert('Error adding community. Please try again.');
-        console.error('Error:', error);
-    });
-}
-
-
-
-
-
-function selectEmoji(element) {
-    // Remove highlight from all
-    const all = document.querySelectorAll('.emoji-option');
-    all.forEach(el => el.style.border = '2px solid transparent');
-
-    // Highlight the selected one
-    element.style.border = '2px solid #28a745';
-
-    // Set the hidden input value
-    document.getElementById('earthling_emoji').value = element.innerText;
-}
-
-
-</script>
-
-
-<script>
-document.getElementById('user-signup-form').addEventListener('submit', function (e) {
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('user-signup-form');
     const emojiInput = document.getElementById('earthling_emoji');
 
-  const errorMsg = document.getElementById('emoji-error');
-  if (!emojiInput.value || emojiInput.value.trim() === '') {
-      e.preventDefault();
-      errorMsg.style.display = 'block';
-  } else {
-      errorMsg.style.display = 'none';
-  }
+    // --- Emoji selection logic ---
+    document.querySelectorAll('.emoji-option').forEach(opt => {
+        opt.addEventListener('click', function () {
+            document.querySelectorAll('.emoji-option').forEach(el => el.classList.remove('selected'));
+            this.classList.add('selected');
+            this.style.border = '2px solid #28a745';
+            emojiInput.value = this.textContent.trim();
+        });
+    });
 
-    }
+    // --- Tab switch logic ---
+    document.getElementById('emojiTabs').addEventListener('click', function (e) {
+        if (e.target.tagName !== 'LI') return;
+        document.querySelectorAll('#emojiTabs li').forEach(li => li.classList.toggle('active', li === e.target));
+        const tabName = e.target.getAttribute('data-tab');
+        document.querySelectorAll('.emoji-grid').forEach(grid => {
+            grid.classList.toggle('active', grid.id === 'tab-' + tabName);
+        });
+    });
+
+    // --- Final form submission validation ---
+    form.addEventListener('submit', function (e) {
+        if (!emojiInput.value || emojiInput.value.trim() === '') {
+            e.preventDefault();
+            e.stopPropagation();
+            alert("⚠️ Please select an emoji before continuing.");
+            return false;
+        }
+    });
+
+    // --- Country & language preselect ---
+    const userLanguageId = "<?php echo $current_lang_dir; ?>";
+    const userCountryId = "<?php echo htmlspecialchars($user_country_id ?? '', ENT_QUOTES, 'UTF-8'); ?>";
+
+    window.openAddCommunityModal = function () {
+        const modal = document.getElementById('form-modal-message');
+        const modalBox = document.getElementById('modal-content-box');
+
+        modal.style.display = 'flex';
+        modalBox.style.flexFlow = 'column';
+        document.getElementById('page-content')?.classList.add('blurred');
+        document.getElementById('footer-full')?.classList.add('blurred');
+        document.body.classList.add('modal-open');
+
+        modalBox.style.maxHeight = '100vh';
+        modalBox.style.overflowY = 'auto';
+
+        modalBox.innerHTML = `
+            <h4 style="text-align:center;" data-lang-id="014-add-community-title">Add Your Community</h4>
+            <p data-lang-id="015-add-community-desc">Add your community to Buwana so that others can connect across regenerative apps.</p>
+            <form id="addCommunityForm" onsubmit="addCommunity2Buwana(event)">
+                <label for="newCommunityName" data-lang-id="016-community-name-label">Name of Community:</label>
+                <input type="text" id="newCommunityName" name="newCommunityName" required>
+                <label for="newCommunityType" data-lang-id="017-community-type-label">Type of Community:</label>
+                <select id="newCommunityType" name="newCommunityType" required>
+                    <option value="" data-lang-id="018-select-type-option">Select Type</option>
+                    <option value="neighborhood" data-lang-id="019-type-neighborhood">Neighborhood</option>
+                    <option value="city" data-lang-id="020-type-city">City</option>
+                    <option value="school" data-lang-id="021-type-school">School</option>
+                    <option value="organization" data-lang-id="022-type-organization">Organization</option>
+                </select>
+                <label for="communityCountry" data-lang-id="023-country-label">Country:</label>
+                <select id="communityCountry" name="communityCountry" required>
+                    <option value="" data-lang-id="024-select-country-option">Select Country...</option>
+                    <?php foreach ($countries as $country) : ?>
+                        <option value="<?php echo $country['country_id']; ?>">
+                            <?php echo htmlspecialchars($country['country_name'], ENT_QUOTES, 'UTF-8'); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <label for="communityLanguage" data-lang-id="025-language-label">Preferred Language:</label>
+                <select id="communityLanguage" name="communityLanguage" required>
+                    <option value="" data-lang-id="026-select-language-option">Select Language...</option>
+                    <?php foreach ($languages as $language) : ?>
+                        <option value="<?php echo $language['language_id']; ?>">
+                            <?php echo htmlspecialchars($language['languages_native_name'], ENT_QUOTES, 'UTF-8'); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit" style="margin-top:10px;" class="confirm-button enabled" data-lang-id="027-submit-button">Create Community</button>
+            </form>
+        `;
+
+        applyTranslations();
+
+        // Preselect values
+        setTimeout(() => {
+            document.getElementById('communityCountry').value = userCountryId;
+            document.getElementById('communityLanguage').value = userLanguageId;
+        }, 100);
+    };
+
+    window.addCommunity2Buwana = function (event) {
+        event.preventDefault();
+        const form = document.getElementById('addCommunityForm');
+        const formData = new FormData(form);
+
+        fetch('../scripts/add_community.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            if (data.success) {
+                closeInfoModal();
+                const communityInput = document.getElementById('community_name');
+                const communityList = document.getElementById('community_list');
+                const newOption = document.createElement('option');
+                newOption.value = data.community_name;
+                newOption.textContent = data.community_name;
+                communityList.appendChild(newOption);
+                communityInput.value = data.community_name;
+            }
+        })
+        .catch(error => {
+            alert('Error adding community. Please try again.');
+            console.error('Error:', error);
+        });
+    };
 });
 </script>
+
+
 
 
 <?php require_once ("../scripts/app_modals.php");?>
