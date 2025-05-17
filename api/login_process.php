@@ -162,6 +162,8 @@ try {
         $check_stmt->close();
 
         //REDIRECT TO CONNECT
+            error_log("ClientID: $client_id | BuwanaID: $buwana_id | Connection Count: $connection_count");
+
 
         if ($connection_count == 0) {
             // 🚪 Redirect immediately to connect the app
@@ -184,7 +186,6 @@ try {
         'connected_apps' => implode(',', $connected_apps),
         'message' => 'login_successful'
     ]);
-    error_log("ClientID: $client_id | BuwanaID: $buwana_id | Connection Count: $connection_count");
 
     exit();
 } catch (Exception $e) {
