@@ -1,5 +1,4 @@
 <?php
-require_once '../earthenAuth_helper.php';
 require_once '../buwanaconn_env.php';
 require_once '../calconn_env.php'; // Include EarthCal database connection
 
