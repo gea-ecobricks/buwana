@@ -65,7 +65,7 @@ if (empty($credential_key) || empty($password)) {
     http_response_code(400);
     echo json_encode([
         'success' => false,
-        'message' => 'Credential key or password is missing.'
+        'message' => 'invalid_credential'
     ]);
     exit();
 }
@@ -81,7 +81,7 @@ try {
  $stmtAuth->close();
 
  if (!$buwana_id) {
-     echo json_encode(['success' => false, 'message' => 'Invalid credential key.']);
+     echo json_encode(['success' => false, 'message' => 'invalid_credential']);
      exit();
  }
 
@@ -129,7 +129,7 @@ try {
         http_response_code(401);
         echo json_encode([
             'success' => false,
-            'message' => 'Invalid credential or password.'
+            'message' => 'invalid_password'
         ]);
         exit();
     }
@@ -161,13 +161,24 @@ try {
         $check_stmt->fetch();
         $check_stmt->close();
 
+        //REDIRECT TO CONNECT
+
+//         if ($connection_count == 0) {
+//             // 🚪 Redirect immediately to connect the app
+//             header("Location: https://buwana.ecobricks.org/en/signup-1.php?app=$client_id");
+//             exit();
+//         } else {
+//             $connected_apps[] = $client_id;
+//         }
+
+
         if ($connection_count == 0) {
             // User is not connected to the app
             echo json_encode([
                 'success' => true,
                 'buwana_id' => $buwana_id,
                 'connected' => false,
-                'message' => 'User is not connected to the application.'
+                'message' => 'user_not_connected_to_app'
             ]);
             exit();
         } else {
@@ -181,7 +192,7 @@ try {
         'buwana_id' => $buwana_id,
         'connected' => true,
         'connected_apps' => implode(',', $connected_apps),
-        'message' => 'Login successful.'
+        'message' => 'login_successful'
     ]);
     exit();
 } catch (Exception $e) {
