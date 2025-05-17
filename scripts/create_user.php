@@ -3,6 +3,9 @@
 
 require_once '../buwanaconn_env.php'; // Required for updating Buwana DB
 
+// Enable strict error mode for mysqli
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 /**
  * ===========================================
  * FUNCTION: Create a user in the client app DB
@@ -32,7 +35,6 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
             continent_code, location_full, location_lat, location_long
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-
         $stmt = $client_conn->prepare($insert_sql);
         if (!$stmt) {
             error_log('❌ GoBrik DB Prepare Error: ' . $client_conn->error);
@@ -60,7 +62,6 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
             $userData['location_lat'],
             $userData['location_long']
         );
-
     }
 
     /**
@@ -113,27 +114,29 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
      * Execute insert and update Buwana
      * ===========================================
      */
-   if ($stmt->execute()) {
-       $stmt->close();
-       updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
-       updateBuwanaUserNotes($buwana_conn, $buwana_id, $app_name, $created_at);
-       error_log("✅ User successfully created in client app ($app_name)");
-       return ['success' => true];
-   } else {
-       $error = $stmt->error;
-       $stmt->close();
+    try {
+        $stmt->execute();
+        $stmt->close();
 
-       // Check if it's a duplicate entry (ignore and proceed)
-       if (strpos($error, 'Duplicate entry') !== false) {
-           error_log("⚠️ User already exists in client app ($app_name), continuing...");
-           updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
-           return ['success' => true, 'note' => 'User already existed, updated app connection.'];
-       } else {
-           error_log('❌ Client DB Insert Error: ' . $error);
-           updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'failed');
-           return ['success' => false, 'error' => 'Client DB insert failed'];
-       }
-   }
+        updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
+        updateBuwanaUserNotes($buwana_conn, $buwana_id, $app_name, $created_at);
+
+        error_log("✅ User successfully created in client app ($app_name)");
+        return ['success' => true];
+    } catch (mysqli_sql_exception $e) {
+        $stmt->close();
+        $error = $e->getMessage();
+
+        if (strpos($error, 'Duplicate entry') !== false) {
+            error_log("⚠️ User already exists in client app ($app_name), continuing...");
+            updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
+            return ['success' => true, 'note' => 'User already existed, updated app connection.'];
+        } else {
+            error_log('❌ Client DB Insert Exception: ' . $error);
+            updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'failed');
+            return ['success' => false, 'error' => 'Client DB insert failed'];
+        }
+    }
 }
 
 /**
