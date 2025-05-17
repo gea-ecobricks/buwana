@@ -1,5 +1,4 @@
 <?php
-
 require_once '../buwanaconn_env.php';
 
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
@@ -9,6 +8,10 @@ ini_set('display_errors', '0'); // Suppress in production
 define('DEVMODE', true); // Set to false on production servers
 // ===============================
 
+// Set response headers
+header('Content-Type: application/json; charset=utf-8');
+
+// Handle CORS
 $allowed_origins = [
     'https://cal.earthen.io',
     'https://cycles.earthen.io',
@@ -21,224 +24,159 @@ $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 $origin = rtrim($origin, '/'); // Normalize
 
 if (DEVMODE && empty($origin)) {
-    // Local file:// fallback (e.g. file:// or dev server with no origin header)
     header('Access-Control-Allow-Origin: http://localhost:8080');
-    header('Access-Control-Allow-Methods: POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
-    header('Access-Control-Allow-Credentials: true');
-
-    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-        exit(0);
-    }
 } elseif (in_array($origin, $allowed_origins)) {
-    header('Access-Control-Allow-Origin: ' . $origin);
-    header('Access-Control-Allow-Methods: POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
-    header('Access-Control-Allow-Credentials: true');
-
-    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-        exit(0);
-    }
+    header("Access-Control-Allow-Origin: $origin");
 } else {
-    error_log('My CORS error: Invalid or missing HTTP_ORIGIN - ' . $origin);
-    header('HTTP/1.1 403 Forbidden');
+    error_log('CORS error: Invalid or missing HTTP_ORIGIN - ' . $origin);
+    http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'CORS error: Invalid origin']);
     exit();
 }
 
-// ===== API Logic Below =====
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Credentials: true');
 
-$response = ['success' => false];
-
-
-// Start a secure session with regeneration to prevent session fixation
- if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    // Regenerate the session ID periodically to prevent session fixation
-    if (!isset($_SESSION['CREATED'])) {
-        $_SESSION['CREATED'] = time();
-    } elseif (time() - $_SESSION['CREATED'] > 1800) { // Regenerate session ID every 30 minutes
-        session_regenerate_id(true);
-        $_SESSION['CREATED'] = time();
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    exit(0);
 }
 
-// PART 1: Grab user credentials from the login form submission
+// Start a secure session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Regenerate the session ID periodically to prevent session fixation
+if (!isset($_SESSION['CREATED'])) {
+    $_SESSION['CREATED'] = time();
+} elseif (time() - $_SESSION['CREATED'] > 1800) { // Regenerate session ID every 30 minutes
+    session_regenerate_id(true);
+    $_SESSION['CREATED'] = time();
+}
+
+// Retrieve POST data
 $credential_key = $_POST['credential_key'] ?? '';
 $password = $_POST['password'] ?? '';
-$lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$redirect = $_POST['redirect'] ?? ''; // Capture the redirect variable from POST
+$client_id = $_POST['client_id'] ?? '';
 
-// Sanitize the redirect value using FILTER_SANITIZE_SPECIAL_CHARS
-$redirect = filter_var($redirect, FILTER_SANITIZE_SPECIAL_CHARS);
-
+// Input validation
 if (empty($credential_key) || empty($password)) {
-    header("Location: ../$lang/login.php?status=empty_fields&key=" . urlencode($credential_key));
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Credential key or password is missing.'
+    ]);
     exit();
 }
 
+try {
+    // Authenticate user
+    $sqlAuth = "SELECT buwana_id, password_hash FROM credentials_tb WHERE credential_key = ?";
+    $stmtAuth = $buwana_conn->prepare($sqlAuth);
+    $stmtAuth->bind_param("s", $credential_key);
+    $stmtAuth->execute();
+    $stmtAuth->bind_result($buwana_id, $password_hash);
+    $stmtAuth->fetch();
+    $stmtAuth->close();
 
-// PART 2: Check Buwana Database for specific Buwana_id to login
-require_once("../buwanaconn_env.php");
+    if (!$buwana_id || !password_verify($password, $password_hash)) {
+        // Handle failed login attempts
+        $sql_check_failed = "SELECT failed_last_tm, failed_password_count FROM credentials_tb WHERE credential_key = ?";
+        $stmt_check_failed = $buwana_conn->prepare($sql_check_failed);
+        $stmt_check_failed->bind_param('s', $credential_key);
+        $stmt_check_failed->execute();
+        $stmt_check_failed->bind_result($failed_last_tm, $failed_password_count);
+        $stmt_check_failed->fetch();
+        $stmt_check_failed->close();
 
-// SQL query to get buwana_id from credentials_tb using credential_key
-$sql_credential = "SELECT buwana_id FROM credentials_tb WHERE credential_key = ?";
-$stmt_credential = $buwana_conn->prepare($sql_credential);
+        // Check if failed_last_tm exists and if it's within the last 10 minutes
+        $current_time = new DateTime();
+        $last_failed_time = $failed_last_tm ? new DateTime($failed_last_tm) : null;
 
-if ($stmt_credential) {
-    $stmt_credential->bind_param('s', $credential_key);
-    $stmt_credential->execute();
-    $stmt_credential->store_result();
-
-    if ($stmt_credential->num_rows === 1) {
-        $stmt_credential->bind_result($buwana_id);
-        $stmt_credential->fetch();
-        $stmt_credential->close();
-
-        // SQL query to get password_hash from users_tb using buwana_id in Buwana database
-        $sql_user = "SELECT password_hash FROM users_tb WHERE buwana_id = ?";
-        $stmt_user = $buwana_conn->prepare($sql_user);
-
-        if ($stmt_user) {
-            $stmt_user->bind_param('i', $buwana_id);
-            $stmt_user->execute();
-            $stmt_user->store_result();
-
-            if ($stmt_user->num_rows === 1) {
-                $stmt_user->bind_result($password_hash);
-                $stmt_user->fetch();
-
-                // Verify the password entered by the user
-                if (password_verify($password, $password_hash)) {
-
-                    // PART 4: If login successfull Update Buwana Account
-                    $sql_update_user = "UPDATE users_tb SET last_login = NOW(), login_count = login_count + 1 WHERE buwana_id = ?";
-                    $stmt_update_user = $buwana_conn->prepare($sql_update_user);
-
-                    if ($stmt_update_user) {
-                        $stmt_update_user->bind_param('i', $buwana_id);
-                        $stmt_update_user->execute();
-                        $stmt_update_user->close();
-                    } else {
-                        die('Error preparing statement for updating users_tb: ' . $buwana_conn->error);
-                    }
-
-                    $sql_update_credential = "UPDATE credentials_tb SET last_login = NOW(), times_used = times_used + 1 WHERE buwana_id = ?";
-                    $stmt_update_credential = $buwana_conn->prepare($sql_update_credential);
-
-                    if ($stmt_update_credential) {
-                        $stmt_update_credential->bind_param('i', $buwana_id);
-                        $stmt_update_credential->execute();
-                        $stmt_update_credential->close();
-                    } else {
-                        die('Error preparing statement for updating credentials_tb: ' . $buwana_conn->error);
-                    }
-
-       // PART 3 - Set session variable to indicate the user is logged in
-       $_SESSION['buwana_id'] = $buwana_id;
-
-       $client_id = $_SESSION['client_id'] ?? null;
-       $app_dashboard_url = 'dashboard.php'; // default fallback
-
-       if ($client_id) {
-           // Get app's dashboard URL
-           $sql = "SELECT app_dashboard_url FROM apps_tb WHERE client_id = ?";
-           $stmt = $buwana_conn->prepare($sql);
-           if ($stmt) {
-               $stmt->bind_param('s', $client_id);
-               $stmt->execute();
-               $stmt->bind_result($app_dashboard_url);
-               $stmt->fetch();
-               $stmt->close();
-           }
-
-           // 🔍 Check if the user is already connected to this app
-           $check_sql = "SELECT COUNT(*) FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?";
-           $check_stmt = $buwana_conn->prepare($check_sql);
-           if ($check_stmt) {
-               $check_stmt->bind_param('is', $buwana_id, $client_id);
-               $check_stmt->execute();
-               $check_stmt->bind_result($connection_count);
-               $check_stmt->fetch();
-               $check_stmt->close();
-
-               if ($connection_count == 0) {
-                   // 🚪 Not yet connected → send to app-connect page
-                   header("Location: https://buwana.ecobricks.org/app-connect.php?id=$buwana_id&client_id=$client_id");
-                   exit();
-               }
-           }
-       }
-
-       // ✅ Default redirect
-       $redirect_url = !empty($redirect) ? $redirect : $app_dashboard_url;
-       header("Location: $redirect_url");
-       exit();
-
-
-                } else {
-                    // PART 6: Handle failed login attempts
-                    $sql_check_failed = "SELECT failed_last_tm, failed_password_count FROM credentials_tb WHERE credential_key = ?";
-                    $stmt_check_failed = $buwana_conn->prepare($sql_check_failed);
-
-                    if ($stmt_check_failed) {
-                        $stmt_check_failed->bind_param('s', $credential_key);
-                        $stmt_check_failed->execute();
-                        $stmt_check_failed->bind_result($failed_last_tm, $failed_password_count);
-                        $stmt_check_failed->fetch();
-                        $stmt_check_failed->close();
-
-                        // Check if failed_last_tm exists and if it's within the last 10 minutes
-                        $current_time = new DateTime();
-                        $last_failed_time = $failed_last_tm ? new DateTime($failed_last_tm) : null;
-
-                        if (is_null($last_failed_time) || $current_time->getTimestamp() - $last_failed_time->getTimestamp() > 600) {
-                            // Reset failed_password_count if no entry or if the last failure was more than 10 minutes ago
-                            $failed_password_count = 0;
-                        }
-
-                        // Increment failed_password_count and update failed_last_tm
-                        $failed_password_count += 1;
-
-                        $sql_update_failed = "UPDATE credentials_tb
-                                              SET failed_last_tm = NOW(),
-                                                  failed_password_count = ?
-                                              WHERE credential_key = ?";
-                        $stmt_update_failed = $buwana_conn->prepare($sql_update_failed);
-
-                        if ($stmt_update_failed) {
-                            $stmt_update_failed->bind_param('is', $failed_password_count, $credential_key);
-                            $stmt_update_failed->execute();
-                            $stmt_update_failed->close();
-                        } else {
-                            error_log('Error preparing statement for updating failed login attempts: ' . $buwana_conn->error);
-                        }
-                    } else {
-                        error_log('Error preparing statement for checking failed login attempts: ' . $buwana_conn->error);
-                    }
-
-                    // Redirect the user to the login page with an error status
-                    header("Location: ../$lang/login.php?status=invalid_password&key=" . urlencode($credential_key));
-                    exit();
-
-                }
-            } else {
-                header("Location: ../$lang/login.php?status=invalid_user&key=" . urlencode($credential_key));
-                exit();
-            }
-            $stmt_user->close();
-        } else {
-            die('Error preparing statement for users_tb: ' . $buwana_conn->error);
+        if (is_null($last_failed_time) || $current_time->getTimestamp() - $last_failed_time->getTimestamp() > 600) {
+            // Reset failed_password_count if no entry or if the last failure was more than 10 minutes ago
+            $failed_password_count = 0;
         }
-    } else {
-        header("Location: ../$lang/login.php?status=invalid_credential&key=" . urlencode($credential_key));
+
+        // Increment failed_password_count and update failed_last_tm
+        $failed_password_count += 1;
+
+        $sql_update_failed = "UPDATE credentials_tb
+                              SET failed_last_tm = NOW(),
+                                  failed_password_count = ?
+                              WHERE credential_key = ?";
+        $stmt_update_failed = $buwana_conn->prepare($sql_update_failed);
+        $stmt_update_failed->bind_param('is', $failed_password_count, $credential_key);
+        $stmt_update_failed->execute();
+        $stmt_update_failed->close();
+
+        http_response_code(401);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid credential or password.'
+        ]);
         exit();
     }
-} else {
-    die('Error preparing statement for credentials_tb: ' . $buwana_conn->error);
-}
 
-$buwana_conn->close();
+    // Update login timestamps
+    $sql_update_user = "UPDATE users_tb SET last_login = NOW(), login_count = login_count + 1 WHERE buwana_id = ?";
+    $stmt_update_user = $buwana_conn->prepare($sql_update_user);
+    $stmt_update_user->bind_param('i', $buwana_id);
+    $stmt_update_user->execute();
+    $stmt_update_user->close();
+
+    $sql_update_credential = "UPDATE credentials_tb SET last_login = NOW(), times_used = times_used + 1 WHERE buwana_id = ?";
+    $stmt_update_credential = $buwana_conn->prepare($sql_update_credential);
+    $stmt_update_credential->bind_param('i', $buwana_id);
+    $stmt_update_credential->execute();
+    $stmt_update_credential->close();
+
+    // Set session variable
+    $_SESSION['buwana_id'] = $buwana_id;
+
+    // Check if the user is connected to the app
+    $connected_apps = [];
+    if (!empty($client_id)) {
+        $check_sql = "SELECT COUNT(*) FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?";
+        $check_stmt = $buwana_conn->prepare($check_sql);
+        $check_stmt->bind_param('is', $buwana_id, $client_id);
+        $check_stmt->execute();
+        $check_stmt->bind_result($connection_count);
+        $check_stmt->fetch();
+        $check_stmt->close();
+
+        if ($connection_count == 0) {
+            // User is not connected to the app
+            echo json_encode([
+                'success' => true,
+                'buwana_id' => $buwana_id,
+                'connected' => false,
+                'message' => 'User is not connected to the application.'
+            ]);
+            exit();
+        } else {
+            $connected_apps[] = $client_id;
+        }
+    }
+
+    // Successful login response
+    echo json_encode([
+        'success' => true,
+        'buwana_id' => $buwana_id,
+        'connected' => true,
+        'connected_apps' => implode(',', $connected_apps),
+        'message' => 'Login successful.'
+    ]);
+    exit();
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Server error: ' . $e->getMessage()
+    ]);
+    exit();
+} finally {
+    $buwana_conn->close();
+}
 ?>
