@@ -169,7 +169,7 @@ try {
             // 🚪 Redirect immediately to connect the app
             echo json_encode([
                 'success' => true,
-                'redirect' => "https://buwana.ecobricks.org/en/app-conect.php?app=$client_id"
+                'redirect' => "https://buwana.ecobricks.org/en/app-connect.php?app=$client_id&id=$buwana_id"
             ]);
             exit();
 
