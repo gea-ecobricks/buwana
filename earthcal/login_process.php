@@ -1,5 +1,5 @@
-
 <?php
+require_once '../earthenAuth_helper.php';
 require_once '../buwanaconn_env.php';
 require_once '../calconn_env.php'; // EarthCal database connection
 
@@ -22,9 +22,24 @@ $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 $origin = rtrim($origin, '/'); // Normalize
 
 if (DEVMODE && empty($origin)) {
+    // Local file:// fallback (e.g. file:// or dev server with no origin header)
     header('Access-Control-Allow-Origin: http://localhost:8080');
+    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Allow-Credentials: true');
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
 } elseif (in_array($origin, $allowed_origins)) {
-    header("Access-Control-Allow-Origin: $origin");
+    header('Access-Control-Allow-Origin: ' . $origin);
+    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Allow-Credentials: true');
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
 } else {
     error_log('CORS error: Invalid or missing HTTP_ORIGIN - ' . $origin);
     header('HTTP/1.1 403 Forbidden');
@@ -32,13 +47,7 @@ if (DEVMODE && empty($origin)) {
     exit();
 }
 
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Credentials: true');
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') exit(0);
-
-// === Main Logic ===
+// ===== API Logic Below =====
 
 // PART 1: Grab user credentials from the POST request
 $credential_key = $_POST['credential_key'] ?? '';
