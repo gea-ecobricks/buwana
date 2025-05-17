@@ -134,7 +134,7 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
            return ['success' => false, 'error' => 'Client DB insert failed'];
        }
    }
-
+}
 
 /**
  * ===========================================
