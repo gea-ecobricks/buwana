@@ -167,27 +167,13 @@ try {
             // 🚪 Redirect immediately to connect the app
             echo json_encode([
                 'success' => true,
-                'redirect' => "https://buwana.ecobricks.org/en/signup-1.php?app=$client_id"
+                'redirect' => "https://buwana.ecobricks.org/en/app-conect.php?app=$client_id"
             ]);
             exit();
 
         } else {
             $connected_apps[] = $client_id;
         }
-
-
-//         if ($connection_count == 0) {
-//             // User is not connected to the app
-//             echo json_encode([
-//                 'success' => true,
-//                 'buwana_id' => $buwana_id,
-//                 'connected' => false,
-//                 'message' => 'user_not_connected_to_app'
-//             ]);
-//             exit();
-//         } else {
-//             $connected_apps[] = $client_id;
-//         }
     }
 
     // Successful login response
@@ -207,6 +193,7 @@ try {
     ]);
     exit();
 } finally {
+error_log("ClientID: $client_id | BuwanaID: $buwana_id | Connection Count: $connection_count");
     $buwana_conn->close();
 }
 ?>
