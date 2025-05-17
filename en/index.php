@@ -25,11 +25,6 @@ if ($app_results && $app_results->num_rows > 0) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="<?= htmlspecialchars($lang) ?>">
-<head>
-  <meta charset="UTF-8">
-
 
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>">
