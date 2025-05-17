@@ -1,6 +1,5 @@
 
 <?php
-require_once '../earthenAuth_helper.php';
 require_once '../buwanaconn_env.php';
 require_once '../calconn_env.php'; // EarthCal database connection
 
@@ -40,8 +39,6 @@ header('Access-Control-Allow-Credentials: true');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') exit(0);
 
 // === Main Logic ===
-
-startSecureSession();
 
 // PART 1: Grab user credentials from the POST request
 $credential_key = $_POST['credential_key'] ?? '';
