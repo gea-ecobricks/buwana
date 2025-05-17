@@ -165,8 +165,12 @@ try {
 
         if ($connection_count == 0) {
             // 🚪 Redirect immediately to connect the app
-            header("Location: https://buwana.ecobricks.org/en/signup-1.php?app=$client_id");
+            echo json_encode([
+                'success' => true,
+                'redirect' => "https://buwana.ecobricks.org/en/signup-1.php?app=$client_id"
+            ]);
             exit();
+
         } else {
             $connected_apps[] = $client_id;
         }
