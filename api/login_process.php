@@ -71,14 +71,29 @@ if (empty($credential_key) || empty($password)) {
 }
 
 try {
-    // Authenticate user
-    $sqlAuth = "SELECT buwana_id, password_hash FROM credentials_tb WHERE credential_key = ?";
-    $stmtAuth = $buwana_conn->prepare($sqlAuth);
-    $stmtAuth->bind_param("s", $credential_key);
-    $stmtAuth->execute();
-    $stmtAuth->bind_result($buwana_id, $password_hash);
-    $stmtAuth->fetch();
-    $stmtAuth->close();
+ // Step 1: Retrieve buwana_id from credentials_tb
+ $sqlAuth = "SELECT buwana_id FROM credentials_tb WHERE credential_key = ?";
+ $stmtAuth = $buwana_conn->prepare($sqlAuth);
+ $stmtAuth->bind_param("s", $credential_key);
+ $stmtAuth->execute();
+ $stmtAuth->bind_result($buwana_id);
+ $stmtAuth->fetch();
+ $stmtAuth->close();
+
+ if (!$buwana_id) {
+     echo json_encode(['success' => false, 'message' => 'Invalid credential key.']);
+     exit();
+ }
+
+ // Step 2: Retrieve password_hash from users_tb
+ $sqlUserPass = "SELECT password_hash FROM users_tb WHERE buwana_id = ?";
+ $stmtUserPass = $buwana_conn->prepare($sqlUserPass);
+ $stmtUserPass->bind_param("i", $buwana_id);
+ $stmtUserPass->execute();
+ $stmtUserPass->bind_result($password_hash);
+ $stmtUserPass->fetch();
+ $stmtUserPass->close();
+
 
     if (!$buwana_id || !password_verify($password, $password_hash)) {
         // Handle failed login attempts
