@@ -184,6 +184,8 @@ try {
         'connected_apps' => implode(',', $connected_apps),
         'message' => 'login_successful'
     ]);
+    error_log("ClientID: $client_id | BuwanaID: $buwana_id | Connection Count: $connection_count");
+
     exit();
 } catch (Exception $e) {
     http_response_code(500);
@@ -193,7 +195,6 @@ try {
     ]);
     exit();
 } finally {
-error_log("ClientID: $client_id | BuwanaID: $buwana_id | Connection Count: $connection_count");
     $buwana_conn->close();
 }
 ?>
