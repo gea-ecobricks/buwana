@@ -113,21 +113,28 @@ function createUserInClientApp($buwana_id, $userData, $app_name, $client_conn, $
      * Execute insert and update Buwana
      * ===========================================
      */
-    if ($stmt->execute()) {
-        $stmt->close();
+   if ($stmt->execute()) {
+       $stmt->close();
+       updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
+       updateBuwanaUserNotes($buwana_conn, $buwana_id, $app_name, $created_at);
+       error_log("✅ User successfully created in client app ($app_name)");
+       return ['success' => true];
+   } else {
+       $error = $stmt->error;
+       $stmt->close();
 
-        updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
-        updateBuwanaUserNotes($buwana_conn, $buwana_id, $app_name, $created_at);
+       // Check if it's a duplicate entry (ignore and proceed)
+       if (strpos($error, 'Duplicate entry') !== false) {
+           error_log("⚠️ User already exists in client app ($app_name), continuing...");
+           updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'registered', $created_at);
+           return ['success' => true, 'note' => 'User already existed, updated app connection.'];
+       } else {
+           error_log('❌ Client DB Insert Error: ' . $error);
+           updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'failed');
+           return ['success' => false, 'error' => 'Client DB insert failed'];
+       }
+   }
 
-        error_log("✅ User successfully created in client app ($app_name)");
-        return ['success' => true];
-    } else {
-        error_log('❌ Client DB Insert Error: ' . $stmt->error);
-        $stmt->close();
-        updateAppConnectionStatus($buwana_conn, $buwana_id, $client_id, 'failed');
-        return ['success' => false, 'error' => 'Client DB insert failed'];
-    }
-}
 
 /**
  * ===========================================
