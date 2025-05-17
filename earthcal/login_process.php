@@ -64,6 +64,23 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 
 try {
+    // PART 2: Authenticate the user and retrieve Buwana ID
+    $sqlAuth = "SELECT buwana_id, password_hash FROM credentials_tb WHERE credential_key = ?";
+    $stmtAuth = $buwana_conn->prepare($sqlAuth);
+    $stmtAuth->bind_param("s", $credential_key);
+    $stmtAuth->execute();
+    $stmtAuth->bind_result($buwana_id, $password_hash);
+    $stmtAuth->fetch();
+    $stmtAuth->close();
+
+    if (!$buwana_id || !password_verify($password, $password_hash)) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid credential or password.'
+        ]);
+        exit();
+    }
+
     $client_id = 'ecal_7f3da821d0a54f8a9b58'; // ✅ EarthCal app ID
 
     // 🔍 Ensure EarthCal is connected to this Buwana ID
