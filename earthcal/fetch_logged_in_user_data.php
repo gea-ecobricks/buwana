@@ -1,11 +1,11 @@
 <?php
 require_once '../buwanaconn_env.php';
-require_once '../calconn_env.php'; // EarthCal database connection
+require_once '../calconn_env.php';
 
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
-ini_set('display_errors', '0'); // Suppress in production
+ini_set('display_errors', '0');
 
-define('DEVMODE', true); // Set to false on production servers
+define('DEVMODE', true);
 
 $allowed_origins = [
     'https://cal.earthen.io',
@@ -42,6 +42,7 @@ header('Content-Type: application/json');
 session_start();
 
 $buwana_id = $_SESSION['buwana_id'] ?? $_POST['buwana_id'] ?? $_GET['buwana_id'] ?? null;
+$client_id = $_POST['client_id'] ?? $_GET['client_id'] ?? null;
 
 if (!$buwana_id || !is_numeric($buwana_id)) {
     echo json_encode(['logged_in' => false]);
@@ -55,6 +56,17 @@ $stmt->bind_result($first_name, $earthling_emoji, $continent_code, $language_id,
 $stmt->fetch();
 $stmt->close();
 
+// Fetch user_app_connections_tb.id if client_id is available
+$connection_id = null;
+if (!empty($client_id)) {
+    $conn_stmt = $buwana_conn->prepare("SELECT id FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?");
+    $conn_stmt->bind_param("is", $buwana_id, $client_id);
+    $conn_stmt->execute();
+    $conn_stmt->bind_result($connection_id);
+    $conn_stmt->fetch();
+    $conn_stmt->close();
+}
+
 echo json_encode([
     'logged_in' => true,
     'buwana_id' => $buwana_id,
@@ -65,7 +77,8 @@ echo json_encode([
     'time_zone' => $time_zone,
     'email' => $email,
     'last_login' => $last_login,
-    'location_full' => $location_full
+    'location_full' => $location_full,
+    'connection_id' => $connection_id
 ]);
 exit;
 ?>
