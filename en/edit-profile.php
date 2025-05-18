@@ -140,11 +140,12 @@ echo '<!DOCTYPE html>
 
 <!-- PAGE CONTENT -->
 
-   <div id="top-page-image"
-        class="top-page-image"
-        data-light-img="<?= htmlspecialchars($app_info[signup-1_top_img_light']) ?>"
-        data-dark-img="<?= htmlspecialchars($app_info[signup-1_top_img_dark']) ?>">
-   </div>
+<div id="top-page-image"
+     class="top-page-image"
+     data-light-img="<?= htmlspecialchars($app_info['signup-1_top_img_light']) ?>"
+     data-dark-img="<?= htmlspecialchars($app_info['signup-1_top_img_dark']) ?>">
+</div>
+
 
 <div id="form-submission-box" style="height:fit-content;margin-top: 90px;">
     <div class="form-container" style="padding-top:20px">
