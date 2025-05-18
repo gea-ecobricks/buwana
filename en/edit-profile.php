@@ -967,6 +967,8 @@ function confirmDeletion(ecobrickerId, lang = 'en') {
 }
 </script>
 
+<?php require_once ("../scripts/app_modals.php");?>
+
 </body>
 
 </html>
