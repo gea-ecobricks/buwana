@@ -15,8 +15,6 @@ $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once '../buwanaconn_env.php';
-require_once '../fetch_app_info.php';
 
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
