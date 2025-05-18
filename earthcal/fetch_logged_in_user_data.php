@@ -24,7 +24,7 @@ if (DEVMODE && empty($origin)) {
     header("Access-Control-Allow-Origin: $origin");
 } else {
     error_log('CORS error: Invalid or missing HTTP_ORIGIN - ' . $origin);
-    header('HTTP/1.1 403 Forbidden');
+    http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'CORS error: Invalid origin']);
     exit();
 }
@@ -41,14 +41,16 @@ header('Content-Type: application/json');
 
 session_start();
 
-$buwana_id = $_SESSION['buwana_id'] ?? $_POST['buwana_id'] ?? $_GET['buwana_id'] ?? null;
-$client_id = $_POST['client_id'] ?? $_GET['client_id'] ?? null;
+// Fetch session values
+$buwana_id = $_SESSION['buwana_id'] ?? null;
+$connection_id = $_SESSION['connection_id'] ?? null;
 
 if (!$buwana_id || !is_numeric($buwana_id)) {
     echo json_encode(['logged_in' => false]);
     exit;
 }
 
+// Fetch user data
 $stmt = $buwana_conn->prepare("SELECT first_name, earthling_emoji, continent_code, language_id, time_zone, email, last_login, location_full FROM users_tb WHERE buwana_id = ?");
 $stmt->bind_param("i", $buwana_id);
 $stmt->execute();
@@ -56,17 +58,7 @@ $stmt->bind_result($first_name, $earthling_emoji, $continent_code, $language_id,
 $stmt->fetch();
 $stmt->close();
 
-// Fetch user_app_connections_tb.id if client_id is available
-$connection_id = null;
-if (!empty($client_id)) {
-    $conn_stmt = $buwana_conn->prepare("SELECT id FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?");
-    $conn_stmt->bind_param("is", $buwana_id, $client_id);
-    $conn_stmt->execute();
-    $conn_stmt->bind_result($connection_id);
-    $conn_stmt->fetch();
-    $conn_stmt->close();
-}
-
+// Output
 echo json_encode([
     'logged_in' => true,
     'buwana_id' => $buwana_id,
