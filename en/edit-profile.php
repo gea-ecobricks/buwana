@@ -38,12 +38,7 @@ require_once '../fetch_app_info.php';
 
 // 🌍 Fetch location and user details
 $user_continent_icon = getUserContinent($buwana_conn, $buwana_id);
-$earthling_emoji = getUserEarthlingEmoji($buwana_conn, $buwana_id);
-$user_location_watershed = getWatershedName($buwana_conn, $buwana_id);
-$user_location_full = getUserFullLocation($buwana_conn, $buwana_id);
-$first_name = getFirstName($buwana_conn, $buwana_id);
-$user_community_name = getCommunityName($buwana_conn, $buwana_id);
-$user_community_id = '';
+
 
 // 📄 Fetch full user profile info
 $sql_user_info = "SELECT full_name, first_name, last_name, email, country_id, language_id, birth_date,
