@@ -151,32 +151,32 @@ try {
     $_SESSION['buwana_id'] = $buwana_id;
 
     // Check if the user is connected to the app
-    $connected_apps = [];
     if (!empty($client_id)) {
-        $check_sql = "SELECT COUNT(*) FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?";
+        $check_sql = "SELECT id FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?";
         $check_stmt = $buwana_conn->prepare($check_sql);
         $check_stmt->bind_param('is', $buwana_id, $client_id);
         $check_stmt->execute();
-        $check_stmt->bind_result($connection_count);
+        $check_stmt->bind_result($connection_id);
         $check_stmt->fetch();
         $check_stmt->close();
 
-        //REDIRECT TO CONNECT
-            error_log("ClientID: $client_id | BuwanaID: $buwana_id | Connection Count: $connection_count");
-
-
-        if ($connection_count == 0) {
-            // 🚪 Redirect immediately to connect the app
+        if (!$connection_id) {
+            // 🚪 Redirect to connect the app
             echo json_encode([
                 'success' => true,
                 'redirect' => "https://buwana.ecobricks.org/en/app-connect.php?app=$client_id&id=$buwana_id"
             ]);
             exit();
-
-        } else {
-            $connected_apps[] = $client_id;
         }
+
+        // ✅ Store both in session
+        $_SESSION['connection_id'] = $connection_id;
+        $_SESSION['client_id'] = $client_id;
     }
+
+
+
+
 
     // Successful login response
     echo json_encode([
