@@ -28,15 +28,33 @@ if (!$buwana_id || !is_numeric($buwana_id)) {
     die("⚠️ Invalid or missing Buwana ID.");
 }
 
-// 🧠 Fetch basic user info
+
+// 🧠 PART 1: Fetch user info
 $first_name = 'User';
-$stmt = $buwana_conn->prepare("SELECT first_name FROM users_tb WHERE buwana_id = ?");
+$location_full = '';
+$location_watershed = '';
+$latitude = '';
+$longitude = '';
+$emoji_icon = null; // Added variable
+
+$sql = "SELECT first_name, location_full, location_watershed, location_lat, location_long, earthling_emoji FROM users_tb WHERE buwana_id = ?";
+$stmt = $buwana_conn->prepare($sql);
 if ($stmt) {
     $stmt->bind_param('i', $buwana_id);
     $stmt->execute();
-    $stmt->bind_result($first_name);
+    $stmt->bind_result($first_name, $location_full, $location_watershed, $latitude, $longitude, $earthling_emoji);
     $stmt->fetch();
     $stmt->close();
+}
+
+// ✅ Check if signup is already completed
+if (!is_null($earthling_emoji) && trim($earthling_emoji) !== '') {
+    // Redirect because signup is already done
+    echo "<script>
+        alert('Whoops! Looks like you’ve already completed your signup. No need to return to this page! Please login to your " . htmlspecialchars($app_info['app_display_name']) . " account.');
+        window.location.href = '" . htmlspecialchars($app_info['app_login_url']) . "?lang=" . urlencode($lang) . "&id=" . urlencode($buwana_id) . "';
+    </script>";
+    exit();
 }
 
 // 📋 Fetch countries
