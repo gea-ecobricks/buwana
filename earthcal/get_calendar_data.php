@@ -1,33 +1,52 @@
 <?php
-require_once '../earthenAuth_helper.php';
 require_once '../buwanaconn_env.php';
-require_once '../calconn_env.php'; // Include EarthCal database connection
+require_once '../calconn_env.php'; // EarthCal database connection
 
-// Set headers for JSON response
-header('Content-Type: application/json');
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+ini_set('display_errors', '0'); // Suppress in production
 
-// CORS configuration
+// ======= DEV MODE TOGGLE =======
+define('DEVMODE', true); // Set to false on production servers
+// ===============================
+
 $allowed_origins = [
     'https://cal.earthen.io',
     'https://cycles.earthen.io',
     'https://ecobricks.org',
     'https://gobrik.com',
-    'http://localhost',
-    'file://'
+    'http://localhost:8080'
 ];
 
-// Normalize the HTTP_ORIGIN (remove trailing slashes or fragments)
-$origin = isset($_SERVER['HTTP_ORIGIN']) ? rtrim($_SERVER['HTTP_ORIGIN'], '/') : '';
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$origin = rtrim($origin, '/'); // Normalize
 
-if (empty($origin)) {
-    header('Access-Control-Allow-Origin: *');
+if (DEVMODE && empty($origin)) {
+    // Local file:// fallback (e.g. file:// or dev server with no origin header)
+    header('Access-Control-Allow-Origin: http://localhost:8080');
+    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Allow-Credentials: true');
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
 } elseif (in_array($origin, $allowed_origins)) {
     header('Access-Control-Allow-Origin: ' . $origin);
+    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Allow-Credentials: true');
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
 } else {
+    error_log('CORS error: Invalid or missing HTTP_ORIGIN - ' . $origin);
     header('HTTP/1.1 403 Forbidden');
-    echo json_encode(['success' => false, 'message' => 'CORS error: Invalid origin v2']);
+    echo json_encode(['success' => false, 'message' => 'CORS error: Invalid origin']);
     exit();
 }
+
+// ===== API Logic Below =====
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Methods: POST, OPTIONS');
