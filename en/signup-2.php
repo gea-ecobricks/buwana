@@ -149,7 +149,7 @@ https://github.com/gea-ecobricks/buwana/-->
                    <?php endif; ?>
                    placeholder=" "  />  <!--style="padding-left:35px;"-->
                    <label for="credential_value">
-                     <span data-lang-id="004-your">Your</span> <?php echo $credential_type; ?><span data-lang-id="004b-please"> please...</span>
+                     <span data-lang-id="004-your-email-please">Your e-mail please...</span>
                    </label>
 
                    <div id="duplicate-email-error" class="form-field-error" data-lang-id="005-duplicate-email">
