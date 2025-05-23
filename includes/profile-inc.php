@@ -20,6 +20,17 @@
 <STYLE>
 
 
+.pin-icon {
+    display: block;
+    position: absolute;
+    top: 30%;  /* Center vertically in the input field */
+    left: 16px; /* Distance from the right edge of the input field */
+    transform: translateY(-50%); /* Ensures the spinner is exactly centered vertically */
+    width: 15px;
+    height: 0px;
+
+}
+
 #emoji-grid .emoji-option:hover {
     background-color: #e0f7fa;
     border-radius: 8px;
