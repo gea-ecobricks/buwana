@@ -107,26 +107,13 @@ while ($row = $result_communities->fetch_assoc()) {
     $communities[] = $row['com_name'];
 }
 
-// 📍 Fetch coordinates
-$sql_location = "SELECT location_lat, location_long FROM users_tb WHERE buwana_id = ?";
-$stmt_location = $buwana_conn->prepare($sql_location);
-
-if ($stmt_location) {
-    $stmt_location->bind_param("i", $buwana_id);
-    $stmt_location->execute();
-    $stmt_location->bind_result($user_location_lat, $user_location_long);
-    $stmt_location->fetch();
-    $stmt_location->close();
-} else {
-    error_log("Error fetching location data: " . $buwana_conn->error);
-}
 
 
 // Fetch user's community name from communities_tb based on community_id in users_tb
 $community_name = "Unknown Community"; // Default value if no match found
 
 if (!empty($community_id)) {
-    $sql_community = "SELECT com_name FROM communities_tb WHERE com_id = ?";
+    $sql_community = "SELECT com_name FROM communities_tb WHERE community_id = ?";
     if ($stmt = $buwana_conn->prepare($sql_community)) {
         $stmt->bind_param("i", $community_id);
         $stmt->execute();
@@ -141,9 +128,12 @@ if (!empty($community_id)) {
 }
 
 
+// Assign for template use
 $user_community_name = $community_name;
 $user_location_full = $location_full;
 $user_location_watershed = $location_watershed;
+$user_location_lat = $latitude;
+$user_location_long = $longitude;
 
 // 🛑 Close connection
 $buwana_conn->close();
