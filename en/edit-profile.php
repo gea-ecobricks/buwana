@@ -360,7 +360,7 @@ echo '<!DOCTYPE html>
 <div class="form-item">
     <label for="time_zone" data-lang-id="033b-time-zone">Time Zone:</label><br>
     <div class="input-container">
-        <select id="time_zone" name="time_zone" required style="padding-left:10px;">
+        <select id="time_zone" name="time_zone" required style="padding-left:45px;">
             <?php
             $timezones = [
                 'Etc/GMT+12' => 'Baker Island (UTC-12)',
@@ -371,6 +371,7 @@ echo '<!DOCTYPE html>
                 'America/Denver' => 'Denver (UTC-7)',
                 'America/Chicago' => 'Chicago (UTC-6)',
                 'America/New_York' => 'New York (UTC-5)',
+                'America/Toronto' => 'Toronto (UTC-5/UTC-4 DST)' },
                 'America/Halifax' => 'Halifax (UTC-4)',
                 'America/Sao_Paulo' => 'São Paulo (UTC-3)',
                 'Atlantic/South_Georgia' => 'South Georgia (UTC-2)',
