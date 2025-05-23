@@ -123,6 +123,11 @@ if ($stmt_location) {
     error_log("Error fetching location data: " . $buwana_conn->error);
 }
 
+
+$user_community_name = $community_name;
+$user_location_full = $location_full;
+$user_location_watershed = $location_watershed;
+
 // 🛑 Close connection
 $buwana_conn->close();
 
@@ -150,8 +155,8 @@ echo '<!DOCTYPE html>
 <div id="form-submission-box" style="height:fit-content;margin-top: 130px;">
     <div class="form-container" style="padding-top:20px">
         <div style="text-align:center;width:100%;margin:auto;">
-            <h1>⚙️</h1>
-            <div id="status-message"><?php echo htmlspecialchars($first_name); ?>'s <span data-lang-id="001-profile-settings-title">Profile Settings</span></div>
+
+            <div id="status-message">⚙️ <?php echo htmlspecialchars($first_name); ?>'s <span data-lang-id="001-profile-settings-title">Profile Settings</span></div>
             <div id="sub-status-message" data-lang-id="002-review-update-message">Review and update your Buwana account profile here:</div>
             <div id="update-status" style="font-size:1.3em; color:green;padding:10px;margin-top:10px;"></div>
             <div id="update-error" style="font-size:1.3em; color:red;padding:10px;margin-top:10px;"></div>
