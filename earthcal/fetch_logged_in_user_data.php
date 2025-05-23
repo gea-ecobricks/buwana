@@ -51,14 +51,14 @@ if (!$buwana_id || !is_numeric($buwana_id)) {
 }
 
 // Fetch user data
-$stmt = $buwana_conn->prepare("SELECT first_name, earthling_emoji, continent_code, language_id, time_zone, email, last_login, location_full FROM users_tb WHERE buwana_id = ?");
+$stmt = $buwana_conn->prepare("SELECT first_name, earthling_emoji, continent_code, language_id, time_zone, email, last_login, location_full, location_lat, location_long FROM users_tb WHERE buwana_id = ?");
 $stmt->bind_param("i", $buwana_id);
 $stmt->execute();
-$stmt->bind_result($first_name, $earthling_emoji, $continent_code, $language_id, $time_zone, $email, $last_login, $location_full);
+$stmt->bind_result($first_name, $earthling_emoji, $continent_code, $language_id, $time_zone, $email, $last_login, $location_full, $location_lat, $location_long);
 $stmt->fetch();
 $stmt->close();
 
-// Output
+
 echo json_encode([
     'logged_in' => true,
     'buwana_id' => $buwana_id,
@@ -70,6 +70,8 @@ echo json_encode([
     'email' => $email,
     'last_login' => $last_login,
     'location_full' => $location_full,
+    'location_lat' => $location_lat,
+    'location_long' => $location_long,
     'connection_id' => $connection_id
 ]);
 exit;

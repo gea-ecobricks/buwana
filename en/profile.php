@@ -124,6 +124,12 @@ if (!empty($community_id)) {
     }
 
 
+$user_community_name = $community_name;
+$user_location_full = $location_full;
+$user_location_watershed = $location_watershed;
+
+
+
 
 
 
