@@ -20,7 +20,7 @@ $buwana_id = $_SESSION['buwana_id'];
 $required_fields = [
     'first_name', 'last_name', 'country_id', 'language_id', 'birth_date',
     'continent_code', 'community_id', 'location_full', 'latitude', 'longitude',
-    'location_watershed', 'earthling_emoji' // 👈 Add emoji to required fields
+    'location_watershed', 'earthling_emoji', 'time_zone'
 ];
 
 foreach ($required_fields as $field) {
@@ -43,6 +43,7 @@ $latitude = (float)$_POST['latitude'];
 $longitude = (float)$_POST['longitude'];
 $location_watershed = trim($_POST['location_watershed']);
 $earthling_emoji = trim($_POST['earthling_emoji']);
+$time_zone = trim($_POST['time_zone']);
 
 // Prevent saving zero as community_id if it’s invalid
 if ($community_id <= 0) {
@@ -68,13 +69,13 @@ $stmt_check->close();
 $sql_update = "UPDATE users_tb
                SET first_name = ?, last_name = ?, country_id = ?, language_id = ?, birth_date = ?,
                    continent_code = ?, community_id = ?, location_full = ?,
-                   location_lat = ?, location_long = ?, location_watershed = ?, earthling_emoji = ?
+                   location_lat = ?, location_long = ?, location_watershed = ?, earthling_emoji = ?, time_zone = ?
                WHERE buwana_id = ?";
 
 $stmt_update = $buwana_conn->prepare($sql_update);
 
 if ($stmt_update) {
-    $stmt_update->bind_param('ssisssissdssi',
+    $stmt_update->bind_param('ssisssissdsssi',
         $first_name,
         $last_name,
         $country_id,
@@ -87,6 +88,7 @@ if ($stmt_update) {
         $longitude,
         $location_watershed,
         $earthling_emoji,
+        $time_zone,
         $buwana_id
     );
 

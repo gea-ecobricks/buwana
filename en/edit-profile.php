@@ -356,6 +356,55 @@ echo '<!DOCTYPE html>
         <div id="location-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
     </div>
 
+<!-- time-zone -->
+<div class="form-item">
+    <label for="time_zone" data-lang-id="033b-time-zone">Time Zone:</label><br>
+    <div class="input-container">
+        <select id="time_zone" name="time_zone" required style="padding-left:10px;">
+            <?php
+            $timezones = [
+                'Etc/GMT+12' => 'Baker Island (UTC-12)',
+                'Pacific/Pago_Pago' => 'Samoa (UTC-11)',
+                'Pacific/Honolulu' => 'Hawaii (UTC-10)',
+                'America/Anchorage' => 'Alaska (UTC-9)',
+                'America/Los_Angeles' => 'Los Angeles (UTC-8)',
+                'America/Denver' => 'Denver (UTC-7)',
+                'America/Chicago' => 'Chicago (UTC-6)',
+                'America/New_York' => 'New York (UTC-5)',
+                'America/Halifax' => 'Halifax (UTC-4)',
+                'America/Sao_Paulo' => 'São Paulo (UTC-3)',
+                'Atlantic/South_Georgia' => 'South Georgia (UTC-2)',
+                'Atlantic/Azores' => 'Azores (UTC-1)',
+                'Etc/UTC' => 'UTC (Coordinated Universal Time)',
+                'Europe/London' => 'London (UTC+0/UTC+1 DST)',
+                'Europe/Berlin' => 'Berlin (UTC+1)',
+                'Europe/Helsinki' => 'Helsinki (UTC+2)',
+                'Europe/Moscow' => 'Moscow (UTC+3)',
+                'Asia/Dubai' => 'Dubai (UTC+4)',
+                'Asia/Karachi' => 'Karachi (UTC+5)',
+                'Asia/Dhaka' => 'Dhaka (UTC+6)',
+                'Asia/Jakarta' => 'Jakarta (UTC+7)',
+                'Asia/Singapore' => 'Singapore (UTC+8)',
+                'Asia/Shanghai' => 'Shanghai (UTC+8)',
+                'Asia/Tokyo' => 'Tokyo (UTC+9)',
+                'Australia/Sydney' => 'Sydney (UTC+10)',
+                'Pacific/Guadalcanal' => 'Guadalcanal (UTC+11)',
+                'Pacific/Auckland' => 'Auckland (UTC+12)'
+            ];
+
+            foreach ($timezones as $value => $label) {
+                $selected = ($value === $time_zone) ? 'selected' : '';
+                echo "<option value=\"" . htmlspecialchars($value) . "\" $selected>" . htmlspecialchars($label) . "</option>";
+            }
+            ?>
+        </select>
+        <div id="loading-spinner" class="spinner" style="display: none;"></div>
+        <div id="location-pin" class="pin-icon">⏲️</div>
+    </div>
+    <div id="location-error-required" class="form-field-error" data-lang-id="000-field-required-error">This field is required.</div>
+</div>
+
+
     <!-- Location Watershed -->
     <div class="form-item">
         <label for="location_watershed" data-lang-id="032-watershed-tag">Watershed:</label><br>
