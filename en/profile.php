@@ -16,17 +16,6 @@ if ($is_logged_in) {
     require_once '../buwanaconn_env.php';
 
 
-     // Fetch the user's location data
-    $user_continent_icon = getUserContinent($buwana_conn, $buwana_id);
-    $user_location_watershed = getWatershedName($buwana_conn, $buwana_id);
-    $user_location_full = getUserFullLocation($buwana_conn, $buwana_id);
-    $gea_status = getGEA_status($buwana_id);
-    $user_community_name = getCommunityName($buwana_conn, $buwana_id);
-    $ecobrick_unique_id = '0';
-    $first_name = getFirstName($buwana_conn, $buwana_id);
-
-    $user_community_id = '';
-
     // Fetch user information including community_id, location_watershed, location_full, latitude, and longitude
     $sql_user_info = "SELECT full_name, first_name, last_name, email, country_id, language_id, birth_date,
                       created_at, last_login, brikcoin_balance, role, account_status, notes,
@@ -104,11 +93,6 @@ if (!empty($community_id)) {
     }
 }
 
-
-
-
-
-
     // Fetch location latitude and longitude from users_tb
     $sql_location = "SELECT location_lat, location_long FROM users_tb WHERE buwana_id = ?";
     $stmt_location = $buwana_conn->prepare($sql_location);
@@ -127,11 +111,6 @@ if (!empty($community_id)) {
 $user_community_name = $community_name;
 $user_location_full = $location_full;
 $user_location_watershed = $location_watershed;
-
-
-
-
-
 
     // Close the database connections
     $buwana_conn->close();
@@ -349,7 +328,7 @@ echo '<!DOCTYPE html>
         <label for="location_watershed" data-lang-id="032-watershed-tag">Watershed:</label><br>
         <div class="input-container">
             <input type="text" id="location_watershed" name="location_watershed"
-                   value="<?= htmlspecialchars($user_location_watershed, ENT_QUOTES); ?>"
+                   value="<?= htmlspecialchars($location_watershed, ENT_QUOTES); ?>"
                    aria-label="Location Watershed" style="padding-left:45px;">
             <div id="loading-spinner-watershed" class="spinner" style="display: none;"></div>
             <div id="watershed-pin" class="pin-icon">💧</div>
