@@ -42,7 +42,7 @@ require_once '../fetch_app_info.php';
 $sql_user_info = "SELECT full_name, first_name, last_name, email, country_id, language_id, birth_date,
                   created_at, last_login, brikcoin_balance, role, account_status, notes,
                   terms_of_service, continent_code, location_watershed, location_full, community_id,
-                  location_lat, location_long, earthling_emoji
+                  location_lat, location_long, earthling_emoji, time_zone
                   FROM users_tb WHERE buwana_id = ?";
 $stmt_user_info = $buwana_conn->prepare($sql_user_info);
 
@@ -53,7 +53,7 @@ if ($stmt_user_info) {
         $full_name, $first_name, $last_name, $email, $country_id, $language_id,
         $birth_date, $created_at, $last_login, $brikcoin_balance, $role, $account_status,
         $notes, $terms_of_service, $continent_code, $location_watershed,
-        $location_full, $community_id, $latitude, $longitude, $earthling_emoji
+        $location_full, $community_id, $latitude, $longitude, $earthling_emoji, $time_zone
     );
     $stmt_user_info->fetch();
     $stmt_user_info->close();
@@ -160,7 +160,7 @@ echo '<!DOCTYPE html>
 
 
 <div id="form-submission-box" style="height:fit-content;margin-top: 130px;">
-    <div class="form-container" style="padding-top:20px">
+    <div class="form-container" style="padding-top:120px">
         <div style="text-align:center;width:100%;margin:auto;">
 
             <div id="status-message">⚙️ <?php echo htmlspecialchars($first_name); ?>'s <span data-lang-id="001-profile-settings-title">Profile Settings</span></div>
@@ -226,6 +226,11 @@ echo '<!DOCTYPE html>
     <!-- Buwana ID -->
     <div class="form-item">
         <p data-lang-id="022-buwana-id"><strong>Buwana ID:</strong> <?php echo htmlspecialchars($buwana_id); ?></p>
+    </div>
+
+<!-- Time ZOne -->
+    <div class="form-item">
+        <p data-lang-id="022-buwana-id"><strong>Time Zone</strong> <?php echo htmlspecialchars($time_zone); ?></p>
     </div>
 
 
