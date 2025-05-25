@@ -199,8 +199,8 @@ Provide a page to edit, manage and delete app as well as to Visualize app's user
 - Show historical growth chart
 - Edit and update app data
 
-**Route:**  
-`/app/view.php?app_id=xxx`
+**Route:**
+`/en/view_app.php?app_id=xxx`
 
 ---
 
