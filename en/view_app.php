@@ -55,8 +55,8 @@ if (!$app) {
     exit();
 }
 
-$stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM user_app_connections_tb WHERE app_id = ?");
-$stmt->bind_param('i', $app_id);
+$stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM user_app_connections_tb WHERE client_id = ?");
+$stmt->bind_param('s', $app['client_id']);
 $stmt->execute();
 $stmt->bind_result($total_connections);
 $stmt->fetch();
