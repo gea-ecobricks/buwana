@@ -1,0 +1,13 @@
+{
+    "name": "buwana/buwana",
+    "description": "Buwana PHP project",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Buwana\\": ""
+        }
+    }
+}
