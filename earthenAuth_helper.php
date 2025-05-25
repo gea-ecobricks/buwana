@@ -69,7 +69,7 @@ function getWatershedName($buwana_conn, $buwana_id) {
     $stmt_watershed = $buwana_conn->prepare($sql_watershed);
 
     if ($stmt_watershed) {
-        $stmt_watershed->bind_param('s', $buwana_id); // Assuming buwana_id is a string
+        $stmt_watershed->bind_param('i', $buwana_id); // buwana_id is numeric
         if ($stmt_watershed->execute()) {
             $stmt_watershed->bind_result($watershed_name);
             $stmt_watershed->fetch();
