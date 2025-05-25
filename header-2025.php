@@ -1,16 +1,22 @@
 <!-- PHP starts by laying out canonical URLs for the page and language -->
 
 <?php
-	$parts = explode ("/", $_SERVER['SCRIPT_NAME']);
-	$name = $parts [count($parts)-1];
-	if (strcmp($name, "welcome.php") == 0)
-  $name = "";
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-	;?>
+// Pull key session values if they haven't been explicitly defined
+$client_id = $client_id ?? ($_SESSION['client_id'] ?? null);
+$buwana_id = $buwana_id ?? ($_SESSION['buwana_id'] ?? null);
 
-	<?php
-    // Get full request URI (e.g. "/en/signup-1.php?gbrk_...")
-    $requestUri = $_SERVER['REQUEST_URI'];
+$parts = explode("/", $_SERVER['SCRIPT_NAME']);
+$name = $parts[count($parts) - 1];
+if (strcmp($name, "welcome.php") == 0) {
+    $name = "";
+}
+
+// Get full request URI (e.g. "/en/signup-1.php?gbrk_...")
+$requestUri = $_SERVER['REQUEST_URI'];
 
     // Extract the path after the first language directory
     // This assumes the URL structure is always /[lang]/[page]
@@ -19,10 +25,13 @@
     // Set default in case something goes wrong
     $active_url = isset($uriParts[2]) ? $uriParts[2] : '';
 
-      $login_url = "login.php?app=" . urlencode($client_id);
-      if ($buwana_id) {
-          $login_url .= "&id=" . urlencode($buwana_id);
-      }
+$login_url = 'login.php';
+if ($client_id) {
+    $login_url .= '?app=' . urlencode($client_id);
+    if ($buwana_id) {
+        $login_url .= '&id=' . urlencode($buwana_id);
+    }
+}
     ?>
 
 
