@@ -33,11 +33,9 @@ $stmt->close();
 <html lang="<?= htmlspecialchars($lang) ?>">
 <head>
     <meta charset="UTF-8">
-    <?php require_once("../includes/buwana-index-inc.php"); ?>
     <?php require_once("../meta/dashboard-en.php"); ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+    <?php require_once("../includes/buwana-index-inc.php"); ?>
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <h1 style="text-align:center;">Buwana App Manager Dashboard</h1>
@@ -56,6 +54,7 @@ $stmt->close();
       <canvas id="growthChart"></canvas>
     </div>
   </div>
+</div>
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
