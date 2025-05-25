@@ -39,6 +39,9 @@ $stmt->close();
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <h1 style="text-align:center;">Buwana App Manager Dashboard</h1>
+    <div style="text-align:center;margin-bottom:20px;">
+      <a href="app-wizard.php" class="kick-ass-submit">Create New App</a>
+    </div>
     <div class="app-grid">
       <?php foreach ($apps as $app): ?>
         <div class="app-display-box">
