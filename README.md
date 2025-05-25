@@ -17,3 +17,13 @@ Buwana accounts are stored and managed in a database separate from our main GoBr
 The word "bhuwana" (also spelled "buwana" or "bhuana") in Indonesian and other regional languages such as Balinese and Javanese also means "world" or "universe." Like "bumi," "bhuwana" has its roots in Sanskrit. The Sanskrit word "bhūvana" (भुवन) means "world," "earth," or "universe."
 
 The connection between "bumi" and "bhuwana" lies in their shared Sanskrit origin and their similar meanings related to the concept of the world or earth. While "bumi" directly derives from "bhūmi," meaning earth or ground, "bhuwana" comes from "bhūvana," which refers to the world or universe in a broader sense. Both terms reflect the deep influence of Sanskrit on the Indonesian language and its regional variants.
+
+## Running Tests
+
+PHPUnit is used for unit testing. After installing dependencies with Composer, run:
+
+```
+vendor/bin/phpunit
+```
+
+The configuration file `phpunit.xml` is provided in the repository.
