@@ -1,10 +1,16 @@
 <?php
 require_once '../buwanaconn_env.php';
 header('Content-Type: application/json');
+
 $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
 
 if ($app_id) {
-    $sql = "SELECT DATE(connected_at) as dt, COUNT(*) as cnt FROM user_app_connections_tb WHERE app_id = ? GROUP BY DATE(connected_at) ORDER BY DATE(connected_at)";
+    $sql = "SELECT DATE(u.connected_at) as dt, COUNT(*) as cnt
+            FROM user_app_connections_tb u
+            JOIN apps_tb a ON u.client_id = a.client_id
+            WHERE a.app_id = ?
+            GROUP BY DATE(u.connected_at)
+            ORDER BY DATE(u.connected_at)";
     $stmt = $buwana_conn->prepare($sql);
     $stmt->bind_param('i', $app_id);
 } else {
