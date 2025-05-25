@@ -18,8 +18,8 @@ if (empty($_SESSION['buwana_id'])) {
 
 $buwana_id = intval($_SESSION['buwana_id']);
 
-$sql = "SELECT a.app_id, a.client_id, a.app_display_name, a.app_description, a.app_square_icon_url, 
-               (SELECT COUNT(*) FROM user_app_connections_tb u WHERE u.app_id = a.app_id) AS user_count
+$sql = "SELECT a.app_id, a.client_id, a.app_display_name, a.app_description, a.app_square_icon_url,
+               (SELECT COUNT(*) FROM user_app_connections_tb u WHERE u.client_id = a.client_id) AS user_count
         FROM apps_tb a
         WHERE a.owner_buwana_id = ? ORDER BY a.app_display_name";
 $stmt = $buwana_conn->prepare($sql);
