@@ -25,18 +25,58 @@
   padding-top: 30px !important;
 }
 
+.top-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  margin-bottom: 20px;
+}
+
+.login-status {
+  font-family: 'Mulish', Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  color: grey;
+}
+
+.page-name {
+  font-family: 'Mulish', Arial, Helvetica, sans-serif;
+  font-size: 1.6em;
+  color: var(--h1);
+}
+
+.chart-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.chart-caption {
+  text-align: center;
+  font-family: 'Mulish', Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  color: var(--subdued-text);
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
 .app-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
   margin: 0 auto 30px auto;
-  max-width: 600px;
+  max-width: 800px;
   padding: 10px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 500px) {
   .app-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) {
+  .app-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -50,6 +90,9 @@
   cursor: pointer;
   box-shadow: 0 1px 5px rgba(0,0,0,0.06);
   text-decoration: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .app-display-box:hover {
@@ -74,7 +117,11 @@
 .app-display-box p {
   font-size: 0.9em;
   color: var(--subdued-text);
-  margin: 0;
+  margin: 8px 0 0 0;
+}
+
+.kick-ass-submit {
+  text-decoration: none;
 }
 
 </style>
