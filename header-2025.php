@@ -323,13 +323,17 @@ max-height: 200px;
          }
      }
 
-     $logout_url = 'login.php?status=logout';
-     if (!empty($buwana_id)) {
-         $logout_url .= '&id=' . urlencode($buwana_id);
-     }
-     if (!empty($client_id)) {
-         $logout_url .= '&app=' . urlencode($client_id);
-     }
+    $logout_url = 'logout.php';
+    $query_params = [];
+    if (!empty($buwana_id)) {
+        $query_params[] = 'id=' . urlencode($buwana_id);
+    }
+    if (!empty($client_id)) {
+        $query_params[] = 'app=' . urlencode($client_id);
+    }
+    if (!empty($query_params)) {
+        $logout_url .= '?' . implode('&', $query_params);
+    }
    ?>
    <div class="menu-page-item" style="pointer-events:auto;">
      <?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?> |

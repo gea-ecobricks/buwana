@@ -1,6 +1,10 @@
 <?php
 session_start(); // Start the session to access session variables
 
+// Retrieve parameters that may be needed after logout
+$buwana_id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) : ($_SESSION['buwana_id'] ?? '');
+$client_id = isset($_GET['app']) ? filter_var($_GET['app'], FILTER_SANITIZE_SPECIAL_CHARS) : ($_SESSION['client_id'] ?? '');
+
 // Retrieve the redirect parameter from the query string, if it exists
 $redirect = isset($_GET['redirect']) ? filter_var($_GET['redirect'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 
@@ -23,6 +27,12 @@ if (isset($_COOKIE['buwana_id'])) {
 
 // Build the redirect URL with status and redirect parameters
 $redirect_url = 'login.php?status=logout';
+if (!empty($buwana_id)) {
+    $redirect_url .= '&id=' . urlencode($buwana_id);
+}
+if (!empty($client_id)) {
+    $redirect_url .= '&app=' . urlencode($client_id);
+}
 if (!empty($redirect)) {
     $redirect_url .= '&redirect=' . urlencode($redirect);
 }
