@@ -122,20 +122,22 @@ if ($stmt_credential) {
                $stmt->close();
            }
 
-           // 🔍 Check if the user is already connected to this app
-           $check_sql = "SELECT COUNT(*) FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?";
+           // 🔍 Check if the user is already connected to this app and grab the connection id
+           $check_sql = "SELECT id FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ? LIMIT 1";
            $check_stmt = $buwana_conn->prepare($check_sql);
            if ($check_stmt) {
                $check_stmt->bind_param('is', $buwana_id, $client_id);
                $check_stmt->execute();
-               $check_stmt->bind_result($connection_count);
+               $check_stmt->bind_result($connection_id);
                $check_stmt->fetch();
                $check_stmt->close();
 
-               if ($connection_count == 0) {
+               if (!$connection_id) {
                    // 🚪 Not yet connected → send to app-connect page
                    header("Location: app-connect.php?id=$buwana_id&client_id=$client_id");
                    exit();
+               } else {
+                   $_SESSION['connection_id'] = $connection_id;
                }
            }
        }

@@ -335,8 +335,15 @@ max-height: 200px;
      <?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?> |
      <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
    </div>
+   <?php
+     $profile_url = 'edit-profile.php';
+     $connection_id = $_SESSION['connection_id'] ?? null;
+     if (!empty($connection_id)) {
+         $profile_url .= '?con=' . urlencode($connection_id);
+     }
+   ?>
    <div class="menu-page-item">
-     <a href="edit-profile.php">Edit user profile</a>
+     <a href="<?= htmlspecialchars($profile_url) ?>">Edit user profile</a>
    </div>
  <?php endif; ?>
 
