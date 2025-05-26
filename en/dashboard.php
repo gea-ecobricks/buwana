@@ -35,7 +35,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <?php require_once("../meta/dashboard-en.php"); ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <?php require_once("../includes/buwana-index-inc.php"); ?>
+    <?php require_once("../includes/dashboard-inc.php"); ?>
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <h1 style="text-align:center;">Buwana App Manager Dashboard</h1>
