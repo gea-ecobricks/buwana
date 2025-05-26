@@ -337,7 +337,7 @@ max-height: 200px;
    </div>
    <?php
 
-     $profile_url = 'user-profile.php';
+     $profile_url = 'edit-profile.php';
 
      $connection_id = $_SESSION['connection_id'] ?? null;
      if (!empty($connection_id)) {
