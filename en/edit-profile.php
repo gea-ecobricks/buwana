@@ -369,6 +369,7 @@ echo '<!DOCTYPE html>
                 'America/Denver' => 'Denver (UTC-7)',
                 'America/Chicago' => 'Chicago (UTC-6)',
                 'America/New_York' => 'New York (UTC-5)',
+                // Fixed stray curly brace that previously broke PHP parsing
                 'America/Toronto' => 'Toronto (UTC-5/UTC-4 DST)',
                 'America/Halifax' => 'Halifax (UTC-4)',
                 'America/Sao_Paulo' => 'São Paulo (UTC-3)',
