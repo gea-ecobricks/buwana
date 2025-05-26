@@ -156,18 +156,18 @@ document.addEventListener('DOMContentLoaded', function() {
         let langDir = 'en/';
 
         if (userLang.includes('fr')) {
-            langDir = 'fr/signup-1.php';
+            langDir = 'fr/index.php';
         } else if (userLang.includes('id')) {
-            langDir = 'id/signup-1.php';
+            langDir = 'id/index.php';
         } else if (userLang.includes('es')) {
-            langDir = 'es/signup-1.php';
+            langDir = 'es/index.php';
         } else if (userLang.includes('en')) {
-            langDir = 'en/signup-1.php';
+            langDir = 'en/index.php';
         } else {
-            langDir = 'en/signup-1.php';
+            langDir = 'en/index.php';
         }
         window.location.href = langDir;
-    }, 3000); // 10 seconds
+    }, 2000); // 2 seconds
 });
 /* Rotating Earth-emoji parade
  * Shows 🌍, 🌎, 🌏 for 0.2 s each, on an infinite loop.
