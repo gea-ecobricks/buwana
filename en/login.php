@@ -3,8 +3,14 @@ require_once '../earthenAuth_helper.php'; // Include the authentication helper f
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
 require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
+
+// --- Determine client_id from ?app= or ?client_id=
+$client_id_param = $_GET['app'] ?? ($_GET['client_id'] ?? null);
+if ($client_id_param) {
+    $_SESSION['client_id'] = filter_var($client_id_param, FILTER_SANITIZE_SPECIAL_CHARS);
+}
+
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
 if (!empty($app_info['client_id'])) {
@@ -190,7 +196,7 @@ echo '</script>';
     </div>
 
  <div style="font-size: medium; text-align: center; margin: auto; align-self: center;padding-top:40px;padding-bottom:50px;margin-top: 0px;height:100%;">
-        <p style="font-size:medium;" data-lang-id="000-no-account-yet">Don't have an account yet? <a href="signup-1.php">Signup!</a></p>
+        <p style="font-size:medium;" data-lang-id="000-no-account-yet">Don't have an account yet? <a href="signup-1.php?app=<?= urlencode($app_info['client_id']) ?>">Signup!</a></p>
     </div>
 
 </div>
@@ -361,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 resetSendCodeButton();
                 break;
             case 'activation_required':
-                window.location.href = data.redirect || `activate.php?id=${data.id}`;
+                window.location.href = data.redirect || `activate.php?id=${data.id}&app=<?= urlencode($app_info['client_id']) ?>`;
                 break;
             case 'not_found':
             case 'crednotfound':
