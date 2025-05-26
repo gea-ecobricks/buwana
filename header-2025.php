@@ -379,8 +379,9 @@ max-height: 200px;
         </p>
 
         <p style="font-size:0.9em;">
-          ⚙️ <span onclick="openProfile()" class="underline-link" data-lang-id="1000-profile-settings" style="cursor: pointer;" title="Update your user settings">Profile settings</span> |
-          🐳 <span onclick="logoutUser()" class="underline-link" data-lang-id="1000-log-out" style="cursor: pointer;" title="Log out completely">Log out</span>
+          ⚙️ <a href="<?= htmlspecialchars($profile_url) ?>" class="underline-link" data-lang-id="1000-profile-settings" title="Update your user settings">Profile settings</a> |
+          🐳 <a href="<?= htmlspecialchars($logout_url) ?>" class="underline-link" data-lang-id="1000-log-out" title="Log out completely">Log out</a>
+
         </p>
 
      </div>
