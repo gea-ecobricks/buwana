@@ -5,6 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+$is_logged_in = !empty($_SESSION['buwana_id']);
+
 // Pull key session values if they haven't been explicitly defined
 $client_id = $client_id ?? ($_SESSION['client_id'] ?? null);
 $buwana_id = $buwana_id ?? ($_SESSION['buwana_id'] ?? null);
@@ -299,7 +301,7 @@ max-height: 200px;
 
 
 
- <?php if (empty($_SESSION['buwana_id'])): ?>
+ <?php if (!$is_logged_in): ?>
    <div class="menu-page-item">
      <a href="<?= htmlspecialchars($app_info['app_login_url']) ?>">
        <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-left: 6px; margin-right:auto;text-align:left !important">Login</span>
@@ -310,18 +312,40 @@ max-height: 200px;
    <?php
      $first_name = '';
      $earthling_emoji = '';
+     $user_location_watershed = '';
+     $community_id = null;
+     $user_community_name = '';
      $buwana_id = intval($_SESSION['buwana_id']);
      if (isset($buwana_conn)) {
-         $stmt = $buwana_conn->prepare('SELECT first_name, earthling_emoji FROM users_tb WHERE buwana_id = ?');
+         $stmt = $buwana_conn->prepare('SELECT first_name, earthling_emoji, location_watershed, community_id FROM users_tb WHERE buwana_id = ?');
          if ($stmt) {
              $stmt->bind_param('i', $buwana_id);
              if ($stmt->execute()) {
-                 $stmt->bind_result($first_name, $earthling_emoji);
+                 $stmt->bind_result($first_name, $earthling_emoji, $user_location_watershed, $community_id);
                  $stmt->fetch();
              }
              $stmt->close();
          }
+
+         if (!empty($community_id)) {
+             $stmt2 = $buwana_conn->prepare('SELECT com_name FROM communities_tb WHERE com_id = ?');
+             if ($stmt2) {
+                 $stmt2->bind_param('i', $community_id);
+                 if ($stmt2->execute()) {
+                     $stmt2->bind_result($user_community_name);
+                     $stmt2->fetch();
+                 }
+                 $stmt2->close();
+             }
+         }
      }
+
+    if (empty($user_location_watershed)) {
+        $user_location_watershed = 'Unknown Watershed';
+    }
+    if (empty($user_community_name)) {
+        $user_community_name = 'Unknown Community';
+    }
 
     $logout_url = 'logout.php';
     $query_params = [];
@@ -334,22 +358,36 @@ max-height: 200px;
     if (!empty($query_params)) {
         $logout_url .= '?' . implode('&', $query_params);
     }
+
+    $profile_url = 'edit-profile.php';
+    $connection_id = $_SESSION['connection_id'] ?? null;
+    if (!empty($connection_id)) {
+        $profile_url .= '?con=' . urlencode($connection_id);
+    }
    ?>
-   <div class="menu-page-item" style="pointer-events:auto;">
-     <?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?> |
-     <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
+   <div class="menu-page-item" style="display: flex; flex-direction: column; align-items: flex-start; cursor:unset;">
+     <div style="width:100%; display: flex; align-items: center;">
+       <div style="color: var(--text-color); margin-left: 0px;">
+           <span data-lang-id="1000-logged-user"></span>
+           <span><?= htmlspecialchars($earthling_emoji) ?> <?= htmlspecialchars($first_name) ?></span>
+       </div>
+     </div>
+
+     <div class="logged-in-links" style="width:100%; font-size: 0.8em; margin-top: 5px; text-align: left;">
+        <p style="font-size:0.9em; margin-bottom: 3px; margin-top: 5px;">
+          <span style="color:green;"><?= htmlspecialchars($user_location_watershed) ?></span> <span style="color:grey">| <?= htmlspecialchars($user_community_name) ?></span>
+        </p>
+
+        <p style="font-size:0.9em;">
+          ⚙️ <a href="<?= htmlspecialchars($profile_url) ?>" class="underline-link" data-lang-id="1000-profile-settings" title="Update your user settings">Profile settings</a> |
+          🐳 <a href="<?= htmlspecialchars($logout_url) ?>" class="underline-link" data-lang-id="1000-log-out" title="Log out completely">Log out</a>
+        </p>
+
+     </div>
    </div>
-   <?php
-
-     $profile_url = 'edit-profile.php';
-
-     $connection_id = $_SESSION['connection_id'] ?? null;
-     if (!empty($connection_id)) {
-         $profile_url .= '?con=' . urlencode($connection_id);
-     }
-   ?>
    <div class="menu-page-item">
-     <a href="<?= htmlspecialchars($profile_url) ?>">Edit user profile</a>
+     <a href="dashboard.php" aria-label="Log" data-lang-id="1000-dashboard">Dashboard</a>
+     <span class="status-circle" style="background-color: LIMEGREEN;" title="Working. Under development"></span>
    </div>
  <?php endif; ?>
 
