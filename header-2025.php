@@ -299,12 +299,46 @@ max-height: 200px;
 
 
 
- <div class="menu-page-item">
-   <a href="<?= htmlspecialchars($app_info['app_login_url']) ?>">
-     <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-left: 6px; margin-right:auto;text-align:left !important">Login</span>
-   </a>
-   <span class="status-circle" style="background-color: limegreen;" title="Login directly"></span>
- </div>
+ <?php if (empty($_SESSION['buwana_id'])): ?>
+   <div class="menu-page-item">
+     <a href="<?= htmlspecialchars($app_info['app_login_url']) ?>">
+       <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="1000-login" style="margin-left: 6px; margin-right:auto;text-align:left !important">Login</span>
+     </a>
+     <span class="status-circle" style="background-color: limegreen;" title="Login directly"></span>
+   </div>
+ <?php else: ?>
+   <?php
+     $first_name = '';
+     $earthling_emoji = '';
+     $buwana_id = intval($_SESSION['buwana_id']);
+     if (isset($buwana_conn)) {
+         $stmt = $buwana_conn->prepare('SELECT first_name, earthling_emoji FROM users_tb WHERE buwana_id = ?');
+         if ($stmt) {
+             $stmt->bind_param('i', $buwana_id);
+             if ($stmt->execute()) {
+                 $stmt->bind_result($first_name, $earthling_emoji);
+                 $stmt->fetch();
+             }
+             $stmt->close();
+         }
+     }
+
+     $logout_url = 'login.php?status=logout';
+     if (!empty($buwana_id)) {
+         $logout_url .= '&id=' . urlencode($buwana_id);
+     }
+     if (!empty($client_id)) {
+         $logout_url .= '&app=' . urlencode($client_id);
+     }
+   ?>
+   <div class="menu-page-item" style="pointer-events:auto;">
+     <?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?> |
+     <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
+   </div>
+   <div class="menu-page-item">
+     <a href="edit-profile.php">Edit user profile</a>
+   </div>
+ <?php endif; ?>
 
 
 <!--<div class="menu-page-item">
