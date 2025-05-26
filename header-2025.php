@@ -335,7 +335,9 @@ max-height: 200px;
      }
    ?>
    <div class="menu-page-item" style="pointer-events:auto;">
-     <?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?> |
+     <?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?>
+   </div>
+   <div class="menu-page-item">
      <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
    </div>
    <?php
@@ -349,6 +351,9 @@ max-height: 200px;
    ?>
    <div class="menu-page-item">
      <a href="<?= htmlspecialchars($profile_url) ?>">Edit user profile</a>
+   </div>
+   <div class="menu-page-item">
+     <a href="<?= htmlspecialchars($app_info['app_dashboard_url']) ?>">Dashboard</a>
    </div>
  <?php endif; ?>
 
