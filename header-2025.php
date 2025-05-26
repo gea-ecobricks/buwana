@@ -336,7 +336,9 @@ max-height: 200px;
      <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
    </div>
    <?php
+
      $profile_url = 'user-profile.php';
+
      $connection_id = $_SESSION['connection_id'] ?? null;
      if (!empty($connection_id)) {
          $profile_url .= '?con=' . urlencode($connection_id);
