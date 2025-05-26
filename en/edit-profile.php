@@ -36,8 +36,6 @@ if ($stmt_connection) {
 // 🧭 Get the app's info
 require_once '../fetch_app_info.php';
 
-
-
 // 📄 Fetch full user profile info
 $sql_user_info = "SELECT full_name, first_name, last_name, email, country_id, language_id, birth_date,
                   created_at, last_login, brikcoin_balance, role, account_status, notes,
