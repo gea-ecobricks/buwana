@@ -72,12 +72,29 @@ if (!$app) {
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <div class="top-wrapper">
-      <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
       <div>
-        <div class="page-name">Edit Core Data: <?= htmlspecialchars($app['app_display_name']) ?></div>
+        <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
+        <div style="font-size:0.9em;">
+          <?php if($app['is_active']): ?>
+            🟢 <?= htmlspecialchars($app['app_display_name']) ?> is active
+          <?php else: ?>
+            ⚪ <?= htmlspecialchars($app['app_display_name']) ?> is not active
+          <?php endif; ?>
+        </div>
+        <div style="font-size:0.9em;">
+          <?php if($app['allow_signup']): ?>
+            🟢 <?= htmlspecialchars($app['app_display_name']) ?> Signups enable
+          <?php else: ?>
+            <?= htmlspecialchars($app['app_display_name']) ?> ⚪ Signups Off
+          <?php endif; ?>
+        </div>
+      </div>
+      <div>
+        <div class="page-name"><?= htmlspecialchars($app['app_display_name']) ?></div>
         <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
       </div>
     </div>
+    <h4>Edit Core Data</h4>
     <p>Set the core parameters for your <?= htmlspecialchars($app['app_display_name']) ?> app.  These will set the base display and functionality for signing up, logins, redirects and log outs.</p>
     <form id="edit-core-form" method="post" style="margin-top:20px;">
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">

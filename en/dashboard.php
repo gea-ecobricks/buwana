@@ -67,7 +67,7 @@ $user_app_count = count($apps);
     <p class="welcome-msg">Welcome back <?= htmlspecialchars($first_name) ?>!  You have <?= intval($new_account_count_for_user) ?> new users in the last 24hrs.  Manage your <?= $user_app_count ?> here...</p>
     <div class="app-grid">
       <?php foreach ($apps as $app): ?>
-        <a href="view_app.php?app_id=<?= intval($app['app_id']) ?>" class="app-display-box" title="<?= htmlspecialchars($app['app_display_name']) ?>">
+        <a href="app-view.php?app_id=<?= intval($app['app_id']) ?>" class="app-display-box" title="<?= htmlspecialchars($app['app_display_name']) ?>">
           <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon">
           <p><?= intval($app['user_count']) ?> users</p>
         </a>
