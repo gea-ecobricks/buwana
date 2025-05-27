@@ -29,11 +29,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 20px;
+  height: auto;
   margin-bottom: 20px;
 }
 
 .login-status {
+  font-family: 'Mulish', Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  color: grey;
+}
+
+.client-id {
   font-family: 'Mulish', Arial, Helvetica, sans-serif;
   font-size: 1em;
   color: grey;
