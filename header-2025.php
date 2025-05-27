@@ -416,7 +416,6 @@ max-height: 200px;
 <p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;" data-lang-id="1000-authentication-by" >Authentication by</p>
 <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" onclick="navigateTo('index.php')" style="cursor:pointer;"></div>
 
-
   </div> <!-- close overlay-content-settings -->
 </div> <!-- close main menu -->
 
