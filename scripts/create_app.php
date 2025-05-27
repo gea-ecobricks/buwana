@@ -69,7 +69,7 @@ $stmt->bind_param($types, ...$params);
 if ($stmt->execute()) {
     $app_id = $stmt->insert_id;
     $stmt->close();
-    echo json_encode(['success' => true, 'redirect' => "view_app.php?app_id=$app_id"]);
+    echo json_encode(['success' => true, 'redirect' => "app-view.php?app_id=$app_id"]);
 } else {
     $error = $stmt->error;
     $stmt->close();

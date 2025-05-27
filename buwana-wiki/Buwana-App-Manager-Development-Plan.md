@@ -200,7 +200,7 @@ Provide a page to edit, manage and delete app as well as to Visualize app's user
 - Edit and update app data
 
 **Route:**
-`/en/view_app.php?app_id=xxx`
+`/en/app-view.php?app_id=xxx`
 
 ---
 

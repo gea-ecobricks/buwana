@@ -7,7 +7,7 @@ require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'view-app';
+$page = 'app-view';
 $version = '0.1';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
@@ -43,6 +43,20 @@ if (!$app) {
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_flags'])) {
+    $is_active = isset($_POST['is_active']) ? 1 : 0;
+    $allow_signup = isset($_POST['allow_signup']) ? 1 : 0;
+    $sql = "UPDATE apps_tb SET is_active=?, allow_signup=? WHERE app_id=? AND owner_buwana_id=?";
+    $update_stmt = $buwana_conn->prepare($sql);
+    if ($update_stmt) {
+        $update_stmt->bind_param('iiii', $is_active, $allow_signup, $app_id, $buwana_id);
+        $update_stmt->execute();
+        $update_stmt->close();
+        $app['is_active'] = $is_active;
+        $app['allow_signup'] = $allow_signup;
+    }
+}
+
 $stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM user_app_connections_tb WHERE client_id = ?");
 $stmt->bind_param('s', $app['client_id']);
 $stmt->execute();
@@ -73,7 +87,23 @@ if ($stmt) {
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <div class="top-wrapper">
-      <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
+      <div>
+        <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
+        <div style="font-size:0.9em;">
+          <?php if($app['is_active']): ?>
+            🟢 <?= htmlspecialchars($app['app_display_name']) ?> is active
+          <?php else: ?>
+            ⚪ <?= htmlspecialchars($app['app_display_name']) ?> is not active
+          <?php endif; ?>
+        </div>
+        <div style="font-size:0.9em;">
+          <?php if($app['allow_signup']): ?>
+            🟢 <?= htmlspecialchars($app['app_display_name']) ?> Signups enable
+          <?php else: ?>
+            <?= htmlspecialchars($app['app_display_name']) ?> ⚪ Signups Off
+          <?php endif; ?>
+        </div>
+      </div>
       <div>
         <div class="page-name">Manage: <?= htmlspecialchars($app['app_display_name']) ?></div>
         <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
@@ -118,6 +148,26 @@ if ($stmt) {
           <a href="edit-app-graphics.php?app_id=<?= intval($app_id) ?>" class="simple-button">Logos &amp; Icons</a>
           <a href="edit-app-signup.php?app_id=<?= intval($app_id) ?>" class="simple-button">Signup banners</a>
         </div>
+        <form method="post" style="margin-top:15px;">
+          <input type="hidden" name="update_flags" value="1">
+          <div style="margin-bottom:10px;">
+            <label>
+              <input type="checkbox" name="is_active" value="1" <?= $app['is_active'] ? 'checked' : '' ?>>
+              <b>Activate <?= htmlspecialchars($app['app_display_name']) ?>:</b>
+            </label>
+            <p style="font-size:0.9em;color:red;">This turns off all logins and signups on your app</p>
+          </div>
+          <div style="margin-bottom:10px;">
+            <label>
+              <input type="checkbox" name="allow_signup" value="1" <?= $app['allow_signup'] ? 'checked' : '' ?>>
+              <b>Enable <?= htmlspecialchars($app['app_display_name']) ?> Signups:</b>
+            </label>
+            <p style="font-size:0.9em;color:orange;">This turns off signups on your app but it is still available to users.</p>
+          </div>
+          <div style="text-align:center;">
+            <button type="submit" class="simple-button">Save Flags</button>
+          </div>
+        </form>
       </div>
   </div>
 </div>
