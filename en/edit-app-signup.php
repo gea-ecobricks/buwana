@@ -86,6 +86,11 @@ if (!$app) {
         <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
       </div>
     </div>
+    <div class="breadcrumb">
+      <a href="dashboard.php">Dashboard</a> &gt; 
+      <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt; 
+      Edit Signup Graphics
+    </div>
     <form method="post" style="margin-top:20px;">
       <label>Signup Banner Light<br>
         <input type="text" name="signup_top_img_url" value="<?= htmlspecialchars($app['signup_top_img_url']) ?>">

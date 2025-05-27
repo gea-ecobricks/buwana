@@ -72,8 +72,13 @@ if (!$app) {
         <div class="page-name">Edit App Graphics: <?= htmlspecialchars($app['app_display_name']) ?></div>
         <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
       </div>
-    </div>
-    <form method="post" style="margin-top:20px;">
+      </div>
+      <div class="breadcrumb">
+        <a href="dashboard.php">Dashboard</a> &gt; 
+        <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt; 
+        Edit Graphics
+      </div>
+      <form method="post" style="margin-top:20px;">
       <label>Logo URL (light)<br>
         <input type="text" name="app_logo_url" value="<?= htmlspecialchars($app['app_logo_url']) ?>">
       </label><br><br>

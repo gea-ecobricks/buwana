@@ -71,8 +71,13 @@ if (!$app) {
         <div class="page-name">Edit App Texts: <?= htmlspecialchars($app['app_display_name']) ?></div>
         <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
       </div>
-    </div>
-    <form method="post" style="margin-top:20px;">
+      </div>
+      <div class="breadcrumb">
+        <a href="dashboard.php">Dashboard</a> &gt; 
+        <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt; 
+        Edit Texts
+      </div>
+      <form method="post" style="margin-top:20px;">
       <label>App Slogan<br>
         <input type="text" name="app_slogan" value="<?= htmlspecialchars($app['app_slogan']) ?>">
       </label><br><br>
