@@ -31,6 +31,10 @@
   align-items: center;
   height: auto;
   margin-bottom: 20px;
+  padding: 15px;
+  background: #ffffff0d;
+  border-radius: 10px;
+  line-height: 1.5;
 }
 
 .login-status {
@@ -154,6 +158,31 @@
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.breadcrumb {
+  text-align: right;
+  font-family: 'Mulish', Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  color: grey;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb a {
+  color: grey;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .top-wrapper .page-name,
+  .top-wrapper .client-id {
+    display: none;
+  }
 }
 
 </style>
