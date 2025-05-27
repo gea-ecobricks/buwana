@@ -334,8 +334,8 @@ max-height: 200px;
          $logout_url .= '&app=' . urlencode($client_id);
      }
    ?>
-   <div class="menu-page-item" style="pointer-events:auto;">
-     <a href=""><?= htmlspecialchars($earthling_emoji) ?> <span>Logged in as </span><?= htmlspecialchars($first_name) ?></a>
+   <div class="menu-page-item" style="pointer-events:auto; margin-left:-33px;">
+     <span style="margin-left:auto;margin-right:5px;"><a href=""><?= htmlspecialchars($earthling_emoji) ?> <span>Logged in as </span><?= htmlspecialchars($first_name) ?></a></span>
    </div>
    <div class="menu-page-item">
      <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
