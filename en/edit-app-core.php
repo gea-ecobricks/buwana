@@ -86,12 +86,17 @@ if (!$app) {
     <meta charset="UTF-8">
     <?php require_once("../meta/app-view-en.php"); ?>
     <?php require_once("../includes/dashboard-inc.php"); ?>
+    <style>
+      .top-wrapper {
+        background: var(--darker-lighter);
+      }
+    </style>
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <div class="top-wrapper">
       <div>
         <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
-        <div style="font-size:0.9em;color:grey;">
+        <div style="font-size:0.9em;color:grey;margin-bottom: auto;">
           <?php if($app['is_active']): ?>
             🟢 <?= htmlspecialchars($app['app_display_name']) ?> is active
           <?php else: ?>
@@ -102,22 +107,26 @@ if (!$app) {
           <?php if($app['allow_signup']): ?>
             🟢 <?= htmlspecialchars($app['app_display_name']) ?> signups enabled
           <?php else: ?>
-            <?= htmlspecialchars($app['app_display_name']) ?> ⚪ Signups Off
+            ⚪ <?= htmlspecialchars($app['app_display_name']) ?> signups off
           <?php endif; ?>
         </div>
       </div>
-      <div style="display:flex;align-items:center;margin-left:auto;">
-        <div style="text-align:right;margin-right:10px;">
-          <div class="page-name"><?= htmlspecialchars($app['app_display_name']) ?></div>
-          <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
-        </div>
-        <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="50" height="50">
+      <div style="display:flex;flex-flow:column;margin-left:auto;">
+          <div style="display:flex;align-items:center;margin-left:auto;">
+
+                <div style="text-align:right;margin-right:10px;">
+                  <div class="page-name">Edit Core: <?= htmlspecialchars($app['app_display_name']) ?></div>
+                  <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+                </div>
+                <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="60" height="60">
+          </div>
+            <div class="breadcrumb" style="margin-left:auto;">
+                          <a href="dashboard.php">Dashboard</a> &gt;
+                          <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt;
+                          Edit Core
+                        </div>
       </div>
-    </div>
-    <div class="breadcrumb">
-      <a href="dashboard.php">Dashboard</a> &gt; 
-      <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt; 
-      Edit Core
+
     </div>
     <h2 data-lang-id="000-edit-core-date" style="martoin">Edit Core Data</h2>
     <p>Set the core parameters for your <?= htmlspecialchars($app['app_display_name']) ?> app.  These will set the base display and functionality for signing up, logins, redirects and log outs.</p>
