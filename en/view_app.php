@@ -113,7 +113,7 @@ if ($stmt) {
       <div class="edit-app-params" style="margin-top:20px;">
         <h4 style="text-align:center;">Edit App Parameters</h4>
         <div class="edit-button-row">
-          <a href="edit_app_core.php?app_id=<?= intval($app_id) ?>" class="simple-button">Core Data</a>
+          <a href="edit-app-core.php?app_id=<?= intval($app_id) ?>" class="simple-button">Core Data</a>
           <a href="edit-app-texts.php?app_id=<?= intval($app_id) ?>" class="simple-button">App texts</a>
           <a href="edit-app-graphics.php?app_id=<?= intval($app_id) ?>" class="simple-button">Logos &amp; Icons</a>
           <a href="edit-app-signup.php?app_id=<?= intval($app_id) ?>" class="simple-button">Signup banners</a>
