@@ -326,13 +326,22 @@ max-height: 200px;
          }
      }
 
-     $logout_url = 'login.php?status=logout';
-     if (!empty($buwana_id)) {
-         $logout_url .= '&id=' . urlencode($buwana_id);
-     }
-     if (!empty($client_id)) {
-         $logout_url .= '&app=' . urlencode($client_id);
-     }
+    // Build the logout link so that it goes through the dedicated logout script
+    // which clears the session before redirecting back to login.php
+    $logout_url = 'logout.php';
+
+    // Append query parameters if they are available
+    $params = [];
+    if (!empty($buwana_id)) {
+        $params[] = 'id=' . urlencode($buwana_id);
+    }
+    if (!empty($client_id)) {
+        $params[] = 'app=' . urlencode($client_id);
+    }
+
+    if (!empty($params)) {
+        $logout_url .= '?' . implode('&', $params);
+    }
    ?>
    <div class="menu-page-item" style="pointer-events:auto; margin-left:-33px;">
      <span style="margin-left:5px;margin-right:auto;"><a href=""><?= htmlspecialchars($earthling_emoji) ?> <span style="margin-left:5px;margin-right:5px;">Logged in as </span><?= htmlspecialchars($first_name) ?></a></span>
