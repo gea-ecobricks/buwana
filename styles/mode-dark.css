@@ -8,11 +8,9 @@
   --main-background: #21232f;
   --h1: #fff;
   --same: black;
-  --text-color: rgb(230, 231, 242);
   --subdued-text: rgb(158, 162, 184);
   --toggle-off: var(--subdued-text);
   --logo-color: rgb(213, 213, 213);
-  --top-header: #21232f;
   --top-header-main: #21232fbf;
   --header-accent: #2e4958fe;
   --settings-background: rgb(23, 25, 40);
@@ -51,7 +49,6 @@
 
   --form-background: rgb(24, 26, 44);
 
-  --gallery:  rgb(51, 52, 63);
   --yellow-alert: #623f00;
 
   --login-green: #007907;
@@ -129,36 +126,10 @@
 
 
 
-
-
-
-  #booknotes-curtain {
-    background: url(../svgs/tractatus-mandala-full-grey.svg) center no-repeat;
-    background-size: 30%;
-    background-color: var(--slider);
-    color: var(--drop-cap);
-  }
-
-
   .virtue img {
     filter: invert(100%);
   }
 
-
-  #book-box a  {
-    background: url(../svgs/content-arrow-night.svg) left center no-repeat  var(--header-footer);
-    background-size: 30px !important;
-    background-position-x: 18px !important;
-    border:  var(--thin-border-color);
-
-  }
-
-  #book-box a:hover {
-    background: url(../svgs/content-arrow-45-night.svg) left center no-repeat var(--deeper-accent-color);
-    background-size: 30px !important;
-    background-position-x: 18px !important;
-
-  }
 
 
 
