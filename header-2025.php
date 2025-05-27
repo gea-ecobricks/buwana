@@ -349,7 +349,7 @@ max-height: 200px;
    </div>
    <div class="menu-page-item">
      <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
-     <span class="status-circle" style="background-color: GREY;" title="Log out"></span>
+     <span style="margin-right:-8px;" title="Log out">🐳</span>
 
    </div>
    <?php
