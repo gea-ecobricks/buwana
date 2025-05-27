@@ -89,9 +89,12 @@ if (!$app) {
           <?php endif; ?>
         </div>
       </div>
-      <div>
-        <div class="page-name"><?= htmlspecialchars($app['app_display_name']) ?></div>
-        <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+      <div style="display:flex;align-items:center;margin-left:auto;">
+        <div style="text-align:right;margin-right:10px;">
+          <div class="page-name"><?= htmlspecialchars($app['app_display_name']) ?></div>
+          <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+        </div>
+        <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="50" height="50">
       </div>
     </div>
     <h1 data-lang-id="000-edit-core-date">ℹ️ Edit Core Data</h1>
@@ -100,6 +103,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <textarea id="redirect_uris" name="redirect_uris" aria-label="Redirect URIs" maxlength="255" required placeholder=" " rows="2"><?= htmlspecialchars($app['redirect_uris']) ?></textarea>
         <label for="redirect_uris">Redirect URIs</label>
+        <p class="form-caption" data-lang-id="011c-redirect">Allowed OAuth redirect URIs, comma separated</p>
         <div id="redirect_uris-error-required" class="form-field-error">This field is required.</div>
         <div id="redirect_uris-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="redirect_uris-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
@@ -116,6 +120,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="scopes" name="scopes" aria-label="Scopes" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['scopes']) ?>">
         <label for="scopes">Scopes</label>
+        <p class="form-caption" data-lang-id="011c-scopes">OAuth scopes requested by your app</p>
         <div id="scopes-error-required" class="form-field-error">This field is required.</div>
         <div id="scopes-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="scopes-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
@@ -123,6 +128,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="app_domain" name="app_domain" aria-label="App Domain" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_domain']) ?>">
         <label for="app_domain">App Domain</label>
+        <p class="form-caption" data-lang-id="011c-domain">Your primary domain name</p>
         <div id="app_domain-error-required" class="form-field-error">This field is required.</div>
         <div id="app_domain-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_domain-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
@@ -130,6 +136,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="app_url" name="app_url" aria-label="App URL" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_url']) ?>">
         <label for="app_url">App URL</label>
+        <p class="form-caption" data-lang-id="011c-app-url">Public homepage of your app</p>
         <div id="app_url-error-required" class="form-field-error">This field is required.</div>
         <div id="app_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
@@ -137,6 +144,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="app_dashboard_url" name="app_dashboard_url" aria-label="App Dashboard URL" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_dashboard_url']) ?>">
         <label for="app_dashboard_url">App Dashboard URL</label>
+        <p class="form-caption" data-lang-id="011c-dashboard">Where users manage their account</p>
         <div id="app_dashboard_url-error-required" class="form-field-error">This field is required.</div>
         <div id="app_dashboard_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_dashboard_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
@@ -144,6 +152,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <textarea id="app_description" name="app_description" aria-label="Description" maxlength="255" required placeholder=" " rows="3"><?= htmlspecialchars($app['app_description']) ?></textarea>
         <label for="app_description">Description</label>
+        <p class="form-caption" data-lang-id="011c-description">Short summary of your app</p>
         <div id="app_description-error-required" class="form-field-error">This field is required.</div>
         <div id="app_description-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_description-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
@@ -151,6 +160,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="app_version" name="app_version" aria-label="Version" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_version']) ?>">
         <label for="app_version">Version</label>
+        <p class="form-caption" data-lang-id="011c-version">Current version of the app</p>
         <div id="app_version-error-required" class="form-field-error">This field is required.</div>
         <div id="app_version-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_version-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
@@ -158,6 +168,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="app_display_name" name="app_display_name" aria-label="Display Name" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_display_name']) ?>">
         <label for="app_display_name">Display Name</label>
+        <p class="form-caption" data-lang-id="011c-display">Name shown to users</p>
         <div id="app_display_name-error-required" class="form-field-error">This field is required.</div>
         <div id="app_display_name-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_display_name-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
@@ -165,6 +176,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="email" id="contact_email" name="contact_email" aria-label="Contact Email" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['contact_email']) ?>">
         <label for="contact_email">Contact Email</label>
+        <p class="form-caption" data-lang-id="011c-contact">Where we can reach you</p>
         <div id="contact_email-error-required" class="form-field-error">This field is required.</div>
         <div id="contact_email-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="contact_email-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
