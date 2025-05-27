@@ -111,7 +111,7 @@ if ($stmt) {
     <div class="top-wrapper">
       <div>
         <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
-        <div style="font-size:0.9em;color:grey;">
+        <div style="font-size:0.9em;color:grey;margin-bottom: auto;">
           <?php if($app['is_active']): ?>
             🟢 <?= htmlspecialchars($app['app_display_name']) ?> is active
           <?php else: ?>
@@ -122,7 +122,7 @@ if ($stmt) {
           <?php if($app['allow_signup']): ?>
             🟢 <?= htmlspecialchars($app['app_display_name']) ?> signups enabled
           <?php else: ?>
-            <?= htmlspecialchars($app['app_display_name']) ?> ⚪ Signups Off
+            ⚪ <?= htmlspecialchars($app['app_display_name']) ?> signups off
           <?php endif; ?>
         </div>
       </div>
