@@ -104,12 +104,15 @@ if ($stmt) {
           <?php endif; ?>
         </div>
       </div>
-      <div>
-        <div class="page-name">Manage: <?= htmlspecialchars($app['app_display_name']) ?></div>
-        <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+      <div style="display:flex;align-items:center;margin-left:auto;">
+        <div style="text-align:right;margin-right:10px;">
+          <div class="page-name">Manage: <?= htmlspecialchars($app['app_display_name']) ?></div>
+          <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+        </div>
+        <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="50" height="50">
       </div>
     </div>
-    <div class="chart-container dashboard-module">
+    <div class="chart-container dashboard-module" style="margin-bottom:15px;">
       <canvas id="growthChart"></canvas>
       <p class="chart-caption">App Manager user growth over the last 30 days. Total connections: <?= intval($total_connections) ?>.</p>
     </div>
@@ -148,24 +151,28 @@ if ($stmt) {
           <a href="edit-app-graphics.php?app_id=<?= intval($app_id) ?>" class="simple-button">Logos &amp; Icons</a>
           <a href="edit-app-signup.php?app_id=<?= intval($app_id) ?>" class="simple-button">Signup banners</a>
         </div>
-        <div style="margin-top:15px;">
-          <div class="toggle-row" style="margin-bottom:10px;">
-            <span><b>Enable <?= htmlspecialchars($app['app_display_name']) ?> Signups:</b></span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="allow_signup" <?= $app['allow_signup'] ? 'checked' : '' ?>>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <p style="font-size:0.9em;color:orange;">This turns off signups on your app but it is still available to users.</p>
-          <div class="toggle-row" style="margin:10px 0;">
-            <span><b>Activate <?= htmlspecialchars($app['app_display_name']) ?>:</b></span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="is_active" <?= $app['is_active'] ? 'checked' : '' ?>>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <p style="font-size:0.9em;color:red;">This turns off all logins and signups on your app</p>
+      </div>
+
+      <div class="dashboard-module" style="margin-top:20px;">
+        <div class="toggle-row" style="margin-bottom:10px;">
+          <span><b>Enable <?= htmlspecialchars($app['app_display_name']) ?> Signups:</b></span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="allow_signup" <?= $app['allow_signup'] ? 'checked' : '' ?>>
+            <span class="slider"></span>
+          </label>
         </div>
+        <p style="font-size:0.9em;color:orange;">This turns off signups on your app but it is still available to users.</p>
+      </div>
+
+      <div class="dashboard-module" style="margin-top:20px;">
+        <div class="toggle-row" style="margin:10px 0;">
+          <span><b>Activate <?= htmlspecialchars($app['app_display_name']) ?>:</b></span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="is_active" <?= $app['is_active'] ? 'checked' : '' ?>>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <p style="font-size:0.9em;color:red;">This turns off all logins and signups on your app</p>
       </div>
   </div>
 </div>
