@@ -1,5 +1,9 @@
 <?php
 require_once '../earthenAuth_helper.php';
+// Ensure the Buwana DB config is available
+if (!file_exists('../buwanaconn_env.php')) {
+    die('Buwana DB config not found.');
+}
 require_once '../buwanaconn_env.php';
 
 // Set up page variables
