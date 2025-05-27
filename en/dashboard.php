@@ -110,5 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php require_once("../footer-2025.php"); ?>
+
+<?php require_once ("../scripts/app_modals.php");?>
 </body>
 </html>

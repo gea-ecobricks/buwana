@@ -1000,7 +1000,7 @@ function enableCodeEntry() {
 
 </script>
 
-
+<?php require_once ("../scripts/app_modals.php");?>
 
 
 </body>
