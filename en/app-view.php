@@ -101,6 +101,11 @@ if ($stmt) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../scripts/jquery.dataTables.js"></script>
     <?php require_once("../includes/dashboard-inc.php"); ?>
+    <style>
+      .top-wrapper {
+        background: var(--darker-lighter);
+      }
+    </style>
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <div class="top-wrapper">
@@ -127,6 +132,10 @@ if ($stmt) {
           <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
         </div>
         <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="50" height="50">
+      </div>
+      <div class="breadcrumb" style="margin-left:auto;">
+        <a href="dashboard.php">Dashboard</a> &gt;
+        Manage <?= htmlspecialchars($app['app_display_name']) ?>
       </div>
     </div>
     <div class="chart-container dashboard-module" style="margin-bottom:15px;">
