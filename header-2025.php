@@ -335,10 +335,12 @@ max-height: 200px;
      }
    ?>
    <div class="menu-page-item" style="pointer-events:auto;">
-     <?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?>
+     <a href=""><?= htmlspecialchars($earthling_emoji) ?> <span>Logged in as </span><?= htmlspecialchars($first_name) ?></a>
    </div>
    <div class="menu-page-item">
      <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
+     <span class="status-circle" style="background-color: GREY;" title="Terms of Use"></span>
+
    </div>
    <?php
 
@@ -349,12 +351,17 @@ max-height: 200px;
          $profile_url .= '?con=' . urlencode($connection_id);
      }
    ?>
+    <div class="menu-page-item">
+        <a href="<?= htmlspecialchars($app_info['app_dashboard_url']) ?>">Dashboard</a>
+          <span class="status-circle" style="background-color: GREEN;" title="Terms of Use"></span>
+
+      </div>
    <div class="menu-page-item">
      <a href="<?= htmlspecialchars($profile_url) ?>">Edit user profile</a>
+       <span class="status-circle" style="background-color: LIMEGREEN;" title="Terms of Use"></span>
+
    </div>
-   <div class="menu-page-item">
-     <a href="<?= htmlspecialchars($app_info['app_dashboard_url']) ?>">Dashboard</a>
-   </div>
+
  <?php endif; ?>
 
 
