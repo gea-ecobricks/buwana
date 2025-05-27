@@ -77,80 +77,245 @@ if (!$app) {
     <meta charset="UTF-8">
     <?php require_once("../meta/app-view-en.php"); ?>
     <?php require_once("../includes/dashboard-inc.php"); ?>
+    <style>
+      .top-wrapper {
+        background: var(--darker-lighter);
+      }
+    </style>
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <div class="top-wrapper">
-      <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
       <div>
-        <div class="page-name">Edit Signup Graphics: <?= htmlspecialchars($app['app_display_name']) ?></div>
-        <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+        <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
+        <div style="font-size:0.9em;color:grey;margin-bottom: auto;">
+          <?php if($app['is_active']): ?>
+            🟢 <?= htmlspecialchars($app['app_display_name']) ?> is active
+          <?php else: ?>
+            ⚪ <?= htmlspecialchars($app['app_display_name']) ?> is not active
+          <?php endif; ?>
+        </div>
+        <div style="font-size:0.9em;color:grey;">
+          <?php if($app['allow_signup']): ?>
+            🟢 <?= htmlspecialchars($app['app_display_name']) ?> signups enabled
+          <?php else: ?>
+            ⚪ <?= htmlspecialchars($app['app_display_name']) ?> signups off
+          <?php endif; ?>
+        </div>
       </div>
+      <div style="display:flex;flex-flow:column;margin-left:auto;">
+          <div style="display:flex;align-items:center;margin-left:auto;">
+
+                <div style="text-align:right;margin-right:10px;">
+                  <div class="page-name">Edit Signup Graphics: <?= htmlspecialchars($app['app_display_name']) ?></div>
+                  <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+                </div>
+                <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="60" height="60">
+          </div>
+            <div class="breadcrumb" style="margin-left:auto;">
+                          <a href="dashboard.php">Dashboard</a> &gt;
+                          <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt;
+                          Edit Signup Graphics
+                        </div>
+      </div>
+
     </div>
-    <div class="breadcrumb">
-      <a href="dashboard.php">Dashboard</a> &gt; 
-      <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt; 
-      Edit Signup Graphics
-    </div>
-    <form method="post" style="margin-top:20px;">
-      <label>Signup Banner Light<br>
-        <input type="text" name="signup_top_img_url" value="<?= htmlspecialchars($app['signup_top_img_url']) ?>">
-      </label><br><br>
-      <label>Signup Banner Dark<br>
-        <input type="text" name="signup_top_img_dark_url" value="<?= htmlspecialchars($app['signup_top_img_dark_url']) ?>">
-      </label><br><br>
-      <label>Signup 1 Light<br>
-        <input type="text" name="signup_1_top_img_light" value="<?= htmlspecialchars($app['signup_1_top_img_light']) ?>">
-      </label><br><br>
-      <label>Signup 1 Dark<br>
-        <input type="text" name="signup_1_top_img_dark" value="<?= htmlspecialchars($app['signup_1_top_img_dark']) ?>">
-      </label><br><br>
-      <label>Signup 2 Light<br>
-        <input type="text" name="signup_2_top_img_light" value="<?= htmlspecialchars($app['signup_2_top_img_light']) ?>">
-      </label><br><br>
-      <label>Signup 2 Dark<br>
-        <input type="text" name="signup_2_top_img_dark" value="<?= htmlspecialchars($app['signup_2_top_img_dark']) ?>">
-      </label><br><br>
-      <label>Signup 3 Light<br>
-        <input type="text" name="signup_3_top_img_light" value="<?= htmlspecialchars($app['signup_3_top_img_light']) ?>">
-      </label><br><br>
-      <label>Signup 3 Dark<br>
-        <input type="text" name="signup_3_top_img_dark" value="<?= htmlspecialchars($app['signup_3_top_img_dark']) ?>">
-      </label><br><br>
-      <label>Signup 4 Light<br>
-        <input type="text" name="signup_4_top_img_light" value="<?= htmlspecialchars($app['signup_4_top_img_light']) ?>">
-      </label><br><br>
-      <label>Signup 4 Dark<br>
-        <input type="text" name="signup_4_top_img_dark" value="<?= htmlspecialchars($app['signup_4_top_img_dark']) ?>">
-      </label><br><br>
-      <label>Signup 5 Light<br>
-        <input type="text" name="signup_5_top_img_light" value="<?= htmlspecialchars($app['signup_5_top_img_light']) ?>">
-      </label><br><br>
-      <label>Signup 5 Dark<br>
-        <input type="text" name="signup_5_top_img_dark" value="<?= htmlspecialchars($app['signup_5_top_img_dark']) ?>">
-      </label><br><br>
-      <label>Signup 6 Light<br>
-        <input type="text" name="signup_6_top_img_light" value="<?= htmlspecialchars($app['signup_6_top_img_light']) ?>">
-      </label><br><br>
-      <label>Signup 6 Dark<br>
-        <input type="text" name="signup_6_top_img_dark" value="<?= htmlspecialchars($app['signup_6_top_img_dark']) ?>">
-      </label><br><br>
-      <label>Signup 7 Light<br>
-        <input type="text" name="signup_7_top_img_light" value="<?= htmlspecialchars($app['signup_7_top_img_light']) ?>">
-      </label><br><br>
-      <label>Signup 7 Dark<br>
-        <input type="text" name="signup_7_top_img_dark" value="<?= htmlspecialchars($app['signup_7_top_img_dark']) ?>">
-      </label><br><br>
-      <label>Login Banner Light<br>
-        <input type="text" name="login_top_img_light" value="<?= htmlspecialchars($app['login_top_img_light']) ?>">
-      </label><br><br>
-      <label>Login Banner Dark<br>
-        <input type="text" name="login_top_img_dark" value="<?= htmlspecialchars($app['login_top_img_dark']) ?>">
-      </label><br><br>
-      <button type="submit" name="update_app">Save Changes</button>
+    <form id="edit-signup-form" method="post" style="margin-top:20px;">
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_top_img_url" name="signup_top_img_url" aria-label="Signup Banner Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_top_img_url']) ?>">
+        <label for="signup_top_img_url">Signup Banner Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_top_img_url-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_top_img_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_top_img_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_top_img_dark_url" name="signup_top_img_dark_url" aria-label="Signup Banner Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_top_img_dark_url']) ?>">
+        <label for="signup_top_img_dark_url">Signup Banner Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_top_img_dark_url-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_top_img_dark_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_top_img_dark_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_1_top_img_light" name="signup_1_top_img_light" aria-label="Signup 1 Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_1_top_img_light']) ?>">
+        <label for="signup_1_top_img_light">Signup 1 Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_1_top_img_light-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_1_top_img_light-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_1_top_img_light-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_1_top_img_dark" name="signup_1_top_img_dark" aria-label="Signup 1 Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_1_top_img_dark']) ?>">
+        <label for="signup_1_top_img_dark">Signup 1 Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_1_top_img_dark-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_1_top_img_dark-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_1_top_img_dark-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_2_top_img_light" name="signup_2_top_img_light" aria-label="Signup 2 Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_2_top_img_light']) ?>">
+        <label for="signup_2_top_img_light">Signup 2 Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_2_top_img_light-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_2_top_img_light-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_2_top_img_light-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_2_top_img_dark" name="signup_2_top_img_dark" aria-label="Signup 2 Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_2_top_img_dark']) ?>">
+        <label for="signup_2_top_img_dark">Signup 2 Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_2_top_img_dark-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_2_top_img_dark-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_2_top_img_dark-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_3_top_img_light" name="signup_3_top_img_light" aria-label="Signup 3 Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_3_top_img_light']) ?>">
+        <label for="signup_3_top_img_light">Signup 3 Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_3_top_img_light-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_3_top_img_light-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_3_top_img_light-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_3_top_img_dark" name="signup_3_top_img_dark" aria-label="Signup 3 Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_3_top_img_dark']) ?>">
+        <label for="signup_3_top_img_dark">Signup 3 Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_3_top_img_dark-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_3_top_img_dark-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_3_top_img_dark-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_4_top_img_light" name="signup_4_top_img_light" aria-label="Signup 4 Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_4_top_img_light']) ?>">
+        <label for="signup_4_top_img_light">Signup 4 Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_4_top_img_light-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_4_top_img_light-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_4_top_img_light-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_4_top_img_dark" name="signup_4_top_img_dark" aria-label="Signup 4 Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_4_top_img_dark']) ?>">
+        <label for="signup_4_top_img_dark">Signup 4 Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_4_top_img_dark-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_4_top_img_dark-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_4_top_img_dark-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_5_top_img_light" name="signup_5_top_img_light" aria-label="Signup 5 Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_5_top_img_light']) ?>">
+        <label for="signup_5_top_img_light">Signup 5 Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_5_top_img_light-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_5_top_img_light-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_5_top_img_light-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_5_top_img_dark" name="signup_5_top_img_dark" aria-label="Signup 5 Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_5_top_img_dark']) ?>">
+        <label for="signup_5_top_img_dark">Signup 5 Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_5_top_img_dark-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_5_top_img_dark-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_5_top_img_dark-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_6_top_img_light" name="signup_6_top_img_light" aria-label="Signup 6 Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_6_top_img_light']) ?>">
+        <label for="signup_6_top_img_light">Signup 6 Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_6_top_img_light-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_6_top_img_light-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_6_top_img_light-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_6_top_img_dark" name="signup_6_top_img_dark" aria-label="Signup 6 Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_6_top_img_dark']) ?>">
+        <label for="signup_6_top_img_dark">Signup 6 Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_6_top_img_dark-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_6_top_img_dark-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_6_top_img_dark-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_7_top_img_light" name="signup_7_top_img_light" aria-label="Signup 7 Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_7_top_img_light']) ?>">
+        <label for="signup_7_top_img_light">Signup 7 Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_7_top_img_light-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_7_top_img_light-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_7_top_img_light-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="signup_7_top_img_dark" name="signup_7_top_img_dark" aria-label="Signup 7 Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_7_top_img_dark']) ?>">
+        <label for="signup_7_top_img_dark">Signup 7 Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="signup_7_top_img_dark-error-required" class="form-field-error">This field is required.</div>
+        <div id="signup_7_top_img_dark-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="signup_7_top_img_dark-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="login_top_img_light" name="login_top_img_light" aria-label="Login Banner Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['login_top_img_light']) ?>">
+        <label for="login_top_img_light">Login Banner Light</label>
+        <p class="form-caption">Image URL</p>
+        <div id="login_top_img_light-error-required" class="form-field-error">This field is required.</div>
+        <div id="login_top_img_light-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="login_top_img_light-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="text" id="login_top_img_dark" name="login_top_img_dark" aria-label="Login Banner Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['login_top_img_dark']) ?>">
+        <label for="login_top_img_dark">Login Banner Dark</label>
+        <p class="form-caption">Image URL</p>
+        <div id="login_top_img_dark-error-required" class="form-field-error">This field is required.</div>
+        <div id="login_top_img_dark-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
+        <div id="login_top_img_dark-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="submit-button-wrapper">
+        <button type="submit" id="submit-button" name="update_app" class="kick-ass-submit">
+          <span id="submit-button-text">Save Changes</span>
+          <span id="submit-emoji" class="submit-emoji" style="display:none;"></span>
+        </button>
+      </div>
     </form>
   </div>
 </div>
 </div> <!-- closes main -->
 <?php require_once("../footer-2025.php"); ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('edit-signup-form');
+  const fields = ['signup_top_img_url','signup_top_img_dark_url','signup_1_top_img_light','signup_1_top_img_dark','signup_2_top_img_light','signup_2_top_img_dark','signup_3_top_img_light','signup_3_top_img_dark','signup_4_top_img_light','signup_4_top_img_dark','signup_5_top_img_light','signup_5_top_img_dark','signup_6_top_img_light','signup_6_top_img_dark','signup_7_top_img_light','signup_7_top_img_dark','login_top_img_light','login_top_img_dark'];
+
+  function hasInvalidChars(value) {
+    return /[\'"<>]/.test(value);
+  }
+
+  function toggleError(id, show) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = show ? 'block' : 'none';
+  }
+
+  function validateField(name) {
+    const value = document.getElementById(name).value.trim();
+    let valid = true;
+    toggleError(name + '-error-required', value === '');
+    toggleError(name + '-error-long', value.length > 255);
+    toggleError(name + '-error-invalid', hasInvalidChars(value));
+    if (value === '' || value.length > 255 || hasInvalidChars(value)) {
+      valid = false;
+    }
+    return valid;
+  }
+
+  fields.forEach(f => {
+    const el = document.getElementById(f);
+    if (el) {
+      el.addEventListener('input', () => validateField(f));
+    }
+  });
+
+  form.addEventListener('submit', function (e) {
+    let allValid = true;
+    fields.forEach(f => { if (!validateField(f)) allValid = false; });
+    if (!allValid) {
+      e.preventDefault();
+    }
+  });
+});
+</script>
 </body>
 </html>
