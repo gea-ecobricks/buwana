@@ -344,8 +344,8 @@ max-height: 200px;
     }
    ?>
    <div class="menu-page-item" style="pointer-events:auto;">
-     <a href=""><span style="margin-right:5px;">Logged in as </span><span style="margin-left:auto;"><?= htmlspecialchars($first_name) ?></span></a>
-     <span><?= htmlspecialchars($earthling_emoji) ?></span>
+     <a href=""><span style="margin-right:5px;">Logged in as </span><span style="margin-right:auto;"><?= htmlspecialchars($first_name) ?></span></a>
+     <span style="margin-right:-8px;"><?= htmlspecialchars($earthling_emoji) ?></span>
    </div>
    <div class="menu-page-item">
      <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
