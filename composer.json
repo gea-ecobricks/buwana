@@ -1,11 +1,14 @@
 {
     "name": "buwana/buwana",
-    "description": "Buwana PHP project",
+    "description": "Buwana SSO Regenerative App Platform",
     "require": {},
+
     "require-dev": {
-        "phpunit/phpunit": "^9.6"
-    },
-    "autoload": {
+        "phpunit/phpunit": "^9.6",
+    "license": "proprietary"
+},
+
+"autoload": {
         "psr-4": {
             "Buwana\\": ""
         }
