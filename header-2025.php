@@ -344,8 +344,8 @@ max-height: 200px;
     }
    ?>
    <div class="menu-page-item" style="pointer-events:auto;">
-     <span style="margin-right:auto;"> <span style="margin-right:5px;">Logged in as </span><?= htmlspecialchars($first_name) ?></a></span>
-     <span><a href=""><?= htmlspecialchars($earthling_emoji) ?></span>
+     <a href=""><span style="margin-right:5px;">Logged in as </span><?= htmlspecialchars($first_name) ?></a>
+     <span><?= htmlspecialchars($earthling_emoji) ?></span>
    </div>
    <div class="menu-page-item">
      <a href="<?= htmlspecialchars($logout_url) ?>">Log out</a>
@@ -411,7 +411,7 @@ max-height: 200px;
 </div>
 
 
-<h4 style="margin-top:25px"><?= htmlspecialchars($app_info['app_slogan']) ?></h4>
+<h4 style="margin-top:30px"><?= htmlspecialchars($app_info['app_slogan']) ?></h4>
 
 <p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;" data-lang-id="1000-authentication-by" >Authentication by</p>
 <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" onclick="navigateTo('index.php')" style="cursor:pointer;"></div>
