@@ -46,7 +46,7 @@
 .client-id {
   font-family: 'Mulish', Arial, Helvetica, sans-serif;
   font-size: 1em;
-  color: grey;
+  color: vat(--text-color);
 }
 
 .page-name {
@@ -166,7 +166,7 @@
   font-size: 1em;
   color: grey;
   margin-top: 5px;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .breadcrumb a {
