@@ -42,7 +42,9 @@
     --slide-highlight: rgb(212, 212, 213);
     --show-hide: rgba(225, 225, 225, 0.809);
     --darker:rgba(0, 0, 0, 0.07);
-    --lighter: rgba(0, 0, 0, 0.02);
+    --lighter: #ffffff73;
+
+    --darker-lighter:rgba(0, 0, 0, 0.1);
     --ecobrick-preview: rgba(255, 255, 255, 0.836);
     --x-button-over: rgb(146, 146, 146);
     --input-background: rgb(229, 213, 241);

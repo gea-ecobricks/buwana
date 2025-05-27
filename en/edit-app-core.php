@@ -119,7 +119,7 @@ if (!$app) {
       <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt; 
       Edit Core
     </div>
-    <h1 data-lang-id="000-edit-core-date">Edit Core Data</h1>
+    <h2 data-lang-id="000-edit-core-date" style="martoin">Edit Core Data</h2>
     <p>Set the core parameters for your <?= htmlspecialchars($app['app_display_name']) ?> app.  These will set the base display and functionality for signing up, logins, redirects and log outs.</p>
     <form id="edit-core-form" method="post" style="margin-top:20px;">
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">

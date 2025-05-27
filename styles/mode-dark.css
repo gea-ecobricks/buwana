@@ -43,6 +43,7 @@
   --lighter: rgba(255, 255, 255, 0.1);
   --friends-chat: #005268;
   --my-chat: #522c5c;
+    --darker-lighter:rgba(0, 0, 0, 0.1);
 
   --ecobrick-preview: rgba(0, 0, 0, 0.836);
   --x-button-over: rgb(51, 52, 63);
