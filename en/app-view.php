@@ -130,13 +130,14 @@ if ($stmt) {
         <div style="text-align:right;margin-right:10px;">
           <div class="page-name">Manage: <?= htmlspecialchars($app['app_display_name']) ?></div>
           <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+          <div class="breadcrumb" style="margin-left:auto;">
+                  <a href="dashboard.php">Dashboard</a> &gt;
+                  Manage <?= htmlspecialchars($app['app_display_name']) ?>
+                </div>
         </div>
         <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="50" height="50">
       </div>
-      <div class="breadcrumb" style="margin-left:auto;">
-        <a href="dashboard.php">Dashboard</a> &gt;
-        Manage <?= htmlspecialchars($app['app_display_name']) ?>
-      </div>
+
     </div>
     <div class="chart-container dashboard-module" style="margin-bottom:15px;">
       <canvas id="growthChart"></canvas>
