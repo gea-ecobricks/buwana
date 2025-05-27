@@ -60,7 +60,7 @@ $user_app_count = count($apps);
       <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
       <div class="page-name">App Manager Dashboard</div>
     </div>
-    <div class="chart-container">
+    <div class="chart-container dashboard-module">
       <canvas id="growthChart"></canvas>
       <p class="chart-caption">Buwana user growth over the last 30days</p>
     </div>

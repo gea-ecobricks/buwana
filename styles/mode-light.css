@@ -9,7 +9,8 @@
     --main-background: white;
     --text-color: #242424;
     --same: white;
-    --subdued-text: #454545;
+   --subdued-text: #454545;
+    --toggle-off: var(--subdued-text);
     --logo-color: #666;
     --top-header: #fff;
     --top-header-main: #ffffffbf;
@@ -569,6 +570,10 @@ background: url(../webps/brikchain-450px.webp) no-repeat center;
 .earthen-subs-top {
     background: url(../svgs/earthen-subscribe-top-day.svg) no-repeat center;
     background-size: contain;
+}
+
+.toggle-switch .slider {
+    background-color: var(--toggle-off);
 }
 
 /* Light mode pastel colors */

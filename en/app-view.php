@@ -89,16 +89,16 @@ if ($stmt) {
     <div class="top-wrapper">
       <div>
         <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
-        <div style="font-size:0.9em;">
+        <div style="font-size:0.9em;color:grey;">
           <?php if($app['is_active']): ?>
             🟢 <?= htmlspecialchars($app['app_display_name']) ?> is active
           <?php else: ?>
             ⚪ <?= htmlspecialchars($app['app_display_name']) ?> is not active
           <?php endif; ?>
         </div>
-        <div style="font-size:0.9em;">
+        <div style="font-size:0.9em;color:grey;">
           <?php if($app['allow_signup']): ?>
-            🟢 <?= htmlspecialchars($app['app_display_name']) ?> Signups enable
+            🟢 <?= htmlspecialchars($app['app_display_name']) ?> signups enabled
           <?php else: ?>
             <?= htmlspecialchars($app['app_display_name']) ?> ⚪ Signups Off
           <?php endif; ?>
@@ -109,7 +109,7 @@ if ($stmt) {
         <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
       </div>
     </div>
-    <div class="chart-container">
+    <div class="chart-container dashboard-module">
       <canvas id="growthChart"></canvas>
       <p class="chart-caption">App Manager user growth over the last 30 days. Total connections: <?= intval($total_connections) ?>.</p>
     </div>
@@ -140,7 +140,7 @@ if ($stmt) {
         </tbody>
       </table>
 
-      <div class="edit-app-params" style="margin-top:20px;">
+      <div class="edit-app-params dashboard-module" style="margin-top:20px;">
         <h4 style="text-align:center;">Edit App Parameters</h4>
         <div class="edit-button-row">
           <a href="edit-app-core.php?app_id=<?= intval($app_id) ?>" class="simple-button">Core Data</a>
@@ -148,26 +148,24 @@ if ($stmt) {
           <a href="edit-app-graphics.php?app_id=<?= intval($app_id) ?>" class="simple-button">Logos &amp; Icons</a>
           <a href="edit-app-signup.php?app_id=<?= intval($app_id) ?>" class="simple-button">Signup banners</a>
         </div>
-        <form method="post" style="margin-top:15px;">
-          <input type="hidden" name="update_flags" value="1">
-          <div style="margin-bottom:10px;">
-            <label>
-              <input type="checkbox" name="is_active" value="1" <?= $app['is_active'] ? 'checked' : '' ?>>
-              <b>Activate <?= htmlspecialchars($app['app_display_name']) ?>:</b>
+        <div style="margin-top:15px;">
+          <div class="toggle-row" style="margin-bottom:10px;">
+            <span><b>Enable <?= htmlspecialchars($app['app_display_name']) ?> Signups:</b></span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="allow_signup" <?= $app['allow_signup'] ? 'checked' : '' ?>>
+              <span class="slider"></span>
             </label>
-            <p style="font-size:0.9em;color:red;">This turns off all logins and signups on your app</p>
           </div>
-          <div style="margin-bottom:10px;">
-            <label>
-              <input type="checkbox" name="allow_signup" value="1" <?= $app['allow_signup'] ? 'checked' : '' ?>>
-              <b>Enable <?= htmlspecialchars($app['app_display_name']) ?> Signups:</b>
+          <p style="font-size:0.9em;color:orange;">This turns off signups on your app but it is still available to users.</p>
+          <div class="toggle-row" style="margin:10px 0;">
+            <span><b>Activate <?= htmlspecialchars($app['app_display_name']) ?>:</b></span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="is_active" <?= $app['is_active'] ? 'checked' : '' ?>>
+              <span class="slider"></span>
             </label>
-            <p style="font-size:0.9em;color:orange;">This turns off signups on your app but it is still available to users.</p>
           </div>
-          <div style="text-align:center;">
-            <button type="submit" class="simple-button">Save Flags</button>
-          </div>
-        </form>
+          <p style="font-size:0.9em;color:red;">This turns off all logins and signups on your app</p>
+        </div>
       </div>
   </div>
 </div>
@@ -186,6 +184,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var table = $('#userTable').DataTable({
     order: [[4, 'desc']]
+  });
+  $('#userTable_wrapper').addClass('dashboard-module');
+
+  function updateFlag(field, val) {
+    fetch('../api/update_app_flag.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams({
+        app_id: <?= intval($app_id) ?>,
+        field: field,
+        value: val
+      })
+    }).then(r => r.json()).then(d => {
+      if (!d.success) {
+        alert('Error updating ' + field);
+      }
+    });
+  }
+
+  document.getElementById('allow_signup').addEventListener('change', function() {
+    updateFlag('allow_signup', this.checked ? 1 : 0);
+  });
+
+  document.getElementById('is_active').addEventListener('change', function() {
+    updateFlag('is_active', this.checked ? 1 : 0);
   });
 
   $('#userTable tbody').on('click', 'tr', function() {

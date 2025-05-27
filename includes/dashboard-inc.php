@@ -58,6 +58,9 @@
 
 .dataTables_wrapper {
   margin: 0 auto;
+}
+
+.dashboard-module {
   background: var(--form-field-background);
   padding: 20px;
   border-radius: 10px;

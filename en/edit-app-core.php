@@ -74,16 +74,16 @@ if (!$app) {
     <div class="top-wrapper">
       <div>
         <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
-        <div style="font-size:0.9em;">
+        <div style="font-size:0.9em;color:grey;">
           <?php if($app['is_active']): ?>
             🟢 <?= htmlspecialchars($app['app_display_name']) ?> is active
           <?php else: ?>
             ⚪ <?= htmlspecialchars($app['app_display_name']) ?> is not active
           <?php endif; ?>
         </div>
-        <div style="font-size:0.9em;">
+        <div style="font-size:0.9em;color:grey;">
           <?php if($app['allow_signup']): ?>
-            🟢 <?= htmlspecialchars($app['app_display_name']) ?> Signups enable
+            🟢 <?= htmlspecialchars($app['app_display_name']) ?> signups enabled
           <?php else: ?>
             <?= htmlspecialchars($app['app_display_name']) ?> ⚪ Signups Off
           <?php endif; ?>
