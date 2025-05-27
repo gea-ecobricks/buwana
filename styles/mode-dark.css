@@ -692,3 +692,39 @@ background: url(../webps/brikchain-450px.webp) no-repeat center;
 .toggle-switch .slider {
   background-color: var(--toggle-off);
 }
+
+/* DataTables styling for dark mode */
+table.dataTable thead th {
+  background-color: var(--table-background-heading);
+  color: #fff;
+}
+
+table.dataTable tbody tr:nth-child(odd),
+table.dataTable.stripe tbody tr.odd,
+table.dataTable.display tbody tr.odd {
+  background-color: var(--table-background-1);
+}
+
+table.dataTable tbody tr:nth-child(even),
+table.dataTable.stripe tbody tr.even,
+table.dataTable.display tbody tr.even {
+  background-color: var(--table-background-2);
+}
+
+table.dataTable tbody tr:hover {
+  background-color: var(--table-background-hover);
+}
+
+table.dataTable tbody td {
+  color: var(--text-color);
+}
+
+table.dataTable tbody tr {
+  border-bottom: 1px solid var(--divider-line);
+}
+
+table.dataTable tbody td.sorting_1,
+table.dataTable tbody td.sorting_2,
+table.dataTable tbody td.sorting_3 {
+  background-color: inherit !important;
+}
