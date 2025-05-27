@@ -126,16 +126,19 @@ if ($stmt) {
           <?php endif; ?>
         </div>
       </div>
-      <div style="display:flex;align-items:center;margin-left:auto;">
-        <div style="text-align:right;margin-right:10px;">
-          <div class="page-name">Manage: <?= htmlspecialchars($app['app_display_name']) ?></div>
-          <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
-          <div class="breadcrumb" style="margin-left:auto;">
-                  <a href="dashboard.php">Dashboard</a> &gt;
-                  Manage <?= htmlspecialchars($app['app_display_name']) ?>
+      <div style="display:flex;flex-flow:column;margin-left:auto;">
+          <div style="display:flex;align-items:center;margin-left:auto;">
+
+                <div style="text-align:right;margin-right:10px;">
+                  <div class="page-name">Manage: <?= htmlspecialchars($app['app_display_name']) ?></div>
+                  <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
                 </div>
-        </div>
-        <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="50" height="50">
+                <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="60" height="60">
+          </div>
+            <div class="breadcrumb" style="margin-left:auto;">
+                          <a href="dashboard.php">Dashboard</a> &gt;
+                          Manage <?= htmlspecialchars($app['app_display_name']) ?>
+                        </div>
       </div>
 
     </div>
