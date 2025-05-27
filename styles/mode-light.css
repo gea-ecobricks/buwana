@@ -578,4 +578,26 @@ background: url(../webps/brikchain-450px.webp) no-repeat center;
     background-color: var(--toggle-off);
 }
 
+/* DataTables styling for light mode */
+table.dataTable thead th {
+    background-color: var(--table-background-heading);
+    color: #fff;
+}
+
+table.dataTable tbody tr:nth-child(odd),
+table.dataTable.stripe tbody tr.odd,
+table.dataTable.display tbody tr.odd {
+    background-color: var(--table-background-1);
+}
+
+table.dataTable tbody tr:nth-child(even),
+table.dataTable.stripe tbody tr.even,
+table.dataTable.display tbody tr.even {
+    background-color: var(--table-background-2);
+}
+
+table.dataTable tbody tr:hover {
+    background-color: var(--table-background-hover);
+}
+
 /* Light mode pastel colors */
