@@ -12,7 +12,24 @@ $version = '0.1';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
 if (empty($_SESSION['buwana_id'])) {
-    header('Location: login.php');
+    $query = [
+        'status'   => 'loggedout',
+        'redirect' => $page,
+    ];
+    if (!empty($client_id)) {
+        $query['app'] = $client_id;
+    } elseif (!empty($_GET['client_id'])) {
+        $query['app'] = $_GET['client_id'];
+    } elseif (!empty($_GET['app'])) {
+        $query['app'] = $_GET['app'];
+    }
+    if (!empty($buwana_id)) {
+        $query['id'] = $buwana_id;
+    } elseif (!empty($_GET['id'])) {
+        $query['id'] = $_GET['id'];
+    }
+
+    header('Location: login.php?' . http_build_query($query));
     exit();
 }
 
