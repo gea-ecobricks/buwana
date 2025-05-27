@@ -52,8 +52,15 @@
 }
 
 .chart-container {
-  max-width: 600px;
+  width: 100%;
   margin: 0 auto;
+}
+
+.dataTables_wrapper {
+  margin: 0 auto;
+  background: var(--form-field-background);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .chart-caption {
@@ -128,6 +135,22 @@
 
 .kick-ass-submit {
   text-decoration: none;
+}
+
+.simple-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--button-2-2);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.edit-button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 </style>

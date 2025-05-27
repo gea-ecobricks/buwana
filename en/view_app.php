@@ -110,11 +110,18 @@ if ($stmt) {
         </tbody>
       </table>
 
-      <div style="margin-top:20px;text-align:center;">
-        <a href="edit_app_core.php?app_id=<?= intval($app_id) ?>" class="kick-ass-submit">Edit Core App Data</a>
+      <div class="edit-app-params" style="margin-top:20px;">
+        <h4 style="text-align:center;">Edit App Parameters</h4>
+        <div class="edit-button-row">
+          <a href="edit_app_core.php?app_id=<?= intval($app_id) ?>" class="simple-button">Core Data</a>
+          <a href="edit-app-texts.php?app_id=<?= intval($app_id) ?>" class="simple-button">App texts</a>
+          <a href="edit-app-graphics.php?app_id=<?= intval($app_id) ?>" class="simple-button">Logos &amp; Icons</a>
+          <a href="edit-app-signup.php?app_id=<?= intval($app_id) ?>" class="simple-button">Signup banners</a>
+        </div>
       </div>
   </div>
 </div>
+</div> <!-- closes main -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   fetch('../analytics/get-growth-data.php?app_id=<?= intval($app_id) ?>')
