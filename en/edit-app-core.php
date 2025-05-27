@@ -97,7 +97,7 @@ if (!$app) {
         <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="50" height="50">
       </div>
     </div>
-    <h1 data-lang-id="000-edit-core-date">ℹ️ Edit Core Data</h1>
+    <h1 data-lang-id="000-edit-core-date">Edit Core Data</h1>
     <p>Set the core parameters for your <?= htmlspecialchars($app['app_display_name']) ?> app.  These will set the base display and functionality for signing up, logins, redirects and log outs.</p>
     <form id="edit-core-form" method="post" style="margin-top:20px;">
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
@@ -111,7 +111,7 @@ if (!$app) {
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="app_login_url" name="app_login_url" aria-label="App Login URL" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_login_url']) ?>">
         <label for="app_login_url">App Login URL</label>
-        <p class="form-caption" data-lang-id="011b-required">This is where we'll direct users to login to your app (i.e. after signup)</p>
+        <p class="form-caption" data-lang-id="001-app-login-field-description">This is where we'll direct users to login to your app (i.e. after signup)</p>
 
         <div id="app_login_url-error-required" class="form-field-error">This field is required.</div>
         <div id="app_login_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
@@ -189,6 +189,7 @@ if (!$app) {
       </div>
     </form>
   </div>
+</div>
 </div>
 </div> <!-- closes main -->
 <?php require_once("../footer-2025.php"); ?>
