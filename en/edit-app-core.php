@@ -214,7 +214,7 @@ if (!$app) {
       </div>
       <div class="submit-button-wrapper">
         <button type="submit" id="submit-button" name="update_app" class="kick-ass-submit">
-          <span id="submit-button-text">Save Changes</span>
+          <span id="submit-button-text">💾 Save Changes</span>
           <span id="submit-emoji" class="submit-emoji" style="display:none;"></span>
         </button>
       </div>
