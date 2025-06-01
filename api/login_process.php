@@ -6,8 +6,11 @@ ini_set('display_errors', '0'); // Suppress in production
 
 define('DEVMODE', true); // Toggle for development
 
-// Set headers
+// ---------------------------------------------
+// Part 1: CORS Handling
+// ---------------------------------------------
 header('Content-Type: application/json; charset=utf-8');
+
 $allowed_origins = [
     'https://cal.earthen.io',
     'https://cycles.earthen.io',
@@ -21,8 +24,10 @@ $origin = rtrim($origin, '/');
 
 if (DEVMODE && empty($origin)) {
     header('Access-Control-Allow-Origin: http://localhost:8080');
+    header('Access-Control-Allow-Credentials: true');
 } elseif (in_array($origin, $allowed_origins)) {
     header("Access-Control-Allow-Origin: $origin");
+    header('Access-Control-Allow-Credentials: true');
 } else {
     error_log('CORS error: Invalid or missing HTTP_ORIGIN - ' . $origin);
     http_response_code(403);
@@ -32,16 +37,27 @@ if (DEVMODE && empty($origin)) {
 
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Credentials: true');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Start secure session
+// ---------------------------------------------
+// Part 2: Session Initialization with Cookie Policy
+// ---------------------------------------------
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => '',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'None'
+]);
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
 } elseif (time() - $_SESSION['CREATED'] > 1800) {
@@ -49,7 +65,9 @@ if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
 }
 
-// Collect credentials
+// ---------------------------------------------
+// Part 3: Collect Login Credentials
+// ---------------------------------------------
 $credential_key = $_POST['credential_key'] ?? '';
 $password = $_POST['password'] ?? '';
 $client_id = $_POST['client_id'] ?? '';
@@ -61,7 +79,9 @@ if (empty($credential_key) || empty($password)) {
 }
 
 try {
-    // Step 1: Fetch buwana_id
+    // ---------------------------------------------
+    // Part 4: Validate Credential Key & Fetch buwana_id
+    // ---------------------------------------------
     $sqlAuth = "SELECT buwana_id FROM credentials_tb WHERE credential_key = ?";
     $stmtAuth = $buwana_conn->prepare($sqlAuth);
     $stmtAuth->bind_param("s", $credential_key);
@@ -75,7 +95,9 @@ try {
         exit();
     }
 
-    // Step 2: Verify password
+    // ---------------------------------------------
+    // Part 5: Verify Password Hash
+    // ---------------------------------------------
     $sqlUserPass = "SELECT password_hash FROM users_tb WHERE buwana_id = ?";
     $stmtUserPass = $buwana_conn->prepare($sqlUserPass);
     $stmtUserPass->bind_param("i", $buwana_id);
@@ -85,6 +107,7 @@ try {
     $stmtUserPass->close();
 
     if (!$buwana_id || !password_verify($password, $password_hash)) {
+        // Password verification failed: log the failed attempt
         $sql_check_failed = "SELECT failed_last_tm, failed_password_count FROM credentials_tb WHERE credential_key = ?";
         $stmt_check_failed = $buwana_conn->prepare($sql_check_failed);
         $stmt_check_failed->bind_param('s', $credential_key);
@@ -116,7 +139,16 @@ try {
         exit();
     }
 
-    // Update login stats
+    // ---------------------------------------------
+    // Part 6: Update Login Statistics
+    // ---------------------------------------------
+    /*
+        On successful login:
+        - Record the timestamp of the login in both the users and credentials tables.
+        - Increment the login count in users_tb.
+        - Increment the use count in credentials_tb.
+        These stats are useful for security audits, user engagement tracking, and account management.
+    */
     $sql_update_user = "UPDATE users_tb SET last_login = NOW(), login_count = login_count + 1 WHERE buwana_id = ?";
     $stmt_update_user = $buwana_conn->prepare($sql_update_user);
     $stmt_update_user->bind_param('i', $buwana_id);
@@ -129,7 +161,9 @@ try {
     $stmt_update_credential->execute();
     $stmt_update_credential->close();
 
-    // ✅ Store session state
+    // ---------------------------------------------
+    // Part 7: Set Session State
+    // ---------------------------------------------
     $_SESSION['buwana_id'] = $buwana_id;
 
     $connection_id = null;
@@ -144,9 +178,18 @@ try {
         $stmt_conn->close();
 
         if (!$connection_id) {
+            // 🔄 New Logic: Fetch user's preferred language for redirect
+            $language_id = 'en'; // Default fallback
+            $stmt_lang = $buwana_conn->prepare("SELECT language_id FROM users_tb WHERE buwana_id = ?");
+            $stmt_lang->bind_param("i", $buwana_id);
+            $stmt_lang->execute();
+            $stmt_lang->bind_result($language_id);
+            $stmt_lang->fetch();
+            $stmt_lang->close();
+
             echo json_encode([
                 'success' => true,
-                'redirect' => "https://buwana.ecobricks.org/en/app-connect.php?app=$client_id&id=$buwana_id"
+                'redirect' => "https://buwana.ecobricks.org/$language_id/app-connect.php?app=$client_id&id=$buwana_id"
             ]);
             exit();
         }
@@ -159,6 +202,9 @@ try {
         error_log("SESSION STATE: " . json_encode($_SESSION));
     }
 
+    // ---------------------------------------------
+    // Part 8: Return Success Response
+    // ---------------------------------------------
     echo json_encode([
         'success' => true,
         'buwana_id' => $buwana_id,
@@ -166,7 +212,6 @@ try {
         'connection_id' => $connection_id,
         'message' => 'login_successful'
     ]);
-
     exit();
 
 } catch (Exception $e) {
