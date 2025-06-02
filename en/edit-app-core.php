@@ -32,7 +32,7 @@ $scope_descriptions = [
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'edit-app-core';
-$version = '0.1';
+$version = '0.11';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
 if (empty($_SESSION['buwana_id'])) {
