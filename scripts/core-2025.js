@@ -285,7 +285,7 @@ function openModal(contentHtml) {
 document.addEventListener('DOMContentLoaded', () => {
     if (window.Chart && Chart.defaults) {
         const styles = getComputedStyle(document.documentElement);
-        const subdued = styles.getPropertyValue('--subdued-text').trim();
+        const subdued = styles.getPropertyValue('--h1').trim();
         if (subdued) {
             Chart.defaults.color = subdued;
         }
