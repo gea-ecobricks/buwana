@@ -35,9 +35,9 @@ if ($app_results && $app_results->num_rows > 0) {
 
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
-<div id="top-banner" style="width:100%;height: auto;"><img scr="../webps/top-buwana-landing-banner.webp"></div>
-<p  data-lang-id="3000-about-buwana-description">
-      Buwana is an open-source login system for regenerative web applications developed by the Global Ecobrick Alliance. These apps all share a common commitment to people, planet, and privacy.
+<div id="top-buwana-banner" style="width:100%;height: auto;"><img scr="../webps/top-buwana-landing-banner.webp"></div>
+<p  data-lang-id="001-about-buwana-description">
+      Buwana is an open-source login system for regenerative web applications developed by the Global Ecobrick Alliance. The Buwana protocol provides the a user authentication alternative for apps that want to escape corporate logins for an ecoystem of resonant, green for-Earth enterprises.
     </p>
     <div class="app-grid">
       <?php foreach ($apps as $app):
