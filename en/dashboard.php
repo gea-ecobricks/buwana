@@ -97,7 +97,8 @@ if ($alert_count > 0) {
     <div class="chart-container dashboard-module">
       <canvas id="growthChart"></canvas>
       <div class="chart-controls">
-        <select id="timeRange">
+        <select id="timeRange" style="width:auto;padding:4px 8px;font-size:0.9em;background:var(--form-field-background)!important;color:var(--subdued-text)!important;border:1px solid var(--subdued-text)!important;border-radius:4px;">
+
           <option value="24h">Last 24hrs</option>
           <option value="week">Last Week</option>
           <option value="month" selected>Last Month</option>
