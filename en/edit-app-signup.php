@@ -283,6 +283,25 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('edit-signup-form');
   const fields = ['signup_1_top_img_light','signup_1_top_img_dark','signup_2_top_img_light','signup_2_top_img_dark','signup_3_top_img_light','signup_3_top_img_dark','signup_4_top_img_light','signup_4_top_img_dark','signup_5_top_img_light','signup_5_top_img_dark','signup_6_top_img_light','signup_6_top_img_dark','signup_7_top_img_light','signup_7_top_img_dark','login_top_img_light','login_top_img_dark'];
 
+  fields.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) {
+      const img = document.createElement('img');
+      img.id = 'preview-' + id;
+      img.src = input.value;
+      img.style.maxWidth = '250px';
+      img.style.maxHeight = '100px';
+      img.style.display = input.value ? 'block' : 'none';
+      img.style.margin = '0 0 5px 0';
+      img.onerror = () => { img.style.display = 'none'; };
+      input.parentNode.insertBefore(img, input);
+      input.addEventListener('input', () => {
+        img.src = input.value;
+        img.style.display = input.value ? 'block' : 'none';
+      });
+    }
+  });
+
   function updateStatusMessage(success, message = '') {
     const statusEl = document.getElementById('update-status');
     const errorEl = document.getElementById('update-error');
@@ -334,14 +353,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const formData = new FormData(form);
     formData.append('update_app', '1');
-    fetch('edit_appsignup_process.php?app_id=<?= intval($app_id) ?>', {
+    fetch('edit-app-signup.php?app_id=<?= intval($app_id) ?>&ajax=1', {
       method: 'POST',
       body: formData
-    }).then(r => r.json()).then(d => {
-      if (d.success) {
-        updateStatusMessage(true);
-      } else {
-        updateStatusMessage(false, d.error || 'Unknown error');
+    }).then(r => r.text()).then(text => {
+      try {
+        const d = JSON.parse(text);
+        if (d.success) {
+          updateStatusMessage(true);
+        } else {
+          updateStatusMessage(false, d.error || 'Unknown error');
+        }
+      } catch (e) {
+        updateStatusMessage(false, text.trim() || e.message);
       }
     }).catch(err => {
       updateStatusMessage(false, err.message);
