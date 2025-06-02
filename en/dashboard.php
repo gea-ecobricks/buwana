@@ -117,13 +117,25 @@ document.addEventListener('DOMContentLoaded', function() {
   fetch('../analytics/get-user-growth.php')
     .then(r => r.json())
     .then(chartData => {
+      chartData.labels = chartData.labels.map(dt => dt.slice(5));
       new Chart(document.getElementById('growthChart'), {
         type: 'line',
         data: chartData,
         options: {
           responsive: true,
           plugins: {
-            legend: { position: 'bottom' }
+            legend: {
+              position: 'bottom',
+              labels: { color: 'var(--text-color)' }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: 'var(--subdued-text)' }
+            },
+            y: {
+              ticks: { color: 'var(--subdued-text)' }
+            }
           }
         }
       });
