@@ -231,30 +231,14 @@ if (!$app) {
   $profile_scopes = ['openid','email','profile','phone','buwana:earthlingEmoji','buwana:location.continent'];
   $all_profile = count(array_intersect($profile_scopes, $selected_scopes)) === count($profile_scopes);
 ?>
-          <div class="scope-row">
-            <div class="scope-info">
-              <span><b>Buwana Profile</b> 🌐</span>
-              <span class="scope-caption">Essential user data for logging in and using the app</span>
-              <span class="scope-subscopes">openId, Name, email, profile, phone, buwana:earthlingEmoji, buwana:location_continent</span>
-            </div>
-            <label class="toggle-switch">
-              <input type="checkbox" class="scope-checkbox scope-group" data-scopes="<?= implode(',', $profile_scopes) ?>" <?= $all_profile ? 'checked' : '' ?>>
-              <span class="slider"></span>
-            </label>
-<?php foreach ($profile_scopes as $sc): ?>
-            <input type="checkbox" class="scope-checkbox hidden-scope" name="scopes[]" value="<?= htmlspecialchars($sc) ?>" <?= in_array($sc, $selected_scopes) ? 'checked' : '' ?> style="display:none;">
-<?php endforeach; ?>
-          </div>
-<?php foreach (['buwana:community','buwana:bioregion'] as $scope): ?>
-          <div class="scope-row">
-            <div class="scope-info">
+
               <span><b><?= htmlspecialchars($scope) ?></b> ℹ️</span>
               <span class="scope-caption">
                 <?= htmlspecialchars($scope_descriptions[$scope] ?? '') ?>
               </span>
             </div>
             <label class="toggle-switch">
-              <input type="checkbox" class="scope-checkbox" name="scopes[]" value="<?= htmlspecialchars($scope) ?>" <?= in_array($scope, $selected_scopes) ? 'checked' : '' ?>>
+              <input type="checkbox" class="scope-checkbox" name="scopes[]" value="<?= htmlspecialchars($scope) ?>" <?= in_array($scope, $selected_scopes) ? 'checked' : '' ?> />
               <span class="slider"></span>
             </label>
           </div>
@@ -338,16 +322,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const scopeBoxes = document.querySelectorAll('.scope-checkbox');
   const groupToggles = document.querySelectorAll('.scope-group');
 
-  groupToggles.forEach(tg => {
-    tg.addEventListener('change', () => {
-      const scopes = tg.dataset.scopes.split(',');
-      scopes.forEach(sc => {
-        const cb = document.querySelector('.hidden-scope[value="' + sc + '"]');
-        if (cb) cb.checked = tg.checked;
-      });
-      validateScopes();
-    });
-  });
 
   function updateStatusMessage(success, message = '') {
     const statusEl = document.getElementById('update-status');
@@ -397,6 +371,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   scopeBoxes.forEach(cb => cb.addEventListener('change', validateScopes));
+  groupToggles.forEach(tg => {
+    tg.addEventListener('change', () => {
+      const scopes = tg.dataset.scopes.split(',');
+      scopes.forEach(sc => {
+        const cb = document.querySelector('.hidden-scope[value="' + sc + '"]');
+        if (cb) cb.checked = tg.checked;
+      });
+      validateScopes();
+    });
+  });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
