@@ -18,6 +18,18 @@ $scope_options = [
     'buwana:location.continent'
 ];
 
+$scope_descriptions = [
+    'openid'                  => 'Unique identifier for user login',
+    'email'                   => 'Access to user email address',
+    'profile'                 => 'Basic profile information',
+    'address'                 => 'User postal address details',
+    'phone'                   => 'Telephone number information',
+    'buwana:bioregion'        => 'User watershed & bioregion',
+    'buwana:earthlingEmoji'   => 'Preferred emoji avatar',
+    'buwana:community'        => 'Community membership',
+    'buwana:location.continent' => 'Continent of residence'
+];
+
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'edit-app-core';
 $version = '0.1';
@@ -74,12 +86,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $app_display_name  = $_POST['app_display_name'] ?? '';
     $contact_email     = $_POST['contact_email'] ?? '';
 
+    $success = false;
+    $error_message = '';
+
     $sql = "UPDATE apps_tb SET redirect_uris=?, app_login_url=?, scopes=?, app_domain=?, app_url=?, app_dashboard_url=?, app_description=?, app_version=?, app_display_name=?, contact_email=? WHERE app_id=? AND owner_buwana_id=?";
     $stmt = $buwana_conn->prepare($sql);
     if ($stmt) {
-        $stmt->bind_param('ssssssssssii', $redirect_uris, $app_login_url, $scopes, $app_domain, $app_url, $app_dashboard_url, $app_description, $app_version, $app_display_name, $contact_email, $app_id, $buwana_id);
-        $stmt->execute();
+        if ($stmt->bind_param('ssssssssssii', $redirect_uris, $app_login_url, $scopes, $app_domain, $app_url, $app_dashboard_url, $app_description, $app_version, $app_display_name, $contact_email, $app_id, $buwana_id)) {
+            $success = $stmt->execute();
+            if (!$success) {
+                $error_message = $stmt->error;
+            }
+        } else {
+            $error_message = $stmt->error;
+        }
         $stmt->close();
+    } else {
+        $error_message = $buwana_conn->error;
+    }
+
+    if (isset($_GET['ajax'])) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => $success, 'error' => $error_message]);
+        exit();
     }
 }
 
@@ -107,16 +136,24 @@ if (!$app) {
       .top-wrapper {
         background: var(--darker-lighter);
       }
-      .scopes-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
-        padding: 7px;
-      }
-      .scopes-grid label {
+      .scopes-list {
         display: flex;
+        flex-direction: column;
+      }
+      .scope-row {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 5px;
+        padding: 7px 0;
+        border-bottom: 1px solid var(--lighter);
+      }
+      .scope-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .scope-caption {
+        font-size: 0.9em;
+        color: grey;
       }
     </style>
 <div id="form-submission-box" class="landing-page-form">
@@ -180,9 +217,20 @@ if (!$app) {
       </div>
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <label for="scopes" style="padding:7px;">Scopes</label>
-        <div id="scopes" class="scopes-grid">
+        <div id="scopes" class="scopes-list">
 <?php foreach ($scope_options as $scope): ?>
-          <label><input type="checkbox" class="scope-checkbox" name="scopes[]" value="<?= htmlspecialchars($scope) ?>" <?= in_array($scope, $selected_scopes) ? 'checked' : '' ?>> <?= htmlspecialchars($scope) ?></label>
+          <div class="scope-row">
+            <div class="scope-info">
+              <span><b><?= htmlspecialchars($scope) ?></b></span>
+              <span class="scope-caption">
+                <?= htmlspecialchars($scope_descriptions[$scope] ?? '') ?>
+              </span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" class="scope-checkbox" name="scopes[]" value="<?= htmlspecialchars($scope) ?>" <?= in_array($scope, $selected_scopes) ? 'checked' : '' ?>>
+              <span class="slider"></span>
+            </label>
+          </div>
 <?php endforeach; ?>
         </div>
         <p class="form-caption" data-lang-id="011c-scopes">OAuth scopes requested by your app</p>
@@ -262,6 +310,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const fields = ['redirect_uris','app_login_url','app_domain','app_url','app_dashboard_url','app_description','app_version','app_display_name','contact_email'];
   const scopeBoxes = document.querySelectorAll('.scope-checkbox');
 
+  function updateStatusMessage(success, message = '') {
+    const statusEl = document.getElementById('update-status');
+    const errorEl = document.getElementById('update-error');
+    statusEl.textContent = '';
+    errorEl.textContent = '';
+    if (success) {
+      statusEl.textContent = '✅ App updated!';
+    } else {
+      errorEl.textContent = '😭 There was a problem: ' + message;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function hasInvalidChars(value) {
     return /[\'"<>]/.test(value);
   }
@@ -299,12 +360,27 @@ document.addEventListener('DOMContentLoaded', function () {
   scopeBoxes.forEach(cb => cb.addEventListener('change', validateScopes));
 
   form.addEventListener('submit', function (e) {
+    e.preventDefault();
     let allValid = true;
     fields.forEach(f => { if (!validateField(f)) allValid = false; });
     if (!validateScopes()) allValid = false;
     if (!allValid) {
-      e.preventDefault();
+      return;
     }
+
+    const formData = new FormData(form);
+    fetch('edit-app-core.php?app_id=<?= intval($app_id) ?>&ajax=1', {
+      method: 'POST',
+      body: formData
+    }).then(r => r.json()).then(d => {
+      if (d.success) {
+        updateStatusMessage(true);
+      } else {
+        updateStatusMessage(false, d.error || 'Unknown error');
+      }
+    }).catch(err => {
+      updateStatusMessage(false, err.message);
+    });
   });
 });
 </script>
