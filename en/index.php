@@ -33,13 +33,14 @@ if ($app_results && $app_results->num_rows > 0) {
 
 <?php require_once ("../includes/buwana-index-inc.php");?>
 
-   <div id="top-page-image"
-        class="top-page-image"
-        data-light-img="../webps/top-buwana-landing-banner.webp"
-        data-dark-img="../webps/top-buwana-landing-banner.webp">
-   </div>
+
 
 <div id="form-submission-box" class="landing-page-form">
+    <div id="top-page-image"
+            style="width:100%;height:350px;"
+            data-light-img="../webps/top-buwana-landing-banner.webp"
+            data-dark-img="../webps/top-buwana-landing-banner.webp">
+       </div>
   <div class="form-container">
 <p  data-lang-id="001-about-buwana-description">
       Buwana is an open-source login system for regenerative web applications developed by the Global Ecobrick Alliance. The Buwana protocol provides the a user authentication alternative for apps that want to escape corporate logins for an ecoystem of resonant, green for-Earth enterprises.
@@ -55,7 +56,7 @@ if ($app_results && $app_results->num_rows > 0) {
         <a href="<?= htmlspecialchars($link) ?>" class="app-display-box">
           <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon">
           <h4><?= htmlspecialchars($app['app_display_name']) ?></h4>
-          <p><?= htmlspecialchars($app['app_description']) ?></p>
+          <p><?= htmlspecialchars($app['app_slogan']) ?></p>
         </a>
       <?php endforeach; ?>
     </div>
