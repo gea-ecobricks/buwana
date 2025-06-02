@@ -32,7 +32,7 @@ $scope_descriptions = [
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'edit-app-core';
-$version = '0.1';
+$version = '0.11';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
 if (empty($_SESSION['buwana_id'])) {
@@ -69,6 +69,48 @@ if ($stmt) {
     $stmt->bind_result($first_name, $earthling_emoji);
     $stmt->fetch();
     $stmt->close();
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
+    $redirect_uris     = $_POST['redirect_uris'] ?? '';
+    $app_login_url     = $_POST['app_login_url'] ?? '';
+    $scopes_input      = $_POST['scopes'] ?? [];
+    $scopes_input      = is_array($scopes_input) ? $scopes_input : [];
+    $scopes_input      = array_intersect($scopes_input, $scope_options);
+    $scopes            = implode(',', $scopes_input);
+    $app_domain        = $_POST['app_domain'] ?? '';
+    $app_url           = $_POST['app_url'] ?? '';
+    $app_dashboard_url = $_POST['app_dashboard_url'] ?? '';
+    $app_description   = $_POST['app_description'] ?? '';
+    $app_version       = $_POST['app_version'] ?? '';
+    $app_display_name  = $_POST['app_display_name'] ?? '';
+    $contact_email     = $_POST['contact_email'] ?? '';
+
+    $success = false;
+    $error_message = '';
+
+    $sql = "UPDATE apps_tb SET redirect_uris=?, app_login_url=?, scopes=?, app_domain=?, app_url=?, app_dashboard_url=?, app_description=?, app_version=?, app_display_name=?, contact_email=? WHERE app_id=? AND owner_buwana_id=?";
+    $stmt = $buwana_conn->prepare($sql);
+    if ($stmt) {
+        if ($stmt->bind_param('ssssssssssii', $redirect_uris, $app_login_url, $scopes, $app_domain, $app_url, $app_dashboard_url, $app_description, $app_version, $app_display_name, $contact_email, $app_id, $buwana_id)) {
+            $success = $stmt->execute();
+            if (!$success) {
+                $error_message = $stmt->error;
+            }
+        } else {
+            $error_message = $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        $error_message = $buwana_conn->error;
+    }
+
+    if (isset($_GET['ajax'])) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => $success, 'error' => $error_message]);
+        exit();
+    }
 }
 
 
@@ -331,6 +373,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const formData = new FormData(form);
     formData.append('update_app', '1');
     fetch('edit_appcore_process.php?app_id=<?= intval($app_id) ?>', {
+
       method: 'POST',
       body: formData
     }).then(r => r.json()).then(d => {
