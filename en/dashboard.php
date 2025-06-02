@@ -96,6 +96,14 @@ if ($alert_count > 0) {
     </div>
     <div class="chart-container dashboard-module">
       <canvas id="growthChart"></canvas>
+      <div class="chart-controls">
+        <select id="timeRange">
+          <option value="24h">Last 24hrs</option>
+          <option value="week">Last Week</option>
+          <option value="month" selected>Last Month</option>
+          <option value="year">Last Year</option>
+        </select>
+      </div>
     </div>
     <p class="welcome-msg" style="text-align: center;">Welcome back <?= htmlspecialchars($first_name) ?>!  You have <?= intval($new_account_count_for_user) ?> new users in the last 24hrs.  Manage your <?= $user_app_count ?> apps here...</p>
     <div class="app-grid">
@@ -114,32 +122,37 @@ if ($alert_count > 0) {
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('../analytics/get-user-growth.php')
-    .then(r => r.json())
-    .then(chartData => {
-      chartData.labels = chartData.labels.map(dt => dt.slice(5));
-      new Chart(document.getElementById('growthChart'), {
-        type: 'line',
-        data: chartData,
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: { color: 'var(--text-color)' }
+  Chart.defaults.color = 'var(--subdued-text)';
+  const ctx = document.getElementById('growthChart').getContext('2d');
+  let growthChart;
+
+  function loadChart(range = 'month') {
+    fetch('../analytics/get-user-growth.php?range=' + range)
+      .then(r => r.json())
+      .then(chartData => {
+        if (growthChart) {
+          growthChart.data = chartData;
+          growthChart.update();
+        } else {
+          growthChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { position: 'bottom' }
+              }
             }
-          },
-          scales: {
-            x: {
-              ticks: { color: 'var(--subdued-text)' }
-            },
-            y: {
-              ticks: { color: 'var(--subdued-text)' }
-            }
-          }
+          });
         }
       });
-    });
+  }
+
+  document.getElementById('timeRange').addEventListener('change', function() {
+    loadChart(this.value);
+  });
+
+  loadChart();
 });
 </script>
 <?php require_once("../footer-2025.php"); ?>
