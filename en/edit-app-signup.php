@@ -34,8 +34,6 @@ $success = false;
 $error_message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
-    $signup_top_img_url       = $_POST['signup_top_img_url'] ?? '';
-    $signup_top_img_dark_url  = $_POST['signup_top_img_dark_url'] ?? '';
     $signup_1_top_img_light   = $_POST['signup_1_top_img_light'] ?? '';
     $signup_1_top_img_dark    = $_POST['signup_1_top_img_dark'] ?? '';
     $signup_2_top_img_light   = $_POST['signup_2_top_img_light'] ?? '';
@@ -53,10 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $login_top_img_light      = $_POST['login_top_img_light'] ?? '';
     $login_top_img_dark       = $_POST['login_top_img_dark'] ?? '';
 
-    $sql = "UPDATE apps_tb SET signup_top_img_url=?, signup_top_img_dark_url=?, signup_1_top_img_light=?, signup_1_top_img_dark=?, signup_2_top_img_light=?, signup_2_top_img_dark=?, signup_3_top_img_light=?, signup_3_top_img_dark=?, signup_4_top_img_light=?, signup_4_top_img_dark=?, signup_5_top_img_light=?, signup_5_top_img_dark=?, signup_6_top_img_light=?, signup_6_top_img_dark=?, signup_7_top_img_light=?, signup_7_top_img_dark=?, login_top_img_light=?, login_top_img_dark=? WHERE app_id=? AND owner_buwana_id=?";
+    $sql = "UPDATE apps_tb SET signup_1_top_img_light=?, signup_1_top_img_dark=?, signup_2_top_img_light=?, signup_2_top_img_dark=?, signup_3_top_img_light=?, signup_3_top_img_dark=?, signup_4_top_img_light=?, signup_4_top_img_dark=?, signup_5_top_img_light=?, signup_5_top_img_dark=?, signup_6_top_img_light=?, signup_6_top_img_dark=?, signup_7_top_img_light=?, signup_7_top_img_dark=?, login_top_img_light=?, login_top_img_dark=? WHERE app_id=? AND owner_buwana_id=?";
     $stmt = $buwana_conn->prepare($sql);
     if ($stmt) {
-        if ($stmt->bind_param('ssssssssssssssssssii', $signup_top_img_url, $signup_top_img_dark_url, $signup_1_top_img_light, $signup_1_top_img_dark, $signup_2_top_img_light, $signup_2_top_img_dark, $signup_3_top_img_light, $signup_3_top_img_dark, $signup_4_top_img_light, $signup_4_top_img_dark, $signup_5_top_img_light, $signup_5_top_img_dark, $signup_6_top_img_light, $signup_6_top_img_dark, $signup_7_top_img_light, $signup_7_top_img_dark, $login_top_img_light, $login_top_img_dark, $app_id, $buwana_id)) {
+        if ($stmt->bind_param('ssssssssssssssssii', $signup_1_top_img_light, $signup_1_top_img_dark, $signup_2_top_img_light, $signup_2_top_img_dark, $signup_3_top_img_light, $signup_3_top_img_dark, $signup_4_top_img_light, $signup_4_top_img_dark, $signup_5_top_img_light, $signup_5_top_img_dark, $signup_6_top_img_light, $signup_6_top_img_dark, $signup_7_top_img_light, $signup_7_top_img_dark, $login_top_img_light, $login_top_img_dark, $app_id, $buwana_id)) {
             $success = $stmt->execute();
             if (!$success) {
                 $error_message = $stmt->error;
@@ -141,22 +139,6 @@ if (!$app) {
     <h1>Edit Signup Graphics</h1>
     <p>Update the signup and login images for your <?= htmlspecialchars($app['app_display_name']) ?> app.</p>
     <form id="edit-signup-form" method="post" style="margin-top:20px;">
-      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <input type="text" id="signup_top_img_url" name="signup_top_img_url" aria-label="Signup Banner Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_top_img_url']) ?>">
-        <label for="signup_top_img_url">Signup Banner Light</label>
-        <p class="form-caption">Image URL</p>
-        <div id="signup_top_img_url-error-required" class="form-field-error">This field is required.</div>
-        <div id="signup_top_img_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
-        <div id="signup_top_img_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
-      </div>
-      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <input type="text" id="signup_top_img_dark_url" name="signup_top_img_dark_url" aria-label="Signup Banner Dark" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_top_img_dark_url']) ?>">
-        <label for="signup_top_img_dark_url">Signup Banner Dark</label>
-        <p class="form-caption">Image URL</p>
-        <div id="signup_top_img_dark_url-error-required" class="form-field-error">This field is required.</div>
-        <div id="signup_top_img_dark_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
-        <div id="signup_top_img_dark_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
-      </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="signup_1_top_img_light" name="signup_1_top_img_light" aria-label="Signup 1 Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_1_top_img_light']) ?>">
         <label for="signup_1_top_img_light">Signup 1 Light</label>
@@ -299,7 +281,7 @@ if (!$app) {
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('edit-signup-form');
-  const fields = ['signup_top_img_url','signup_top_img_dark_url','signup_1_top_img_light','signup_1_top_img_dark','signup_2_top_img_light','signup_2_top_img_dark','signup_3_top_img_light','signup_3_top_img_dark','signup_4_top_img_light','signup_4_top_img_dark','signup_5_top_img_light','signup_5_top_img_dark','signup_6_top_img_light','signup_6_top_img_dark','signup_7_top_img_light','signup_7_top_img_dark','login_top_img_light','login_top_img_dark'];
+  const fields = ['signup_1_top_img_light','signup_1_top_img_dark','signup_2_top_img_light','signup_2_top_img_dark','signup_3_top_img_light','signup_3_top_img_dark','signup_4_top_img_light','signup_4_top_img_dark','signup_5_top_img_light','signup_5_top_img_dark','signup_6_top_img_light','signup_6_top_img_dark','signup_7_top_img_light','signup_7_top_img_dark','login_top_img_light','login_top_img_dark'];
 
   function updateStatusMessage(success, message = '') {
     const statusEl = document.getElementById('update-status');
