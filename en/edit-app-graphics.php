@@ -184,6 +184,25 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('edit-graphics-form');
   const fields = ['app_logo_url','app_logo_dark_url','app_square_icon_url','app_wordmark_url','app_wordmark_dark_url'];
 
+  fields.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) {
+      const img = document.createElement('img');
+      img.id = 'preview-' + id;
+      img.src = input.value;
+      img.style.maxWidth = '250px';
+      img.style.maxHeight = '100px';
+      img.style.display = input.value ? 'block' : 'none';
+      img.style.margin = '0 0 5px 0';
+      img.onerror = () => { img.style.display = 'none'; };
+      input.parentNode.insertBefore(img, input);
+      input.addEventListener('input', () => {
+        img.src = input.value;
+        img.style.display = input.value ? 'block' : 'none';
+      });
+    }
+  });
+
   function updateStatusMessage(success, message = '') {
     const statusEl = document.getElementById('update-status');
     const errorEl = document.getElementById('update-error');
