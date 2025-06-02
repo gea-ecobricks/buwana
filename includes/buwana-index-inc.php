@@ -7,6 +7,11 @@
 
 <style>
 
+        .buwana-lead-banner {
+        margin-top:-70px;
+        margin-bottom:20px;
+        }
+
  #buwana-top-logo {
  background: url('../svgs/b-logo.svg') center no-repeat;
 
