@@ -62,6 +62,20 @@ if ($stmt) {
     $stmt->close();
 }
 
+// Determine requested OAuth scopes
+$requested_scopes = array_filter(array_map('trim', explode(',', $app_info['scopes'] ?? '')));
+$scope_descriptions = [
+    'openid'                    => 'Unique identifier for user login',
+    'email'                     => 'Access to user email address',
+    'profile'                   => 'Basic profile information',
+    'address'                   => 'User postal address details',
+    'phone'                     => 'Telephone number information',
+    'buwana:bioregion'          => 'User watershed & bioregion',
+    'buwana:earthlingEmoji'     => 'Preferred emoji avatar',
+    'buwana:community'          => 'Community membership',
+    'buwana:location.continent' => 'Continent of residence',
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -164,6 +178,47 @@ padding-top: 10px !important;
   }
 }
 
+/* Scope list styling */
+.scope-list {
+  list-style: none;
+  margin: 20px auto;
+  padding: 0;
+  max-width: 500px;
+  border: 1px solid var(--subdued-text);
+  border-radius: 6px;
+  background: var(--form-background, #f6f8fa);
+  text-align: left;
+}
+.scope-list li {
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--subdued-text);
+  font-size: 0.95em;
+}
+.scope-list li:last-child {
+  border-bottom: none;
+}
+.scope-icon {
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+.scope-info {
+  display: flex;
+  flex-direction: column;
+}
+.scope-name {
+  font-weight: 600;
+}
+.scope-desc {
+  font-size: 0.85em;
+  color: var(--subdued-text);
+}
+.scope-sub {
+  font-size: 0.8em;
+  color: var(--subdued-text);
+}
+
 
 
 
@@ -199,6 +254,45 @@ padding-top: 10px !important;
        <p style="margin-top:-15px;margin-bottom:20px;">
             <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?>. <span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana <?= htmlspecialchars($email) ?> credentials so that you can login and make use of the app.</span>.
        </p>
+
+        <?php
+            $profile_group = ['openid','email','profile','address','phone','buwana:earthlingEmoji','buwana:location.continent'];
+            $display_scopes = ['openId','Name','email','profile','phone','buwana:earthlingEmoji','buwana:location_continent'];
+            $used_profile_scopes = array_intersect($profile_group, $requested_scopes);
+            $other_scopes = array_intersect($requested_scopes, ['buwana:community','buwana:bioregion']);
+        ?>
+        <?php if ($requested_scopes): ?>
+        <ul class="scope-list">
+            <?php if ($used_profile_scopes): ?>
+            <li>
+                <span class="scope-icon">🌐</span>
+                <span class="scope-info">
+                    <span class="scope-name">Buwana Profile</span>
+                    <span class="scope-desc">Essential user data for logging in and using the app</span>
+                    <span class="scope-sub">
+                        <?php
+                            $display_used = [];
+                            foreach ($display_scopes as $sc) {
+                                $key = str_replace(['openId','Name','location_continent'], ['openid','name','location.continent'], $sc);
+                                if (in_array($key, $used_profile_scopes)) $display_used[] = $sc;
+                            }
+                            echo htmlspecialchars(implode(', ', $display_used));
+                        ?>
+                    </span>
+                </span>
+            </li>
+            <?php endif; ?>
+            <?php foreach ($other_scopes as $scope): ?>
+            <li>
+                <span class="scope-icon">ℹ️</span>
+                <span class="scope-info">
+                    <span class="scope-name"><?= htmlspecialchars($scope) ?></span>
+                    <span class="scope-desc"><?= htmlspecialchars($scope_descriptions[$scope] ?? '') ?></span>
+                </span>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
 
 
 
