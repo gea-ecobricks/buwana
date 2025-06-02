@@ -124,8 +124,9 @@ if ($alert_count > 0) {
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const rootStyles = getComputedStyle(document.documentElement);
-  Chart.defaults.color = rootStyles.getPropertyValue('--subdued-text').trim();
+  if (typeof updateChartTextColor === 'function') {
+    updateChartTextColor();
+  }
 
   const ctx = document.getElementById('growthChart').getContext('2d');
   let growthChart;

@@ -281,15 +281,25 @@ function openModal(contentHtml) {
     }
 }
 
-// Apply global Chart.js text color from theme variables
-document.addEventListener('DOMContentLoaded', () => {
+// Update Chart.js text color from the current theme
+function updateChartTextColor() {
     if (window.Chart && Chart.defaults) {
         const styles = getComputedStyle(document.documentElement);
-        const subdued = styles.getPropertyValue('--h1').trim();
-        if (subdued) {
-            Chart.defaults.color = subdued;
+        const color = styles.getPropertyValue('--h1').trim();
+        if (color) {
+            Chart.defaults.color = color;
+            if (Chart.instances) {
+                Object.values(Chart.instances).forEach(ch => {
+                    ch.options.color = color;
+                    ch.update();
+                });
+            }
         }
     }
-});
+}
+
+// Apply global Chart.js text color from theme variables
+document.addEventListener('DOMContentLoaded', updateChartTextColor);
+document.addEventListener('colorschemechange', updateChartTextColor);
 
 
