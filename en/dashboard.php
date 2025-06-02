@@ -97,7 +97,9 @@ if ($alert_count > 0) {
     <div class="chart-container dashboard-module">
       <canvas id="growthChart"></canvas>
       <div class="chart-controls">
-        <select id="timeRange">
+
+        <select id="timeRange" style="width:auto;font-size:0.9em;color:var(--subdued-text);background:none;border:1px solid var(--subdued-text);border-radius:4px;padding:2px 4px;">
+
           <option value="24h">Last 24hrs</option>
           <option value="week">Last Week</option>
           <option value="month" selected>Last Month</option>
@@ -124,6 +126,7 @@ if ($alert_count > 0) {
 document.addEventListener('DOMContentLoaded', function() {
   const rootStyles = getComputedStyle(document.documentElement);
   Chart.defaults.color = rootStyles.getPropertyValue('--subdued-text').trim();
+
   const ctx = document.getElementById('growthChart').getContext('2d');
   let growthChart;
 

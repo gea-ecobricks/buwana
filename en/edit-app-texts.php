@@ -8,7 +8,7 @@ require_once '../fetch_app_info.php';
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'edit-app-texts';
-$version = '0.1';
+$version = '0.11';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
 if (empty($_SESSION['buwana_id'])) {
@@ -115,7 +115,7 @@ if (!$app) {
         <div id="app_slogan-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <textarea id="app_terms_txt" name="app_terms_txt" aria-label="Terms Text" maxlength="255" required placeholder=" " rows="3"><?= htmlspecialchars($app['app_terms_txt']) ?></textarea>
+        <textarea id="app_terms_txt" name="app_terms_txt" aria-label="Terms Text" maxlength="255" required placeholder=" " rows="12"><?= htmlspecialchars($app['app_terms_txt']) ?></textarea>
         <label for="app_terms_txt">Terms Text</label>
         <p class="form-caption">Short version of your terms</p>
         <div id="app_terms_txt-error-required" class="form-field-error">This field is required.</div>
@@ -123,7 +123,7 @@ if (!$app) {
         <div id="app_terms_txt-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <textarea id="app_privacy_txt" name="app_privacy_txt" aria-label="Privacy Text" maxlength="255" required placeholder=" " rows="3"><?= htmlspecialchars($app['app_privacy_txt']) ?></textarea>
+        <textarea id="app_privacy_txt" name="app_privacy_txt" aria-label="Privacy Text" maxlength="255" required placeholder=" " rows="12"><?= htmlspecialchars($app['app_privacy_txt']) ?></textarea>
         <label for="app_privacy_txt">Privacy Text</label>
         <p class="form-caption">Short privacy notice</p>
         <div id="app_privacy_txt-error-required" class="form-field-error">This field is required.</div>
@@ -131,7 +131,7 @@ if (!$app) {
         <div id="app_privacy_txt-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <input type="text" id="app_emojis_array" name="app_emojis_array" aria-label="Emojis Array" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_emojis_array']) ?>">
+        <textarea id="app_emojis_array" name="app_emojis_array" aria-label="Emojis Array" maxlength="255" rows="6" required placeholder=" " ><?= htmlspecialchars($app['app_emojis_array']) ?></textarea>
         <label for="app_emojis_array">Emojis Array</label>
         <p class="form-caption">Emoji list for your app</p>
         <div id="app_emojis_array-error-required" class="form-field-error">This field is required.</div>
