@@ -64,6 +64,13 @@
 .chart-container {
   width: 100%;
   margin: 0 auto;
+  position: relative;
+}
+
+.chart-controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .dataTables_wrapper {
