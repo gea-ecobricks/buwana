@@ -144,7 +144,15 @@ if ($stmt) {
     </div>
     <div class="chart-container dashboard-module" style="margin-bottom:15px;">
       <canvas id="growthChart"></canvas>
-      <p class="chart-caption">App Manager user growth over the last 30 days. Total connections: <?= intval($total_connections) ?>.</p>
+      <div class="chart-controls">
+        <select id="timeRange" style="width:auto;font-size:0.9em;color:var(--subdued-text);background:none;border:1px solid var(--subdued-text);border-radius:4px;padding:2px 4px;">
+          <option value="24h">Last 24hrs</option>
+          <option value="week">Last Week</option>
+          <option value="month" selected>Last Month</option>
+          <option value="year">Last Year</option>
+        </select>
+      </div>
+      <p class="chart-caption">App Manager user growth. Total connections: <?= intval($total_connections) ?>.</p>
     </div>
 
 
@@ -209,15 +217,38 @@ if ($stmt) {
 </div> <!-- closes main -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('../analytics/get-growth-data.php?app_id=<?= intval($app_id) ?>')
-    .then(r => r.json())
-    .then(chartData => {
-      new Chart(document.getElementById('growthChart'), {
-        type: 'line',
-        data: chartData,
-        options: { responsive: true }
+  if (typeof updateChartTextColor === 'function') {
+    updateChartTextColor();
+  }
+
+  const ctx = document.getElementById('growthChart').getContext('2d');
+  let growthChart;
+
+  function loadChart(range = 'month') {
+    fetch('../analytics/get-growth-data.php?app_id=<?= intval($app_id) ?>&range=' + range)
+      .then(r => r.json())
+      .then(chartData => {
+        if (growthChart) {
+          growthChart.data = chartData;
+          growthChart.update();
+        } else {
+          growthChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+              responsive: true,
+              plugins: { legend: { position: 'bottom' } }
+            }
+          });
+        }
       });
-    });
+  }
+
+  document.getElementById('timeRange').addEventListener('change', function() {
+    loadChart(this.value);
+  });
+
+  loadChart();
 
   var table = $('#userTable').DataTable({
     order: [[4, 'desc']]
