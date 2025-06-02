@@ -79,9 +79,9 @@ $user_app_count = count($apps);
     </div>
     <div class="chart-container dashboard-module">
       <canvas id="growthChart"></canvas>
-      <p class="chart-caption">Buwana user growth over the last 30days</p>
+      <p class="chart-caption">Buwana user growth over the last 30 days</p>
     </div>
-    <p class="welcome-msg">Welcome back <?= htmlspecialchars($first_name) ?>!  You have <?= intval($new_account_count_for_user) ?> new users in the last 24hrs.  Manage your <?= $user_app_count ?> here...</p>
+    <p class="welcome-msg" style="text-align: center;">Welcome back <?= htmlspecialchars($first_name) ?>!  You have <?= intval($new_account_count_for_user) ?> new users in the last 24hrs.  Manage your <?= $user_app_count ?> apps here...</p>
     <div class="app-grid">
       <?php foreach ($apps as $app): ?>
         <a href="app-view.php?app_id=<?= intval($app['app_id']) ?>" class="app-display-box" title="<?= htmlspecialchars($app['app_display_name']) ?>">
