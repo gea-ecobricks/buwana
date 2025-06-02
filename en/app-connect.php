@@ -185,6 +185,7 @@ padding-top: 10px !important;
   padding: 0;
   max-width: 500px;
   border: 1px solid var(--subdued-text);
+
   border-radius: 6px;
   background: var(--form-background, #f6f8fa);
   text-align: left;
@@ -194,6 +195,7 @@ padding-top: 10px !important;
   align-items: flex-start;
   padding: 8px 12px;
   border-bottom: 1px solid var(--subdued-text);
+
   font-size: 0.95em;
 }
 .scope-list li:last-child {
@@ -201,6 +203,9 @@ padding-top: 10px !important;
 }
 .scope-icon {
   margin-right: 8px;
+
+  color: green;
+
   font-size: 1.1em;
 }
 .scope-info {
@@ -218,6 +223,7 @@ padding-top: 10px !important;
   font-size: 0.8em;
   color: var(--subdued-text);
 }
+
 
 
 
@@ -285,6 +291,7 @@ padding-top: 10px !important;
             <?php foreach ($other_scopes as $scope): ?>
             <li>
                 <span class="scope-icon">ℹ️</span>
+
                 <span class="scope-info">
                     <span class="scope-name"><?= htmlspecialchars($scope) ?></span>
                     <span class="scope-desc"><?= htmlspecialchars($scope_descriptions[$scope] ?? '') ?></span>
