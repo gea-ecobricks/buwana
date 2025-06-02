@@ -136,28 +136,22 @@ if (!$app) {
         <div id="app_slogan-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <textarea id="app_terms_txt" name="app_terms_txt" aria-label="Terms Text" maxlength="255" required placeholder=" " rows="12"><?= htmlspecialchars($app['app_terms_txt']) ?></textarea>
+        <textarea id="app_terms_txt" name="app_terms_txt" aria-label="Terms Text" required placeholder=" " rows="12"><?= htmlspecialchars($app['app_terms_txt']) ?></textarea>
         <label for="app_terms_txt">Terms Text</label>
         <p class="form-caption">Short version of your terms</p>
         <div id="app_terms_txt-error-required" class="form-field-error">This field is required.</div>
-        <div id="app_terms_txt-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
-        <div id="app_terms_txt-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <textarea id="app_privacy_txt" name="app_privacy_txt" aria-label="Privacy Text" maxlength="255" required placeholder=" " rows="12"><?= htmlspecialchars($app['app_privacy_txt']) ?></textarea>
+        <textarea id="app_privacy_txt" name="app_privacy_txt" aria-label="Privacy Text" required placeholder=" " rows="12"><?= htmlspecialchars($app['app_privacy_txt']) ?></textarea>
         <label for="app_privacy_txt">Privacy Text</label>
         <p class="form-caption">Short privacy notice</p>
         <div id="app_privacy_txt-error-required" class="form-field-error">This field is required.</div>
-        <div id="app_privacy_txt-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
-        <div id="app_privacy_txt-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <textarea id="app_emojis_array" name="app_emojis_array" aria-label="Emojis Array" maxlength="255" rows="6" required placeholder=" " ><?= htmlspecialchars($app['app_emojis_array']) ?></textarea>
+        <textarea id="app_emojis_array" name="app_emojis_array" aria-label="Emojis Array" rows="6" required placeholder=" " ><?= htmlspecialchars($app['app_emojis_array']) ?></textarea>
         <label for="app_emojis_array">Emojis Array</label>
         <p class="form-caption">Emoji list for your app</p>
         <div id="app_emojis_array-error-required" class="form-field-error">This field is required.</div>
-        <div id="app_emojis_array-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
-        <div id="app_emojis_array-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="submit-button-wrapper">
         <button type="submit" id="submit-button" name="update_app" class="kick-ass-submit">
@@ -201,10 +195,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const value = document.getElementById(name).value.trim();
     let valid = true;
     toggleError(name + '-error-required', value === '');
-    toggleError(name + '-error-long', value.length > 255);
-    toggleError(name + '-error-invalid', hasInvalidChars(value));
-    if (value === '' || value.length > 255 || hasInvalidChars(value)) {
-      valid = false;
+
+    const skipExtra = ['app_terms_txt','app_privacy_txt','app_emojis_array'].includes(name);
+
+    if (!skipExtra) {
+      toggleError(name + '-error-long', value.length > 255);
+      toggleError(name + '-error-invalid', hasInvalidChars(value));
+      if (value === '' || value.length > 255 || hasInvalidChars(value)) {
+        valid = false;
+      }
+    } else {
+      if (value === '') {
+        valid = false;
+      }
     }
     return valid;
   }
