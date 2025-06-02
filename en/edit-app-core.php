@@ -142,12 +142,12 @@ if (!$app) {
         display: flex;
         flex-direction: column;
       }
-      .scope-row {
+  .scope-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 7px 0;
-        border-bottom: 1px solid var(--lighter);
+        border-bottom: 1px solid var(--subdued-text);
       }
       .scope-info {
         display: flex;
@@ -156,6 +156,13 @@ if (!$app) {
       .scope-caption {
         font-size: 0.9em;
         color: grey;
+      }
+      .scope-subscopes {
+        font-size: 0.85em;
+        color: var(--subdued-text);
+      }
+      .hidden-scope {
+        display: none;
       }
     </style>
 <div id="form-submission-box" class="landing-page-form">
@@ -220,10 +227,28 @@ if (!$app) {
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <label for="scopes" style="padding:7px;">Scopes</label>
         <div id="scopes" class="scopes-list">
-<?php foreach ($scope_options as $scope): ?>
+<?php
+  $profile_scopes = ['openid','email','profile','phone','buwana:earthlingEmoji','buwana:location.continent'];
+  $all_profile = count(array_intersect($profile_scopes, $selected_scopes)) === count($profile_scopes);
+?>
           <div class="scope-row">
             <div class="scope-info">
-              <span><b><?= htmlspecialchars($scope) ?></b></span>
+              <span><b>Buwana Profile</b> 🌐</span>
+              <span class="scope-caption">Essential user data for logging in and using the app</span>
+              <span class="scope-subscopes">openId, Name, email, profile, phone, buwana:earthlingEmoji, buwana:location_continent</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" class="scope-checkbox scope-group" data-scopes="<?= implode(',', $profile_scopes) ?>" <?= $all_profile ? 'checked' : '' ?>>
+              <span class="slider"></span>
+            </label>
+<?php foreach ($profile_scopes as $sc): ?>
+            <input type="checkbox" class="scope-checkbox hidden-scope" name="scopes[]" value="<?= htmlspecialchars($sc) ?>" <?= in_array($sc, $selected_scopes) ? 'checked' : '' ?> style="display:none;">
+<?php endforeach; ?>
+          </div>
+<?php foreach (['buwana:community','buwana:bioregion'] as $scope): ?>
+          <div class="scope-row">
+            <div class="scope-info">
+              <span><b><?= htmlspecialchars($scope) ?></b> ℹ️</span>
               <span class="scope-caption">
                 <?= htmlspecialchars($scope_descriptions[$scope] ?? '') ?>
               </span>
@@ -311,6 +336,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('edit-core-form');
   const fields = ['redirect_uris','app_login_url','app_domain','app_url','app_dashboard_url','app_description','app_version','app_display_name','contact_email'];
   const scopeBoxes = document.querySelectorAll('.scope-checkbox');
+  const groupToggles = document.querySelectorAll('.scope-group');
+
+  groupToggles.forEach(tg => {
+    tg.addEventListener('change', () => {
+      const scopes = tg.dataset.scopes.split(',');
+      scopes.forEach(sc => {
+        const cb = document.querySelector('.hidden-scope[value="' + sc + '"]');
+        if (cb) cb.checked = tg.checked;
+      });
+      validateScopes();
+    });
+  });
 
   function updateStatusMessage(success, message = '') {
     const statusEl = document.getElementById('update-status');
