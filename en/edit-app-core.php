@@ -71,6 +71,7 @@ if ($stmt) {
     $stmt->close();
 }
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $redirect_uris     = $_POST['redirect_uris'] ?? '';
     $app_login_url     = $_POST['app_login_url'] ?? '';
@@ -111,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
         exit();
     }
 }
+
 
 $stmt = $buwana_conn->prepare("SELECT * FROM apps_tb WHERE app_id = ? AND owner_buwana_id = ?");
 $stmt->bind_param('ii', $app_id, $buwana_id);
@@ -369,7 +371,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const formData = new FormData(form);
-    fetch('edit-app-core.php?app_id=<?= intval($app_id) ?>&ajax=1', {
+    formData.append('update_app', '1');
+    fetch('edit_appcore_process.php?app_id=<?= intval($app_id) ?>', {
+
       method: 'POST',
       body: formData
     }).then(r => r.json()).then(d => {
