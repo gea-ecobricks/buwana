@@ -6,6 +6,18 @@ session_start();
 require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
 
+$scope_options = [
+    'openid',
+    'email',
+    'profile',
+    'address',
+    'phone',
+    'buwana:bioregion',
+    'buwana:earthlingEmoji',
+    'buwana:community',
+    'buwana:location.continent'
+];
+
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'edit-app-core';
 $version = '0.1';
@@ -50,7 +62,10 @@ if ($stmt) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $redirect_uris     = $_POST['redirect_uris'] ?? '';
     $app_login_url     = $_POST['app_login_url'] ?? '';
-    $scopes            = $_POST['scopes'] ?? '';
+    $scopes_input      = $_POST['scopes'] ?? [];
+    $scopes_input      = is_array($scopes_input) ? $scopes_input : [];
+    $scopes_input      = array_intersect($scopes_input, $scope_options);
+    $scopes            = implode(',', $scopes_input);
     $app_domain        = $_POST['app_domain'] ?? '';
     $app_url           = $_POST['app_url'] ?? '';
     $app_dashboard_url = $_POST['app_dashboard_url'] ?? '';
@@ -75,6 +90,8 @@ $result = $stmt->get_result();
 $app = $result ? $result->fetch_assoc() : [];
 $stmt->close();
 
+$selected_scopes = array_filter(array_map('trim', explode(',', $app['scopes'] ?? '')));
+
 if (!$app) {
     echo "<p>App not found or access denied.</p>";
     exit();
@@ -89,6 +106,17 @@ if (!$app) {
     <style>
       .top-wrapper {
         background: var(--darker-lighter);
+      }
+      .scopes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        padding: 7px;
+      }
+      .scopes-grid label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
       }
     </style>
 <div id="form-submission-box" class="landing-page-form">
@@ -148,13 +176,15 @@ if (!$app) {
         <div id="app_login_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_login_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
-      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <input type="text" id="scopes" name="scopes" aria-label="Scopes" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['scopes']) ?>">
-        <label for="scopes">Scopes</label>
+      <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <label for="scopes" style="padding:7px;">Scopes</label>
+        <div id="scopes" class="scopes-grid">
+<?php foreach ($scope_options as $scope): ?>
+          <label><input type="checkbox" class="scope-checkbox" name="scopes[]" value="<?= htmlspecialchars($scope) ?>" <?= in_array($scope, $selected_scopes) ? 'checked' : '' ?>> <?= htmlspecialchars($scope) ?></label>
+<?php endforeach; ?>
+        </div>
         <p class="form-caption" data-lang-id="011c-scopes">OAuth scopes requested by your app</p>
         <div id="scopes-error-required" class="form-field-error">This field is required.</div>
-        <div id="scopes-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
-        <div id="scopes-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="app_domain" name="app_domain" aria-label="App Domain" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_domain']) ?>">
@@ -227,7 +257,8 @@ if (!$app) {
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('edit-core-form');
-  const fields = ['redirect_uris','app_login_url','scopes','app_domain','app_url','app_dashboard_url','app_description','app_version','app_display_name','contact_email'];
+  const fields = ['redirect_uris','app_login_url','app_domain','app_url','app_dashboard_url','app_description','app_version','app_display_name','contact_email'];
+  const scopeBoxes = document.querySelectorAll('.scope-checkbox');
 
   function hasInvalidChars(value) {
     return /[\'"<>]/.test(value);
@@ -250,6 +281,12 @@ document.addEventListener('DOMContentLoaded', function () {
     return valid;
   }
 
+  function validateScopes() {
+    const anyChecked = Array.from(scopeBoxes).some(cb => cb.checked);
+    toggleError('scopes-error-required', !anyChecked);
+    return anyChecked;
+  }
+
   fields.forEach(f => {
     const el = document.getElementById(f);
     if (el) {
@@ -257,9 +294,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  scopeBoxes.forEach(cb => cb.addEventListener('change', validateScopes));
+
   form.addEventListener('submit', function (e) {
     let allValid = true;
     fields.forEach(f => { if (!validateField(f)) allValid = false; });
+    if (!validateScopes()) allValid = false;
     if (!allValid) {
       e.preventDefault();
     }
