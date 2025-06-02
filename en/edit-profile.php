@@ -137,9 +137,6 @@ $user_location_watershed = $location_watershed;
 $user_location_lat = $latitude;
 $user_location_long = $longitude;
 
-// 🛑 Close connection
-$buwana_conn->close();
-
 echo '<!DOCTYPE html>
 <html lang="' . htmlspecialchars($lang, ENT_QUOTES, 'UTF-8') . '">
 <head>
