@@ -63,6 +63,20 @@ $stmt->fetch();
 $stmt->close();
 
 $user_app_count = count($apps);
+
+// Determine current admin alert status
+$admin_alert_msg = '';
+$stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM admin_alerts WHERE addressed = 0");
+$stmt->execute();
+$stmt->bind_result($alert_count);
+$stmt->fetch();
+$stmt->close();
+
+if ($alert_count > 0) {
+    $admin_alert_msg = 'There are admin alerts 🔴';
+} else {
+    $admin_alert_msg = 'All systems go 🟢';
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>">
@@ -75,11 +89,13 @@ $user_app_count = count($apps);
   <div class="form-container">
     <div class="top-wrapper">
       <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
-      <div class="page-name">App Manager Dashboard</div>
+      <div style="text-align:right;">
+        <div class="page-name">App Manager Dashboard</div>
+        <div class="admin-status login-status"><?= htmlspecialchars($admin_alert_msg) ?></div>
+      </div>
     </div>
     <div class="chart-container dashboard-module">
       <canvas id="growthChart"></canvas>
-      <p class="chart-caption">Buwana user growth over the last 30 days</p>
     </div>
     <p class="welcome-msg" style="text-align: center;">Welcome back <?= htmlspecialchars($first_name) ?>!  You have <?= intval($new_account_count_for_user) ?> new users in the last 24hrs.  Manage your <?= $user_app_count ?> apps here...</p>
     <div class="app-grid">
@@ -104,7 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
       new Chart(document.getElementById('growthChart'), {
         type: 'line',
         data: chartData,
-        options: { responsive: true }
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
+        }
       });
     });
 });
