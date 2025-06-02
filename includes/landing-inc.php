@@ -3,6 +3,11 @@
 
 <STYLE>
 
+    .buwana-lead-banner {
+    margin-top:-70px;
+    margin-bottom:20px;
+    }
+
 .form-container {
   padding-top: 30px !important;
 }

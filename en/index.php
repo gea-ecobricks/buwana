@@ -38,8 +38,8 @@ if ($app_results && $app_results->num_rows > 0) {
 <div id="form-submission-box" class="landing-page-form">
 
   <div class="form-container">
-      <div id="top-page-image"
-                  style="width:100%;height:350px;background-size:contain;margin-top:-70px,margin-bottom:20px;background:no-repeat center;"
+      <div id="top-page-image" class="buwana-lead-banner"
+                  style="width:100%;height:350px;background:no-repeat center;background-size:contain;"
                   data-light-img="../webps/top-buwana-landing-banner.webp"
                   data-dark-img="../webps/top-buwana-landing-banner.webp">
              </div>

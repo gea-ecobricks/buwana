@@ -7,6 +7,8 @@
 
 <style>
 
+
+
  #buwana-top-logo {
  background: url('../svgs/b-logo.svg') center no-repeat;
 
