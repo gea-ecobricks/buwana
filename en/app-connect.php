@@ -184,7 +184,8 @@ padding-top: 10px !important;
   margin: 20px auto;
   padding: 0;
   max-width: 500px;
-  border: 1px solid var(--lighter, #eee);
+  border: 1px solid var(--subdued-text);
+
   border-radius: 6px;
   background: var(--form-background, #f6f8fa);
   text-align: left;
@@ -193,7 +194,8 @@ padding-top: 10px !important;
   display: flex;
   align-items: flex-start;
   padding: 8px 12px;
-  border-bottom: 1px solid var(--lighter, #eee);
+  border-bottom: 1px solid var(--subdued-text);
+
   font-size: 0.95em;
 }
 .scope-list li:last-child {
@@ -201,7 +203,9 @@ padding-top: 10px !important;
 }
 .scope-icon {
   margin-right: 8px;
+
   color: green;
+
   font-size: 1.1em;
 }
 .scope-info {
@@ -215,6 +219,11 @@ padding-top: 10px !important;
   font-size: 0.85em;
   color: var(--subdued-text);
 }
+.scope-sub {
+  font-size: 0.8em;
+  color: var(--subdued-text);
+}
+
 
 
 
@@ -252,11 +261,37 @@ padding-top: 10px !important;
             <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?>. <span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana <?= htmlspecialchars($email) ?> credentials so that you can login and make use of the app.</span>.
        </p>
 
+        <?php
+            $profile_group = ['openid','email','profile','address','phone','buwana:earthlingEmoji','buwana:location.continent'];
+            $display_scopes = ['openId','Name','email','profile','phone','buwana:earthlingEmoji','buwana:location_continent'];
+            $used_profile_scopes = array_intersect($profile_group, $requested_scopes);
+            $other_scopes = array_intersect($requested_scopes, ['buwana:community','buwana:bioregion']);
+        ?>
         <?php if ($requested_scopes): ?>
         <ul class="scope-list">
-            <?php foreach ($requested_scopes as $scope): ?>
+            <?php if ($used_profile_scopes): ?>
             <li>
-                <span class="scope-icon">✔️</span>
+                <span class="scope-icon">🌐</span>
+                <span class="scope-info">
+                    <span class="scope-name">Buwana Profile</span>
+                    <span class="scope-desc">Essential user data for logging in and using the app</span>
+                    <span class="scope-sub">
+                        <?php
+                            $display_used = [];
+                            foreach ($display_scopes as $sc) {
+                                $key = str_replace(['openId','Name','location_continent'], ['openid','name','location.continent'], $sc);
+                                if (in_array($key, $used_profile_scopes)) $display_used[] = $sc;
+                            }
+                            echo htmlspecialchars(implode(', ', $display_used));
+                        ?>
+                    </span>
+                </span>
+            </li>
+            <?php endif; ?>
+            <?php foreach ($other_scopes as $scope): ?>
+            <li>
+                <span class="scope-icon">ℹ️</span>
+
                 <span class="scope-info">
                     <span class="scope-name"><?= htmlspecialchars($scope) ?></span>
                     <span class="scope-desc"><?= htmlspecialchars($scope_descriptions[$scope] ?? '') ?></span>
