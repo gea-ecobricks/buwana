@@ -156,6 +156,8 @@ if (!$app) {
       </div>
 
     </div>
+            <div id="update-status" style="font-size:1.3em; color:green;padding:10px;margin-top:10px;"></div>
+            <div id="update-error" style="font-size:1.3em; color:red;padding:10px;margin-top:10px;"></div>
     <h2 data-lang-id="000-edit-core-date" style="martoin">Edit Core Data</h2>
     <p>Set the core parameters for your <?= htmlspecialchars($app['app_display_name']) ?> app.  These will set the base display and functionality for signing up, logins, redirects and log outs.</p>
     <form id="edit-core-form" method="post" style="margin-top:20px;">
