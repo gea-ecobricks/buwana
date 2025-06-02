@@ -12,6 +12,7 @@ switch ($range) {
         $increment = 'hour';
         $groupSql = "DATE_FORMAT(created_at, '%Y-%m-%d %H:00:00')";
         $labelFormat = 'm-d H:00';
+
         $chartLabel = 'Buwana total users over the last 24 hours';
         break;
     case 'week':
@@ -19,6 +20,7 @@ switch ($range) {
         $increment = 'day';
         $groupSql = "DATE(created_at)";
         $labelFormat = 'm-d';
+
         $chartLabel = 'Buwana total users over the last week';
         break;
     case 'year':
@@ -34,6 +36,7 @@ switch ($range) {
         $increment = 'day';
         $groupSql = "DATE(created_at)";
         $labelFormat = 'm-d';
+
         $chartLabel = 'Buwana total users over the last 30 days';
         break;
 }
