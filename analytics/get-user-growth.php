@@ -42,7 +42,7 @@ for ($i = 0; $i < $days; $i++) {
 echo json_encode([
     'labels' => $labels,
     'datasets' => [[
-        'label' => 'Total Users',
+        'label' => 'Buwana total users over the last 30 days',
         'data' => $data,
         'fill' => false,
         'borderColor' => '#36a2eb'

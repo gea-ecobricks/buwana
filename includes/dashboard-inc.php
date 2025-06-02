@@ -45,6 +45,10 @@
   color: grey;
 }
 
+.admin-status {
+  text-align: right;
+}
+
 .client-id {
   font-family: 'Mulish', Arial, Helvetica, sans-serif;
   font-size: 1em;
