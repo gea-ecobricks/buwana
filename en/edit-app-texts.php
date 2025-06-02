@@ -114,24 +114,24 @@ if (!$app) {
         <div id="app_slogan-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_slogan-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
-      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;height:360px;">
-        <textarea id="app_terms_txt" name="app_terms_txt" aria-label="Terms Text" maxlength="255" required placeholder=" " rows="3"><?= htmlspecialchars($app['app_terms_txt']) ?></textarea>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <textarea id="app_terms_txt" name="app_terms_txt" aria-label="Terms Text" maxlength="255" required placeholder=" " rows="12"><?= htmlspecialchars($app['app_terms_txt']) ?></textarea>
         <label for="app_terms_txt">Terms Text</label>
         <p class="form-caption">Short version of your terms</p>
         <div id="app_terms_txt-error-required" class="form-field-error">This field is required.</div>
         <div id="app_terms_txt-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_terms_txt-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
-      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px; height:360px;">
-        <textarea id="app_privacy_txt" name="app_privacy_txt" aria-label="Privacy Text" maxlength="255" required placeholder=" " rows="3"><?= htmlspecialchars($app['app_privacy_txt']) ?></textarea>
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <textarea id="app_privacy_txt" name="app_privacy_txt" aria-label="Privacy Text" maxlength="255" required placeholder=" " rows="12"><?= htmlspecialchars($app['app_privacy_txt']) ?></textarea>
         <label for="app_privacy_txt">Privacy Text</label>
         <p class="form-caption">Short privacy notice</p>
         <div id="app_privacy_txt-error-required" class="form-field-error">This field is required.</div>
         <div id="app_privacy_txt-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_privacy_txt-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
-      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px; height:250px;">
-        <input type="text" id="app_emojis_array" name="app_emojis_array" aria-label="Emojis Array" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['app_emojis_array']) ?>">
+      <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <input type="textarea" id="app_emojis_array" name="app_emojis_array" aria-label="Emojis Array" maxlength="255" rows="6"required placeholder=" " value="<?= htmlspecialchars($app['app_emojis_array']) ?>">
         <label for="app_emojis_array">Emojis Array</label>
         <p class="form-caption">Emoji list for your app</p>
         <div id="app_emojis_array-error-required" class="form-field-error">This field is required.</div>
