@@ -30,6 +30,9 @@ if ($stmt) {
     $stmt->close();
 }
 
+$success = false;
+$error_message = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $signup_top_img_url       = $_POST['signup_top_img_url'] ?? '';
     $signup_top_img_dark_url  = $_POST['signup_top_img_dark_url'] ?? '';
@@ -53,9 +56,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $sql = "UPDATE apps_tb SET signup_top_img_url=?, signup_top_img_dark_url=?, signup_1_top_img_light=?, signup_1_top_img_dark=?, signup_2_top_img_light=?, signup_2_top_img_dark=?, signup_3_top_img_light=?, signup_3_top_img_dark=?, signup_4_top_img_light=?, signup_4_top_img_dark=?, signup_5_top_img_light=?, signup_5_top_img_dark=?, signup_6_top_img_light=?, signup_6_top_img_dark=?, signup_7_top_img_light=?, signup_7_top_img_dark=?, login_top_img_light=?, login_top_img_dark=? WHERE app_id=? AND owner_buwana_id=?";
     $stmt = $buwana_conn->prepare($sql);
     if ($stmt) {
-        $stmt->bind_param('ssssssssssssssssssii', $signup_top_img_url, $signup_top_img_dark_url, $signup_1_top_img_light, $signup_1_top_img_dark, $signup_2_top_img_light, $signup_2_top_img_dark, $signup_3_top_img_light, $signup_3_top_img_dark, $signup_4_top_img_light, $signup_4_top_img_dark, $signup_5_top_img_light, $signup_5_top_img_dark, $signup_6_top_img_light, $signup_6_top_img_dark, $signup_7_top_img_light, $signup_7_top_img_dark, $login_top_img_light, $login_top_img_dark, $app_id, $buwana_id);
-        $stmt->execute();
+        if ($stmt->bind_param('ssssssssssssssssssii', $signup_top_img_url, $signup_top_img_dark_url, $signup_1_top_img_light, $signup_1_top_img_dark, $signup_2_top_img_light, $signup_2_top_img_dark, $signup_3_top_img_light, $signup_3_top_img_dark, $signup_4_top_img_light, $signup_4_top_img_dark, $signup_5_top_img_light, $signup_5_top_img_dark, $signup_6_top_img_light, $signup_6_top_img_dark, $signup_7_top_img_light, $signup_7_top_img_dark, $login_top_img_light, $login_top_img_dark, $app_id, $buwana_id)) {
+            $success = $stmt->execute();
+            if (!$success) {
+                $error_message = $stmt->error;
+            }
+        } else {
+            $error_message = $stmt->error;
+        }
         $stmt->close();
+    } else {
+        $error_message = $buwana_conn->error;
+    }
+
+    if (isset($_GET['ajax'])) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => $success, 'error' => $error_message]);
+        exit();
     }
 }
 
@@ -119,6 +136,10 @@ if (!$app) {
       </div>
 
     </div>
+            <div id="update-status" style="font-size:1.3em; color:green;padding:10px;margin-top:10px;"></div>
+            <div id="update-error" style="font-size:1.3em; color:red;padding:10px;margin-top:10px;"></div>
+    <h1>Edit Signup Graphics</h1>
+    <p>Update the signup and login images for your <?= htmlspecialchars($app['app_display_name']) ?> app.</p>
     <form id="edit-signup-form" method="post" style="margin-top:20px;">
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <input type="text" id="signup_top_img_url" name="signup_top_img_url" aria-label="Signup Banner Light" maxlength="255" required placeholder=" " value="<?= htmlspecialchars($app['signup_top_img_url']) ?>">
@@ -280,6 +301,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('edit-signup-form');
   const fields = ['signup_top_img_url','signup_top_img_dark_url','signup_1_top_img_light','signup_1_top_img_dark','signup_2_top_img_light','signup_2_top_img_dark','signup_3_top_img_light','signup_3_top_img_dark','signup_4_top_img_light','signup_4_top_img_dark','signup_5_top_img_light','signup_5_top_img_dark','signup_6_top_img_light','signup_6_top_img_dark','signup_7_top_img_light','signup_7_top_img_dark','login_top_img_light','login_top_img_dark'];
 
+  function updateStatusMessage(success, message = '') {
+    const statusEl = document.getElementById('update-status');
+    const errorEl = document.getElementById('update-error');
+    statusEl.textContent = '';
+    errorEl.textContent = '';
+    if (success) {
+      statusEl.textContent = '✅ App updated!';
+    } else {
+      errorEl.textContent = '😭 There was a problem: ' + message;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function hasInvalidChars(value) {
     return /[\'"<>]/.test(value);
   }
@@ -309,11 +343,27 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   form.addEventListener('submit', function (e) {
+    e.preventDefault();
     let allValid = true;
     fields.forEach(f => { if (!validateField(f)) allValid = false; });
     if (!allValid) {
-      e.preventDefault();
+      return;
     }
+
+    const formData = new FormData(form);
+    formData.append('update_app', '1');
+    fetch('edit_appsignup_process.php?app_id=<?= intval($app_id) ?>', {
+      method: 'POST',
+      body: formData
+    }).then(r => r.json()).then(d => {
+      if (d.success) {
+        updateStatusMessage(true);
+      } else {
+        updateStatusMessage(false, d.error || 'Unknown error');
+      }
+    }).catch(err => {
+      updateStatusMessage(false, err.message);
+    });
   });
 });
 </script>
