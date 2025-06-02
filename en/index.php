@@ -36,12 +36,13 @@ if ($app_results && $app_results->num_rows > 0) {
 
 
 <div id="form-submission-box" class="landing-page-form">
-    <div id="top-page-image"
-            style="width:100%;height:350px;background:no-repeat center;background-size: contain;"
-            data-light-img="../webps/top-buwana-landing-banner.webp"
-            data-dark-img="../webps/top-buwana-landing-banner.webp">
-       </div>
+
   <div class="form-container">
+      <div id="top-page-image"
+                  style="width:100%;height:350px;background:no-repeat center;background-size: contain;"
+                  data-light-img="../webps/top-buwana-landing-banner.webp"
+                  data-dark-img="../webps/top-buwana-landing-banner.webp">
+             </div>
 <p  data-lang-id="001-about-buwana-description">
       Buwana is an open-source login system for regenerative web applications developed by the Global Ecobrick Alliance. The Buwana protocol provides the a user authentication alternative for apps that want to escape corporate logins for an ecoystem of resonant, green for-Earth enterprises.
     </p>
