@@ -281,5 +281,15 @@ function openModal(contentHtml) {
     }
 }
 
+// Apply global Chart.js text color from theme variables
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.Chart && Chart.defaults) {
+        const styles = getComputedStyle(document.documentElement);
+        const subdued = styles.getPropertyValue('--subdued-text').trim();
+        if (subdued) {
+            Chart.defaults.color = subdued;
+        }
+    }
+});
 
 
