@@ -131,7 +131,7 @@ if (!$app) {
         <div id="app_privacy_txt-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item float-label-group" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <input type="textarea" id="app_emojis_array" name="app_emojis_array" aria-label="Emojis Array" maxlength="255" rows="6"required placeholder=" " value="<?= htmlspecialchars($app['app_emojis_array']) ?>">
+        <textarea id="app_emojis_array" name="app_emojis_array" aria-label="Emojis Array" maxlength="255" rows="6" required placeholder=" " ><?= htmlspecialchars($app['app_emojis_array']) ?></textarea>
         <label for="app_emojis_array">Emojis Array</label>
         <p class="form-caption">Emoji list for your app</p>
         <div id="app_emojis_array-error-required" class="form-field-error">This field is required.</div>
