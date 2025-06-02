@@ -39,14 +39,14 @@ if ($app_results && $app_results->num_rows > 0) {
 
   <div class="form-container">
       <div id="top-page-image"
-                  style="width:100%;height:350px;background:no-repeat center;background-size: contain;margin-top:-70px,margin-bottom:20px;"
+                  style="width:100%;height:350px;background:no-repeat center;background-size:contain;margin-top:-70px,margin-bottom:20px;"
                   data-light-img="../webps/top-buwana-landing-banner.webp"
                   data-dark-img="../webps/top-buwana-landing-banner.webp">
              </div>
-<h3  data-lang-id="001-about-buwana-description" style="text-align:center;">
+<h4  data-lang-id="001-about-buwana-description" style="text-align:center;">
       Buwana is an open-source login system for regenerative web applications developed by the Global Ecobrick Alliance. The Buwana protocol provides the a user authentication alternative for apps that want to escape corporate logins for an ecoystem of resonant, green for-Earth enterprises.
-    </h3>
-    <p data-lang-id="002-just-starting" style="text-align:center;">The Buwana protocol has only just launched as of June 2025.  Here's the apps that are using it so far...</p>
+    </h4>
+    <p data-lang-id="002-just-starting" style="text-align:center;">The Buwana protocol provides the a user authentication alternative for apps that want to escape corporate logins for an ecoystem of resonant, green for-Earth enterprises. The Buwana protocol has only just launched as of June 2025.  Here's the apps that are using it so far...</p>
     <div class="app-grid">
       <?php foreach ($apps as $app):
           $client_id = urlencode($app['client_id']);
