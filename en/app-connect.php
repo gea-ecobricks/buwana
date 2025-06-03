@@ -251,14 +251,14 @@ padding-top: 10px !important;
       <h1>
         <span data-lang-id="001-first-time-to-connect">Connect to</span> <?= htmlspecialchars($app_info['app_display_name']) ?>
       </h1>
-  <p style="text-align:center; margin-top: 10px;color:green;font-size:1em;">✅ <?= htmlspecialchars($app_info['app_display_name']) ?> is an authorized Buwana app</p>
+  <p style="text-align:center; margin-top: 10px;color:green;font-size:1em;">✅ <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="001-authorized-app">is an authorized Buwana app</span></p>
       <h4>
-          <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-are-you-sure"> it looks like you are trying to login to <?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice.</span>
+          <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-looks-like"> it looks like you are trying to login to </span><?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice.</span>
       </h4>
 
 
        <p style="margin-top:-15px;margin-bottom:20px;">
-            <span data-lang-id="003-if-so">To do so, we must connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?>. <span data-lang-id="004-will-be-granted"> In so doing you grant access to </span><?= htmlspecialchars($app_info['app_display_name']) ?> to your Buwana <?= htmlspecialchars($email) ?> credentials so that you can login and make use of the app.</span>.
+            <span data-lang-id="003-to-do-so">To do so, we will connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?>. <span>and allow it to access the following scopes:</span>
        </p>
 
         <?php
@@ -273,8 +273,8 @@ padding-top: 10px !important;
             <li>
                 <span class="scope-icon">🌐</span>
                 <span class="scope-info">
-                    <span class="scope-name">Buwana Profile</span>
-                    <span class="scope-desc">Essential user data for logging in and using the app</span>
+                    <span class="scope-name" data-lang-id="004-buwana-profile">Buwana Profile</span>
+                    <span class="scope-desc" data-lang-id="005-data-essentials">Essential user data for logging in and using the app...</span>
                     <span class="scope-sub">
                         <?php
                             $display_used = [];
@@ -301,6 +301,8 @@ padding-top: 10px !important;
         </ul>
         <?php endif; ?>
 
+        <p><span data-lang-id="004-will-be-granted">Connect to authorize and get rocking on </span><?= htmlspecialchars($app_info['app_display_name']) ?></span>.</p>
+
 
 
         <form id="user-signup-form" method="post" action="app-connect_process.php" novalidate>
@@ -325,7 +327,7 @@ padding-top: 10px !important;
     </div>
   </div>
   <div id="browser-back-link" style="font-size: small; text-align: center; margin: auto; align-self: center; padding-top: 40px; padding-bottom: 40px; margin-top: -20px;">
-      <p style="line-height:1.3em;"><span data-lang-id="006-no-connect"> ↩ Or return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>
+      <p style="line-height:1.3em;"><span data-lang-id="010-no-connect"> ↩ Or return to the </span><a href="<?= htmlspecialchars($app_info['app_url']) ?>"><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="000-home">home</span></a>
       </p>
   </div>
 </div>
