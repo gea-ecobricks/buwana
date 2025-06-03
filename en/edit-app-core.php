@@ -31,7 +31,7 @@ $scope_descriptions = [
 ];
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'edit-app-core';
+$page = 'edit-app-core.php';
 $version = '0.11';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
@@ -194,14 +194,14 @@ if (!$app) {
                 </div>
                 <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="60" height="60">
           </div>
-            <div class="breadcrumb" style="margin-left:auto;">
+      </div>
+
+    </div>
+    <div class="breadcrumb" style="text-align:right;margin-left:auto;">
                           <a href="dashboard.php">Dashboard</a> &gt;
                           <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt;
                           Edit Core
                         </div>
-      </div>
-
-    </div>
             <div id="update-status" style="font-size:1.3em; color:green;padding:10px;margin-top:10px;"></div>
             <div id="update-error" style="font-size:1.3em; color:red;padding:10px;margin-top:10px;"></div>
     <h2 data-lang-id="000-edit-core-date" style="martoin">Edit Core Data</h2>
@@ -234,7 +234,8 @@ if (!$app) {
 
           <div class="scope-row">
             <div class="scope-info">
-              <span><b>Buwana Profile</b> 🌐</span>
+              <span>🌐 <b>Buwana Profile</b></span>
+
               <span class="scope-caption">Essential user data for logging in and using the app</span>
               <span class="scope-subscopes">openId, Name, email, profile, phone, buwana:earthlingEmoji, buwana:location_continent</span>
             </div>
@@ -249,7 +250,8 @@ if (!$app) {
 <?php foreach ([ 'buwana:community', 'buwana:bioregion' ] as $scope): ?>
           <div class="scope-row">
             <div class="scope-info">
-              <span><b><?= htmlspecialchars($scope) ?></b> ℹ️</span>
+              <span>ℹ️ <b><?= htmlspecialchars($scope) ?></b></span>
+
               <span class="scope-caption">
                 <?= htmlspecialchars($scope_descriptions[$scope] ?? '') ?>
               </span>

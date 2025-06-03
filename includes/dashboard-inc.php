@@ -173,21 +173,22 @@
   flex-wrap: wrap;
 }
 
-.breadcrumb {
+  .breadcrumb {
   text-align: right;
   font-family: 'Mulish', Arial, Helvetica, sans-serif;
   font-size: 1em;
-  color: grey;
-  margin-top: 5px;
+  color: var(--subdued-text);
   margin-top: 20px;
 }
 
-.breadcrumb a {
-  color: grey;
+  .breadcrumb a {
+  color: var(--subdued-text);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
-.breadcrumb a:hover {
+  .breadcrumb a:hover {
+  color: var(--h1);
   text-decoration: underline;
 }
 
