@@ -46,6 +46,7 @@
 }
 
 .app-display-box {
+  position: relative;
   border: 1px solid var(--subdued-text);
   background-color: var(--lighter);
   border-radius: 12px;
@@ -55,6 +56,7 @@
   cursor: pointer;
   box-shadow: 0 1px 5px rgba(0,0,0,0.06);
   text-decoration: none !important;
+  overflow: hidden;
 }
 
 .app-display-box:hover {
@@ -80,6 +82,33 @@
   font-size: 0.9em;
   color: var(--subdued-text);
   margin: 0;
+  transition: opacity 0.3s ease;
+}
+
+.app-actions {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.app-display-box:hover .app-actions,
+.app-display-box.active .app-actions {
+  display: flex;
+}
+
+.app-display-box:hover .app-slogan,
+.app-display-box.active .app-slogan {
+  opacity: 0;
+}
+
+.simple-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--button-2-2);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
 }
 
 </style>
