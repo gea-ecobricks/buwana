@@ -10,17 +10,13 @@ require_once '../fetch_app_info.php';
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'app-connect';
 $version = '0.7773';
+
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
-// Page setup
-$lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'app-connect';
-$version = '0.7773';
-$lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // --- Validate inputs
 $buwana_id = $_GET['id'] ?? null;
@@ -256,8 +252,8 @@ padding-top: 10px !important;
 
 
        <p style="margin-top:15px;margin-bottom:20px;">
-            <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-looks-like"> it looks like you are trying to login to </span><?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice. 👍</span>
-            <span data-lang-id="003-to-do-so">To do so, we will connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?> <span>and allow it to access the following scopes:</span>
+            <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-looks-like"> it looks like you are trying to login to </span><?= htmlspecialchars($app_info['app_display_name']) ?><span data-lang-id="002b-first-time"> for the first time!  Nice. 👍</span>
+            <span data-lang-id="003-to-do-so">To do so, we will connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="003b-and">and allow it to access the following scopes:</span>
        </p>
 
         <?php

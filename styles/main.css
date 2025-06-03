@@ -1385,7 +1385,7 @@ text-decoration: underline;
 
 #sub-status-message {
   margin-top: 10px;
-  margin-bottom:0px;
+  margin-bottom:18px;
   font-family: 'Mulish', Arial, sans-serif;
   color: var(--subdued-text);
   font-weight: 300;
