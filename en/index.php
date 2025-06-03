@@ -50,16 +50,21 @@ if ($app_results && $app_results->num_rows > 0) {
     <div class="app-grid">
       <?php foreach ($apps as $app):
           $client_id = urlencode($app['client_id']);
-          $link = "login.php?app=$client_id";
+          $login_link = "login.php?app=$client_id";
           if ($buwana_id) {
-              $link .= "&id=$buwana_id";
+              $login_link .= "&id=$buwana_id";
           }
+          $signup_link = "signup-1.php?app=$client_id";
       ?>
-        <a href="<?= htmlspecialchars($link) ?>" class="app-display-box">
+        <div class="app-display-box">
           <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon">
           <h4><?= htmlspecialchars($app['app_display_name']) ?></h4>
           <p><?= htmlspecialchars($app['app_slogan']) ?></p>
-        </a>
+          <div class="app-actions">
+            <a href="<?= htmlspecialchars($login_link) ?>" class="simple-button">Login</a>
+            <a href="<?= htmlspecialchars($signup_link) ?>" class="simple-button">Signup</a>
+          </div>
+        </div>
       <?php endforeach; ?>
     </div>
 
