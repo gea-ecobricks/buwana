@@ -338,6 +338,9 @@ max-height: 200px;
     if (!empty($client_id)) {
         $params[] = 'app=' . urlencode($client_id);
     }
+    if (!empty($page)) {
+        $params[] = 'redirect=' . urlencode($page);
+    }
 
     if (!empty($params)) {
         $logout_url .= '?' . implode('&', $params);
