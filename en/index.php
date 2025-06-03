@@ -49,17 +49,20 @@ if ($app_results && $app_results->num_rows > 0) {
     <p data-lang-id="002-just-starting" style="text-align:center;">The Buwana protocol provides the a user authentication alternative for apps that want to escape corporate logins for an ecoystem of resonant, green for-Earth enterprises. The Buwana protocol has only just launched as of June 2025.  Here's the apps that are using it so far...</p>
     <div class="app-grid">
       <?php foreach ($apps as $app):
-          $client_id = urlencode($app['client_id']);
-          $login_link = "login.php?app=$client_id";
+          $client_id  = urlencode($app['client_id']);
+          $login_link = $app['app_login_url'];
           if ($buwana_id) {
-              $login_link .= "&id=$buwana_id";
+              $connector = strpos($login_link, '?') === false ? '?' : '&';
+              $login_link .= $connector . 'id=' . $buwana_id;
+
           }
           $signup_link = "signup-1.php?app=$client_id";
       ?>
         <div class="app-display-box">
           <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon">
           <h4><?= htmlspecialchars($app['app_display_name']) ?></h4>
-          <p><?= htmlspecialchars($app['app_slogan']) ?></p>
+          <p class="app-slogan"><?= htmlspecialchars($app['app_slogan']) ?></p>
+
           <div class="app-actions">
             <a href="<?= htmlspecialchars($login_link) ?>" class="simple-button">Login</a>
             <a href="<?= htmlspecialchars($signup_link) ?>" class="simple-button">Signup</a>
@@ -80,5 +83,18 @@ if ($app_results && $app_results->num_rows > 0) {
 </div>
 
 <?php require_once("../footer-2025.php"); ?>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const boxes = document.querySelectorAll('.app-display-box');
+    boxes.forEach(box => {
+      box.addEventListener('click', function (e) {
+        if (window.innerWidth <= 600 && !e.target.closest('.app-actions')) {
+          e.preventDefault();
+          this.classList.toggle('active');
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
