@@ -111,6 +111,37 @@
   text-decoration: none;
 }
 
+.app-actions {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.app-display-box:hover .app-actions {
+  opacity: 1;
+}
+
+.app-display-box:hover h4,
+.app-display-box:hover p {
+  opacity: 0;
+}
+
+.simple-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--button-2-2);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
 </style>
 
 <?php require_once ("../header-2025.php");?>

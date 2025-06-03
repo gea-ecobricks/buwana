@@ -54,6 +54,7 @@ if ($app_results && $app_results->num_rows > 0) {
           if ($buwana_id) {
               $connector = strpos($login_link, '?') === false ? '?' : '&';
               $login_link .= $connector . 'id=' . $buwana_id;
+
           }
           $signup_link = "signup-1.php?app=$client_id";
       ?>
@@ -61,6 +62,7 @@ if ($app_results && $app_results->num_rows > 0) {
           <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon">
           <h4><?= htmlspecialchars($app['app_display_name']) ?></h4>
           <p class="app-slogan"><?= htmlspecialchars($app['app_slogan']) ?></p>
+
           <div class="app-actions">
             <a href="<?= htmlspecialchars($login_link) ?>" class="simple-button">Login</a>
             <a href="<?= htmlspecialchars($signup_link) ?>" class="simple-button">Signup</a>
