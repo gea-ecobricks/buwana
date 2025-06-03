@@ -252,12 +252,11 @@ padding-top: 10px !important;
         <span data-lang-id="001-first-time-to-connect">Connect to</span> <?= htmlspecialchars($app_info['app_display_name']) ?>
       </h1>
   <p style="text-align:center; margin-top: 10px;color:green;font-size:1em;">✅ <?= htmlspecialchars($app_info['app_display_name']) ?> <span data-lang-id="001-authorized-app">is an authorized Buwana app</span></p>
-      <h4>
-          <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-looks-like"> it looks like you are trying to login to </span><?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice.</span>
-      </h4>
+
 
 
        <p style="margin-top:-15px;margin-bottom:20px;">
+            <?= htmlspecialchars($first_name) ?>, <span data-lang-id="002-looks-like"> it looks like you are trying to login to </span><?= htmlspecialchars($app_info['app_display_name']) ?> for the first time!  Nice.</span>
             <span data-lang-id="003-to-do-so">To do so, we will connect your Buwana account to </span><?= htmlspecialchars($app_info['app_display_name']) ?>. <span>and allow it to access the following scopes:</span>
        </p>
 
