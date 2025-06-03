@@ -235,6 +235,7 @@ if (!$app) {
           <div class="scope-row">
             <div class="scope-info">
               <span>🌐 <b>Buwana Profile</b></span>
+
               <span class="scope-caption">Essential user data for logging in and using the app</span>
               <span class="scope-subscopes">openId, Name, email, profile, phone, buwana:earthlingEmoji, buwana:location_continent</span>
             </div>
@@ -250,6 +251,7 @@ if (!$app) {
           <div class="scope-row">
             <div class="scope-info">
               <span>ℹ️ <b><?= htmlspecialchars($scope) ?></b></span>
+
               <span class="scope-caption">
                 <?= htmlspecialchars($scope_descriptions[$scope] ?? '') ?>
               </span>

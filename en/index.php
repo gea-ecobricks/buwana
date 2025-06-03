@@ -14,7 +14,7 @@ $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $buwana_id = isset($_GET['id']) && is_numeric($_GET['id']) ? intval($_GET['id']) : null;
 
 // 🔍 Fetch all apps
-$app_query = "SELECT client_id, app_display_name, app_slogan, app_square_icon_url FROM apps_tb ORDER BY app_display_name ASC";
+$app_query = "SELECT client_id, app_display_name, app_login_url, app_slogan, app_square_icon_url FROM apps_tb ORDER BY app_display_name ASC";
 $app_results = $buwana_conn->query($app_query);
 
 $apps = [];
