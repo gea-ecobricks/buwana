@@ -47,7 +47,7 @@ The `apps_tb` table stores configuration and metadata for third-party or interna
 | `require_verification` | `tinyint(1)`    | `1` = Require credential verification (e.g., email), `0` = Allow instant access. |
 | `last_used_dt`         | `datetime`      | Timestamp of the last time a user authenticated via this app. |
 | `updated_dt`           | `datetime`      | Last modified date (auto-updated). |
-| `owner_buwana_id`      | `int(11)`       | FK to `users_tb` indicating the creator or owner of this app. |
+| _Removed:_ `owner_buwana_id` |   | Owner relationships are now managed in `app_owners_tb`. |
 | `contact_email`        | `varchar(255)`  | Admin or developer contact address. |
 | `app_logo_dark_url`    | `varchar(255)`  | Logo variant for dark backgrounds. |
 | `app_wordmark_url`     | `varchar(255)`  | Horizontal logo (light mode). |
@@ -63,7 +63,7 @@ The `apps_tb` table stores configuration and metadata for third-party or interna
 - `client_id` and `client_secret` are used for OAuth flows. You may omit `client_secret` if using public clients like mobile apps.
 - The `app_emojis_array` enables apps to personalize login animations and UI flair using themed emojis (e.g., 🐵🐢🌍).
 - `app_terms_txt` and `app_privacy_txt` should contain **HTML-formatted** text to be injected directly into modals without escaping.
-- The `owner_buwana_id` allows Buwana admins to track and attribute apps to users or developer teams.
+- Ownership is tracked via the `app_owners_tb` join table which links apps to their owners.
 
 ---
 

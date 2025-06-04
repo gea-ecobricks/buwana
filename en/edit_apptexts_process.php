@@ -29,7 +29,10 @@ $app_emojis_array = $_POST['app_emojis_array'] ?? '';
 $success = false;
 $error_message = '';
 
-$sql = "UPDATE apps_tb SET app_slogan=?, app_terms_txt=?, app_privacy_txt=?, app_emojis_array=? WHERE app_id=? AND owner_buwana_id=?";
+$sql = "UPDATE apps_tb a
+        JOIN app_owners_tb ao ON ao.app_id = a.app_id
+        SET a.app_slogan=?, a.app_terms_txt=?, a.app_privacy_txt=?, a.app_emojis_array=?
+        WHERE a.app_id=? AND ao.buwana_id=?";
 $stmt = $buwana_conn->prepare($sql);
 if ($stmt) {
     if ($stmt->bind_param('ssssii', $app_slogan, $app_terms_txt, $app_privacy_txt, $app_emojis_array, $app_id, $buwana_id)) {

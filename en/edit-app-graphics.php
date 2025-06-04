@@ -40,7 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $app_wordmark_url    = $_POST['app_wordmark_url'] ?? '';
     $app_wordmark_dark_url = $_POST['app_wordmark_dark_url'] ?? '';
 
-    $sql = "UPDATE apps_tb SET app_logo_url=?, app_logo_dark_url=?, app_square_icon_url=?, app_wordmark_url=?, app_wordmark_dark_url=? WHERE app_id=? AND owner_buwana_id=?";
+    $sql = "UPDATE apps_tb a
+            JOIN app_owners_tb ao ON ao.app_id = a.app_id
+            SET a.app_logo_url=?, a.app_logo_dark_url=?, a.app_square_icon_url=?, a.app_wordmark_url=?, a.app_wordmark_dark_url=?
+            WHERE a.app_id=? AND ao.buwana_id=?";
     $stmt = $buwana_conn->prepare($sql);
     if ($stmt) {
         if ($stmt->bind_param('ssssssi', $app_logo_url, $app_logo_dark_url, $app_square_icon_url, $app_wordmark_url, $app_wordmark_dark_url, $app_id, $buwana_id)) {
@@ -63,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     }
 }
 
-$stmt = $buwana_conn->prepare("SELECT * FROM apps_tb WHERE app_id = ? AND owner_buwana_id = ?");
+$stmt = $buwana_conn->prepare("SELECT a.* FROM apps_tb a JOIN app_owners_tb ao ON ao.app_id = a.app_id WHERE a.app_id = ? AND ao.buwana_id = ?");
 $stmt->bind_param('ii', $app_id, $buwana_id);
 $stmt->execute();
 $result = $stmt->get_result();

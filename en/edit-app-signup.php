@@ -51,7 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $login_top_img_light      = $_POST['login_top_img_light'] ?? '';
     $login_top_img_dark       = $_POST['login_top_img_dark'] ?? '';
 
-    $sql = "UPDATE apps_tb SET signup_1_top_img_light=?, signup_1_top_img_dark=?, signup_2_top_img_light=?, signup_2_top_img_dark=?, signup_3_top_img_light=?, signup_3_top_img_dark=?, signup_4_top_img_light=?, signup_4_top_img_dark=?, signup_5_top_img_light=?, signup_5_top_img_dark=?, signup_6_top_img_light=?, signup_6_top_img_dark=?, signup_7_top_img_light=?, signup_7_top_img_dark=?, login_top_img_light=?, login_top_img_dark=? WHERE app_id=? AND owner_buwana_id=?";
+    $sql = "UPDATE apps_tb a
+            JOIN app_owners_tb ao ON ao.app_id = a.app_id
+            SET a.signup_1_top_img_light=?, a.signup_1_top_img_dark=?, a.signup_2_top_img_light=?, a.signup_2_top_img_dark=?,
+                a.signup_3_top_img_light=?, a.signup_3_top_img_dark=?, a.signup_4_top_img_light=?, a.signup_4_top_img_dark=?,
+                a.signup_5_top_img_light=?, a.signup_5_top_img_dark=?, a.signup_6_top_img_light=?, a.signup_6_top_img_dark=?,
+                a.signup_7_top_img_light=?, a.signup_7_top_img_dark=?, a.login_top_img_light=?, a.login_top_img_dark=?
+            WHERE a.app_id=? AND ao.buwana_id=?";
     $stmt = $buwana_conn->prepare($sql);
     if ($stmt) {
         if ($stmt->bind_param('ssssssssssssssssii', $signup_1_top_img_light, $signup_1_top_img_dark, $signup_2_top_img_light, $signup_2_top_img_dark, $signup_3_top_img_light, $signup_3_top_img_dark, $signup_4_top_img_light, $signup_4_top_img_dark, $signup_5_top_img_light, $signup_5_top_img_dark, $signup_6_top_img_light, $signup_6_top_img_dark, $signup_7_top_img_light, $signup_7_top_img_dark, $login_top_img_light, $login_top_img_dark, $app_id, $buwana_id)) {
@@ -74,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     }
 }
 
-$stmt = $buwana_conn->prepare("SELECT * FROM apps_tb WHERE app_id = ? AND owner_buwana_id = ?");
+$stmt = $buwana_conn->prepare("SELECT a.* FROM apps_tb a JOIN app_owners_tb ao ON ao.app_id = a.app_id WHERE a.app_id = ? AND ao.buwana_id = ?");
 $stmt->bind_param('ii', $app_id, $buwana_id);
 $stmt->execute();
 $result = $stmt->get_result();

@@ -80,7 +80,7 @@ Allow developers to register and configure new apps within Buwana. Will break do
 
 * updated_dt
 
-* owner_buwana_id
+* owner relationships (via `app_owners_tb`)
 
 ** BASIC
 
