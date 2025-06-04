@@ -35,10 +35,9 @@ $sql = "INSERT INTO apps_tb (
     signup_3_top_img_light, signup_3_top_img_dark, signup_4_top_img_light, signup_4_top_img_dark,
     signup_5_top_img_light, signup_5_top_img_dark, signup_6_top_img_light, signup_6_top_img_dark,
     signup_7_top_img_light, signup_7_top_img_dark, login_top_img_light, login_top_img_dark,
-    is_active, allow_signup, require_verification, last_used_dt, updated_dt, owner_buwana_id
+    is_active, allow_signup, require_verification, last_used_dt, updated_dt
 ) VALUES (
-    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 1, 1, NOW(), NOW(), ?
-)";
+    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 1, 1, NOW(), NOW())";
 
 $stmt = $buwana_conn->prepare($sql);
 if (!$stmt) {
@@ -60,15 +59,20 @@ $params = [
     $_POST['signup_3_top_img_dark'] ?? '', $_POST['signup_4_top_img_light'] ?? '', $_POST['signup_4_top_img_dark'] ?? '',
     $_POST['signup_5_top_img_light'] ?? '', $_POST['signup_5_top_img_dark'] ?? '', $_POST['signup_6_top_img_light'] ?? '',
     $_POST['signup_6_top_img_dark'] ?? '', $_POST['signup_7_top_img_light'] ?? '', $_POST['signup_7_top_img_dark'] ?? '',
-    $_POST['login_top_img_light'] ?? '', $_POST['login_top_img_dark'] ?? '', $owner_id
+    $_POST['login_top_img_light'] ?? '', $_POST['login_top_img_dark'] ?? ''
 ];
-
-$types = str_repeat('s', count($params) - 1) . 'i';
+$types = str_repeat('s', count($params));
 $stmt->bind_param($types, ...$params);
 
 if ($stmt->execute()) {
     $app_id = $stmt->insert_id;
     $stmt->close();
+    $owner_stmt = $buwana_conn->prepare("INSERT INTO app_owners_tb (app_id, buwana_id, is_primary) VALUES (?, ?, 1)");
+    if ($owner_stmt) {
+        $owner_stmt->bind_param('ii', $app_id, $owner_id);
+        $owner_stmt->execute();
+        $owner_stmt->close();
+    }
     echo json_encode(['success' => true, 'redirect' => "app-view.php?app_id=$app_id"]);
 } else {
     $error = $stmt->error;

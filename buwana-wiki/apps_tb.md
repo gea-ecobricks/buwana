@@ -44,7 +44,7 @@ It's basically the app passport control of Buwana: no app gets in without it.
 | `require_verification`    | `tinyint(1)`      | Require email/phone verification? |
 | `last_used_dt`            | `datetime`        | Last time someone logged in via this app. |
 | `updated_dt`              | `datetime`        | Last updated timestamp. |
-| `owner_buwana_id`         | `int(11)`         | Foreign key to the app creator in `users_tb`. |
+| _Removed:_ `owner_buwana_id` |                   | Owner linkage moved to `app_owners_tb`. |
 | `contact_email`           | `varchar(255)`    | Developer or admin email. |
 | `app_logo_dark_url`       | `varchar(255)`    | Logo for dark mode. |
 | `app_wordmark_url`        | `varchar(255)`    | Horizontal logo for light mode. |
@@ -60,7 +60,7 @@ It's basically the app passport control of Buwana: no app gets in without it.
 - `client_id` and `client_secret` are essential for OAuth—don’t leave ‘em blank unless you want your app leaking like a sieve.
 - Want your login screen to sparkle? Use `app_emojis_array` for animated flair.
 - Store Terms and Privacy in HTML format. Inject directly into modals—no escapes needed.
-- Hook up `owner_buwana_id` to keep track of who birthed this baby.
+- Use the `app_owners_tb` join table to keep track of which Earthling birthed each app.
 
 ---
 

@@ -90,7 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
     $success = false;
     $error_message = '';
 
-    $sql = "UPDATE apps_tb SET redirect_uris=?, app_login_url=?, scopes=?, app_domain=?, app_url=?, app_dashboard_url=?, app_description=?, app_version=?, app_display_name=?, contact_email=? WHERE app_id=? AND owner_buwana_id=?";
+    $sql = "UPDATE apps_tb a
+            JOIN app_owners_tb ao ON ao.app_id = a.app_id
+            SET a.redirect_uris=?, a.app_login_url=?, a.scopes=?, a.app_domain=?, a.app_url=?, a.app_dashboard_url=?, a.app_description=?, a.app_version=?, a.app_display_name=?, a.contact_email=?
+            WHERE a.app_id=? AND ao.buwana_id=?";
     $stmt = $buwana_conn->prepare($sql);
     if ($stmt) {
         if ($stmt->bind_param('ssssssssssii', $redirect_uris, $app_login_url, $scopes, $app_domain, $app_url, $app_dashboard_url, $app_description, $app_version, $app_display_name, $contact_email, $app_id, $buwana_id)) {
@@ -114,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_app'])) {
 }
 
 
-$stmt = $buwana_conn->prepare("SELECT * FROM apps_tb WHERE app_id = ? AND owner_buwana_id = ?");
+$stmt = $buwana_conn->prepare("SELECT a.* FROM apps_tb a JOIN app_owners_tb ao ON ao.app_id = a.app_id WHERE a.app_id = ? AND ao.buwana_id = ?");
 $stmt->bind_param('ii', $app_id, $buwana_id);
 $stmt->execute();
 $result = $stmt->get_result();

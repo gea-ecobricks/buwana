@@ -46,7 +46,9 @@ $stmt->close();
 $sql = "SELECT a.app_id, a.client_id, a.app_display_name, a.app_description, a.app_square_icon_url,
                (SELECT COUNT(*) FROM user_app_connections_tb u WHERE u.client_id = a.client_id) AS user_count
         FROM apps_tb a
-        WHERE a.owner_buwana_id = ? ORDER BY a.app_display_name";
+        JOIN app_owners_tb ao ON ao.app_id = a.app_id
+        WHERE ao.buwana_id = ?
+        ORDER BY a.app_display_name";
 $stmt = $buwana_conn->prepare($sql);
 $stmt->bind_param('i', $buwana_id);
 $stmt->execute();
@@ -55,7 +57,7 @@ $apps = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 $stmt->close();
 
 $new_account_count_for_user = 0;
-$stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM user_app_connections_tb u JOIN apps_tb a ON u.client_id = a.client_id WHERE a.owner_buwana_id = ? AND u.connected_at >= (NOW() - INTERVAL 1 DAY)");
+$stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM user_app_connections_tb u JOIN apps_tb a ON u.client_id = a.client_id JOIN app_owners_tb ao ON ao.app_id = a.app_id WHERE ao.buwana_id = ? AND u.connected_at >= (NOW() - INTERVAL 1 DAY)");
 $stmt->bind_param('i', $buwana_id);
 $stmt->execute();
 $stmt->bind_result($new_account_count_for_user);
