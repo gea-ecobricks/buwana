@@ -1,91 +1,282 @@
 <?php
 session_start();
-if (empty($_SESSION['buwana_id']) || empty($_SESSION['client_id'])) {
+if (empty($_SESSION['buwana_id'])) {
     header('Location: login.php');
     exit();
 }
 
+require_once '../buwanaconn_env.php';
+
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$page = 'app-wizard';
-$version = '0.1';
+$page = 'app-wizard.php';
+$version = '0.2';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
+
+$buwana_id = intval($_SESSION['buwana_id']);
+$first_name = '';
+$earthling_emoji = '';
+$stmt = $buwana_conn->prepare("SELECT first_name, earthling_emoji FROM users_tb WHERE buwana_id = ?");
+if ($stmt) {
+    $stmt->bind_param('i', $buwana_id);
+    $stmt->execute();
+    $stmt->bind_result($first_name, $earthling_emoji);
+    $stmt->fetch();
+    $stmt->close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>">
 <head>
     <meta charset="UTF-8">
     <?php require_once("../meta/dashboard-en.php"); ?>
-        <style>
-            .wizard-step { display:none; }
-            .wizard-step.active { display:block; }
-            .wizard-buttons { text-align:center; margin-top:20px; }
-            .wizard-buttons button { margin:0 5px; }
-        </style>
+    <style>
+      .wizard-step { display:none; }
+      .wizard-step.active { display:block; }
+      .wizard-buttons { text-align:center; margin-top:20px; }
+      .wizard-buttons button { margin:0 5px; }
+      .top-wrapper { background: var(--darker-lighter); }
+    </style>
     <?php require_once("../includes/buwana-index-inc.php"); ?>
-
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
-    <h1 style="text-align:center;">New App Setup</h1>
+    <div class="top-wrapper">
+      <div>
+        <div class="login-status"><?= htmlspecialchars($earthling_emoji) ?> Logged in as <?= htmlspecialchars($first_name) ?></div>
+      </div>
+      <div style="display:flex;flex-flow:column;margin-left:auto;">
+          <div style="display:flex;align-items:center;margin-left:auto;">
+                <div style="text-align:right;margin-right:10px;">
+                  <div class="page-name">New App Setup</div>
+                  <div class="client-id">Create New App</div>
+                </div>
+                <img src="../svgs/b-logo.svg" alt="New App" title="New App" width="60" height="60">
+          </div>
+      </div>
+    </div>
+    <div class="breadcrumb" style="text-align:right;margin-left:auto;margin-right: 15px;">
+                          <a href="dashboard.php">Dashboard</a> &gt;
+                          New App
+                        </div>
+    <div id="update-status" style="font-size:1.3em; color:green;padding:10px;margin-top:10px;"></div>
+    <div id="update-error" style="font-size:1.3em; color:red;padding:10px;margin-top:10px;"></div>
+    <h2>New App Setup</h2>
+    <p>Follow the steps to register your new application.</p>
     <form id="appWizardForm" method="post" action="../scripts/create_app.php">
       <div id="step1" class="wizard-step active">
-        <h2>Step 1: Basic Info</h2>
-        <label>App Name<br><input type="text" name="app_name" required></label><br>
-        <label>Registration Date<br><input type="date" name="app_registration_dt" required></label><br>
-        <label>Redirect URIs<br><input type="text" name="redirect_uris" required></label><br>
-        <label>App Login URL<br><input type="text" name="app_login_url"></label><br>
-        <label>Scopes<br><input type="text" name="scopes"></label><br>
-        <label>App Domain<br><input type="text" name="app_domain"></label><br>
-        <label>App URL<br><input type="text" name="app_url"></label><br>
-        <label>App Dashboard URL<br><input type="text" name="app_dashboard_url"></label><br>
-        <label>Description<br><textarea name="app_description"></textarea></label><br>
-        <label>Version<br><input type="text" name="app_version"></label><br>
-        <label>Display Name<br><input type="text" name="app_display_name"></label><br>
-        <label>Contact Email<br><input type="email" name="contact_email"></label><br>
+        <h3>Step 1: Basic Info</h3>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_name" name="app_name" aria-label="App Name" required placeholder=" ">
+          <label for="app_name">App Name</label>
+          <p class="form-caption">Internal name for your app</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="date" id="app_registration_dt" name="app_registration_dt" aria-label="Registration Date" required placeholder=" ">
+          <label for="app_registration_dt">Registration Date</label>
+          <p class="form-caption">When was your app registered?</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="redirect_uris" name="redirect_uris" aria-label="Redirect URIs" required placeholder=" ">
+          <label for="redirect_uris">Redirect URIs</label>
+          <p class="form-caption">Comma separated OAuth redirect URLs</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_login_url" name="app_login_url" aria-label="App Login URL" placeholder=" ">
+          <label for="app_login_url">App Login URL</label>
+          <p class="form-caption">Where users login to your app</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="scopes" name="scopes" aria-label="Scopes" placeholder=" ">
+          <label for="scopes">Scopes</label>
+          <p class="form-caption">OAuth scopes requested</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_domain" name="app_domain" aria-label="App Domain" placeholder=" ">
+          <label for="app_domain">App Domain</label>
+          <p class="form-caption">Primary domain name</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_url" name="app_url" aria-label="App URL" placeholder=" ">
+          <label for="app_url">App URL</label>
+          <p class="form-caption">Public homepage of your app</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_dashboard_url" name="app_dashboard_url" aria-label="App Dashboard URL" placeholder=" ">
+          <label for="app_dashboard_url">App Dashboard URL</label>
+          <p class="form-caption">Where users manage their account</p>
+        </div>
+        <div class="form-item float-label-group">
+          <textarea id="app_description" name="app_description" aria-label="Description" rows="3" placeholder=" "></textarea>
+          <label for="app_description">Description</label>
+          <p class="form-caption">Short summary of your app</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_version" name="app_version" aria-label="Version" placeholder=" ">
+          <label for="app_version">Version</label>
+          <p class="form-caption">Current version</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_display_name" name="app_display_name" aria-label="Display Name" placeholder=" ">
+          <label for="app_display_name">Display Name</label>
+          <p class="form-caption">Name shown to users</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="email" id="contact_email" name="contact_email" aria-label="Contact Email" placeholder=" ">
+          <label for="contact_email">Contact Email</label>
+          <p class="form-caption">Where we can reach you</p>
+        </div>
       </div>
       <div id="step2" class="wizard-step">
-        <h2>Step 2: Text Strings</h2>
-        <label>Slogan<br><input type="text" name="app_slogan"></label><br>
-        <label>Terms of Use<br><textarea name="app_terms_txt"></textarea></label><br>
-        <label>Privacy Text<br><textarea name="app_privacy_txt"></textarea></label><br>
-        <label>Emoji List (comma separated)<br><textarea name="app_emojis_array"></textarea></label><br>
+        <h3>Step 2: Text Strings</h3>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_slogan" name="app_slogan" aria-label="Slogan" placeholder=" ">
+          <label for="app_slogan">Slogan</label>
+          <p class="form-caption">Tagline for your app</p>
+        </div>
+        <div class="form-item float-label-group">
+          <textarea id="app_terms_txt" name="app_terms_txt" aria-label="Terms of Use" rows="6" placeholder=" "></textarea>
+          <label for="app_terms_txt">Terms of Use</label>
+          <p class="form-caption">Short version of your terms</p>
+        </div>
+        <div class="form-item float-label-group">
+          <textarea id="app_privacy_txt" name="app_privacy_txt" aria-label="Privacy Text" rows="6" placeholder=" "></textarea>
+          <label for="app_privacy_txt">Privacy Text</label>
+          <p class="form-caption">Short privacy notice</p>
+        </div>
+        <div class="form-item float-label-group">
+          <textarea id="app_emojis_array" name="app_emojis_array" aria-label="Emoji List" rows="4" placeholder=" "></textarea>
+          <label for="app_emojis_array">Emoji List</label>
+          <p class="form-caption">Comma separated emoji list</p>
+        </div>
       </div>
       <div id="step3" class="wizard-step">
-        <h2>Step 3: Basic Graphics</h2>
-        <label>Logo URL<br><input type="text" name="app_logo_url"></label><br>
-        <label>Dark Logo URL<br><input type="text" name="app_logo_dark_url"></label><br>
-        <label>Square Icon URL<br><input type="text" name="app_square_icon_url"></label><br>
-        <label>Wordmark URL<br><input type="text" name="app_wordmark_url"></label><br>
-        <label>Dark Wordmark URL<br><input type="text" name="app_wordmark_dark_url"></label><br>
+        <h3>Step 3: Basic Graphics</h3>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_logo_url" name="app_logo_url" aria-label="Logo URL" placeholder=" ">
+          <label for="app_logo_url">Logo URL</label>
+          <p class="form-caption">Light mode logo</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_logo_dark_url" name="app_logo_dark_url" aria-label="Dark Logo URL" placeholder=" ">
+          <label for="app_logo_dark_url">Dark Logo URL</label>
+          <p class="form-caption">Dark mode logo</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_square_icon_url" name="app_square_icon_url" aria-label="Square Icon URL" placeholder=" ">
+          <label for="app_square_icon_url">Square Icon URL</label>
+          <p class="form-caption">App icon</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_wordmark_url" name="app_wordmark_url" aria-label="Wordmark URL" placeholder=" ">
+          <label for="app_wordmark_url">Wordmark URL</label>
+          <p class="form-caption">Light mode wordmark</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="app_wordmark_dark_url" name="app_wordmark_dark_url" aria-label="Dark Wordmark URL" placeholder=" ">
+          <label for="app_wordmark_dark_url">Dark Wordmark URL</label>
+          <p class="form-caption">Dark mode wordmark</p>
+        </div>
       </div>
       <div id="step4" class="wizard-step">
-        <h2>Step 4: Signup Graphics</h2>
-        <label>Signup Top Image Light<br><input type="text" name="signup_top_img_url"></label><br>
-        <label>Signup Top Image Dark<br><input type="text" name="signup_top_img_dark_url"></label><br>
-        <label>Signup 1 Light<br><input type="text" name="signup_1_top_img_light"></label><br>
-        <label>Signup 1 Dark<br><input type="text" name="signup_1_top_img_dark"></label><br>
-        <label>Signup 2 Light<br><input type="text" name="signup_2_top_img_light"></label><br>
-        <label>Signup 2 Dark<br><input type="text" name="signup_2_top_img_dark"></label><br>
-        <label>Signup 3 Light<br><input type="text" name="signup_3_top_img_light"></label><br>
-        <label>Signup 3 Dark<br><input type="text" name="signup_3_top_img_dark"></label><br>
-        <label>Signup 4 Light<br><input type="text" name="signup_4_top_img_light"></label><br>
-        <label>Signup 4 Dark<br><input type="text" name="signup_4_top_img_dark"></label><br>
-        <label>Signup 5 Light<br><input type="text" name="signup_5_top_img_light"></label><br>
-        <label>Signup 5 Dark<br><input type="text" name="signup_5_top_img_dark"></label><br>
-        <label>Signup 6 Light<br><input type="text" name="signup_6_top_img_light"></label><br>
-        <label>Signup 6 Dark<br><input type="text" name="signup_6_top_img_dark"></label><br>
-        <label>Signup 7 Light<br><input type="text" name="signup_7_top_img_light"></label><br>
-        <label>Signup 7 Dark<br><input type="text" name="signup_7_top_img_dark"></label><br>
-        <label>Login Image Light<br><input type="text" name="login_top_img_light"></label><br>
-        <label>Login Image Dark<br><input type="text" name="login_top_img_dark"></label><br>
+        <h3>Step 4: Signup Graphics</h3>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_top_img_url" name="signup_top_img_url" aria-label="Signup Top Light" placeholder=" ">
+          <label for="signup_top_img_url">Signup Top Image Light</label>
+          <p class="form-caption">Light mode top banner</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_top_img_dark_url" name="signup_top_img_dark_url" aria-label="Signup Top Dark" placeholder=" ">
+          <label for="signup_top_img_dark_url">Signup Top Image Dark</label>
+          <p class="form-caption">Dark mode top banner</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_1_top_img_light" name="signup_1_top_img_light" aria-label="Signup 1 Light" placeholder=" ">
+          <label for="signup_1_top_img_light">Signup 1 Light</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_1_top_img_dark" name="signup_1_top_img_dark" aria-label="Signup 1 Dark" placeholder=" ">
+          <label for="signup_1_top_img_dark">Signup 1 Dark</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_2_top_img_light" name="signup_2_top_img_light" aria-label="Signup 2 Light" placeholder=" ">
+          <label for="signup_2_top_img_light">Signup 2 Light</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_2_top_img_dark" name="signup_2_top_img_dark" aria-label="Signup 2 Dark" placeholder=" ">
+          <label for="signup_2_top_img_dark">Signup 2 Dark</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_3_top_img_light" name="signup_3_top_img_light" aria-label="Signup 3 Light" placeholder=" ">
+          <label for="signup_3_top_img_light">Signup 3 Light</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_3_top_img_dark" name="signup_3_top_img_dark" aria-label="Signup 3 Dark" placeholder=" ">
+          <label for="signup_3_top_img_dark">Signup 3 Dark</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_4_top_img_light" name="signup_4_top_img_light" aria-label="Signup 4 Light" placeholder=" ">
+          <label for="signup_4_top_img_light">Signup 4 Light</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_4_top_img_dark" name="signup_4_top_img_dark" aria-label="Signup 4 Dark" placeholder=" ">
+          <label for="signup_4_top_img_dark">Signup 4 Dark</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_5_top_img_light" name="signup_5_top_img_light" aria-label="Signup 5 Light" placeholder=" ">
+          <label for="signup_5_top_img_light">Signup 5 Light</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_5_top_img_dark" name="signup_5_top_img_dark" aria-label="Signup 5 Dark" placeholder=" ">
+          <label for="signup_5_top_img_dark">Signup 5 Dark</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_6_top_img_light" name="signup_6_top_img_light" aria-label="Signup 6 Light" placeholder=" ">
+          <label for="signup_6_top_img_light">Signup 6 Light</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_6_top_img_dark" name="signup_6_top_img_dark" aria-label="Signup 6 Dark" placeholder=" ">
+          <label for="signup_6_top_img_dark">Signup 6 Dark</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_7_top_img_light" name="signup_7_top_img_light" aria-label="Signup 7 Light" placeholder=" ">
+          <label for="signup_7_top_img_light">Signup 7 Light</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="signup_7_top_img_dark" name="signup_7_top_img_dark" aria-label="Signup 7 Dark" placeholder=" ">
+          <label for="signup_7_top_img_dark">Signup 7 Dark</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="login_top_img_light" name="login_top_img_light" aria-label="Login Image Light" placeholder=" ">
+          <label for="login_top_img_light">Login Image Light</label>
+          <p class="form-caption">Image URL</p>
+        </div>
+        <div class="form-item float-label-group">
+          <input type="text" id="login_top_img_dark" name="login_top_img_dark" aria-label="Login Image Dark" placeholder=" ">
+          <label for="login_top_img_dark">Login Image Dark</label>
+          <p class="form-caption">Image URL</p>
+        </div>
       </div>
       <div id="step5" class="wizard-step">
-        <h2>Step 5: Finish</h2>
+        <h3>Step 5: Finish</h3>
         <p>Review your details and submit to create the app.</p>
       </div>
       <div class="wizard-buttons">
-        <button type="button" id="prevBtn">Previous</button>
-        <button type="button" id="nextBtn">Next</button>
-        <button type="submit" id="submitBtn" style="display:none;">Submit</button>
+        <button type="button" id="prevBtn" class="simple-button">Previous</button>
+        <button type="button" id="nextBtn" class="simple-button">Next</button>
+        <button type="submit" id="submitBtn" class="kick-ass-submit" style="display:none;">Submit</button>
       </div>
     </form>
   </div>

@@ -118,14 +118,14 @@ if (!$app) {
                 </div>
                 <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="60" height="60">
           </div>
-            <div class="breadcrumb" style="margin-left:auto;">
+      </div>
+
+    </div>
+    <div class="breadcrumb" style="text-align:right;margin-left:auto;margin-right: 15px;">
                           <a href="dashboard.php">Dashboard</a> &gt;
                           <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt;
                           Edit Graphics
                         </div>
-      </div>
-
-    </div>
             <div id="update-status" style="font-size:1.3em; color:green;padding:10px;margin-top:10px;"></div>
             <div id="update-error" style="font-size:1.3em; color:red;padding:10px;margin-top:10px;"></div>
     <h1>Edit App Graphics</h1>

@@ -138,13 +138,13 @@ if ($stmt) {
                 </div>
                 <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="60" height="60">
           </div>
-            <div class="breadcrumb" style="margin-left:auto;">
-                          <a href="dashboard.php">Dashboard</a> &gt;
-                          Manage <?= htmlspecialchars($app['app_display_name']) ?>
-                        </div>
       </div>
 
     </div>
+    <div class="breadcrumb" style="text-align:right;margin-left:auto;margin-right: 15px;">
+                          <a href="dashboard.php">Dashboard</a> &gt;
+                          Manage <?= htmlspecialchars($app['app_display_name']) ?>
+                        </div>
     <div class="chart-container dashboard-module" style="margin-bottom:15px;">
       <canvas id="growthChart"></canvas>
       <div class="chart-controls">
