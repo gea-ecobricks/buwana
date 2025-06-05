@@ -89,7 +89,7 @@
   display: none;
   justify-content: center;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 45px;
 }
 
 .app-display-box:hover .app-actions,
