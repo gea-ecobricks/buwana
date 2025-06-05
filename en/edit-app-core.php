@@ -192,15 +192,15 @@ if (!$app) {
           <div style="display:flex;align-items:center;margin-left:auto;">
 
                 <div style="text-align:right;margin-right:10px;">
-                  <div class="page-name">Edit Core: <?= htmlspecialchars($app['app_display_name']) ?></div>
-                  <div class="client-id">Client ID: <?= htmlspecialchars($app['client_id']) ?></div>
+                  <div class="page-name" title="Page name"><?= htmlspecialchars($app['app_display_name']) ?></div>
+                  <div class="client-id" title="App Client ID"><?= htmlspecialchars($app['client_id']) ?></div>
                 </div>
                 <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon" title="<?= htmlspecialchars($app['app_display_name']) ?>" width="60" height="60">
           </div>
       </div>
 
     </div>
-    <div class="breadcrumb" style="text-align:right;margin-left:auto;">
+    <div class="breadcrumb" style="text-align:right;margin-left:auto;margin-right: 15px;">
                           <a href="dashboard.php">Dashboard</a> &gt;
                           <a href="app-view.php?app_id=<?= intval($app_id) ?>">Manage <?= htmlspecialchars($app['app_display_name']) ?></a> &gt;
                           Edit Core
