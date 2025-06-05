@@ -28,15 +28,8 @@ if ($stmt) {
 <html lang="<?= htmlspecialchars($lang) ?>">
 <head>
     <meta charset="UTF-8">
-    <?php require_once("../meta/dashboard-en.php"); ?>
-    <style>
-      .wizard-step { display:none; }
-      .wizard-step.active { display:block; }
-      .wizard-buttons { text-align:center; margin-top:20px; }
-      .wizard-buttons button { margin:0 5px; }
-      .top-wrapper { background: var(--darker-lighter); }
-    </style>
-    <?php require_once("../includes/buwana-index-inc.php"); ?>
+    <?php require_once("../meta/app-wizard-en.php"); ?>
+    <?php require_once("../includes/app-wizard-en.php"); ?>
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
     <div class="top-wrapper">
