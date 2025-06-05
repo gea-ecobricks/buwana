@@ -14,8 +14,8 @@ if(!$buwana_id || !$app_id || !in_array($field, ['is_active','allow_signup']) ||
 }
 
 $sql = $field === 'is_active'
-    ? 'UPDATE apps_tb SET is_active=? WHERE app_id=? AND owner_buwana_id=?'
-    : 'UPDATE apps_tb SET allow_signup=? WHERE app_id=? AND owner_buwana_id=?';
+    ? 'UPDATE apps_tb a JOIN app_owners_tb ao ON ao.app_id = a.app_id SET a.is_active=? WHERE a.app_id=? AND ao.buwana_id=?'
+    : 'UPDATE apps_tb a JOIN app_owners_tb ao ON ao.app_id = a.app_id SET a.allow_signup=? WHERE a.app_id=? AND ao.buwana_id=?';
 $stmt = $buwana_conn->prepare($sql);
 $success = false;
 if($stmt){
