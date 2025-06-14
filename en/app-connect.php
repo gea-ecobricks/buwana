@@ -25,6 +25,7 @@ $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 // --- Validate inputs
 $buwana_id = $_GET['id'] ?? null;
 $client_id = $app_info['client_id'] ?? null;
+$redirect = isset($_GET['redirect']) ? filter_var($_GET['redirect'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 
 // --- Conditional validation and JavaScript fallback handling
 if (!$buwana_id && !$client_id) {
@@ -307,6 +308,7 @@ padding-top: 10px !important;
         <form id="user-signup-form" method="post" action="app-connect_process.php" novalidate>
             <input type="hidden" name="buwana_id" value="<?= htmlspecialchars($buwana_id) ?>">
             <input type="hidden" name="client_id" value="<?= htmlspecialchars($app_info['client_id']) ?>">
+            <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
  <!-- Kick-Ass Submit Button -->
             <div id="submit-section" class="submit-button-wrapper">
 
