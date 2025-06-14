@@ -195,6 +195,20 @@ function openAboutBuwana() {
 }
 
 
+function openAboutApp() {
+  const appName = "<?= addslashes($app_info['app_display_name']) ?>";
+  const description = "<?= addslashes($app_info['app_description']) ?>";
+
+  const content = `
+        <div style="text-align:center; margin:auto; padding:10%;">
+            <h2>About ${appName}</h2>
+            <p>${description}</p>
+        </div>
+    `;
+  openModal(content);
+}
+
+
 function openAboutEarthen() {
     const content = `
         <div style="text-align:center; margin:auto; padding:10%;">
