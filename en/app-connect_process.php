@@ -10,6 +10,7 @@ require_once '../scripts/create_user.php'; // Includes createUserInClientApp()
 // Get POSTed form data
 $buwana_id = isset($_POST['buwana_id']) ? (int) $_POST['buwana_id'] : null;
 $client_id = $_POST['client_id'] ?? null;
+$redirect = isset($_POST['redirect']) ? filter_var($_POST['redirect'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
 
 // Validate inputs
 if (!$buwana_id || !$client_id) {
@@ -89,6 +90,9 @@ if ($check_stmt->num_rows === 0) {
 // ✅ Step 3: Redirect to the app login page with upgraded status
 $app_login_url = $app_info['app_login_url'] ?? '/';
 $redirect_url = $app_login_url . '?id=' . urlencode($buwana_id) . '&status=upgraded';
+if (!empty($redirect)) {
+    $redirect_url .= '&redirect=' . urlencode($redirect);
+}
 
 header("Location: $redirect_url");
 exit;
