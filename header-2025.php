@@ -399,6 +399,13 @@ max-height: 200px;
 </div>
 
 <div class="menu-page-item">
+        <a href="javascript:void(0);" onclick="openAboutApp()">
+          About <?= htmlspecialchars($app_info['app_display_name']) ?>
+        </a>
+    <span class="status-circle" style="background-color: fuchsia;" title="About the app"></span>
+    </div>
+
+<div class="menu-page-item">
         <a href="javascript:void(0);" onclick="openAboutEarthen()" data-lang-id="1000-about-earthen">
           About Earthen
         </a>
