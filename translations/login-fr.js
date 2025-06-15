@@ -18,7 +18,23 @@ const fr_Page_Translations = {
     "000-reset-it": "Réinitialisez-le.",
     "003-code-status": "Un code de connexion sera envoyé à votre adresse e-mail.",
     "004-login-button": '<input type="submit" id="submit-password-button" value="Connexion" class="login-button-75">',
-    "005-password-field-placeholder": '<input type="password" id="password" name="password" required placeholder="Votre mot de passe...">'
+    "005-password-field-placeholder": '<input type="password" id="password" name="password" required placeholder="Votre mot de passe...">',
+    logout: {
+        main: "Vous avez été déconnecté.",
+        sub: "Quand vous êtes prêt $first_name, reconnectez-vous avec vos identifiants."
+    },
+    firsttime: {
+        main: "Votre compte Buwana est créé ! 🎉",
+        sub: "Maintenant $first_name, connectez-vous avec vos nouvelles identifiants."
+    },
+    connected: {
+        main: "Vous êtes maintenant configuré pour utiliser $app_display_name",
+        sub: "$first_name, votre compte Buwana peut maintenant être utilisé pour se connecter à $app_display_name"
+    },
+    default: {
+        main: "Bon retour !",
+        sub: "Veuillez vous reconnecter avec vos identifiants."
+    }
 };
 
 /*-----------------------------------
