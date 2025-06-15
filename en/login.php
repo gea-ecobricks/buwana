@@ -19,7 +19,7 @@ if (!empty($app_info['client_id'])) {
 
 // Set page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.774';
+$version = '0.775';
 $page = 'login';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -543,6 +543,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let messages = window.translations || {};
 
         if (!messages[status]) {
+
             switch (lang) {
                 case 'fr':
                     if (typeof fr_Page_Translations !== 'undefined') messages = fr_Page_Translations;
@@ -564,6 +565,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     break;
                 default:
                     if (typeof en_Page_Translations !== 'undefined') messages = en_Page_Translations;
+
+            if (lang === 'fr' && typeof fr_LoginStatusMessages !== 'undefined') {
+                messages = fr_LoginStatusMessages;
+            } else if (typeof en_LoginStatusMessages !== 'undefined') {
+                messages = en_LoginStatusMessages;
+
             }
         }
 
