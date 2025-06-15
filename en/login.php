@@ -185,7 +185,7 @@ echo '</script>';
             <span data-lang-id="004-login-button">
                 <input type="submit" id="submit-password-button" value="Login" class="login-button-75">
             </span>
-            <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75" style="display:none;">
+            <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75">
         </div>
         <div id="code-error" data-lang-id="002-password-wrong" class="form-field-error" style="display:none;margin-top: 5px;margin-bottom:-15px;">👉 Entry is incorrect.</div>
     </div>
@@ -480,17 +480,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
-        if (passwordToggle.checked) {
-            sendCodeButton.style.display = 'none';
-            setTimeout(() => {
-                submitPasswordButton.style.display = 'block';
-            }, 600); // Delay for transition effect
-        } else {
-            submitPasswordButton.style.display = 'none';
-            setTimeout(() => {
-                sendCodeButton.style.display = 'block';
-            }, 600); // Delay for transition effect
-        }
+        // No display toggling needed; CSS handles button positions
+        return;
     }
 
     // Event listener for toggle button clicks
@@ -756,17 +747,8 @@ if (code && buwanaId) {
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
 
-        if (passwordToggle.checked) {
-            sendCodeButton.style.display = 'none';
-            setTimeout(() => {
-                submitPasswordButton.style.display = 'block';
-            }, 600); // Delay for transition effect
-        } else {
-            submitPasswordButton.style.display = 'none';
-            setTimeout(() => {
-                sendCodeButton.style.display = 'block';
-            }, 600); // Delay for transition effect
-        }
+        // Button visibility handled by CSS transitions
+        return;
     }
 
 
