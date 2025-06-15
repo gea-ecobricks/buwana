@@ -11,22 +11,6 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 // Forward slash (/): Should be escaped as \/ in </script> tags to prevent prematurely closing a script.
 
 const id_Page_Translations = {
-    logout: {
-        main: "Anda telah keluar.",
-        sub: "Saat Anda siap $first_name, masuk kembali dengan kredensial akun Anda."
-    },
-    firsttime: {
-        main: "Akun Buwana Anda telah dibuat! 🎉",
-        sub: "Dan langganan Earthen Anda telah dikonfirmasi. Sekarang $first_name, silakan masuk lagi dengan kredensial akun baru Anda."
-    },
-    connected: {
-        main: "Anda sekarang siap menggunakan $app_display_name",
-        sub: "$first_name, akun Buwana Anda sekarang dapat digunakan untuk masuk ke $app_display_name"
-    },
-    default: {
-        main: "Selamat datang kembali!",
-        sub: "Silakan masuk kembali dengan kredensial akun Anda."
-    },
 
     "001-cant-find": "🤔 Kami tidak dapat menemukan kredensial ini di database.",
     "002-password-is-wrong": "👉 Kata sandi salah.",
