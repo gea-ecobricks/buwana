@@ -33,7 +33,7 @@ if (!empty($_POST['code']) && !empty($_POST['credential_key'])) {
     }
 
     // PART 4: Validate Code
-    $stmt = $buwana_conn->prepare("SELECT buwana_id FROM credentials_tb WHERE credential_key = ? AND UPPER(2fa_temp_code) = ?");
+    $stmt = $buwana_conn->prepare("SELECT buwana_id FROM credentials_tb WHERE LOWER(credential_key) = ? AND UPPER(2fa_temp_code) = ?");
     if ($stmt) {
         $stmt->bind_param("ss", $credential_key, $code);
         if ($stmt->execute()) {

@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('code_login_process.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `code=${code}&credential_key=${credentialKeyInput.value}`
+            body: `code=${code}&credential_key=${credentialKeyInput.value.trim().toLowerCase()}`
         })
         .then(response => response.json())
         .then(data => handleAjaxResponse(data))
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('code_process.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ 'credential_key': credentialKeyInput.value })
+            body: new URLSearchParams({ 'credential_key': credentialKeyInput.value.trim().toLowerCase() })
         })
         .then(response => response.text())
         .then(text => {
@@ -482,14 +482,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateButtonVisibility() {
         if (passwordToggle.checked) {
             sendCodeButton.style.display = 'none';
-            setTimeout(() => {
-                submitPasswordButton.style.display = 'block';
-            }, 600); // Delay for transition effect
+            submitPasswordButton.style.display = 'block';
         } else {
             submitPasswordButton.style.display = 'none';
-            setTimeout(() => {
-                sendCodeButton.style.display = 'block';
-            }, 600); // Delay for transition effect
+            sendCodeButton.style.display = 'block';
         }
     }
 
@@ -749,23 +745,17 @@ if (code && buwanaId) {
 
     // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
-     const passwordForm = document.getElementById('password-form');
-    const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password');
-    const codeToggle = document.getElementById('code');
-    const submitPasswordButton = document.getElementById('submit-password-button');
-    const sendCodeButton = document.getElementById('send-code-button');
+        const passwordToggle = document.getElementById('password');
+        const codeToggle = document.getElementById('code');
+        const submitPasswordButton = document.getElementById('submit-password-button');
+        const sendCodeButton = document.getElementById('send-code-button');
 
         if (passwordToggle.checked) {
             sendCodeButton.style.display = 'none';
-            setTimeout(() => {
-                submitPasswordButton.style.display = 'block';
-            }, 600); // Delay for transition effect
+            submitPasswordButton.style.display = 'block';
         } else {
             submitPasswordButton.style.display = 'none';
-            setTimeout(() => {
-                sendCodeButton.style.display = 'block';
-            }, 600); // Delay for transition effect
+            sendCodeButton.style.display = 'block';
         }
     }
 
