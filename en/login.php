@@ -150,7 +150,7 @@ echo '</script>';
         <div id="no-buwana-email" data-lang-id="001-cant-find" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">🤔 We can't find this credential in the database.</div>
     </div>
 
-    <div class="form-item" id="password-form" style="height:92px;margin-top: -5px;">
+    <div class="form-item" id="password-form" style="height:115px;margin-top: -5px;">
         <div class="password-wrapper" style="position: relative;">
             <div data-lang-id="005-password-field-placeholder">
                 <input type="password" id="password" name="password" placeholder="Your password..." required>
@@ -159,7 +159,7 @@ echo '</script>';
         </div>
         <div id="password-error" data-lang-id="002-password-is-wrong" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">👉 Password is wrong.</div>
 
-        <p class="form-caption"><span data-lang-id="003-forgot-your-password">Forgot your password?</span> <a href="#" onclick="showPasswordReset('reset', '<?php echo $lang; ?>', '')" class="underline-link" data-lang-id="000-reset-it">Reset it.</a></p>
+        <p class="form-caption" style="padding-top: 15px;"><span data-lang-id="003-forgot-your-password">Forgot your password?</span> <a href="#" onclick="showPasswordReset('reset', '<?php echo $lang; ?>', '')" class="underline-link" data-lang-id="000-reset-it">Reset it.</a></p>
     </div>
 
     <div class="form-item" id="code-form" style="text-align:center;height:80px;">
@@ -175,7 +175,7 @@ echo '</script>';
 
     </div>
 
-    <div style="text-align:center;width:100%;margin:auto;margin-top:15px;max-width:500px;" id="login-buttons">
+    <div style="text-align:center;width:100%;margin:auto;margin-top:35px;max-width:500px;" id="login-buttons">
         <div class="toggle-container">
             <input type="radio" id="password" name="toggle" value="password" checked>
             <input type="radio" id="code" name="toggle" value="code">
