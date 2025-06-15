@@ -540,20 +540,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to get status messages
     function getStatusMessages(status, lang, firstName = '') {
-        let messages;
-        switch (lang) {
-            case 'fr':
-                messages = typeof fr_LoginStatusMessages !== 'undefined' ? fr_LoginStatusMessages : en_LoginStatusMessages;
-                break;
-            default:
+        let messages = window.translations || {};
+
+        if (!messages[status]) {
+            if (lang === 'fr' && typeof fr_LoginStatusMessages !== 'undefined') {
+                messages = fr_LoginStatusMessages;
+            } else if (typeof en_LoginStatusMessages !== 'undefined') {
                 messages = en_LoginStatusMessages;
+            }
         }
 
-        const selected = messages[status] || messages.default;
-        const main = selected.main
+        const selected = messages[status] || messages.default || {};
+        const main = (selected.main || '')
             .replace('$app_display_name', appDisplayName)
             .replace('$first_name', firstName);
-        const sub = selected.sub
+        const sub = (selected.sub || '')
             .replace('$app_display_name', appDisplayName)
             .replace('$first_name', firstName);
 
