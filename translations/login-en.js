@@ -13,4 +13,27 @@ const en_Page_Translations = {
     "005-password-field-placeholder": '<input type="password" id="password" name="password" required placeholder="Your password...">',
 };
 
+/*-----------------------------------
+LOGIN STATUS MESSAGES
+----------------------------------*/
+
+const en_LoginStatusMessages = {
+    logout: {
+        main: "You're logged out.",
+        sub: "When you're ready $first_name, login again with your account credentials."
+    },
+    firsttime: {
+        main: "Your Buwana Account is Created! 🎉",
+        sub: "And your Earthen subscriptions are confirmed. Now $first_name, please login again with your new account credentials."
+    },
+    connected: {
+        main: "Your now set up to use $app_display_name",
+        sub: "$first_name, your Buwana account can now be used to login to $app_display_name"
+    },
+    default: {
+        main: "Welcome back!",
+        sub: "Please login again with your account credentials."
+    }
+};
+
 
