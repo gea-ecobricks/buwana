@@ -540,20 +540,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to get status messages
     function getStatusMessages(status, lang, firstName = '') {
-        let messages;
-        switch (lang) {
-            case 'fr':
-                messages = typeof fr_LoginStatusMessages !== 'undefined' ? fr_LoginStatusMessages : en_LoginStatusMessages;
-                break;
-            default:
-                messages = en_LoginStatusMessages;
+        let messages = window.translations || {};
+
+        if (!messages[status]) {
+            switch (lang) {
+                case 'fr':
+                    if (typeof fr_Page_Translations !== 'undefined') messages = fr_Page_Translations;
+                    break;
+                case 'es':
+                    if (typeof es_Page_Translations !== 'undefined') messages = es_Page_Translations;
+                    break;
+                case 'ar':
+                    if (typeof ar_Page_Translations !== 'undefined') messages = ar_Page_Translations;
+                    break;
+                case 'zh':
+                    if (typeof zh_Page_Translations !== 'undefined') messages = zh_Page_Translations;
+                    break;
+                case 'de':
+                    if (typeof de_Page_Translations !== 'undefined') messages = de_Page_Translations;
+                    break;
+                case 'id':
+                    if (typeof id_Page_Translations !== 'undefined') messages = id_Page_Translations;
+                    break;
+                default:
+                    if (typeof en_Page_Translations !== 'undefined') messages = en_Page_Translations;
+            }
         }
 
-        const selected = messages[status] || messages.default;
-        const main = selected.main
+        const selected = messages[status] || messages.default || {};
+        const main = (selected.main || '')
             .replace('$app_display_name', appDisplayName)
             .replace('$first_name', firstName);
-        const sub = selected.sub
+        const sub = (selected.sub || '')
             .replace('$app_display_name', appDisplayName)
             .replace('$first_name', firstName);
 
@@ -585,10 +603,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const code = getQueryParam('code'); // Get the code from the URL
     const buwanaId = getQueryParam('id'); // Get the id from the URL
 
-    // Fetch and display the status message based on the status and language
-    const { main, sub } = getStatusMessages(status, lang, firstName);
-    document.getElementById('status-message').textContent = main;
-    document.getElementById('sub-status-message').textContent = sub;
+    function updateStatusMessages() {
+        const { main, sub } = getStatusMessages(status, lang, firstName);
+        document.getElementById('status-message').textContent = main;
+        document.getElementById('sub-status-message').textContent = sub;
+    }
+
+    if (window.translations) {
+        updateStatusMessages();
+    } else {
+        document.addEventListener('translationsLoaded', updateStatusMessages);
+    }
 
     // Fill the credential_key input field if present in the URL
     if (credentialKey) {
