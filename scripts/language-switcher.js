@@ -76,7 +76,11 @@ function loadTranslationScripts(lang, page, callback) {
     function scriptLoaded() {
         loadedScripts++;
         if (loadedScripts === totalScripts) {
-            callback(); // All scripts loaded
+            if (typeof callback === 'function') {
+                callback(); // All scripts loaded
+            }
+            // Notify that translations are ready
+            document.dispatchEvent(new Event('translationsLoaded'));
         }
     }
 
