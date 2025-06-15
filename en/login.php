@@ -153,9 +153,9 @@ echo '</script>';
     <div class="form-item" id="password-form" style="height:92px;margin-top: -5px;">
         <div class="password-wrapper" style="position: relative;">
             <div data-lang-id="005-password-field-placeholder">
-                <input type="password" id="password" name="password" placeholder="Your password..." required>
+                <input type="password" id="user_password" name="password" placeholder="Your password..." required>
             </div>
-            <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
+            <span toggle="#user_password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
         </div>
         <div id="password-error" data-lang-id="002-password-is-wrong" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">👉 Password is wrong.</div>
 
@@ -513,7 +513,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateFormAction() {
         const form = document.getElementById('login');
-        const passwordField = document.getElementById('password');
+        const passwordField = document.getElementById('user_password');
 
         if (codeToggle.checked) {
             // If the code option is selected
@@ -638,13 +638,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle form submission validation
     document.getElementById('login').addEventListener('submit', function (event) {
         var credentialValue = document.getElementById('credential_key').value;
-        var password = document.getElementById('password').value;
+        var password = document.getElementById('user_password').value;
 
         // Simple form validation before submitting
         if (credentialValue === '' || password === '') {
             event.preventDefault();
             handleErrorResponse('invalid_password'); // Show password error if fields are empty
-            shakeElement(password-form);
+            shakeElement(document.getElementById('password-form'));
         }
     });
 
@@ -779,7 +779,7 @@ if (code && buwanaId) {
     const sendCodeButton = document.getElementById('send-code-button');
 
         const form = document.getElementById('login');
-        const passwordField = document.getElementById('password');
+        const passwordField = document.getElementById('user_password');
 
         if (codeToggle.checked) {
             // If the code option is selected
