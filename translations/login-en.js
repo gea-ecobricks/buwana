@@ -27,7 +27,7 @@ const en_LoginStatusMessages = {
         sub: "And your Earthen subscriptions are confirmed. Now $first_name, please login again with your new account credentials."
     },
     connected: {
-        main: "Your now set up to use $app_display_name",
+        main: "You're now set up to use $app_display_name",
         sub: "$first_name, your Buwana account can now be used to login to $app_display_name"
     },
     default: {
