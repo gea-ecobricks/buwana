@@ -1,8 +1,8 @@
-<title>Login | GoBrik 3.0</title>
+<title>Masuk | Buwana</title>
 
-<meta name="keywords" content="login, gobrik, ecobrick app, signup, sign up, sign, up">
-<meta name="description" content="Login to the Gobrik app to manage your ecobrick, plastic and projects.">
-<meta name="author" content="Global Ecobrick Alliance">
+<meta name="keywords" content="login, buwana, aplikasi buwana, aplikasi regeneratif, autentikasi, sso, ekosistem buwana">
+<meta name="description" content="Masuk ke aplikasi regeneratif Anda yang luar biasa menggunakan protokol autentikasi Buwanana">
+<meta name="author" content="Terestrial">
 <meta name="last-modified" content="' . $lastModified . '">
 <meta name="revised" content="' . $lastModified . '">
 
@@ -10,11 +10,11 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
 <meta property="og:url"           content="https://www.gobrik.com/' . $lang . '/' . $page . '">
 <meta property="og:type"          content="app">
-<meta property="og:title"         content="Login | GoBrik">
-<meta property="og:description"   content="Login to the Gobrik app to manage your ecobrick, plastic and projects." >
-<meta property="og:image"         content="https://www.gobrik.com/images/social-banner-1200px.png" >
+<meta property="og:title"         content="Masuk | Buwana">
+<meta property="og:description"   content="Masuk ke aplikasi regeneratif Anda yang luar biasa menggunakan protokol autentikasi Buwanana" >
+<meta property="og:image"         content="https://buwana.ecobricks.org/pngs/buwana-banner-2025.png" >
 <meta property="fb:app_id"        content="1781710898523821" >
-<meta property="og:image:width"   content="1200" >
-<meta property="og:image:height"  content="1000" >
-<meta property="og:image:alt"     content="A metaphorical road winding into the distance with various ecobrick and earth constructions along side it and the GoBrik logo floating above">
-<meta property="og:locale"        content="en_GB">
+<meta property="og:image:width"   content="1000" >
+<meta property="og:image:height"  content="599" >
+<meta property="og:image:alt"     content="Sebuah visi transisi kita dari modern ke integrasi Bumi yang beragam, semarak, dan melimpah.">
+<meta property="og:locale"        content="id_ID">
