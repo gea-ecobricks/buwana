@@ -96,6 +96,7 @@ echo 'const status = "' . addslashes($status) . '";';
 echo 'const firstName = "' . addslashes($first_name) . '";';
 echo 'const buwanaId = "' . addslashes($buwana_id) . '";';
 echo 'const code = "' . addslashes($code) . '";';
+echo 'const appDisplayName = "' . addslashes($app_info['app_display_name'] ?? '') . '";';
 echo '</script>';
 ?>
 
@@ -539,71 +540,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to get status messages
     function getStatusMessages(status, lang, firstName = '') {
-        const messages = {
-            logout: {
-                en: {
-                    main: "You're logged out.",
-                    sub: `When you're ready${firstName ? ' ' + firstName : ''}, login again with your account credentials.`
-                },
-                fr: {
-                    main: "Vous avez été déconnecté.",
-                    sub: `Quand vous êtes prêt${firstName ? ' ' + firstName : ''}, reconnectez-vous avec vos identifiants.`
-                },
-                id: {
-                    main: "Anda telah keluar.",
-                    sub: `Saat Anda siap${firstName ? ' ' + firstName : ''}, login lagi dengan kredensial akun Anda.`
-                },
-                es: {
-                    main: "Has cerrado tu sesión.",
-                    sub: `Cuando estés listo${firstName ? ' ' + firstName : ''}, vuelve a iniciar sesión con tus credenciales.`
-                }
-            },
-            firsttime: {
-                en: {
-                    main: "Your Buwana Account is Created! 🎉",
-                    sub: `And your Earthen subscriptions are confirmed.  Now${firstName ? ' ' + firstName : ''}, please login again with your new account credentials.`
-                },
-                fr: {
-                    main: "Votre compte Buwana est créé ! 🎉",
-                    sub: `Maintenant${firstName ? ' ' + firstName : ''}, connectez-vous avec vos nouvelles identifiants.`
-                },
-                id: {
-                    main: "Akun Buwana Anda sudah Dibuat! 🎉",
-                    sub: `Sekarang${firstName ? ' ' + firstName : ''}, silakan masuk dengan kredensial baru Anda.`
-                },
-                es: {
-                    main: "¡Tu cuenta de Buwana está creada! 🎉",
-                    sub: `Ahora${firstName ? ' ' + firstName : ''}, por favor inicia sesión con tus nuevas credenciales.`
-                }
-            },
-            default: {
-                en: {
-                    main: "Welcome back!",
-                    sub: `Please login again with your account credentials.`
-                },
-                fr: {
-                    main: "Bon retour !",
-                    sub: `Veuillez vous reconnecter avec vos identifiants.`
-                },
-                id: {
-                    main: "Selamat datang kembali!",
-                    sub: `Silakan masuk lagi dengan kredensial akun Anda.`
-                },
-                es: {
-                    main: "¡Bienvenido de nuevo!",
-                    sub: `Por favor inicia sesión de nuevo con tus credenciales.`
-                }
-            }
-        };
+        let messages;
+        switch (lang) {
+            case 'fr':
+                messages = typeof fr_LoginStatusMessages !== 'undefined' ? fr_LoginStatusMessages : en_LoginStatusMessages;
+                break;
+            default:
+                messages = en_LoginStatusMessages;
+        }
 
-        const selectedMessages = messages[status] && messages[status][lang]
-            ? messages[status][lang]
-            : messages.default[lang] || messages.default.en;
+        const selected = messages[status] || messages.default;
+        const main = selected.main
+            .replace('$app_display_name', appDisplayName)
+            .replace('$first_name', firstName);
+        const sub = selected.sub
+            .replace('$app_display_name', appDisplayName)
+            .replace('$first_name', firstName);
 
-        return {
-            main: selectedMessages.main,
-            sub: selectedMessages.sub
-        };
+        return { main, sub };
     }
 
     // Consolidated function to handle error responses and show the appropriate error div
