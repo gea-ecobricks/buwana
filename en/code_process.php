@@ -4,7 +4,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require '../vendor/autoload.php'; // Load Composer dependencies, including Guzzle
+require '../vendor/autoload.php'; // Load Composer dependencies
 require_once("../buwanaconn_env.php");
 
 use GuzzleHttp\Client;
@@ -14,8 +14,6 @@ use GuzzleHttp\Exception\RequestException;
 $response = array();
 $credential_key = $_POST['credential_key'] ?? '';
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$email_addr = '';
-$first_name = '';
 
 // Validate input
 if (empty($credential_key)) {
@@ -29,8 +27,8 @@ function generateCode() {
     return strtoupper(substr(bin2hex(random_bytes(3)), 0, 5));
 }
 
-// Function to send the login code email
-function sendVerificationCode($email_addr, $login_code, $buwana_id, $first_name) {
+// Function to send the login code email (basic placeholder version)
+function sendVerificationCode($email_addr, $login_code, $buwana_id) {
     $client = new Client(['base_uri' => 'https://api.eu.mailgun.net/v3/']);
     $mailgunApiKey = getenv('MAILGUN_API_KEY');
     $mailgunDomain = 'mail.gobrik.com';
@@ -38,11 +36,10 @@ function sendVerificationCode($email_addr, $login_code, $buwana_id, $first_name)
     $loginUrl = "https://gobrik.com/en/login.php?id=" . urlencode($buwana_id) . "&code=" . urlencode($login_code);
 
     $subject = 'GoBrik Login Code';
-    $html_body = "Hello " . htmlspecialchars($first_name) . ",<br><br>Your code to log in to your account is: <b>$login_code</b><br><br>" .
-                 "Return to your browser and enter the code or click this link to log in directly:<br><br>" .
-                 "<a href=\"$loginUrl\">$loginUrl</a><br><br>The GoBrik team";
-    $text_body = "Hello $first_name,\n\nYour code to log in to your account is: $login_code\n\n" .
-                 "Return to your browser and enter the code or use this link to log in directly:\n\n$loginUrl\n\nThe GoBrik team";
+    $html_body = "Hello,<br><br>Your code to log in to your account is: <b>$login_code</b><br><br>" .
+                 "Click here to log in directly:<br><br><a href=\"$loginUrl\">$loginUrl</a><br><br>The GoBrik team";
+    $text_body = "Hello,\n\nYour code to log in to your account is: $login_code\n\n" .
+                 "Click this link to log in:\n\n$loginUrl\n\nThe GoBrik team";
 
     try {
         $response = $client->post("{$mailgunDomain}/messages", [
@@ -70,8 +67,8 @@ function sendVerificationCode($email_addr, $login_code, $buwana_id, $first_name)
     }
 }
 
-// PART: Check Buwana Database for the credential
-$sql_credential = "SELECT buwana_id, email_addr, first_name, 2fa_issued_count FROM credentials_tb WHERE credential_key = ?";
+// Check credentials_tb for credential_key
+$sql_credential = "SELECT buwana_id, 2fa_issued_count FROM credentials_tb WHERE credential_key = ?";
 $stmt_credential = $buwana_conn->prepare($sql_credential);
 if ($stmt_credential) {
     $stmt_credential->bind_param('s', $credential_key);
@@ -79,7 +76,7 @@ if ($stmt_credential) {
     $stmt_credential->store_result();
 
     if ($stmt_credential->num_rows === 1) {
-        $stmt_credential->bind_result($buwana_id, $email_addr, $first_name, $issued_count);
+        $stmt_credential->bind_result($buwana_id, $issued_count);
         $stmt_credential->fetch();
         $stmt_credential->close();
 
@@ -99,14 +96,14 @@ if ($stmt_credential) {
             if ($stmt_update->execute()) {
                 $stmt_update->close();
 
-                if (sendVerificationCode($email_addr, $temp_code, $buwana_id, $first_name)) {
+                if (sendVerificationCode($credential_key, $temp_code, $buwana_id)) {
                     $response['status'] = 'credfound';
                     $response['buwana_id'] = $buwana_id;
                     $response['2fa_code'] = $temp_code;
                     echo json_encode($response);
                     exit();
                 } else {
-                    file_put_contents('debug.log', "Failed to send email to: $email_addr\n", FILE_APPEND);
+                    file_put_contents('debug.log', "Failed to send email to: $credential_key\n", FILE_APPEND);
                     $response['status'] = 'email_error';
                     $response['message'] = 'Failed to send the email verification code.';
                     echo json_encode($response);
