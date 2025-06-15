@@ -2,13 +2,20 @@
   "name": "buwana/buwana",
   "description": "Buwana SSO Regenerative App Platform",
   "license": "GPL-3.0-or-later",
-  "require": {},
+  "require": {
+    "ramsey/uuid": "^4.8"
+  },
   "require-dev": {
     "phpunit/phpunit": "^9.6"
   },
   "autoload": {
     "psr-4": {
       "Buwana\\": ""
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
     }
   }
 }
