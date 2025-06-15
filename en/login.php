@@ -540,45 +540,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to get status messages
     function getStatusMessages(status, lang, firstName = '') {
-        let messages = window.translations || {};
-
-        if (!messages[status]) {
-
-            switch (lang) {
-                case 'fr':
-                    if (typeof fr_Page_Translations !== 'undefined') messages = fr_Page_Translations;
-                    break;
-                case 'es':
-                    if (typeof es_Page_Translations !== 'undefined') messages = es_Page_Translations;
-                    break;
-                case 'ar':
-                    if (typeof ar_Page_Translations !== 'undefined') messages = ar_Page_Translations;
-                    break;
-                case 'zh':
-                    if (typeof zh_Page_Translations !== 'undefined') messages = zh_Page_Translations;
-                    break;
-                case 'de':
-                    if (typeof de_Page_Translations !== 'undefined') messages = de_Page_Translations;
-                    break;
-                case 'id':
-                    if (typeof id_Page_Translations !== 'undefined') messages = id_Page_Translations;
-                    break;
-                default:
-                    if (typeof en_Page_Translations !== 'undefined') messages = en_Page_Translations;
-
-            if (lang === 'fr' && typeof fr_LoginStatusMessages !== 'undefined') {
-                messages = fr_LoginStatusMessages;
-            } else if (typeof en_LoginStatusMessages !== 'undefined') {
-                messages = en_LoginStatusMessages;
-
+        const messages = {
+            logout: {
+                en: { main: "You're logged out.", sub: "When you're ready $first_name, login again with your account credentials." },
+                fr: { main: "Vous avez été déconnecté.", sub: "Quand vous êtes prêt $first_name, reconnectez-vous avec vos identifiants." },
+                es: { main: "Has cerrado sesión.", sub: "Cuando estés listo $first_name, vuelve a iniciar sesión con tus credenciales." },
+                id: { main: "Anda telah keluar.", sub: "Saat Anda siap $first_name, masuk kembali dengan kredensial akun Anda." },
+                de: { main: "Du bist abgemeldet.", sub: "Wenn du bereit bist $first_name, melde dich erneut mit deinen Kontodaten an." },
+                ar: { main: "لقد تم تسجيل خروجك.", sub: "عندما تكون جاهزًا $first_name، سجّل الدخول مرة أخرى باستخدام بيانات اعتماد حسابك." },
+                zh: { main: "您已登出。", sub: "准备好后，$first_name，请再次使用您的帐户凭据登录。" }
+            },
+            firsttime: {
+                en: { main: "Your Buwana Account is Created! 🎉", sub: "And your Earthen subscriptions are confirmed. Now $first_name, please login again with your new account credentials." },
+                fr: { main: "Votre compte Buwana est créé ! 🎉", sub: "Maintenant $first_name, connectez-vous avec vos nouvelles identifiants." },
+                es: { main: "¡Tu cuenta Buwana está creada! 🎉", sub: "Y tus suscripciones Earthen están confirmadas. Ahora $first_name, inicia sesión de nuevo con tus nuevas credenciales." },
+                id: { main: "Akun Buwana Anda telah dibuat! 🎉", sub: "Dan langganan Earthen Anda telah dikonfirmasi. Sekarang $first_name, silakan masuk lagi dengan kredensial akun baru Anda." },
+                de: { main: "Dein Buwana-Konto wurde erstellt! 🎉", sub: "Und deine Earthen-Abonnements sind bestätigt. Jetzt $first_name, bitte melde dich erneut mit deinen neuen Kontodaten an." },
+                ar: { main: "تم إنشاء حساب بوانا الخاص بك! 🎉", sub: "وتم تأكيد اشتراكاتك في Earthen. الآن $first_name، الرجاء تسجيل الدخول مرة أخرى باستخدام بيانات اعتماد حسابك الجديدة." },
+                zh: { main: "您的 Buwana 账户已创建！🎉", sub: "您的 Earthen 订阅已确认。现在 $first_name，请使用新的账户凭据再次登录。" }
+            },
+            connected: {
+                en: { main: "You're now set up to use $app_display_name", sub: "$first_name, your Buwana account can now be used to login to $app_display_name" },
+                fr: { main: "Vous êtes maintenant configuré pour utiliser $app_display_name", sub: "$first_name, votre compte Buwana peut maintenant être utilisé pour se connecter à $app_display_name" },
+                es: { main: "Ahora estás listo para usar $app_display_name", sub: "$first_name, tu cuenta Buwana ahora puede usarse para iniciar sesión en $app_display_name" },
+                id: { main: "Anda sekarang siap menggunakan $app_display_name", sub: "$first_name, akun Buwana Anda sekarang dapat digunakan untuk masuk ke $app_display_name" },
+                de: { main: "Du bist nun bereit, $app_display_name zu verwenden", sub: "$first_name, dein Buwana-Konto kann nun verwendet werden, um dich bei $app_display_name anzumelden." },
+                ar: { main: "أصبح بإمكانك الآن استخدام $app_display_name", sub: "$first_name، يمكن الآن استخدام حساب بوانا الخاص بك لتسجيل الدخول إلى $app_display_name" },
+                zh: { main: "您现在已准备好使用 $app_display_name", sub: "$first_name，您的 Buwana 账户现在可以用于登录 $app_display_name" }
+            },
+            default: {
+                en: { main: "Welcome back!", sub: "Please login again with your account credentials." },
+                fr: { main: "Bon retour !", sub: "Veuillez vous reconnecter avec vos identifiants." },
+                es: { main: "¡Bienvenido de nuevo!", sub: "Por favor, inicia sesión nuevamente con tus credenciales." },
+                id: { main: "Selamat datang kembali!", sub: "Silakan masuk kembali dengan kredensial akun Anda." },
+                de: { main: "Willkommen zurück!", sub: "Bitte melde dich erneut mit deinen Kontodaten an." },
+                ar: { main: "مرحبًا بعودتك!", sub: "يرجى تسجيل الدخول مرة أخرى باستخدام بيانات اعتماد حسابك." },
+                zh: { main: "欢迎回来！", sub: "请再次使用您的账户凭据登录。" }
             }
-        }
+        };
 
-        const selected = messages[status] || messages.default || {};
-        const main = (selected.main || '')
+        const selected = messages[status] && messages[status][lang]
+            ? messages[status][lang]
+            : messages.default[lang] || messages.default.en;
+
+        const main = selected.main
             .replace('$app_display_name', appDisplayName)
             .replace('$first_name', firstName);
-        const sub = (selected.sub || '')
+        const sub = selected.sub
             .replace('$app_display_name', appDisplayName)
             .replace('$first_name', firstName);
 

@@ -12,22 +12,6 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 
 
 const es_Page_Translations = {
-    logout: {
-        main: "Has cerrado sesión.",
-        sub: "Cuando estés listo $first_name, vuelve a iniciar sesión con tus credenciales."
-    },
-    firsttime: {
-        main: "¡Tu cuenta Buwana está creada! 🎉",
-        sub: "Y tus suscripciones Earthen están confirmadas. Ahora $first_name, inicia sesión de nuevo con tus nuevas credenciales."
-    },
-    connected: {
-        main: "Ahora estás listo para usar $app_display_name",
-        sub: "$first_name, tu cuenta Buwana ahora puede usarse para iniciar sesión en $app_display_name"
-    },
-    default: {
-        main: "¡Bienvenido de nuevo!",
-        sub: "Por favor, inicia sesión nuevamente con tus credenciales."
-    },
 
     "001-cant-find": "🤔 No podemos encontrar esta credencial en la base de datos.",
     "002-password-is-wrong": "👉 La contraseña es incorrecta.",
