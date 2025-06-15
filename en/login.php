@@ -36,7 +36,6 @@ if ($is_logged_in) {
     exit();
 }
 
-
 // Generate CSRF token if not already set
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -88,7 +87,7 @@ echo '<!DOCTYPE html>
 <html lang="' . htmlspecialchars($lang, ENT_QUOTES, 'UTF-8') . '">
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+
 ';
 
 // JavaScript variables for dynamic use
@@ -211,16 +210,6 @@ echo '</script>';
 <?php require_once ("../scripts/app_modals.php");?>
 
 <script>
-
-
-    /* auto run the language switcher
-
-    is this needed?!*/
-
-//         var siteName = 'gobrik.com';
-//     var currentLanguage = '<?php echo ($lang); ?>'; // Default language code
-//     switchLanguage(currentLanguage);
-
 
 
 /* Code entry and processing for 2FA */
@@ -450,11 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
 /*TOGGLE LOGIN BUTTON */
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const passwordForm = document.getElementById('password-form');
@@ -814,36 +799,6 @@ if (code && buwanaId) {
             console.log("Password is checked.");
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
