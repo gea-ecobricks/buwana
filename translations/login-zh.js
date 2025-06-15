@@ -18,6 +18,6 @@ const zh_Page_Translations = {
     "000-reset-it": "重设密码。",
     "003-code-status": "登录代码将发送到你的电子邮件。",
     "004-login-button": '<input type="submit" id="submit-password-button" value="登录" class="login-button-75">',
-    "005-password-field-placeholder": '<input type="password" id="user_password" name="password" required placeholder="你的密码...">'
+    "005-password-field-placeholder": '<input type="password" id="password" name="password" required placeholder="你的密码...">'
 };
 

@@ -18,6 +18,6 @@ const fr_Page_Translations = {
     "000-reset-it": "Réinitialisez-le.",
     "003-code-status": "Un code de connexion sera envoyé à votre adresse e-mail.",
     "004-login-button": '<input type="submit" id="submit-password-button" value="Connexion" class="login-button-75">',
-    "005-password-field-placeholder": '<input type="password" id="user_password" name="password" required placeholder="Votre mot de passe...">',
+    "005-password-field-placeholder": '<input type="password" id="password" name="password" required placeholder="Votre mot de passe...">',
 };
 

@@ -19,6 +19,6 @@ const es_Page_Translations = {
     "000-reset-it": "Restablécela.",
     "003-code-status": "Un código para iniciar sesión será enviado a tu correo electrónico.",
     "004-login-button": '<input type="submit" id="submit-password-button" value="Iniciar sesión" class="login-button-75">',
-    "005-password-field-placeholder": '<input type="password" id="user_password" name="password" required placeholder="Tu contraseña...">'
+    "005-password-field-placeholder": '<input type="password" id="password" name="password" required placeholder="Tu contraseña...">'
 };
 
