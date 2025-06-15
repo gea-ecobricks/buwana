@@ -644,7 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (credentialValue === '' || password === '') {
             event.preventDefault();
             handleErrorResponse('invalid_password'); // Show password error if fields are empty
-            shakeElement(password-form);
+            shakeElement(document.getElementById('password-form'));
         }
     });
 
