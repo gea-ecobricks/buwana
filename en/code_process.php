@@ -13,7 +13,7 @@ use GuzzleHttp\Exception\RequestException;
 
 // Initialize variables
 $response = array();
-$credential_key = strtolower(trim($_POST['credential_key'] ?? ''));
+$credential_key = $_POST['credential_key'] ?? '';
 $ecobricker_id = '';
 $buwana_activated = '';
 $first_name = '';
@@ -75,7 +75,7 @@ function sendVerificationCode($email_addr, $login_code, $buwana_id, $first_name)
 }
 
 // PART 3: Check GoBrik to see if the user account is activated
-$sql_check_email = "SELECT ecobricker_id, buwana_activated, email_addr, first_name FROM tb_ecobrickers WHERE LOWER(email_addr) = ?";
+$sql_check_email = "SELECT ecobricker_id, buwana_activated, email_addr, first_name FROM tb_ecobrickers WHERE email_addr = ?";
 $stmt_check_email = $gobrik_conn->prepare($sql_check_email);
 if ($stmt_check_email) {
     $stmt_check_email->bind_param('s', $credential_key);
@@ -109,7 +109,7 @@ if ($stmt_check_email) {
 }
 
 // PART 4: Check Buwana Database for the credential
-$sql_credential = "SELECT buwana_id, 2fa_issued_count FROM credentials_tb WHERE LOWER(credential_key) = ?";
+$sql_credential = "SELECT buwana_id, 2fa_issued_count FROM credentials_tb WHERE credential_key = ?";
 $stmt_credential = $buwana_conn->prepare($sql_credential);
 if ($stmt_credential) {
     $stmt_credential->bind_param('s', $credential_key);

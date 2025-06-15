@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('code_login_process.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `code=${code}&credential_key=${credentialKeyInput.value.trim().toLowerCase()}`
+            body: `code=${code}&credential_key=${credentialKeyInput.value}`
         })
         .then(response => response.json())
         .then(data => handleAjaxResponse(data))
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('code_process.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ 'credential_key': credentialKeyInput.value.trim().toLowerCase() })
+            body: new URLSearchParams({ 'credential_key': credentialKeyInput.value })
         })
         .then(response => response.text())
         .then(text => {
@@ -482,10 +482,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateButtonVisibility() {
         if (passwordToggle.checked) {
             sendCodeButton.style.display = 'none';
-            submitPasswordButton.style.display = 'block';
+            setTimeout(() => {
+                submitPasswordButton.style.display = 'block';
+            }, 600); // Delay for transition effect
         } else {
             submitPasswordButton.style.display = 'none';
-            sendCodeButton.style.display = 'block';
+            setTimeout(() => {
+                sendCodeButton.style.display = 'block';
+            }, 600); // Delay for transition effect
         }
     }
 
@@ -640,7 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (credentialValue === '' || password === '') {
             event.preventDefault();
             handleErrorResponse('invalid_password'); // Show password error if fields are empty
-            shakeElement(document.getElementById('password-form'));
+            shakeElement(password-form);
         }
     });
 
@@ -745,17 +749,23 @@ if (code && buwanaId) {
 
     // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
-        const passwordToggle = document.getElementById('password');
-        const codeToggle = document.getElementById('code');
-        const submitPasswordButton = document.getElementById('submit-password-button');
-        const sendCodeButton = document.getElementById('send-code-button');
+     const passwordForm = document.getElementById('password-form');
+    const codeForm = document.getElementById('code-form');
+    const passwordToggle = document.getElementById('password');
+    const codeToggle = document.getElementById('code');
+    const submitPasswordButton = document.getElementById('submit-password-button');
+    const sendCodeButton = document.getElementById('send-code-button');
 
         if (passwordToggle.checked) {
             sendCodeButton.style.display = 'none';
-            submitPasswordButton.style.display = 'block';
+            setTimeout(() => {
+                submitPasswordButton.style.display = 'block';
+            }, 600); // Delay for transition effect
         } else {
             submitPasswordButton.style.display = 'none';
-            sendCodeButton.style.display = 'block';
+            setTimeout(() => {
+                sendCodeButton.style.display = 'block';
+            }, 600); // Delay for transition effect
         }
     }
 

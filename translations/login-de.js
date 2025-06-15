@@ -18,6 +18,6 @@ const de_Page_Translations = {
     "000-reset-it": "Setze es zurück.",
     "003-code-status": "Ein Code zum Einloggen wird an deine E-Mail gesendet.",
     "004-login-button": '<input type="submit" id="submit-password-button" value="Anmelden" class="login-button-75">',
-    "005-password-field-placeholder": '<input type="password" id="user_password" name="password" required placeholder="Dein Passwort...">'
+    "005-password-field-placeholder": '<input type="password" id="password" name="password" required placeholder="Dein Passwort...">'
 };
 
