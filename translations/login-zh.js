@@ -11,22 +11,6 @@ TEXT TRANSLATION SNIPPETS FOR GOBRIK.com
 // Forward slash (/): Should be escaped as \/ in </script> tags to prevent prematurely closing a script.
 
 const zh_Page_Translations = {
-    logout: {
-        main: "您已登出。",
-        sub: "准备好后，$first_name，请再次使用您的帐户凭据登录。"
-    },
-    firsttime: {
-        main: "您的 Buwana 账户已创建！🎉",
-        sub: "您的 Earthen 订阅已确认。现在 $first_name，请使用新的账户凭据再次登录。"
-    },
-    connected: {
-        main: "您现在已准备好使用 $app_display_name",
-        sub: "$first_name，您的 Buwana 账户现在可以用于登录 $app_display_name"
-    },
-    default: {
-        main: "欢迎回来！",
-        sub: "请再次使用您的账户凭据登录。"
-    },
 
     "001-cant-find": "🤔 数据库中找不到此凭证。",
     "002-password-is-wrong": "👉 密码错误。",
