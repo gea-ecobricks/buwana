@@ -51,7 +51,7 @@
 .app-display-box h4 {
   margin: 5px 0 8px 0;
   font-size: 1.1em;
-  color: var(--text);
+  color: var(--text-color);
 }
 
 .app-display-box p {

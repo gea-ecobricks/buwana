@@ -1,8 +1,8 @@
-<title>Login | Buwana App Manager</title>
+<title>Login | Buwana</title>
 
-<meta name="keywords" content="login, gobrik, ecobrick app, signup, sign up, sign, up">
-<meta name="description" content="Login to the Gobrik app to manage your ecobrick, plastic and projects.">
-<meta name="author" content="Global Ecobrick Alliance">
+<meta name="keywords" content="login, buwana, buwana app, regenerative app, authentication, sso, buwana ecosystem">
+<meta name="description" content="Login to your awesome regenerative app using the Buwanana authentication protocol">
+<meta name="author" content="Earthen">
 <meta name="last-modified" content="' . $lastModified . '">
 <meta name="revised" content="' . $lastModified . '">
 
@@ -10,8 +10,8 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
 <meta property="og:url"           content="https://www.gobrik.com/' . $lang . '/' . $page . '">
 <meta property="og:type"          content="app">
-<meta property="og:title"         content="Login | Buwana App Manager">
-<meta property="og:description"   content="Login to launch or manage your app in the Buwana ecosystem." >
+<meta property="og:title"         content="Login | Buwanar">
+<meta property="og:description"   content="Login to your awesome regenerative app using the Buwanana authentication protocol" >
 <meta property="og:image"         content="https://buwana.ecobricks.org/pngs/buwana-banner-2025.png" >
 <meta property="fb:app_id"        content="1781710898523821" >
 <meta property="og:image:width"   content="1000" >
