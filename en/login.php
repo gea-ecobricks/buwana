@@ -153,9 +153,9 @@ echo '</script>';
     <div class="form-item" id="password-form" style="height:92px;margin-top: -5px;">
         <div class="password-wrapper" style="position: relative;">
             <div data-lang-id="005-password-field-placeholder">
-                <input type="password" id="user_password" name="password" placeholder="Your password..." required>
+                <input type="password" id="password" name="password" placeholder="Your password..." required>
             </div>
-            <span toggle="#user_password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
+            <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
         </div>
         <div id="password-error" data-lang-id="002-password-is-wrong" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">👉 Password is wrong.</div>
 
@@ -185,7 +185,7 @@ echo '</script>';
             <span data-lang-id="004-login-button">
                 <input type="submit" id="submit-password-button" value="Login" class="login-button-75">
             </span>
-            <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75">
+            <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75" style="display:none;">
         </div>
         <div id="code-error" data-lang-id="002-password-wrong" class="form-field-error" style="display:none;margin-top: 5px;margin-bottom:-15px;">👉 Entry is incorrect.</div>
     </div>
@@ -480,8 +480,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
-        // No display toggling needed; CSS handles button positions
-        return;
+        if (passwordToggle.checked) {
+            sendCodeButton.style.display = 'none';
+            setTimeout(() => {
+                submitPasswordButton.style.display = 'block';
+            }, 600); // Delay for transition effect
+        } else {
+            submitPasswordButton.style.display = 'none';
+            setTimeout(() => {
+                sendCodeButton.style.display = 'block';
+            }, 600); // Delay for transition effect
+        }
     }
 
     // Event listener for toggle button clicks
@@ -504,7 +513,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateFormAction() {
         const form = document.getElementById('login');
-        const passwordField = document.getElementById('user_password');
+        const passwordField = document.getElementById('password');
 
         if (codeToggle.checked) {
             // If the code option is selected
@@ -629,7 +638,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle form submission validation
     document.getElementById('login').addEventListener('submit', function (event) {
         var credentialValue = document.getElementById('credential_key').value;
-        var password = document.getElementById('user_password').value;
+        var password = document.getElementById('password').value;
 
         // Simple form validation before submitting
         if (credentialValue === '' || password === '') {
@@ -747,8 +756,17 @@ if (code && buwanaId) {
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
 
-        // Button visibility handled by CSS transitions
-        return;
+        if (passwordToggle.checked) {
+            sendCodeButton.style.display = 'none';
+            setTimeout(() => {
+                submitPasswordButton.style.display = 'block';
+            }, 600); // Delay for transition effect
+        } else {
+            submitPasswordButton.style.display = 'none';
+            setTimeout(() => {
+                sendCodeButton.style.display = 'block';
+            }, 600); // Delay for transition effect
+        }
     }
 
 
@@ -761,7 +779,7 @@ if (code && buwanaId) {
     const sendCodeButton = document.getElementById('send-code-button');
 
         const form = document.getElementById('login');
-        const passwordField = document.getElementById('user_password');
+        const passwordField = document.getElementById('password');
 
         if (codeToggle.checked) {
             // If the code option is selected

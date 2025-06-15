@@ -173,7 +173,6 @@
         .login-button-75, .code-button-75 {
             position: absolute;
             top: 0;
-            left: 0;
             height: 100%;
             border: none;
             border-radius: 25px;
@@ -181,8 +180,9 @@
             font-size: 15px;
             line-height: 45px;
             text-align: center;
+
             box-shadow: 0 5px 6px rgba(0, 0, 0, 0.4), inset 0 -2px 1px rgba(0, 0, 0, 0.4);
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
             z-index: 1;
             cursor: pointer;
             font-size:17px;
@@ -190,9 +190,9 @@
         }
 
         .login-button-75 {
+            left: 0%;
             background-color: var(--login-green);
-            transform: translateX(0%);
-            opacity: 1;
+
         }
 
         .login-button-75:hover {
@@ -201,32 +201,13 @@
         }
 
         .code-button-75 {
+            right: 0%;
             background-color: var(--login-green);
-            transform: translateX(100%);
-            opacity: 0;
         }
 
         .code-button-75:hover {
         border: 3px var(--login-green-highlight) solid;
         line-height: 35px;
-        }
-
-        /* Slide the submit buttons based on toggle state */
-        #password:checked ~ span #submit-password-button {
-            transform: translateX(0%);
-            opacity: 1;
-        }
-        #password:checked ~ #send-code-button {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        #code:checked ~ span #submit-password-button {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        #code:checked ~ #send-code-button {
-            transform: translateX(0%);
-            opacity: 1;
         }
 
         .hidden {
