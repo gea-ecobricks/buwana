@@ -228,7 +228,7 @@ display: none;
 
 @media screen and (max-width: 700px) {
 .the-app-logo {
-max-height: 200px;
+max-height: 150px;
 }
 
  .buwana-word-mark {
