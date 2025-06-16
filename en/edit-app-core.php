@@ -244,8 +244,8 @@ if (!$app) {
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
 
           <div class="scope-info">
-            <span><h5>JWT Key Pair</h5></span>
-            <span class="scope-caption">Generate and manage your JWT keys</span>
+            <span><h5><b>JWT Key Pair</b></h5></span>
+            <span><b>Generate and manage your JWT keys</b></span>
           </div>
 
           <?php if(empty($jwt_public_key) && empty($jwt_private_key)): ?>
