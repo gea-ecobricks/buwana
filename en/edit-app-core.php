@@ -152,6 +152,7 @@ if (!$app) {
         justify-content: space-between;
         align-items: center;
         padding: 7px 0;
+         border-bottom: 1px solid var(--subdued-text);
 
       }
       .button-info {
@@ -250,7 +251,7 @@ if (!$app) {
           <?php if(empty($jwt_public_key) && empty($jwt_private_key)): ?>
             <button type="button" id="generate-keys" style="margin-left:auto;">Generate Keys</button>
           <?php else: ?>
-            <input type="password" id="public_key" readonly value="<?= htmlspecialchars($jwt_public_key) ?>" style="max-width:250px;">
+            <input type="password" id="public_key" readonly value="<?= htmlspecialchars($jwt_public_key) ?>" style="max-width:calc(100% - 120px);">
             <span toggle="#public_key" class="toggle-password" style="cursor:pointer;">🙈</span>
             <button type="button" id="copy-key">Copy Key</button>
           <?php endif; ?>
