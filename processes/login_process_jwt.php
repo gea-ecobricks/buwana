@@ -125,7 +125,7 @@ if ($stmt_credential) {
                         $check_stmt->close();
 
                         if (!$connection_id) {
-                            header("Location: app-connect.php?id=$buwana_id&client_id=$client_id");
+                            header("Location: ../$lang/app-connect.php?id=$buwana_id&client_id=$client_id");
                             exit();
                         } else {
                             $_SESSION['connection_id'] = $connection_id;
