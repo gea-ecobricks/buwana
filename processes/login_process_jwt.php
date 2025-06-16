@@ -111,7 +111,7 @@ if ($stmt_credential) {
                             }
                         }
 
-                        $jwt = JWT::encode($payload, $jwt_private_key, 'RS256');
+                        $jwt = JWT::encode($payload, $jwt_private_key, 'RS256', $client_id);
 
                         // One JWT per app session
                         $_SESSION['jwt'] = $jwt;
