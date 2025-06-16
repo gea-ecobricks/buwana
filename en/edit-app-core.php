@@ -152,7 +152,7 @@ if (!$app) {
         justify-content: space-between;
         align-items: center;
         padding: 7px 0;
-        border-bottom: 1px solid var(--subdued-text);
+
       }
       .button-info {
         display: flex;
@@ -167,6 +167,7 @@ if (!$app) {
       .scope-info {
         display: flex;
         flex-direction: column;
+        color: var(--text-color)
       }
       .scope-caption {
         font-size: 0.9em;
@@ -241,8 +242,8 @@ if (!$app) {
       </div>
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <div class="scope-row">
-          <div class="button-info">
-            <span><b>JWT Key Pair</b></span>
+          <div class="scope-info">
+            <span><h4>JWT Key Pair</h4></span>
             <span class="scope-caption">Generate and manage your JWT keys</span>
           </div>
           <div class="button-column">
