@@ -132,7 +132,7 @@ echo '</script>';
     </div>
 
    <!-- Form starts here-->
-<form id="login" method="post" action="login_process.php">
+<form id="login" method="post" action="../processes/login_process_jwt.php">
     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
     <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>"> <!-- Add this line -->
     <input type="hidden" name="client_id" value="<?= htmlspecialchars($app_info['client_id']) ?>">
