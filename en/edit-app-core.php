@@ -125,6 +125,8 @@ $app = $result ? $result->fetch_assoc() : [];
 $stmt->close();
 
 $selected_scopes = array_filter(array_map('trim', explode(',', $app['scopes'] ?? '')));
+$jwt_public_key  = $app['jwt_public_key'] ?? '';
+$jwt_private_key = $app['jwt_private_key'] ?? '';
 
 if (!$app) {
     echo "<p>App not found or access denied.</p>";
@@ -145,12 +147,22 @@ if (!$app) {
         display: flex;
         flex-direction: column;
       }
-  .scope-row {
+      .scope-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 7px 0;
         border-bottom: 1px solid var(--subdued-text);
+      }
+      .button-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .button-column {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: auto;
       }
       .scope-info {
         display: flex;
@@ -226,6 +238,27 @@ if (!$app) {
         <div id="app_login_url-error-required" class="form-field-error">This field is required.</div>
         <div id="app_login_url-error-long" class="form-field-error">The entry is too long. Max 255 characters.</div>
         <div id="app_login_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
+      </div>
+      <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
+        <div class="scope-row">
+          <div class="button-info">
+            <span><b>JWT Key Pair</b></span>
+            <span class="scope-caption">Generate and manage your JWT keys</span>
+          </div>
+          <div class="button-column">
+          <?php if(empty($jwt_public_key) && empty($jwt_private_key)): ?>
+            <button type="button" id="generate-keys" style="margin-left:auto;">Generate Keys</button>
+          <?php else: ?>
+            <input type="password" id="public_key" readonly value="<?= htmlspecialchars($jwt_public_key) ?>" style="max-width:250px;">
+            <span toggle="#public_key" class="toggle-password" style="cursor:pointer;">🙈</span>
+            <button type="button" id="copy-key">Copy Key</button>
+          <?php endif; ?>
+          </div>
+        </div>
+        <?php if(!empty($jwt_public_key) && !empty($jwt_private_key)): ?>
+        <p class="form-caption"><a href="#" id="regenerate-keys" style="color:red;">Regenerate Keys</a></p>
+        <?php endif; ?>
+        <p id="copy-msg" class="form-caption" style="display:none;color:green;">All good. Key copied! ✅</p>
       </div>
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
         <label for="scopes" style="padding:7px;">Scopes</label>
@@ -343,6 +376,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const fields = ['redirect_uris','app_login_url','app_domain','app_url','app_dashboard_url','app_description','app_version','app_display_name','contact_email'];
   const scopeBoxes = document.querySelectorAll('.scope-checkbox');
   const groupToggles = document.querySelectorAll('.scope-group');
+  const generateBtn = document.getElementById('generate-keys');
+  const copyBtn = document.getElementById('copy-key');
+  const regenLink = document.getElementById('regenerate-keys');
 
 
   function updateStatusMessage(success, message = '') {
@@ -404,6 +440,58 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  if (generateBtn) {
+    generateBtn.addEventListener('click', () => {
+      fetch('../processes/key_generator.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'app_id=<?= intval($app_id) ?>'
+      }).then(r => r.json()).then(d => {
+        if (d.success) {
+          location.reload();
+        } else {
+          alert('😭 ' + (d.error || 'Error generating keys'));
+        }
+      });
+    });
+  }
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const keyInput = document.getElementById('public_key');
+      if (keyInput) {
+        navigator.clipboard.writeText(keyInput.value).then(() => {
+          const msg = document.getElementById('copy-msg');
+          if (msg) {
+            msg.style.display = 'block';
+            setTimeout(() => { msg.style.display = 'none'; }, 2000);
+          }
+        });
+      }
+    });
+  }
+
+  if (regenLink) {
+    regenLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm("Are you sure you want to do this? You will need to update your App's code with the new public key.")) {
+        fetch('../processes/key_generator.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: 'app_id=<?= intval($app_id) ?>'
+        }).then(r => r.json()).then(d => {
+          if (d.success) {
+            location.reload();
+          } else {
+            alert('😭 ' + (d.error || 'Error generating keys'));
+          }
+        });
+      }
+    });
+  }
+
+  toggleKeys();
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     let allValid = true;
@@ -430,6 +518,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+function toggleKeys() {
+  const icon = document.querySelector('span[toggle="#public_key"]');
+  if (!icon) return;
+  icon.addEventListener('click', () => {
+    const input = document.querySelector(icon.getAttribute('toggle'));
+    if (!input) return;
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.textContent = '🙉';
+    } else {
+      input.type = 'password';
+      icon.textContent = '🙈';
+    }
+  });
+}
 </script>
 </body>
 </html>
