@@ -804,7 +804,7 @@ if (code && buwanaId) {
         } else if (passwordToggle.checked) {
             // If the password option is selected
             passwordField.setAttribute('required', 'required');
-            form.action = '..processes/login_process-jwt.php';
+            form.action = '../processes/login_process_jwt.php';
             console.log("Password is checked.");
         }
     }
