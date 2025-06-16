@@ -12,7 +12,7 @@ function fetch_json($url) {
     return $response;
 }
 
-$base_url = "https://buwana.ecobricks.org/.well-nown/openid_configuration.php";
+$base_url = "https://buwana.ecobricks.org/.well-known/openid_configuration.php";
 
 echo "File Validator:\n";
 echo "Fitching OpenID Configuration from: $base_url\n";

@@ -1,0 +1,24 @@
+<?php
+header('Content-Type: application/json');
+
+$issuer = 'https://buwana.ecobricks.org';
+
+echo json_encode([
+    'issuer' => $issuer,
+    'authorization_endpoint' => "$issuer/oauth2/authorize",
+    'token_endpoint' => "$issuer/oauth2/token",
+    'userinfo_endpoint' => "$issuer/oauth2/userinfo",
+    'jwks_uri' => "$issuer/.well-known/jwks.php",
+    'response_types_supported' => ['code', 'token', 'id_token'],
+    'subject_types_supported' => ['public'],
+    'id_token_signing_alg_values_supported' => ['RS256'],
+    'scopes_supported' => [
+        'openid', 'email', 'profile',
+        'buwana:earthlingEmoji', 'buwana:community', 'buwana:location.continent'
+    ],
+    'token_endpoint_auth_methods_supported' => ['client_secret_post'],
+    'claims_supported' => [
+        'sub', 'email', 'given_name',
+        'buwana:earthlingEmoji', 'buwana:community', 'buwana:location.continent'
+    ]
+]);
