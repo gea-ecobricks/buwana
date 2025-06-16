@@ -145,26 +145,26 @@
         }
 
 
-        #password:checked ~ .login-slider {
+        #password-toggle:checked ~ .login-slider {
             left: 0%;
         }
-        #code:checked ~ .login-slider {
+        #code-toggle:checked ~ .login-slider {
             left: 15% !important;
         }
 
-        #password:checked ~ .toggle-button.password {
+        #password-toggle:checked ~ .toggle-button.password {
             opacity: 1;
             width: 85%; /* Reduced width when selected */
         }
-        #password:checked ~ .toggle-button.code {
+        #password-toggle:checked ~ .toggle-button.code {
             opacity: 0.8;
             width: 15%; /* Expanded width when the other option is selected */
         }
-        #code:checked ~ .toggle-button.code {
+        #code-toggle:checked ~ .toggle-button.code {
             opacity: 1;
             width: 85%; /* Reduced width when selected */
         }
-        #code:checked ~ .toggle-button.password {
+        #code-toggle:checked ~ .toggle-button.password {
             opacity: 0.8;
             width: 15%; /* Expanded width when the other option is selected */
         }
