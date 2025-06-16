@@ -511,6 +511,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Update when the radio inputs themselves are toggled
+    passwordToggle.addEventListener('change', () => {
+        updateFormAction();
+        updateFormVisibility();
+        updateButtonVisibility();
+    });
+    codeToggle.addEventListener('change', () => {
+        updateFormAction();
+        updateFormVisibility();
+        updateButtonVisibility();
+    });
+
     function updateFormAction() {
         const form = document.getElementById('login');
         const passwordField = document.getElementById('password');
