@@ -1,55 +1,43 @@
 <?php
-// processes/validate-test.php
+header('Content-Type: application/json');
 
-header('Content-Type: text/plain');
+require_once '../buwanaconn_env.php';
 
-function fetchUrl($url) {
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    $result = curl_exec($ch);
-    if (curl_errno($ch)) {
-        echo "❌ cURL error: " . curl_error($ch) . "\n";
-        return false;
-    }
-    curl_close($ch);
-    return $result;
+$client_id = 'buwana_mgr_001'; // Hardcoded client_id for testing
+
+$sql = "SELECT jwt_public_key FROM apps_tb WHERE client_id = ?";
+$stmt = $buwana_conn->prepare($sql);
+if (!$stmt) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Failed to prepare statement']);
+    exit();
 }
 
-$issuer = 'https://buwana.ecobricks.org';
-$config_url = "$issuer/.well-known/openid_configuration.php";
+$stmt->bind_param("s", $client_id);
+$stmt->execute();
+$stmt->bind_result($publicKey);
+$stmt->fetch();
+$stmt->close();
 
-echo "🔍 Fetching OpenID Configuration from: $config_url\n";
-
-$config_json = fetchUrl($config_url);
-$config = json_decode($config_json, true);
-
-if (!$config) {
-    die("❌ Failed to fetch or decode OpenID configuration.\n");
+if (!$publicKey) {
+    http_response_code(404);
+    echo json_encode(['error' => 'Public key not found for client_id']);
+    exit();
 }
 
-print_r($config);
+$details = openssl_pkey_get_details(openssl_pkey_get_public($publicKey));
+$keyData = $details['rsa'];
 
-// Validate the JWKS URI
-if (!isset($config['jwks_uri'])) {
-    die("❌ 'jwks_uri' missing in configuration.\n");
-}
+$modulus = rtrim(strtr(base64_encode($keyData['n']), '+/', '-_'), '=');
+$exponent = rtrim(strtr(base64_encode($keyData['e']), '+/', '-_'), '=');
 
-$jwks_uri = $config['jwks_uri'];
-echo "\n🔐 Fetching JWKS from: $jwks_uri\n";
-
-$jwks_json = fetchUrl($jwks_uri);
-$jwks = json_decode($jwks_json, true);
-
-if (!$jwks || !isset($jwks['keys'])) {
-    die("❌ Failed to fetch or decode JWKS keys.\n");
-}
-
-echo "✅ JWKS contains " . count($jwks['keys']) . " key(s):\n";
-foreach ($jwks['keys'] as $key) {
-    echo "- Key ID (kid): " . ($key['kid'] ?? 'N/A') . "\n";
-    echo "  Algorithm: " . ($key['alg'] ?? 'N/A') . "\n";
-    echo "  Use: " . ($key['use'] ?? 'N/A') . "\n";
-}
-
-echo "\n🎉 Validation Complete.\n";
+echo json_encode([
+    'keys' => [[
+        'kty' => 'RSA',
+        'use' => 'sig',
+        'alg' => 'RS256',
+        'kid' => $client_id,
+        'n' => $modulus,
+        'e' => $exponent
+    ]]
+]);
