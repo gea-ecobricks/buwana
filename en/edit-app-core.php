@@ -241,12 +241,12 @@ if (!$app) {
         <div id="app_login_url-error-invalid" class="form-field-error">The entry contains invalid characters. Avoid quotes, slashes, and greater-than signs please.</div>
       </div>
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <div class="scope-row">
+
           <div class="scope-info">
-            <span><h4>JWT Key Pair</h4></span>
+            <span><h5>JWT Key Pair</h5></span>
             <span class="scope-caption">Generate and manage your JWT keys</span>
           </div>
-          <div class="button-column">
+
           <?php if(empty($jwt_public_key) && empty($jwt_private_key)): ?>
             <button type="button" id="generate-keys" style="margin-left:auto;">Generate Keys</button>
           <?php else: ?>
@@ -254,8 +254,8 @@ if (!$app) {
             <span toggle="#public_key" class="toggle-password" style="cursor:pointer;">🙈</span>
             <button type="button" id="copy-key">Copy Key</button>
           <?php endif; ?>
-          </div>
-        </div>
+
+
         <?php if(!empty($jwt_public_key) && !empty($jwt_private_key)): ?>
         <p class="form-caption"><a href="#" id="regenerate-keys" style="color:red;">Regenerate Keys</a></p>
         <?php endif; ?>
