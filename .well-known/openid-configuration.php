@@ -8,7 +8,7 @@ echo json_encode([
     'authorization_endpoint' => "$issuer/oauth2/authorize",
     'token_endpoint' => "$issuer/oauth2/token",
     'userinfo_endpoint' => "$issuer/oauth2/userinfo",
-    'jwks_uri' => "$issuer/.well-known/jwks.php",
+    'jwks_uri' => "$issuer/.well-known/jwks.php?client_id={client_id}",
     'response_types_supported' => ['code', 'token', 'id_token'],
     'subject_types_supported' => ['public'],
     'id_token_signing_alg_values_supported' => ['RS256'],
@@ -22,3 +22,4 @@ echo json_encode([
         'buwana:earthlingEmoji', 'buwana:community', 'buwana:location.continent'
     ]
 ]);
+
