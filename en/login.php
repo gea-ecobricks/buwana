@@ -177,8 +177,8 @@ echo '</script>';
 
     <div style="text-align:center;width:100%;margin:auto;margin-top:35px;max-width:500px;" id="login-buttons">
         <div class="toggle-container">
-            <input type="radio" id="password" name="toggle" value="password" checked>
-            <input type="radio" id="code" name="toggle" value="code">
+            <input type="radio" id="password-toggle" name="toggle" value="password" checked>
+            <input type="radio" id="code-toggle" name="toggle" value="code">
             <div class="toggle-button password">🔑</div>
             <div class="toggle-button code">📱</div>
             <div class="login-slider"></div>
@@ -445,8 +445,8 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const passwordForm = document.getElementById('password-form');
     const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password');
-    const codeToggle = document.getElementById('code');
+    const passwordToggle = document.getElementById('password-toggle');
+    const codeToggle = document.getElementById('code-toggle');
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
 
@@ -664,7 +664,7 @@ if (code && buwanaId) {
     // Add a 0.3 sec pause
     setTimeout(() => {
         // Set the toggle to code
-        document.getElementById('code').checked = true;
+        document.getElementById('code-toggle').checked = true;
 
         // Run functions to update form and button visibility
         updateFormVisibility();
@@ -716,8 +716,8 @@ if (code && buwanaId) {
  function updateFormVisibility() {
   const passwordForm = document.getElementById('password-form');
     const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password');
-    const codeToggle = document.getElementById('code');
+    const passwordToggle = document.getElementById('password-toggle');
+    const codeToggle = document.getElementById('code-toggle');
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
 
@@ -751,8 +751,8 @@ if (code && buwanaId) {
     function updateButtonVisibility() {
      const passwordForm = document.getElementById('password-form');
     const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password');
-    const codeToggle = document.getElementById('code');
+    const passwordToggle = document.getElementById('password-toggle');
+    const codeToggle = document.getElementById('code-toggle');
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
 
@@ -773,8 +773,8 @@ if (code && buwanaId) {
     function updateFormAction() {
      const passwordForm = document.getElementById('password-form');
     const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password');
-    const codeToggle = document.getElementById('code');
+    const passwordToggle = document.getElementById('password-toggle');
+    const codeToggle = document.getElementById('code-toggle');
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
 
