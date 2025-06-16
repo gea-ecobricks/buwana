@@ -3,46 +3,51 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 
+require_once '../vendor/autoload.php';
 require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'dashboard';
 $version = '0.1';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
-if (empty($_SESSION['buwana_id'])) {
-    $query = [
-        'status'   => 'loggedout',
-        'redirect' => $page,
-    ];
-    if (!empty($client_id)) {
-        $query['app'] = $client_id;
-    } elseif (!empty($_GET['app'])) {
-        $query['app'] = $_GET['app'];
-    } elseif (!empty($_GET['client_id'])) {
-        $query['app'] = $_GET['client_id'];
-    }
-    if (!empty($buwana_id)) {
-        $query['id'] = $buwana_id;
-    } elseif (!empty($_GET['id'])) {
-        $query['id'] = $_GET['id'];
-    }
+// Grab JWT and client_id from session
+$jwt = $_SESSION['jwt'] ?? null;
+$client_id = $_SESSION['client_id'] ?? ($_GET['app'] ?? ($_GET['client_id'] ?? null));
 
+if (!$jwt || !$client_id) {
+    $query = ['status' => 'loggedout', 'redirect' => $page];
+    if ($client_id) $query['app'] = $client_id;
     header('Location: login.php?' . http_build_query($query));
     exit();
 }
 
-$buwana_id = intval($_SESSION['buwana_id']);
-$first_name = '';
-$earthling_emoji = '';
-$stmt = $buwana_conn->prepare("SELECT first_name, earthling_emoji FROM users_tb WHERE buwana_id = ?");
-$stmt->bind_param('i', $buwana_id);
+// Get the app's public key
+$stmt = $buwana_conn->prepare("SELECT jwt_public_key FROM apps_tb WHERE client_id = ?");
+$stmt->bind_param("s", $client_id);
 $stmt->execute();
-$stmt->bind_result($first_name, $earthling_emoji);
+$stmt->bind_result($public_key);
 $stmt->fetch();
 $stmt->close();
 
+try {
+    $decoded = JWT::decode($jwt, new Key($public_key, 'RS256'));
+    $buwana_id = intval(str_replace('buwana_', '', $decoded->sub ?? 0));
+    $first_name = $decoded->given_name ?? '';
+    $earthling_emoji = $decoded->{'buwana:earthlingEmoji'} ?? '';
+} catch (Exception $e) {
+    error_log("JWT Decode Error: " . $e->getMessage());
+    $query = ['status' => 'loggedout', 'redirect' => $page];
+    if ($client_id) $query['app'] = $client_id;
+    header('Location: login.php?' . http_build_query($query));
+    exit();
+}
+
+// Fetch apps managed by this user
 $sql = "SELECT a.app_id, a.client_id, a.app_display_name, a.app_description, a.app_square_icon_url,
                (SELECT COUNT(*) FROM user_app_connections_tb u WHERE u.client_id = a.client_id) AS user_count
         FROM apps_tb a
@@ -56,6 +61,7 @@ $result = $stmt->get_result();
 $apps = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 $stmt->close();
 
+// Count new accounts connected in the last 24 hours
 $new_account_count_for_user = 0;
 $stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM user_app_connections_tb u JOIN apps_tb a ON u.client_id = a.client_id JOIN app_owners_tb ao ON ao.app_id = a.app_id WHERE ao.buwana_id = ? AND u.connected_at >= (NOW() - INTERVAL 1 DAY)");
 $stmt->bind_param('i', $buwana_id);
@@ -66,7 +72,7 @@ $stmt->close();
 
 $user_app_count = count($apps);
 
-// Determine current admin alert status
+// Check for unresolved admin alerts
 $admin_alert_msg = '';
 $stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM admin_alerts WHERE addressed = 0");
 $stmt->execute();
@@ -74,12 +80,9 @@ $stmt->bind_result($alert_count);
 $stmt->fetch();
 $stmt->close();
 
-if ($alert_count > 0) {
-    $admin_alert_msg = 'There are admin alerts 🔴';
-} else {
-    $admin_alert_msg = 'All systems go 🟢';
-}
+$admin_alert_msg = ($alert_count > 0) ? 'There are admin alerts 🔴' : 'All systems go 🟢';
 ?>
+
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>">
 <head>

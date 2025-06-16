@@ -35,10 +35,8 @@ if ($stmt_check_email) {
             header("Location: https://gobrik.com/$lang/activate.php?id=$ecobricker_id");
             exit();
         }
-        $stmt_check_email->close();
-    } else {
-        $stmt_check_email->close();
     }
+    $stmt_check_email->close();
 } else {
     error_log('Error preparing statement for checking email: ' . $gobrik_conn->error);
     die('Database query failed.');
@@ -86,7 +84,7 @@ if ($stmt_credential) {
 
                         $scope_list = array_map('trim', explode(',', $scopes));
                         $payload = [
-                            'iss' => 'https://auth.buwana.earth',
+                            'iss' => 'https://buwana.ecobricks.org',
                             'aud' => $client_id,
                             'iat' => time(),
                             'exp' => time() + 3600,
@@ -114,6 +112,8 @@ if ($stmt_credential) {
                         }
 
                         $jwt = JWT::encode($payload, $jwt_private_key, 'RS256');
+
+                        // One JWT per app session
                         $_SESSION['jwt'] = $jwt;
 
                         $check_sql = "SELECT id FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ? LIMIT 1";
