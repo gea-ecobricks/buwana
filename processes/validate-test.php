@@ -3,12 +3,27 @@
 
 header('Content-Type: text/plain');
 
+function fetchUrl($url) {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    $result = curl_exec($ch);
+    if (curl_errno($ch)) {
+        echo "❌ cURL error: " . curl_error($ch) . "\n";
+        return false;
+    }
+    curl_close($ch);
+    return $result;
+}
+
 $issuer = 'https://buwana.ecobricks.org';
 $config_url = "$issuer/.well-known/openid_configuration.php";
 
 echo "🔍 Fetching OpenID Configuration from: $config_url\n";
 
-$config = json_decode(file_get_contents($config_url), true);
+$config_json = fetchUrl($config_url);
+$config = json_decode($config_json, true);
+
 if (!$config) {
     die("❌ Failed to fetch or decode OpenID configuration.\n");
 }
@@ -23,7 +38,9 @@ if (!isset($config['jwks_uri'])) {
 $jwks_uri = $config['jwks_uri'];
 echo "\n🔐 Fetching JWKS from: $jwks_uri\n";
 
-$jwks = json_decode(file_get_contents($jwks_uri), true);
+$jwks_json = fetchUrl($jwks_uri);
+$jwks = json_decode($jwks_json, true);
+
 if (!$jwks || !isset($jwks['keys'])) {
     die("❌ Failed to fetch or decode JWKS keys.\n");
 }
@@ -36,4 +53,3 @@ foreach ($jwks['keys'] as $key) {
 }
 
 echo "\n🎉 Validation Complete.\n";
-?>
