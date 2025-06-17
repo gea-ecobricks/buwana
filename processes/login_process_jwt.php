@@ -11,7 +11,17 @@ startSecureSession();
 
 $credential_key = $_POST['credential_key'] ?? '';
 $password = $_POST['password'] ?? '';
-$lang = basename(dirname($_SERVER['SCRIPT_NAME']));
+$lang = $_POST['lang'] ?? '';
+if (empty($lang) && isset($_SERVER['HTTP_REFERER'])) {
+    $refPath = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
+    $parts = explode('/', trim($refPath, '/'));
+    if (!empty($parts[0]) && strlen($parts[0]) === 2) {
+        $lang = $parts[0];
+    }
+}
+if (empty($lang)) {
+    $lang = 'en';
+}
 $redirect = filter_var($_POST['redirect'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 $client_id = $_POST['client_id'] ?? ($_SESSION['client_id'] ?? null);
 $csrf_token = $_POST['csrf_token'] ?? '';
@@ -61,7 +71,7 @@ if ($stmt_credential) {
         $stmt_credential->fetch();
         $stmt_credential->close();
 
-        $sql_user = "SELECT password_hash, first_name, email, earthling_emoji, community_name, continent_code, open_id FROM users_tb WHERE buwana_id = ?";
+        $sql_user = "SELECT password_hash, first_name, email, earthling_emoji, community_id, continent_code, open_id FROM users_tb WHERE buwana_id = ?";
         $stmt_user = $buwana_conn->prepare($sql_user);
 
         if ($stmt_user) {
@@ -70,12 +80,14 @@ if ($stmt_credential) {
             $stmt_user->store_result();
 
             if ($stmt_user->num_rows === 1) {
-                $stmt_user->bind_result($password_hash, $first_name, $email, $earthling_emoji, $community_name, $continent_code, $open_id);
+                $stmt_user->bind_result($password_hash, $first_name, $email, $earthling_emoji, $community_id, $continent_code, $open_id);
                 $stmt_user->fetch();
 
                 if (password_verify($password, $password_hash)) {
                     $buwana_conn->query("UPDATE users_tb SET last_login = NOW(), login_count = login_count + 1 WHERE buwana_id = $buwana_id");
                     $buwana_conn->query("UPDATE credentials_tb SET last_login = NOW(), times_used = times_used + 1 WHERE buwana_id = $buwana_id");
+
+                    $community_name = getCommunityName($buwana_conn, $buwana_id);
 
                     $_SESSION['buwana_id'] = $buwana_id;
 
@@ -138,7 +150,8 @@ if ($stmt_credential) {
                         }
                     }
 
-                    $redirect_url = !empty($redirect) ? $redirect : ($app_dashboard_url ?? 'dashboard.php');
+                    $default_dashboard = "../$lang/dashboard.php";
+                    $redirect_url = !empty($redirect) ? $redirect : ($app_dashboard_url ?? $default_dashboard);
                     header("Location: $redirect_url");
                     exit();
                 } else {
