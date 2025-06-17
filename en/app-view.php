@@ -48,19 +48,43 @@ if ($stmt) {
 }
 
 
-$stmt = $buwana_conn->prepare("SELECT a.* FROM apps_tb a JOIN app_owners_tb ao ON ao.app_id = a.app_id WHERE a.app_id = ? AND ao.buwana_id = ?");
-$stmt->bind_param('ii', $app_id, $buwana_id);
+// Fetch app and verify the user either owns or is connected to it
+$stmt = $buwana_conn->prepare("SELECT * FROM apps_tb WHERE app_id = ?");
+$stmt->bind_param('i', $app_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$app = $result ? $result->fetch_assoc() : [];
+$app = $result ? $result->fetch_assoc() : null;
 $stmt->close();
 
 if (!$app) {
+    echo "<p>App not found.</p>";
+    exit();
+}
+
+$client_id = $app['client_id'];
+
+$is_owner = false;
+$stmt = $buwana_conn->prepare("SELECT 1 FROM app_owners_tb WHERE app_id = ? AND buwana_id = ? LIMIT 1");
+$stmt->bind_param('ii', $app_id, $buwana_id);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) $is_owner = true;
+$stmt->close();
+
+$is_connected = false;
+$stmt = $buwana_conn->prepare("SELECT 1 FROM user_app_connections_tb WHERE client_id = ? AND buwana_id = ? LIMIT 1");
+$stmt->bind_param('si', $client_id, $buwana_id);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) $is_connected = true;
+$stmt->close();
+
+if (!$is_owner && !$is_connected) {
     echo "<p>App not found or access denied.</p>";
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_flags'])) {
+if ($is_owner && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_flags'])) {
     $is_active = isset($_POST['is_active']) ? 1 : 0;
     $allow_signup = isset($_POST['allow_signup']) ? 1 : 0;
     $sql = "UPDATE apps_tb a
@@ -184,6 +208,7 @@ if ($stmt) {
         </tbody>
       </table>
 
+<?php if ($is_owner): ?>
       <div class="edit-app-params dashboard-module" style="margin-top:20px;">
         <h4 style="text-align:center;">Edit App Parameters</h4>
         <div class="edit-button-row">
@@ -215,6 +240,7 @@ if ($stmt) {
         </div>
         <p style="font-size:0.9em;color:red;">This turns off all logins and signups on your app</p>
       </div>
+<?php endif; ?>
   </div>
 </div>
 </div> <!-- closes main -->
@@ -274,13 +300,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  document.getElementById('allow_signup').addEventListener('change', function() {
-    updateFlag('allow_signup', this.checked ? 1 : 0);
-  });
+  var allowElem = document.getElementById('allow_signup');
+  if (allowElem) {
+    allowElem.addEventListener('change', function() {
+      updateFlag('allow_signup', this.checked ? 1 : 0);
+    });
+  }
 
-  document.getElementById('is_active').addEventListener('change', function() {
-    updateFlag('is_active', this.checked ? 1 : 0);
-  });
+  var activeElem = document.getElementById('is_active');
+  if (activeElem) {
+    activeElem.addEventListener('change', function() {
+      updateFlag('is_active', this.checked ? 1 : 0);
+    });
+  }
 
   $('#userTable tbody').on('click', 'tr', function() {
     var user = $(this).data('user');
