@@ -32,7 +32,7 @@ $scope_descriptions = [
 
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'edit-app-core.php';
-$version = '0.11';
+$version = '0.12';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
 if (empty($_SESSION['buwana_id'])) {
@@ -244,7 +244,7 @@ if (!$app) {
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
 
           <div class="scope-info">
-            <span><h5><b>JWT Key Pair</b></h5></span>
+            <span><h5>JWT Key Pair</h5></span>
             <span><b>Generate and manage your JWT keys</b></span>
           </div>
 
@@ -263,7 +263,7 @@ if (!$app) {
         <p id="copy-msg" class="form-caption" style="display:none;color:green;">All good. Key copied! ✅</p>
       </div>
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
-        <label for="scopes" style="padding:7px;">Scopes</label>
+        <label for="scopes" style="padding:7px;"><h5>Scopes</h5></label>
         <div id="scopes" class="scopes-list">
 <?php
   $profile_scopes = ['openid','email','profile','phone','buwana:earthlingEmoji','buwana:location.continent'];

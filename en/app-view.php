@@ -246,6 +246,7 @@ if ($stmt) {
 <?php if ($is_owner): ?>
       <div class="edit-app-params dashboard-module" style="margin-top:20px;">
         <h4 style="text-align:center;">Edit App Parameters</h4>
+        <p>Adjust the way your app functions and displays on the Buwana platform and signup flow.</p>
         <div class="edit-button-row">
           <a href="edit-app-core.php?app_id=<?= intval($app_id) ?>" class="simple-button">Core Data</a>
           <a href="edit-app-texts.php?app_id=<?= intval($app_id) ?>" class="simple-button">App texts</a>
@@ -262,7 +263,7 @@ if ($stmt) {
             <span class="slider"></span>
           </label>
         </div>
-        <p style="font-size:0.9em;color:orange;">This turns off signups on your app but it is still available to users.</p>
+        <p >🔴 This turns off signups on your app but it is still available to users.</p>
       </div>
 
       <div class="dashboard-module" style="margin-top:20px;">
@@ -273,7 +274,7 @@ if ($stmt) {
             <span class="slider"></span>
           </label>
         </div>
-        <p style="font-size:0.9em;color:red;">This turns off all logins and signups on your app</p>
+        <p >🟠 This turns off all logins and signups on your app</p>
       </div>
 <?php endif; ?>
   </div>

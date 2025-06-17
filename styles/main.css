@@ -161,7 +161,7 @@
   h5 {
     font-family: 'Mulish', Arial, Helvetica, sans-serif;
     color:  var(--text-color);
-    font-weight: 300;
+    font-weight: 500;
   }
 
   h5 a {
@@ -176,14 +176,14 @@
   }
   @media screen and (max-width: 769px) {
     h5 {
-        font-size: 1.1em;
+        font-size: 1.3em;
         line-height: 1.4;
         margin: 12px 0 5px;
     }
   }
   @media screen and (min-width: 769px) {
     h5 {
-        font-size: 1.1em;
+        font-size: 1.5em;
         line-height: 1.5;
         margin: 14px 0 5px;
     }
