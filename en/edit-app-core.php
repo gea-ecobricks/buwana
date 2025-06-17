@@ -181,7 +181,7 @@ if (!$app) {
       .hidden-scope {
         display: none;
       }
-      #copy-key {
+      #copy-key #generate-keys {
         background: grey;
         color: white;
         border: none;
@@ -191,9 +191,8 @@ if (!$app) {
         margin-right: 5px;
         cursor: pointer;
       }
-      #copy-key:hover {
+      #generate-keys  #copy-key:hover {
         background: darkgrey;
-
       }
     </style>
 <div id="form-submission-box" class="landing-page-form">
@@ -258,19 +257,21 @@ if (!$app) {
       <div class="form-item" style="border-radius:10px 10px 5px 5px;padding-bottom: 10px;">
 
           <div class="scope-info">
-            <span><h5>JWT Key Pair</h5></span>
+              <label for="scopes" style="padding:7px;"><h5>JWT Key Pair</h5></label>
             <span>🔐 Generate and manage your JWT keys</span>
           </div>
 
           <?php if(empty($jwt_public_key) && empty($jwt_private_key)): ?>
-            <button type="button" id="generate-keys" style="margin-left:auto;">Generate Keys</button>
+            <div style="width:100%">
+                <button type="button" id="generate-keys" style="margin-left:auto;margin-right:0px;">Generate Keys</button>
+            </div>
           <?php else: ?>
             <div style="display:flex;align-items:center;">
               <div class="password-wrapper" style="position:relative;flex-grow:1;">
                 <input type="password" id="public_key" readonly value="<?= htmlspecialchars($jwt_public_key) ?>" style="width:100%;">
                 <span toggle="#public_key" class="toggle-password" style="cursor:pointer;position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:18px;">🙈</span>
               </div>
-              <button type="button" id="copy-key">Copy Key</button>
+              <button type="button" id="copy-keys">Copy Key</button>
             </div>
           <?php endif; ?>
 
