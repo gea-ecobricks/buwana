@@ -167,25 +167,25 @@
   h5 a {
     color: var(--subdued-text);
     text-decoration: underline;
-    font-weight: 300;
+    font-weight: 500;
   }
   h5 a:hover {
     color: var(--text-color);
     text-decoration: none;
-    font-weight: 300;
+    font-weight: 500;
   }
   @media screen and (max-width: 769px) {
     h5 {
-        font-size: 1.3em;
+        font-size: 1.2em;
         line-height: 1.4;
-        margin: 12px 0 5px;
+
     }
   }
   @media screen and (min-width: 769px) {
     h5 {
-        font-size: 1.5em;
-        line-height: 1.5;
-        margin: 14px 0 5px;
+        font-size: 1.35em;
+        line-height: 1.3;
+
     }
   }
 

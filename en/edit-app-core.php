@@ -183,16 +183,17 @@ if (!$app) {
       }
       #copy-key {
         background: grey;
-        color: var(--text-color);
+        color: white;
         border: none;
         border-radius: 5px;
         padding: 8px 12px;
         margin-left: 15px;
         margin-right: 5px;
+        cursor: pointer;
       }
       #copy-key:hover {
         background: darkgrey;
-        color: var(--h1);
+
       }
     </style>
 <div id="form-submission-box" class="landing-page-form">
@@ -258,7 +259,7 @@ if (!$app) {
 
           <div class="scope-info">
             <span><h5>JWT Key Pair</h5></span>
-            <span><b>Generate and manage your JWT keys</b></span>
+            <span>🔐 Generate and manage your JWT keys</span>
           </div>
 
           <?php if(empty($jwt_public_key) && empty($jwt_private_key)): ?>
