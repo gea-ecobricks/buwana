@@ -50,6 +50,7 @@ $credential_key = '';
 $credential_type = '';
 $generated_code = '';
 $code_sent_flag = false;
+$code_sent = false; // Track whether an email has been sent in this request
 
 // 🔐 Generate activation code
 function generateCode() {
