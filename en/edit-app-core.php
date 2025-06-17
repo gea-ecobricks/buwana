@@ -181,7 +181,7 @@ if (!$app) {
       .hidden-scope {
         display: none;
       }
-      #copy-key #generate-keys {
+      #copy-keys, #generate-keys {
         background: grey;
         color: white;
         border: none;
@@ -191,7 +191,7 @@ if (!$app) {
         margin-right: 5px;
         cursor: pointer;
       }
-      #generate-keys  #copy-key:hover {
+      #copy-keys:hover, #generate-keys:hover {
         background: darkgrey;
       }
     </style>
@@ -262,14 +262,14 @@ if (!$app) {
           </div>
 
           <?php if(empty($jwt_public_key) && empty($jwt_private_key)): ?>
-            <div style="width:100%">
-                <button type="button" id="generate-keys" style="margin-left:auto;margin-right:0px;">Generate Keys</button>
+            <div style="display:flex;justify-content:flex-end;width:100%;">
+              <button type="button" id="generate-keys">Generate Keys</button>
             </div>
           <?php else: ?>
             <div style="display:flex;align-items:center;">
               <div class="password-wrapper" style="position:relative;flex-grow:1;">
                 <input type="password" id="public_key" readonly value="<?= htmlspecialchars($jwt_public_key) ?>" style="width:100%;">
-                <span toggle="#public_key" class="toggle-password" style="cursor:pointer;position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:18px;">🙈</span>
+                <span toggle="#public_key" class="toggle-password" style="cursor:pointer;position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:18px;z-index:1;">🙈</span>
               </div>
               <button type="button" id="copy-keys">Copy Key</button>
             </div>
@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const scopeBoxes = document.querySelectorAll('.scope-checkbox');
   const groupToggles = document.querySelectorAll('.scope-group');
   const generateBtn = document.getElementById('generate-keys');
-  const copyBtn = document.getElementById('copy-key');
+  const copyBtn = document.getElementById('copy-keys');
   const regenLink = document.getElementById('regenerate-keys');
 
 
