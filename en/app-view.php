@@ -245,7 +245,7 @@ if ($stmt) {
 
 <?php if ($is_owner): ?>
       <div class="edit-app-params dashboard-module" style="margin-top:20px;">
-        <h4 style="text-align:center;">Edit App Parameters</h4>
+        <h5 style="text-align:center;">Edit App Parameters</h5>
         <p>Adjust the way your app functions and displays on the Buwana platform and signup flow.</p>
         <div class="edit-button-row">
           <a href="edit-app-core.php?app_id=<?= intval($app_id) ?>" class="simple-button">Core Data</a>
@@ -257,7 +257,7 @@ if ($stmt) {
 
       <div class="dashboard-module" style="margin-top:20px;">
         <div class="toggle-row" style="margin-bottom:10px;">
-          <span><b>Enable <?= htmlspecialchars($app['app_display_name']) ?> Signups:</b></span>
+          <span><h5>Enable <?= htmlspecialchars($app['app_display_name']) ?> Signups:</h5></span>
           <label class="toggle-switch">
             <input type="checkbox" id="allow_signup" <?= $app['allow_signup'] ? 'checked' : '' ?>>
             <span class="slider"></span>
