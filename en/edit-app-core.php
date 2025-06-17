@@ -276,6 +276,7 @@ if (!$app) {
           <?php endif; ?>
 
 
+
         <?php if(!empty($jwt_public_key) && !empty($jwt_private_key)): ?>
         <p class="form-caption"><a href="#" id="regenerate-keys" style="color:red;">Regenerate Keys</a></p>
         <?php endif; ?>

@@ -131,7 +131,7 @@ if ($result_languages && $result_languages->num_rows > 0) {
                     <input type="text" id="location_full" name="location_full" aria-label="Location Full" required style="padding-left:45px;" value="<?= htmlspecialchars((string)$location_full, ENT_QUOTES, 'UTF-8') ?>">
                     <label for="location_full" data-lang-id="005-your-neighbourhood" style="border-radius:10px 10px 0px 0px;padding-bottom: 10px;"  placeholder=" "  required >Your neighbourhood...</label>
                     <div id="loading-spinner" class="spinner" style="display: none;"></div>
-                    <div id="location-pin" class="pin-icon">📍</div>
+                    <div id="location-pin" class="pin-icon">🏡</div>
                     <p class="form-caption" data-lang-id="006-start-typing-neighbourhood">
                         Start typing the name of your neighbourhood, and <a href="https://openstreetmap.org.org" target="_blank">openstreetmaps.org</a> will fill in the rest.
                     </p>
