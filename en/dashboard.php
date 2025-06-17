@@ -36,7 +36,19 @@ $stmt->close();
 
 try {
     $decoded = JWT::decode($jwt, new Key($public_key, 'RS256'));
-    $buwana_id = intval(str_replace('buwana_', '', $decoded->sub ?? 0));
+    $sub = $decoded->sub ?? '';
+    $buwana_id = 0;
+    if (preg_match('/^buwana_(\d+)$/', $sub, $m)) {
+        $buwana_id = (int)$m[1];
+    } else {
+        $stmt = $buwana_conn->prepare("SELECT buwana_id FROM users_tb WHERE open_id = ? LIMIT 1");
+        $stmt->bind_param('s', $sub);
+        $stmt->execute();
+        $stmt->bind_result($buwana_id);
+        $stmt->fetch();
+        $stmt->close();
+    }
+    $_SESSION['buwana_id'] = $buwana_id;
     $first_name = $decoded->given_name ?? '';
     $earthling_emoji = $decoded->{'buwana:earthlingEmoji'} ?? '';
 } catch (Exception $e) {
