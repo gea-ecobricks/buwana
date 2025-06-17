@@ -3,6 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 
+require_once '../vendor/autoload.php';
 require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
 
@@ -11,7 +12,41 @@ $page = 'app-view';
 $version = '0.1';
 $lastModified = date('Y-m-d\TH:i:s\Z', filemtime(__FILE__));
 
-if (empty($_SESSION['buwana_id'])) {
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+$jwt = $_SESSION['jwt'] ?? null;
+$client_id = $_SESSION['client_id'] ?? ($_GET['app'] ?? ($_GET['client_id'] ?? null));
+$buwana_id = $_SESSION['buwana_id'] ?? null;
+
+if (!$buwana_id && $jwt && $client_id) {
+    $stmt = $buwana_conn->prepare("SELECT jwt_public_key FROM apps_tb WHERE client_id = ?");
+    $stmt->bind_param('s', $client_id);
+    $stmt->execute();
+    $stmt->bind_result($public_key);
+    $stmt->fetch();
+    $stmt->close();
+
+    try {
+        $decoded = JWT::decode($jwt, new Key($public_key, 'RS256'));
+        $sub = $decoded->sub ?? '';
+        if (preg_match('/^buwana_(\d+)$/', $sub, $m)) {
+            $buwana_id = (int)$m[1];
+        } else {
+            $stmt = $buwana_conn->prepare("SELECT buwana_id FROM users_tb WHERE open_id = ? LIMIT 1");
+            $stmt->bind_param('s', $sub);
+            $stmt->execute();
+            $stmt->bind_result($buwana_id);
+            $stmt->fetch();
+            $stmt->close();
+        }
+        $_SESSION['buwana_id'] = $buwana_id;
+    } catch (Exception $e) {
+        $buwana_id = null;
+    }
+}
+
+if (!$buwana_id) {
     $query = [
         'status'   => 'loggedout',
         'redirect' => $page,
