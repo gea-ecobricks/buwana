@@ -11,7 +11,17 @@ startSecureSession();
 
 $credential_key = $_POST['credential_key'] ?? '';
 $password = $_POST['password'] ?? '';
-$lang = basename(dirname($_SERVER['SCRIPT_NAME']));
+$lang = $_POST['lang'] ?? '';
+if (empty($lang) && isset($_SERVER['HTTP_REFERER'])) {
+    $refPath = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
+    $parts = explode('/', trim($refPath, '/'));
+    if (!empty($parts[0]) && strlen($parts[0]) === 2) {
+        $lang = $parts[0];
+    }
+}
+if (empty($lang)) {
+    $lang = 'en';
+}
 $redirect = filter_var($_POST['redirect'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 $client_id = $_POST['client_id'] ?? ($_SESSION['client_id'] ?? null);
 $csrf_token = $_POST['csrf_token'] ?? '';
@@ -140,7 +150,8 @@ if ($stmt_credential) {
                         }
                     }
 
-                    $redirect_url = !empty($redirect) ? $redirect : ($app_dashboard_url ?? 'dashboard.php');
+                    $default_dashboard = "../$lang/dashboard.php";
+                    $redirect_url = !empty($redirect) ? $redirect : ($app_dashboard_url ?? $default_dashboard);
                     header("Location: $redirect_url");
                     exit();
                 } else {
