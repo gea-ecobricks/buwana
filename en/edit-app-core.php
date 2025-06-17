@@ -181,6 +181,19 @@ if (!$app) {
       .hidden-scope {
         display: none;
       }
+      #copy-key {
+        background: grey;
+        color: var(--text-color);
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        margin-left: 15px;
+        margin-right: 5px;
+      }
+      #copy-key:hover {
+        background: darkgrey;
+        color: var(--h1);
+      }
     </style>
 <div id="form-submission-box" class="landing-page-form">
   <div class="form-container">
@@ -251,9 +264,13 @@ if (!$app) {
           <?php if(empty($jwt_public_key) && empty($jwt_private_key)): ?>
             <button type="button" id="generate-keys" style="margin-left:auto;">Generate Keys</button>
           <?php else: ?>
-            <input type="password" id="public_key" readonly value="<?= htmlspecialchars($jwt_public_key) ?>" style="max-width:calc(100% - 120px);">
-            <span toggle="#public_key" class="toggle-password" style="cursor:pointer;">🙈</span>
-            <button type="button" id="copy-key">Copy Key</button>
+            <div style="display:flex;align-items:center;">
+              <div class="password-wrapper" style="position:relative;flex-grow:1;">
+                <input type="password" id="public_key" readonly value="<?= htmlspecialchars($jwt_public_key) ?>" style="width:100%;">
+                <span toggle="#public_key" class="toggle-password" style="cursor:pointer;position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:18px;">🙈</span>
+              </div>
+              <button type="button" id="copy-key">Copy Key</button>
+            </div>
           <?php endif; ?>
 
 
