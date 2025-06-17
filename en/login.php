@@ -16,6 +16,15 @@ function auth_log($message) {
 }
 auth_log('Login page requested from ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
 
+// If the user was redirected here with a loggedout status, clear any
+// existing session data to avoid redirect loops back to the dashboard
+$status = isset($_GET['status']) ? filter_var($_GET['status'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+if ($status === 'loggedout') {
+    unset($_SESSION['buwana_id'], $_SESSION['jwt']);
+    session_destroy();
+    startSecureSession();
+}
+
 // --- Determine client_id from ?app= or ?client_id=
 $client_id_param = $_GET['app'] ?? ($_GET['client_id'] ?? null);
 if ($client_id_param) {
@@ -54,8 +63,7 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 $is_logged_in = '';
-// Get the status, id (buwana_id), code, and key (credential_key) from URL
-$status = isset($_GET['status']) ? filter_var($_GET['status'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+// Get the id (buwana_id), code, and key (credential_key) from URL
 $buwana_id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) : '';
 $code = isset($_GET['code']) ? filter_var($_GET['code'], FILTER_SANITIZE_SPECIAL_CHARS) : ''; // Extract code from the URL
 $credential_key = ''; // Initialize $credential_key as empty
