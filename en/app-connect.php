@@ -52,15 +52,20 @@ $redirect_url = $app_info['app_dashboard_url'] ?? '/';
 
 // 🔍 Fetch user info
 $first_name = 'User';
-$earthling_emoji = '🌍';
+// Default earthling emoji if none is stored
+$earthling_emoji = '🌏';
 $email = 'email';
 $stmt = $buwana_conn->prepare("SELECT email, first_name, earthling_emoji FROM users_tb WHERE buwana_id = ?");
 if ($stmt) {
     $stmt->bind_param('i', $buwana_id);
     $stmt->execute();
-    $stmt->bind_result($email, $first_name, $earthling_emoji);
+    $stmt->bind_result($email, $first_name, $earthling_emoji_db);
     $stmt->fetch();
     $stmt->close();
+    // Use stored emoji if available
+    if (!empty($earthling_emoji_db)) {
+        $earthling_emoji = $earthling_emoji_db;
+    }
 }
 
 // Determine requested OAuth scopes
