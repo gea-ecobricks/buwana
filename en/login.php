@@ -591,12 +591,12 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             upgraded: {
                 en: { main: "You're now set up to use $app_display_name", sub: "$first_name, your Buwana account can now be used to login to $app_display_name" },
-                fr: { main: "Vous êtes maintenant configuré pour utiliser $app_display_name", sub: "$first_name, votre compte Buwana peut maintenant être utilisé pour se connecter à $app_display_name" },
-                es: { main: "Ahora estás listo para usar $app_display_name", sub: "$first_name, tu cuenta Buwana ahora puede usarse para iniciar sesión en $app_display_name" },
-                id: { main: "Anda sekarang siap menggunakan $app_display_name", sub: "$first_name, akun Buwana Anda sekarang dapat digunakan untuk masuk ke $app_display_name" },
-                de: { main: "Du bist nun bereit, $app_display_name zu verwenden", sub: "$first_name, dein Buwana-Konto kann nun verwendet werden, um dich bei $app_display_name anzumelden." },
-                ar: { main: "أصبح بإمكانك الآن استخدام $app_display_name", sub: "$first_name، يمكن الآن استخدام حساب بوانا الخاص بك لتسجيل الدخول إلى $app_display_name" },
-                zh: { main: "您现在已准备好使用 $app_display_name", sub: "$first_name，您的 Buwana 账户现在可以用于登录 $app_display_name" }
+                fr: { main: "Vous êtes maintenant configuré pour utiliser $app_display_name", sub: "Votre compte Buwana peut maintenant être utilisé pour se connecter à $app_display_name" },
+                es: { main: "Ahora estás listo para usar $app_display_name", sub: "Tu cuenta Buwana ahora puede usarse para iniciar sesión en $app_display_name" },
+                id: { main: "Anda sekarang siap menggunakan $app_display_name", sub: "Akun Buwana Anda sekarang dapat digunakan untuk masuk ke $app_display_name" },
+                de: { main: "Du bist nun bereit, $app_display_name zu verwenden", sub: "Dein Buwana-Konto kann nun verwendet werden, um dich bei $app_display_name anzumelden." },
+                ar: { main: "أصبح بإمكانك الآن استخدام $app_display_name", sub: "يمكن الآن استخدام حساب بوانا الخاص بك لتسجيل الدخول إلى $app_display_name" },
+                zh: { main: "您现在已准备好使用 $app_display_name", sub: "您的 Buwana 账户现在可以用于登录 $app_display_name" }
             },
             default: {
                 en: { main: "Welcome back!", sub: "Please login again with your account credentials." },
