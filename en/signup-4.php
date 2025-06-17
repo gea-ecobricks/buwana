@@ -141,8 +141,8 @@ if ($result_languages && $result_languages->num_rows > 0) {
                 </div>
 
                 <!-- Hidden Coordinates -->
-                <input type="hidden" id="lat" name="latitude" value="<?= htmlspecialchars($latitude) ?>">
-                <input type="hidden" id="lon" name="longitude" value="<?= htmlspecialchars($longitude) ?>">
+                <input type="hidden" id="lat" name="latitude" value="<?= htmlspecialchars((string)$latitude) ?>">
+                <input type="hidden" id="lon" name="longitude" value="<?= htmlspecialchars((string)$longitude) ?>">
 
                 <!-- MAP AND WATERSHED SEARCH SECTION -->
                 <div class="form-item" id="watershed-map-section" style="display: none; margin-top:20px;">
