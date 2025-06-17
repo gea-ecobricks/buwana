@@ -30,7 +30,7 @@ if (!empty($app_info['client_id'])) {
 
 // Set page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.775';
+$version = '0.776';
 $page = 'login';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $is_logged_in = false; // Ensure not logged in for this page
@@ -590,7 +590,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zh: { main: "您的 Buwana 账户已创建！🎉", sub: "您的 Earthen 订阅已确认。现在 $first_name，请使用新的账户凭据再次登录。" }
             },
             upgraded: {
-                en: { main: "You're now set up to use $app_display_name", sub: "$first_name, your Buwana account can now be used to login to $app_display_name" },
+                en: { main: "You're now set up to use $app_display_name", sub: "Your Buwana account can now be used to login to $app_display_name" },
                 fr: { main: "Vous êtes maintenant configuré pour utiliser $app_display_name", sub: "Votre compte Buwana peut maintenant être utilisé pour se connecter à $app_display_name" },
                 es: { main: "Ahora estás listo para usar $app_display_name", sub: "Tu cuenta Buwana ahora puede usarse para iniciar sesión en $app_display_name" },
                 id: { main: "Anda sekarang siap menggunakan $app_display_name", sub: "Akun Buwana Anda sekarang dapat digunakan untuk masuk ke $app_display_name" },
