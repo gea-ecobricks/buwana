@@ -5,6 +5,17 @@ ini_set('display_errors', 1);
 
 require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
 
+// Logging helper for authentication steps
+$authLogFile = dirname(__DIR__) . '/logs/auth.log';
+function auth_log($message) {
+    global $authLogFile;
+    if (!file_exists(dirname($authLogFile))) {
+        mkdir(dirname($authLogFile), 0777, true);
+    }
+    error_log('[' . date('Y-m-d H:i:s') . "] LOGIN: " . $message . PHP_EOL, 3, $authLogFile);
+}
+auth_log('Login page requested from ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
+
 // --- Determine client_id from ?app= or ?client_id=
 $client_id_param = $_GET['app'] ?? ($_GET['client_id'] ?? null);
 if ($client_id_param) {
@@ -32,6 +43,8 @@ $is_logged_in = isLoggedIn(); // Check if the user is logged in using the helper
 // Check if user is logged in and session active
 if ($is_logged_in) {
     $redirect_url = $app_info['app_dashboard_url'] ?? 'dashboard.php';
+    auth_log('User already logged in as ' . ($_SESSION['buwana_id'] ?? 'unknown') . 
+        ' redirecting to ' . $redirect_url);
     header("Location: $redirect_url");
     exit();
 }
@@ -48,6 +61,7 @@ $code = isset($_GET['code']) ? filter_var($_GET['code'], FILTER_SANITIZE_SPECIAL
 $credential_key = ''; // Initialize $credential_key as empty
 $first_name = '';  // Initialize the first_name variable
 $redirect = isset($_GET['redirect']) ? filter_var($_GET['redirect'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+auth_log("Query parameters - status: $status, id: $buwana_id, redirect: $redirect");
 
 // Check if buwana_id is available and valid to fetch corresponding email and first_name from users_tb
 if (!empty($buwana_id)) {
@@ -69,16 +83,17 @@ if (!empty($buwana_id)) {
             if ($stmt->fetch()) {
                 $credential_key = $fetched_email;  // Store the fetched email
                 $first_name = $fetched_first_name;  // Store the fetched first_name
+                auth_log("Fetched user info for buwana_id $buwana_id");
             }
         }
 
         // Close the statement
         $stmt->close();
     } else {
-        error_log('Error preparing statement: ' . $buwana_conn->error);
+        auth_log('Error preparing statement: ' . $buwana_conn->error);
     }
 
-    // Close the database connection
+    auth_log('Database connection closed');
     $buwana_conn->close();
 }
 
