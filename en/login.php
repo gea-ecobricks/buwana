@@ -589,7 +589,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 ar: { main: "تم إنشاء حساب بوانا الخاص بك! 🎉", sub: "وتم تأكيد اشتراكاتك في Earthen. الآن $first_name، الرجاء تسجيل الدخول مرة أخرى باستخدام بيانات اعتماد حسابك الجديدة." },
                 zh: { main: "您的 Buwana 账户已创建！🎉", sub: "您的 Earthen 订阅已确认。现在 $first_name，请使用新的账户凭据再次登录。" }
             },
-            connected: {
+            upgraded: {
                 en: { main: "You're now set up to use $app_display_name", sub: "$first_name, your Buwana account can now be used to login to $app_display_name" },
                 fr: { main: "Vous êtes maintenant configuré pour utiliser $app_display_name", sub: "$first_name, votre compte Buwana peut maintenant être utilisé pour se connecter à $app_display_name" },
                 es: { main: "Ahora estás listo para usar $app_display_name", sub: "$first_name, tu cuenta Buwana ahora puede usarse para iniciar sesión en $app_display_name" },
