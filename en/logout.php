@@ -11,7 +11,8 @@ $redirect = isset($_GET['redirect']) ? filter_var($_GET['redirect'], FILTER_SANI
 // Log the action for debugging purposes
 file_put_contents('debug.log', "Logging out user with session ID: " . session_id() . "\n", FILE_APPEND);
 
-// Unset all session variables
+// Unset all session variables, including any JWT that may be stored
+unset($_SESSION['jwt']);
 $_SESSION = [];
 
 // Destroy the session

@@ -132,12 +132,9 @@ echo '</script>';
     </div>
 
    <!-- Form starts here-->
-<form id="login" method="post" action="../processes/login_process_jwt.php">
+<form id="login" method="post" action="login_process.php">
     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
     <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>"> <!-- Add this line -->
-    <input type="hidden" name="client_id" value="<?= htmlspecialchars($app_info['client_id']) ?>">
-    <input type="hidden" name="response_type" value="id_token">
-    <input type="hidden" name="scope" value="openid email profile">
 
     <div class="form-item">
         <div id="credential-input-field" class="input-wrapper" style="position: relative;">
@@ -156,7 +153,7 @@ echo '</script>';
     <div class="form-item" id="password-form" style="height:115px;margin-top: -5px;">
         <div class="password-wrapper" style="position: relative;">
             <div data-lang-id="005-password-field-placeholder">
-                <input type="password" id="password" name="password" placeholder="Your password..." required autocomplete="off">
+                <input type="password" id="password" name="password" placeholder="Your password..." required>
             </div>
             <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
         </div>
@@ -538,7 +535,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (passwordToggle.checked) {
             // If the password option is selected
             passwordField.setAttribute('required', 'required');
-            form.action = '../processes/login_process_jwt.php';
+            form.action = 'login_process.php';
             console.log("Password is checked.");
         }
     }
@@ -804,7 +801,7 @@ if (code && buwanaId) {
         } else if (passwordToggle.checked) {
             // If the password option is selected
             passwordField.setAttribute('required', 'required');
-            form.action = '../processes/login_process_jwt.php';
+            form.action = 'login_process.php';
             console.log("Password is checked.");
         }
     }
