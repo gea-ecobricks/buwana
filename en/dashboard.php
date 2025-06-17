@@ -47,24 +47,30 @@ try {
     exit();
 }
 
-// Fetch apps managed by this user
-$sql = "SELECT a.app_id, a.client_id, a.app_display_name, a.app_description, a.app_square_icon_url,
+// Fetch apps either owned by or connected to this user
+$sql = "SELECT DISTINCT a.app_id, a.client_id, a.app_display_name, a.app_description, a.app_square_icon_url,
                (SELECT COUNT(*) FROM user_app_connections_tb u WHERE u.client_id = a.client_id) AS user_count
         FROM apps_tb a
-        JOIN app_owners_tb ao ON ao.app_id = a.app_id
-        WHERE ao.buwana_id = ?
+        LEFT JOIN app_owners_tb ao ON ao.app_id = a.app_id AND ao.buwana_id = ?
+        LEFT JOIN user_app_connections_tb uc ON uc.client_id = a.client_id AND uc.buwana_id = ?
+        WHERE ao.buwana_id IS NOT NULL OR uc.buwana_id IS NOT NULL
         ORDER BY a.app_display_name";
 $stmt = $buwana_conn->prepare($sql);
-$stmt->bind_param('i', $buwana_id);
+$stmt->bind_param('ii', $buwana_id, $buwana_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $apps = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 $stmt->close();
 
-// Count new accounts connected in the last 24 hours
+// Count new accounts connected in the last 24 hours for apps this user owns or is connected to
 $new_account_count_for_user = 0;
-$stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM user_app_connections_tb u JOIN apps_tb a ON u.client_id = a.client_id JOIN app_owners_tb ao ON ao.app_id = a.app_id WHERE ao.buwana_id = ? AND u.connected_at >= (NOW() - INTERVAL 1 DAY)");
-$stmt->bind_param('i', $buwana_id);
+$stmt = $buwana_conn->prepare("SELECT COUNT(*) FROM user_app_connections_tb u
+    JOIN apps_tb a ON u.client_id = a.client_id
+    LEFT JOIN app_owners_tb ao ON ao.app_id = a.app_id AND ao.buwana_id = ?
+    LEFT JOIN user_app_connections_tb uc ON uc.client_id = a.client_id AND uc.buwana_id = ?
+    WHERE (ao.buwana_id IS NOT NULL OR uc.buwana_id IS NOT NULL)
+      AND u.connected_at >= (NOW() - INTERVAL 1 DAY)");
+$stmt->bind_param('ii', $buwana_id, $buwana_id);
 $stmt->execute();
 $stmt->bind_result($new_account_count_for_user);
 $stmt->fetch();
