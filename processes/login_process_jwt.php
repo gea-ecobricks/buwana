@@ -14,6 +14,12 @@ $password = $_POST['password'] ?? '';
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $redirect = filter_var($_POST['redirect'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 $client_id = $_POST['client_id'] ?? ($_SESSION['client_id'] ?? null);
+$csrf_token = $_POST['csrf_token'] ?? '';
+
+if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $csrf_token)) {
+    header("Location: ../$lang/login.php?status=invalid_csrf");
+    exit();
+}
 
 if (empty($credential_key) || empty($password)) {
     header("Location: ../$lang/login.php?status=empty_fields&key=" . urlencode($credential_key));
@@ -111,7 +117,7 @@ if ($stmt_credential) {
                             }
                         }
 
-                        $jwt = JWT::encode($payload, $jwt_private_key, 'RS256');
+                        $jwt = JWT::encode($payload, $jwt_private_key, 'RS256', $client_id);
 
                         // One JWT per app session
                         $_SESSION['jwt'] = $jwt;
@@ -125,7 +131,7 @@ if ($stmt_credential) {
                         $check_stmt->close();
 
                         if (!$connection_id) {
-                            header("Location: app-connect.php?id=$buwana_id&client_id=$client_id");
+                            header("Location: ../$lang/app-connect.php?id=$buwana_id&client_id=$client_id");
                             exit();
                         } else {
                             $_SESSION['connection_id'] = $connection_id;

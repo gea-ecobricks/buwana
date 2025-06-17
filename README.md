@@ -18,6 +18,16 @@ The word "bhuwana" (also spelled "buwana" or "bhuana") in Indonesian and other r
 
 The connection between "bumi" and "bhuwana" lies in their shared Sanskrit origin and their similar meanings related to the concept of the world or earth. While "bumi" directly derives from "bhūmi," meaning earth or ground, "bhuwana" comes from "bhūvana," which refers to the world or universe in a broader sense. Both terms reflect the deep influence of Sanskrit on the Indonesian language and its regional variants.
 
+## Installing Dependencies
+
+This project uses Composer for PHP package management. After cloning the repository, run:
+
+```
+composer install
+```
+
+This command creates the `vendor/` directory with all required libraries.
+
 ## Running Tests
 
 PHPUnit is used for unit testing. After installing dependencies with Composer, run:
