@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function submitCodeForm(event) {
         event.preventDefault();
         setButtonState("Sending...", true);
-        fetch('https://gobrik.com/earthcal/buwana_code_process.php', {
+        fetch('../processes/code_process.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({ 'credential_key': credentialKeyInput.value })
@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (codeToggle.checked) {
             // If the code option is selected
             passwordField.removeAttribute('required');
-            form.action = 'https://gobrik.com/earthcal/buwana_code_process.php';
+            form.action = 'https://gobrik.com/processes/code_process.php';
             console.log("Code is checked.");
         } else if (passwordToggle.checked) {
             // If the password option is selected
@@ -630,12 +630,12 @@ function updateFormAction() {
     if (codeToggle.checked) {
         // If the code option is selected
         passwordField.removeAttribute('required');
-        form.action = 'https://gobrik.com/earthcal/buwana_code_process.php';
+        form.action = 'https:/buwana.ecobricks.org/processes/code_process.php';
         console.log("Code is checked.");
     } else if (passwordToggle.checked) {
         // If the password option is selected
         passwordField.setAttribute('required', 'required');
-        form.action = 'login_process.php';
+        form.action = 'https:/buwana.ecobricks.org/processes/login_process_jwt.php';
         console.log("Password is checked.");
     }
 }
@@ -734,7 +734,7 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                     <h1>🐵</h1>
                 </div>
                 <div class="preview-title">${title}</div>
-                <form id="resetPasswordForm" action="../scripts/reset_pass.php" method="POST">
+                <form id="resetPasswordForm" action="https://buwana.ecobricks.org/processes/reset_pass.php" method="POST">
                     <div class="preview-text" style="font-size:medium;">${promptText}</div>
                     <input type="email" name="email" required value="${email}">
                     <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
