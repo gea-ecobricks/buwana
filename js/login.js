@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sendCodeButton.style.display = 'none';
             setTimeout(() => {
                 submitPasswordButton.style.display = 'block';
-                ocument.querySelectorAll('.login-button-75').forEach(el => {
+                document.querySelectorAll('.login-button-75').forEach(el => {
                     el.style.display = 'block';
                 });
             }, 600); // Delay for transition effect
