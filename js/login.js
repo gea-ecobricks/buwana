@@ -329,22 +329,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
-    // Event listener for toggle button clicks
     document.querySelectorAll('.toggle-button').forEach(button => {
         button.addEventListener('click', () => {
             if (button.classList.contains('password')) {
                 passwordToggle.checked = true;
                 codeToggle.checked = false;
+                updateFormAction('password');
+                updateFormVisibility('password');
+                updateButtonVisibility('password');
             } else {
                 codeToggle.checked = true;
                 passwordToggle.checked = false;
+                updateFormAction('code');
+                updateFormVisibility('code');
+                updateButtonVisibility('code');
             }
-
-            // Update form action, visibility, and buttons based on the selected toggle
-            updateFormAction();
-            updateFormVisibility();
-            updateButtonVisibility();
         });
     });
 
