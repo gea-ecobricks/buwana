@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
 
-                submitPasswordButton.style.left = '20%';
+                submitPasswordButton.style.left = '20% !important';
             }, 600); // Delay for transition effect
         }
     }
