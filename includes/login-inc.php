@@ -232,7 +232,7 @@
         }
 
         .login-button-75 {
-
+            left: 0%;
             background-color: var(--login-green);
         }
 

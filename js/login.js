@@ -307,26 +307,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
+        // Hide both buttons immediately
+        submitPasswordButton.style.display = 'none';
+        sendCodeButton.style.display = 'none';
 
         if (passwordToggle.checked) {
-            alert('password time')
+            alert('password time');
 
             setTimeout(() => {
                 submitPasswordButton.style.display = 'block';
-                sendCodeButton.style.right = '20%';
-            }, 600); // Delay for transition effect
+                sendCodeButton.style.right = '20%'; // Only meaningful if styled correctly
+            }, 600);
         } else {
-            alert('button time none')
+            alert('code time');
 
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
-
-                submitPasswordButton.style.left = '20% !important';
-            }, 600); // Delay for transition effect
+                submitPasswordButton.style.left = '20%'; // Only meaningful if styled correctly
+            }, 600);
         }
     }
+
 
     // Event listener for toggle button clicks
     document.querySelectorAll('.toggle-button').forEach(button => {

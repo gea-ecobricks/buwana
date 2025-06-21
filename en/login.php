@@ -209,7 +209,7 @@ echo '</script>';
                                 <div class="toggle-button code">📱</div>
                                 <div class="login-slider"></div>
                                 <span data-lang-id="004-login-button">
-                                    <input type="submit" id="submit-password-button" value="Login" class="login-button-75" style="left:0%;">
+                                    <input type="submit" id="submit-password-button" value="Login" class="login-button-75">
                                 </span>
                                 <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75" style="display:none;">
                             </div>
