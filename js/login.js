@@ -317,8 +317,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitPasswordButton.style.display = 'block';
             }, 600); // Delay for transition effect
         } else {
-            alert('button time')
-            submitPasswordButton.style.Left = '20%';
+            alert('button time none')
+            submitPasswordButton.style.display = 'none';
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
             }, 600); // Delay for transition effect
