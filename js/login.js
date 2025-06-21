@@ -328,9 +328,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitPasswordButton.style.display = 'block';
             }, 600); // Delay for transition effect
         } else {
-            submitPasswordButton.style.display = 'none';
+
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
+                submitPasswordButton.style.display = 'none';
+
                 alert('yeah2?')
             }, 600); // Delay for transition effect
         }
