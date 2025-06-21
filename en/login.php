@@ -234,7 +234,7 @@ echo '</script>';
 <!-- FOOTER STARTS HERE -->
 <?php require_once ("../footer-2025.php");?>
 
-<script src="../js/login.js?v=<?php echo ($version); ;?>2"></script>
+<script src="../js/login.js?v=<?php echo ($version); ;?>3"></script>
 
 <?php require_once ("../scripts/app_modals.php");?>
 
