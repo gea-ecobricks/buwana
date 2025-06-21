@@ -309,13 +309,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
-        alert('triggered left 20');
+
         if (passwordToggle.checked) {
             sendCodeButton.style.display = 'none';
             setTimeout(() => {
                 submitPasswordButton.style.display = 'block';
             }, 600); // Delay for transition effect
         } else {
+            submitPasswordButton.style.display = 'none';
             submitPasswordButton.style.left = '20%';
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
@@ -344,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function updateFormAction() {
-        alert('triggered2');
+
         const form = document.getElementById('login');
         const passwordField = document.getElementById('password');
 
