@@ -314,6 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitPasswordButton.style.display = 'block';
             } else {
                 sendCodeButton.style.display = 'block';
+                submitPasswordButton.style.left = '20%';
             }
         }, 600);
     }

@@ -201,7 +201,7 @@ echo '</script>';
 
                         </div>
 
-                        <div style="text-align:center;width:100%;margin:auto;margin-top:15px;max-width:500px;" id="login-buttons">
+                        <div style="text-align:center;width:100%;margin:auto;margin-top:16px;max-width:500px;" id="login-buttons">
                             <div class="toggle-container">
                                 <input type="radio" id="password-toggle" name="toggle" value="password" checked>
                                 <input type="radio" id="code-toggle" name="toggle" value="code">
