@@ -311,14 +311,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateButtonVisibility() {
 
         if (passwordToggle.checked) {
-            sendCodeButton.style.display = 'none';
+
+            sendCodeButton.style.right = '20%';
             setTimeout(() => {
                 submitPasswordButton.style.display = 'block';
-                submitPasswordButton.style.display = 'none';
-                submitPasswordButton.style.left = '20%';
             }, 600); // Delay for transition effect
         } else {
-            submitPasswordButton.style.display = 'none';
+
             submitPasswordButton.style.left = '20%';
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
