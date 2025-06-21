@@ -271,16 +271,22 @@ TOGGLE LOGIN BUTTON
 
 
 
+
+/*---------------------------------------
+
+TOGGLE LOGIN BUTTON
+
+------------------------------------*/
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const passwordForm = document.getElementById('password-form');
     const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password-toggle');
-    const codeToggle = document.getElementById('code-toggle');
+    const passwordToggle = document.getElementById('password');
+    const codeToggle = document.getElementById('code');
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
-    const passwordField = document.getElementById('password-field');
-    const form = document.getElementById('login');
-
 
     // Function to update the form visibility and toggle required attribute based on toggle state
     function updateFormVisibility() {
@@ -310,26 +316,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
-        // Hide both buttons immediately
-        submitPasswordButton.style.display = 'none';
-        sendCodeButton.style.display = 'none';
-
         if (passwordToggle.checked) {
-            alert('password time');
-
+            sendCodeButton.style.display = 'none';
             setTimeout(() => {
                 submitPasswordButton.style.display = 'block';
-                // sendCodeButton.style.right = '20%'; // Only meaningful if styled correctly
-            }, 600);
+            }, 600); // Delay for transition effect
         } else {
+            submitPasswordButton.style.display = 'none';
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
-                //submitPasswordButton.style.left = '20%'; // Only meaningful if styled correctly
-            }, 600);
+            }, 600); // Delay for transition effect
         }
     }
 
+    // Event listener for toggle button clicks
     document.querySelectorAll('.toggle-button').forEach(button => {
         button.addEventListener('click', () => {
             if (button.classList.contains('password')) {
@@ -340,35 +342,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 passwordToggle.checked = false;
             }
 
-            // Give the browser a moment to register toggle changes
-            setTimeout(() => {
-                updateFormAction();
-                updateFormVisibility();
-                updateButtonVisibility();
-            }, 10);
+            // Update form action, visibility, and buttons based on the selected toggle
+            updateFormAction();
+            updateFormVisibility();
+            updateButtonVisibility();
         });
     });
 
-
-
-
     function updateFormAction() {
-
+        const form = document.getElementById('login');
+        const passwordField = document.getElementById('password');
 
         if (codeToggle.checked) {
             // If the code option is selected
             passwordField.removeAttribute('required');
-            form.action = 'https://buwana.ecobricks.org/processes/code_process.php';
+            form.action = 'https://gobrik.com/earthcal/buwana_code_process.php';
             console.log("Code is checked.");
         } else if (passwordToggle.checked) {
             // If the password option is selected
             passwordField.setAttribute('required', 'required');
-            form.action = 'https://buwana.ecobricks.org/processes/login_process_jwt.php';
+            form.action = 'login_process.php';
             console.log("Password is checked.");
         }
     }
 });
-
 
 
 

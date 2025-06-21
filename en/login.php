@@ -202,17 +202,17 @@ echo '</script>';
                         </div>
 
                         <div style="text-align:center;width:100%;margin:auto;margin-top:16px;max-width:500px;" id="login-buttons">
-                            <div class="toggle-container">
-                                <input type="radio" id="password-toggle" name="toggle" value="password" checked>
-                                <input type="radio" id="code-toggle" name="toggle" value="code">
-                                <div class="toggle-button password">🔑</div>
-                                <div class="toggle-button code">📱</div>
-                                <div class="login-slider"></div>
-                                <span data-lang-id="004-login-button">
-                                    <input type="submit" id="submit-password-button" value="Login" class="login-button-75">
-                                </span>
-                                <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75" style="display:none;">
-                            </div>
+                             <div class="toggle-container">
+                                                        <input type="radio" id="password" name="toggle" value="password" checked>
+                                                        <input type="radio" id="code" name="toggle" value="code">
+                                                        <div class="toggle-button password">🔑</div>
+                                                        <div class="toggle-button code">📱</div>
+                                                        <div class="login-slider"></div>
+                                                        <span data-lang-id="004-login-button">
+                                                            <input type="submit" id="submit-password-button" value="Login" class="login-button-75">
+                                                        </span>
+                                                        <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75" style="display:none;">
+                                                    </div>
                             <div id="code-error" data-lang-id="002-password-wrong" class="form-field-error" style="display:none;margin-top: 5px;margin-bottom:-15px;">👉 Entry is incorrect.</div>
                         </div>
                     </form>
