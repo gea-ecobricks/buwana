@@ -344,22 +344,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /*DUPLICCATE 1!*/
 
-    // function updateFormAction() {
-    //     const form = document.getElementById('login');
-    //     const passwordField = document.getElementById('password');
-    //
-    //     if (codeToggle.checked) {
-    //         // If the code option is selected
-    //         passwordField.removeAttribute('required');
-    //         form.action = 'https://buwana.ecobricks.org/processes/code_process.php';
-    //         console.log("Code is checked.");
-    //     } else if (passwordToggle.checked) {
-    //         // If the password option is selected
-    //         passwordField.setAttribute('required', 'required');
-    //         form.action = 'https://buwana.ecobricks.org/processes/login_process_jwt.php';
-    //         console.log("Password is checked.");
-    //     }
-    // }
+    function updateFormAction() {
+        alert('triggered');
+        const form = document.getElementById('login');
+        const passwordField = document.getElementById('password');
+
+        if (codeToggle.checked) {
+            // If the code option is selected
+            passwordField.removeAttribute('required');
+            form.action = 'https://buwana.ecobricks.org/processes/code_process.php';
+            console.log("Code is checked.");
+        } else if (passwordToggle.checked) {
+            // If the password option is selected
+            passwordField.setAttribute('required', 'required');
+            form.action = 'https://buwana.ecobricks.org/processes/login_process_jwt.php';
+            console.log("Password is checked.");
+        }
+    }
 });
 
 
@@ -619,30 +620,30 @@ function updateButtonVisibility() {
     }
 }
 
-
-function updateFormAction() {
-    const passwordForm = document.getElementById('password-form');
-    const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password');
-    const codeToggle = document.getElementById('code');
-    const submitPasswordButton = document.getElementById('submit-password-button');
-    const sendCodeButton = document.getElementById('send-code-button');
-
-    const form = document.getElementById('login');
-    const passwordField = document.getElementById('password');
-
-    if (codeToggle.checked) {
-        // If the code option is selected
-        passwordField.removeAttribute('required');
-        form.action = 'https:/buwana.ecobricks.org/processes/code_process.php';
-        console.log("Code is checked.");
-    } else if (passwordToggle.checked) {
-        // If the password option is selected
-        passwordField.setAttribute('required', 'required');
-        form.action = 'https:/buwana.ecobricks.org/processes/login_process_jwt.php';
-        console.log("Password is checked.");
-    }
-}
+//
+// function updateFormAction() {
+//     const passwordForm = document.getElementById('password-form');
+//     const codeForm = document.getElementById('code-form');
+//     const passwordToggle = document.getElementById('password');
+//     const codeToggle = document.getElementById('code');
+//     const submitPasswordButton = document.getElementById('submit-password-button');
+//     const sendCodeButton = document.getElementById('send-code-button');
+//
+//     const form = document.getElementById('login');
+//     const passwordField = document.getElementById('password');
+//
+//     if (codeToggle.checked) {
+//         // If the code option is selected
+//         passwordField.removeAttribute('required');
+//         form.action = 'https:/buwana.ecobricks.org/processes/code_process.php';
+//         console.log("Code is checked.");
+//     } else if (passwordToggle.checked) {
+//         // If the password option is selected
+//         passwordField.setAttribute('required', 'required');
+//         form.action = 'https:/buwana.ecobricks.org/processes/login_process_jwt.php';
+//         console.log("Password is checked.");
+//     }
+// }
 
 /*-----------------------------------
 
