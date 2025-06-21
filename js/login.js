@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const passwordForm = document.getElementById('password-form');
     const codeForm = document.getElementById('code-form');
     const passwordToggle = document.getElementById('password-toggle');
-    const codeToggle = document.getElementById('code');
+    const codeToggle = document.getElementById('code-toggle');
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
 
