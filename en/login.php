@@ -162,31 +162,31 @@ echo '</script>';
     <input type="hidden" name="response_type" value="id_token">
     <input type="hidden" name="scope" value="openid email profile">
 
-    <div class="form-item">
-                            <!--<p style="text-align:center;">Login with your Buwana account credentials.</p>-->
-                            <div id="credential-input-field" class="input-wrapper" style="position: relative;">
-                                <input type="text" id="credential_key" name="credential_key" required placeholder="Your e-mail...">
-                                <span class="toggle-select-key" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🌏</span>
-                                <div id="dropdown-menu" style="display: none; position: absolute; right: 10px; top: 100%; z-index: 1000; background: white; border: 1px solid #ccc; width: 150px; text-align: left;">
-                                    <div class="dropdown-item" value="Your email...">E-mail</div>
-                                    <div class="dropdown-item disabled" style="opacity: 0.5;">SMS</div>
-                                    <div class="dropdown-item disabled" style="opacity: 0.5;">Phone</div>
-                                    <div class="dropdown-item disabled" style="opacity: 0.5;">GEA Peer</div>
-                                </div>
-                            </div>
-                            <div id="no-buwana-email" data-lang-id="001-cant-find" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">🤔 We can't find this credential in the database.</div>
-                        </div>
+    <div class="form-item" style="border-radius: 10px 10px 0px 0px;">
+        <!--<p style="text-align:center;">Login with your Buwana account credentials.</p>-->
+        <div id="credential-input-field" class="input-wrapper" style="position: relative;">
+            <input type="text" id="credential_key" name="credential_key" required placeholder="Your e-mail...">
+            <span class="toggle-select-key" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🌏</span>
+            <div id="dropdown-menu" style="display: none; position: absolute; right: 10px; top: 100%; z-index: 1000; background: white; border: 1px solid #ccc; width: 150px; text-align: left;">
+                <div class="dropdown-item" value="Your email...">E-mail</div>
+                <div class="dropdown-item disabled" style="opacity: 0.5;">SMS</div>
+                <div class="dropdown-item disabled" style="opacity: 0.5;">Phone</div>
+                <div class="dropdown-item disabled" style="opacity: 0.5;">GEA Peer</div>
+            </div>
+        </div>
+        <div id="no-buwana-email" data-lang-id="001-cant-find" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">🤔 We can't find this credential in the database.</div>
+    </div>
 
-                        <div class="form-item" id="password-form" style="height:111px;margin-top: -10px;border-radius: 0px 0px 10px 10px;">
-                            <div class="password-wrapper" style="position: relative;">
-                                <div data-lang-id="005-password-field-placeholder">
-                                    <input type="password" id="password-field" name="password" placeholder="Your password..." required>
-                                </div>
-                                <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
-                            </div>
-                            <div id="password-error" data-lang-id="002-password-is-wrong" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">👉 Password is wrong.</div>
-                            <p class="form-caption"><span data-lang-id="003-forgot-your-password">Forgot your password?</span> <a href="#" onclick="showPasswordReset('reset', '<?php echo $lang; ?>', '')" class="underline-link" data-lang-id="000-reset-it">Reset it.</a></p>
-                        </div>
+    <div class="form-item" id="password-form" style="height:111px;margin-top: -10px;border-radius: 0px 0px 10px 10px;">
+        <div class="password-wrapper" style="position: relative;">
+            <div data-lang-id="005-password-field-placeholder">
+                <input type="password" id="password-field" name="password" placeholder="Your password..." required>
+            </div>
+            <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
+        </div>
+        <div id="password-error" data-lang-id="002-password-is-wrong" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">👉 Password is wrong.</div>
+        <p class="form-caption"><span data-lang-id="003-forgot-your-password">Forgot your password?</span> <a href="#" onclick="showPasswordReset('reset', '<?php echo $lang; ?>', '')" class="underline-link" data-lang-id="000-reset-it">Reset it.</a></p>
+    </div>
 
                         <div class="form-item" id="code-form" style="text-align:center;height:111px;margin-top:-10px;">
 

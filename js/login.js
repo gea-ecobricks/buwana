@@ -317,14 +317,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             setTimeout(() => {
                 submitPasswordButton.style.display = 'block';
-                sendCodeButton.style.right = '20%'; // Only meaningful if styled correctly
+                // sendCodeButton.style.right = '20%'; // Only meaningful if styled correctly
             }, 600);
         } else {
             alert('code time');
-
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
-                submitPasswordButton.style.left = '20%'; // Only meaningful if styled correctly
+                //submitPasswordButton.style.left = '20%'; // Only meaningful if styled correctly
             }, 600);
         }
     }
