@@ -320,6 +320,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
+        submitPasswordButton.style.display = 'none';
         if (passwordToggle.checked) {
             sendCodeButton.style.display = 'none';
             setTimeout(() => {
@@ -345,9 +346,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // Update form action, visibility, and buttons based on the selected toggle
+            updateButtonVisibility();
             updateFormAction();
             updateFormVisibility();
-            updateButtonVisibility();
+
         });
     });
 
