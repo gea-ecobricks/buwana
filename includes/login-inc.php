@@ -16,6 +16,106 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#main {
+    height: fit-content;
+}
+
+
+.module-btn {
+  background: var(--emblem-green);
+  width: 100%;
+  display: flex;
+}
+
+.module-btn:hover {
+  background: var(--emblem-green-over);
+}
+
+#splash-bar {
+  background-color: var(--top-header);
+  filter: none !important;
+  margin-bottom: -200px !important;
+}
+
+
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    width: 200px;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-item.disabled {
+    color: #999;
+    cursor: not-allowed;
+}
+
+.dropdown-item:hover:not(.disabled) {
+    background-color: #f0f0f0;
+}
+
+
+
+
+
+
 /* TOGGLE LOGIN SWITCH */
 
  .toggle-container {
@@ -156,7 +256,7 @@
             display: none;
         }
 
-
+/*CODE*/
 
 
 
@@ -226,44 +326,19 @@ margin-right: auto;
 }
 
 
+.form-container {
+max-width: 800px !important;
+box-shadow: #0000001f 0px 5px 20px;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* #sub-status-message { */
+/*   margin-top: 0px; */
+/*   margin-bottom: 10px; */
+/*   font-family: 'Arvo', Georgia, serif; */
+/*   color: var(--subdued-text); */
+/*   font-weight: 300; */
+/* } */
 
 </style>
 
