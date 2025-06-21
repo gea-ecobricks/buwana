@@ -163,7 +163,6 @@ echo '</script>';
     <input type="hidden" name="scope" value="openid email profile">
 
     <div class="form-item">
-                            <!--<p style="text-align:center;">Login with your Buwana account credentials.</p>-->
                             <div id="credential-input-field" class="input-wrapper" style="position: relative;">
                                 <input type="text" id="credential_key" name="credential_key" required placeholder="Your e-mail...">
                                 <span class="toggle-select-key" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🌏</span>
@@ -178,7 +177,7 @@ echo '</script>';
 
 
 
-                            <div class="password-wrapper" style="position: relative;"  id="password-form" style="height:111px;margin-top: -10px;border-radius: 0px 0px 10px 10px;">
+                            <div class="password-wrapper"  id="password-form" style="position: relative;height:111px;margin-top: 15px;border-radius: 0px 0px 10px 10px;">
                                 <div data-lang-id="005-password-field-placeholder">
                                     <input type="password" id="password-field" name="password" placeholder="Your password..." required>
                                 </div>
