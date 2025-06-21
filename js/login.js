@@ -312,8 +312,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateButtonVisibility() {
         // Hide both buttons immediately
-        submitPasswordButton.style.setProperty('display', 'none', 'important');
-        sendCodeButton.style.setProperty('display', 'none', 'important');
+        submitPasswordButton.style.display = 'none';
+        sendCodeButton.style.display = 'none';
 
         if (passwordToggle.checked) {
             alert('password time');
