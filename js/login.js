@@ -274,7 +274,7 @@ TOGGLE LOGIN BUTTON
 document.addEventListener('DOMContentLoaded', function () {
     const passwordForm = document.getElementById('password-form');
     const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password-toggle');
+    const passwordToggle = document.getElementById('password');
     const codeToggle = document.getElementById('code');
     const submitPasswordButton = document.getElementById('submit-password-button');
     const sendCodeButton = document.getElementById('send-code-button');
@@ -334,18 +334,20 @@ document.addEventListener('DOMContentLoaded', function () {
             if (button.classList.contains('password')) {
                 passwordToggle.checked = true;
                 codeToggle.checked = false;
-                updateFormAction('password');
-                updateFormVisibility('password');
-                updateButtonVisibility('password');
             } else {
                 codeToggle.checked = true;
                 passwordToggle.checked = false;
-                updateFormAction('code');
-                updateFormVisibility('code');
-                updateButtonVisibility('code');
             }
+
+            // Give the browser a moment to register toggle changes
+            setTimeout(() => {
+                updateFormAction();
+                updateFormVisibility();
+                updateButtonVisibility();
+            }, 10);
         });
     });
+
 
 
 
