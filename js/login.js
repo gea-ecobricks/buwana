@@ -318,9 +318,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 600); // Delay for transition effect
         } else {
             alert('button time none')
-            submitPasswordButton.style.display = 'none';
+
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
+                submitPasswordButton.style.display = 'none';
+                submitPasswordButton.style.left = '20%';
             }, 600); // Delay for transition effect
         }
     }
