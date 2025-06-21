@@ -177,7 +177,7 @@ echo '</script>';
                             <div id="no-buwana-email" data-lang-id="001-cant-find" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">🤔 We can't find this credential in the database.</div>
                         </div>
 
-                        <div class="form-item" id="password-form" style="height:111px;margin-top: -10px;">
+                        <div class="form-item" id="password-form" style="height:111px;margin-top: -10px;border-radius: 0px 0px 10px 10px;">
                             <div class="password-wrapper" style="position: relative;">
                                 <div data-lang-id="005-password-field-placeholder">
                                     <input type="password" id="password" name="password" placeholder="Your password..." required>
@@ -209,7 +209,7 @@ echo '</script>';
                                 <div class="toggle-button code">📱</div>
                                 <div class="login-slider"></div>
                                 <span data-lang-id="004-login-button">
-                                    <input type="submit" id="submit-password-button" value="Login" class="login-button-75">
+                                    <input type="submit" id="submit-password-button" value="Login" class="login-button-75" style="left:0%;">
                                 </span>
                                 <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75" style="display:none;">
                             </div>
