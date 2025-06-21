@@ -95,7 +95,7 @@ if ($client_id) {
 
 
 
-<script src="../scripts/language-switcher.js?v=<?php echo ($version); ;?>2"></script>
+<script src="../js/language-switcher.js?v=<?php echo ($version); ;?>2"></script>
 
 
 
@@ -106,11 +106,11 @@ if ($client_id) {
 
 
 
-<script src="../scripts/core-2025.js?v=3<?php echo ($version); ;?>"></script>
+<script src="../js/core-2025.js?v=3<?php echo ($version); ;?>"></script>
 
 
 <!--This enables the Light and Dark mode switching-->
-<script type="module" src="../scripts/mode-toggle.mjs.js?v=<?php echo ($version); ;?>"></script>
+<script type="module" src="../js/mode-toggle.mjs.js?v=<?php echo ($version); ;?>"></script>
 
 
 
