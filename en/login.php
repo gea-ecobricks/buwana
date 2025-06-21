@@ -188,7 +188,7 @@ echo '</script>';
                             <p class="form-caption"><span data-lang-id="003-forgot-your-password">Forgot your password?</span> <a href="#" onclick="showPasswordReset('reset', '<?php echo $lang; ?>', '')" class="underline-link" data-lang-id="000-reset-it">Reset it.</a></p>
                         </div>
 
-                        <div class="form-item" id="code-form" style="text-align:center;height:70px;">
+                        <div class="form-item" id="code-form" style="text-align:center;">
 
                             <div class="code-wrapper" style="position: relative;">
                                 <input type="text" maxlength="1" class="code-box" placeholder="-">
