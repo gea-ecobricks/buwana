@@ -321,6 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
         submitPasswordButton.style.display = 'none';
+
         if (passwordToggle.checked) {
             sendCodeButton.style.display = 'none';
             setTimeout(() => {
@@ -330,6 +331,7 @@ document.addEventListener('DOMContentLoaded', function () {
             submitPasswordButton.style.display = 'none';
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
+                alert('yeah2?')
             }, 600); // Delay for transition effect
         }
     }
