@@ -349,23 +349,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
+
     function updateFormAction() {
-        const form = document.getElementById('login');
-        const passwordField = document.getElementById('password');
+
 
         if (codeToggle.checked) {
             // If the code option is selected
             passwordField.removeAttribute('required');
-            form.action = 'https://gobrik.com/earthcal/buwana_code_process.php';
+            form.action = 'https://buwana.ecobricks.org/processes/code_process.php';
             console.log("Code is checked.");
         } else if (passwordToggle.checked) {
             // If the password option is selected
             passwordField.setAttribute('required', 'required');
-            form.action = 'login_process.php';
+            form.action = 'https://buwana.ecobricks.org/processes/login_process_jwt.php';
             console.log("Password is checked.");
         }
     }
 });
+
 
 
 
