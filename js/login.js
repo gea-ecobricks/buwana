@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to handle AJAX call to validate the code
     function ajaxValidateCode(code) {
-        fetch('https://gobrik.com/api/buwana_code_login_process.php', {
+        fetch('https:/buwana.ecobricks.org/processes/code_login_process.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `code=${code}&credential_key=${credentialKeyInput.value}`
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function submitCodeForm(event) {
         event.preventDefault();
         setButtonState("Sending...", true);
-        fetch('../processes/code_process.php', {
+        fetch('https://buwana.ecobricks.org/processes/code_process.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({ 'credential_key': credentialKeyInput.value })
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 resetSendCodeButton();
                 break;
             case 'activation_required':
-                window.location.href = data.redirect || `activate.php?id=${data.id}`;
+                window.location.href = data.redirect || `https://gobrik.com/en/activate.php?id=${data.id}`;  //STILL RElevant?
                 break;
             case 'not_found':
             case 'crednotfound':
@@ -340,6 +340,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
+
+    /*DUPLICCATE 1!*/
+
     function updateFormAction() {
         const form = document.getElementById('login');
         const passwordField = document.getElementById('password');
@@ -347,12 +351,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (codeToggle.checked) {
             // If the code option is selected
             passwordField.removeAttribute('required');
-            form.action = 'https://gobrik.com/processes/code_process.php';
+            form.action = 'https://buwana.ecobricks.org/processes/code_process.php';
             console.log("Code is checked.");
         } else if (passwordToggle.checked) {
             // If the password option is selected
             passwordField.setAttribute('required', 'required');
-            form.action = 'login_process.php';
+            form.action = 'https://buwana.ecobricks.org/processes/login_process_jwt.php';
             console.log("Password is checked.");
         }
     }
@@ -616,29 +620,29 @@ function updateButtonVisibility() {
 }
 
 
-function updateFormAction() {
-    const passwordForm = document.getElementById('password-form');
-    const codeForm = document.getElementById('code-form');
-    const passwordToggle = document.getElementById('password');
-    const codeToggle = document.getElementById('code');
-    const submitPasswordButton = document.getElementById('submit-password-button');
-    const sendCodeButton = document.getElementById('send-code-button');
-
-    const form = document.getElementById('login');
-    const passwordField = document.getElementById('password');
-
-    if (codeToggle.checked) {
-        // If the code option is selected
-        passwordField.removeAttribute('required');
-        form.action = 'https:/buwana.ecobricks.org/processes/code_process.php';
-        console.log("Code is checked.");
-    } else if (passwordToggle.checked) {
-        // If the password option is selected
-        passwordField.setAttribute('required', 'required');
-        form.action = 'https:/buwana.ecobricks.org/processes/login_process_jwt.php';
-        console.log("Password is checked.");
-    }
-}
+// function updateFormAction() {
+//     const passwordForm = document.getElementById('password-form');
+//     const codeForm = document.getElementById('code-form');
+//     const passwordToggle = document.getElementById('password');
+//     const codeToggle = document.getElementById('code');
+//     const submitPasswordButton = document.getElementById('submit-password-button');
+//     const sendCodeButton = document.getElementById('send-code-button');
+//
+//     const form = document.getElementById('login');
+//     const passwordField = document.getElementById('password');
+//
+//     if (codeToggle.checked) {
+//         // If the code option is selected
+//         passwordField.removeAttribute('required');
+//         form.action = 'https:/buwana.ecobricks.org/processes/code_process.php';
+//         console.log("Code is checked.");
+//     } else if (passwordToggle.checked) {
+//         // If the password option is selected
+//         passwordField.setAttribute('required', 'required');
+//         form.action = 'https:/buwana.ecobricks.org/processes/login_process_jwt.php';
+//         console.log("Password is checked.");
+//     }
+// }
 
 /*-----------------------------------
 
