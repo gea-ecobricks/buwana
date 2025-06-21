@@ -307,14 +307,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle button visibility with delay
     function updateButtons(isPassword) {
-        submitPasswordButton.style.display = 'none';
-        sendCodeButton.style.display = 'none';
+        submitPasswordButton.style.display = 'none !important';
+        sendCodeButton.style.display = 'none !important';
         setTimeout(() => {
             if (isPassword) {
                 submitPasswordButton.style.display = 'block';
             } else {
                 sendCodeButton.style.display = 'block';
-                submitPasswordButton.style.left = '20%';
+                submitPasswordButton.style.left = '20% !important';
             }
         }, 600);
     }
