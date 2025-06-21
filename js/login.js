@@ -312,8 +312,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateButtonVisibility() {
         // Hide both buttons immediately
-        submitPasswordButton.style.display = 'none';
-        sendCodeButton.style.display = 'none';
+        submitPasswordButton.style.setProperty('display', 'none', 'important');
+        sendCodeButton.style.setProperty('display', 'none', 'important');
 
         if (passwordToggle.checked) {
             alert('password time');
@@ -323,7 +323,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 // sendCodeButton.style.right = '20%'; // Only meaningful if styled correctly
             }, 600);
         } else {
-            alert('code time');
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
                 //submitPasswordButton.style.left = '20%'; // Only meaningful if styled correctly
