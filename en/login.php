@@ -180,7 +180,7 @@ echo '</script>';
                         <div class="form-item" id="password-form" style="height:111px;margin-top: -10px;border-radius: 0px 0px 10px 10px;">
                             <div class="password-wrapper" style="position: relative;">
                                 <div data-lang-id="005-password-field-placeholder">
-                                    <input type="password" id="password" name="password" placeholder="Your password..." required>
+                                    <input type="password" id="password-field" name="password" placeholder="Your password..." required>
                                 </div>
                                 <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
                             </div>
