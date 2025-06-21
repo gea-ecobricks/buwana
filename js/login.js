@@ -309,6 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to update the visibility of the submit buttons
     function updateButtonVisibility() {
+        alert('triggered1');
         if (passwordToggle.checked) {
             sendCodeButton.style.display = 'none';
             setTimeout(() => {
@@ -342,10 +343,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    /*DUPLICCATE 1!*/
-
     function updateFormAction() {
-        alert('triggered');
+        alert('triggered2');
         const form = document.getElementById('login');
         const passwordField = document.getElementById('password');
 
