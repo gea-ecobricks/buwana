@@ -312,16 +312,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (passwordToggle.checked) {
             alert('password time')
-            sendCodeButton.style.right = '20%';
+
             setTimeout(() => {
                 submitPasswordButton.style.display = 'block';
+                sendCodeButton.style.right = '20%';
             }, 600); // Delay for transition effect
         } else {
             alert('button time none')
 
             setTimeout(() => {
                 sendCodeButton.style.display = 'block';
-                submitPasswordButton.style.display = 'none';
+
                 submitPasswordButton.style.left = '20%';
             }, 600); // Delay for transition effect
         }
