@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateFormAction() {
 
         const form = document.getElementById('login');
-        const passwordField = document.getElementById('password');
+        const passwordField = document.getElementById('password-field');
 
         if (codeToggle.checked) {
             // If the code option is selected
