@@ -163,12 +163,12 @@
             font-family: 'Mulish',sans-serif;
         }
 
-        .toggle-button.password {
+        .toggle-button.password-toggle {
             left: 0%;
             width: 85%; /* Initial width */
             text-align: center;
         }
-        .toggle-button.code {
+        .toggle-button.code-toggle {
             right: 0%;
             width: 15%; /* Initial width */
             text-align: center;
@@ -195,7 +195,7 @@
             left: 15%;
         }
 
-        #password:checked ~ .toggle-button.password {
+        #password:checked ~ .toggle-button.password-toggle {
             opacity: 0  ;
             width: 85%; /* Reduced width when selected */
         }
@@ -203,11 +203,11 @@
             opacity: 0.8;
             width: 15%; /* Expanded width when the other option is selected */
         }
-        #code:checked ~ .toggle-button.code {
+        #code:checked ~ .toggle-button.code-toggle {
             opacity: 1;
             width: 85%; /* Reduced width when selected */
         }
-        #code:checked ~ .toggle-button.password {
+        #code:checked ~ .toggle-button.password-toggle {
             opacity: 0.8;
             width: 15%; /* Expanded width when the other option is selected */
         }
