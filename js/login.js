@@ -307,8 +307,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle button visibility with delay
     function updateButtons(isPassword) {
-        submitPasswordButton.style.display = 'none !important';
-        sendCodeButton.style.display = 'none !important';
+        submitPasswordButton.style.setProperty('display', 'none', 'important');
+
+        sendCodeButton.style.display = 'none';
         setTimeout(() => {
             if (isPassword) {
                 submitPasswordButton.style.display = 'block';
