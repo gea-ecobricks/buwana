@@ -163,59 +163,59 @@ echo '</script>';
     <input type="hidden" name="scope" value="openid email profile">
 
     <div class="form-item">
-        <div id="credential-input-field" class="input-wrapper" style="position: relative;">
-            <input type="text" id="credential_key" name="credential_key" required placeholder="Your e-mail..." value="<?php echo htmlspecialchars($credential_key); ?>">
-            <span class="toggle-select-key" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🌏</span>
-            <div id="dropdown-menu" style="display: none; position: absolute; right: 10px; top: 100%; z-index: 1000; background: white; border: 1px solid #ccc; width: 150px; text-align: left;">
-                <div class="dropdown-item" value="Your email...">E-mail</div>
-                <div class="dropdown-item disabled" style="opacity: 0.5;">SMS</div>
-                <div class="dropdown-item disabled" style="opacity: 0.5;">Phone</div>
-                <div class="dropdown-item disabled" style="opacity: 0.5;">GEA Peer</div>
-            </div>
-        </div>
-        <div id="no-buwana-email" data-lang-id="001-cant-find" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">🤔 We can't find this credential in the database.</div>
-    </div>
+                            <p style="text-align:center;">Login with your Buwana account credentials.</p>
+                            <div id="credential-input-field" class="input-wrapper" style="position: relative;">
+                                <input type="text" id="credential_key" name="credential_key" required placeholder="Your e-mail...">
+                                <span class="toggle-select-key" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🌏</span>
+                                <div id="dropdown-menu" style="display: none; position: absolute; right: 10px; top: 100%; z-index: 1000; background: white; border: 1px solid #ccc; width: 150px; text-align: left;">
+                                    <div class="dropdown-item" value="Your email...">E-mail</div>
+                                    <div class="dropdown-item disabled" style="opacity: 0.5;">SMS</div>
+                                    <div class="dropdown-item disabled" style="opacity: 0.5;">Phone</div>
+                                    <div class="dropdown-item disabled" style="opacity: 0.5;">GEA Peer</div>
+                                </div>
+                            </div>
+                            <div id="no-buwana-email" data-lang-id="001-cant-find" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">🤔 We can't find this credential in the database.</div>
+                        </div>
 
-    <div class="form-item" id="password-form" style="height:115px;margin-top: -5px;">
-        <div class="password-wrapper" style="position: relative;">
-            <div data-lang-id="005-password-field-placeholder">
-                <input type="password" id="password" name="password" placeholder="Your password..." required autocomplete="off">
-            </div>
-            <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
-        </div>
-        <div id="password-error" data-lang-id="002-password-is-wrong" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">👉 Password is wrong.</div>
+                        <div class="form-item" id="password-form" style="height:92px;margin-top: -5px;">
+                            <div class="password-wrapper" style="position: relative;">
+                                <div data-lang-id="005-password-field-placeholder">
+                                    <input type="password" id="password" name="password" placeholder="Your password..." required>
+                                </div>
+                                <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
+                            </div>
+                            <div id="password-error" data-lang-id="002-password-is-wrong" class="form-field-error" style="display:none;margin-top: 0px;margin-bottom:-15px;">👉 Password is wrong.</div>
+                            <p class="form-caption"><span data-lang-id="003-forgot-your-password">Forgot your password?</span> <a href="#" onclick="showPasswordReset('reset', '<?php echo $lang; ?>', '')" class="underline-link" data-lang-id="000-reset-it">Reset it.</a></p>
+                        </div>
 
-        <p class="form-caption" style="padding-top: 15px;"><span data-lang-id="003-forgot-your-password">Forgot your password?</span> <a href="#" onclick="showPasswordReset('reset', '<?php echo $lang; ?>', '')" class="underline-link" data-lang-id="000-reset-it">Reset it.</a></p>
-    </div>
+                        <div class="form-item" id="code-form" style="text-align:center;height:80px;">
 
-    <div class="form-item" id="code-form" style="text-align:center;height:80px;">
+                            <div class="code-wrapper" style="position: relative;">
+                                <input type="text" maxlength="1" class="code-box" placeholder="-">
+                                <input type="text" maxlength="1" class="code-box" placeholder="-">
+                                <input type="text" maxlength="1" class="code-box" placeholder="-">
+                                <input type="text" maxlength="1" class="code-box" placeholder="-">
+                                <input type="text" maxlength="1" class="code-box" placeholder="-">
+                            </div>
+                        <p id="code-status" class="form-caption" data-lang-id="003-code-status" style="margin-top:5px;">A code to login will be sent to your email.</p>
 
-        <div class="code-wrapper" style="position: relative;">
-            <input type="text" maxlength="1" class="code-box" placeholder="-">
-            <input type="text" maxlength="1" class="code-box" placeholder="-">
-            <input type="text" maxlength="1" class="code-box" placeholder="-">
-            <input type="text" maxlength="1" class="code-box" placeholder="-">
-            <input type="text" maxlength="1" class="code-box" placeholder="-">
-        </div>
-    <p id="code-status" class="form-caption" data-lang-id="003-code-status" style="margin-top:5px;">A code to login will be sent to your email.</p>
+                        </div>
 
-    </div>
-
-    <div style="text-align:center;width:100%;margin:auto;margin-top:35px;max-width:500px;" id="login-buttons">
-        <div class="toggle-container">
-            <input type="radio" id="password-toggle" name="toggle" value="password" checked>
-            <input type="radio" id="code-toggle" name="toggle" value="code">
-            <div class="toggle-button password">🔑</div>
-            <div class="toggle-button code">📱</div>
-            <div class="login-slider"></div>
-            <span data-lang-id="004-login-button">
-                <input type="submit" id="submit-password-button" value="Login" class="login-button-75">
-            </span>
-            <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75" style="display:none;">
-        </div>
-        <div id="code-error" data-lang-id="002-password-wrong" class="form-field-error" style="display:none;margin-top: 5px;margin-bottom:-15px;">👉 Entry is incorrect.</div>
-    </div>
-</form>
+                        <div style="text-align:center;width:100%;margin:auto;margin-top:15px;max-width:500px;" id="login-buttons">
+                            <div class="toggle-container">
+                                <input type="radio" id="password" name="toggle" value="password" checked>
+                                <input type="radio" id="code" name="toggle" value="code">
+                                <div class="toggle-button password">🔑</div>
+                                <div class="toggle-button code">📱</div>
+                                <div class="login-slider"></div>
+                                <span data-lang-id="004-login-button">
+                                    <input type="submit" id="submit-password-button" value="Login" class="login-button-75">
+                                </span>
+                                <input type="button" id="send-code-button" value="📨 Send Code" class="code-button-75" style="display:none;">
+                            </div>
+                            <div id="code-error" data-lang-id="002-password-wrong" class="form-field-error" style="display:none;margin-top: 5px;margin-bottom:-15px;">👉 Entry is incorrect.</div>
+                        </div>
+                    </form>
 
 
 
