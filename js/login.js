@@ -366,7 +366,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateFormAction() {
 
-
         if (codeToggle.checked) {
             // If the code option is selected
             passwordField.removeAttribute('required');
