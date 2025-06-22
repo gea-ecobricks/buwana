@@ -745,6 +745,7 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                 <div class="reset-title">${title}</div>
                 <form id="resetPasswordForm" action="https://buwana.ecobricks.org/processes/reset_pass.php" method="POST">
                     <div class="preview-text" style="font-size:medium;">${promptText}</div>
+                    <input type="hidden" name="lang" value="${lang}">
                     <input type="email" name="email" required value="${email}">
                     <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
                         <div id="no-buwana-email" class="form-warning" style="display:none;margin-top:5px;margin-bottom:5px;" data-lang-id="010-no-buwana-email">${errorText}</div>
@@ -755,13 +756,44 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
             break;
 
         case 'sent':
+            let sentTitle, sentMessage;
+            switch (lang) {
+                case 'fr':
+                    sentTitle = 'Envoyé !';
+                    sentMessage = `Votre lien de réinitialisation a été envoyé à ${email}. Veuillez suivre le lien pour réinitialiser votre mot de passe Buwana.`;
+                    break;
+                case 'es':
+                    sentTitle = '¡Enviado!';
+                    sentMessage = `Tu restablecimiento de contraseña se ha enviado a ${email}. Por favor sigue el enlace allí para restablecer tu contraseña de Buwana.`;
+                    break;
+                case 'de':
+                    sentTitle = 'Gesendet!';
+                    sentMessage = `Dein Passwort-Reset wurde an ${email} gesendet. Bitte folge dem Link dort, um dein Buwana-Passwort zurückzusetzen.`;
+                    break;
+                case 'ar':
+                    sentTitle = 'تم الإرسال!';
+                    sentMessage = `تم إرسال رابط إعادة تعيين كلمة المرور إلى ${email}. يرجى اتباع الرابط هناك لإعادة تعيين كلمة مرور بوانا.`;
+                    break;
+                case 'zh':
+                    sentTitle = '已发送！';
+                    sentMessage = `重置密码的链接已发送到 ${email}。请按照其中的链接重置您的 Buwana 密码。`;
+                    break;
+                case 'id':
+                    sentTitle = 'Terkirim!';
+                    sentMessage = `Tautan pengaturan ulang kata sandi telah dikirim ke ${email}. Silakan ikuti tautan tersebut untuk mereset kata sandi Buwana Anda.`;
+                    break;
+                default:
+                    sentTitle = 'Sent!';
+                    sentMessage = `Your password reset has been sent to ${email}.  Please follow the link there to reset your Buwana password.`;
+            }
+
             content = `
                 <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
-                    
+
                 </div>
                 <div class="reset-title"><h1>🙉</h1></div>
-                <div class="reset-title">Sent!</div>
-                <p style="text-align: center;margin-bottom: 177px">Your password reset has been sent to ${email}.  Please follow the link there to reset your Buwana password.</p>
+                <div class="reset-title">${sentTitle}</div>
+                <p style="text-align: center;margin-bottom: 177px">${sentMessage}</p>
             `;
             break;
 
