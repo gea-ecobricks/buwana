@@ -17,7 +17,7 @@ const en_Page_Translations = {
     "001-reset-title": "Let's Reset Your Password",
 
     // 002 - Reset Subtitle
-    "002-reset-subtitle": "Enter your new password for your Buwana account.",
+    "002-reset-subtitle": "Enter your new password...",
 
     // 003 - New Password Label
     "003-new-pass": "New password:",
@@ -25,11 +25,11 @@ const en_Page_Translations = {
     // 004 - Password Field Inner HTML
     "004-password-field": `
         <input type="password" id="password" name="password" required placeholder="Your new password...">
-        <span toggle="#password" class="toggle-password" style="cursor: pointer;">🔒</span>
+                    <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
     `,
 
     // 011 - Six Characters Requirement
-    "011-six-characters": "Password must be at least 6 characters long.",
+    "011-six-characters": "Minimum six characters..",
 
     // 012 - Re-enter Password Label
     "012-re-enter": "Re-enter password to confirm:",
@@ -37,7 +37,7 @@ const en_Page_Translations = {
     // 013 - Password Wrapper Inner HTML
     "013-password-wrapper": `
         <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Re-enter password...">
-        <span toggle="#confirmPassword" class="toggle-password" style="cursor: pointer;">🔒</span>
+                    <span toggle="#confirmPassword" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
     `,
 
     // 013 - Password Match Error
