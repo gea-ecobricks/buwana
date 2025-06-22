@@ -39,7 +39,7 @@
   padding: 10px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 769px) {
   .app-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -140,6 +140,27 @@
   color: white;
   border-radius: 6px;
   text-decoration: none;
+}
+
+.buwana-lead-banner {
+    height:350px;
+    background:no-repeat center;
+    background-size:contain;
+    }
+
+
+@media (max-width: 769px) {
+.buwana-lead-banner {
+    width:100%;
+    height:250px;
+    }
+}
+
+@media (min-width: 769px) {
+.buwana-lead-banner {
+    width:100%;
+    height:350px;
+    }
 }
 
 </style>
