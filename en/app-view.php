@@ -255,7 +255,7 @@ if ($stmt) {
         </div>
       </div>
 
-      <div class="dashboard-module" style="margin-top:20px;">
+      <div class="dashboard-module" style="margin-top:20px; border:1px solid red;">
         <div class="toggle-row" style="margin-bottom:10px;">
           <span><h5>Enable <?= htmlspecialchars($app['app_display_name']) ?> Signups:</h5></span>
           <label class="toggle-switch">
@@ -263,18 +263,18 @@ if ($stmt) {
             <span class="slider"></span>
           </label>
         </div>
-        <p >🔴 This turns off signups on your app but it is still available to users.</p>
+        <p >This turns off signups on your app but it is still available to users.</p>
       </div>
 
-      <div class="dashboard-module" style="margin-top:20px;">
+      <div class="dashboard-module" style="margin-top:20px; border:1px solid orange;">
         <div class="toggle-row" style="margin:10px 0;">
-          <span><b>Activate <?= htmlspecialchars($app['app_display_name']) ?>:</b></span>
+          <span><h5>Activate <?= htmlspecialchars($app['app_display_name']) ?>:</h5></span>
           <label class="toggle-switch">
             <input type="checkbox" id="is_active" <?= $app['is_active'] ? 'checked' : '' ?>>
             <span class="slider"></span>
           </label>
         </div>
-        <p >🟠 This turns off all logins and signups on your app</p>
+        <p >This turns off all logins and signups on your app</p>
       </div>
 <?php endif; ?>
   </div>
