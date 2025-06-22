@@ -70,9 +70,10 @@ echo '<!DOCTYPE html>
 echo '<title>Password Reset | ' . htmlspecialchars($app_info['app_display_name']) . '</title>';
 
 require_once ("../includes/reset-inc.php");
-$page = 'signup-2';
+
+
 $page_key = str_replace('-', '_', $page);
-echo '<div id="top-page-image"'
+echo '\n<div id="top-page-image"'
     . ' class="top-page-image"'
     . ' data-light-img="' . htmlspecialchars($app_info[$page_key . '_top_img_light'] ?? '') . '"'
     . ' data-dark-img="' . htmlspecialchars($app_info[$page_key . '_top_img_dark'] ?? '') . '">'
@@ -83,7 +84,7 @@ echo '<div id="form-submission-box" class="landing-page-form">
 
         <div style="text-align:center;width:100%;margin:auto;">
             <h3 data-lang-id="001-reset-title">Let\'s Reset Your Password</h3>
-            <h4 data-lang-id="002-reset-subtitle" style="margin-top:12px; margin-bottom:8px;">Enter your new password for your Buwana account.</h4>
+            <h4 data-lang-id="002-reset-subtitle" style="margin-top:12px; margin-bottom:8px;">Enter your new password...</h4>
         </div>
 
         <!-- Reset password form -->
@@ -97,7 +98,7 @@ echo '<div id="form-submission-box" class="landing-page-form">
                     <input type="password" id="password" name="password" required placeholder="Your new password...">
                     <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
                 </div>
-                <p class="form-caption" data-lang-id="011-six-characters">Password must be at least 6 characters long.</p>
+                <p class="form-caption" data-lang-id="011-six-characters">Minimum six characters long.</p>
                 <div id="password-error" class="form-field-error" style="display:none;margin-top:0px;">👉 New password is not long enough!</div>
             </div>
 
@@ -113,7 +114,7 @@ echo '<div id="form-submission-box" class="landing-page-form">
             </div>
 
             <div style="text-align:center;">
-                <input type="submit" style="text-align:center;margin-top:15px;width:30%; min-width: 175px;" id="submit-button" value="🔑 Reset Password" class="submit-button enabled">
+                <input type="submit" style="text-align:center;margin-top:15px;width:30%; min-width:250px;" id="submit-button" value="🔑 Reset Password" class="submit-button enabled">
             </div>
         </form>
     </div>
