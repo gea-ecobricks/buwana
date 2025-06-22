@@ -90,11 +90,12 @@ echo '<div id="form-submission-box" class="landing-page-form">
         <form id="resetForm" method="post" action="../processes/process_reset.php">
             <input type="hidden" name="token" value="' . htmlspecialchars($token, ENT_QUOTES, 'UTF-8') . '">
             <input type="hidden" name="client_id" value="' . htmlspecialchars($app_info['client_id']) . '">
+            <input type="hidden" name="lang" value="' . htmlspecialchars($lang, ENT_QUOTES, 'UTF-8') . '">
             <div class="form-item">
                 <p data-lang-id="003-new-pass">New password:</p>
-                <div class="password-wrapper" data-lang-id="004-password-field">
+                <div class="password-wrapper" data-lang-id="004-password-field" style="position: relative;">
                     <input type="password" id="password" name="password" required placeholder="Your new password...">
-                    <span toggle="#password" class="toggle-password" style="cursor: pointer;">🔒</span>
+                    <span toggle="#password" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
                 </div>
                 <p class="form-caption" data-lang-id="011-six-characters">Password must be at least 6 characters long.</p>
                 <div id="password-error" class="form-field-error" style="display:none;margin-top:0px;">👉 New password is not long enough!</div>
@@ -104,9 +105,9 @@ echo '<div id="form-submission-box" class="landing-page-form">
 
             <div class="form-item">
                 <p data-lang-id="012-re-enter">Re-enter password to confirm:</p>
-                <div data-lang-id="013-password-wrapper" class="password-wrapper">
+                <div data-lang-id="013-password-wrapper" class="password-wrapper" style="position: relative;">
                     <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Re-enter password...">
-                    <span toggle="#confirmPassword" class="toggle-password" style="cursor: pointer;">🔒</span>
+                    <span toggle="#confirmPassword" class="toggle-password" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);font-size:18px;">🙈</span>
                 </div>
                 <div id="confirm-password-error" class="form-field-error" style="display:none;margin-top:5px;" data-lang-id="013-password-match">👉 Passwords do not match.</div>
             </div>
@@ -116,7 +117,7 @@ echo '<div id="form-submission-box" class="landing-page-form">
             </div>
         </form>
     </div>
-    <div style="text-align:center;width:100%;margin:auto;margin-top:34px;"><p style="font-size:medium;" data-lang-id="015-no-need">No need to reset your password?  <a href="login.php">Login</a></p></div>
+    <div style="text-align:center;width:100%;margin:auto;margin-top:34px;"><p style="font-size:medium;" data-lang-id="015-no-need">No need to reset your password?  <a href="login.php?app=' . urlencode($app_info['client_id']) . '">Login</a></p></div>
 </div>
 </div>';
 
