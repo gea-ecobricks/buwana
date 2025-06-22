@@ -779,7 +779,7 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                     <input type="email" name="email" required value="${email}">
                     <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
                         <div id="no-buwana-email" class="form-warning" style="display:none;margin-top:5px;margin-bottom:5px;" data-lang-id="010-no-buwana-email">${errorText}</div>
-                        <button type="submit" class="submit-button enabled" style="min-width: 350px;">${buttonText}</button>
+                        <button type="submit" class="submit-button enabled" style="min-width: 250px;margin-bottom: 177px;">${buttonText}</button>
                     </div>
                 </form>
             `;
