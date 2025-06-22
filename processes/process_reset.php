@@ -6,8 +6,11 @@ ini_set('display_errors', 1);
 // Start the session before any output
 session_start();
 
-// Grab language directory from URL
-$lang = basename(dirname($_SERVER['SCRIPT_NAME']));
+// Determine language from form submission
+$lang = isset($_POST['lang']) ? preg_replace('/[^a-zA-Z]/', '', $_POST['lang']) : 'en';
+
+// Client ID for redirects
+$client_id = isset($_POST['client_id']) ? preg_replace('/[^a-zA-Z0-9_-]/', '', $_POST['client_id']) : '';
 
 // Database credentials
 include '../buwanaconn_env.php';
@@ -42,22 +45,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute();
                 $stmt->close();
 
-                echo '<script>alert("Your password has been reset! You can now log in using your new password."); window.location.href = "login.php";</script>';
+                echo '<script>alert("Your password has been reset! You can now log in using your new password."); window.location.href = "../' . $lang . '/login.php?app=' . urlencode($client_id) . '";</script>';
                 exit();
             } else {
-                echo '<script>alert("Invalid token. Please try reseting your password again."); window.location.href = "login.php";</script>';
+                echo '<script>alert("Invalid token. Please try reseting your password again."); window.location.href = "../' . $lang . '/login.php?app=' . urlencode($client_id) . '";</script>';
                 exit();
             }
         } else {
-            echo '<script>alert("Passwords do not match or are not long enough. Please try again."); window.location.href = "password-reset.php?token=' . urlencode($token) . '";</script>';
+            echo '<script>alert("Passwords do not match or are not long enough. Please try again."); window.location.href = "../' . $lang . '/password-reset.php?token=' . urlencode($token) . '";</script>';
             exit();
         }
     } else {
-        echo '<script>alert("All fields are required. Please try again."); window.location.href = "password-reset.php?token=' . urlencode($token) . '";</script>';
+        echo '<script>alert("All fields are required. Please try again."); window.location.href = "../' . $lang . '/password-reset.php?token=' . urlencode($token) . '";</script>';
         exit();
     }
 } else {
-    echo '<script>alert("Invalid request. Please try again reseting your password again."); window.location.href = "login.php";</script>';
+    echo '<script>alert("Invalid request. Please try again reseting your password again."); window.location.href = "../' . $lang . '/login.php?app=' . urlencode($client_id) . '";</script>';
     exit();
 }
 
