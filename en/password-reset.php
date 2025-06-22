@@ -3,8 +3,8 @@ require_once '../earthenAuth_helper.php'; // Include the authentication helper f
 
 // Set page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.78';
-$page = '2-signup';
+$version = '0.81';
+$page = 'reset';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Initialize user variables
@@ -71,7 +71,7 @@ echo '<title>Password Reset | ' . htmlspecialchars($app_info['app_display_name']
 
 require_once ("../includes/reset-inc.php");
 
-
+$page = '2-signup';
 $page_key = str_replace('-', '_', $page);
 echo '<div id="top-page-image"'
     . ' class="top-page-image"'
