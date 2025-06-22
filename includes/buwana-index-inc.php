@@ -153,6 +153,7 @@
 .buwana-lead-banner {
     width:100%;
     height:250px;
+    margin-bottom: -30px;
     }
 }
 
