@@ -52,8 +52,8 @@ if ($email) {
                 'en' => "Hello $first_name,<br><br>
                     A password reset was requested at " . date('Y-m-d H:i:s') . " on for your Buwana account. If you didn't request this, please disregard!<br><br>
                     To reset your password, please click the following link:<br><br>
-                    <a href='https://gobrik.com/{$lang}/password-reset.php?token={$password_reset_token}'>Reset Password</a><br><br>
-                    The GoBrik Team",
+                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?token={$password_reset_token}'>Reset Password</a><br><br>
+                    The Buwana Team",
                 // Additional language bodies as above...
             ];
 
