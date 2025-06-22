@@ -588,16 +588,30 @@ table.dataTable tbody tr:nth-child(odd),
 table.dataTable.stripe tbody tr.odd,
 table.dataTable.display tbody tr.odd {
     background-color: var(--table-background-1);
+    color: var(--text-color);
 }
 
 table.dataTable tbody tr:nth-child(even),
 table.dataTable.stripe tbody tr.even,
 table.dataTable.display tbody tr.even {
     background-color: var(--table-background-2);
+    color: var(--text-color);
 }
 
 table.dataTable tbody tr:hover {
     background-color: var(--table-background-hover);
 }
 
+/* Ensure sorted columns use theme colors */
+table.dataTable tbody td.sorting_1,
+table.dataTable tbody th.sorting_1,
+table.dataTable tbody td.sorting_2,
+table.dataTable tbody th.sorting_2,
+table.dataTable tbody td.sorting_3,
+table.dataTable tbody th.sorting_3 {
+    background-color: var(--table-background-hover);
+    color: var(--text-color);
+}
+
 /* Light mode pastel colors */
+
