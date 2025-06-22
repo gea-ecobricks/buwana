@@ -42,15 +42,15 @@ if ($email) {
 
             // Language-specific email content
             $subjects = [
-                'en' => 'Reset your GoBrik password',
-                'fr' => 'Réinitialisez votre mot de passe GoBrik',
-                'es' => 'Restablezca su contraseña de GoBrik',
-                'id' => 'Atur Ulang Kata Sandi GoBrik Anda'
+                'en' => 'Reset your Buwana password',
+                'fr' => 'Réinitialisez votre mot de passe Buwana',
+                'es' => 'Restablezca su contraseña de Buwana',
+                'id' => 'Atur Ulang Kata Sandi Buwana Anda'
             ];
 
             $bodies = [
                 'en' => "Hello $first_name,<br><br>
-                    A password reset was requested at " . date('Y-m-d H:i:s') . " on GoBrik.com for your Buwana account. If you didn't request this, please disregard!<br><br>
+                    A password reset was requested at " . date('Y-m-d H:i:s') . " on for your Buwana account. If you didn't request this, please disregard!<br><br>
                     To reset your password, please click the following link:<br><br>
                     <a href='https://gobrik.com/{$lang}/password-reset.php?token={$password_reset_token}'>Reset Password</a><br><br>
                     The GoBrik Team",
@@ -66,7 +66,7 @@ $mailgunDomain = getenv('MAILGUN_DOMAIN') ?: 'mail.gobrik.com';
                 $response = $client->post("{$mailgunDomain}/messages", [
                     'auth' => ['api', $mailgunApiKey],
                     'form_params' => [
-                        'from' => 'GoBrik Team <no-reply@mail.gobrik.com>', // Use your Mailgun verified domain email
+                        'from' => 'Buwana system <no-reply@mail.gobrik.com>', // Use your Mailgun verified domain email
                         'to' => $email,
                         'subject' => $subjects[$lang] ?? $subjects['en'],
                         'html' => $bodies[$lang] ?? $bodies['en'],
@@ -77,7 +77,7 @@ $mailgunDomain = getenv('MAILGUN_DOMAIN') ?: 'mail.gobrik.com';
                 if ($response->getStatusCode() == 200) {
                     $confirmation_code = uniqid("email_", true);
                     error_log("Mailgun: Email sent successfully to $email. Confirmation Code: " . $confirmation_code);
-                    echo '<script>alert("An email with a link to reset your GoBrik Buwana password has been sent!"); window.location.href = "../' . $lang . '/login.php";</script>';
+                    echo '<script>alert("An email with a link to reset your Buwana password has been sent!"); window.location.href = "../' . $lang . '/login.php";</script>';
                 } else {
                     error_log("Mailgun: Failed to send email to $email. Status: " . $response->getStatusCode());
                     echo '<script>alert("Failed to send email. Please try again later."); window.location.href = "../' . $lang . '/login.php";</script>';

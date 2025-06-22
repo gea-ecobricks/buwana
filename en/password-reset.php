@@ -28,6 +28,7 @@ $first_name = '';  // Initialize the first_name variable
 
 
 include '../buwanaconn_env.php'; // This file provides the database server, user, dbname information to access the server
+require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
 
 $token = isset($_GET['token']) ? trim($_GET['token']) : '';
