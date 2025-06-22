@@ -3,7 +3,7 @@ require_once '../earthenAuth_helper.php'; // Include the authentication helper f
 
 // Set page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
-$version = '0.773';
+$version = '0.778';
 $page = 'reset';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
@@ -28,7 +28,18 @@ $first_name = '';  // Initialize the first_name variable
 
 
 include '../buwanaconn_env.php'; // This file provides the database server, user, dbname information to access the server
+
+// Determine client_id from ?app= or ?client_id=
+$client_id_param = $_GET['app'] ?? ($_GET['client_id'] ?? null);
+if ($client_id_param) {
+    $_SESSION['client_id'] = filter_var($client_id_param, FILTER_SANITIZE_SPECIAL_CHARS);
+}
+
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
+
+if (!empty($app_info['client_id'])) {
+    $_SESSION['client_id'] = $app_info['client_id'];
+}
 
 
 $token = isset($_GET['token']) ? trim($_GET['token']) : '';
@@ -55,17 +66,18 @@ if ($token) {
 echo '<!DOCTYPE html>
 <html lang="' . htmlspecialchars($lang, ENT_QUOTES, 'UTF-8') . '">
 <head>
-<meta charset="UTF-8">
-<title>Password Reset</title>
-';
+<meta charset="UTF-8">';
+echo '<title>Password Reset | ' . htmlspecialchars($app_info['app_display_name']) . '</title>';
 
 require_once ("../includes/reset-inc.php");
 
-echo '
-
-
-<!-- PAGE CONTENT -->
-<div id="top-page-image" class="credentials-banner top-page-image" style="margin-top: 65px;"></div>
+echo '\n\n<!-- PAGE CONTENT -->';
+$page_key = str_replace('-', '_', $page);
+echo '\n<div id="top-page-image"'
+    . ' class="top-page-image"'
+    . ' data-light-img="' . htmlspecialchars($app_info[$page_key . '_top_img_light'] ?? '') . '"'
+    . ' data-dark-img="' . htmlspecialchars($app_info[$page_key . '_top_img_dark'] ?? '') . '">'
+    . '</div>';
 
 <div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
@@ -78,6 +90,7 @@ echo '
         <!-- Reset password form -->
         <form id="resetForm" method="post" action="../processes/process_reset.php">
             <input type="hidden" name="token" value="' . htmlspecialchars($token, ENT_QUOTES, 'UTF-8') . '">
+            <input type="hidden" name="client_id" value="' . htmlspecialchars($app_info['client_id']) . '">
             <div class="form-item">
                 <p data-lang-id="003-new-pass">New password:</p>
                 <div class="password-wrapper" data-lang-id="004-password-field">

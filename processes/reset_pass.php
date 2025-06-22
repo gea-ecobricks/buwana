@@ -1,6 +1,12 @@
 <?php
 require '../vendor/autoload.php'; // Include Composer's autoloader
 require '../buwanaconn_env.php'; // Database connection information
+require '../earthenAuth_helper.php'; // For session management
+startSecureSession();
+
+// Determine client_id from POST or session
+$client_id = $_POST['client_id'] ?? ($_SESSION['client_id'] ?? '');
+$client_id = $client_id ? filter_var($client_id, FILTER_SANITIZE_SPECIAL_CHARS) : '';
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -52,7 +58,7 @@ if ($email) {
                 'en' => "Hello $first_name,<br><br>
                     A password reset was requested at " . date('Y-m-d H:i:s') . " on for your Buwana account. If you didn't request this, please disregard!<br><br>
                     To reset your password, please click the following link:<br><br>
-                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?token={$password_reset_token}'>Reset Password</a><br><br>
+                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Reset Password</a><br><br>
                     The Buwana Team",
                 // Additional language bodies as above...
             ];
