@@ -4,7 +4,7 @@ require_once '../earthenAuth_helper.php'; // Include the authentication helper f
 // Set page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $version = '0.779';
-$page = 'reset';
+$page = '2-signup';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
 // Initialize user variables
@@ -73,7 +73,7 @@ require_once ("../includes/reset-inc.php");
 
 
 $page_key = str_replace('-', '_', $page);
-echo '\n<div id="top-page-image"'
+echo '<div id="top-page-image"'
     . ' class="top-page-image"'
     . ' data-light-img="' . htmlspecialchars($app_info[$page_key . '_top_img_light'] ?? '') . '"'
     . ' data-dark-img="' . htmlspecialchars($app_info[$page_key . '_top_img_dark'] ?? '') . '">'
