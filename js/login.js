@@ -744,25 +744,25 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                     errorText = "🤔 Hmmm... kami tidak dapat menemukan akun yang menggunakan email ini!";
                     break;
                 case 'de':
-                    title = "Passwort zurücksetzen";
+                    title = "<h1>🐵</h1>";
                     promptText = "Geben Sie Ihre E-Mail ein, um Ihr Passwort zurückzusetzen:";
                     buttonText = "Passwort zurücksetzen";
                     errorText = "🤔 Hmmm... wir können kein Konto finden, das diese E-Mail verwendet!";
                     break;
                 case 'ar':
-                    title = "إعادة تعيين كلمة المرور";
+                    title = "<h1>🐵</h1>";
                     promptText = "أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور:";
                     buttonText = "إعادة تعيين كلمة المرور";
                     errorText = "🤔 هممم... لا يمكننا العثور على حساب يستخدم هذا البريد الإلكتروني!";
                     break;
                 case 'zh':
-                    title = "重置密码";
+                    title = "<h1>🐵</h1>";
                     promptText = "输入您的电子邮件以重置密码:";
                     buttonText = "重置密码";
                     errorText = "🤔 嗯...我们找不到使用该电子邮件的账户!";
                     break;
                 default: // 'en'
-                    title = "Reset Password";
+                    title = "<h1>🐵</h1>";
                     promptText = "Enter your email to reset your password:";
                     buttonText = "Reset Password";
                     errorText = "🤔 Hmmm... we can't find an account that uses this email!";
@@ -771,7 +771,7 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
 
             content = `
                 <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
-                    <h1>🐵</h1>
+                    
                 </div>
                 <div class="reset-title">${title}</div>
                 <form id="resetPasswordForm" action="https://buwana.ecobricks.org/processes/reset_pass.php" method="POST">
@@ -791,7 +791,7 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                     <h1>🙉</h1>
                 </div>
                 <div class="reset-title">Sent!</div>
-                <p>Your password reset has been sent to ${email}.  Please follow the link there to reset your Buwana password.</p>
+                <p style="text-align: center;">Your password reset has been sent to ${email}.  Please follow the link there to reset your Buwana password.</p>
             `;
             break;
 
