@@ -791,7 +791,8 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                     
                 </div>
                 <div class="reset-title"><h1>🙉</h1></div>
-                <p style="text-align: center;">Your password reset has been sent to ${email}.  Please follow the link there to reset your Buwana password.</p>
+                <div class="reset-title">Sent!</div>
+                <p style="text-align: center;margin-bottom: 177px">Your password reset has been sent to ${email}.  Please follow the link there to reset your Buwana password.</p>
             `;
             break;
 
