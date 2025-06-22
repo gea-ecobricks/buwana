@@ -70,10 +70,9 @@ echo '<!DOCTYPE html>
 echo '<title>Password Reset | ' . htmlspecialchars($app_info['app_display_name']) . '</title>';
 
 require_once ("../includes/reset-inc.php");
-
-echo '\n\n<!-- PAGE CONTENT -->';
+$page = 'signup-2';
 $page_key = str_replace('-', '_', $page);
-echo '\n<div id="top-page-image"'
+echo '<div id="top-page-image"'
     . ' class="top-page-image"'
     . ' data-light-img="' . htmlspecialchars($app_info[$page_key . '_top_img_light'] ?? '') . '"'
     . ' data-dark-img="' . htmlspecialchars($app_info[$page_key . '_top_img_dark'] ?? '') . '">'

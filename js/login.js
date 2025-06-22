@@ -726,43 +726,43 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
 
             switch (lang) {
                 case 'fr':
-                    title = "Réinitialiser le mot de passe";
+                    title = "<h1>🙈</h1>";
                     promptText = "Entrez votre email pour réinitialiser votre mot de passe :";
                     buttonText = "Réinitialiser le mot de passe";
                     errorText = "🤔 Hmmm... nous ne trouvons aucun compte utilisant cet email !";
                     break;
                 case 'es':
-                    title = "Restablecer la contraseña";
+                    title = "<h1>🙈</h1>";
                     promptText = "Ingrese su correo electrónico para restablecer su contraseña:";
                     buttonText = "Restablecer la contraseña";
                     errorText = "🤔 Hmmm... no podemos encontrar una cuenta que use este correo electrónico!";
                     break;
                 case 'id':
-                    title = "Atur Ulang Kata Sandi";
+                    title = "<h1>🙈</h1>";
                     promptText = "Masukkan email Anda untuk mengatur ulang kata sandi Anda:";
                     buttonText = "Atur Ulang Kata Sandi";
                     errorText = "🤔 Hmmm... kami tidak dapat menemukan akun yang menggunakan email ini!";
                     break;
                 case 'de':
-                    title = "<h1>🐵</h1>";
+                    title = "<h1>🙈</h1>";
                     promptText = "Geben Sie Ihre E-Mail ein, um Ihr Passwort zurückzusetzen:";
                     buttonText = "Passwort zurücksetzen";
                     errorText = "🤔 Hmmm... wir können kein Konto finden, das diese E-Mail verwendet!";
                     break;
                 case 'ar':
-                    title = "<h1>🐵</h1>";
+                    title = "<h1>🙈</h1>";
                     promptText = "أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور:";
                     buttonText = "إعادة تعيين كلمة المرور";
                     errorText = "🤔 هممم... لا يمكننا العثور على حساب يستخدم هذا البريد الإلكتروني!";
                     break;
                 case 'zh':
-                    title = "<h1>🐵</h1>";
+                    title = "<h1>🙈</h1>";
                     promptText = "输入您的电子邮件以重置密码:";
                     buttonText = "重置密码";
                     errorText = "🤔 嗯...我们找不到使用该电子邮件的账户!";
                     break;
                 default: // 'en'
-                    title = "<h1>🐵</h1>";
+                    title = "<h1>🙈</h1>";
                     promptText = "Enter your email to reset your password:";
                     buttonText = "Reset Password";
                     errorText = "🤔 Hmmm... we can't find an account that uses this email!";
