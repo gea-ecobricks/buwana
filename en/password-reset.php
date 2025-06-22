@@ -71,7 +71,7 @@ echo '<title>Password Reset | ' . htmlspecialchars($app_info['app_display_name']
 
 require_once ("../includes/reset-inc.php");
 
-$page = '2-signup';
+$page = 'signup-2';
 $page_key = str_replace('-', '_', $page);
 echo '<div id="top-page-image"'
     . ' class="top-page-image"'
