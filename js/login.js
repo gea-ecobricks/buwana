@@ -755,13 +755,13 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                 <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
                     <h1>🐵</h1>
                 </div>
-                <div class="preview-title">${title}</div>
+                <div class="reset-title">${title}</div>
                 <form id="resetPasswordForm" action="https://buwana.ecobricks.org/processes/reset_pass.php" method="POST">
                     <div class="preview-text" style="font-size:medium;">${promptText}</div>
                     <input type="email" name="email" required value="${email}">
                     <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
                         <div id="no-buwana-email" class="form-warning" style="display:none;margin-top:5px;margin-bottom:5px;" data-lang-id="010-no-buwana-email">${errorText}</div>
-                        <button type="submit" class="submit-button enabled">${buttonText}</button>
+                        <button type="submit" class="submit-button enabled" style="min-width: 350px;">${buttonText}</button>
                     </div>
                 </form>
             `;

@@ -332,6 +332,13 @@ box-shadow: #0000001f 0px 5px 20px;
 }
 
 
+.reset-title {
+font-size: 2em;
+  text-align: center;
+  font-family: 'Arvo';
+  margin-top: 30px;
+}
+
 /* #sub-status-message { */
 /*   margin-top: 0px; */
 /*   margin-bottom: 10px; */

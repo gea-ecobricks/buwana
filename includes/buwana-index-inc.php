@@ -152,8 +152,8 @@
 @media (max-width: 769px) {
 .buwana-lead-banner {
     width:100%;
-    height:250px;
-    margin-bottom: -30px;
+    height:225px;
+    margin-bottom: -35px;
     }
 }
 
