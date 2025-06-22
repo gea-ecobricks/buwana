@@ -79,7 +79,7 @@ echo '\n<div id="top-page-image"'
     . ' data-dark-img="' . htmlspecialchars($app_info[$page_key . '_top_img_dark'] ?? '') . '">'
     . '</div>';
 
-<div id="form-submission-box" class="landing-page-form">
+echo '<div id="form-submission-box" class="landing-page-form">
     <div class="form-container">
 
         <div style="text-align:center;width:100%;margin:auto;">

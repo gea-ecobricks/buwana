@@ -743,6 +743,24 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                     buttonText = "Atur Ulang Kata Sandi";
                     errorText = "🤔 Hmmm... kami tidak dapat menemukan akun yang menggunakan email ini!";
                     break;
+                case 'de':
+                    title = "Passwort zurücksetzen";
+                    promptText = "Geben Sie Ihre E-Mail ein, um Ihr Passwort zurückzusetzen:";
+                    buttonText = "Passwort zurücksetzen";
+                    errorText = "🤔 Hmmm... wir können kein Konto finden, das diese E-Mail verwendet!";
+                    break;
+                case 'ar':
+                    title = "إعادة تعيين كلمة المرور";
+                    promptText = "أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور:";
+                    buttonText = "إعادة تعيين كلمة المرور";
+                    errorText = "🤔 هممم... لا يمكننا العثور على حساب يستخدم هذا البريد الإلكتروني!";
+                    break;
+                case 'zh':
+                    title = "重置密码";
+                    promptText = "输入您的电子邮件以重置密码:";
+                    buttonText = "重置密码";
+                    errorText = "🤔 嗯...我们找不到使用该电子邮件的账户!";
+                    break;
                 default: // 'en'
                     title = "Reset Password";
                     promptText = "Enter your email to reset your password:";
@@ -764,6 +782,16 @@ function showPasswordReset(type, lang = '<?php echo $lang; ?>', email = '') {
                         <button type="submit" class="submit-button enabled" style="min-width: 350px;">${buttonText}</button>
                     </div>
                 </form>
+            `;
+            break;
+
+        case 'sent':
+            content = `
+                <div style="text-align:center;width:100%;margin:auto;margin-top:10px;margin-bottom:10px;">
+                    <h1>🙉</h1>
+                </div>
+                <div class="reset-title">Sent!</div>
+                <p>Your password reset has been sent to ${email}.  Please follow the link there to reset your Buwana password.</p>
             `;
             break;
 
@@ -794,6 +822,14 @@ window.onload = function() {
 
 
 //Relevant still?  Needs revision for status update of page variables.
+
+    // Check if the 'reset_sent_to' parameter exists in the URL
+    if (urlParams.has('reset_sent_to')) {
+        const email = urlParams.get('reset_sent_to') || '';
+
+        const lang = '<?php echo $lang; ?>';
+        showPasswordReset('sent', lang, email);
+    }
 
     // Check if the 'email_not_found' parameter exists in the URL
     if (urlParams.has('email_not_found')) {
