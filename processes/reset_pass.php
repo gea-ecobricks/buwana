@@ -50,17 +50,49 @@ if ($email) {
             $subjects = [
                 'en' => 'Reset your Buwana password',
                 'fr' => 'Réinitialisez votre mot de passe Buwana',
-                'es' => 'Restablezca su contraseña de Buwana',
+                'es' => 'Restablece tu contraseña de Buwana',
+                'de' => 'Setze dein Buwana-Passwort zurück',
+                'ar' => 'إعادة تعيين كلمة مرور بوانا الخاصة بك',
+                'zh' => '重置您的Buwana密码',
                 'id' => 'Atur Ulang Kata Sandi Buwana Anda'
             ];
 
             $bodies = [
                 'en' => "Hello $first_name,<br><br>
-                    A password reset was requested at " . date('Y-m-d H:i:s') . " on for your Buwana account. If you didn't request this, please disregard!<br><br>
+                    A password reset was requested at " . date('Y-m-d H:i:s') . " for your Buwana account. If you didn't request this, please disregard!<br><br>
                     To reset your password, please click the following link:<br><br>
                     <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Reset Password</a><br><br>
                     The Buwana Team",
-                // Additional language bodies as above...
+                'fr' => "Bonjour $first_name,<br><br>
+                    Une réinitialisation de mot de passe a été demandée le " . date('Y-m-d H:i:s') . " pour votre compte Buwana. Si vous n'êtes pas à l'origine de cette demande, ignorez ce message.<br><br>
+                    Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant :<br><br>
+                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Réinitialiser le mot de passe</a><br><br>
+                    L'équipe Buwana",
+                'es' => "Hola $first_name,<br><br>
+                    Se solicitó un restablecimiento de contraseña el " . date('Y-m-d H:i:s') . " para tu cuenta de Buwana. Si no lo solicitaste, ignora este mensaje.<br><br>
+                    Para restablecer tu contraseña, haz clic en el siguiente enlace:<br><br>
+                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Restablecer contraseña</a><br><br>
+                    El equipo Buwana",
+                'de' => "Hallo $first_name,<br><br>
+                    Am " . date('Y-m-d H:i:s') . " wurde eine Zurücksetzung des Passworts für dein Buwana-Konto angefordert. Wenn du dies nicht angefordert hast, ignoriere diese Nachricht.<br><br>
+                    Um dein Passwort zurückzusetzen, klicke bitte auf folgenden Link:<br><br>
+                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Passwort zurücksetzen</a><br><br>
+                    Dein Buwana Team",
+                'ar' => "مرحبًا $first_name،<br><br>
+                    تم طلب إعادة تعيين كلمة المرور في " . date('Y-m-d H:i:s') . " لحسابك في بوانا. إذا لم تطلب ذلك، يرجى تجاهل هذه الرسالة.<br><br>
+                    لإعادة تعيين كلمة المرور، يرجى النقر على الرابط التالي:<br><br>
+                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>إعادة تعيين كلمة المرور</a><br><br>
+                    فريق بوانا",
+                'zh' => "您好 $first_name，<br><br>
+                    在 " . date('Y-m-d H:i:s') . " 您的Buwana账户提出了重置密码请求。如果不是您本人操作，请忽略此邮件。<br><br>
+                    要重置密码，请点击以下链接：<br><br>
+                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>重置密码</a><br><br>
+                    Buwana 团队",
+                'id' => "Halo $first_name,<br><br>
+                    Permintaan pengaturan ulang kata sandi dibuat pada " . date('Y-m-d H:i:s') . " untuk akun Buwana Anda. Jika Anda tidak memintanya, abaikan email ini.<br><br>
+                    Untuk mengatur ulang kata sandi, silakan klik tautan berikut:<br><br>
+                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Atur Ulang Kata Sandi</a><br><br>
+                    Tim Buwana"
             ];
 
             // Send email using Mailgun API
