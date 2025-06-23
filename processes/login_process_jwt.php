@@ -90,8 +90,32 @@ if ($stmt_credential) {
                     }
 
                     // Otherwise proceed as normal
-                    $default_dashboard = "../$lang/dashboard.php";
-                    $redirect_url = !empty($redirect) ? $redirect : $default_dashboard;
+                    $app_dashboard_url = "../$lang/dashboard.php"; // default fallback
+                    if ($client_id) {
+                        $stmt_dash = $buwana_conn->prepare("SELECT app_dashboard_url FROM apps_tb WHERE client_id = ?");
+                        if ($stmt_dash) {
+                            $stmt_dash->bind_param('s', $client_id);
+                            if ($stmt_dash->execute()) {
+                                $stmt_dash->bind_result($app_dashboard_url_db);
+                                if ($stmt_dash->fetch() && !empty($app_dashboard_url_db)) {
+                                    $app_dashboard_url = $app_dashboard_url_db;
+                                }
+                            }
+                            $stmt_dash->close();
+                        }
+                    }
+
+                    // Resolve redirect URL
+                    if (!empty($redirect)) {
+                        if (preg_match('/^https?:\/\//', $redirect) || strpos($redirect, '/') === 0) {
+                            $redirect_url = $redirect;
+                        } else {
+                            $redirect_url = "../$lang/" . ltrim($redirect, '/');
+                        }
+                    } else {
+                        $redirect_url = $app_dashboard_url;
+                    }
+
                     header("Location: $redirect_url");
                     exit();
                 } else {
