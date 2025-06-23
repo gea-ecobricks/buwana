@@ -78,14 +78,14 @@ if ($stmt_credential) {
                     $buwana_conn->query("UPDATE users_tb SET last_login = NOW(), login_count = login_count + 1 WHERE buwana_id = $buwana_id");
                     $buwana_conn->query("UPDATE credentials_tb SET last_login = NOW(), times_used = times_used + 1 WHERE buwana_id = $buwana_id");
 
-                    $_SESSION['buwana_id'] = $buwana_id;
-                    $_SESSION['user_id'] = $buwana_id;  // <-- This is needed for authorize.php
+                    // Unified session user ID for OIDC
+                    $_SESSION['user_id'] = $buwana_id;
 
-                    // Check if this was part of OAuth flow:
+                    // Check if part of OAuth/OpenID flow
                     if (isset($_SESSION['pending_oauth_request'])) {
                         $params = http_build_query($_SESSION['pending_oauth_request']);
                         unset($_SESSION['pending_oauth_request']);
-                        header("Location: /authorize?$params");
+                        header("Location: /auth/authorize?$params");
                         exit();
                     }
 

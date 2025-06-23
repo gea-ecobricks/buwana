@@ -5,11 +5,11 @@ $issuer = 'https://buwana.ecobricks.org';
 
 echo json_encode([
     'issuer' => $issuer,
-    'authorization_endpoint' => "$issuer/oauth2/authorize",
-    'token_endpoint' => "$issuer/oauth2/token",
-    'userinfo_endpoint' => "$issuer/oauth2/userinfo",
-    'jwks_uri' => "$issuer/.well-known/jwks.php?client_id={client_id}",
-    'response_types_supported' => ['code', 'token', 'id_token'],
+    'authorization_endpoint' => "$issuer/auth/authorize",
+    'token_endpoint' => "$issuer/auth/token",
+    'userinfo_endpoint' => "$issuer/auth/userinfo",
+    'jwks_uri' => "$issuer/.well-known/jwks.php",
+    'response_types_supported' => ['code'],
     'subject_types_supported' => ['public'],
     'id_token_signing_alg_values_supported' => ['RS256'],
     'scopes_supported' => [
@@ -22,4 +22,4 @@ echo json_encode([
         'buwana:earthlingEmoji', 'buwana:community', 'buwana:location.continent'
     ]
 ]);
-
+?>
