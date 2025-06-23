@@ -80,6 +80,49 @@ if ($stmt_credential) {
 
                     // Unified session user ID for OIDC
                     $_SESSION['user_id'] = $buwana_id;
+                    $_SESSION['buwana_id'] = $buwana_id;
+
+                    // ------------------------------------------------------------------
+                    // Generate JWT for session based auth
+                    // ------------------------------------------------------------------
+
+                    $private_key = null;
+                    if ($client_id) {
+                        $stmt_key = $buwana_conn->prepare("SELECT jwt_private_key FROM apps_tb WHERE client_id = ?");
+                        if ($stmt_key) {
+                            $stmt_key->bind_param('s', $client_id);
+                            if ($stmt_key->execute()) {
+                                $stmt_key->bind_result($private_key);
+                                $stmt_key->fetch();
+                            }
+                            $stmt_key->close();
+                        }
+                    }
+
+                    if ($private_key) {
+                        $now  = time();
+                        $exp  = $now + 3600; // 1 hour expiry
+                        $sub  = $open_id ?: "buwana_{$buwana_id}";
+                        $payload = [
+                            'iss' => 'https://buwana.ecobricks.org',
+                            'sub' => $sub,
+                            'aud' => $client_id,
+                            'exp' => $exp,
+                            'iat' => $now,
+                            'email' => $email,
+                            'given_name' => $first_name
+                        ];
+
+                        try {
+                            $jwt_token = JWT::encode($payload, $private_key, 'RS256', $client_id);
+                            $_SESSION['jwt'] = $jwt_token;
+                            auth_log("JWT issued for buwana_id $buwana_id");
+                        } catch (Exception $e) {
+                            auth_log('JWT generation failed: ' . $e->getMessage());
+                        }
+                    } else {
+                        auth_log('Private key not found for client_id ' . $client_id);
+                    }
 
                     // Check if part of OAuth/OpenID flow
                     if (isset($_SESSION['pending_oauth_request'])) {
