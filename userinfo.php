@@ -4,13 +4,23 @@ require_once 'buwanaconn_env.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-// --- 0️⃣ CORS for Earthcal frontend ---
-$allowedOrigins = ['https://earthcal.app'];
-if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header("Access-Control-Allow-Headers: Authorization, Content-Type");
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+// Allow CORS for Earthcal
+$allowedOrigins = [
+    "https://earthcal.app"
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Access-Control-Allow-Methods: GET, OPTIONS");
 }
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 
 header('Content-Type: application/json');
 
