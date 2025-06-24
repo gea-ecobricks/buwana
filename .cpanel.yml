@@ -1,7 +1,43 @@
 ---
 deployment:
   tasks:
+    # Set the deployment path, defaulting to the current directory if not provided
+    - export DEPLOYPATH=${DEPLOYPATH:-$PWD}
 
-    # 1) Define where the live site lives
-    - export WEBROOT=/home/ecobricks/public_html
+    # Check if the source directory exists before proceeding
+    - if [ ! -d "$DEPLOYPATH/en" ]; then echo "Source directory $DEPLOYPATH/en does not exist"; exit 1; fi
 
+    # Ensure target directories exist; create them if they do not
+    - mkdir -p $DEPLOYPATH/fr/
+    - mkdir -p $DEPLOYPATH/es/
+    - mkdir -p $DEPLOYPATH/id/
+    - mkdir -p $DEPLOYPATH/ar/
+    - mkdir -p $DEPLOYPATH/zh/
+    - mkdir -p $DEPLOYPATH/de/
+
+    # Copy files from the English directory to the French directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/fr/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/fr/"
+
+    # Copy files from the English directory to the Spanish directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/es/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/es/"
+
+    # Copy files from the English directory to the Indonesian directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/id/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/id/"
+
+    # Copy files from the English directory to the Chinese directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/zh/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/zh/"
+
+    # Copy files from the English directory to the Arabic directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/ar/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/ar/"
+
+    # Copy files from the English directory to the Deutsh directory
+    - /bin/cp -R $DEPLOYPATH/en/* $DEPLOYPATH/de/
+    - echo "Copied files from $DEPLOYPATH/en/ to $DEPLOYPATH/de/"
+
+    # Log completion of deployment
+    - echo "Deployment tasks completed successfully."

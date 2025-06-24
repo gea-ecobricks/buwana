@@ -8,7 +8,9 @@ $redirect_uri  = $_GET['redirect_uri'] ?? null;
 $scope         = $_GET['scope'] ?? '';
 $state         = $_GET['state'] ?? null;
 $nonce         = $_GET['nonce'] ?? null;
-$lang          = $_GET['lang'] ?? 'en'; // Default to 'en' if not provided
+$lang          = $_GET['lang'] ?? 'en';
+$code_challenge = $_GET['code_challenge'] ?? null;
+$code_challenge_method = $_GET['code_challenge_method'] ?? null;
 
 // 2️⃣ Validate language ID
 $valid_languages = ['en', 'fr', 'id', 'de', 'zh', 'ar', 'es'];
@@ -23,17 +25,22 @@ if (!$client_id || !$response_type || !$redirect_uri || !$state || !$nonce) {
     exit;
 }
 
-// 4️⃣ Check that client_id is valid (you'd normally validate against apps_tb in DB)
-$valid_client_ids = ['ecal_7f3da821d0a54f8a9b58']; // Hardcoded for now
+if ($response_type !== 'code') {
+    http_response_code(400);
+    echo "Unsupported response_type";
+    exit;
+}
+
+// 4️⃣ Validate client_id (Normally: DB lookup, for now hardcoded)
+$valid_client_ids = ['ecal_7f3da821d0a54f8a9b58'];
 if (!in_array($client_id, $valid_client_ids)) {
     http_response_code(400);
     echo "Invalid client_id.";
     exit;
 }
 
-// 5️⃣ Is user already logged in?
+// 5️⃣ If user not logged in, redirect to login and store pending request
 if (!isset($_SESSION['user_id'])) {
-    // Not logged in yet, save the request params to session and redirect to login.php
     $_SESSION['pending_oauth_request'] = [
         'client_id' => $client_id,
         'response_type' => $response_type,
@@ -41,28 +48,28 @@ if (!isset($_SESSION['user_id'])) {
         'scope' => $scope,
         'state' => $state,
         'nonce' => $nonce,
-        'lang' => $lang
+        'lang' => $lang,
+        'code_challenge' => $code_challenge,
+        'code_challenge_method' => $code_challenge_method
     ];
-    // Redirect to the proper language login page
     header("Location: /$lang/login.php");
     exit;
 }
 
-// 6️⃣ If user is logged in, generate authorization code
-
-// (In production you should generate a secure random code and store it in DB with user info)
+// 6️⃣ If logged in, issue authorization code
 $auth_code = bin2hex(random_bytes(16));
 $_SESSION['auth_codes'][$auth_code] = [
     'user_id' => $_SESSION['user_id'],
     'client_id' => $client_id,
     'scope' => $scope,
     'nonce' => $nonce,
-    'issued_at' => time()
+    'issued_at' => time(),
+    'code_challenge' => $code_challenge,
+    'code_challenge_method' => $code_challenge_method
 ];
 
-// 7️⃣ Redirect back to Earthcal with code and state
+// 7️⃣ Redirect back to client with code and state
 $redirect = $redirect_uri . '?code=' . $auth_code . '&state=' . urlencode($state);
 header("Location: $redirect");
 exit;
-
 ?>

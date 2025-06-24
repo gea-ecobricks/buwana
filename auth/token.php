@@ -14,6 +14,8 @@ function auth_log($message) {
     error_log('[' . date('Y-m-d H:i:s') . "] TOKEN: " . $message . PHP_EOL, 3, $authLogFile);
 }
 
+auth_log("Token endpoint called");
+
 // Accept only POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -26,15 +28,16 @@ $grant_type = $_POST['grant_type'] ?? '';
 $code = $_POST['code'] ?? '';
 $redirect_uri = $_POST['redirect_uri'] ?? '';
 $client_id = $_POST['client_id'] ?? '';
-$client_secret = $_POST['client_secret'] ?? '';
+$client_secret = $_POST['client_secret'] ?? null;
+$code_verifier = $_POST['code_verifier'] ?? null;
 
-if ($grant_type !== 'authorization_code' || !$code || !$redirect_uri || !$client_id || !$client_secret) {
+if ($grant_type !== 'authorization_code' || !$code || !$redirect_uri || !$client_id) {
     http_response_code(400);
     echo json_encode(["error" => "invalid_request"]);
     exit;
 }
 
-// Validate client_id and client_secret against apps_tb
+// Validate client_id and get client_secret + jwt_private_key
 $stmt = $buwana_conn->prepare("SELECT client_secret, jwt_private_key FROM apps_tb WHERE client_id = ?");
 $stmt->bind_param('s', $client_id);
 $stmt->execute();
@@ -50,12 +53,6 @@ $stmt->bind_result($expected_secret, $jwt_private_key);
 $stmt->fetch();
 $stmt->close();
 
-if ($client_secret !== $expected_secret) {
-    http_response_code(401);
-    echo json_encode(["error" => "invalid_client_secret"]);
-    exit;
-}
-
 // Validate authorization code
 if (!isset($_SESSION['auth_codes'][$code])) {
     http_response_code(400);
@@ -66,9 +63,41 @@ if (!isset($_SESSION['auth_codes'][$code])) {
 $auth_data = $_SESSION['auth_codes'][$code];
 unset($_SESSION['auth_codes'][$code]); // One-time use only
 
-// Validate redirect_uri (optional: implement tighter redirect_uri check)
+// Validate either client_secret OR PKCE code_verifier
+if (!empty($client_secret)) {
+    // Legacy confidential client: validate client_secret
+    if ($client_secret !== $expected_secret) {
+        http_response_code(401);
+        echo json_encode(["error" => "invalid_client_secret"]);
+        exit;
+    }
+} elseif (!empty($auth_data['code_challenge'])) {
+    // PKCE flow: validate code_verifier against code_challenge
+    if (empty($code_verifier)) {
+        http_response_code(400);
+        echo json_encode(["error" => "missing_code_verifier"]);
+        exit;
+    }
 
-// Fetch user data from database
+    // Calculate SHA256(code_verifier) → base64url encoding
+    $hashed = hash('sha256', $code_verifier, true);
+    $calculated_challenge = rtrim(strtr(base64_encode($hashed), '+/', '-_'), '=');
+
+    if ($calculated_challenge !== $auth_data['code_challenge']) {
+        http_response_code(400);
+        echo json_encode(["error" => "invalid_code_verifier"]);
+        exit;
+    }
+    auth_log("PKCE verification successful.");
+} else {
+    // No client_secret, no code_challenge → invalid
+    http_response_code(400);
+    echo json_encode(["error" => "missing_authentication"]);
+    exit;
+}
+
+// At this point, authenticated successfully
+// Fetch user data
 $user_id = $auth_data['user_id'];
 $stmt_user = $buwana_conn->prepare("SELECT email, first_name, open_id FROM users_tb WHERE buwana_id = ?");
 $stmt_user->bind_param('i', $user_id);
@@ -91,10 +120,9 @@ $id_token_payload = [
     "given_name" => $first_name,
     "nonce" => $auth_data['nonce']
 ];
-
 $id_token = JWT::encode($id_token_payload, $jwt_private_key, 'RS256', $client_id);
 
-// Generate access_token (simplified - can be same as id_token for demo purposes)
+// Generate access_token
 $access_token_payload = [
     "iss" => "https://buwana.ecobricks.org",
     "sub" => $open_id ?? ("buwana_$user_id"),
@@ -114,3 +142,4 @@ echo json_encode([
     "expires_in" => 3600
 ]);
 exit;
+?>
