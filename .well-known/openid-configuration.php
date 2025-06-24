@@ -16,7 +16,8 @@ echo json_encode([
         'openid', 'email', 'profile',
         'buwana:earthlingEmoji', 'buwana:community', 'buwana:location.continent'
     ],
-    'token_endpoint_auth_methods_supported' => ['client_secret_post'],
+    'token_endpoint_auth_methods_supported' => ['client_secret_post', 'none'],
+    'code_challenge_methods_supported' => ['plain', 'S256'],
     'claims_supported' => [
         'sub', 'email', 'given_name',
         'buwana:earthlingEmoji', 'buwana:community', 'buwana:location.continent'

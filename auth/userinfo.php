@@ -6,7 +6,7 @@ use Firebase\JWT\Key;
 
 header('Content-Type: application/json');
 
-// Grab Authorization header
+// --- 1️⃣ Get Authorization Bearer token ---
 $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
 if (!preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
     http_response_code(401);
@@ -16,7 +16,7 @@ if (!preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
 
 $jwt = $matches[1];
 
-// Parse JWT parts
+// --- 2️⃣ Parse JWT ---
 $parts = explode('.', $jwt);
 if (count($parts) !== 3) {
     http_response_code(400);
@@ -24,19 +24,21 @@ if (count($parts) !== 3) {
     exit;
 }
 
-// Decode header and payload
-$header = json_decode(base64_decode($parts[0]), true);
 $payload = json_decode(base64_decode($parts[1]), true);
-
-// Extract client_id via kid (preferred) or fallback to aud
-$client_id = $header['kid'] ?? ($payload['aud'] ?? null);
-if (!$client_id) {
+if (!$payload) {
     http_response_code(400);
-    echo json_encode(['error' => 'Missing client_id']);
+    echo json_encode(['error' => 'Invalid JWT payload']);
     exit;
 }
 
-// Get public key for this client_id
+$client_id = $payload['aud'] ?? null;
+if (!$client_id) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Missing audience (client_id) in JWT']);
+    exit;
+}
+
+// --- 3️⃣ Lookup public key ---
 $stmt = $buwana_conn->prepare("SELECT jwt_public_key FROM apps_tb WHERE client_id = ?");
 $stmt->bind_param("s", $client_id);
 $stmt->execute();
@@ -50,23 +52,23 @@ if (!$public_key) {
     exit;
 }
 
-// Verify token signature
+// --- 4️⃣ Verify JWT signature ---
 try {
     $decoded = JWT::decode($jwt, new Key($public_key, 'RS256'));
 } catch (Exception $e) {
     http_response_code(401);
-    echo json_encode(['error' => 'Invalid token']);
+    echo json_encode(['error' => 'Invalid token', 'details' => $e->getMessage()]);
     exit;
 }
 
-// Optional: enforce expiration
+// --- 5️⃣ Check expiration ---
 if ($decoded->exp < time()) {
     http_response_code(401);
     echo json_encode(['error' => 'Token expired']);
     exit;
 }
 
-// Parse buwana_id from sub
+// --- 6️⃣ Parse buwana_id from sub ---
 $sub = $decoded->sub ?? null;
 if (!$sub) {
     http_response_code(400);
@@ -80,15 +82,18 @@ if (strpos($sub, 'buwana_') === 0) {
     $buwana_id = intval($sub);
 }
 
-// Fetch user profile
-$stmt_user = $buwana_conn->prepare("SELECT email, first_name, earthling_emoji, community_id, continent_code FROM users_tb WHERE buwana_id = ?");
+// --- 7️⃣ Fetch user info from DB ---
+$stmt_user = $buwana_conn->prepare("
+    SELECT email, first_name, earthling_emoji, community_id, continent_code
+    FROM users_tb WHERE buwana_id = ?
+");
 $stmt_user->bind_param("i", $buwana_id);
 $stmt_user->execute();
 $stmt_user->bind_result($email, $first_name, $earthling_emoji, $community_id, $continent_code);
 $stmt_user->fetch();
 $stmt_user->close();
 
-// Return userinfo claims
+// --- 8️⃣ Return userinfo ---
 $response = [
     'sub' => $sub,
     'email' => $email,
