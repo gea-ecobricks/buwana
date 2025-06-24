@@ -172,9 +172,38 @@ if ($stmt_credential) {
                         }
                     }
 
+                    // Fetch allowed app domains
+                    $allowed_domains = [];
+                    $stmt_domains = $buwana_conn->prepare("SELECT app_domain FROM apps_tb");
+                    if ($stmt_domains) {
+                        if ($stmt_domains->execute()) {
+                            $stmt_domains->bind_result($domain_value);
+                            while ($stmt_domains->fetch()) {
+                                $allowed_domains[] = strtolower(trim($domain_value));
+                            }
+                        }
+                        $stmt_domains->close();
+                    }
+
                     // Resolve redirect URL
                     if (!empty($redirect)) {
-                        if (preg_match('/^https?:\/\//', $redirect) || strpos($redirect, '/') === 0) {
+                        if (preg_match('/^https?:\/\//i', $redirect) || strpos($redirect, '//') === 0) {
+                            $redirect_host = parse_url($redirect, PHP_URL_HOST);
+                            $approved = false;
+                            if ($redirect_host) {
+                                foreach ($allowed_domains as $domain) {
+                                    if ($domain !== '' && stripos($redirect_host, $domain) !== false) {
+                                        $approved = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!$approved) {
+                                echo "<script>alert('Uh oh... looks like you\'re trying to access buwana from an un-approved domain name.  Please contact the app\'s admin to fix this in their Buwana App Management Core Data panel.'); window.location.href='../$lang/login.php';</script>";
+                                exit();
+                            }
+                            $redirect_url = $redirect;
+                        } elseif (strpos($redirect, '/') === 0) {
                             $redirect_url = $redirect;
                         } else {
                             $redirect_url = "../$lang/" . ltrim($redirect, '/');
