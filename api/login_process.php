@@ -90,6 +90,30 @@ try {
     $stmtAuth->fetch();
     $stmtAuth->close();
 
+    // Check recent failed attempts
+    $sql_failed = "SELECT failed_last_tm, failed_password_count FROM credentials_tb WHERE credential_key = ?";
+    $stmt_failed = $buwana_conn->prepare($sql_failed);
+    if ($stmt_failed) {
+        $stmt_failed->bind_param('s', $credential_key);
+        $stmt_failed->execute();
+        $stmt_failed->bind_result($failed_last_tm, $failed_password_count);
+        $stmt_failed->fetch();
+        $stmt_failed->close();
+
+        $current_time = new DateTime();
+        $last_failed_time = $failed_last_tm ? new DateTime($failed_last_tm) : null;
+
+        if ($last_failed_time && $current_time->getTimestamp() - $last_failed_time->getTimestamp() <= 600 && $failed_password_count >= 5) {
+            http_response_code(429);
+            echo json_encode(['success' => false, 'message' => 'too_many_attempts']);
+            exit();
+        }
+
+        if (is_null($last_failed_time) || $current_time->getTimestamp() - $last_failed_time->getTimestamp() > 600) {
+            $failed_password_count = 0;
+        }
+    }
+
     if (!$buwana_id) {
         echo json_encode(['success' => false, 'message' => 'invalid_credential']);
         exit();
@@ -125,17 +149,21 @@ try {
 
         $failed_password_count += 1;
 
-        $sql_update_failed = "UPDATE credentials_tb
-                              SET failed_last_tm = NOW(),
-                                  failed_password_count = ?
-                              WHERE credential_key = ?";
+        $sql_update_failed = "UPDATE credentials_tb SET failed_last_tm = NOW(), failed_password_count = ? WHERE credential_key = ?";
         $stmt_update_failed = $buwana_conn->prepare($sql_update_failed);
-        $stmt_update_failed->bind_param('is', $failed_password_count, $credential_key);
-        $stmt_update_failed->execute();
-        $stmt_update_failed->close();
+        if ($stmt_update_failed) {
+            $stmt_update_failed->bind_param('is', $failed_password_count, $credential_key);
+            $stmt_update_failed->execute();
+            $stmt_update_failed->close();
+        }
 
-        http_response_code(401);
-        echo json_encode(['success' => false, 'message' => 'invalid_password']);
+        if ($failed_password_count >= 5) {
+            http_response_code(429);
+            echo json_encode(['success' => false, 'message' => 'too_many_attempts']);
+        } else {
+            http_response_code(401);
+            echo json_encode(['success' => false, 'message' => 'invalid_password']);
+        }
         exit();
     }
 
