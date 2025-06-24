@@ -58,6 +58,30 @@ if ($stmt_credential) {
         $stmt_credential->fetch();
         $stmt_credential->close();
 
+        // Check recent failed attempts
+        $sql_failed = "SELECT failed_last_tm, failed_password_count FROM credentials_tb WHERE credential_key = ?";
+        $stmt_failed = $buwana_conn->prepare($sql_failed);
+        if ($stmt_failed) {
+            $stmt_failed->bind_param('s', $credential_key);
+            $stmt_failed->execute();
+            $stmt_failed->bind_result($failed_last_tm, $failed_password_count);
+            $stmt_failed->fetch();
+            $stmt_failed->close();
+
+            $current_time = new DateTime();
+            $last_failed_time = $failed_last_tm ? new DateTime($failed_last_tm) : null;
+
+            if ($last_failed_time && $current_time->getTimestamp() - $last_failed_time->getTimestamp() <= 600 && $failed_password_count >= 5) {
+                auth_log('Too many recent failed attempts');
+                header("Location: ../$lang/login.php?status=too_many_attempts&key=" . urlencode($credential_key));
+                exit();
+            }
+
+            if (is_null($last_failed_time) || $current_time->getTimestamp() - $last_failed_time->getTimestamp() > 600) {
+                $failed_password_count = 0;
+            }
+        }
+
         // Fetch user
         $sql_user = "SELECT password_hash, first_name, email, open_id FROM users_tb WHERE buwana_id = ?";
         $stmt_user = $buwana_conn->prepare($sql_user);
@@ -163,7 +187,40 @@ if ($stmt_credential) {
                     exit();
                 } else {
                     auth_log('Invalid password');
-                    header("Location: ../$lang/login.php?status=invalid_password&key=" . urlencode($credential_key));
+
+                    // Update failed attempt counters
+                    $sql_check_failed = "SELECT failed_last_tm, failed_password_count FROM credentials_tb WHERE credential_key = ?";
+                    $stmt_check_failed = $buwana_conn->prepare($sql_check_failed);
+                    if ($stmt_check_failed) {
+                        $stmt_check_failed->bind_param('s', $credential_key);
+                        $stmt_check_failed->execute();
+                        $stmt_check_failed->bind_result($failed_last_tm, $failed_password_count);
+                        $stmt_check_failed->fetch();
+                        $stmt_check_failed->close();
+
+                        $current_time = new DateTime();
+                        $last_failed_time = $failed_last_tm ? new DateTime($failed_last_tm) : null;
+
+                        if (is_null($last_failed_time) || $current_time->getTimestamp() - $last_failed_time->getTimestamp() > 600) {
+                            $failed_password_count = 0;
+                        }
+
+                        $failed_password_count += 1;
+
+                        $sql_update_failed = "UPDATE credentials_tb SET failed_last_tm = NOW(), failed_password_count = ? WHERE credential_key = ?";
+                        $stmt_update_failed = $buwana_conn->prepare($sql_update_failed);
+                        if ($stmt_update_failed) {
+                            $stmt_update_failed->bind_param('is', $failed_password_count, $credential_key);
+                            $stmt_update_failed->execute();
+                            $stmt_update_failed->close();
+                        }
+                    }
+
+                    if ($failed_password_count >= 5) {
+                        header("Location: ../$lang/login.php?status=too_many_attempts&key=" . urlencode($credential_key));
+                    } else {
+                        header("Location: ../$lang/login.php?status=invalid_password&key=" . urlencode($credential_key));
+                    }
                     exit();
                 }
             }

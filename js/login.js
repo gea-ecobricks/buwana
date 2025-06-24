@@ -430,7 +430,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('no-buwana-email').style.display = 'none';
 
         // Show the appropriate error div based on the errorType
-        if (errorType === 'invalid_password') {
+        if (errorType === 'invalid_password' || errorType === 'too_many_attempts') {
             document.getElementById('password-error').style.display = 'block'; // Show password error
             shakeElement(document.getElementById('password-form'));
         } else if (errorType === 'invalid_user' || errorType === 'invalid_credential') {
