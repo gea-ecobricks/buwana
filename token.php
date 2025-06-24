@@ -1,12 +1,12 @@
 <?php
 session_start();
-require_once '../vendor/autoload.php';
-require_once '../buwanaconn_env.php';
+require_once 'vendor/autoload.php';
+require_once 'buwanaconn_env.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 // --- Logging helper ---
-$authLogFile = dirname(__DIR__) . '/logs/auth.log';
+$authLogFile = dirname(__DIR__) . 'logs/auth.log';
 function auth_log($message) {
     global $authLogFile;
     if (!file_exists(dirname($authLogFile))) {
