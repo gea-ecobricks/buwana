@@ -72,7 +72,7 @@ $stmt->bind_result($user_id, $stored_redirect_uri, $scope, $nonce, $code_challen
 $stmt->fetch();
 $stmt->close();
 
-// Validate redirect_uri (optional safety)
+// Validate redirect_uri
 if ($redirect_uri !== $stored_redirect_uri) {
     http_response_code(400);
     echo json_encode(["error" => "redirect_uri_mismatch"]);
@@ -81,7 +81,6 @@ if ($redirect_uri !== $stored_redirect_uri) {
 
 // Hybrid flow check
 if (!empty($client_secret)) {
-    // Confidential client
     auth_log("Confidential client flow for $client_id");
     if (empty($expected_secret) || $client_secret !== $expected_secret) {
         http_response_code(401);
@@ -89,7 +88,6 @@ if (!empty($client_secret)) {
         exit;
     }
 } else {
-    // PKCE flow
     auth_log("PKCE flow for $client_id");
     if (empty($code_challenge)) {
         http_response_code(400);
@@ -104,7 +102,6 @@ if (!empty($client_secret)) {
     $calculated_challenge = ($code_challenge_method === 'S256')
         ? rtrim(strtr(base64_encode(hash('sha256', $code_verifier, true)), '+/', '-_'), '=')
         : $code_verifier;
-
     if ($calculated_challenge !== $code_challenge) {
         http_response_code(401);
         echo json_encode(["error" => "invalid_code_verifier"]);
@@ -112,7 +109,7 @@ if (!empty($client_secret)) {
     }
 }
 
-// Delete used authorization code (one-time use)
+// Delete used authorization code
 $stmt = $buwana_conn->prepare("DELETE FROM authorization_codes_tb WHERE code = ?");
 $stmt->bind_param('s', $code);
 $stmt->execute();
@@ -126,7 +123,7 @@ $stmt_user->bind_result($email, $first_name, $open_id);
 $stmt_user->fetch();
 $stmt_user->close();
 
-// Generate tokens
+// Build ID Token payload
 $now = time();
 $exp = $now + 3600;
 $sub = $open_id ?? ("buwana_$user_id");
@@ -139,7 +136,9 @@ $id_token_payload = [
     "iat" => $now,
     "email" => $email,
     "given_name" => $first_name,
-    "nonce" => $nonce
+    "nonce" => $nonce,
+    // ✨ Custom claim added for legacy compatibility:
+    "buwana_id" => $user_id
 ];
 
 $id_token = JWT::encode($id_token_payload, $jwt_private_key, 'RS256', $client_id);
@@ -152,9 +151,9 @@ $access_token_payload = [
     "exp" => $exp,
     "iat" => $now
 ];
+
 $access_token = JWT::encode($access_token_payload, $jwt_private_key, 'RS256', $client_id);
 
-// Return
 header('Content-Type: application/json');
 echo json_encode([
     "access_token" => $access_token,
@@ -163,4 +162,3 @@ echo json_encode([
     "expires_in" => 3600
 ]);
 exit;
-?>
