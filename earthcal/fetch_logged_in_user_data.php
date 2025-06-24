@@ -15,6 +15,8 @@ $allowed_origins = [
     'https://earthcal.app',
     'https://cycles.earthen.io',
     'https://ecobricks.org',
+    'https://earthcal.app',
+    'https://www.earthcal.app',
     'https://gobrik.com',
     'http://localhost:8080'
 ];
