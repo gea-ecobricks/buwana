@@ -1,18 +1,11 @@
 <?php
 session_start();
-
-// Allow CORS for Earthcal
-header("Access-Control-Allow-Origin: https://earthcal.app");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: POST");
-
-
-
 require_once '../vendor/autoload.php';
 require_once '../buwanaconn_env.php';
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
-// Logging helper
+// --- Logging helper ---
 $authLogFile = dirname(__DIR__) . '/logs/auth.log';
 function auth_log($message) {
     global $authLogFile;
@@ -22,22 +15,32 @@ function auth_log($message) {
     error_log('[' . date('Y-m-d H:i:s') . "] TOKEN: " . $message . PHP_EOL, 3, $authLogFile);
 }
 
-auth_log("Token endpoint called");
+auth_log("Token request received");
 
-// Accept only POST
+// --- CORS Headers for frontend PKCE clients (Earthcal) ---
+$allowedOrigins = [
+    "https://earthcal.app"
+];
+if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Allow-Methods: POST");
+}
+
+// Only allow POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(["error" => "method_not_allowed"]);
     exit;
 }
 
-// Read POST body
-$grant_type = $_POST['grant_type'] ?? '';
-$code = $_POST['code'] ?? '';
-$redirect_uri = $_POST['redirect_uri'] ?? '';
-$client_id = $_POST['client_id'] ?? '';
-$client_secret = $_POST['client_secret'] ?? null;
-$code_verifier = $_POST['code_verifier'] ?? null;
+// Read POST params
+$grant_type     = $_POST['grant_type'] ?? '';
+$code           = $_POST['code'] ?? '';
+$redirect_uri   = $_POST['redirect_uri'] ?? '';
+$client_id      = $_POST['client_id'] ?? '';
+$client_secret  = $_POST['client_secret'] ?? '';
+$code_verifier  = $_POST['code_verifier'] ?? '';
 
 if ($grant_type !== 'authorization_code' || !$code || !$redirect_uri || !$client_id) {
     http_response_code(400);
@@ -45,7 +48,7 @@ if ($grant_type !== 'authorization_code' || !$code || !$redirect_uri || !$client
     exit;
 }
 
-// Validate client_id and get client_secret + jwt_private_key
+// Look up app in DB
 $stmt = $buwana_conn->prepare("SELECT client_secret, jwt_private_key FROM apps_tb WHERE client_id = ?");
 $stmt->bind_param('s', $client_id);
 $stmt->execute();
@@ -61,7 +64,61 @@ $stmt->bind_result($expected_secret, $jwt_private_key);
 $stmt->fetch();
 $stmt->close();
 
-// Validate authorization code
+// --- HYBRID LOGIC STARTS HERE ---
+if (!empty($client_secret)) {
+    // Confidential client flow
+    auth_log("Confidential client flow for $client_id");
+
+    if (empty($expected_secret)) {
+        http_response_code(401);
+        echo json_encode(["error" => "client_secret_not_allowed"]);
+        exit;
+    }
+
+    if ($client_secret !== $expected_secret) {
+        http_response_code(401);
+        echo json_encode(["error" => "invalid_client_secret"]);
+        exit;
+    }
+
+    // No PKCE verification needed
+
+} else {
+    // Public PKCE flow
+    auth_log("PKCE flow for $client_id");
+
+    if (!isset($_SESSION['pkce_codes'][$code])) {
+        http_response_code(400);
+        echo json_encode(["error" => "pkce_code_not_found"]);
+        exit;
+    }
+
+    $pkceData = $_SESSION['pkce_codes'][$code];
+    $expected_challenge = $pkceData['code_challenge'];
+    $challenge_method = $pkceData['code_challenge_method'] ?? 'plain';
+
+    // Verify code_verifier -> code_challenge
+    if (empty($code_verifier)) {
+        http_response_code(400);
+        echo json_encode(["error" => "missing_code_verifier"]);
+        exit;
+    }
+
+    $calculated_challenge = ($challenge_method === 'S256')
+        ? rtrim(strtr(base64_encode(hash('sha256', $code_verifier, true)), '+/', '-_'), '=')
+        : $code_verifier;
+
+    if ($calculated_challenge !== $expected_challenge) {
+        http_response_code(401);
+        echo json_encode(["error" => "invalid_code_verifier"]);
+        exit;
+    }
+
+    // Clean up used PKCE code
+    unset($_SESSION['pkce_codes'][$code]);
+}
+
+// Validate authorization code (common for both flows)
 if (!isset($_SESSION['auth_codes'][$code])) {
     http_response_code(400);
     echo json_encode(["error" => "invalid_code"]);
@@ -69,43 +126,9 @@ if (!isset($_SESSION['auth_codes'][$code])) {
 }
 
 $auth_data = $_SESSION['auth_codes'][$code];
-unset($_SESSION['auth_codes'][$code]); // One-time use only
+unset($_SESSION['auth_codes'][$code]);
 
-// Validate either client_secret OR PKCE code_verifier
-if (!empty($client_secret)) {
-    // Legacy confidential client: validate client_secret
-    if ($client_secret !== $expected_secret) {
-        http_response_code(401);
-        echo json_encode(["error" => "invalid_client_secret"]);
-        exit;
-    }
-} elseif (!empty($auth_data['code_challenge'])) {
-    // PKCE flow: validate code_verifier against code_challenge
-    if (empty($code_verifier)) {
-        http_response_code(400);
-        echo json_encode(["error" => "missing_code_verifier"]);
-        exit;
-    }
-
-    // Calculate SHA256(code_verifier) → base64url encoding
-    $hashed = hash('sha256', $code_verifier, true);
-    $calculated_challenge = rtrim(strtr(base64_encode($hashed), '+/', '-_'), '=');
-
-    if ($calculated_challenge !== $auth_data['code_challenge']) {
-        http_response_code(400);
-        echo json_encode(["error" => "invalid_code_verifier"]);
-        exit;
-    }
-    auth_log("PKCE verification successful.");
-} else {
-    // No client_secret, no code_challenge → invalid
-    http_response_code(400);
-    echo json_encode(["error" => "missing_authentication"]);
-    exit;
-}
-
-// At this point, authenticated successfully
-// Fetch user data
+// Fetch user info
 $user_id = $auth_data['user_id'];
 $stmt_user = $buwana_conn->prepare("SELECT email, first_name, open_id FROM users_tb WHERE buwana_id = ?");
 $stmt_user->bind_param('i', $user_id);
@@ -114,10 +137,10 @@ $stmt_user->bind_result($email, $first_name, $open_id);
 $stmt_user->fetch();
 $stmt_user->close();
 
+// Issue tokens
 $now = time();
 $expire = $now + 3600;
 
-// Generate id_token
 $id_token_payload = [
     "iss" => "https://buwana.ecobricks.org",
     "sub" => $open_id ?? ("buwana_$user_id"),
@@ -128,9 +151,10 @@ $id_token_payload = [
     "given_name" => $first_name,
     "nonce" => $auth_data['nonce']
 ];
+
 $id_token = JWT::encode($id_token_payload, $jwt_private_key, 'RS256', $client_id);
 
-// Generate access_token
+// Access token (simplified)
 $access_token_payload = [
     "iss" => "https://buwana.ecobricks.org",
     "sub" => $open_id ?? ("buwana_$user_id"),
@@ -139,9 +163,9 @@ $access_token_payload = [
     "exp" => $expire,
     "iat" => $now
 ];
+
 $access_token = JWT::encode($access_token_payload, $jwt_private_key, 'RS256', $client_id);
 
-// Return tokens
 header('Content-Type: application/json');
 echo json_encode([
     "access_token" => $access_token,
@@ -150,4 +174,3 @@ echo json_encode([
     "expires_in" => 3600
 ]);
 exit;
-?>
