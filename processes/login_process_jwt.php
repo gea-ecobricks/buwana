@@ -152,7 +152,7 @@ if ($stmt_credential) {
                     if (isset($_SESSION['pending_oauth_request'])) {
                         $params = http_build_query($_SESSION['pending_oauth_request']);
                         unset($_SESSION['pending_oauth_request']);
-                        header("Location: /auth/authorize?$params");
+                        header("Location: ../authorize?$params");
                         exit();
                     }
 
