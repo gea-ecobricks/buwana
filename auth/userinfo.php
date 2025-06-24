@@ -1,13 +1,12 @@
 <?php
 require_once '../vendor/autoload.php';
 require_once '../buwanaconn_env.php';
-
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 header('Content-Type: application/json');
 
-// Grab the Authorization header
+// Grab Authorization header
 $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
 if (!preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
     http_response_code(401);
@@ -17,24 +16,27 @@ if (!preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
 
 $jwt = $matches[1];
 
-// Decode JWT to extract 'aud' (client_id)
-$payloadParts = explode('.', $jwt);
-if (count($payloadParts) !== 3) {
+// Parse JWT parts
+$parts = explode('.', $jwt);
+if (count($parts) !== 3) {
     http_response_code(400);
     echo json_encode(['error' => 'Invalid JWT format']);
     exit;
 }
 
-$payload = json_decode(base64_decode($payloadParts[1]), true);
-$client_id = $payload['aud'] ?? null;
+// Decode header and payload
+$header = json_decode(base64_decode($parts[0]), true);
+$payload = json_decode(base64_decode($parts[1]), true);
 
+// Extract client_id via kid (preferred) or fallback to aud
+$client_id = $header['kid'] ?? ($payload['aud'] ?? null);
 if (!$client_id) {
     http_response_code(400);
-    echo json_encode(['error' => 'Missing client_id (aud) in JWT payload']);
+    echo json_encode(['error' => 'Missing client_id']);
     exit;
 }
 
-// Get public key from apps_tb based on client_id
+// Get public key for this client_id
 $stmt = $buwana_conn->prepare("SELECT jwt_public_key FROM apps_tb WHERE client_id = ?");
 $stmt->bind_param("s", $client_id);
 $stmt->execute();
@@ -44,7 +46,7 @@ $stmt->close();
 
 if (!$public_key) {
     http_response_code(401);
-    echo json_encode(['error' => 'Public key not found']);
+    echo json_encode(['error' => 'Unknown client_id']);
     exit;
 }
 
@@ -53,11 +55,18 @@ try {
     $decoded = JWT::decode($jwt, new Key($public_key, 'RS256'));
 } catch (Exception $e) {
     http_response_code(401);
-    echo json_encode(['error' => 'Invalid token', 'message' => $e->getMessage()]);
+    echo json_encode(['error' => 'Invalid token']);
     exit;
 }
 
-// Extract sub
+// Optional: enforce expiration
+if ($decoded->exp < time()) {
+    http_response_code(401);
+    echo json_encode(['error' => 'Token expired']);
+    exit;
+}
+
+// Parse buwana_id from sub
 $sub = $decoded->sub ?? null;
 if (!$sub) {
     http_response_code(400);
@@ -65,14 +74,13 @@ if (!$sub) {
     exit;
 }
 
-// Parse buwana_id from sub
 if (strpos($sub, 'buwana_') === 0) {
     $buwana_id = intval(str_replace('buwana_', '', $sub));
 } else {
     $buwana_id = intval($sub);
 }
 
-// Look up latest user data
+// Fetch user profile
 $stmt_user = $buwana_conn->prepare("SELECT email, first_name, earthling_emoji, community_id, continent_code FROM users_tb WHERE buwana_id = ?");
 $stmt_user->bind_param("i", $buwana_id);
 $stmt_user->execute();
@@ -80,7 +88,7 @@ $stmt_user->bind_result($email, $first_name, $earthling_emoji, $community_id, $c
 $stmt_user->fetch();
 $stmt_user->close();
 
-// Return standard claims
+// Return userinfo claims
 $response = [
     'sub' => $sub,
     'email' => $email,
