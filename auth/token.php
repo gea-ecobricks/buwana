@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+// Allow CORS for Earthcal
+header("Access-Control-Allow-Origin: https://earthcal.app");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Methods: POST");
+
+
+
 require_once '../vendor/autoload.php';
 require_once '../buwanaconn_env.php';
 use Firebase\JWT\JWT;
