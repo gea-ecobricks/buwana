@@ -25,15 +25,20 @@ if ($status === 'loggedout') {
     startSecureSession();
 }
 
-// --- Determine client_id from ?app= or ?client_id=
-$client_id_param = $_GET['app'] ?? ($_GET['client_id'] ?? null);
-if (!$client_id_param) {
-    // No app specified so redirect back to the Buwana index
-    header('Location: index.php');
-    exit();
+// 1️⃣ If arriving via OAuth, client_id already stored in pending_oauth_request
+if (isset($_SESSION['pending_oauth_request']['client_id'])) {
+    $_SESSION['client_id'] = $_SESSION['pending_oauth_request']['client_id'];
+} else {
+    // 2️⃣ Otherwise, check query param ?app=
+    $client_id_param = $_GET['app'] ?? ($_GET['client_id'] ?? null);
+    if (!$client_id_param) {
+        header('Location: index.php');
+        exit();
+    }
+    $_SESSION['client_id'] = filter_var($client_id_param, FILTER_SANITIZE_SPECIAL_CHARS);
 }
 
-$_SESSION['client_id'] = filter_var($client_id_param, FILTER_SANITIZE_SPECIAL_CHARS);
+
 
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
