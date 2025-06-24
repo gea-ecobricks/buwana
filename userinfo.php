@@ -6,6 +6,20 @@ use Firebase\JWT\Key;
 
 header('Content-Type: application/json');
 
+// ✅ Allow CORS for Earthcal frontend PKCE requests
+$allowedOrigins = ["https://earthcal.app"];
+if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Headers: Authorization, Content-Type");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+}
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
 // --- 1️⃣ Get Authorization Bearer token ---
 $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
 if (!preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
@@ -93,9 +107,10 @@ $stmt_user->bind_result($email, $first_name, $earthling_emoji, $community_id, $c
 $stmt_user->fetch();
 $stmt_user->close();
 
-// --- 8️⃣ Return userinfo ---
+// --- 8️⃣ Return full userinfo ---
 $response = [
     'sub' => $sub,
+    'buwana_id' => $buwana_id,  // ✅ ADD buwana_id directly
     'email' => $email,
     'given_name' => $first_name,
     'buwana:earthlingEmoji' => $earthling_emoji,
