@@ -4,21 +4,15 @@ require_once 'buwanaconn_env.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-header('Content-Type: application/json');
-
-// ✅ Allow CORS for Earthcal frontend PKCE requests
-$allowedOrigins = ["https://earthcal.app"];
+// --- 0️⃣ CORS for Earthcal frontend ---
+$allowedOrigins = ['https://earthcal.app'];
 if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
     header("Access-Control-Allow-Headers: Authorization, Content-Type");
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 }
 
-// Handle preflight OPTIONS request
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
+header('Content-Type: application/json');
 
 // --- 1️⃣ Get Authorization Bearer token ---
 $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
@@ -30,7 +24,7 @@ if (!preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
 
 $jwt = $matches[1];
 
-// --- 2️⃣ Parse JWT ---
+// --- 2️⃣ Parse JWT payload ---
 $parts = explode('.', $jwt);
 if (count($parts) !== 3) {
     http_response_code(400);
@@ -52,7 +46,7 @@ if (!$client_id) {
     exit;
 }
 
-// --- 3️⃣ Lookup public key ---
+// --- 3️⃣ Lookup public key from DB ---
 $stmt = $buwana_conn->prepare("SELECT jwt_public_key FROM apps_tb WHERE client_id = ?");
 $stmt->bind_param("s", $client_id);
 $stmt->execute();
@@ -91,26 +85,44 @@ if (!$sub) {
 }
 
 if (strpos($sub, 'buwana_') === 0) {
-    $buwana_id = intval(str_replace('buwana_', '', $sub));
+    $buwana_id_from_sub = intval(str_replace('buwana_', '', $sub));
+} elseif (is_numeric($sub)) {
+    $buwana_id_from_sub = intval($sub);
 } else {
-    $buwana_id = intval($sub);
+    $buwana_id_from_sub = null;  // sub is open_id UUID style
 }
 
-// --- 7️⃣ Fetch user info from DB ---
-$stmt_user = $buwana_conn->prepare("
-    SELECT email, first_name, earthling_emoji, community_id, continent_code
-    FROM users_tb WHERE buwana_id = ?
-");
+// --- 7️⃣ Always lookup actual buwana_id from users_tb ---
+if ($buwana_id_from_sub) {
+    $buwana_id = $buwana_id_from_sub; // fallback if numeric sub
+} else {
+    // Try open_id lookup
+    $stmt = $buwana_conn->prepare("SELECT buwana_id FROM users_tb WHERE open_id = ?");
+    $stmt->bind_param("s", $sub);
+    $stmt->execute();
+    $stmt->bind_result($buwana_id);
+    $stmt->fetch();
+    $stmt->close();
+
+    if (!$buwana_id) {
+        http_response_code(404);
+        echo json_encode(['error' => 'User not found in database']);
+        exit;
+    }
+}
+
+// --- 8️⃣ Fetch full user info ---
+$stmt_user = $buwana_conn->prepare("SELECT email, first_name, earthling_emoji, community_id, continent_code FROM users_tb WHERE buwana_id = ?");
 $stmt_user->bind_param("i", $buwana_id);
 $stmt_user->execute();
 $stmt_user->bind_result($email, $first_name, $earthling_emoji, $community_id, $continent_code);
 $stmt_user->fetch();
 $stmt_user->close();
 
-// --- 8️⃣ Return full userinfo ---
+// --- 9️⃣ Return full userinfo ---
 $response = [
-    'sub' => $sub,
-    'buwana_id' => $buwana_id,  // ✅ ADD buwana_id directly
+    'sub' => $sub,                     // OpenID spec: never change
+    'buwana_id' => $buwana_id,         // ✅ Actual buwana_id (int)
     'email' => $email,
     'given_name' => $first_name,
     'buwana:earthlingEmoji' => $earthling_emoji,
