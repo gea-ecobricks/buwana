@@ -126,10 +126,18 @@ if ($stmt_credential) {
                     if ($private_key) {
                         $now  = time();
                         $exp  = $now + 3600; // 1 hour expiry
-                        $sub  = $open_id ?: "buwana_{$buwana_id}";
+                        // ✅ Ensure OpenID is present
+                        if (empty($open_id)) {
+                            // If no OpenID exists for this user, you can either generate it here or throw error.
+                            // For now, we error to be safe.
+                            auth_log("Missing open_id for buwana_id $buwana_id");
+                            die("Internal error: open_id missing.");
+                        }
+
                         $payload = [
                             'iss' => 'https://buwana.ecobricks.org',
-                            'sub' => $sub,
+                            'sub' => $open_id,           // ✅ federation-wide OpenID UUID as subject
+                            'buwana_id' => $buwana_id,   // ✅ your local internal ID as a separate claim
                             'aud' => $client_id,
                             'exp' => $exp,
                             'iat' => $now,
