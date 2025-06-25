@@ -46,10 +46,10 @@ if ($app_results && $app_results->num_rows > 0) {
                   data-light-img="../webps/top-buwana-landing-banner.webp"
                   data-dark-img="../webps/top-buwana-landing-banner.webp">
              </div>
-<h2  data-lang-id="001-about-buwana-description" style="text-align:center;">
+<h2  data-lang-id="001-about-buwana" style="text-align:center;">
       Buwana is an open-source login system for regenerative web applications developed by the Global Ecobrick Alliance.
     </h2>
-    <p data-lang-id="002-just-starting" style="text-align:center;">The Buwana protocol provides the a user authentication alternative for apps that want to escape corporate logins for an ecoystem of resonant, green for-Earth enterprises. The Buwana protocol has only just launched as of June 2025.  Here's the apps that are using it so far...</p>
+    <p data-lang-id="002-buwana-desc" style="text-align:center;">The Buwana protocol provides the a user authentication alternative for apps that want to escape corporate logins for an ecoystem of resonant, green for-Earth enterprises. The Buwana protocol has only just launched as of June 2025.  Here's the apps that are using it so far...</p>
     <div class="app-grid">
       <?php foreach ($apps as $app):
           $client_id  = urlencode($app['client_id']);
@@ -68,8 +68,8 @@ if ($app_results && $app_results->num_rows > 0) {
 
           <div class="app-actions">
             <div class="button-row">
-              <a href="<?= htmlspecialchars($login_link) ?>" class="simple-button">Login</a>
-              <a href="<?= htmlspecialchars($signup_link) ?>" class="simple-button">Signup</a>
+              <a href="<?= htmlspecialchars($login_link) ?>" class="simple-button" data-lang-id="000-login">Login</a>
+              <a href="<?= htmlspecialchars($signup_link) ?>" class="simple-button" data-lang-id="000-signup">Signup</a>
             </div>
            <a href="#" class="about-link" onclick="showAppDescription(event); return false;" data-lang-id="000-about">ℹ️ About</a>
           </div>
@@ -80,8 +80,8 @@ if ($app_results && $app_results->num_rows > 0) {
 <div style="text-align:center; max-width:600px; margin:auto; margin-bottom:25px;">
 
 
-    <p>The Buwana code-base and documention Wiki is on Github</p>
-    <a href="https://github.com/gea-ecobricks/Buwana/tree/main">Check it out ↗</a>
+    <p data-lang-id="003-open-source">The Buwana code-base and documention Wiki is on Github</p>
+    <a href="https://github.com/gea-ecobricks/Buwana/tree/main" data-lang-id="004-view-repo">View Repository ↗</a>
  </div>
 
   </div>
@@ -102,5 +102,7 @@ if ($app_results && $app_results->num_rows > 0) {
     });
   });
 </script>
+
+<?php require_once ("../scripts/app_modals.php");?>
 </body>
 </html>
