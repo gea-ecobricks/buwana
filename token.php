@@ -149,7 +149,8 @@ $access_token_payload = [
     "scope" => $scope,
     "aud" => $client_id,
     "exp" => $exp,
-    "iat" => $now
+    "iat" => $now,
+    "buwana_id" => $user_id  // ✅ Optional, for API access convenience
 ];
 
 $access_token = JWT::encode($access_token_payload, $jwt_private_key, 'RS256', $client_id);
