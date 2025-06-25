@@ -71,7 +71,7 @@ if ($app_results && $app_results->num_rows > 0) {
               <a href="<?= htmlspecialchars($login_link) ?>" class="simple-button">Login</a>
               <a href="<?= htmlspecialchars($signup_link) ?>" class="simple-button">Signup</a>
             </div>
-            <a href="#" class="about-link" onclick="showAppDescription(event); return false;">ℹ️ About</a>
+            <p><a href="#" class="about-link" onclick="showAppDescription(event); return false;">ℹ️ About</a></p>
           </div>
         </div>
       <?php endforeach; ?>
