@@ -1,73 +1,169 @@
 
-<!--Image files to preload that are unique to this page-->
 
-<link rel="preload" as="image" href="../svgs/question.svg">
-<link rel="preload" as="image" href="../svgs/earthwand-background-mobile.svg">
-<link rel="preload" as="image" href="../svgs/earthwand-background.svg">
+<!--  Set any page specific graphics to preload-->
+<link rel="preload" as="image" href="../svgs/b-logo.svg">
 
-<!-- This loads the page's meta tags:  Be sure the page name is in place in English-->
+<?php require_once ("../meta/$page-$lang.php");?>
 
-<?php require_once ("../meta/404-en.php");?>
+<style>
 
+        .buwana-lead-banner {
+        margin-top:-70px;
+        margin-bottom:20px;
+        }
 
+ #buwana-top-logo {
+ background: url('../svgs/b-logo.svg') center no-repeat;
 
+    background-size: contain;
+     background-repeat: no-repeat;
+     background-position: center;
+     height: 80%;
+     display: flex;
+     cursor: pointer;
+     width: 100%;
+     margin-right: 70px;
+     margin-top: 5px;
+  }
 
-<!-- This loads CSS specific to this page -->
-
-<STYLE>
-
-@media screen and (max-width: 700px) {
-	.splash-content-block {
-
-
-		background: url(../svgs/earthwand-background-mobile.svg) bottom;
-		/*background-color: #8BBAF0;*/
-    	background-repeat: no-repeat;
-		background-size: cover;
-
-
-	}
+.form-container {
+  padding-top: 30px !important;
 }
 
-
-@media screen and (min-width: 700px) {
-	.splash-content-block {
-
-
-		background: url(../svgs/earthwand-background.svg) bottom;
-    padding: 0px 7% 0 7% !important;
-
-}
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 0 auto 30px auto;
+  max-width: 600px;
+  padding: 10px;
 }
 
-
-.virtue-icons {
-    padding:10px;
-    margin-bottom: 10px;
-    width:90%;
-    margin-top: 10px;
+@media (min-width: 769px) {
+  .app-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-.module-btn {
-  background: var(--emblem-blue);
+.app-display-box {
+  position: relative;
+  border: 1px solid var(--subdued-text);
+  background-color: var(--lighter);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+  text-decoration: none !important;
+  overflow: hidden;
 }
 
-.module-btn:hover {
-  background: var(--emblem-blue-over);
+.app-display-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: var(--light);
 }
 
-.earthwand-photo {width:40%;
-padding: 10px; display: flex;}
+.app-display-box img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
 
-.earthwand-photo img {width:100%;}
+.app-display-box h4 {
+  margin: 5px 0 8px 0;
+  font-size: 1.1em;
+  color: var(--text-color);
+}
 
-.earthwand-photo-duo {
+.app-display-box p {
+  font-size: 0.9em;
+  color: var(--subdued-text);
+  margin: 0;
+  transition: opacity 0.3s ease;
+}
+
+.app-actions {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 45px;
+}
+
+.app-display-box:hover .app-actions,
+.app-display-box.active .app-actions {
+  display: flex;
+}
+
+.app-display-box:hover .app-slogan,
+.app-display-box.active .app-slogan {
+  opacity: 0;
+}
+
+.simple-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--button-2-2);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.app-actions {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.app-display-box:hover .app-actions {
+  opacity: 1;
+}
+
+.app-display-box:hover h4,
+.app-display-box:hover p {
+  opacity: 0;
+}
+
+.simple-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--button-2-2);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.buwana-lead-banner {
+    height:350px;
+    background:no-repeat center;
+    background-size:contain;
+    }
+
+
+@media (max-width: 769px) {
+.buwana-lead-banner {
     width:100%;
-    display:flex;
-    flex-flow:row;
-    padding:0px;"
+    height:225px;
+    margin-bottom: -35px;
+    }
+}
+
+@media (min-width: 769px) {
+.buwana-lead-banner {
+    width:100%;
+    height:350px;
+    }
 }
 
 </style>
 
-<?php require_once ("../header-2024.php");?>
+<?php require_once ("../header-2025.php");?>

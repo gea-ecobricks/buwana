@@ -3,7 +3,7 @@
 <!--  Set any page specific graphics to preload-->
 <link rel="preload" as="image" href="../svgs/b-logo.svg">
 
-<?php require_once ("../meta/buwana-index-en.php");?>
+<?php require_once ("../meta/$page-$lang.php");?>
 
 <style>
 
