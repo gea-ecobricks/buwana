@@ -3,6 +3,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 
+// Hardcode the client ID for this page
+$_GET['app'] = 'buwana_mgr_001';
+
 require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
 
@@ -14,7 +17,7 @@ $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 $buwana_id = isset($_GET['id']) && is_numeric($_GET['id']) ? intval($_GET['id']) : null;
 
 // 🔍 Fetch all apps
-$app_query = "SELECT client_id, app_display_name, app_login_url, app_slogan, app_square_icon_url FROM apps_tb ORDER BY app_display_name ASC";
+$app_query = "SELECT client_id, app_display_name, app_login_url, app_slogan, app_square_icon_url, app_description FROM apps_tb ORDER BY app_display_name ASC";
 $app_results = $buwana_conn->query($app_query);
 
 $apps = [];
@@ -58,14 +61,17 @@ if ($app_results && $app_results->num_rows > 0) {
           }
           $signup_link = "signup-1.php?app=$client_id";
       ?>
-        <div class="app-display-box">
+        <div class="app-display-box" data-description="<?= htmlspecialchars($app['app_description']) ?>">
           <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon">
           <h4><?= htmlspecialchars($app['app_display_name']) ?></h4>
           <p class="app-slogan"><?= htmlspecialchars($app['app_slogan']) ?></p>
 
           <div class="app-actions">
-            <a href="<?= htmlspecialchars($login_link) ?>" class="simple-button">Login</a>
-            <a href="<?= htmlspecialchars($signup_link) ?>" class="simple-button">Signup</a>
+            <div class="button-row">
+              <a href="<?= htmlspecialchars($login_link) ?>" class="simple-button">Login</a>
+              <a href="<?= htmlspecialchars($signup_link) ?>" class="simple-button">Signup</a>
+            </div>
+            <a href="#" class="about-link" onclick="showAppDescription(event); return false;">ℹ️ About</a>
           </div>
         </div>
       <?php endforeach; ?>

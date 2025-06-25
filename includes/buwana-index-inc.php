@@ -90,6 +90,8 @@
   justify-content: center;
   gap: 8px;
   margin-top: 45px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .app-display-box:hover .app-actions,
@@ -111,6 +113,16 @@
   text-decoration: none;
 }
 
+.button-row {
+  display: flex;
+  gap: 8px;
+}
+
+.about-link {
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
 .app-actions {
   position: absolute;
   top: 50%;
@@ -119,6 +131,8 @@
   display: flex;
   justify-content: center;
   gap: 8px;
+  flex-direction: column;
+  align-items: center;
   transform: translateY(-50%);
   opacity: 0;
   transition: opacity 0.3s ease;

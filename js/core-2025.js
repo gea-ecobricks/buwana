@@ -254,6 +254,22 @@ function openModal(contentHtml) {
     }
 }
 
+function showAppDescription(event) {
+    event.preventDefault();
+    const box = event.currentTarget.closest('.app-display-box');
+    if (!box) return;
+    const appName = box.querySelector('h4') ? box.querySelector('h4').textContent : '';
+    const description = box.dataset.description || '';
+
+    const content = `
+        <div style="text-align:center; margin:auto; padding:10%;">
+            <h2>About ${appName}</h2>
+            <p>${description}</p>
+        </div>
+    `;
+    openModal(content);
+}
+
 // Update Chart.js text color from the current theme
 function updateChartTextColor() {
     if (window.Chart && Chart.defaults) {
