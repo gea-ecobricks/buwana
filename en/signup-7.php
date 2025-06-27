@@ -42,14 +42,15 @@ function build_login_url($base, array $params) {
 }
 
 $redirect_url = $app_login_url
-    ? build_login_url($app_login_url, [
+      ? build_login_url($app_login_url, [
         'lang' => $lang,
         'id' => $buwana_id,
+        'firstname' => $first_name,
         'status' => 'firsttime',
         'timezone' => $time_zone,
         'app' => $app_info['client_id'] ?? ''
-    ])
-    : '/';
+      ])
+      : '/';
 
 ?>
 
