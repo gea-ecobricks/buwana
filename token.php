@@ -130,7 +130,7 @@ $exp = $now + 3600;
 $sub = $open_id ?? ("buwana_$user_id");
 
 
-
+// The token that BUwana Apps get
 $id_token_payload = [
     "iss" => "https://buwana.ecobricks.org",
     "sub" => $sub,
