@@ -62,22 +62,28 @@ if (!empty($selected_community)) {
 // --- STEP 5: Update Buwana User Record ---
 $update_sql = "
     UPDATE users_tb
-    SET continent_code = ?, country_id = ?,
-        community_id = ?, language_id = ?, earthling_emoji = ?
+    SET continent_code = ?,
+        country_id = ?,
+        community_id = ?,
+        language_id = ?,
+        earthling_emoji = ?,
+        open_id = CONCAT('buwana_', ?)
     WHERE buwana_id = ?
 ";
 $stmt = $buwana_conn->prepare($update_sql);
 $stmt->bind_param(
-    'sisssi',
+    'sisssii',
     $set_continent_code,
     $selected_country_id,
     $community_id,
     $selected_language_id,
     $earthling_emoji,
-    $buwana_id
+    $buwana_id,  // for CONCAT('buwana_', ?)
+    $buwana_id   // for WHERE clause
 );
 $stmt->execute();
 $stmt->close();
+
 
 // --- STEP 6: Load client connection ---
 $client_env_path = "../config/{$app_name}_env.php";
