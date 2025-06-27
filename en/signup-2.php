@@ -6,6 +6,11 @@ session_start(); // Needed for app context persistence
 require_once '../buwanaconn_env.php';         // Sets up $buwana_conn
 require_once '../fetch_app_info.php';         // Retrieves designated app's core data
 
+function build_login_url($base, array $params) {
+    $delimiter = (strpos($base, '?') !== false) ? '&' : '?';
+    return $base . $delimiter . http_build_query($params);
+}
+
 
 // Set up page variables
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
@@ -68,9 +73,13 @@ if ($stmt_lookup_user) {
 // ✅ Check if signup is already completed
 if (!is_null($earthling_emoji) && trim($earthling_emoji) !== '') {
     // Redirect because signup is already done
+    $login_url = build_login_url($app_info['app_login_url'], [
+        'lang' => $lang,
+        'id'   => $buwana_id
+    ]);
     echo "<script>
         alert('Whoops! Looks like you’ve already completed your signup. No need to return to this page! Please login to your " . htmlspecialchars($app_info['app_display_name']) . " account.');
-        window.location.href = '" . htmlspecialchars($app_info['app_login_url']) . "?lang=" . urlencode($lang) . "&id=" . urlencode($buwana_id) . "';
+        window.location.href = '$login_url';
     </script>";
     exit();
 }
@@ -156,8 +165,9 @@ https://github.com/gea-ecobricks/buwana/-->
                      🚧 Whoops! Looks like that e-mail address is already being used by a Buwana Account. Please choose another.
                    </div>
                    <div id="duplicate-gobrik-email" class="form-warning">
-                     🌏 <span data-lang-id="006-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="login.php" class="underline-link">login with this email to upgrade your account.</a></span>
-                   </div>
+                     <?php $dup_login = build_login_url('login.php', ['app' => $app_info['client_id']]); ?>
+                     🌏 <span data-lang-id="006-gobrik-duplicate">It looks like this email is already being used with a legacy GoBrik account. Please <a href="<?= htmlspecialchars($dup_login) ?>" class="underline-link">login with this email to upgrade your account.</a></span>
+                  </div>
 
                    <div id="loading-spinner" class="spinner" style="display: none;margin-left: 10px;margin-top: 7px;"></div>
 
