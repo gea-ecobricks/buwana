@@ -46,7 +46,8 @@ $redirect_url = $app_login_url
         'lang' => $lang,
         'id' => $buwana_id,
         'status' => 'firsttime',
-        'timezone' => $time_zone
+        'timezone' => $time_zone,
+        'app' => $app_info['client_id'] ?? ''
     ])
     : '/';
 
