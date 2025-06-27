@@ -357,12 +357,25 @@ max-height: 200px;
    </div>
    <?php
 
-     $profile_url = 'edit-profile.php';
+    $profile_url = 'edit-profile.php';
+    $params = [];
 
-     $connection_id = $_SESSION['connection_id'] ?? null;
-     if (!empty($connection_id)) {
-         $profile_url .= '?con=' . urlencode($connection_id);
-     }
+    if (!empty($buwana_id)) {
+        $params[] = 'id=' . urlencode($buwana_id);
+    }
+
+    if (!empty($client_id)) {
+        $params[] = 'app=' . urlencode($client_id);
+    }
+
+    $connection_id = $_SESSION['connection_id'] ?? null;
+    if (!empty($connection_id)) {
+        $params[] = 'con=' . urlencode($connection_id);
+    }
+
+    if (!empty($params)) {
+        $profile_url .= '?' . implode('&', $params);
+    }
    ?>
     <div class="menu-page-item">
         <a href="<?= htmlspecialchars($app_info['app_dashboard_url']) ?>">Dashboard</a>
@@ -421,7 +434,7 @@ max-height: 200px;
 </div>
 
 
-<h4 style="margin-top:30px"><?= htmlspecialchars($app_info['app_slogan']) ?></h4>
+<h4 class="app-slogan" style="margin-top:30px"><?= htmlspecialchars($app_info['app_slogan']) ?></h4>
 
 <p style="margin:auto;margin-bottom: 5px;font-size: smaller; text-align: center;" data-lang-id="1000-authentication-by" >Authentication by</p>
 <div class="buwana-word-mark" alt="Buwana Logo" title="Authentication by Buwana" onclick="navigateTo('index.php')" style="cursor:pointer;"></div>
