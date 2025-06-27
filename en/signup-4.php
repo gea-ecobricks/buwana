@@ -6,6 +6,11 @@ session_start();
 require_once '../buwanaconn_env.php';
 require_once '../fetch_app_info.php';
 
+function build_login_url($base, array $params) {
+    $delimiter = (strpos($base, '?') !== false) ? '&' : '?';
+    return $base . $delimiter . http_build_query($params);
+}
+
 // Page setup
 $lang = basename(dirname($_SERVER['SCRIPT_NAME']));
 $page = 'signup-4';
@@ -50,9 +55,13 @@ if ($stmt) {
 // ✅ Check if signup is already completed
 if (!is_null($earthling_emoji) && trim($earthling_emoji) !== '') {
     // Redirect because signup is already done
+    $login_url = build_login_url($app_info['app_login_url'], [
+        'lang' => $lang,
+        'id'   => $buwana_id
+    ]);
     echo "<script>
         alert('Whoops! Looks like you’ve already completed your signup. No need to return to this page! Please login to your " . htmlspecialchars($app_info['app_display_name']) . " account.');
-        window.location.href = '" . htmlspecialchars($app_info['app_login_url']) . "?lang=" . urlencode($lang) . "&id=" . urlencode($buwana_id) . "';
+        window.location.href = '$login_url';
     </script>";
     exit();
 }

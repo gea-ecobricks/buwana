@@ -36,12 +36,18 @@ if ($stmt) {
 $app_display_name = $app_info['app_display_name'] ?? 'Your App';
 $app_login_url = $app_info['app_login_url'] ?? null;
 
+function build_login_url($base, array $params) {
+    $delimiter = (strpos($base, '?') !== false) ? '&' : '?';
+    return $base . $delimiter . http_build_query($params);
+}
+
 $redirect_url = $app_login_url
-    ? ($app_login_url .
-        '?lang=' . urlencode($lang) .
-        '&id=' . urlencode($buwana_id) .
-        '&status=firsttime' .
-        '&timezone=' . urlencode($time_zone))
+    ? build_login_url($app_login_url, [
+        'lang' => $lang,
+        'id' => $buwana_id,
+        'status' => 'firsttime',
+        'timezone' => $time_zone
+    ])
     : '/';
 
 ?>
