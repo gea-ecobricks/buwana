@@ -8,7 +8,7 @@
    viewBox="0 0 180.33 68.844433"
    id="svg131"
    sodipodi:docname="earthen-subscribe-top-day.svg"
-   inkscape:version="1.4.1-rc (06eac75fbf, 2025-03-29)"
+   inkscape:version="1.4.2 (2aeb623e1d, 2025-05-12)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +24,10 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1"
-     inkscape:cx="368"
+     inkscape:cx="367.5"
      inkscape:cy="283.5"
      inkscape:window-width="2256"
-     inkscape:window-height="1427"
+     inkscape:window-height="1425"
      inkscape:window-x="0"
      inkscape:window-y="40"
      inkscape:window-maximized="1"
@@ -120,7 +120,7 @@
   </defs>
   <g
      transform="translate(-13.275002,-38.751549)"
-     style="mix-blend-mode:difference"
+     style="mix-blend-mode:normal"
      id="g19">
     <ellipse
        cx="103.44"
