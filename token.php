@@ -141,7 +141,7 @@ $id_token_payload = [
     "buwana_id" => $user_id,
     // 🌍 Custom claims for Buwana groove
     "buwana:earthlingEmoji" => $earthling_emoji,
-    "buwana:community" => $community_id,
+    "buwana:community" => "Planet Earth",
     "buwana:location.continent" => $continent_code,
 ];
 
