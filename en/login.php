@@ -60,12 +60,21 @@ $is_logged_in = isLoggedIn(); // Check if the user is logged in using the helper
 
 // Check if user is logged in and session active
 if ($is_logged_in) {
+    if (isset($_SESSION['pending_oauth_request'])) {
+        // Redirect to authorize.php to continue the flow
+        $params = http_build_query($_SESSION['pending_oauth_request']);
+        auth_log("Logged in. Redirecting to authorize.php with saved OAuth params.");
+        header("Location: /authorize.php?$params");
+        exit();
+    }
+
+    // Fallback to dashboard if no OAuth flow in progress
     $redirect_url = $app_info['app_dashboard_url'] ?? 'dashboard.php';
-    auth_log('User already logged in as ' . ($_SESSION['buwana_id'] ?? 'unknown') .
-        ' redirecting to ' . $redirect_url);
+    auth_log('User already logged in, redirecting to ' . $redirect_url);
     header("Location: $redirect_url");
     exit();
 }
+
 
 // Generate CSRF token if not already set
 if (empty($_SESSION['csrf_token'])) {
