@@ -116,10 +116,10 @@ $stmt->execute();
 $stmt->close();
 
 // Fetch user info
-$stmt_user = $buwana_conn->prepare("SELECT email, first_name, open_id, earthling_emoji, continent_id, community_id FROM users_tb WHERE buwana_id = ?");
+$stmt_user = $buwana_conn->prepare("SELECT email, first_name, open_id, earthling_emoji, continent_code, community_id FROM users_tb WHERE buwana_id = ?");
 $stmt_user->bind_param('i', $user_id);
 $stmt_user->execute();
-$stmt_user->bind_result($email, $first_name, $open_id, $earthling_emoji, $continent_id, $community_id);
+$stmt_user->bind_result($email, $first_name, $open_id, $earthling_emoji, $continent_code, $community_id);
 $stmt_user->fetch();
 $stmt_user->close();
 
@@ -141,7 +141,7 @@ $id_token_payload = [
     "buwana_id" => $user_id,
     // 🌍 Custom claims for Buwana groove
     "earthling_emoji" => $earthling_emoji,
-    "continent" => $continent_id,
+    "continent" => $continent_code,
     "community" => $community_id
 ];
 
