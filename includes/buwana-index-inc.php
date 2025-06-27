@@ -120,7 +120,13 @@
 
 .about-link {
   font-size: 0.9em;
+  color: var(--subdued-text);
   text-decoration: none;
+}
+
+.about-link:hover {
+  color: var(--text-color);
+  text-decoration: underline;
 }
 
 .app-actions {
