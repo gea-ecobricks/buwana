@@ -12,26 +12,27 @@ $version = '0.395';
 $page = 'profile';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
-// 📌 Get the connection ID from the URL
-$connection_id = $_GET['con'] ?? null;
+// 📌 Get the buwana_id and client_id from the URL
+$buwana_id = isset($_GET['buwana']) ? intval($_GET['buwana']) : null;
+$client_id = $_GET['app'] ?? ($_GET['client_id'] ?? null);
 
-if (!$connection_id || !is_numeric($connection_id)) {
-    die('Invalid or missing connection ID.');
+if (!$buwana_id || !$client_id) {
+    die('Missing buwana ID or client ID.');
 }
 
-// 📥 Fetch the client_id and buwana_id from user_app_connections_tb
-$sql_connection = "SELECT client_id, buwana_id FROM user_app_connections_tb WHERE id = ?";
+// 📥 Verify the user/app connection exists
+$sql_connection = "SELECT id FROM user_app_connections_tb WHERE buwana_id = ? AND client_id = ?";
 $stmt_connection = $buwana_conn->prepare($sql_connection);
 
 if ($stmt_connection) {
-    $stmt_connection->bind_param("i", $connection_id);
+    $stmt_connection->bind_param('is', $buwana_id, $client_id);
     $stmt_connection->execute();
-    $stmt_connection->bind_result($client_id, $buwana_id);
+    $stmt_connection->bind_result($connection_id);
     $stmt_connection->fetch();
     $stmt_connection->close();
 
-    if (!$client_id || !$buwana_id) {
-        die('Connection not found or incomplete.');
+    if (!$connection_id) {
+        die('Connection not found.');
     }
 } else {
     die('Error preparing statement for connection lookup: ' . $buwana_conn->error);
