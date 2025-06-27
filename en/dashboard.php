@@ -61,7 +61,8 @@ try {
 
 // Fetch apps either owned by or connected to this user
 $sql = "SELECT DISTINCT a.app_id, a.client_id, a.app_display_name, a.app_description, a.app_square_icon_url,
-               (SELECT COUNT(*) FROM user_app_connections_tb u WHERE u.client_id = a.client_id) AS user_count
+               (SELECT COUNT(*) FROM user_app_connections_tb u WHERE u.client_id = a.client_id) AS user_count,
+               (SELECT COUNT(*) FROM user_app_connections_tb u WHERE u.client_id = a.client_id AND u.connected_at >= (NOW() - INTERVAL 1 MONTH)) AS new_users_month
         FROM apps_tb a
         LEFT JOIN app_owners_tb ao ON ao.app_id = a.app_id AND ao.buwana_id = ?
         LEFT JOIN user_app_connections_tb uc ON uc.client_id = a.client_id AND uc.buwana_id = ?
@@ -135,7 +136,13 @@ $admin_alert_msg = ($alert_count > 0) ? 'There are admin alerts 🔴' : 'All sys
       <?php foreach ($apps as $app): ?>
         <a href="app-view.php?app_id=<?= intval($app['app_id']) ?>" class="app-display-box" title="<?= htmlspecialchars($app['app_display_name']) ?>">
           <img src="<?= htmlspecialchars($app['app_square_icon_url']) ?>" alt="<?= htmlspecialchars($app['app_display_name']) ?> Icon">
-          <p><?= intval($app['user_count']) ?> users</p>
+          <p>
+            <?= intval($app['user_count']) ?> users
+            <?php $change = intval($app['new_users_month']); ?>
+            <span class="monthly-change-<?php echo $change >= 0 ? 'positive' : 'negative'; ?>">
+              <?= $change >= 0 ? '+' : '' ?><?= $change ?>
+            </span>
+          </p>
         </a>
       <?php endforeach; ?>
     </div>

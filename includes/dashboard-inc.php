@@ -153,6 +153,14 @@
   margin: 8px 0 0 0;
 }
 
+.monthly-change-positive {
+  color: var(--emblem-green);
+}
+
+.monthly-change-negative {
+  color: red;
+}
+
 .kick-ass-submit {
   text-decoration: none;
 }
