@@ -7,25 +7,35 @@
 document.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('form#user-signup-form');
 
+  // ✨ Apply hover & click effects to every kick-ass button
+  document.querySelectorAll('.kick-ass-submit').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      btn.setAttribute('data-hovered', 'true');
+      btn.classList.add('pulse-started');
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.removeAttribute('data-hovered');
+      btn.classList.remove('pulse-started');
+      btn.classList.add('returning');
+      setTimeout(() => btn.classList.remove('returning'), 500);
+    });
+
+    // Simple click animation for non-form buttons
+    if (!btn.closest('form#user-signup-form')) {
+      btn.addEventListener('mousedown', () => {
+        btn.classList.add('click-animating');
+        setTimeout(() => btn.classList.add('striding'), 400);
+      });
+    }
+  });
+
   forms.forEach((form) => {
     const submitButton = form.querySelector('.kick-ass-submit');
     const btnText = form.querySelector('#submit-button-text');
     const emoji = form.querySelector('.submit-emoji');
 
     if (!form || !submitButton || !btnText || !emoji) return;
-
-    // 🌀 Hover animations
-    submitButton.addEventListener('mouseenter', () => {
-      submitButton.setAttribute('data-hovered', 'true');
-      submitButton.classList.add('pulse-started');
-    });
-
-    submitButton.addEventListener('mouseleave', () => {
-      submitButton.removeAttribute('data-hovered');
-      submitButton.classList.remove('pulse-started');
-      submitButton.classList.add('returning');
-      setTimeout(() => submitButton.classList.remove('returning'), 500);
-    });
 
     // 💥 Submit logic
     form.addEventListener('kickAssSubmit', function (e) {
