@@ -62,7 +62,7 @@ if ($status === 'reset') {
                 <h4 data-lang-id="002b-reset-subtitle" style="margin-top:12px; margin-bottom:8px;">Login now with your new Buwana account credentials.</h4>
             </div>
             <div style="text-align:center;">
-                <a href="' . htmlspecialchars($login_url) . '"><button data-lang-id="000-login">Login </button></a>
+                <a href="' . htmlspecialchars($login_url) . '"><button data-lang-id="000-login" class="kick-ass-submit">Login </button></a>
             </div>
         </div>
     </div>';
