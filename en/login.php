@@ -29,8 +29,11 @@ if ($status === 'loggedout') {
 if (isset($_SESSION['pending_oauth_request']['client_id'])) {
     $_SESSION['client_id'] = $_SESSION['pending_oauth_request']['client_id'];
 } else {
-    // 2️⃣ Otherwise, check query param ?app=
+    // 2️⃣ Otherwise, check query param ?app= or fallback to session
     $client_id_param = $_GET['app'] ?? ($_GET['client_id'] ?? null);
+    if (!$client_id_param && isset($_SESSION['client_id'])) {
+        $client_id_param = $_SESSION['client_id'];
+    }
     if (!$client_id_param) {
         header('Location: index.php');
         exit();
