@@ -22,18 +22,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($token && $password && $confirmPassword) {
         if ($password === $confirmPassword && strlen($password) >= 6) {
-            // Check if token is valid
-            $stmt = $buwana_conn->prepare("SELECT email FROM users_tb WHERE password_reset_token = ?");
+            // Check if token is valid and fetch basic user info
+            $stmt = $buwana_conn->prepare("SELECT buwana_id, first_name, email FROM users_tb WHERE password_reset_token = ?");
             if (!$stmt) {
                 die("Prepare statement failed: " . $buwana_conn->error);
             }
             $stmt->bind_param("s", $token);
             $stmt->execute();
-            $stmt->bind_result($email);
+            $stmt->bind_result($buwana_id, $first_name, $email);
             $stmt->fetch();
             $stmt->close();
 
             if ($email) {
+                // Fetch credential key for login link
+                $credential_key = '';
+                $stmt_cred = $buwana_conn->prepare("SELECT credential_key FROM credentials_tb WHERE buwana_id = ? LIMIT 1");
+                if ($stmt_cred) {
+                    $stmt_cred->bind_param('i', $buwana_id);
+                    $stmt_cred->execute();
+                    $stmt_cred->bind_result($credential_key);
+                    $stmt_cred->fetch();
+                    $stmt_cred->close();
+                }
+
                 // Update the user's password and reset token details in the database
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 $currentDateTime = date('Y-m-d H:i:s');
@@ -45,7 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute();
                 $stmt->close();
 
-                echo '<script>alert("Your password has been reset! You can now log in using your new password."); window.location.href = "../' . $lang . '/login.php?app=' . urlencode($client_id) . '";</script>';
+                $redirect_url = '../' . $lang . '/password-reset.php?status=reset&firstname=' . urlencode($first_name) . '&id=' . urlencode($buwana_id) . '&key=' . urlencode($credential_key) . '&app=' . urlencode($client_id);
+                header('Location: ' . $redirect_url);
                 exit();
             } else {
                 echo '<script>alert("Invalid token. Please try reseting your password again."); window.location.href = "../' . $lang . '/login.php?app=' . urlencode($client_id) . '";</script>';
