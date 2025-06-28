@@ -117,19 +117,23 @@ $mailgunDomain = getenv('MAILGUN_DOMAIN') ?: 'mail.gobrik.com';
                 if ($response->getStatusCode() == 200) {
                     $confirmation_code = uniqid("email_", true);
                     error_log("Mailgun: Email sent successfully to $email. Confirmation Code: " . $confirmation_code);
-                    header('Location: ../' . $lang . '/login.php?reset_sent_to=' . urlencode($email));
+                    $redirectUrl = '../' . $lang . '/login.php?app=' . urlencode($client_id) . '&reset_sent_to=' . urlencode($email);
+                    header('Location: ' . $redirectUrl);
                     exit();
                 } else {
                     error_log("Mailgun: Failed to send email to $email. Status: " . $response->getStatusCode());
-                    echo '<script>alert("Failed to send email. Please try again later."); window.location.href = "../' . $lang . '/login.php";</script>';
+                    $redirectUrl = '../' . $lang . '/login.php?app=' . urlencode($client_id);
+                    echo '<script>alert("Failed to send email. Please try again later."); window.location.href = "' . $redirectUrl . '";</script>';
                 }
 
             } catch (RequestException $e) {
                 error_log("Mailgun API Exception: " . $e->getMessage());
-                echo '<script>alert("Message could not be sent... Please try again later."); window.location.href = "../' . $lang . '/login.php";</script>';
+                $redirectUrl = '../' . $lang . '/login.php?app=' . urlencode($client_id);
+                echo '<script>alert("Message could not be sent... Please try again later."); window.location.href = "' . $redirectUrl . '";</script>';
             }
         } else {
-            header('Location: ../' . $lang . '/login.php?email_not_found&email=' . urlencode($email));
+            $redirectUrl = '../' . $lang . '/login.php?app=' . urlencode($client_id) . '&email_not_found&email=' . urlencode($email);
+            header('Location: ' . $redirectUrl);
             exit();
         }
     } catch (Exception $e) {
@@ -137,7 +141,8 @@ $mailgunDomain = getenv('MAILGUN_DOMAIN') ?: 'mail.gobrik.com';
         echo "<script>console.error('Error: " . htmlspecialchars($e->getMessage()) . "');</script>";
     }
 } else {
-    echo '<script>alert("Please enter a valid email address."); window.location.href = "../' . $lang . '/login.php";</script>';
+    $redirectUrl = '../' . $lang . '/login.php?app=' . urlencode($client_id);
+    echo '<script>alert("Please enter a valid email address."); window.location.href = "' . $redirectUrl . '";</script>';
 }
 
 // Close the database connection
