@@ -54,10 +54,10 @@ if ($status === 'reset') {
 <meta charset="UTF-8">';
     echo '<title>Password Reset | ' . htmlspecialchars($app_info['app_display_name']) . '</title>';
     require_once("../includes/reset-inc.php");
-    echo '<div id="top-page-image" class="top-page-image" style="min-height:250px; data-light-img="../svgs/confirmed-day.svg" data-dark-img="../svgs/confirmed-night.svg"></div>';
+    echo '<div id="top-page-image" class="top-page-image" style="min-height:250px;"" data-light-img="../svgs/confirmed-day.svg" data-dark-img="../svgs/confirmed-night.svg"></div>';
     echo '<div id="form-submission-box" class="landing-page-form">
         <div class="form-container">
-            <div style="text-align:center;width:100%;margin:auto;">
+            <div style="text-align:center;width:100%;margin: 50px auto 30px auto;">
                 <h2 data-lang-id="001b-reset-title">Your Password is Reset!</h2>
                 <p data-lang-id="002b-reset-subtitle" style="margin-top:12px; margin-bottom:8px;">Login now with your new Buwana account credentials.</h4>
             </p>
