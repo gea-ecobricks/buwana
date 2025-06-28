@@ -85,11 +85,11 @@ if ($email) {
                                             To reset your password, please click the following link:<br><br>
                                             <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Reset Password</a><br><br>
                                             The Buwana Team",
-                'zh' => "您好 $first_name，<br><br>
-                    在 " . date('Y-m-d H:i:s') . " 您的Buwana账户提出了重置密码请求。如果不是您本人操作，请忽略此邮件。<br><br>
-                    要重置密码，请点击以下链接：<br><br>
-                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>重置密码</a><br><br>
-                    Buwana 团队",
+                'zh' => "Hello $first_name,<br><br>
+                                                                    A password reset was requested at " . date('Y-m-d H:i:s') . " for your Buwana account. If you didn't request this, please disregard!<br><br>
+                                                                    To reset your password, please click the following link:<br><br>
+                                                                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Reset Password</a><br><br>
+                                                                    The Buwana Team",
                 'id' => "Halo $first_name,<br><br>
                     Permintaan pengaturan ulang kata sandi dibuat pada " . date('Y-m-d H:i:s') . " untuk akun Buwana Anda. Jika Anda tidak memintanya, abaikan email ini.<br><br>
                     Untuk mengatur ulang kata sandi, silakan klik tautan berikut:<br><br>
