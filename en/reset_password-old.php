@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Set language and validate the email input
-$lang = isset($_POST['lang']) ? filter_var($_POST['lang'], FILTER_SANITIZE_STRING) : 'en';
+$lang = isset($_POST['lang']) ? filter_var($_POST['lang'], FILTER_SANITIZE_SPECIAL_CHARS) : 'en';
 $email = isset($_POST['email']) ? filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL) : '';
 
 if ($email) {
