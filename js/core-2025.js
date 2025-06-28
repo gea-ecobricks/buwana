@@ -292,22 +292,21 @@ document.addEventListener('DOMContentLoaded', updateChartTextColor);
 document.addEventListener('colorschemechange', updateChartTextColor);
 
 // Toggle password visibility on pages that include password fields
-document.addEventListener('DOMContentLoaded', function() {
-    const togglePasswordIcons = document.querySelectorAll('.toggle-password');
-    togglePasswordIcons.forEach(function(icon) {
-        icon.addEventListener('click', function() {
-            const input = document.querySelector(icon.getAttribute('toggle'));
-            if (input) {
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    icon.textContent = '🙉';
-                } else {
-                    input.type = 'password';
-                    icon.textContent = '🙈';
-                }
+// Use event delegation so dynamic elements still respond
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('toggle-password')) {
+        const icon = e.target;
+        const input = document.querySelector(icon.getAttribute('toggle'));
+        if (input) {
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = '🙉';
+            } else {
+                input.type = 'password';
+                icon.textContent = '🙈';
             }
-        });
-    });
+        }
+    }
 });
 
 
