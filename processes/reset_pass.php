@@ -78,11 +78,11 @@ if ($email) {
                     Um dein Passwort zurückzusetzen, klicke bitte auf folgenden Link:<br><br>
                     <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Passwort zurücksetzen</a><br><br>
                     Dein Buwana Team",
-                'ar' => "مرحبًا $first_name،<br><br>
-                    تم طلب إعادة تعيين كلمة المرور في " . date('Y-m-d H:i:s') . " لحسابك في بوانا. إذا لم تطلب ذلك، يرجى تجاهل هذه الرسالة.<br><br>
-                    لإعادة تعيين كلمة المرور، يرجى النقر على الرابط التالي:<br><br>
-                    <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>إعادة تعيين كلمة المرور</a><br><br>
-                    فريق بوانا",
+                'ar' => "Hello $first_name,<br><br>
+                                            A password reset was requested at " . date('Y-m-d H:i:s') . " for your Buwana account. If you didn't request this, please disregard!<br><br>
+                                            To reset your password, please click the following link:<br><br>
+                                            <a href='https://buwana.ecobricks.org/{$lang}/password-reset.php?app={$client_id}&token={$password_reset_token}'>Reset Password</a><br><br>
+                                            The Buwana Team",
                 'zh' => "您好 $first_name，<br><br>
                     在 " . date('Y-m-d H:i:s') . " 您的Buwana账户提出了重置密码请求。如果不是您本人操作，请忽略此邮件。<br><br>
                     要重置密码，请点击以下链接：<br><br>
