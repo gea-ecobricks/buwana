@@ -7,7 +7,6 @@ $version = '0.81';
 $page = 'reset';
 $lastModified = date("Y-m-d\TH:i:s\Z", filemtime(__FILE__));
 
-// Initialize user variables
 $first_name = '';
 $buwana_id = '';
 $is_logged_in = isLoggedIn(); // Check if the user is logged in using the helper function
@@ -20,11 +19,11 @@ if ($is_logged_in) {
 
 
 // Get the status, id (buwana_id), code, and key (credential_key) from URL
-$status = isset($_GET['status']) ? filter_var($_GET['status'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : '';
-$buwana_id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) : '';
-$code = isset($_GET['code']) ? filter_var($_GET['code'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : '';
-$credential_key = ''; // Initialize $credential_key as empty
-$first_name = '';  // Initialize the first_name variable
+$status       = isset($_GET['status']) ? filter_var($_GET['status'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : '';
+$buwana_id    = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) : '';
+$code         = isset($_GET['code']) ? filter_var($_GET['code'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : '';
+$credential_key = isset($_GET['key']) ? filter_var($_GET['key'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : '';
+$first_name     = isset($_GET['firstname']) ? filter_var($_GET['firstname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : '';
 
 
 include '../buwanaconn_env.php'; // This file provides the database server, user, dbname information to access the server
@@ -41,25 +40,64 @@ if (!empty($app_info['client_id'])) {
     $_SESSION['client_id'] = $app_info['client_id'];
 }
 
+if ($status === 'reset') {
+    $login_url = build_login_url($app_info['app_login_url'], [
+        'status'    => 'default',
+        'firstname' => $first_name,
+        'id'        => $buwana_id,
+        'key'       => $credential_key
+    ]);
+
+    echo '<!DOCTYPE html>
+<html lang="' . htmlspecialchars($lang, ENT_QUOTES, 'UTF-8') . '">
+<head>
+<meta charset="UTF-8">';
+    echo '<title>Password Reset | ' . htmlspecialchars($app_info['app_display_name']) . '</title>';
+    require_once("../includes/reset-inc.php");
+    echo '<div id="top-page-image" class="top-page-image" data-light-img="../svgs/confirmed-day.svg" data-dark-img="../svgs/confirmed-night.svg"></div>';
+    echo '<div id="form-submission-box" class="landing-page-form">
+        <div class="form-container">
+            <div style="text-align:center;width:100%;margin:auto;">
+                <h3 data-lang-id="001b-reset-title">Your Password is Reset!</h3>
+                <h4 data-lang-id="002b-reset-subtitle" style="margin-top:12px; margin-bottom:8px;">Login now with your new Buwana account credentials.</h4>
+            </div>
+            <div style="text-align:center;">
+                <a href="' . htmlspecialchars($login_url) . '"><button data-lang-id="000-login">Login </button></a>
+            </div>
+        </div>
+    </div>';
+    require_once("../footer-2025.php");
+    echo '</body></html>';
+    exit();
+}
+
+function build_login_url($base, array $params) {
+    $delimiter = (strpos($base, '?') !== false) ? '&' : '?';
+    return $base . $delimiter . http_build_query($params);
+}
+
 
 $token = isset($_GET['token']) ? trim($_GET['token']) : '';
 
-if ($token) {
-    // Check if token is valid
-    $stmt = $buwana_conn->prepare("SELECT email FROM users_tb WHERE password_reset_token = ?");
-    $stmt->bind_param("s", $token);
-    $stmt->execute();
-    $stmt->bind_result($email);
-    $stmt->fetch();
-    $stmt->close();
+// Validate the token only when we're not returning from a successful reset
+if ($status !== 'reset') {
+    if ($token) {
+        // Check if token is valid
+        $stmt = $buwana_conn->prepare("SELECT email FROM users_tb WHERE password_reset_token = ?");
+        $stmt->bind_param("s", $token);
+        $stmt->execute();
+        $stmt->bind_result($email);
+        $stmt->fetch();
+        $stmt->close();
 
-    if (!$email) {
-        echo '<script>alert("Invalid token. Please try again."); window.location.href = "login.php";</script>';
+        if (!$email) {
+            echo '<script>alert("Invalid token. Please try again."); window.location.href = "login.php";</script>';
+            exit();
+        }
+    } else {
+        echo '<script>alert("No token provided. Please try again."); window.location.href = "login.php";</script>';
         exit();
     }
-} else {
-    echo '<script>alert("No token provided. Please try again."); window.location.href = "login.php";</script>';
-    exit();
 }
 
 // Echo the HTML structure
