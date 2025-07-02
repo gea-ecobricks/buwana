@@ -32,7 +32,7 @@ $csrf_token = $_POST['csrf_token'] ?? '';
 // CSRF check
 if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $csrf_token)) {
     auth_log('CSRF token validation failed');
-    header("Location: ../$lang/login.php?status=invalid_csrf");
+    header("Location: ../$lang/login.php?app=" . urlencode($client_id) . "&status=invalid_csrf");
     exit();
 }
 
@@ -40,7 +40,7 @@ auth_log("Credentials received for: $credential_key");
 
 if (empty($credential_key) || empty($password)) {
     auth_log('Empty credential key or password');
-    header("Location: ../$lang/login.php?status=empty_fields&key=" . urlencode($credential_key));
+    header("Location: ../$lang/login.php?app=" . urlencode($client_id) . "&status=empty_fields&key=" . urlencode($credential_key));
     exit();
 }
 
@@ -73,7 +73,7 @@ if ($stmt_credential) {
 
             if ($last_failed_time && $current_time->getTimestamp() - $last_failed_time->getTimestamp() <= 600 && $failed_password_count >= 5) {
                 auth_log('Too many recent failed attempts');
-                header("Location: ../$lang/login.php?status=too_many_attempts&key=" . urlencode($credential_key));
+                header("Location: ../$lang/login.php?app=" . urlencode($client_id) . "&status=too_many_attempts&key=" . urlencode($credential_key));
                 exit();
             }
 
@@ -207,7 +207,7 @@ if ($stmt_credential) {
                                 }
                             }
                             if (!$approved) {
-                                echo "<script>alert('Uh oh... looks like you\'re trying to access buwana from an un-approved domain name.  Please contact the app\'s admin to fix this in their Buwana App Management Core Data panel.'); window.location.href='../$lang/login.php';</script>";
+                                echo "<script>alert('Uh oh... looks like you\'re trying to access buwana from an un-approved domain name.  Please contact the app\'s admin to fix this in their Buwana App Management Core Data panel.'); window.location.href='../$lang/login.php?app=" . urlencode($client_id) . "';</script>";
                                 exit();
                             }
                             $redirect_url = $redirect;
@@ -254,9 +254,9 @@ if ($stmt_credential) {
                     }
 
                     if ($failed_password_count >= 5) {
-                        header("Location: ../$lang/login.php?status=too_many_attempts&key=" . urlencode($credential_key));
+                        header("Location: ../$lang/login.php?app=" . urlencode($client_id) . "&status=too_many_attempts&key=" . urlencode($credential_key));
                     } else {
-                        header("Location: ../$lang/login.php?status=invalid_password&key=" . urlencode($credential_key));
+                        header("Location: ../$lang/login.php?app=" . urlencode($client_id) . "&status=invalid_password&key=" . urlencode($credential_key));
                     }
                     exit();
                 }
@@ -265,7 +265,7 @@ if ($stmt_credential) {
         }
     } else {
         auth_log('Credential not found');
-        header("Location: ../$lang/login.php?status=invalid_credential&key=" . urlencode($credential_key));
+        header("Location: ../$lang/login.php?app=" . urlencode($client_id) . "&status=invalid_credential&key=" . urlencode($credential_key));
         exit();
     }
 } else {
