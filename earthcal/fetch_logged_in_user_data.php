@@ -73,7 +73,6 @@ $stmt->bind_result($first_name, $earthling_emoji, $continent_code, $language_id,
 $stmt->fetch();
 $stmt->close();
 
-
 echo json_encode([
     'logged_in' => true,
     'buwana_id' => $buwana_id,
