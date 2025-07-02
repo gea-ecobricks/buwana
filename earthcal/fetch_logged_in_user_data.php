@@ -11,9 +11,7 @@ $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 $origin = rtrim($origin, '/');
 
 $allowed_origins = [
-    'https://cal.earthen.io',
     'https://earthcal.app',
-    'https://cycles.earthen.io',
     'https://ecobricks.org',
     'https://earthcal.app',
     'https://www.earthcal.app',

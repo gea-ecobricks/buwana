@@ -10,10 +10,7 @@ define('DEVMODE', true); // Set to false on production servers
 // ===============================
 
 $allowed_origins = [
-    'https://cal.earthen.io',
-    'https://cycles.earthen.io',
     'https://ecobricks.org',
-    'https://gobrik.com',
     'https://earthcal.app',
     'https://www.earthcal.app',
     'http://localhost:8080'

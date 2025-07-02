@@ -7,7 +7,6 @@ header('Content-Type: application/json');
 
 // CORS configuration
 $allowed_origins = [
-    'https://cycles.earthen.io',
     'https://ecobricks.org',
     'https://earthcal.app',
     'http://localhost',

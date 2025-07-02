@@ -6,8 +6,6 @@ require_once '../calconn_env.php'; // Include EarthCal database connection
 header('Content-Type: application/json');
 
 $allowed_origins = [
-    'https://cal.earthen.io',
-    'https://cycles.earthen.io',
     'https://ecobricks.org',
     'https://earthcal.app',
     'http://localhost',
